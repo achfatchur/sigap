@@ -10,7 +10,7 @@
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 
-		$user_data = mysqli_query($conn, "SELECT * FROM pegawai WHERE nip='".$username."' AND password='".$password."' AND level = 1");
+		$user_data = mysqli_query($conn, "SELECT * FROM pegawai WHERE nip='".$username."' AND password='".$password."' AND level != 1");
 		$user = mysqli_fetch_array($user_data);
 
 		if(!empty($user)){
@@ -39,7 +39,7 @@
 				<div class="bg"></div>
 				<div class="info-holder">
 					<h3>SIGAP WACHID HAYSIM</h3>
-					<p>Sistem Informasi Gaji Pegawai.</p>
+					<p>Sistem Informasi Gaji Unit & Bendahara.</p>
 					<img src="login/images/graphic5.svg" alt="">
 				</div>
 			</div>
@@ -47,11 +47,11 @@
 				<div class="form-content">
 					<div class="form-items">
 						<div class="page-links">
-							<a href="login_bendahara.php">Login Unit & Bendahara </a><a href="login_pegawai.php" class="active">Login Pegawai</a>
+							<a href="login_bendahara.php" class="active">Login Unit & Bendahara </a><a href="login_pegawai.php">Login Pegawai</a>
 						</div>
 						<div class="website-logo-inside">
 							<center>
-								<h3 id="demo" style="color: white; font-weight: bold;">LOGIN PEGAWAI SIGAP WACHID HAYSIM</h3>
+								<h3 id="demo" style="color: white; font-weight: bold;">LOGIN UNIT & BENDAHARA SIGAP WACHID HAYSIM</h3>
 								<br>
 								<img src="login/download.png" style="width: 150px;">
 							</center>

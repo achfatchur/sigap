@@ -94,9 +94,6 @@ $gaji_tu_sd_delete->showMessage();
 <?php if ($gaji_tu_sd_delete->voucher->Visible) { // voucher ?>
 		<th class="<?php echo $gaji_tu_sd_delete->voucher->headerCellClass() ?>"><span id="elh_gaji_tu_sd_voucher" class="gaji_tu_sd_voucher"><?php echo $gaji_tu_sd_delete->voucher->caption() ?></span></th>
 <?php } ?>
-<?php if ($gaji_tu_sd_delete->status->Visible) { // status ?>
-		<th class="<?php echo $gaji_tu_sd_delete->status->headerCellClass() ?>"><span id="elh_gaji_tu_sd_status" class="gaji_tu_sd_status"><?php echo $gaji_tu_sd_delete->status->caption() ?></span></th>
-<?php } ?>
 <?php if ($gaji_tu_sd_delete->potongan_bendahara->Visible) { // potongan_bendahara ?>
 		<th class="<?php echo $gaji_tu_sd_delete->potongan_bendahara->headerCellClass() ?>"><span id="elh_gaji_tu_sd_potongan_bendahara" class="gaji_tu_sd_potongan_bendahara"><?php echo $gaji_tu_sd_delete->potongan_bendahara->caption() ?></span></th>
 <?php } ?>
@@ -174,13 +171,6 @@ while (!$gaji_tu_sd_delete->Recordset->EOF) {
 		<td <?php echo $gaji_tu_sd_delete->voucher->cellAttributes() ?>>
 <span id="el<?php echo $gaji_tu_sd_delete->RowCount ?>_gaji_tu_sd_voucher" class="gaji_tu_sd_voucher">
 <span<?php echo $gaji_tu_sd_delete->voucher->viewAttributes() ?>><?php echo $gaji_tu_sd_delete->voucher->getViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
-<?php if ($gaji_tu_sd_delete->status->Visible) { // status ?>
-		<td <?php echo $gaji_tu_sd_delete->status->cellAttributes() ?>>
-<span id="el<?php echo $gaji_tu_sd_delete->RowCount ?>_gaji_tu_sd_status" class="gaji_tu_sd_status">
-<span<?php echo $gaji_tu_sd_delete->status->viewAttributes() ?>><?php echo $gaji_tu_sd_delete->status->getViewValue() ?></span>
 </span>
 </td>
 <?php } ?>

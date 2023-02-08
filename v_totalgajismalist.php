@@ -305,15 +305,6 @@ $v_totalgajisma_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
-<?php if ($v_totalgajisma_list->status->Visible) { // status ?>
-	<?php if ($v_totalgajisma_list->SortUrl($v_totalgajisma_list->status) == "") { ?>
-		<th data-name="status" class="<?php echo $v_totalgajisma_list->status->headerCellClass() ?>"><div id="elh_v_totalgajisma_status" class="v_totalgajisma_status"><div class="ew-table-header-caption"><?php echo $v_totalgajisma_list->status->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="status" class="<?php echo $v_totalgajisma_list->status->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_totalgajisma_list->SortUrl($v_totalgajisma_list->status) ?>', 1);"><div id="elh_v_totalgajisma_status" class="v_totalgajisma_status">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_totalgajisma_list->status->caption() ?></span><span class="ew-table-header-sort"><?php if ($v_totalgajisma_list->status->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_totalgajisma_list->status->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
 <?php
 
 // Render list options (header, right)
@@ -404,13 +395,6 @@ $v_totalgajisma_list->ListOptions->render("body", "left", $v_totalgajisma_list->
 		<td data-name="total" <?php echo $v_totalgajisma_list->total->cellAttributes() ?>>
 <span id="el<?php echo $v_totalgajisma_list->RowCount ?>_v_totalgajisma_total">
 <span<?php echo $v_totalgajisma_list->total->viewAttributes() ?>><?php echo $v_totalgajisma_list->total->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($v_totalgajisma_list->status->Visible) { // status ?>
-		<td data-name="status" <?php echo $v_totalgajisma_list->status->cellAttributes() ?>>
-<span id="el<?php echo $v_totalgajisma_list->RowCount ?>_v_totalgajisma_status">
-<span<?php echo $v_totalgajisma_list->status->viewAttributes() ?>><?php echo $v_totalgajisma_list->status->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

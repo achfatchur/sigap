@@ -620,7 +620,7 @@ class gaji_tu_smp_preview extends gaji_tu_smp
 		$this->penyesuaian->setVisibility();
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
-		$this->status->setVisibility();
+		$this->status->Visible = FALSE;
 		$this->potongan_bendahara->setVisibility();
 		$this->hideFieldsForAddEdit();
 

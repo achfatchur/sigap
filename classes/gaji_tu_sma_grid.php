@@ -751,7 +751,7 @@ class gaji_tu_sma_grid extends gaji_tu_sma
 		$this->penyesuaian->setVisibility();
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
-		$this->status->setVisibility();
+		$this->status->Visible = FALSE;
 		$this->potongan_bendahara->setVisibility();
 		$this->hideFieldsForAddEdit();
 
@@ -1209,8 +1209,6 @@ class gaji_tu_sma_grid extends gaji_tu_sma
 		if ($CurrentForm->hasValue("x_total") && $CurrentForm->hasValue("o_total") && $this->total->CurrentValue != $this->total->OldValue)
 			return FALSE;
 		if ($CurrentForm->hasValue("x_voucher") && $CurrentForm->hasValue("o_voucher") && $this->voucher->CurrentValue != $this->voucher->OldValue)
-			return FALSE;
-		if ($CurrentForm->hasValue("x_status") && $CurrentForm->hasValue("o_status") && $this->status->CurrentValue != $this->status->OldValue)
 			return FALSE;
 		if ($CurrentForm->hasValue("x_potongan_bendahara") && $CurrentForm->hasValue("o_potongan_bendahara") && $this->potongan_bendahara->CurrentValue != $this->potongan_bendahara->OldValue)
 			return FALSE;
@@ -1709,17 +1707,6 @@ class gaji_tu_sma_grid extends gaji_tu_sma
 		if ($CurrentForm->hasValue("o_voucher"))
 			$this->voucher->setOldValue($CurrentForm->getValue("o_voucher"));
 
-		// Check field name 'status' first before field var 'x_status'
-		$val = $CurrentForm->hasValue("status") ? $CurrentForm->getValue("status") : $CurrentForm->getValue("x_status");
-		if (!$this->status->IsDetailKey) {
-			if (IsApi() && $val == NULL)
-				$this->status->Visible = FALSE; // Disable update for API request
-			else
-				$this->status->setFormValue($val);
-		}
-		if ($CurrentForm->hasValue("o_status"))
-			$this->status->setOldValue($CurrentForm->getValue("o_status"));
-
 		// Check field name 'potongan_bendahara' first before field var 'x_potongan_bendahara'
 		$val = $CurrentForm->hasValue("potongan_bendahara") ? $CurrentForm->getValue("potongan_bendahara") : $CurrentForm->getValue("x_potongan_bendahara");
 		if (!$this->potongan_bendahara->IsDetailKey) {
@@ -1751,7 +1738,6 @@ class gaji_tu_sma_grid extends gaji_tu_sma
 		$this->penyesuaian->CurrentValue = $this->penyesuaian->FormValue;
 		$this->total->CurrentValue = $this->total->FormValue;
 		$this->voucher->CurrentValue = $this->voucher->FormValue;
-		$this->status->CurrentValue = $this->status->FormValue;
 		$this->potongan_bendahara->CurrentValue = $this->potongan_bendahara->FormValue;
 	}
 
@@ -2305,11 +2291,6 @@ class gaji_tu_sma_grid extends gaji_tu_sma
 			$this->voucher->HrefValue = "";
 			$this->voucher->TooltipValue = "";
 
-			// status
-			$this->status->LinkCustomAttributes = "";
-			$this->status->HrefValue = "";
-			$this->status->TooltipValue = "";
-
 			// potongan_bendahara
 			$this->potongan_bendahara->LinkCustomAttributes = "";
 			$this->potongan_bendahara->HrefValue = "";
@@ -2437,12 +2418,6 @@ class gaji_tu_sma_grid extends gaji_tu_sma
 			$this->voucher->EditValue = HtmlEncode($this->voucher->CurrentValue);
 			$this->voucher->PlaceHolder = RemoveHtml($this->voucher->caption());
 
-			// status
-			$this->status->EditAttrs["class"] = "form-control";
-			$this->status->EditCustomAttributes = "";
-			$this->status->EditValue = HtmlEncode($this->status->CurrentValue);
-			$this->status->PlaceHolder = RemoveHtml($this->status->caption());
-
 			// potongan_bendahara
 			$this->potongan_bendahara->EditAttrs["class"] = "form-control";
 			$this->potongan_bendahara->EditCustomAttributes = "";
@@ -2482,10 +2457,6 @@ class gaji_tu_sma_grid extends gaji_tu_sma
 			// voucher
 			$this->voucher->LinkCustomAttributes = "";
 			$this->voucher->HrefValue = "";
-
-			// status
-			$this->status->LinkCustomAttributes = "";
-			$this->status->HrefValue = "";
 
 			// potongan_bendahara
 			$this->potongan_bendahara->LinkCustomAttributes = "";
@@ -2613,12 +2584,6 @@ class gaji_tu_sma_grid extends gaji_tu_sma
 			$this->voucher->EditValue = HtmlEncode($this->voucher->CurrentValue);
 			$this->voucher->PlaceHolder = RemoveHtml($this->voucher->caption());
 
-			// status
-			$this->status->EditAttrs["class"] = "form-control";
-			$this->status->EditCustomAttributes = "";
-			$this->status->EditValue = HtmlEncode($this->status->CurrentValue);
-			$this->status->PlaceHolder = RemoveHtml($this->status->caption());
-
 			// potongan_bendahara
 			$this->potongan_bendahara->EditAttrs["class"] = "form-control";
 			$this->potongan_bendahara->EditCustomAttributes = "";
@@ -2658,10 +2623,6 @@ class gaji_tu_sma_grid extends gaji_tu_sma
 			// voucher
 			$this->voucher->LinkCustomAttributes = "";
 			$this->voucher->HrefValue = "";
-
-			// status
-			$this->status->LinkCustomAttributes = "";
-			$this->status->HrefValue = "";
 
 			// potongan_bendahara
 			$this->potongan_bendahara->LinkCustomAttributes = "";
@@ -2743,14 +2704,6 @@ class gaji_tu_sma_grid extends gaji_tu_sma
 		}
 		if (!CheckInteger($this->voucher->FormValue)) {
 			AddMessage($FormError, $this->voucher->errorMessage());
-		}
-		if ($this->status->Required) {
-			if (!$this->status->IsDetailKey && $this->status->FormValue != NULL && $this->status->FormValue == "") {
-				AddMessage($FormError, str_replace("%s", $this->status->caption(), $this->status->RequiredErrorMessage));
-			}
-		}
-		if (!CheckInteger($this->status->FormValue)) {
-			AddMessage($FormError, $this->status->errorMessage());
 		}
 		if ($this->potongan_bendahara->Required) {
 			if (!$this->potongan_bendahara->IsDetailKey && $this->potongan_bendahara->FormValue != NULL && $this->potongan_bendahara->FormValue == "") {
@@ -2904,9 +2857,6 @@ class gaji_tu_sma_grid extends gaji_tu_sma
 
 			// voucher
 			$this->voucher->setDbValueDef($rsnew, $this->voucher->CurrentValue, NULL, $this->voucher->ReadOnly);
-
-			// status
-			$this->status->setDbValueDef($rsnew, $this->status->CurrentValue, NULL, $this->status->ReadOnly);
 
 			// potongan_bendahara
 			$this->potongan_bendahara->setDbValueDef($rsnew, $this->potongan_bendahara->CurrentValue, NULL, $this->potongan_bendahara->ReadOnly);
@@ -3075,9 +3025,6 @@ class gaji_tu_sma_grid extends gaji_tu_sma
 
 		// voucher
 		$this->voucher->setDbValueDef($rsnew, $this->voucher->CurrentValue, NULL, FALSE);
-
-		// status
-		$this->status->setDbValueDef($rsnew, $this->status->CurrentValue, NULL, FALSE);
 
 		// potongan_bendahara
 		$this->potongan_bendahara->setDbValueDef($rsnew, $this->potongan_bendahara->CurrentValue, NULL, FALSE);

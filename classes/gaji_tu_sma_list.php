@@ -852,7 +852,7 @@ class gaji_tu_sma_list extends gaji_tu_sma
 		$this->penyesuaian->setVisibility();
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
-		$this->status->setVisibility();
+		$this->status->Visible = FALSE;
 		$this->potongan_bendahara->setVisibility();
 		$this->hideFieldsForAddEdit();
 
@@ -1679,7 +1679,6 @@ class gaji_tu_sma_list extends gaji_tu_sma
 			$this->updateSort($this->penyesuaian); // penyesuaian
 			$this->updateSort($this->total); // total
 			$this->updateSort($this->voucher); // voucher
-			$this->updateSort($this->status); // status
 			$this->updateSort($this->potongan_bendahara); // potongan_bendahara
 			$this->setStartRecordNumber(1); // Reset start position
 		}
@@ -1734,7 +1733,6 @@ class gaji_tu_sma_list extends gaji_tu_sma
 				$this->penyesuaian->setSort("");
 				$this->total->setSort("");
 				$this->voucher->setSort("");
-				$this->status->setSort("");
 				$this->potongan_bendahara->setSort("");
 			}
 
@@ -2589,11 +2587,6 @@ class gaji_tu_sma_list extends gaji_tu_sma
 			$this->voucher->LinkCustomAttributes = "";
 			$this->voucher->HrefValue = "";
 			$this->voucher->TooltipValue = "";
-
-			// status
-			$this->status->LinkCustomAttributes = "";
-			$this->status->HrefValue = "";
-			$this->status->TooltipValue = "";
 
 			// potongan_bendahara
 			$this->potongan_bendahara->LinkCustomAttributes = "";

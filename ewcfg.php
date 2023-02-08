@@ -161,7 +161,7 @@ $CONFIG = [
 
 	// General
 	"UNFORMAT_YEAR" => 50, // Unformat year
-	"RANDOM_KEY" => '8B2uoy1hrLylEyxH', // Random key for encryption
+	"RANDOM_KEY" => 'fk3yqsz3Qli83j0s', // Random key for encryption
 	"ENCRYPTION_KEY" => '', // Encryption key for data protection
 	"PROJECT_STYLESHEET_FILENAME" => "css/sigap.css", // Project stylesheet file name
 	"PROJECT_CHARSET" => "utf-8", // Project charset

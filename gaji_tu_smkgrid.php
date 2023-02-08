@@ -117,14 +117,6 @@ loadjs.ready("head", function() {
 				elm = this.getElements("x" + infix + "_voucher");
 				if (elm && !ew.checkInteger(elm.value))
 					return this.onError(elm, "<?php echo JsEncode($gaji_tu_smk_grid->voucher->errorMessage()) ?>");
-			<?php if ($gaji_tu_smk_grid->status->Required) { ?>
-				elm = this.getElements("x" + infix + "_status");
-				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
-					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_tu_smk_grid->status->caption(), $gaji_tu_smk_grid->status->RequiredErrorMessage)) ?>");
-			<?php } ?>
-				elm = this.getElements("x" + infix + "_status");
-				if (elm && !ew.checkInteger(elm.value))
-					return this.onError(elm, "<?php echo JsEncode($gaji_tu_smk_grid->status->errorMessage()) ?>");
 			<?php if ($gaji_tu_smk_grid->potongan_bendahara->Required) { ?>
 				elm = this.getElements("x" + infix + "_potongan_bendahara");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -154,7 +146,6 @@ loadjs.ready("head", function() {
 		if (ew.valueChanged(fobj, infix, "penyesuaian", false)) return false;
 		if (ew.valueChanged(fobj, infix, "total", false)) return false;
 		if (ew.valueChanged(fobj, infix, "voucher", false)) return false;
-		if (ew.valueChanged(fobj, infix, "status", false)) return false;
 		if (ew.valueChanged(fobj, infix, "potongan_bendahara", false)) return false;
 		return true;
 	}
@@ -287,15 +278,6 @@ $gaji_tu_smk_grid->ListOptions->render("header", "left");
 	<?php } else { ?>
 		<th data-name="voucher" class="<?php echo $gaji_tu_smk_grid->voucher->headerCellClass() ?>"><div><div id="elh_gaji_tu_smk_voucher" class="gaji_tu_smk_voucher">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_grid->voucher->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_grid->voucher->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_grid->voucher->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
-<?php if ($gaji_tu_smk_grid->status->Visible) { // status ?>
-	<?php if ($gaji_tu_smk_grid->SortUrl($gaji_tu_smk_grid->status) == "") { ?>
-		<th data-name="status" class="<?php echo $gaji_tu_smk_grid->status->headerCellClass() ?>"><div id="elh_gaji_tu_smk_status" class="gaji_tu_smk_status"><div class="ew-table-header-caption"><?php echo $gaji_tu_smk_grid->status->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="status" class="<?php echo $gaji_tu_smk_grid->status->headerCellClass() ?>"><div><div id="elh_gaji_tu_smk_status" class="gaji_tu_smk_status">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_grid->status->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_grid->status->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_grid->status->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -766,33 +748,6 @@ loadjs.ready(["fgaji_tu_smkgrid"], function() {
 <?php } ?>
 </td>
 	<?php } ?>
-	<?php if ($gaji_tu_smk_grid->status->Visible) { // status ?>
-		<td data-name="status" <?php echo $gaji_tu_smk_grid->status->cellAttributes() ?>>
-<?php if ($gaji_tu_smk->RowType == ROWTYPE_ADD) { // Add record ?>
-<span id="el<?php echo $gaji_tu_smk_grid->RowCount ?>_gaji_tu_smk_status" class="form-group">
-<input type="text" data-table="gaji_tu_smk" data-field="x_status" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" size="30" maxlength="10" placeholder="<?php echo HtmlEncode($gaji_tu_smk_grid->status->getPlaceHolder()) ?>" value="<?php echo $gaji_tu_smk_grid->status->EditValue ?>"<?php echo $gaji_tu_smk_grid->status->editAttributes() ?>>
-</span>
-<input type="hidden" data-table="gaji_tu_smk" data-field="x_status" name="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" id="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" value="<?php echo HtmlEncode($gaji_tu_smk_grid->status->OldValue) ?>">
-<?php } ?>
-<?php if ($gaji_tu_smk->RowType == ROWTYPE_EDIT) { // Edit record ?>
-<span id="el<?php echo $gaji_tu_smk_grid->RowCount ?>_gaji_tu_smk_status" class="form-group">
-<input type="text" data-table="gaji_tu_smk" data-field="x_status" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" size="30" maxlength="10" placeholder="<?php echo HtmlEncode($gaji_tu_smk_grid->status->getPlaceHolder()) ?>" value="<?php echo $gaji_tu_smk_grid->status->EditValue ?>"<?php echo $gaji_tu_smk_grid->status->editAttributes() ?>>
-</span>
-<?php } ?>
-<?php if ($gaji_tu_smk->RowType == ROWTYPE_VIEW) { // View record ?>
-<span id="el<?php echo $gaji_tu_smk_grid->RowCount ?>_gaji_tu_smk_status">
-<span<?php echo $gaji_tu_smk_grid->status->viewAttributes() ?>><?php echo $gaji_tu_smk_grid->status->getViewValue() ?></span>
-</span>
-<?php if (!$gaji_tu_smk->isConfirm()) { ?>
-<input type="hidden" data-table="gaji_tu_smk" data-field="x_status" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" value="<?php echo HtmlEncode($gaji_tu_smk_grid->status->FormValue) ?>">
-<input type="hidden" data-table="gaji_tu_smk" data-field="x_status" name="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" id="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" value="<?php echo HtmlEncode($gaji_tu_smk_grid->status->OldValue) ?>">
-<?php } else { ?>
-<input type="hidden" data-table="gaji_tu_smk" data-field="x_status" name="fgaji_tu_smkgrid$x<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" id="fgaji_tu_smkgrid$x<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" value="<?php echo HtmlEncode($gaji_tu_smk_grid->status->FormValue) ?>">
-<input type="hidden" data-table="gaji_tu_smk" data-field="x_status" name="fgaji_tu_smkgrid$o<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" id="fgaji_tu_smkgrid$o<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" value="<?php echo HtmlEncode($gaji_tu_smk_grid->status->OldValue) ?>">
-<?php } ?>
-<?php } ?>
-</td>
-	<?php } ?>
 	<?php if ($gaji_tu_smk_grid->potongan_bendahara->Visible) { // potongan_bendahara ?>
 		<td data-name="potongan_bendahara" <?php echo $gaji_tu_smk_grid->potongan_bendahara->cellAttributes() ?>>
 <?php if ($gaji_tu_smk->RowType == ROWTYPE_ADD) { // Add record ?>
@@ -1048,21 +1003,6 @@ loadjs.ready(["fgaji_tu_smkgrid"], function() {
 <input type="hidden" data-table="gaji_tu_smk" data-field="x_voucher" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_voucher" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_voucher" value="<?php echo HtmlEncode($gaji_tu_smk_grid->voucher->FormValue) ?>">
 <?php } ?>
 <input type="hidden" data-table="gaji_tu_smk" data-field="x_voucher" name="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_voucher" id="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_voucher" value="<?php echo HtmlEncode($gaji_tu_smk_grid->voucher->OldValue) ?>">
-</td>
-	<?php } ?>
-	<?php if ($gaji_tu_smk_grid->status->Visible) { // status ?>
-		<td data-name="status">
-<?php if (!$gaji_tu_smk->isConfirm()) { ?>
-<span id="el$rowindex$_gaji_tu_smk_status" class="form-group gaji_tu_smk_status">
-<input type="text" data-table="gaji_tu_smk" data-field="x_status" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" size="30" maxlength="10" placeholder="<?php echo HtmlEncode($gaji_tu_smk_grid->status->getPlaceHolder()) ?>" value="<?php echo $gaji_tu_smk_grid->status->EditValue ?>"<?php echo $gaji_tu_smk_grid->status->editAttributes() ?>>
-</span>
-<?php } else { ?>
-<span id="el$rowindex$_gaji_tu_smk_status" class="form-group gaji_tu_smk_status">
-<span<?php echo $gaji_tu_smk_grid->status->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($gaji_tu_smk_grid->status->ViewValue)) ?>"></span>
-</span>
-<input type="hidden" data-table="gaji_tu_smk" data-field="x_status" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" value="<?php echo HtmlEncode($gaji_tu_smk_grid->status->FormValue) ?>">
-<?php } ?>
-<input type="hidden" data-table="gaji_tu_smk" data-field="x_status" name="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" id="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_status" value="<?php echo HtmlEncode($gaji_tu_smk_grid->status->OldValue) ?>">
 </td>
 	<?php } ?>
 	<?php if ($gaji_tu_smk_grid->potongan_bendahara->Visible) { // potongan_bendahara ?>

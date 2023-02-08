@@ -620,7 +620,7 @@ class gaji_tu_smk_preview extends gaji_tu_smk
 		$this->total->setVisibility();
 		$this->ijasah->Visible = FALSE;
 		$this->voucher->setVisibility();
-		$this->status->setVisibility();
+		$this->status->Visible = FALSE;
 		$this->potongan_bendahara->setVisibility();
 		$this->hideFieldsForAddEdit();
 

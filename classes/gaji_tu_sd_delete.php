@@ -611,7 +611,7 @@ class gaji_tu_sd_delete extends gaji_tu_sd
 		$this->penyesuaian->setVisibility();
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
-		$this->status->setVisibility();
+		$this->status->Visible = FALSE;
 		$this->potongan_bendahara->setVisibility();
 		$this->hideFieldsForAddEdit();
 
@@ -1217,11 +1217,6 @@ class gaji_tu_sd_delete extends gaji_tu_sd
 			$this->voucher->LinkCustomAttributes = "";
 			$this->voucher->HrefValue = "";
 			$this->voucher->TooltipValue = "";
-
-			// status
-			$this->status->LinkCustomAttributes = "";
-			$this->status->HrefValue = "";
-			$this->status->TooltipValue = "";
 
 			// potongan_bendahara
 			$this->potongan_bendahara->LinkCustomAttributes = "";

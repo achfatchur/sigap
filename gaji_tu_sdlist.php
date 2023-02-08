@@ -265,15 +265,6 @@ $gaji_tu_sd_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
-<?php if ($gaji_tu_sd_list->status->Visible) { // status ?>
-	<?php if ($gaji_tu_sd_list->SortUrl($gaji_tu_sd_list->status) == "") { ?>
-		<th data-name="status" class="<?php echo $gaji_tu_sd_list->status->headerCellClass() ?>"><div id="elh_gaji_tu_sd_status" class="gaji_tu_sd_status"><div class="ew-table-header-caption"><?php echo $gaji_tu_sd_list->status->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="status" class="<?php echo $gaji_tu_sd_list->status->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $gaji_tu_sd_list->SortUrl($gaji_tu_sd_list->status) ?>', 1);"><div id="elh_gaji_tu_sd_status" class="gaji_tu_sd_status">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_sd_list->status->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_sd_list->status->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_sd_list->status->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
 <?php if ($gaji_tu_sd_list->potongan_bendahara->Visible) { // potongan_bendahara ?>
 	<?php if ($gaji_tu_sd_list->SortUrl($gaji_tu_sd_list->potongan_bendahara) == "") { ?>
 		<th data-name="potongan_bendahara" class="<?php echo $gaji_tu_sd_list->potongan_bendahara->headerCellClass() ?>"><div id="elh_gaji_tu_sd_potongan_bendahara" class="gaji_tu_sd_potongan_bendahara"><div class="ew-table-header-caption"><?php echo $gaji_tu_sd_list->potongan_bendahara->caption() ?></div></div></th>
@@ -401,13 +392,6 @@ $gaji_tu_sd_list->ListOptions->render("body", "left", $gaji_tu_sd_list->RowCount
 		<td data-name="voucher" <?php echo $gaji_tu_sd_list->voucher->cellAttributes() ?>>
 <span id="el<?php echo $gaji_tu_sd_list->RowCount ?>_gaji_tu_sd_voucher">
 <span<?php echo $gaji_tu_sd_list->voucher->viewAttributes() ?>><?php echo $gaji_tu_sd_list->voucher->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($gaji_tu_sd_list->status->Visible) { // status ?>
-		<td data-name="status" <?php echo $gaji_tu_sd_list->status->cellAttributes() ?>>
-<span id="el<?php echo $gaji_tu_sd_list->RowCount ?>_gaji_tu_sd_status">
-<span<?php echo $gaji_tu_sd_list->status->viewAttributes() ?>><?php echo $gaji_tu_sd_list->status->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

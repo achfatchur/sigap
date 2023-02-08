@@ -307,24 +307,6 @@ $v_totalgajikaryawan_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
-<?php if ($v_totalgajikaryawan_list->id1->Visible) { // id1 ?>
-	<?php if ($v_totalgajikaryawan_list->SortUrl($v_totalgajikaryawan_list->id1) == "") { ?>
-		<th data-name="id1" class="<?php echo $v_totalgajikaryawan_list->id1->headerCellClass() ?>"><div id="elh_v_totalgajikaryawan_id1" class="v_totalgajikaryawan_id1"><div class="ew-table-header-caption"><?php echo $v_totalgajikaryawan_list->id1->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="id1" class="<?php echo $v_totalgajikaryawan_list->id1->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_totalgajikaryawan_list->SortUrl($v_totalgajikaryawan_list->id1) ?>', 1);"><div id="elh_v_totalgajikaryawan_id1" class="v_totalgajikaryawan_id1">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_totalgajikaryawan_list->id1->caption() ?></span><span class="ew-table-header-sort"><?php if ($v_totalgajikaryawan_list->id1->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_totalgajikaryawan_list->id1->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
-<?php if ($v_totalgajikaryawan_list->status->Visible) { // status ?>
-	<?php if ($v_totalgajikaryawan_list->SortUrl($v_totalgajikaryawan_list->status) == "") { ?>
-		<th data-name="status" class="<?php echo $v_totalgajikaryawan_list->status->headerCellClass() ?>"><div id="elh_v_totalgajikaryawan_status" class="v_totalgajikaryawan_status"><div class="ew-table-header-caption"><?php echo $v_totalgajikaryawan_list->status->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="status" class="<?php echo $v_totalgajikaryawan_list->status->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_totalgajikaryawan_list->SortUrl($v_totalgajikaryawan_list->status) ?>', 1);"><div id="elh_v_totalgajikaryawan_status" class="v_totalgajikaryawan_status">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_totalgajikaryawan_list->status->caption() ?></span><span class="ew-table-header-sort"><?php if ($v_totalgajikaryawan_list->status->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_totalgajikaryawan_list->status->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
 <?php
 
 // Render list options (header, right)
@@ -415,20 +397,6 @@ $v_totalgajikaryawan_list->ListOptions->render("body", "left", $v_totalgajikarya
 		<td data-name="total" <?php echo $v_totalgajikaryawan_list->total->cellAttributes() ?>>
 <span id="el<?php echo $v_totalgajikaryawan_list->RowCount ?>_v_totalgajikaryawan_total">
 <span<?php echo $v_totalgajikaryawan_list->total->viewAttributes() ?>><?php echo $v_totalgajikaryawan_list->total->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($v_totalgajikaryawan_list->id1->Visible) { // id1 ?>
-		<td data-name="id1" <?php echo $v_totalgajikaryawan_list->id1->cellAttributes() ?>>
-<span id="el<?php echo $v_totalgajikaryawan_list->RowCount ?>_v_totalgajikaryawan_id1">
-<span<?php echo $v_totalgajikaryawan_list->id1->viewAttributes() ?>><?php echo $v_totalgajikaryawan_list->id1->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($v_totalgajikaryawan_list->status->Visible) { // status ?>
-		<td data-name="status" <?php echo $v_totalgajikaryawan_list->status->cellAttributes() ?>>
-<span id="el<?php echo $v_totalgajikaryawan_list->RowCount ?>_v_totalgajikaryawan_status">
-<span<?php echo $v_totalgajikaryawan_list->status->viewAttributes() ?>><?php echo $v_totalgajikaryawan_list->status->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

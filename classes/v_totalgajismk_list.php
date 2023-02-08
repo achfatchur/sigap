@@ -824,7 +824,7 @@ class v_totalgajismk_list extends v_totalgajismk
 		$this->pegawai->setVisibility();
 		$this->total->setVisibility();
 		$this->id1->Visible = FALSE;
-		$this->status->setVisibility();
+		$this->status->Visible = FALSE;
 		$this->hideFieldsForAddEdit();
 
 		// Global Page Loading event (in userfn*.php)
@@ -1542,7 +1542,6 @@ class v_totalgajismk_list extends v_totalgajismk
 			$this->updateSort($this->tahun); // tahun
 			$this->updateSort($this->pegawai); // pegawai
 			$this->updateSort($this->total); // total
-			$this->updateSort($this->status); // status
 			$this->setStartRecordNumber(1); // Reset start position
 		}
 	}
@@ -1582,7 +1581,6 @@ class v_totalgajismk_list extends v_totalgajismk
 				$this->tahun->setSort("");
 				$this->pegawai->setSort("");
 				$this->total->setSort("");
-				$this->status->setSort("");
 			}
 
 			// Reset start position
@@ -2145,11 +2143,6 @@ class v_totalgajismk_list extends v_totalgajismk
 			$this->total->LinkCustomAttributes = "";
 			$this->total->HrefValue = "";
 			$this->total->TooltipValue = "";
-
-			// status
-			$this->status->LinkCustomAttributes = "";
-			$this->status->HrefValue = "";
-			$this->status->TooltipValue = "";
 		} elseif ($this->RowType == ROWTYPE_SEARCH) { // Search row
 
 			// bulan
@@ -2199,12 +2192,6 @@ class v_totalgajismk_list extends v_totalgajismk
 			$this->total->EditCustomAttributes = "";
 			$this->total->EditValue = HtmlEncode($this->total->AdvancedSearch->SearchValue);
 			$this->total->PlaceHolder = RemoveHtml($this->total->caption());
-
-			// status
-			$this->status->EditAttrs["class"] = "form-control";
-			$this->status->EditCustomAttributes = "";
-			$this->status->EditValue = HtmlEncode($this->status->AdvancedSearch->SearchValue);
-			$this->status->PlaceHolder = RemoveHtml($this->status->caption());
 		}
 		if ($this->RowType == ROWTYPE_ADD || $this->RowType == ROWTYPE_EDIT || $this->RowType == ROWTYPE_SEARCH) // Add/Edit/Search row
 			$this->setupFieldTitles();

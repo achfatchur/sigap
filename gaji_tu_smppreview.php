@@ -101,15 +101,6 @@ $gaji_tu_smp_preview->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
-<?php if ($gaji_tu_smp_preview->status->Visible) { // status ?>
-	<?php if ($gaji_tu_smp->SortUrl($gaji_tu_smp_preview->status) == "") { ?>
-		<th class="<?php echo $gaji_tu_smp_preview->status->headerCellClass() ?>"><?php echo $gaji_tu_smp_preview->status->caption() ?></th>
-	<?php } else { ?>
-		<th class="<?php echo $gaji_tu_smp_preview->status->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_tu_smp_preview->status->Name) ?>" data-sort-order="<?php echo $gaji_tu_smp_preview->SortField == $gaji_tu_smp_preview->status->Name && $gaji_tu_smp_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smp_preview->status->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smp_preview->SortField == $gaji_tu_smp_preview->status->Name) { ?><?php if ($gaji_tu_smp_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smp_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
 <?php if ($gaji_tu_smp_preview->potongan_bendahara->Visible) { // potongan_bendahara ?>
 	<?php if ($gaji_tu_smp->SortUrl($gaji_tu_smp_preview->potongan_bendahara) == "") { ?>
 		<th class="<?php echo $gaji_tu_smp_preview->potongan_bendahara->headerCellClass() ?>"><?php echo $gaji_tu_smp_preview->potongan_bendahara->caption() ?></th>
@@ -186,12 +177,6 @@ $gaji_tu_smp_preview->ListOptions->render("body", "left", $gaji_tu_smp_preview->
 		<!-- voucher -->
 		<td<?php echo $gaji_tu_smp_preview->voucher->cellAttributes() ?>>
 <span<?php echo $gaji_tu_smp_preview->voucher->viewAttributes() ?>><?php echo $gaji_tu_smp_preview->voucher->getViewValue() ?></span>
-</td>
-<?php } ?>
-<?php if ($gaji_tu_smp_preview->status->Visible) { // status ?>
-		<!-- status -->
-		<td<?php echo $gaji_tu_smp_preview->status->cellAttributes() ?>>
-<span<?php echo $gaji_tu_smp_preview->status->viewAttributes() ?>><?php echo $gaji_tu_smp_preview->status->getViewValue() ?></span>
 </td>
 <?php } ?>
 <?php if ($gaji_tu_smp_preview->potongan_bendahara->Visible) { // potongan_bendahara ?>
