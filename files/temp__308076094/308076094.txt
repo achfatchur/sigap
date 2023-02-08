@@ -1,0 +1,8 @@
+<?php $val = array (
+  'filetoken' => '308076094',
+  'file' => 'gaji pokok tu.xlsx',
+  'totalCount' => 56,
+  'count' => 1,
+  'successCount' => 0,
+  'failCount' => 1,
+);
