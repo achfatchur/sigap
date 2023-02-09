@@ -2100,7 +2100,7 @@ class m_yayasan_list extends m_yayasan
 	// Page Load event
 	function Page_Load() {
 	$item = &$this->ExportOptions->add("MyName");
-	$item->Body = "<a href='Template Penurus Yayasan.xlsx'>Download Template</a>";
+	$item->Body = "<a href='Template Pengurus Yayasan.xlsx'>Download Template</a>";
 	}
 
 	// Page Unload event

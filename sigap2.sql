@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `absen` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.absen: ~7 rows (approximately)
+-- Dumping data for table sigap2.absen: ~6 rows (approximately)
 INSERT INTO `absen` (`id`, `bulan`, `tahun`, `jumlah_hari_kerja`, `datetime`, `createuser`) VALUES
 	(1, 4, 2023, NULL, '2023-01-24 04:15:02', -1),
 	(2, 5, 2024, 29, '2023-01-18 09:38:24', -1),
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `absen_detil` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.absen_detil: ~10 rows (approximately)
+-- Dumping data for table sigap2.absen_detil: ~9 rows (approximately)
 INSERT INTO `absen_detil` (`id`, `pid`, `pegawai`, `masuk`, `absen`, `ijin`, `sakit`, `pulang_cepat`, `piket`, `inval`, `lembur`, `terlambat`, `jenjang`, `date`, `penyesuaian`) VALUES
 	(3, 1, '10230', 2, 3, 1, 2, NULL, 2, NULL, 2, 2, 4, NULL, NULL),
 	(5, 2, '102390', 2, 2, 2, 2, NULL, NULL, NULL, NULL, 2, 4, NULL, NULL),
@@ -368,7 +368,7 @@ CREATE TABLE IF NOT EXISTS `gaji` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1434276 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji: ~31 rows (approximately)
+-- Dumping data for table sigap2.gaji: ~30 rows (approximately)
 INSERT INTO `gaji` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `tahun`, `bulan`, `potongan_bendahara`, `voucher`) VALUES
 	(1434200, '10230', '2023-01-24 08:13:01', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 123, NULL, 1, 1, NULL, NULL, 4, NULL, NULL, 2, '0', 2023, 2, NULL, NULL),
 	(1434201, '10230', '2023-01-24 08:14:45', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 124, NULL, 1, NULL, NULL, NULL, 4, NULL, NULL, NULL, '0', 2023, 2, NULL, NULL),
@@ -412,7 +412,7 @@ CREATE TABLE IF NOT EXISTS `gajisd` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gajisd: ~1 rows (approximately)
+-- Dumping data for table sigap2.gajisd: ~0 rows (approximately)
 INSERT INTO `gajisd` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(1, 2, 2, NULL, NULL);
 
@@ -607,7 +607,7 @@ CREATE TABLE IF NOT EXISTS `gajitunjangan` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gajitunjangan: ~11 rows (approximately)
+-- Dumping data for table sigap2.gajitunjangan: ~8 rows (approximately)
 INSERT INTO `gajitunjangan` (`id`, `pidjabatan`, `value_kehadiran`, `gapok`, `tunjangan_jabatan`, `reward`, `lembur`, `piket`, `inval`, `jam_lebih`, `tunjangan_khusus`, `ekstrakuri`) VALUES
 	(1, 1, 65500, 80000, NULL, 40000, 40000, 30000, 10000, 70000, 120000, NULL),
 	(2, 2, 65500, 40000, 1500000, 30000, 42000, 30000, 10000, 70000, NULL, NULL),
@@ -645,7 +645,7 @@ CREATE TABLE IF NOT EXISTS `gaji_karyawan_sd` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_karyawan_sd: ~3 rows (approximately)
+-- Dumping data for table sigap2.gaji_karyawan_sd: ~1 rows (approximately)
 INSERT INTO `gaji_karyawan_sd` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`, `voucher`, `potongan_bendahara`) VALUES
 	(74, '10232124', 11, 4, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 6, 60000, NULL, 2023, 12, 0, NULL),
 	(75, '10232124', 11, 4, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 7, 60000, NULL, 2024, 1, 0, NULL),
@@ -1128,7 +1128,7 @@ CREATE TABLE IF NOT EXISTS `gaji_pokok_tu` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=527 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_pokok_tu: ~433 rows (approximately)
+-- Dumping data for table sigap2.gaji_pokok_tu: ~415 rows (approximately)
 INSERT INTO `gaji_pokok_tu` (`id`, `jenjang_id`, `value`, `ijazah`, `lama_kerja`) VALUES
 	(84, 4, 65000, 3, 0),
 	(85, 4, 80000, 8, 0),
@@ -1693,7 +1693,7 @@ CREATE TABLE IF NOT EXISTS `gaji_smk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=316 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_smk: ~96 rows (approximately)
+-- Dumping data for table sigap2.gaji_smk: ~48 rows (approximately)
 INSERT INTO `gaji_smk` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `tahun`, `bulan`, `potongan_bendahara`, `voucher`) VALUES
 	(220, '102327', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 2500, 1175000, 50000, 0, 0, 7000, 100000, 575000, 0, 1175000, 0, 5, 0, 46, 0, 1, 1, 2, 56000, 4, 450000, 0, 2, NULL, 2023, 2, NULL, 0),
 	(221, '198304102006070420', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 60, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
@@ -1832,7 +1832,7 @@ CREATE TABLE IF NOT EXISTS `gaji_smp` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=251 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_smp: ~43 rows (approximately)
+-- Dumping data for table sigap2.gaji_smp: ~0 rows (approximately)
 INSERT INTO `gaji_smp` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `tahun`, `bulan`, `potongan_bendahara`, `voucher`) VALUES
 	(208, '10238', '2023-02-08 08:52:19', '2023-02-08', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 8250, 0, 450000, 0, 500000, 0, 3, 0, 20, 0, 1, 2, 0, 66000, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
 	(209, '102323', '2023-02-08 08:52:19', '2023-02-08', 0, 13000, 5, 2500, 1050000, 50000, 0, 0, 7000, 100000, 450000, 0, 1050000, 0, 3, 0, 20, 0, 1, 1, 2, 56000, 4, 450000, 0, 2, NULL, 2023, 1, NULL, 0),
@@ -1998,7 +1998,7 @@ CREATE TABLE IF NOT EXISTS `gaji_tu_sd` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_tu_sd: ~1 rows (approximately)
+-- Dumping data for table sigap2.gaji_tu_sd: ~0 rows (approximately)
 INSERT INTO `gaji_tu_sd` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `tunjangan2`, `tambahan`, `type_jabatan`, `ijasah`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`) VALUES
 	(82, NULL, '10232712', 2, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 0, 0, NULL, 50000, 0, 50000, 19, 0, 0, 2, 0, 2, 0, 54000, 2023, 1, 0, NULL, NULL);
 
@@ -2173,7 +2173,7 @@ CREATE TABLE IF NOT EXISTS `gaji_tu_tk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_tu_tk: ~6 rows (approximately)
+-- Dumping data for table sigap2.gaji_tu_tk: ~3 rows (approximately)
 INSERT INTO `gaji_tu_tk` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `tunjangan2`, `tambahan`, `type_jabatan`, `ijasah`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`) VALUES
 	(97, NULL, '', 1, 5, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 0, 450000, NULL, 500000, 0, 500000, 19, 0, 0, 2, 0, 0, 0, 54000, 2023, 7, 0, NULL, NULL),
 	(98, NULL, '1023271', 1, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 125000, 0, NULL, 175000, 0, 175002, 19, 0, 2, 2, 0, 2, 1, 54000, 2023, 7, 0, NULL, NULL),
@@ -2202,7 +2202,7 @@ CREATE TABLE IF NOT EXISTS `generate_perbulan` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.generate_perbulan: ~12 rows (approximately)
+-- Dumping data for table sigap2.generate_perbulan: ~11 rows (approximately)
 INSERT INTO `generate_perbulan` (`id`, `tahun`, `bulan`) VALUES
 	(1, 2023, 'januari,Februari,Maret'),
 	(2, 2023, 'januari,Februari,Maret'),
@@ -2298,7 +2298,7 @@ CREATE TABLE IF NOT EXISTS `generate_pertahun_tk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=342 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.generate_pertahun_tk: ~4 rows (approximately)
+-- Dumping data for table sigap2.generate_pertahun_tk: ~5 rows (approximately)
 INSERT INTO `generate_pertahun_tk` (`id`, `tahun`, `bulan`, `profesi`, `bulan2`) VALUES
 	(325, 2023, NULL, 2, 7),
 	(337, 2023, NULL, 1, 1),
@@ -2373,7 +2373,7 @@ CREATE TABLE IF NOT EXISTS `jabatan` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.jabatan: ~146 rows (approximately)
+-- Dumping data for table sigap2.jabatan: ~141 rows (approximately)
 INSERT INTO `jabatan` (`id`, `nama_jabatan`, `keterangan`, `c_date`, `u_date`, `c_by`, `u_by`, `aktif`, `jenjang`, `type_jabatan`, `type_guru`) VALUES
 	(5, 'Kepala Sekolah', 'baru', NULL, NULL, NULL, NULL, NULL, 4, 1, NULL),
 	(6, 'TU', NULL, NULL, NULL, NULL, NULL, NULL, 4, 2, NULL),
@@ -2589,7 +2589,7 @@ CREATE TABLE IF NOT EXISTS `jenis_jabatan` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.jenis_jabatan: ~3 rows (approximately)
+-- Dumping data for table sigap2.jenis_jabatan: ~2 rows (approximately)
 INSERT INTO `jenis_jabatan` (`id`, `name`) VALUES
 	(1, 'Pimpinan &amp; Guru'),
 	(2, 'Tenaga Kependidikan'),
@@ -2603,7 +2603,7 @@ CREATE TABLE IF NOT EXISTS `jenis_lembur` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.jenis_lembur: ~1 rows (approximately)
+-- Dumping data for table sigap2.jenis_lembur: ~0 rows (approximately)
 INSERT INTO `jenis_lembur` (`id`, `nama`, `aktif`) VALUES
 	(1, 'Kejar deadline', '1');
 
@@ -2646,7 +2646,7 @@ CREATE TABLE IF NOT EXISTS `mpendidikan` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.mpendidikan: ~10 rows (approximately)
+-- Dumping data for table sigap2.mpendidikan: ~8 rows (approximately)
 INSERT INTO `mpendidikan` (`id`, `name`) VALUES
 	(1, 'SD'),
 	(2, 'SMP'),
@@ -2721,7 +2721,9 @@ CREATE TABLE `m_jp_pegawai` (
 	`jenjang_id` INT(10) NULL,
 	`nama` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
 	`kehadiran` INT(10) NULL,
-	`jjm` INT(10) NULL
+	`jjm` INT(10) NULL,
+	`jabatan` INT(10) NULL,
+	`type` INT(10) NULL
 ) ENGINE=MyISAM;
 
 -- Dumping structure for table sigap2.m_karyawan_sd
@@ -2734,7 +2736,7 @@ CREATE TABLE IF NOT EXISTS `m_karyawan_sd` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_karyawan_sd: ~5 rows (approximately)
+-- Dumping data for table sigap2.m_karyawan_sd: ~2 rows (approximately)
 INSERT INTO `m_karyawan_sd` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(4, 2024, 12, NULL, NULL),
 	(5, 2024, 12, NULL, NULL),
@@ -2752,7 +2754,7 @@ CREATE TABLE IF NOT EXISTS `m_karyawan_sma` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_karyawan_sma: ~3 rows (approximately)
+-- Dumping data for table sigap2.m_karyawan_sma: ~2 rows (approximately)
 INSERT INTO `m_karyawan_sma` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(63, 2023, 6, NULL, NULL),
 	(64, 2023, 7, NULL, NULL),
@@ -2818,7 +2820,7 @@ CREATE TABLE IF NOT EXISTS `m_kehadiran` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.m_kehadiran: ~32 rows (approximately)
+-- Dumping data for table sigap2.m_kehadiran: ~29 rows (approximately)
 INSERT INTO `m_kehadiran` (`id`, `jenjang`, `jenis_jabatan`, `sertif`, `value`, `jabatan`) VALUES
 	(1, 4, 1, 1, 56000, NULL),
 	(2, 4, 1, 2, 66000, NULL),
@@ -2896,7 +2898,7 @@ CREATE TABLE IF NOT EXISTS `m_piket` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.m_piket: ~16 rows (approximately)
+-- Dumping data for table sigap2.m_piket: ~15 rows (approximately)
 INSERT INTO `m_piket` (`id`, `jenjang`, `type_jabatan`, `jenis_sertif`, `value`) VALUES
 	(1, 4, 1, 1, 7000),
 	(2, 4, 1, 2, 8250),
@@ -2973,7 +2975,7 @@ CREATE TABLE IF NOT EXISTS `m_potongan_smk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_potongan_smk: ~3 rows (approximately)
+-- Dumping data for table sigap2.m_potongan_smk: ~2 rows (approximately)
 INSERT INTO `m_potongan_smk` (`id`, `bulan`, `tahun`, `c_by`, `datetime`, `import_file`) VALUES
 	(1, 4, 2023, -1, '2023-01-25 07:09:34', NULL),
 	(2, 4, 2023, -1, '2023-01-25 07:10:45', NULL),
@@ -3187,7 +3189,7 @@ CREATE TABLE IF NOT EXISTS `m_tu_sd` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_tu_sd: ~1 rows (approximately)
+-- Dumping data for table sigap2.m_tu_sd: ~0 rows (approximately)
 INSERT INTO `m_tu_sd` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(19, '2023', 1, NULL, NULL);
 
@@ -3216,7 +3218,7 @@ CREATE TABLE IF NOT EXISTS `m_tu_smk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_tu_smk: ~1 rows (approximately)
+-- Dumping data for table sigap2.m_tu_smk: ~0 rows (approximately)
 INSERT INTO `m_tu_smk` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(14, '2023', 1, NULL, NULL);
 
@@ -3245,7 +3247,7 @@ CREATE TABLE IF NOT EXISTS `m_tu_tk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_tu_tk: ~2 rows (approximately)
+-- Dumping data for table sigap2.m_tu_tk: ~1 rows (approximately)
 INSERT INTO `m_tu_tk` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(19, '2023', 7, NULL, NULL),
 	(20, '2023', 1, NULL, NULL);
@@ -3258,9 +3260,9 @@ CREATE TABLE IF NOT EXISTS `m_yayasan` (
   `datetime` datetime DEFAULT NULL,
   `import_file` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.m_yayasan: ~4 rows (approximately)
+-- Dumping data for table sigap2.m_yayasan: ~6 rows (approximately)
 INSERT INTO `m_yayasan` (`id`, `bulan`, `tahun`, `datetime`, `import_file`) VALUES
 	(1, 1, 2023, '2023-01-31 10:21:53', 'Template Pengurus Yayasan.xlsx'),
 	(2, 2, 2023, '2023-02-01 08:41:49', 'Template Pengurus Yayasan(1).xlsx'),
@@ -3897,7 +3899,7 @@ CREATE TABLE IF NOT EXISTS `potongan_sma` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.potongan_sma: ~20 rows (approximately)
+-- Dumping data for table sigap2.potongan_sma: ~17 rows (approximately)
 INSERT INTO `potongan_sma` (`id`, `datetime`, `month`, `nama`, `jenjang_id`, `jabatan_id`, `terlambat`, `value_terlambat`, `izin`, `value_izin`, `u_by`, `sakit`, `value_sakit`, `totalpotongan`, `tidakhadir`, `value_tidakhadir`, `pulcep`, `value_pulcep`, `tidakhadirjam`, `tidakhadirjamvalue`, `sakitperjam`, `sakitperjamvalue`, `izinperjam`, `izinperjamvalue`, `sertif`, `tahun`, `bulan`, `pid`) VALUES
 	(97, NULL, NULL, '10235', 4, 9, 2, 50000, 2, NULL, NULL, 2, NULL, NULL, 2, NULL, 2, NULL, 3, NULL, 1, NULL, NULL, NULL, 2, NULL, NULL, NULL),
 	(98, '2023-01-18 07:28:55', NULL, '10235', 4, 9, 4, 16500, 3, NULL, NULL, NULL, NULL, 66000, NULL, NULL, NULL, 16500, NULL, 16500, NULL, 8250, NULL, 16500, 2, NULL, NULL, NULL),
@@ -3953,7 +3955,7 @@ CREATE TABLE IF NOT EXISTS `potongan_smk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.potongan_smk: ~10 rows (approximately)
+-- Dumping data for table sigap2.potongan_smk: ~9 rows (approximately)
 INSERT INTO `potongan_smk` (`id`, `u_by`, `datetime`, `month`, `nama`, `jenjang_id`, `jabatan_id`, `terlambat`, `value_terlambat`, `izin`, `value_izin`, `sakit`, `value_sakit`, `totalpotongan`, `tidakhadir`, `value_tidakhadir`, `pulcep`, `value_pulcep`, `tidakhadirjam`, `tidakhadirjamvalue`, `sakitperjam`, `sakitperjamvalue`, `izinperjam`, `izinperjamvalue`, `sertif`, `tahun`, `bulan`, `pid`) VALUES
 	(59, -1, '2022-12-16 04:03:38', NULL, '110123', 1, 1, 2, 15000, 2, 40000, NULL, 23000, 168000, NULL, 40000, 2, 20000, 2, 9000, NULL, 4000, NULL, 9000, NULL, NULL, NULL, NULL),
 	(61, -1, '2022-12-16 04:09:21', NULL, '110124', 1, 2, 2, 30000, 2, 30000, NULL, 27000, 164000, NULL, 30000, 2, 18000, 2, 4000, NULL, 7000, NULL, 4000, NULL, NULL, NULL, NULL),
@@ -4260,7 +4262,7 @@ CREATE TABLE IF NOT EXISTS `tunjangan_berkala` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.tunjangan_berkala: ~120 rows (approximately)
+-- Dumping data for table sigap2.tunjangan_berkala: ~117 rows (approximately)
 INSERT INTO `tunjangan_berkala` (`id`, `jenjang`, `kualifikasi`, `lama`, `value`) VALUES
 	(21, 3, 5, 1, 382500),
 	(22, 3, 15, 1, 330000),
@@ -4439,7 +4441,7 @@ CREATE TABLE IF NOT EXISTS `tunjangan_tambahan` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.tunjangan_tambahan: ~13 rows (approximately)
+-- Dumping data for table sigap2.tunjangan_tambahan: ~11 rows (approximately)
 INSERT INTO `tunjangan_tambahan` (`id`, `jenjang`, `kualifikasi`, `value`) VALUES
 	(5, 4, 3, 100000),
 	(6, 4, 5, 100000),
@@ -4488,7 +4490,7 @@ CREATE TABLE IF NOT EXISTS `userlevelpermissions` (
   PRIMARY KEY (`userlevelid`,`tablename`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.userlevelpermissions: ~1,874 rows (approximately)
+-- Dumping data for table sigap2.userlevelpermissions: ~1,437 rows (approximately)
 INSERT INTO `userlevelpermissions` (`userlevelid`, `tablename`, `permission`) VALUES
 	(-2, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen', 0),
 	(-2, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen_detil', 0),
@@ -6372,7 +6374,7 @@ CREATE TABLE IF NOT EXISTS `userlevels` (
   PRIMARY KEY (`userlevelid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.userlevels: ~15 rows (approximately)
+-- Dumping data for table sigap2.userlevels: ~13 rows (approximately)
 INSERT INTO `userlevels` (`userlevelid`, `userlevelname`) VALUES
 	(-2, 'Anonymous'),
 	(-1, 'Administrator'),
@@ -7102,6 +7104,233 @@ CREATE TABLE `v_m_tk` (
 	`bulan` INT(10) NULL
 ) ENGINE=MyISAM;
 
+-- Dumping structure for view sigap2.v_pegawai_sd
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `v_pegawai_sd` (
+	`id` INT(10) NOT NULL,
+	`pid` INT(10) NULL,
+	`nip` VARCHAR(50) NULL COLLATE 'latin1_swedish_ci',
+	`username` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`password` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`jenjang_id` INT(10) NULL,
+	`jabatan` INT(10) NULL,
+	`periode_jabatan` INT(10) NULL,
+	`jjm` INT(10) NULL,
+	`status_peg` INT(10) NULL,
+	`type` INT(10) NULL,
+	`sertif` INT(10) NULL,
+	`tambahan` INT(10) NULL,
+	`lama_kerja` INT(10) NULL,
+	`nama` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`alamat` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`email` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`wa` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`hp` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`tgllahir` DATE NULL,
+	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`pendidikan` INT(10) NULL,
+	`jurusan` VARCHAR(50) NULL COLLATE 'latin1_swedish_ci',
+	`agama` VARCHAR(20) NULL COLLATE 'latin1_swedish_ci',
+	`status` VARCHAR(20) NULL COLLATE 'latin1_swedish_ci',
+	`jenkel` VARCHAR(20) NULL COLLATE 'latin1_swedish_ci',
+	`foto` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`file_cv` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`mulai_bekerja` YEAR NULL,
+	`keterangan` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`level` INT(10) NULL,
+	`aktif` TINYINT(3) NULL,
+	`kehadiran` INT(10) NULL
+) ENGINE=MyISAM;
+
+-- Dumping structure for view sigap2.v_pegawai_sma
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `v_pegawai_sma` (
+	`id` INT(10) NOT NULL,
+	`pid` INT(10) NULL,
+	`nip` VARCHAR(50) NULL COLLATE 'latin1_swedish_ci',
+	`username` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`password` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`jenjang_id` INT(10) NULL,
+	`jabatan` INT(10) NULL,
+	`periode_jabatan` INT(10) NULL,
+	`jjm` INT(10) NULL,
+	`status_peg` INT(10) NULL,
+	`type` INT(10) NULL,
+	`sertif` INT(10) NULL,
+	`tambahan` INT(10) NULL,
+	`lama_kerja` INT(10) NULL,
+	`nama` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`alamat` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`wa` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`email` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`hp` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`tgllahir` DATE NULL,
+	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`pendidikan` INT(10) NULL,
+	`jurusan` VARCHAR(50) NULL COLLATE 'latin1_swedish_ci',
+	`agama` VARCHAR(20) NULL COLLATE 'latin1_swedish_ci',
+	`jenkel` VARCHAR(20) NULL COLLATE 'latin1_swedish_ci',
+	`status` VARCHAR(20) NULL COLLATE 'latin1_swedish_ci',
+	`foto` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`file_cv` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`mulai_bekerja` YEAR NULL,
+	`keterangan` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`level` INT(10) NULL,
+	`aktif` TINYINT(3) NULL,
+	`kehadiran` INT(10) NULL
+) ENGINE=MyISAM;
+
+-- Dumping structure for view sigap2.v_pegawai_smk
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `v_pegawai_smk` (
+	`id` INT(10) NOT NULL,
+	`pid` INT(10) NULL,
+	`nip` VARCHAR(50) NULL COLLATE 'latin1_swedish_ci',
+	`username` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`password` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`jenjang_id` INT(10) NULL,
+	`jabatan` INT(10) NULL,
+	`periode_jabatan` INT(10) NULL,
+	`jjm` INT(10) NULL,
+	`status_peg` INT(10) NULL,
+	`type` INT(10) NULL,
+	`sertif` INT(10) NULL,
+	`tambahan` INT(10) NULL,
+	`lama_kerja` INT(10) NULL,
+	`nama` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`alamat` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`email` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`wa` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`hp` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`tgllahir` DATE NULL,
+	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`pendidikan` INT(10) NULL,
+	`jurusan` VARCHAR(50) NULL COLLATE 'latin1_swedish_ci',
+	`agama` VARCHAR(20) NULL COLLATE 'latin1_swedish_ci',
+	`jenkel` VARCHAR(20) NULL COLLATE 'latin1_swedish_ci',
+	`status` VARCHAR(20) NULL COLLATE 'latin1_swedish_ci',
+	`foto` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`file_cv` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`mulai_bekerja` YEAR NULL,
+	`keterangan` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`level` INT(10) NULL,
+	`aktif` TINYINT(3) NULL,
+	`kehadiran` INT(10) NULL
+) ENGINE=MyISAM;
+
+-- Dumping structure for view sigap2.v_pegawai_smp
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `v_pegawai_smp` (
+	`id` INT(10) NOT NULL,
+	`pid` INT(10) NULL,
+	`nip` VARCHAR(50) NULL COLLATE 'latin1_swedish_ci',
+	`username` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`password` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`jenjang_id` INT(10) NULL,
+	`jabatan` INT(10) NULL,
+	`periode_jabatan` INT(10) NULL,
+	`jjm` INT(10) NULL,
+	`status_peg` INT(10) NULL,
+	`type` INT(10) NULL,
+	`sertif` INT(10) NULL,
+	`tambahan` INT(10) NULL,
+	`lama_kerja` INT(10) NULL,
+	`nama` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`alamat` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`email` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`wa` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`hp` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`tgllahir` DATE NULL,
+	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`pendidikan` INT(10) NULL,
+	`jurusan` VARCHAR(50) NULL COLLATE 'latin1_swedish_ci',
+	`agama` VARCHAR(20) NULL COLLATE 'latin1_swedish_ci',
+	`jenkel` VARCHAR(20) NULL COLLATE 'latin1_swedish_ci',
+	`status` VARCHAR(20) NULL COLLATE 'latin1_swedish_ci',
+	`foto` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`file_cv` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`mulai_bekerja` YEAR NULL,
+	`keterangan` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`level` INT(10) NULL,
+	`aktif` TINYINT(3) NULL,
+	`kehadiran` INT(10) NULL
+) ENGINE=MyISAM;
+
+-- Dumping structure for view sigap2.v_pegawai_tk
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `v_pegawai_tk` (
+	`id` INT(10) NOT NULL,
+	`pid` INT(10) NULL,
+	`nip` VARCHAR(50) NULL COLLATE 'latin1_swedish_ci',
+	`username` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`password` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`jenjang_id` INT(10) NULL,
+	`jabatan` INT(10) NULL,
+	`periode_jabatan` INT(10) NULL,
+	`jjm` INT(10) NULL,
+	`status_peg` INT(10) NULL,
+	`type` INT(10) NULL,
+	`sertif` INT(10) NULL,
+	`tambahan` INT(10) NULL,
+	`lama_kerja` INT(10) NULL,
+	`nama` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`alamat` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`email` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`wa` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`hp` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`tgllahir` DATE NULL,
+	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`pendidikan` INT(10) NULL,
+	`jurusan` VARCHAR(50) NULL COLLATE 'latin1_swedish_ci',
+	`agama` VARCHAR(20) NULL COLLATE 'latin1_swedish_ci',
+	`jenkel` VARCHAR(20) NULL COLLATE 'latin1_swedish_ci',
+	`status` VARCHAR(20) NULL COLLATE 'latin1_swedish_ci',
+	`foto` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`file_cv` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`mulai_bekerja` YEAR NULL,
+	`keterangan` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`level` INT(10) NULL,
+	`aktif` TINYINT(3) NULL,
+	`kehadiran` INT(10) NULL
+) ENGINE=MyISAM;
+
+-- Dumping structure for view sigap2.v_pengurus_yayasan
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `v_pengurus_yayasan` (
+	`id` INT(10) NOT NULL,
+	`nip` VARCHAR(50) NULL COLLATE 'latin1_swedish_ci',
+	`username` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`password` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`jenjang_id` INT(10) NULL,
+	`jabatan` INT(10) NULL,
+	`periode_jabatan` INT(10) NULL,
+	`jjm` INT(10) NULL,
+	`status_peg` INT(10) NULL,
+	`type` INT(10) NULL,
+	`sertif` INT(10) NULL,
+	`tambahan` INT(10) NULL,
+	`lama_kerja` INT(10) NULL,
+	`nama` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`alamat` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`email` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`wa` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`hp` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`tgllahir` DATE NULL,
+	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`pendidikan` INT(10) NULL,
+	`jurusan` VARCHAR(50) NULL COLLATE 'latin1_swedish_ci',
+	`agama` VARCHAR(20) NULL COLLATE 'latin1_swedish_ci',
+	`jenkel` VARCHAR(20) NULL COLLATE 'latin1_swedish_ci',
+	`status` VARCHAR(20) NULL COLLATE 'latin1_swedish_ci',
+	`foto` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`file_cv` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`mulai_bekerja` YEAR NULL,
+	`keterangan` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
+	`level` INT(10) NULL,
+	`aktif` TINYINT(3) NULL,
+	`kehadiran` INT(10) NULL
+) ENGINE=MyISAM;
+
 -- Dumping structure for view sigap2.v_totalgaji
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `v_totalgaji` (
@@ -7345,6 +7574,20 @@ CREATE TABLE `v_tu_tk` (
 	`bulan` INT(10) NULL
 ) ENGINE=MyISAM;
 
+-- Dumping structure for view sigap2.v_yayasan
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `v_yayasan` (
+	`id` INT(10) NOT NULL,
+	`bulan` INT(10) NULL,
+	`tahun` INT(10) NULL,
+	`m_id` INT(10) NULL,
+	`id_pegawai` INT(10) NULL,
+	`gaji_pokok` BIGINT(19) NULL,
+	`potongan` BIGINT(19) NULL,
+	`total` BIGINT(19) NULL,
+	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci'
+) ENGINE=MyISAM;
+
 -- Dumping structure for table sigap2.yayasan
 CREATE TABLE IF NOT EXISTS `yayasan` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -7355,7 +7598,7 @@ CREATE TABLE IF NOT EXISTS `yayasan` (
   `potongan` bigint DEFAULT NULL,
   `total` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table sigap2.yayasan: ~11 rows (approximately)
 INSERT INTO `yayasan` (`id`, `m_id`, `id_pegawai`, `datetime`, `gaji_pokok`, `potongan`, `total`) VALUES
@@ -7374,7 +7617,7 @@ INSERT INTO `yayasan` (`id`, `m_id`, `id_pegawai`, `datetime`, `gaji_pokok`, `po
 -- Dumping structure for view sigap2.m_jp_pegawai
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `m_jp_pegawai`;
-CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `m_jp_pegawai` AS select `pegawai`.`id` AS `id`,`pegawai`.`nip` AS `nip`,`pegawai`.`jenjang_id` AS `jenjang_id`,`pegawai`.`nama` AS `nama`,`pegawai`.`kehadiran` AS `kehadiran`,`pegawai`.`jjm` AS `jjm` from `pegawai`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `m_jp_pegawai` AS select `pegawai`.`id` AS `id`,`pegawai`.`nip` AS `nip`,`pegawai`.`jenjang_id` AS `jenjang_id`,`pegawai`.`nama` AS `nama`,`pegawai`.`kehadiran` AS `kehadiran`,`pegawai`.`jjm` AS `jjm`,`pegawai`.`jabatan` AS `jabatan`,`pegawai`.`type` AS `type` from `pegawai`;
 
 -- Dumping structure for view sigap2.set_password
 -- Removing temporary table and create final VIEW structure
@@ -7581,6 +7824,36 @@ CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `v_m_smp` AS select `m_smp`
 DROP TABLE IF EXISTS `v_m_tk`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `v_m_tk` AS select `m_tk`.`id` AS `id`,`m_tk`.`datetime` AS `datetime`,`m_tk`.`createby` AS `createby`,`m_tk`.`tahun` AS `tahun`,`m_tk`.`bulan` AS `bulan` from `m_tk`;
 
+-- Dumping structure for view sigap2.v_pegawai_sd
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `v_pegawai_sd`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `v_pegawai_sd` AS select `pegawai`.`id` AS `id`,`pegawai`.`pid` AS `pid`,`pegawai`.`nip` AS `nip`,`pegawai`.`username` AS `username`,`pegawai`.`password` AS `password`,`pegawai`.`jenjang_id` AS `jenjang_id`,`pegawai`.`jabatan` AS `jabatan`,`pegawai`.`periode_jabatan` AS `periode_jabatan`,`pegawai`.`jjm` AS `jjm`,`pegawai`.`status_peg` AS `status_peg`,`pegawai`.`type` AS `type`,`pegawai`.`sertif` AS `sertif`,`pegawai`.`tambahan` AS `tambahan`,`pegawai`.`lama_kerja` AS `lama_kerja`,`pegawai`.`nama` AS `nama`,`pegawai`.`alamat` AS `alamat`,`pegawai`.`email` AS `email`,`pegawai`.`wa` AS `wa`,`pegawai`.`hp` AS `hp`,`pegawai`.`tgllahir` AS `tgllahir`,`pegawai`.`rekbank` AS `rekbank`,`pegawai`.`pendidikan` AS `pendidikan`,`pegawai`.`jurusan` AS `jurusan`,`pegawai`.`agama` AS `agama`,`pegawai`.`status` AS `status`,`pegawai`.`jenkel` AS `jenkel`,`pegawai`.`foto` AS `foto`,`pegawai`.`file_cv` AS `file_cv`,`pegawai`.`mulai_bekerja` AS `mulai_bekerja`,`pegawai`.`keterangan` AS `keterangan`,`pegawai`.`level` AS `level`,`pegawai`.`aktif` AS `aktif`,`pegawai`.`kehadiran` AS `kehadiran` from `pegawai` where (`pegawai`.`jenjang_id` = '2');
+
+-- Dumping structure for view sigap2.v_pegawai_sma
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `v_pegawai_sma`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `v_pegawai_sma` AS select `pegawai`.`id` AS `id`,`pegawai`.`pid` AS `pid`,`pegawai`.`nip` AS `nip`,`pegawai`.`username` AS `username`,`pegawai`.`password` AS `password`,`pegawai`.`jenjang_id` AS `jenjang_id`,`pegawai`.`jabatan` AS `jabatan`,`pegawai`.`periode_jabatan` AS `periode_jabatan`,`pegawai`.`jjm` AS `jjm`,`pegawai`.`status_peg` AS `status_peg`,`pegawai`.`type` AS `type`,`pegawai`.`sertif` AS `sertif`,`pegawai`.`tambahan` AS `tambahan`,`pegawai`.`lama_kerja` AS `lama_kerja`,`pegawai`.`nama` AS `nama`,`pegawai`.`alamat` AS `alamat`,`pegawai`.`wa` AS `wa`,`pegawai`.`email` AS `email`,`pegawai`.`hp` AS `hp`,`pegawai`.`tgllahir` AS `tgllahir`,`pegawai`.`rekbank` AS `rekbank`,`pegawai`.`pendidikan` AS `pendidikan`,`pegawai`.`jurusan` AS `jurusan`,`pegawai`.`agama` AS `agama`,`pegawai`.`jenkel` AS `jenkel`,`pegawai`.`status` AS `status`,`pegawai`.`foto` AS `foto`,`pegawai`.`file_cv` AS `file_cv`,`pegawai`.`mulai_bekerja` AS `mulai_bekerja`,`pegawai`.`keterangan` AS `keterangan`,`pegawai`.`level` AS `level`,`pegawai`.`aktif` AS `aktif`,`pegawai`.`kehadiran` AS `kehadiran` from `pegawai` where (`pegawai`.`jenjang_id` = '4');
+
+-- Dumping structure for view sigap2.v_pegawai_smk
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `v_pegawai_smk`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `v_pegawai_smk` AS select `pegawai`.`id` AS `id`,`pegawai`.`pid` AS `pid`,`pegawai`.`nip` AS `nip`,`pegawai`.`username` AS `username`,`pegawai`.`password` AS `password`,`pegawai`.`jenjang_id` AS `jenjang_id`,`pegawai`.`jabatan` AS `jabatan`,`pegawai`.`periode_jabatan` AS `periode_jabatan`,`pegawai`.`jjm` AS `jjm`,`pegawai`.`status_peg` AS `status_peg`,`pegawai`.`type` AS `type`,`pegawai`.`sertif` AS `sertif`,`pegawai`.`tambahan` AS `tambahan`,`pegawai`.`lama_kerja` AS `lama_kerja`,`pegawai`.`nama` AS `nama`,`pegawai`.`alamat` AS `alamat`,`pegawai`.`email` AS `email`,`pegawai`.`wa` AS `wa`,`pegawai`.`hp` AS `hp`,`pegawai`.`tgllahir` AS `tgllahir`,`pegawai`.`rekbank` AS `rekbank`,`pegawai`.`pendidikan` AS `pendidikan`,`pegawai`.`jurusan` AS `jurusan`,`pegawai`.`agama` AS `agama`,`pegawai`.`jenkel` AS `jenkel`,`pegawai`.`status` AS `status`,`pegawai`.`foto` AS `foto`,`pegawai`.`file_cv` AS `file_cv`,`pegawai`.`mulai_bekerja` AS `mulai_bekerja`,`pegawai`.`keterangan` AS `keterangan`,`pegawai`.`level` AS `level`,`pegawai`.`aktif` AS `aktif`,`pegawai`.`kehadiran` AS `kehadiran` from `pegawai` where (`pegawai`.`jenjang_id` = '5');
+
+-- Dumping structure for view sigap2.v_pegawai_smp
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `v_pegawai_smp`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `v_pegawai_smp` AS select `pegawai`.`id` AS `id`,`pegawai`.`pid` AS `pid`,`pegawai`.`nip` AS `nip`,`pegawai`.`username` AS `username`,`pegawai`.`password` AS `password`,`pegawai`.`jenjang_id` AS `jenjang_id`,`pegawai`.`jabatan` AS `jabatan`,`pegawai`.`periode_jabatan` AS `periode_jabatan`,`pegawai`.`jjm` AS `jjm`,`pegawai`.`status_peg` AS `status_peg`,`pegawai`.`type` AS `type`,`pegawai`.`sertif` AS `sertif`,`pegawai`.`tambahan` AS `tambahan`,`pegawai`.`lama_kerja` AS `lama_kerja`,`pegawai`.`nama` AS `nama`,`pegawai`.`alamat` AS `alamat`,`pegawai`.`email` AS `email`,`pegawai`.`wa` AS `wa`,`pegawai`.`hp` AS `hp`,`pegawai`.`tgllahir` AS `tgllahir`,`pegawai`.`rekbank` AS `rekbank`,`pegawai`.`pendidikan` AS `pendidikan`,`pegawai`.`jurusan` AS `jurusan`,`pegawai`.`agama` AS `agama`,`pegawai`.`jenkel` AS `jenkel`,`pegawai`.`status` AS `status`,`pegawai`.`foto` AS `foto`,`pegawai`.`file_cv` AS `file_cv`,`pegawai`.`mulai_bekerja` AS `mulai_bekerja`,`pegawai`.`keterangan` AS `keterangan`,`pegawai`.`level` AS `level`,`pegawai`.`aktif` AS `aktif`,`pegawai`.`kehadiran` AS `kehadiran` from `pegawai` where (`pegawai`.`jenjang_id` = '3');
+
+-- Dumping structure for view sigap2.v_pegawai_tk
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `v_pegawai_tk`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `v_pegawai_tk` AS select `pegawai`.`id` AS `id`,`pegawai`.`pid` AS `pid`,`pegawai`.`nip` AS `nip`,`pegawai`.`username` AS `username`,`pegawai`.`password` AS `password`,`pegawai`.`jenjang_id` AS `jenjang_id`,`pegawai`.`jabatan` AS `jabatan`,`pegawai`.`periode_jabatan` AS `periode_jabatan`,`pegawai`.`jjm` AS `jjm`,`pegawai`.`status_peg` AS `status_peg`,`pegawai`.`type` AS `type`,`pegawai`.`sertif` AS `sertif`,`pegawai`.`tambahan` AS `tambahan`,`pegawai`.`lama_kerja` AS `lama_kerja`,`pegawai`.`nama` AS `nama`,`pegawai`.`alamat` AS `alamat`,`pegawai`.`email` AS `email`,`pegawai`.`wa` AS `wa`,`pegawai`.`hp` AS `hp`,`pegawai`.`tgllahir` AS `tgllahir`,`pegawai`.`rekbank` AS `rekbank`,`pegawai`.`pendidikan` AS `pendidikan`,`pegawai`.`jurusan` AS `jurusan`,`pegawai`.`agama` AS `agama`,`pegawai`.`jenkel` AS `jenkel`,`pegawai`.`status` AS `status`,`pegawai`.`foto` AS `foto`,`pegawai`.`file_cv` AS `file_cv`,`pegawai`.`mulai_bekerja` AS `mulai_bekerja`,`pegawai`.`keterangan` AS `keterangan`,`pegawai`.`level` AS `level`,`pegawai`.`aktif` AS `aktif`,`pegawai`.`kehadiran` AS `kehadiran` from `pegawai` where (`pegawai`.`jenjang_id` = '1');
+
+-- Dumping structure for view sigap2.v_pengurus_yayasan
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `v_pengurus_yayasan`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `v_pengurus_yayasan` AS select `pegawai`.`id` AS `id`,`pegawai`.`nip` AS `nip`,`pegawai`.`username` AS `username`,`pegawai`.`password` AS `password`,`pegawai`.`jenjang_id` AS `jenjang_id`,`pegawai`.`jabatan` AS `jabatan`,`pegawai`.`periode_jabatan` AS `periode_jabatan`,`pegawai`.`jjm` AS `jjm`,`pegawai`.`status_peg` AS `status_peg`,`pegawai`.`type` AS `type`,`pegawai`.`sertif` AS `sertif`,`pegawai`.`tambahan` AS `tambahan`,`pegawai`.`lama_kerja` AS `lama_kerja`,`pegawai`.`nama` AS `nama`,`pegawai`.`alamat` AS `alamat`,`pegawai`.`email` AS `email`,`pegawai`.`wa` AS `wa`,`pegawai`.`hp` AS `hp`,`pegawai`.`tgllahir` AS `tgllahir`,`pegawai`.`rekbank` AS `rekbank`,`pegawai`.`pendidikan` AS `pendidikan`,`pegawai`.`jurusan` AS `jurusan`,`pegawai`.`agama` AS `agama`,`pegawai`.`jenkel` AS `jenkel`,`pegawai`.`status` AS `status`,`pegawai`.`foto` AS `foto`,`pegawai`.`file_cv` AS `file_cv`,`pegawai`.`mulai_bekerja` AS `mulai_bekerja`,`pegawai`.`keterangan` AS `keterangan`,`pegawai`.`level` AS `level`,`pegawai`.`aktif` AS `aktif`,`pegawai`.`kehadiran` AS `kehadiran` from `pegawai` where (`pegawai`.`jenjang_id` is null);
+
 -- Dumping structure for view sigap2.v_totalgaji
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `v_totalgaji`;
@@ -7680,6 +7953,11 @@ CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `v_tu_smp` AS select `m_tu_
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `v_tu_tk`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `v_tu_tk` AS select `m_tu_tk`.`id` AS `id`,`m_tu_tk`.`datetime` AS `datetime`,`m_tu_tk`.`createby` AS `createby`,`m_tu_tk`.`tahun` AS `tahun`,`m_tu_tk`.`bulan` AS `bulan` from `m_tu_tk`;
+
+-- Dumping structure for view sigap2.v_yayasan
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `v_yayasan`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `v_yayasan` AS select `m_yayasan`.`id` AS `id`,`m_yayasan`.`bulan` AS `bulan`,`m_yayasan`.`tahun` AS `tahun`,`yayasan`.`m_id` AS `m_id`,`yayasan`.`id_pegawai` AS `id_pegawai`,`yayasan`.`gaji_pokok` AS `gaji_pokok`,`yayasan`.`potongan` AS `potongan`,`yayasan`.`total` AS `total`,`pegawai`.`rekbank` AS `rekbank` from ((`m_yayasan` join `yayasan` on((`m_yayasan`.`id` = `yayasan`.`m_id`))) join `pegawai` on((`yayasan`.`id_pegawai` = `pegawai`.`id`)));
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

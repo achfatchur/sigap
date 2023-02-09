@@ -106,7 +106,7 @@ function Menu_Rendering($menu) {
 				}else{
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
 				$menu->addMenuItem(1, "Slip Gaji KARYAWAN SMA", "Slip Gaji KARYAWAN SMA", "v_totalgajikaryawansmalist.php");
-				}		
+				}
 		}else{
 			if ($query['type'] == '1') {
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");

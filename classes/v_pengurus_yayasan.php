@@ -72,7 +72,7 @@ class v_pengurus_yayasan extends DbTable
 		$this->TableType = 'VIEW';
 
 		// Update Table
-		$this->UpdateTable = "pegawai";
+		$this->UpdateTable = "`v_pengurus_yayasan`";
 		$this->Dbid = 'DB';
 		$this->ExportAll = TRUE;
 		$this->ExportPageBreakCount = 0; // Page break per every n record (PDF only)
