@@ -66,6 +66,16 @@ loadjs.ready("head", function() {
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
 					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $m_jp_pegawai_edit->nip->caption(), $m_jp_pegawai_edit->nip->RequiredErrorMessage)) ?>");
 			<?php } ?>
+			<?php if ($m_jp_pegawai_edit->jabatan->Required) { ?>
+				elm = this.getElements("x" + infix + "_jabatan");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $m_jp_pegawai_edit->jabatan->caption(), $m_jp_pegawai_edit->jabatan->RequiredErrorMessage)) ?>");
+			<?php } ?>
+			<?php if ($m_jp_pegawai_edit->type->Required) { ?>
+				elm = this.getElements("x" + infix + "_type");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $m_jp_pegawai_edit->type->caption(), $m_jp_pegawai_edit->type->RequiredErrorMessage)) ?>");
+			<?php } ?>
 			<?php if ($m_jp_pegawai_edit->nama->Required) { ?>
 				elm = this.getElements("x" + infix + "_nama");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -158,6 +168,28 @@ $m_jp_pegawai_edit->showMessage();
 </span>
 <input type="hidden" data-table="m_jp_pegawai" data-field="x_nip" name="x_nip" id="x_nip" value="<?php echo HtmlEncode($m_jp_pegawai_edit->nip->CurrentValue) ?>">
 <?php echo $m_jp_pegawai_edit->nip->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
+<?php if ($m_jp_pegawai_edit->jabatan->Visible) { // jabatan ?>
+	<div id="r_jabatan" class="form-group row">
+		<label id="elh_m_jp_pegawai_jabatan" for="x_jabatan" class="<?php echo $m_jp_pegawai_edit->LeftColumnClass ?>"><?php echo $m_jp_pegawai_edit->jabatan->caption() ?><?php echo $m_jp_pegawai_edit->jabatan->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
+		<div class="<?php echo $m_jp_pegawai_edit->RightColumnClass ?>"><div <?php echo $m_jp_pegawai_edit->jabatan->cellAttributes() ?>>
+<span id="el_m_jp_pegawai_jabatan">
+<span<?php echo $m_jp_pegawai_edit->jabatan->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($m_jp_pegawai_edit->jabatan->EditValue)) ?>"></span>
+</span>
+<input type="hidden" data-table="m_jp_pegawai" data-field="x_jabatan" name="x_jabatan" id="x_jabatan" value="<?php echo HtmlEncode($m_jp_pegawai_edit->jabatan->CurrentValue) ?>">
+<?php echo $m_jp_pegawai_edit->jabatan->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
+<?php if ($m_jp_pegawai_edit->type->Visible) { // type ?>
+	<div id="r_type" class="form-group row">
+		<label id="elh_m_jp_pegawai_type" for="x_type" class="<?php echo $m_jp_pegawai_edit->LeftColumnClass ?>"><?php echo $m_jp_pegawai_edit->type->caption() ?><?php echo $m_jp_pegawai_edit->type->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
+		<div class="<?php echo $m_jp_pegawai_edit->RightColumnClass ?>"><div <?php echo $m_jp_pegawai_edit->type->cellAttributes() ?>>
+<span id="el_m_jp_pegawai_type">
+<span<?php echo $m_jp_pegawai_edit->type->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($m_jp_pegawai_edit->type->EditValue)) ?>"></span>
+</span>
+<input type="hidden" data-table="m_jp_pegawai" data-field="x_type" name="x_type" id="x_type" value="<?php echo HtmlEncode($m_jp_pegawai_edit->type->CurrentValue) ?>">
+<?php echo $m_jp_pegawai_edit->type->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
 <?php if ($m_jp_pegawai_edit->nama->Visible) { // nama ?>

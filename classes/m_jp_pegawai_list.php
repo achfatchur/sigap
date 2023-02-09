@@ -821,6 +821,8 @@ class m_jp_pegawai_list extends m_jp_pegawai
 		$this->id->Visible = FALSE;
 		$this->jenjang_id->Visible = FALSE;
 		$this->nip->setVisibility();
+		$this->jabatan->Visible = FALSE;
+		$this->type->Visible = FALSE;
 		$this->nama->setVisibility();
 		$this->kehadiran->setVisibility();
 		$this->jjm->setVisibility();
@@ -1365,6 +1367,8 @@ class m_jp_pegawai_list extends m_jp_pegawai
 		$filterList = Concat($filterList, $this->id->AdvancedSearch->toJson(), ","); // Field id
 		$filterList = Concat($filterList, $this->jenjang_id->AdvancedSearch->toJson(), ","); // Field jenjang_id
 		$filterList = Concat($filterList, $this->nip->AdvancedSearch->toJson(), ","); // Field nip
+		$filterList = Concat($filterList, $this->jabatan->AdvancedSearch->toJson(), ","); // Field jabatan
+		$filterList = Concat($filterList, $this->type->AdvancedSearch->toJson(), ","); // Field type
 		$filterList = Concat($filterList, $this->nama->AdvancedSearch->toJson(), ","); // Field nama
 		$filterList = Concat($filterList, $this->kehadiran->AdvancedSearch->toJson(), ","); // Field kehadiran
 		$filterList = Concat($filterList, $this->jjm->AdvancedSearch->toJson(), ","); // Field jjm
@@ -1429,6 +1433,22 @@ class m_jp_pegawai_list extends m_jp_pegawai
 		$this->nip->AdvancedSearch->SearchValue2 = @$filter["y_nip"];
 		$this->nip->AdvancedSearch->SearchOperator2 = @$filter["w_nip"];
 		$this->nip->AdvancedSearch->save();
+
+		// Field jabatan
+		$this->jabatan->AdvancedSearch->SearchValue = @$filter["x_jabatan"];
+		$this->jabatan->AdvancedSearch->SearchOperator = @$filter["z_jabatan"];
+		$this->jabatan->AdvancedSearch->SearchCondition = @$filter["v_jabatan"];
+		$this->jabatan->AdvancedSearch->SearchValue2 = @$filter["y_jabatan"];
+		$this->jabatan->AdvancedSearch->SearchOperator2 = @$filter["w_jabatan"];
+		$this->jabatan->AdvancedSearch->save();
+
+		// Field type
+		$this->type->AdvancedSearch->SearchValue = @$filter["x_type"];
+		$this->type->AdvancedSearch->SearchOperator = @$filter["z_type"];
+		$this->type->AdvancedSearch->SearchCondition = @$filter["v_type"];
+		$this->type->AdvancedSearch->SearchValue2 = @$filter["y_type"];
+		$this->type->AdvancedSearch->SearchOperator2 = @$filter["w_type"];
+		$this->type->AdvancedSearch->save();
 
 		// Field nama
 		$this->nama->AdvancedSearch->SearchValue = @$filter["x_nama"];
@@ -2038,6 +2058,10 @@ class m_jp_pegawai_list extends m_jp_pegawai
 		$this->jenjang_id->OldValue = $this->jenjang_id->CurrentValue;
 		$this->nip->CurrentValue = NULL;
 		$this->nip->OldValue = $this->nip->CurrentValue;
+		$this->jabatan->CurrentValue = NULL;
+		$this->jabatan->OldValue = $this->jabatan->CurrentValue;
+		$this->type->CurrentValue = NULL;
+		$this->type->OldValue = $this->type->CurrentValue;
 		$this->nama->CurrentValue = NULL;
 		$this->nama->OldValue = $this->nama->CurrentValue;
 		$this->kehadiran->CurrentValue = NULL;
@@ -2183,6 +2207,8 @@ class m_jp_pegawai_list extends m_jp_pegawai
 		$this->id->setDbValue($row['id']);
 		$this->jenjang_id->setDbValue($row['jenjang_id']);
 		$this->nip->setDbValue($row['nip']);
+		$this->jabatan->setDbValue($row['jabatan']);
+		$this->type->setDbValue($row['type']);
 		$this->nama->setDbValue($row['nama']);
 		$this->kehadiran->setDbValue($row['kehadiran']);
 		$this->jjm->setDbValue($row['jjm']);
@@ -2196,6 +2222,8 @@ class m_jp_pegawai_list extends m_jp_pegawai
 		$row['id'] = $this->id->CurrentValue;
 		$row['jenjang_id'] = $this->jenjang_id->CurrentValue;
 		$row['nip'] = $this->nip->CurrentValue;
+		$row['jabatan'] = $this->jabatan->CurrentValue;
+		$row['type'] = $this->type->CurrentValue;
 		$row['nama'] = $this->nama->CurrentValue;
 		$row['kehadiran'] = $this->kehadiran->CurrentValue;
 		$row['jjm'] = $this->jjm->CurrentValue;
@@ -2245,6 +2273,8 @@ class m_jp_pegawai_list extends m_jp_pegawai
 		// id
 		// jenjang_id
 		// nip
+		// jabatan
+		// type
 		// nama
 		// kehadiran
 		// jjm
@@ -2280,6 +2310,16 @@ class m_jp_pegawai_list extends m_jp_pegawai
 			// nip
 			$this->nip->ViewValue = $this->nip->CurrentValue;
 			$this->nip->ViewCustomAttributes = "";
+
+			// jabatan
+			$this->jabatan->ViewValue = $this->jabatan->CurrentValue;
+			$this->jabatan->ViewValue = FormatNumber($this->jabatan->ViewValue, 0, -2, -2, -2);
+			$this->jabatan->ViewCustomAttributes = "";
+
+			// type
+			$this->type->ViewValue = $this->type->CurrentValue;
+			$this->type->ViewValue = FormatNumber($this->type->ViewValue, 0, -2, -2, -2);
+			$this->type->ViewCustomAttributes = "";
 
 			// nama
 			$this->nama->ViewValue = $this->nama->CurrentValue;

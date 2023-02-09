@@ -79,8 +79,9 @@ Page_Rendering();
 		}
 		
 		$potongan_bendahara = $_POST['potongan_bendahara'];
-
-		$myquery = "UPDATE ".$tabel." SET potongan_bendahara='$potongan_bendahara'  WHERE id='$id_edit'";
+		$querypotong=ExecuteRow("select * from ".$tabel." WHERE id='$id_edit'");
+		$calculasi = $querypotong['total']-$potongan_bendahara; 
+		$myquery = "UPDATE ".$tabel." SET potongan_bendahara='$potongan_bendahara',total='$calculasi'  WHERE id='$id_edit'";
 		$myResult = Execute($myquery);
 		header("location:payrols.php?tahun=".$tahun."&bulan=".$bulan."&jenjang=".$jenjang."&submit=Cari");
 	}

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ew-language date="2023/2/8" version="16.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
+<ew-language date="2023/2/9" version="16.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
   <!--
 	*** Important Notes:
 	1. Language ID should follow: https://developers.google.com/recaptcha/docs/language,
@@ -943,6 +943,27 @@
     <menu id="40">
       <phrase id="menutext" value="Pegawai" />
     </menu>
+    <menu id="1621">
+      <phrase id="menutext" value="Pengguna" />
+    </menu>
+    <menu id="1387">
+      <phrase id="menutext" value="Pengurus Yayasan" />
+    </menu>
+    <menu id="1388">
+      <phrase id="menutext" value="Pegawai TK" />
+    </menu>
+    <menu id="1389">
+      <phrase id="menutext" value="Pegawai SD" />
+    </menu>
+    <menu id="1390">
+      <phrase id="menutext" value="Pegawai SMP" />
+    </menu>
+    <menu id="1391">
+      <phrase id="menutext" value="Pegawai SMA" />
+    </menu>
+    <menu id="1392">
+      <phrase id="menutext" value="Pegawai SMK" />
+    </menu>
     <menu id="1126">
       <phrase id="menutext" value="Input bendahara" />
     </menu>
@@ -960,6 +981,21 @@
     </menu>
     <menu id="1136">
       <phrase id="menutext" value="JJM Pegawai" />
+    </menu>
+    <menu id="1140">
+      <phrase id="menutext" value="Proses Gaji TK" />
+    </menu>
+    <menu id="1137">
+      <phrase id="menutext" value="Proses Gaji SD" />
+    </menu>
+    <menu id="1139">
+      <phrase id="menutext" value="Proses Gaji SMP" />
+    </menu>
+    <menu id="1127">
+      <phrase id="menutext" value="Proses Gaji SMA" />
+    </menu>
+    <menu id="1138">
+      <phrase id="menutext" value="Proses Gaji SMK" />
     </menu>
     <menu id="936">
       <phrase id="menutext" value="Potongan Bendahara" />
@@ -996,9 +1032,6 @@
     </menu>
     <menu id="19">
       <phrase id="menutext" value="Gaji TK" />
-    </menu>
-    <menu id="1140">
-      <phrase id="menutext" value="Proses Gaji TK" />
     </menu>
     <menu id="468">
       <phrase id="menutext" value="Guru" />
@@ -1060,9 +1093,6 @@
     <menu id="44">
       <phrase id="menutext" value="potongan SD" />
     </menu>
-    <menu id="1137">
-      <phrase id="menutext" value="Proses Gaji SD" />
-    </menu>
     <menu id="465">
       <phrase id="menutext" value="Guru" />
     </menu>
@@ -1122,9 +1152,6 @@
     </menu>
     <menu id="45">
       <phrase id="menutext" value="Potongan SMP" />
-    </menu>
-    <menu id="1139">
-      <phrase id="menutext" value="Proses Gaji SMP" />
     </menu>
     <menu id="17">
       <phrase id="menutext" value="Gaji SMP" />
@@ -1204,9 +1231,6 @@
     <menu id="248">
       <phrase id="menutext" value="Potongan SMA" />
     </menu>
-    <menu id="1127">
-      <phrase id="menutext" value="Proses Gaji SMA" />
-    </menu>
     <menu id="474">
       <phrase id="menutext" value="Guru" />
     </menu>
@@ -1273,9 +1297,6 @@
     <menu id="15">
       <phrase id="menutext" value="Gaji SMK" />
     </menu>
-    <menu id="1138">
-      <phrase id="menutext" value="Proses Gaji SMK" />
-    </menu>
     <menu id="249">
       <phrase id="menutext" value="Potongan SMK" />
     </menu>
@@ -1332,6 +1353,12 @@
     </menu>
     <menu id="313">
       <phrase id="menutext" value="Gaji Final Karyawan SMK" />
+    </menu>
+    <menu id="1386">
+      <phrase id="menutext" value="Yayasan" />
+    </menu>
+    <menu id="1379">
+      <phrase id="menutext" value="Laporan Gaji Yayasan" />
     </menu>
     <menu id="769">
       <phrase id="menutext" value="Master Tabel" />
@@ -6628,6 +6655,12 @@
       <field id="nip">
         <phrase id="fldcaption" value="NIP" />
       </field>
+      <field id="jabatan">
+        <phrase id="fldcaption" value="jabatan" />
+      </field>
+      <field id="type">
+        <phrase id="fldcaption" value="type" />
+      </field>
       <field id="nama">
         <phrase id="fldcaption" value="Nama" />
       </field>
@@ -7948,6 +7981,645 @@
     </table>
     <table id="login_bendahara">
       <phrase id="tblcaption" value="Login Bendahara" />
+    </table>
+    <table id="v_yayasan">
+      <phrase id="tblcaption" value="Laporan Gaji Yayasan" />
+      <field id="id">
+        <phrase id="fldcaption" value="id" />
+      </field>
+      <field id="m_id">
+        <phrase id="fldcaption" value="m id" />
+      </field>
+      <field id="bulan">
+        <phrase id="fldcaption" value="Bulan" />
+      </field>
+      <field id="tahun">
+        <phrase id="fldcaption" value="Tahun" />
+      </field>
+      <field id="id_pegawai">
+        <phrase id="fldcaption" value="Pegawai" />
+      </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rek Bank" />
+      </field>
+      <field id="gaji_pokok">
+        <phrase id="fldcaption" value="Gaji Pokok" />
+      </field>
+      <field id="potongan">
+        <phrase id="fldcaption" value="Potongan" />
+      </field>
+      <field id="total">
+        <phrase id="fldcaption" value="Total" />
+      </field>
+    </table>
+    <table id="v_pengurus_yayasan">
+      <phrase id="tblcaption" value="Pengurus Yayasan" />
+      <field id="id">
+        <phrase id="fldcaption" value="id" />
+      </field>
+      <field id="nip">
+        <phrase id="fldcaption" value="NIP" />
+      </field>
+      <field id="username">
+        <phrase id="fldcaption" value="Username" />
+      </field>
+      <field id="password">
+        <phrase id="fldcaption" value="Password" />
+      </field>
+      <field id="jenjang_id">
+        <phrase id="fldcaption" value="Unit" />
+      </field>
+      <field id="jabatan">
+        <phrase id="fldcaption" value="Jabatan" />
+      </field>
+      <field id="periode_jabatan">
+        <phrase id="fldcaption" value="Periode Jabatan" />
+      </field>
+      <field id="jjm">
+        <phrase id="fldcaption" value="Jumlah Jam Mengajar" />
+      </field>
+      <field id="status_peg">
+        <phrase id="fldcaption" value="Status Pegawai" />
+      </field>
+      <field id="type">
+        <phrase id="fldcaption" value="Type Pegawai" />
+      </field>
+      <field id="sertif">
+        <phrase id="fldcaption" value="Sertifikasi" />
+      </field>
+      <field id="tambahan">
+        <phrase id="fldcaption" value="Tambahan Tugas" />
+      </field>
+      <field id="lama_kerja">
+        <phrase id="fldcaption" value="Lama Kerja" />
+      </field>
+      <field id="nama">
+        <phrase id="fldcaption" value="Nama" />
+      </field>
+      <field id="alamat">
+        <phrase id="fldcaption" value="Alamat" />
+      </field>
+      <field id="_email">
+        <phrase id="fldcaption" value="Email" />
+      </field>
+      <field id="wa">
+        <phrase id="fldcaption" value="WhatApps" />
+      </field>
+      <field id="hp">
+        <phrase id="fldcaption" value="No.HP" />
+      </field>
+      <field id="tgllahir">
+        <phrase id="fldcaption" value="Tanggal Lahir" />
+      </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rek Bank" />
+      </field>
+      <field id="pendidikan">
+        <phrase id="fldcaption" value="Pendidikan" />
+      </field>
+      <field id="jurusan">
+        <phrase id="fldcaption" value="Jurusan" />
+      </field>
+      <field id="agama">
+        <phrase id="fldcaption" value="Agama" />
+      </field>
+      <field id="jenkel">
+        <phrase id="fldcaption" value="Jenis Kelamin" />
+      </field>
+      <field id="status">
+        <phrase id="fldcaption" value="Status" />
+      </field>
+      <field id="foto">
+        <phrase id="fldcaption" value="Foto" />
+      </field>
+      <field id="file_cv">
+        <phrase id="fldcaption" value="File CV" />
+      </field>
+      <field id="mulai_bekerja">
+        <phrase id="fldcaption" value="Mulai Bekerja" />
+      </field>
+      <field id="keterangan">
+        <phrase id="fldcaption" value="Keterangan" />
+      </field>
+      <field id="level">
+        <phrase id="fldcaption" value="Level" />
+      </field>
+      <field id="aktif">
+        <phrase id="fldcaption" value="Aktif" />
+      </field>
+      <field id="kehadiran">
+        <phrase id="fldcaption" value="kehadiran" />
+      </field>
+    </table>
+    <table id="v_pegawai_tk">
+      <phrase id="tblcaption" value="Pegawai TK" />
+      <field id="id">
+        <phrase id="fldcaption" value="id" />
+      </field>
+      <field id="pid">
+        <phrase id="fldcaption" value="pid" />
+      </field>
+      <field id="nip">
+        <phrase id="fldcaption" value="NIP" />
+      </field>
+      <field id="username">
+        <phrase id="fldcaption" value="Username" />
+      </field>
+      <field id="password">
+        <phrase id="fldcaption" value="Password" />
+      </field>
+      <field id="jenjang_id">
+        <phrase id="fldcaption" value="Unit" />
+      </field>
+      <field id="jabatan">
+        <phrase id="fldcaption" value="Jabatan" />
+      </field>
+      <field id="periode_jabatan">
+        <phrase id="fldcaption" value="Periode Jabatan" />
+      </field>
+      <field id="jjm">
+        <phrase id="fldcaption" value="Jumlah Jam Mengajar" />
+      </field>
+      <field id="status_peg">
+        <phrase id="fldcaption" value="Status Pegawai" />
+      </field>
+      <field id="type">
+        <phrase id="fldcaption" value="Type Pegawai" />
+      </field>
+      <field id="sertif">
+        <phrase id="fldcaption" value="Sertifikasi" />
+      </field>
+      <field id="tambahan">
+        <phrase id="fldcaption" value="Tambahan Tugas" />
+      </field>
+      <field id="lama_kerja">
+        <phrase id="fldcaption" value="Lama Kerja" />
+      </field>
+      <field id="nama">
+        <phrase id="fldcaption" value="Nama" />
+      </field>
+      <field id="alamat">
+        <phrase id="fldcaption" value="Alamat" />
+      </field>
+      <field id="_email">
+        <phrase id="fldcaption" value="Email" />
+      </field>
+      <field id="wa">
+        <phrase id="fldcaption" value="WhatApps" />
+      </field>
+      <field id="hp">
+        <phrase id="fldcaption" value="No.HP" />
+      </field>
+      <field id="tgllahir">
+        <phrase id="fldcaption" value="Tanggal Lahir" />
+      </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rek Bank" />
+      </field>
+      <field id="pendidikan">
+        <phrase id="fldcaption" value="Pendidikan" />
+      </field>
+      <field id="jurusan">
+        <phrase id="fldcaption" value="Jurusan" />
+      </field>
+      <field id="agama">
+        <phrase id="fldcaption" value="Agama" />
+      </field>
+      <field id="jenkel">
+        <phrase id="fldcaption" value="Jenis Kelamin" />
+      </field>
+      <field id="status">
+        <phrase id="fldcaption" value="Status" />
+      </field>
+      <field id="foto">
+        <phrase id="fldcaption" value="Foto" />
+      </field>
+      <field id="file_cv">
+        <phrase id="fldcaption" value="File CV" />
+      </field>
+      <field id="mulai_bekerja">
+        <phrase id="fldcaption" value="Mulai Bekerja" />
+      </field>
+      <field id="keterangan">
+        <phrase id="fldcaption" value="Keterangan" />
+      </field>
+      <field id="level">
+        <phrase id="fldcaption" value="Level" />
+      </field>
+      <field id="aktif">
+        <phrase id="fldcaption" value="Aktif" />
+      </field>
+      <field id="kehadiran">
+        <phrase id="fldcaption" value="kehadiran" />
+      </field>
+    </table>
+    <table id="v_pegawai_sd">
+      <phrase id="tblcaption" value="Pegawai SD" />
+      <field id="id">
+        <phrase id="fldcaption" value="id" />
+      </field>
+      <field id="pid">
+        <phrase id="fldcaption" value="pid" />
+      </field>
+      <field id="nip">
+        <phrase id="fldcaption" value="NIP" />
+      </field>
+      <field id="username">
+        <phrase id="fldcaption" value="Username" />
+      </field>
+      <field id="password">
+        <phrase id="fldcaption" value="Password" />
+      </field>
+      <field id="jenjang_id">
+        <phrase id="fldcaption" value="Unit" />
+      </field>
+      <field id="jabatan">
+        <phrase id="fldcaption" value="Jabatan" />
+      </field>
+      <field id="periode_jabatan">
+        <phrase id="fldcaption" value="Periode Jabatan" />
+      </field>
+      <field id="jjm">
+        <phrase id="fldcaption" value="Jumlah Jam Mengajar" />
+      </field>
+      <field id="status_peg">
+        <phrase id="fldcaption" value="Status Pegawai" />
+      </field>
+      <field id="type">
+        <phrase id="fldcaption" value="Type Pegawai" />
+      </field>
+      <field id="sertif">
+        <phrase id="fldcaption" value="Sertifikasi" />
+      </field>
+      <field id="tambahan">
+        <phrase id="fldcaption" value="Tambahan Tugas" />
+      </field>
+      <field id="lama_kerja">
+        <phrase id="fldcaption" value="Lama Kerja" />
+      </field>
+      <field id="nama">
+        <phrase id="fldcaption" value="Nama" />
+      </field>
+      <field id="alamat">
+        <phrase id="fldcaption" value="Alamat" />
+      </field>
+      <field id="_email">
+        <phrase id="fldcaption" value="Email" />
+      </field>
+      <field id="wa">
+        <phrase id="fldcaption" value="WhatApps" />
+      </field>
+      <field id="hp">
+        <phrase id="fldcaption" value="No.HP" />
+      </field>
+      <field id="tgllahir">
+        <phrase id="fldcaption" value="Tanggal Lahir" />
+      </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rek Bank" />
+      </field>
+      <field id="pendidikan">
+        <phrase id="fldcaption" value="Pendidikan" />
+      </field>
+      <field id="jurusan">
+        <phrase id="fldcaption" value="Jurusan" />
+      </field>
+      <field id="agama">
+        <phrase id="fldcaption" value="Agama" />
+      </field>
+      <field id="status">
+        <phrase id="fldcaption" value="Status" />
+      </field>
+      <field id="jenkel">
+        <phrase id="fldcaption" value="Jenis Kelamin" />
+      </field>
+      <field id="foto">
+        <phrase id="fldcaption" value="Foto" />
+      </field>
+      <field id="file_cv">
+        <phrase id="fldcaption" value="File CV" />
+      </field>
+      <field id="mulai_bekerja">
+        <phrase id="fldcaption" value="Mulai Bekerja" />
+      </field>
+      <field id="keterangan">
+        <phrase id="fldcaption" value="Keterangan" />
+      </field>
+      <field id="level">
+        <phrase id="fldcaption" value="Level" />
+      </field>
+      <field id="aktif">
+        <phrase id="fldcaption" value="Aktif" />
+      </field>
+      <field id="kehadiran">
+        <phrase id="fldcaption" value="kehadiran" />
+      </field>
+    </table>
+    <table id="v_pegawai_smp">
+      <phrase id="tblcaption" value="Pegawai SMP" />
+      <field id="id">
+        <phrase id="fldcaption" value="id" />
+      </field>
+      <field id="pid">
+        <phrase id="fldcaption" value="pid" />
+      </field>
+      <field id="nip">
+        <phrase id="fldcaption" value="NIP" />
+      </field>
+      <field id="username">
+        <phrase id="fldcaption" value="Username" />
+      </field>
+      <field id="password">
+        <phrase id="fldcaption" value="Password" />
+      </field>
+      <field id="jenjang_id">
+        <phrase id="fldcaption" value="Unit" />
+      </field>
+      <field id="jabatan">
+        <phrase id="fldcaption" value="Jabatan" />
+      </field>
+      <field id="periode_jabatan">
+        <phrase id="fldcaption" value="Periode Jabatan" />
+      </field>
+      <field id="jjm">
+        <phrase id="fldcaption" value="Jumlah Jam Mengajar" />
+      </field>
+      <field id="status_peg">
+        <phrase id="fldcaption" value="Status Pegawai" />
+      </field>
+      <field id="type">
+        <phrase id="fldcaption" value="Type Pegawai" />
+      </field>
+      <field id="sertif">
+        <phrase id="fldcaption" value="Sertifikasi" />
+      </field>
+      <field id="tambahan">
+        <phrase id="fldcaption" value="Tambahan Tugas" />
+      </field>
+      <field id="lama_kerja">
+        <phrase id="fldcaption" value="Lama Kerja" />
+      </field>
+      <field id="nama">
+        <phrase id="fldcaption" value="Nama" />
+      </field>
+      <field id="alamat">
+        <phrase id="fldcaption" value="Alamat" />
+      </field>
+      <field id="_email">
+        <phrase id="fldcaption" value="Email" />
+      </field>
+      <field id="wa">
+        <phrase id="fldcaption" value="WhatApps" />
+      </field>
+      <field id="hp">
+        <phrase id="fldcaption" value="No.HP" />
+      </field>
+      <field id="tgllahir">
+        <phrase id="fldcaption" value="Tanggal Lahir" />
+      </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rek Bank" />
+      </field>
+      <field id="pendidikan">
+        <phrase id="fldcaption" value="Pendidikan" />
+      </field>
+      <field id="jurusan">
+        <phrase id="fldcaption" value="Jurusan" />
+      </field>
+      <field id="agama">
+        <phrase id="fldcaption" value="Agama" />
+      </field>
+      <field id="jenkel">
+        <phrase id="fldcaption" value="Jenis Kelamin" />
+      </field>
+      <field id="status">
+        <phrase id="fldcaption" value="Status" />
+      </field>
+      <field id="foto">
+        <phrase id="fldcaption" value="Foto" />
+      </field>
+      <field id="file_cv">
+        <phrase id="fldcaption" value="File CV" />
+      </field>
+      <field id="mulai_bekerja">
+        <phrase id="fldcaption" value="Mulai Bekerja" />
+      </field>
+      <field id="keterangan">
+        <phrase id="fldcaption" value="Keterangan" />
+      </field>
+      <field id="level">
+        <phrase id="fldcaption" value="Level" />
+      </field>
+      <field id="aktif">
+        <phrase id="fldcaption" value="Aktif" />
+      </field>
+      <field id="kehadiran">
+        <phrase id="fldcaption" value="kehadiran" />
+      </field>
+    </table>
+    <table id="v_pegawai_sma">
+      <phrase id="tblcaption" value="Pegawai SMA" />
+      <field id="id">
+        <phrase id="fldcaption" value="id" />
+      </field>
+      <field id="pid">
+        <phrase id="fldcaption" value="pid" />
+      </field>
+      <field id="nip">
+        <phrase id="fldcaption" value="NIP" />
+      </field>
+      <field id="username">
+        <phrase id="fldcaption" value="Username" />
+      </field>
+      <field id="password">
+        <phrase id="fldcaption" value="Password" />
+      </field>
+      <field id="jenjang_id">
+        <phrase id="fldcaption" value="Unit" />
+      </field>
+      <field id="jabatan">
+        <phrase id="fldcaption" value="Jabatan" />
+      </field>
+      <field id="periode_jabatan">
+        <phrase id="fldcaption" value="Periode Jabatan" />
+      </field>
+      <field id="jjm">
+        <phrase id="fldcaption" value="Jumlah Jam Mengajar" />
+      </field>
+      <field id="status_peg">
+        <phrase id="fldcaption" value="Status Pegawai" />
+      </field>
+      <field id="type">
+        <phrase id="fldcaption" value="Type Pegawai" />
+      </field>
+      <field id="sertif">
+        <phrase id="fldcaption" value="Sertifikasi" />
+      </field>
+      <field id="tambahan">
+        <phrase id="fldcaption" value="Tambahan Tugas" />
+      </field>
+      <field id="lama_kerja">
+        <phrase id="fldcaption" value="Lama Kerja" />
+      </field>
+      <field id="nama">
+        <phrase id="fldcaption" value="Nama" />
+      </field>
+      <field id="alamat">
+        <phrase id="fldcaption" value="Alamat" />
+      </field>
+      <field id="wa">
+        <phrase id="fldcaption" value="WhatApps" />
+      </field>
+      <field id="_email">
+        <phrase id="fldcaption" value="Email" />
+      </field>
+      <field id="hp">
+        <phrase id="fldcaption" value="No.HP" />
+      </field>
+      <field id="tgllahir">
+        <phrase id="fldcaption" value="Tanggal Lahir" />
+      </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rek Bank" />
+      </field>
+      <field id="pendidikan">
+        <phrase id="fldcaption" value="Pendidikan" />
+      </field>
+      <field id="jurusan">
+        <phrase id="fldcaption" value="Jurusan" />
+      </field>
+      <field id="agama">
+        <phrase id="fldcaption" value="Agama" />
+      </field>
+      <field id="jenkel">
+        <phrase id="fldcaption" value="Jenis Kelamin" />
+      </field>
+      <field id="status">
+        <phrase id="fldcaption" value="Status" />
+      </field>
+      <field id="foto">
+        <phrase id="fldcaption" value="Foto" />
+      </field>
+      <field id="file_cv">
+        <phrase id="fldcaption" value="File CV" />
+      </field>
+      <field id="mulai_bekerja">
+        <phrase id="fldcaption" value="Mulai Bekerja" />
+      </field>
+      <field id="keterangan">
+        <phrase id="fldcaption" value="Keterangan" />
+      </field>
+      <field id="level">
+        <phrase id="fldcaption" value="Level" />
+      </field>
+      <field id="aktif">
+        <phrase id="fldcaption" value="Aktif" />
+      </field>
+      <field id="kehadiran">
+        <phrase id="fldcaption" value="kehadiran" />
+      </field>
+    </table>
+    <table id="v_pegawai_smk">
+      <phrase id="tblcaption" value="Pegawai SMK" />
+      <field id="id">
+        <phrase id="fldcaption" value="id" />
+      </field>
+      <field id="pid">
+        <phrase id="fldcaption" value="pid" />
+      </field>
+      <field id="nip">
+        <phrase id="fldcaption" value="NIP" />
+      </field>
+      <field id="username">
+        <phrase id="fldcaption" value="Username" />
+      </field>
+      <field id="password">
+        <phrase id="fldcaption" value="Password" />
+      </field>
+      <field id="jenjang_id">
+        <phrase id="fldcaption" value="Unit" />
+      </field>
+      <field id="jabatan">
+        <phrase id="fldcaption" value="Jabatan" />
+      </field>
+      <field id="periode_jabatan">
+        <phrase id="fldcaption" value="Periode Jabatan" />
+      </field>
+      <field id="jjm">
+        <phrase id="fldcaption" value="Jumlah Jam Mengajar" />
+      </field>
+      <field id="status_peg">
+        <phrase id="fldcaption" value="Status Pegawai" />
+      </field>
+      <field id="type">
+        <phrase id="fldcaption" value="Type Pegawai" />
+      </field>
+      <field id="sertif">
+        <phrase id="fldcaption" value="Sertifikasi" />
+      </field>
+      <field id="tambahan">
+        <phrase id="fldcaption" value="Tambahan Tugas" />
+      </field>
+      <field id="lama_kerja">
+        <phrase id="fldcaption" value="Lama Kerja" />
+      </field>
+      <field id="nama">
+        <phrase id="fldcaption" value="Nama" />
+      </field>
+      <field id="alamat">
+        <phrase id="fldcaption" value="Alamat" />
+      </field>
+      <field id="_email">
+        <phrase id="fldcaption" value="Email" />
+      </field>
+      <field id="wa">
+        <phrase id="fldcaption" value="WhatApps" />
+      </field>
+      <field id="hp">
+        <phrase id="fldcaption" value="No.HP" />
+      </field>
+      <field id="tgllahir">
+        <phrase id="fldcaption" value="Tanggal Lahir" />
+      </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rek Bank" />
+      </field>
+      <field id="pendidikan">
+        <phrase id="fldcaption" value="Pendidikan" />
+      </field>
+      <field id="jurusan">
+        <phrase id="fldcaption" value="Jurusan" />
+      </field>
+      <field id="agama">
+        <phrase id="fldcaption" value="Agama" />
+      </field>
+      <field id="jenkel">
+        <phrase id="fldcaption" value="Jenis Kelamin" />
+      </field>
+      <field id="status">
+        <phrase id="fldcaption" value="Status" />
+      </field>
+      <field id="foto">
+        <phrase id="fldcaption" value="Foto" />
+      </field>
+      <field id="file_cv">
+        <phrase id="fldcaption" value="File CV" />
+      </field>
+      <field id="mulai_bekerja">
+        <phrase id="fldcaption" value="Mulai Bekerja" />
+      </field>
+      <field id="keterangan">
+        <phrase id="fldcaption" value="Keterangan" />
+      </field>
+      <field id="level">
+        <phrase id="fldcaption" value="Level" />
+      </field>
+      <field id="aktif">
+        <phrase id="fldcaption" value="Aktif" />
+      </field>
+      <field id="kehadiran">
+        <phrase id="fldcaption" value="kehadiran" />
+      </field>
     </table>
   </project>
 </ew-language>

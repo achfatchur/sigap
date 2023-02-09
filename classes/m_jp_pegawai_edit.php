@@ -673,6 +673,8 @@ class m_jp_pegawai_edit extends m_jp_pegawai
 		$this->id->Visible = FALSE;
 		$this->jenjang_id->setVisibility();
 		$this->nip->setVisibility();
+		$this->jabatan->setVisibility();
+		$this->type->setVisibility();
 		$this->nama->setVisibility();
 		$this->kehadiran->setVisibility();
 		$this->jjm->setVisibility();
@@ -869,6 +871,24 @@ class m_jp_pegawai_edit extends m_jp_pegawai
 				$this->nip->setFormValue($val);
 		}
 
+		// Check field name 'jabatan' first before field var 'x_jabatan'
+		$val = $CurrentForm->hasValue("jabatan") ? $CurrentForm->getValue("jabatan") : $CurrentForm->getValue("x_jabatan");
+		if (!$this->jabatan->IsDetailKey) {
+			if (IsApi() && $val == NULL)
+				$this->jabatan->Visible = FALSE; // Disable update for API request
+			else
+				$this->jabatan->setFormValue($val);
+		}
+
+		// Check field name 'type' first before field var 'x_type'
+		$val = $CurrentForm->hasValue("type") ? $CurrentForm->getValue("type") : $CurrentForm->getValue("x_type");
+		if (!$this->type->IsDetailKey) {
+			if (IsApi() && $val == NULL)
+				$this->type->Visible = FALSE; // Disable update for API request
+			else
+				$this->type->setFormValue($val);
+		}
+
 		// Check field name 'nama' first before field var 'x_nama'
 		$val = $CurrentForm->hasValue("nama") ? $CurrentForm->getValue("nama") : $CurrentForm->getValue("x_nama");
 		if (!$this->nama->IsDetailKey) {
@@ -909,6 +929,8 @@ class m_jp_pegawai_edit extends m_jp_pegawai
 		$this->id->CurrentValue = $this->id->FormValue;
 		$this->jenjang_id->CurrentValue = $this->jenjang_id->FormValue;
 		$this->nip->CurrentValue = $this->nip->FormValue;
+		$this->jabatan->CurrentValue = $this->jabatan->FormValue;
+		$this->type->CurrentValue = $this->type->FormValue;
 		$this->nama->CurrentValue = $this->nama->FormValue;
 		$this->kehadiran->CurrentValue = $this->kehadiran->FormValue;
 		$this->jjm->CurrentValue = $this->jjm->FormValue;
@@ -952,6 +974,8 @@ class m_jp_pegawai_edit extends m_jp_pegawai
 		$this->id->setDbValue($row['id']);
 		$this->jenjang_id->setDbValue($row['jenjang_id']);
 		$this->nip->setDbValue($row['nip']);
+		$this->jabatan->setDbValue($row['jabatan']);
+		$this->type->setDbValue($row['type']);
 		$this->nama->setDbValue($row['nama']);
 		$this->kehadiran->setDbValue($row['kehadiran']);
 		$this->jjm->setDbValue($row['jjm']);
@@ -964,6 +988,8 @@ class m_jp_pegawai_edit extends m_jp_pegawai
 		$row['id'] = NULL;
 		$row['jenjang_id'] = NULL;
 		$row['nip'] = NULL;
+		$row['jabatan'] = NULL;
+		$row['type'] = NULL;
 		$row['nama'] = NULL;
 		$row['kehadiran'] = NULL;
 		$row['jjm'] = NULL;
@@ -1007,6 +1033,8 @@ class m_jp_pegawai_edit extends m_jp_pegawai
 		// id
 		// jenjang_id
 		// nip
+		// jabatan
+		// type
 		// nama
 		// kehadiran
 		// jjm
@@ -1043,6 +1071,16 @@ class m_jp_pegawai_edit extends m_jp_pegawai
 			$this->nip->ViewValue = $this->nip->CurrentValue;
 			$this->nip->ViewCustomAttributes = "";
 
+			// jabatan
+			$this->jabatan->ViewValue = $this->jabatan->CurrentValue;
+			$this->jabatan->ViewValue = FormatNumber($this->jabatan->ViewValue, 0, -2, -2, -2);
+			$this->jabatan->ViewCustomAttributes = "";
+
+			// type
+			$this->type->ViewValue = $this->type->CurrentValue;
+			$this->type->ViewValue = FormatNumber($this->type->ViewValue, 0, -2, -2, -2);
+			$this->type->ViewCustomAttributes = "";
+
 			// nama
 			$this->nama->ViewValue = $this->nama->CurrentValue;
 			$this->nama->ViewCustomAttributes = "";
@@ -1066,6 +1104,16 @@ class m_jp_pegawai_edit extends m_jp_pegawai
 			$this->nip->LinkCustomAttributes = "";
 			$this->nip->HrefValue = "";
 			$this->nip->TooltipValue = "";
+
+			// jabatan
+			$this->jabatan->LinkCustomAttributes = "";
+			$this->jabatan->HrefValue = "";
+			$this->jabatan->TooltipValue = "";
+
+			// type
+			$this->type->LinkCustomAttributes = "";
+			$this->type->HrefValue = "";
+			$this->type->TooltipValue = "";
 
 			// nama
 			$this->nama->LinkCustomAttributes = "";
@@ -1113,6 +1161,20 @@ class m_jp_pegawai_edit extends m_jp_pegawai
 			$this->nip->EditValue = $this->nip->CurrentValue;
 			$this->nip->ViewCustomAttributes = "";
 
+			// jabatan
+			$this->jabatan->EditAttrs["class"] = "form-control";
+			$this->jabatan->EditCustomAttributes = "";
+			$this->jabatan->EditValue = $this->jabatan->CurrentValue;
+			$this->jabatan->EditValue = FormatNumber($this->jabatan->EditValue, 0, -2, -2, -2);
+			$this->jabatan->ViewCustomAttributes = "";
+
+			// type
+			$this->type->EditAttrs["class"] = "form-control";
+			$this->type->EditCustomAttributes = "";
+			$this->type->EditValue = $this->type->CurrentValue;
+			$this->type->EditValue = FormatNumber($this->type->EditValue, 0, -2, -2, -2);
+			$this->type->ViewCustomAttributes = "";
+
 			// nama
 			$this->nama->EditAttrs["class"] = "form-control";
 			$this->nama->EditCustomAttributes = "";
@@ -1142,6 +1204,16 @@ class m_jp_pegawai_edit extends m_jp_pegawai
 			$this->nip->LinkCustomAttributes = "";
 			$this->nip->HrefValue = "";
 			$this->nip->TooltipValue = "";
+
+			// jabatan
+			$this->jabatan->LinkCustomAttributes = "";
+			$this->jabatan->HrefValue = "";
+			$this->jabatan->TooltipValue = "";
+
+			// type
+			$this->type->LinkCustomAttributes = "";
+			$this->type->HrefValue = "";
+			$this->type->TooltipValue = "";
 
 			// nama
 			$this->nama->LinkCustomAttributes = "";
@@ -1183,6 +1255,16 @@ class m_jp_pegawai_edit extends m_jp_pegawai
 		if ($this->nip->Required) {
 			if (!$this->nip->IsDetailKey && $this->nip->FormValue != NULL && $this->nip->FormValue == "") {
 				AddMessage($FormError, str_replace("%s", $this->nip->caption(), $this->nip->RequiredErrorMessage));
+			}
+		}
+		if ($this->jabatan->Required) {
+			if (!$this->jabatan->IsDetailKey && $this->jabatan->FormValue != NULL && $this->jabatan->FormValue == "") {
+				AddMessage($FormError, str_replace("%s", $this->jabatan->caption(), $this->jabatan->RequiredErrorMessage));
+			}
+		}
+		if ($this->type->Required) {
+			if (!$this->type->IsDetailKey && $this->type->FormValue != NULL && $this->type->FormValue == "") {
+				AddMessage($FormError, str_replace("%s", $this->type->caption(), $this->type->RequiredErrorMessage));
 			}
 		}
 		if ($this->nama->Required) {

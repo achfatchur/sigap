@@ -401,7 +401,21 @@ $USER_LEVEL_PRIVS = [["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen","-2","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}login_pegawai.php","-2","72"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}login_pegawai.php","0","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}login_bendahara.php","-2","72"],
-	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}login_bendahara.php","0","0"]];
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}login_bendahara.php","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_yayasan","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_yayasan","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_pengurus_yayasan","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_pengurus_yayasan","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_pegawai_tk","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_pegawai_tk","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_pegawai_sd","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_pegawai_sd","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_pegawai_smp","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_pegawai_smp","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_pegawai_sma","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_pegawai_sma","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_pegawai_smk","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_pegawai_smk","0","0"]];
 
 // User level table info
 $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
@@ -599,4 +613,11 @@ $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3
 	["vgaji_karyawan_smp","vgaji_karyawan_smp","Laporan Gaji Karyawan SMP",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["vgaji_karyawan_smk","vgaji_karyawan_smk","Laporan Gaji Karyawan SMK",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["login_pegawai.php","login_pegawai","Login Pegawai",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
-	["login_bendahara.php","login_bendahara","Login Bendahara",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];
+	["login_bendahara.php","login_bendahara","Login Bendahara",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["v_yayasan","v_yayasan","Laporan Gaji Yayasan",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["v_pengurus_yayasan","v_pengurus_yayasan","Pengurus Yayasan",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["v_pegawai_tk","v_pegawai_tk","Pegawai TK",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["v_pegawai_sd","v_pegawai_sd","Pegawai SD",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["v_pegawai_smp","v_pegawai_smp","Pegawai SMP",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["v_pegawai_sma","v_pegawai_sma","Pegawai SMA",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["v_pegawai_smk","v_pegawai_smk","Pegawai SMK",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];

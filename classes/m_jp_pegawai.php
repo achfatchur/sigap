@@ -28,6 +28,8 @@ class m_jp_pegawai extends DbTable
 	public $id;
 	public $jenjang_id;
 	public $nip;
+	public $jabatan;
+	public $type;
 	public $nama;
 	public $kehadiran;
 	public $jjm;
@@ -86,6 +88,18 @@ class m_jp_pegawai extends DbTable
 		$this->nip = new DbField('m_jp_pegawai', 'm_jp_pegawai', 'x_nip', 'nip', '`nip`', '`nip`', 200, 50, -1, FALSE, '`nip`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->nip->Sortable = TRUE; // Allow sort
 		$this->fields['nip'] = &$this->nip;
+
+		// jabatan
+		$this->jabatan = new DbField('m_jp_pegawai', 'm_jp_pegawai', 'x_jabatan', 'jabatan', '`jabatan`', '`jabatan`', 3, 11, -1, FALSE, '`jabatan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->jabatan->Sortable = TRUE; // Allow sort
+		$this->jabatan->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['jabatan'] = &$this->jabatan;
+
+		// type
+		$this->type = new DbField('m_jp_pegawai', 'm_jp_pegawai', 'x_type', 'type', '`type`', '`type`', 3, 11, -1, FALSE, '`type`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->type->Sortable = TRUE; // Allow sort
+		$this->type->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['type'] = &$this->type;
 
 		// nama
 		$this->nama = new DbField('m_jp_pegawai', 'm_jp_pegawai', 'x_nama', 'nama', '`nama`', '`nama`', 200, 255, -1, FALSE, '`nama`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
@@ -461,6 +475,8 @@ class m_jp_pegawai extends DbTable
 		$this->id->DbValue = $row['id'];
 		$this->jenjang_id->DbValue = $row['jenjang_id'];
 		$this->nip->DbValue = $row['nip'];
+		$this->jabatan->DbValue = $row['jabatan'];
+		$this->type->DbValue = $row['type'];
 		$this->nama->DbValue = $row['nama'];
 		$this->kehadiran->DbValue = $row['kehadiran'];
 		$this->jjm->DbValue = $row['jjm'];
@@ -697,6 +713,8 @@ class m_jp_pegawai extends DbTable
 		$this->id->setDbValue($rs->fields('id'));
 		$this->jenjang_id->setDbValue($rs->fields('jenjang_id'));
 		$this->nip->setDbValue($rs->fields('nip'));
+		$this->jabatan->setDbValue($rs->fields('jabatan'));
+		$this->type->setDbValue($rs->fields('type'));
 		$this->nama->setDbValue($rs->fields('nama'));
 		$this->kehadiran->setDbValue($rs->fields('kehadiran'));
 		$this->jjm->setDbValue($rs->fields('jjm'));
@@ -714,6 +732,8 @@ class m_jp_pegawai extends DbTable
 		// id
 		// jenjang_id
 		// nip
+		// jabatan
+		// type
 		// nama
 		// kehadiran
 		// jjm
@@ -748,6 +768,16 @@ class m_jp_pegawai extends DbTable
 		$this->nip->ViewValue = $this->nip->CurrentValue;
 		$this->nip->ViewCustomAttributes = "";
 
+		// jabatan
+		$this->jabatan->ViewValue = $this->jabatan->CurrentValue;
+		$this->jabatan->ViewValue = FormatNumber($this->jabatan->ViewValue, 0, -2, -2, -2);
+		$this->jabatan->ViewCustomAttributes = "";
+
+		// type
+		$this->type->ViewValue = $this->type->CurrentValue;
+		$this->type->ViewValue = FormatNumber($this->type->ViewValue, 0, -2, -2, -2);
+		$this->type->ViewCustomAttributes = "";
+
 		// nama
 		$this->nama->ViewValue = $this->nama->CurrentValue;
 		$this->nama->ViewCustomAttributes = "";
@@ -776,6 +806,16 @@ class m_jp_pegawai extends DbTable
 		$this->nip->LinkCustomAttributes = "";
 		$this->nip->HrefValue = "";
 		$this->nip->TooltipValue = "";
+
+		// jabatan
+		$this->jabatan->LinkCustomAttributes = "";
+		$this->jabatan->HrefValue = "";
+		$this->jabatan->TooltipValue = "";
+
+		// type
+		$this->type->LinkCustomAttributes = "";
+		$this->type->HrefValue = "";
+		$this->type->TooltipValue = "";
 
 		// nama
 		$this->nama->LinkCustomAttributes = "";
@@ -843,6 +883,20 @@ class m_jp_pegawai extends DbTable
 		$this->nip->EditValue = $this->nip->CurrentValue;
 		$this->nip->ViewCustomAttributes = "";
 
+		// jabatan
+		$this->jabatan->EditAttrs["class"] = "form-control";
+		$this->jabatan->EditCustomAttributes = "";
+		$this->jabatan->EditValue = $this->jabatan->CurrentValue;
+		$this->jabatan->EditValue = FormatNumber($this->jabatan->EditValue, 0, -2, -2, -2);
+		$this->jabatan->ViewCustomAttributes = "";
+
+		// type
+		$this->type->EditAttrs["class"] = "form-control";
+		$this->type->EditCustomAttributes = "";
+		$this->type->EditValue = $this->type->CurrentValue;
+		$this->type->EditValue = FormatNumber($this->type->EditValue, 0, -2, -2, -2);
+		$this->type->ViewCustomAttributes = "";
+
 		// nama
 		$this->nama->EditAttrs["class"] = "form-control";
 		$this->nama->EditCustomAttributes = "";
@@ -893,6 +947,8 @@ class m_jp_pegawai extends DbTable
 					$doc->exportCaption($this->id);
 					$doc->exportCaption($this->jenjang_id);
 					$doc->exportCaption($this->nip);
+					$doc->exportCaption($this->jabatan);
+					$doc->exportCaption($this->type);
 					$doc->exportCaption($this->nama);
 					$doc->exportCaption($this->kehadiran);
 					$doc->exportCaption($this->jjm);
@@ -900,6 +956,8 @@ class m_jp_pegawai extends DbTable
 					$doc->exportCaption($this->id);
 					$doc->exportCaption($this->jenjang_id);
 					$doc->exportCaption($this->nip);
+					$doc->exportCaption($this->jabatan);
+					$doc->exportCaption($this->type);
 					$doc->exportCaption($this->nama);
 					$doc->exportCaption($this->kehadiran);
 					$doc->exportCaption($this->jjm);
@@ -937,6 +995,8 @@ class m_jp_pegawai extends DbTable
 						$doc->exportField($this->id);
 						$doc->exportField($this->jenjang_id);
 						$doc->exportField($this->nip);
+						$doc->exportField($this->jabatan);
+						$doc->exportField($this->type);
 						$doc->exportField($this->nama);
 						$doc->exportField($this->kehadiran);
 						$doc->exportField($this->jjm);
@@ -944,6 +1004,8 @@ class m_jp_pegawai extends DbTable
 						$doc->exportField($this->id);
 						$doc->exportField($this->jenjang_id);
 						$doc->exportField($this->nip);
+						$doc->exportField($this->jabatan);
+						$doc->exportField($this->type);
 						$doc->exportField($this->nama);
 						$doc->exportField($this->kehadiran);
 						$doc->exportField($this->jjm);
@@ -1118,6 +1180,16 @@ class m_jp_pegawai extends DbTable
 	function Row_Rendering() {
 
 		// Enter your code here
+	if($this->type->CurrentValue == '1'){
+	$this->jjm->ReadOnly = FALSE;
+	$this->kehadiran->ReadOnly = TRUE;
+	}else if($this->type->CurrentValue == '2'){
+	$this->kehadiran->ReadOnly = FALSE;
+	$this->jjm->ReadOnly = TRUE;
+	}else{
+	$this->kehadiran->ReadOnly = FALSE;
+	$this->jjm->ReadOnly = TRUE;
+	}	
 	}
 
 	// Row Rendered event

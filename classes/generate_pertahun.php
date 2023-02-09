@@ -1178,7 +1178,6 @@ $clone_delete = execute($delete_m_sd);
 		$terlambat = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$query["jenjang_id"]."' AND type='".$query["type"]."'");
 		$pulang_cepat = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$query["jenjang_id"]."' AND type='".$query["type"]."'");
 		$query2 = ExecuteRow("SELECT * FROM jabatan JOIN gajitunjangan ON jabatan.id = gajitunjangan.pidjabatan where gajitunjangan.pidjabatan='9'");
-	
 			//$piket = ExecuteScalar("SELECT value FROM m_piket WHERE jenjang_id='".$query["jenjang_id"]."'");
 		$inval = ExecuteScalar("SELECT value FROM m_inval WHERE jenjang_id='".$query["jenjang_id"]."'");
 		$lembur = ExecuteScalar("SELECT value_perjam FROM m_lembur WHERE jenjang_id='".$query["jenjang_id"]."'");
@@ -1195,7 +1194,7 @@ $clone_delete = execute($delete_m_sd);
 		$tambahan = ($piket["value"] * $absen["piket"]) +  ($lembur * $absen["lembur"]);
 	
 		//inval2 = ($inval * $absen["inval"]) ;
-		$tambahan = ($piket["value"] * $absen["piket"]) +  ($lembur * $absen["lembur"]);
+		//$tambahan = ($piket["value"] * $absen["piket"]) +  ($lembur * $absen["lembur"]);
 		$inval2 = ($inval * $absen["inval"]) ;
 	
 			//print_r($hadir);

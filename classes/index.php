@@ -553,6 +553,20 @@ class index
 			$this->terminate("login_pegawai.php");
 		if ($Security->allowList(CurrentProjectID() . 'login_bendahara.php'))
 			$this->terminate("login_bendahara.php");
+		if ($Security->allowList(CurrentProjectID() . 'v_yayasan'))
+			$this->terminate("v_yayasanlist.php");
+		if ($Security->allowList(CurrentProjectID() . 'v_pengurus_yayasan'))
+			$this->terminate("v_pengurus_yayasanlist.php");
+		if ($Security->allowList(CurrentProjectID() . 'v_pegawai_tk'))
+			$this->terminate("v_pegawai_tklist.php");
+		if ($Security->allowList(CurrentProjectID() . 'v_pegawai_sd'))
+			$this->terminate("v_pegawai_sdlist.php");
+		if ($Security->allowList(CurrentProjectID() . 'v_pegawai_smp'))
+			$this->terminate("v_pegawai_smplist.php");
+		if ($Security->allowList(CurrentProjectID() . 'v_pegawai_sma'))
+			$this->terminate("v_pegawai_smalist.php");
+		if ($Security->allowList(CurrentProjectID() . 'v_pegawai_smk'))
+			$this->terminate("v_pegawai_smklist.php");
 		if ($Security->isLoggedIn()) {
 			$this->setFailureMessage(DeniedMessage() . "<br><br><a href=\"logout.php\">" . $Language->phrase("BackToLogin") . "</a>");
 		} else {
