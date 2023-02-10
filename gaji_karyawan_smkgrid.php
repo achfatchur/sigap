@@ -77,6 +77,14 @@ loadjs.ready("head", function() {
 				elm = this.getElements("x" + infix + "_penyesuaian");
 				if (elm && !ew.checkInteger(elm.value))
 					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_smk_grid->penyesuaian->errorMessage()) ?>");
+			<?php if ($gaji_karyawan_smk_grid->potongan_bendahara->Required) { ?>
+				elm = this.getElements("x" + infix + "_potongan_bendahara");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_karyawan_smk_grid->potongan_bendahara->caption(), $gaji_karyawan_smk_grid->potongan_bendahara->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_potongan_bendahara");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_smk_grid->potongan_bendahara->errorMessage()) ?>");
 			<?php if ($gaji_karyawan_smk_grid->total->Required) { ?>
 				elm = this.getElements("x" + infix + "_total");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -93,14 +101,6 @@ loadjs.ready("head", function() {
 				elm = this.getElements("x" + infix + "_voucher");
 				if (elm && !ew.checkInteger(elm.value))
 					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_smk_grid->voucher->errorMessage()) ?>");
-			<?php if ($gaji_karyawan_smk_grid->potongan_bendahara->Required) { ?>
-				elm = this.getElements("x" + infix + "_potongan_bendahara");
-				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
-					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_karyawan_smk_grid->potongan_bendahara->caption(), $gaji_karyawan_smk_grid->potongan_bendahara->RequiredErrorMessage)) ?>");
-			<?php } ?>
-				elm = this.getElements("x" + infix + "_potongan_bendahara");
-				if (elm && !ew.checkInteger(elm.value))
-					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_smk_grid->potongan_bendahara->errorMessage()) ?>");
 
 				// Call Form_CustomValidate event
 				if (!this.Form_CustomValidate(fobj))
@@ -117,9 +117,9 @@ loadjs.ready("head", function() {
 		if (ew.valueChanged(fobj, infix, "sub_total", false)) return false;
 		if (ew.valueChanged(fobj, infix, "potongan", false)) return false;
 		if (ew.valueChanged(fobj, infix, "penyesuaian", false)) return false;
+		if (ew.valueChanged(fobj, infix, "potongan_bendahara", false)) return false;
 		if (ew.valueChanged(fobj, infix, "total", false)) return false;
 		if (ew.valueChanged(fobj, infix, "voucher", false)) return false;
-		if (ew.valueChanged(fobj, infix, "potongan_bendahara", false)) return false;
 		return true;
 	}
 
@@ -203,6 +203,15 @@ $gaji_karyawan_smk_grid->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($gaji_karyawan_smk_grid->potongan_bendahara->Visible) { // potongan_bendahara ?>
+	<?php if ($gaji_karyawan_smk_grid->SortUrl($gaji_karyawan_smk_grid->potongan_bendahara) == "") { ?>
+		<th data-name="potongan_bendahara" class="<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->headerCellClass() ?>"><div id="elh_gaji_karyawan_smk_potongan_bendahara" class="gaji_karyawan_smk_potongan_bendahara"><div class="ew-table-header-caption"><?php echo $gaji_karyawan_smk_grid->potongan_bendahara->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="potongan_bendahara" class="<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->headerCellClass() ?>"><div><div id="elh_gaji_karyawan_smk_potongan_bendahara" class="gaji_karyawan_smk_potongan_bendahara">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_smk_grid->potongan_bendahara->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_smk_grid->potongan_bendahara->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_smk_grid->potongan_bendahara->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($gaji_karyawan_smk_grid->total->Visible) { // total ?>
 	<?php if ($gaji_karyawan_smk_grid->SortUrl($gaji_karyawan_smk_grid->total) == "") { ?>
 		<th data-name="total" class="<?php echo $gaji_karyawan_smk_grid->total->headerCellClass() ?>"><div id="elh_gaji_karyawan_smk_total" class="gaji_karyawan_smk_total"><div class="ew-table-header-caption"><?php echo $gaji_karyawan_smk_grid->total->caption() ?></div></div></th>
@@ -218,15 +227,6 @@ $gaji_karyawan_smk_grid->ListOptions->render("header", "left");
 	<?php } else { ?>
 		<th data-name="voucher" class="<?php echo $gaji_karyawan_smk_grid->voucher->headerCellClass() ?>"><div><div id="elh_gaji_karyawan_smk_voucher" class="gaji_karyawan_smk_voucher">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_smk_grid->voucher->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_smk_grid->voucher->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_smk_grid->voucher->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
-<?php if ($gaji_karyawan_smk_grid->potongan_bendahara->Visible) { // potongan_bendahara ?>
-	<?php if ($gaji_karyawan_smk_grid->SortUrl($gaji_karyawan_smk_grid->potongan_bendahara) == "") { ?>
-		<th data-name="potongan_bendahara" class="<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->headerCellClass() ?>"><div id="elh_gaji_karyawan_smk_potongan_bendahara" class="gaji_karyawan_smk_potongan_bendahara"><div class="ew-table-header-caption"><?php echo $gaji_karyawan_smk_grid->potongan_bendahara->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="potongan_bendahara" class="<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->headerCellClass() ?>"><div><div id="elh_gaji_karyawan_smk_potongan_bendahara" class="gaji_karyawan_smk_potongan_bendahara">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_smk_grid->potongan_bendahara->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_smk_grid->potongan_bendahara->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_smk_grid->potongan_bendahara->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -467,6 +467,33 @@ $gaji_karyawan_smk_grid->ListOptions->render("body", "left", $gaji_karyawan_smk_
 <?php } ?>
 </td>
 	<?php } ?>
+	<?php if ($gaji_karyawan_smk_grid->potongan_bendahara->Visible) { // potongan_bendahara ?>
+		<td data-name="potongan_bendahara" <?php echo $gaji_karyawan_smk_grid->potongan_bendahara->cellAttributes() ?>>
+<?php if ($gaji_karyawan_smk->RowType == ROWTYPE_ADD) { // Add record ?>
+<span id="el<?php echo $gaji_karyawan_smk_grid->RowCount ?>_gaji_karyawan_smk_potongan_bendahara" class="form-group">
+<input type="text" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" size="30" maxlength="100" placeholder="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->EditValue ?>"<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->editAttributes() ?>>
+</span>
+<input type="hidden" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" value="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->OldValue) ?>">
+<?php } ?>
+<?php if ($gaji_karyawan_smk->RowType == ROWTYPE_EDIT) { // Edit record ?>
+<span id="el<?php echo $gaji_karyawan_smk_grid->RowCount ?>_gaji_karyawan_smk_potongan_bendahara" class="form-group">
+<input type="text" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" size="30" maxlength="100" placeholder="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->EditValue ?>"<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->editAttributes() ?>>
+</span>
+<?php } ?>
+<?php if ($gaji_karyawan_smk->RowType == ROWTYPE_VIEW) { // View record ?>
+<span id="el<?php echo $gaji_karyawan_smk_grid->RowCount ?>_gaji_karyawan_smk_potongan_bendahara">
+<span<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->viewAttributes() ?>><?php echo $gaji_karyawan_smk_grid->potongan_bendahara->getViewValue() ?></span>
+</span>
+<?php if (!$gaji_karyawan_smk->isConfirm()) { ?>
+<input type="hidden" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" value="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->FormValue) ?>">
+<input type="hidden" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" value="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->OldValue) ?>">
+<?php } else { ?>
+<input type="hidden" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="fgaji_karyawan_smkgrid$x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="fgaji_karyawan_smkgrid$x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" value="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->FormValue) ?>">
+<input type="hidden" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="fgaji_karyawan_smkgrid$o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="fgaji_karyawan_smkgrid$o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" value="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->OldValue) ?>">
+<?php } ?>
+<?php } ?>
+</td>
+	<?php } ?>
 	<?php if ($gaji_karyawan_smk_grid->total->Visible) { // total ?>
 		<td data-name="total" <?php echo $gaji_karyawan_smk_grid->total->cellAttributes() ?>>
 <?php if ($gaji_karyawan_smk->RowType == ROWTYPE_ADD) { // Add record ?>
@@ -517,33 +544,6 @@ $gaji_karyawan_smk_grid->ListOptions->render("body", "left", $gaji_karyawan_smk_
 <?php } else { ?>
 <input type="hidden" data-table="gaji_karyawan_smk" data-field="x_voucher" name="fgaji_karyawan_smkgrid$x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_voucher" id="fgaji_karyawan_smkgrid$x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_voucher" value="<?php echo HtmlEncode($gaji_karyawan_smk_grid->voucher->FormValue) ?>">
 <input type="hidden" data-table="gaji_karyawan_smk" data-field="x_voucher" name="fgaji_karyawan_smkgrid$o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_voucher" id="fgaji_karyawan_smkgrid$o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_voucher" value="<?php echo HtmlEncode($gaji_karyawan_smk_grid->voucher->OldValue) ?>">
-<?php } ?>
-<?php } ?>
-</td>
-	<?php } ?>
-	<?php if ($gaji_karyawan_smk_grid->potongan_bendahara->Visible) { // potongan_bendahara ?>
-		<td data-name="potongan_bendahara" <?php echo $gaji_karyawan_smk_grid->potongan_bendahara->cellAttributes() ?>>
-<?php if ($gaji_karyawan_smk->RowType == ROWTYPE_ADD) { // Add record ?>
-<span id="el<?php echo $gaji_karyawan_smk_grid->RowCount ?>_gaji_karyawan_smk_potongan_bendahara" class="form-group">
-<input type="text" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" size="30" maxlength="100" placeholder="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->EditValue ?>"<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->editAttributes() ?>>
-</span>
-<input type="hidden" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" value="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->OldValue) ?>">
-<?php } ?>
-<?php if ($gaji_karyawan_smk->RowType == ROWTYPE_EDIT) { // Edit record ?>
-<span id="el<?php echo $gaji_karyawan_smk_grid->RowCount ?>_gaji_karyawan_smk_potongan_bendahara" class="form-group">
-<input type="text" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" size="30" maxlength="100" placeholder="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->EditValue ?>"<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->editAttributes() ?>>
-</span>
-<?php } ?>
-<?php if ($gaji_karyawan_smk->RowType == ROWTYPE_VIEW) { // View record ?>
-<span id="el<?php echo $gaji_karyawan_smk_grid->RowCount ?>_gaji_karyawan_smk_potongan_bendahara">
-<span<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->viewAttributes() ?>><?php echo $gaji_karyawan_smk_grid->potongan_bendahara->getViewValue() ?></span>
-</span>
-<?php if (!$gaji_karyawan_smk->isConfirm()) { ?>
-<input type="hidden" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" value="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->FormValue) ?>">
-<input type="hidden" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" value="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->OldValue) ?>">
-<?php } else { ?>
-<input type="hidden" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="fgaji_karyawan_smkgrid$x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="fgaji_karyawan_smkgrid$x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" value="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->FormValue) ?>">
-<input type="hidden" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="fgaji_karyawan_smkgrid$o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="fgaji_karyawan_smkgrid$o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" value="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->OldValue) ?>">
 <?php } ?>
 <?php } ?>
 </td>
@@ -660,6 +660,21 @@ $gaji_karyawan_smk_grid->ListOptions->render("body", "left", $gaji_karyawan_smk_
 <input type="hidden" data-table="gaji_karyawan_smk" data-field="x_penyesuaian" name="o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_penyesuaian" id="o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_penyesuaian" value="<?php echo HtmlEncode($gaji_karyawan_smk_grid->penyesuaian->OldValue) ?>">
 </td>
 	<?php } ?>
+	<?php if ($gaji_karyawan_smk_grid->potongan_bendahara->Visible) { // potongan_bendahara ?>
+		<td data-name="potongan_bendahara">
+<?php if (!$gaji_karyawan_smk->isConfirm()) { ?>
+<span id="el$rowindex$_gaji_karyawan_smk_potongan_bendahara" class="form-group gaji_karyawan_smk_potongan_bendahara">
+<input type="text" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" size="30" maxlength="100" placeholder="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->EditValue ?>"<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->editAttributes() ?>>
+</span>
+<?php } else { ?>
+<span id="el$rowindex$_gaji_karyawan_smk_potongan_bendahara" class="form-group gaji_karyawan_smk_potongan_bendahara">
+<span<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($gaji_karyawan_smk_grid->potongan_bendahara->ViewValue)) ?>"></span>
+</span>
+<input type="hidden" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" value="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->FormValue) ?>">
+<?php } ?>
+<input type="hidden" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" value="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->OldValue) ?>">
+</td>
+	<?php } ?>
 	<?php if ($gaji_karyawan_smk_grid->total->Visible) { // total ?>
 		<td data-name="total">
 <?php if (!$gaji_karyawan_smk->isConfirm()) { ?>
@@ -688,21 +703,6 @@ $gaji_karyawan_smk_grid->ListOptions->render("body", "left", $gaji_karyawan_smk_
 <input type="hidden" data-table="gaji_karyawan_smk" data-field="x_voucher" name="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_voucher" id="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_voucher" value="<?php echo HtmlEncode($gaji_karyawan_smk_grid->voucher->FormValue) ?>">
 <?php } ?>
 <input type="hidden" data-table="gaji_karyawan_smk" data-field="x_voucher" name="o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_voucher" id="o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_voucher" value="<?php echo HtmlEncode($gaji_karyawan_smk_grid->voucher->OldValue) ?>">
-</td>
-	<?php } ?>
-	<?php if ($gaji_karyawan_smk_grid->potongan_bendahara->Visible) { // potongan_bendahara ?>
-		<td data-name="potongan_bendahara">
-<?php if (!$gaji_karyawan_smk->isConfirm()) { ?>
-<span id="el$rowindex$_gaji_karyawan_smk_potongan_bendahara" class="form-group gaji_karyawan_smk_potongan_bendahara">
-<input type="text" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" size="30" maxlength="100" placeholder="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->EditValue ?>"<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->editAttributes() ?>>
-</span>
-<?php } else { ?>
-<span id="el$rowindex$_gaji_karyawan_smk_potongan_bendahara" class="form-group gaji_karyawan_smk_potongan_bendahara">
-<span<?php echo $gaji_karyawan_smk_grid->potongan_bendahara->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($gaji_karyawan_smk_grid->potongan_bendahara->ViewValue)) ?>"></span>
-</span>
-<input type="hidden" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="x<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" value="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->FormValue) ?>">
-<?php } ?>
-<input type="hidden" data-table="gaji_karyawan_smk" data-field="x_potongan_bendahara" name="o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" id="o<?php echo $gaji_karyawan_smk_grid->RowIndex ?>_potongan_bendahara" value="<?php echo HtmlEncode($gaji_karyawan_smk_grid->potongan_bendahara->OldValue) ?>">
 </td>
 	<?php } ?>
 <?php

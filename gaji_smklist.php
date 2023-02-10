@@ -247,6 +247,15 @@ $gaji_smk_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($gaji_smk_list->potongan_bendahara->Visible) { // potongan_bendahara ?>
+	<?php if ($gaji_smk_list->SortUrl($gaji_smk_list->potongan_bendahara) == "") { ?>
+		<th data-name="potongan_bendahara" class="<?php echo $gaji_smk_list->potongan_bendahara->headerCellClass() ?>"><div id="elh_gaji_smk_potongan_bendahara" class="gaji_smk_potongan_bendahara"><div class="ew-table-header-caption"><?php echo $gaji_smk_list->potongan_bendahara->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="potongan_bendahara" class="<?php echo $gaji_smk_list->potongan_bendahara->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $gaji_smk_list->SortUrl($gaji_smk_list->potongan_bendahara) ?>', 1);"><div id="elh_gaji_smk_potongan_bendahara" class="gaji_smk_potongan_bendahara">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_smk_list->potongan_bendahara->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($gaji_smk_list->potongan_bendahara->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_smk_list->potongan_bendahara->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($gaji_smk_list->total->Visible) { // total ?>
 	<?php if ($gaji_smk_list->SortUrl($gaji_smk_list->total) == "") { ?>
 		<th data-name="total" class="<?php echo $gaji_smk_list->total->headerCellClass() ?>"><div id="elh_gaji_smk_total" class="gaji_smk_total"><div class="ew-table-header-caption"><?php echo $gaji_smk_list->total->caption() ?></div></div></th>
@@ -369,6 +378,13 @@ $gaji_smk_list->ListOptions->render("body", "left", $gaji_smk_list->RowCount);
 		<td data-name="penyesuaian" <?php echo $gaji_smk_list->penyesuaian->cellAttributes() ?>>
 <span id="el<?php echo $gaji_smk_list->RowCount ?>_gaji_smk_penyesuaian">
 <span<?php echo $gaji_smk_list->penyesuaian->viewAttributes() ?>><?php echo $gaji_smk_list->penyesuaian->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($gaji_smk_list->potongan_bendahara->Visible) { // potongan_bendahara ?>
+		<td data-name="potongan_bendahara" <?php echo $gaji_smk_list->potongan_bendahara->cellAttributes() ?>>
+<span id="el<?php echo $gaji_smk_list->RowCount ?>_gaji_smk_potongan_bendahara">
+<span<?php echo $gaji_smk_list->potongan_bendahara->viewAttributes() ?>><?php echo $gaji_smk_list->potongan_bendahara->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

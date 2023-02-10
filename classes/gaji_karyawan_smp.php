@@ -39,11 +39,11 @@ class gaji_karyawan_smp extends DbTable
 	public $sub_total;
 	public $potongan;
 	public $penyesuaian;
+	public $potongan_bendahara;
 	public $total;
 	public $pid;
 	public $voucher;
 	public $status;
-	public $potongan_bendahara;
 
 	// Constructor
 	public function __construct()
@@ -171,6 +171,12 @@ class gaji_karyawan_smp extends DbTable
 		$this->penyesuaian->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['penyesuaian'] = &$this->penyesuaian;
 
+		// potongan_bendahara
+		$this->potongan_bendahara = new DbField('gaji_karyawan_smp', 'gaji_karyawan_smp', 'x_potongan_bendahara', 'potongan_bendahara', '`potongan_bendahara`', '`potongan_bendahara`', 20, 100, -1, FALSE, '`potongan_bendahara`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->potongan_bendahara->Sortable = TRUE; // Allow sort
+		$this->potongan_bendahara->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['potongan_bendahara'] = &$this->potongan_bendahara;
+
 		// total
 		$this->total = new DbField('gaji_karyawan_smp', 'gaji_karyawan_smp', 'x_total', 'total', '`total`', '`total`', 20, 19, -1, FALSE, '`total`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->total->Sortable = TRUE; // Allow sort
@@ -195,12 +201,6 @@ class gaji_karyawan_smp extends DbTable
 		$this->status->Sortable = TRUE; // Allow sort
 		$this->status->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['status'] = &$this->status;
-
-		// potongan_bendahara
-		$this->potongan_bendahara = new DbField('gaji_karyawan_smp', 'gaji_karyawan_smp', 'x_potongan_bendahara', 'potongan_bendahara', '`potongan_bendahara`', '`potongan_bendahara`', 20, 100, -1, FALSE, '`potongan_bendahara`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->potongan_bendahara->Sortable = TRUE; // Allow sort
-		$this->potongan_bendahara->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
-		$this->fields['potongan_bendahara'] = &$this->potongan_bendahara;
 	}
 
 	// Field Visibility
@@ -638,11 +638,11 @@ class gaji_karyawan_smp extends DbTable
 		$this->sub_total->DbValue = $row['sub_total'];
 		$this->potongan->DbValue = $row['potongan'];
 		$this->penyesuaian->DbValue = $row['penyesuaian'];
+		$this->potongan_bendahara->DbValue = $row['potongan_bendahara'];
 		$this->total->DbValue = $row['total'];
 		$this->pid->DbValue = $row['pid'];
 		$this->voucher->DbValue = $row['voucher'];
 		$this->status->DbValue = $row['status'];
-		$this->potongan_bendahara->DbValue = $row['potongan_bendahara'];
 	}
 
 	// Delete uploaded files
@@ -893,11 +893,11 @@ class gaji_karyawan_smp extends DbTable
 		$this->sub_total->setDbValue($rs->fields('sub_total'));
 		$this->potongan->setDbValue($rs->fields('potongan'));
 		$this->penyesuaian->setDbValue($rs->fields('penyesuaian'));
+		$this->potongan_bendahara->setDbValue($rs->fields('potongan_bendahara'));
 		$this->total->setDbValue($rs->fields('total'));
 		$this->pid->setDbValue($rs->fields('pid'));
 		$this->voucher->setDbValue($rs->fields('voucher'));
 		$this->status->setDbValue($rs->fields('status'));
-		$this->potongan_bendahara->setDbValue($rs->fields('potongan_bendahara'));
 	}
 
 	// Render list row values
@@ -923,11 +923,11 @@ class gaji_karyawan_smp extends DbTable
 		// sub_total
 		// potongan
 		// penyesuaian
+		// potongan_bendahara
 		// total
 		// pid
 		// voucher
 		// status
-		// potongan_bendahara
 		// id
 
 		$this->id->ViewValue = $this->id->CurrentValue;
@@ -1068,6 +1068,11 @@ class gaji_karyawan_smp extends DbTable
 		$this->penyesuaian->ViewValue = FormatNumber($this->penyesuaian->ViewValue, 0, -2, -2, -2);
 		$this->penyesuaian->ViewCustomAttributes = "";
 
+		// potongan_bendahara
+		$this->potongan_bendahara->ViewValue = $this->potongan_bendahara->CurrentValue;
+		$this->potongan_bendahara->ViewValue = FormatNumber($this->potongan_bendahara->ViewValue, 0, -2, -2, -2);
+		$this->potongan_bendahara->ViewCustomAttributes = "";
+
 		// total
 		$this->total->ViewValue = $this->total->CurrentValue;
 		$this->total->ViewValue = FormatNumber($this->total->ViewValue, 0, -2, -2, -2);
@@ -1087,11 +1092,6 @@ class gaji_karyawan_smp extends DbTable
 		$this->status->ViewValue = $this->status->CurrentValue;
 		$this->status->ViewValue = FormatNumber($this->status->ViewValue, 0, -2, -2, -2);
 		$this->status->ViewCustomAttributes = "";
-
-		// potongan_bendahara
-		$this->potongan_bendahara->ViewValue = $this->potongan_bendahara->CurrentValue;
-		$this->potongan_bendahara->ViewValue = FormatNumber($this->potongan_bendahara->ViewValue, 0, -2, -2, -2);
-		$this->potongan_bendahara->ViewCustomAttributes = "";
 
 		// id
 		$this->id->LinkCustomAttributes = "";
@@ -1163,6 +1163,11 @@ class gaji_karyawan_smp extends DbTable
 		$this->penyesuaian->HrefValue = "";
 		$this->penyesuaian->TooltipValue = "";
 
+		// potongan_bendahara
+		$this->potongan_bendahara->LinkCustomAttributes = "";
+		$this->potongan_bendahara->HrefValue = "";
+		$this->potongan_bendahara->TooltipValue = "";
+
 		// total
 		$this->total->LinkCustomAttributes = "";
 		$this->total->HrefValue = "";
@@ -1182,11 +1187,6 @@ class gaji_karyawan_smp extends DbTable
 		$this->status->LinkCustomAttributes = "";
 		$this->status->HrefValue = "";
 		$this->status->TooltipValue = "";
-
-		// potongan_bendahara
-		$this->potongan_bendahara->LinkCustomAttributes = "";
-		$this->potongan_bendahara->HrefValue = "";
-		$this->potongan_bendahara->TooltipValue = "";
 
 		// Call Row Rendered event
 		$this->Row_Rendered();
@@ -1316,6 +1316,12 @@ class gaji_karyawan_smp extends DbTable
 		$this->penyesuaian->EditValue = $this->penyesuaian->CurrentValue;
 		$this->penyesuaian->PlaceHolder = RemoveHtml($this->penyesuaian->caption());
 
+		// potongan_bendahara
+		$this->potongan_bendahara->EditAttrs["class"] = "form-control";
+		$this->potongan_bendahara->EditCustomAttributes = "";
+		$this->potongan_bendahara->EditValue = $this->potongan_bendahara->CurrentValue;
+		$this->potongan_bendahara->PlaceHolder = RemoveHtml($this->potongan_bendahara->caption());
+
 		// total
 		$this->total->EditAttrs["class"] = "form-control";
 		$this->total->EditCustomAttributes = "";
@@ -1346,12 +1352,6 @@ class gaji_karyawan_smp extends DbTable
 		$this->status->EditCustomAttributes = "";
 		$this->status->EditValue = $this->status->CurrentValue;
 		$this->status->PlaceHolder = RemoveHtml($this->status->caption());
-
-		// potongan_bendahara
-		$this->potongan_bendahara->EditAttrs["class"] = "form-control";
-		$this->potongan_bendahara->EditCustomAttributes = "";
-		$this->potongan_bendahara->EditValue = $this->potongan_bendahara->CurrentValue;
-		$this->potongan_bendahara->PlaceHolder = RemoveHtml($this->potongan_bendahara->caption());
 
 		// Call Row Rendered event
 		$this->Row_Rendered();
@@ -1396,11 +1396,11 @@ class gaji_karyawan_smp extends DbTable
 					$doc->exportCaption($this->sub_total);
 					$doc->exportCaption($this->potongan);
 					$doc->exportCaption($this->penyesuaian);
+					$doc->exportCaption($this->potongan_bendahara);
 					$doc->exportCaption($this->total);
 					$doc->exportCaption($this->pid);
 					$doc->exportCaption($this->voucher);
 					$doc->exportCaption($this->status);
-					$doc->exportCaption($this->potongan_bendahara);
 				} else {
 					$doc->exportCaption($this->id);
 					$doc->exportCaption($this->tahun);
@@ -1416,11 +1416,11 @@ class gaji_karyawan_smp extends DbTable
 					$doc->exportCaption($this->sub_total);
 					$doc->exportCaption($this->potongan);
 					$doc->exportCaption($this->penyesuaian);
+					$doc->exportCaption($this->potongan_bendahara);
 					$doc->exportCaption($this->total);
 					$doc->exportCaption($this->pid);
 					$doc->exportCaption($this->voucher);
 					$doc->exportCaption($this->status);
-					$doc->exportCaption($this->potongan_bendahara);
 				}
 				$doc->endExportRow();
 			}
@@ -1466,11 +1466,11 @@ class gaji_karyawan_smp extends DbTable
 						$doc->exportField($this->sub_total);
 						$doc->exportField($this->potongan);
 						$doc->exportField($this->penyesuaian);
+						$doc->exportField($this->potongan_bendahara);
 						$doc->exportField($this->total);
 						$doc->exportField($this->pid);
 						$doc->exportField($this->voucher);
 						$doc->exportField($this->status);
-						$doc->exportField($this->potongan_bendahara);
 					} else {
 						$doc->exportField($this->id);
 						$doc->exportField($this->tahun);
@@ -1486,11 +1486,11 @@ class gaji_karyawan_smp extends DbTable
 						$doc->exportField($this->sub_total);
 						$doc->exportField($this->potongan);
 						$doc->exportField($this->penyesuaian);
+						$doc->exportField($this->potongan_bendahara);
 						$doc->exportField($this->total);
 						$doc->exportField($this->pid);
 						$doc->exportField($this->voucher);
 						$doc->exportField($this->status);
-						$doc->exportField($this->potongan_bendahara);
 					}
 					$doc->endExportRow($rowCnt);
 				}

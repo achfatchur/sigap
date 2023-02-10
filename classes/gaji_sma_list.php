@@ -852,10 +852,10 @@ class gaji_sma_list extends gaji_sma
 		$this->sub_total->setVisibility();
 		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
+		$this->potongan_bendahara->Visible = FALSE;
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
 		$this->status->Visible = FALSE;
-		$this->potongan_bendahara->Visible = FALSE;
 		$this->hideFieldsForAddEdit();
 
 		// Global Page Loading event (in userfn*.php)
@@ -1202,10 +1202,10 @@ class gaji_sma_list extends gaji_sma
 		$filterList = Concat($filterList, $this->sub_total->AdvancedSearch->toJson(), ","); // Field sub_total
 		$filterList = Concat($filterList, $this->potongan->AdvancedSearch->toJson(), ","); // Field potongan
 		$filterList = Concat($filterList, $this->penyesuaian->AdvancedSearch->toJson(), ","); // Field penyesuaian
+		$filterList = Concat($filterList, $this->potongan_bendahara->AdvancedSearch->toJson(), ","); // Field potongan_bendahara
 		$filterList = Concat($filterList, $this->total->AdvancedSearch->toJson(), ","); // Field total
 		$filterList = Concat($filterList, $this->voucher->AdvancedSearch->toJson(), ","); // Field voucher
 		$filterList = Concat($filterList, $this->status->AdvancedSearch->toJson(), ","); // Field status
-		$filterList = Concat($filterList, $this->potongan_bendahara->AdvancedSearch->toJson(), ","); // Field potongan_bendahara
 		if ($this->BasicSearch->Keyword != "") {
 			$wrk = "\"" . Config("TABLE_BASIC_SEARCH") . "\":\"" . JsEncode($this->BasicSearch->Keyword) . "\",\"" . Config("TABLE_BASIC_SEARCH_TYPE") . "\":\"" . JsEncode($this->BasicSearch->Type) . "\"";
 			$filterList = Concat($filterList, $wrk, ",");
@@ -1492,6 +1492,14 @@ class gaji_sma_list extends gaji_sma
 		$this->penyesuaian->AdvancedSearch->SearchOperator2 = @$filter["w_penyesuaian"];
 		$this->penyesuaian->AdvancedSearch->save();
 
+		// Field potongan_bendahara
+		$this->potongan_bendahara->AdvancedSearch->SearchValue = @$filter["x_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchOperator = @$filter["z_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchCondition = @$filter["v_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchValue2 = @$filter["y_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchOperator2 = @$filter["w_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->save();
+
 		// Field total
 		$this->total->AdvancedSearch->SearchValue = @$filter["x_total"];
 		$this->total->AdvancedSearch->SearchOperator = @$filter["z_total"];
@@ -1515,14 +1523,6 @@ class gaji_sma_list extends gaji_sma
 		$this->status->AdvancedSearch->SearchValue2 = @$filter["y_status"];
 		$this->status->AdvancedSearch->SearchOperator2 = @$filter["w_status"];
 		$this->status->AdvancedSearch->save();
-
-		// Field potongan_bendahara
-		$this->potongan_bendahara->AdvancedSearch->SearchValue = @$filter["x_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->SearchOperator = @$filter["z_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->SearchCondition = @$filter["v_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->SearchValue2 = @$filter["y_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->SearchOperator2 = @$filter["w_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->save();
 		$this->BasicSearch->setKeyword(@$filter[Config("TABLE_BASIC_SEARCH")]);
 		$this->BasicSearch->setType(@$filter[Config("TABLE_BASIC_SEARCH_TYPE")]);
 	}
@@ -2135,10 +2135,10 @@ class gaji_sma_list extends gaji_sma
 		$this->sub_total->setDbValue($row['sub_total']);
 		$this->potongan->setDbValue($row['potongan']);
 		$this->penyesuaian->setDbValue($row['penyesuaian']);
+		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
 		$this->total->setDbValue($row['total']);
 		$this->voucher->setDbValue($row['voucher']);
 		$this->status->setDbValue($row['status']);
-		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
 	}
 
 	// Return a row with default values
@@ -2176,10 +2176,10 @@ class gaji_sma_list extends gaji_sma
 		$row['sub_total'] = NULL;
 		$row['potongan'] = NULL;
 		$row['penyesuaian'] = NULL;
+		$row['potongan_bendahara'] = NULL;
 		$row['total'] = NULL;
 		$row['voucher'] = NULL;
 		$row['status'] = NULL;
-		$row['potongan_bendahara'] = NULL;
 		return $row;
 	}
 
@@ -2254,10 +2254,10 @@ class gaji_sma_list extends gaji_sma
 		// sub_total
 		// potongan
 		// penyesuaian
+		// potongan_bendahara
 		// total
 		// voucher
 		// status
-		// potongan_bendahara
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 

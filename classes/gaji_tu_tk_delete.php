@@ -609,8 +609,10 @@ class gaji_tu_tk_delete extends gaji_tu_tk
 		$this->potongan->setVisibility();
 		$this->sub_total->setVisibility();
 		$this->penyesuaian->setVisibility();
+		$this->potongan_bendahara->setVisibility();
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
+		$this->status->Visible = FALSE;
 		$this->hideFieldsForAddEdit();
 
 		// Do not use lookup cache
@@ -795,8 +797,10 @@ class gaji_tu_tk_delete extends gaji_tu_tk
 		$this->potongan->setDbValue($row['potongan']);
 		$this->sub_total->setDbValue($row['sub_total']);
 		$this->penyesuaian->setDbValue($row['penyesuaian']);
+		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
 		$this->total->setDbValue($row['total']);
 		$this->voucher->setDbValue($row['voucher']);
+		$this->status->setDbValue($row['status']);
 	}
 
 	// Return a row with default values
@@ -832,8 +836,10 @@ class gaji_tu_tk_delete extends gaji_tu_tk
 		$row['potongan'] = NULL;
 		$row['sub_total'] = NULL;
 		$row['penyesuaian'] = NULL;
+		$row['potongan_bendahara'] = NULL;
 		$row['total'] = NULL;
 		$row['voucher'] = NULL;
+		$row['status'] = NULL;
 		return $row;
 	}
 
@@ -877,8 +883,10 @@ class gaji_tu_tk_delete extends gaji_tu_tk
 		// potongan
 		// sub_total
 		// penyesuaian
+		// potongan_bendahara
 		// total
 		// voucher
+		// status
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
@@ -1150,6 +1158,11 @@ class gaji_tu_tk_delete extends gaji_tu_tk
 			$this->penyesuaian->ViewValue = FormatNumber($this->penyesuaian->ViewValue, 0, -2, -2, -2);
 			$this->penyesuaian->ViewCustomAttributes = "";
 
+			// potongan_bendahara
+			$this->potongan_bendahara->ViewValue = $this->potongan_bendahara->CurrentValue;
+			$this->potongan_bendahara->ViewValue = FormatNumber($this->potongan_bendahara->ViewValue, 0, -2, -2, -2);
+			$this->potongan_bendahara->ViewCustomAttributes = "";
+
 			// total
 			$this->total->ViewValue = $this->total->CurrentValue;
 			$this->total->ViewValue = FormatNumber($this->total->ViewValue, 0, -2, -2, -2);
@@ -1159,6 +1172,11 @@ class gaji_tu_tk_delete extends gaji_tu_tk
 			$this->voucher->ViewValue = $this->voucher->CurrentValue;
 			$this->voucher->ViewValue = FormatNumber($this->voucher->ViewValue, 0, -2, -2, -2);
 			$this->voucher->ViewCustomAttributes = "";
+
+			// status
+			$this->status->ViewValue = $this->status->CurrentValue;
+			$this->status->ViewValue = FormatNumber($this->status->ViewValue, 0, -2, -2, -2);
+			$this->status->ViewCustomAttributes = "";
 
 			// tahun
 			$this->tahun->LinkCustomAttributes = "";
@@ -1189,6 +1207,11 @@ class gaji_tu_tk_delete extends gaji_tu_tk
 			$this->penyesuaian->LinkCustomAttributes = "";
 			$this->penyesuaian->HrefValue = "";
 			$this->penyesuaian->TooltipValue = "";
+
+			// potongan_bendahara
+			$this->potongan_bendahara->LinkCustomAttributes = "";
+			$this->potongan_bendahara->HrefValue = "";
+			$this->potongan_bendahara->TooltipValue = "";
 
 			// total
 			$this->total->LinkCustomAttributes = "";

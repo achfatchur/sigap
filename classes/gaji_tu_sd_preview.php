@@ -618,10 +618,10 @@ class gaji_tu_sd_preview extends gaji_tu_sd
 		$this->potongan->setVisibility();
 		$this->sub_total->setVisibility();
 		$this->penyesuaian->setVisibility();
+		$this->potongan_bendahara->setVisibility();
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
 		$this->status->Visible = FALSE;
-		$this->potongan_bendahara->setVisibility();
 		$this->hideFieldsForAddEdit();
 
 		// Do not use lookup cache

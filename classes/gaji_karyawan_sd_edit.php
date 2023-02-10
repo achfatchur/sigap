@@ -689,10 +689,10 @@ class gaji_karyawan_sd_edit extends gaji_karyawan_sd
 		$this->sub_total->setVisibility();
 		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
+		$this->potongan_bendahara->setVisibility();
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
 		$this->status->setVisibility();
-		$this->potongan_bendahara->setVisibility();
 		$this->hideFieldsForAddEdit();
 
 		// Do not use lookup cache
@@ -990,6 +990,15 @@ class gaji_karyawan_sd_edit extends gaji_karyawan_sd
 				$this->penyesuaian->setFormValue($val);
 		}
 
+		// Check field name 'potongan_bendahara' first before field var 'x_potongan_bendahara'
+		$val = $CurrentForm->hasValue("potongan_bendahara") ? $CurrentForm->getValue("potongan_bendahara") : $CurrentForm->getValue("x_potongan_bendahara");
+		if (!$this->potongan_bendahara->IsDetailKey) {
+			if (IsApi() && $val == NULL)
+				$this->potongan_bendahara->Visible = FALSE; // Disable update for API request
+			else
+				$this->potongan_bendahara->setFormValue($val);
+		}
+
 		// Check field name 'total' first before field var 'x_total'
 		$val = $CurrentForm->hasValue("total") ? $CurrentForm->getValue("total") : $CurrentForm->getValue("x_total");
 		if (!$this->total->IsDetailKey) {
@@ -1017,15 +1026,6 @@ class gaji_karyawan_sd_edit extends gaji_karyawan_sd
 				$this->status->setFormValue($val);
 		}
 
-		// Check field name 'potongan_bendahara' first before field var 'x_potongan_bendahara'
-		$val = $CurrentForm->hasValue("potongan_bendahara") ? $CurrentForm->getValue("potongan_bendahara") : $CurrentForm->getValue("x_potongan_bendahara");
-		if (!$this->potongan_bendahara->IsDetailKey) {
-			if (IsApi() && $val == NULL)
-				$this->potongan_bendahara->Visible = FALSE; // Disable update for API request
-			else
-				$this->potongan_bendahara->setFormValue($val);
-		}
-
 		// Check field name 'id' first before field var 'x_id'
 		$val = $CurrentForm->hasValue("id") ? $CurrentForm->getValue("id") : $CurrentForm->getValue("x_id");
 		if (!$this->id->IsDetailKey)
@@ -1050,10 +1050,10 @@ class gaji_karyawan_sd_edit extends gaji_karyawan_sd
 		$this->sub_total->CurrentValue = $this->sub_total->FormValue;
 		$this->potongan->CurrentValue = $this->potongan->FormValue;
 		$this->penyesuaian->CurrentValue = $this->penyesuaian->FormValue;
+		$this->potongan_bendahara->CurrentValue = $this->potongan_bendahara->FormValue;
 		$this->total->CurrentValue = $this->total->FormValue;
 		$this->voucher->CurrentValue = $this->voucher->FormValue;
 		$this->status->CurrentValue = $this->status->FormValue;
-		$this->potongan_bendahara->CurrentValue = $this->potongan_bendahara->FormValue;
 	}
 
 	// Load row based on key values
@@ -1106,10 +1106,10 @@ class gaji_karyawan_sd_edit extends gaji_karyawan_sd
 		$this->sub_total->setDbValue($row['sub_total']);
 		$this->potongan->setDbValue($row['potongan']);
 		$this->penyesuaian->setDbValue($row['penyesuaian']);
+		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
 		$this->total->setDbValue($row['total']);
 		$this->voucher->setDbValue($row['voucher']);
 		$this->status->setDbValue($row['status']);
-		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
 	}
 
 	// Return a row with default values
@@ -1131,10 +1131,10 @@ class gaji_karyawan_sd_edit extends gaji_karyawan_sd
 		$row['sub_total'] = NULL;
 		$row['potongan'] = NULL;
 		$row['penyesuaian'] = NULL;
+		$row['potongan_bendahara'] = NULL;
 		$row['total'] = NULL;
 		$row['voucher'] = NULL;
 		$row['status'] = NULL;
-		$row['potongan_bendahara'] = NULL;
 		return $row;
 	}
 
@@ -1187,10 +1187,10 @@ class gaji_karyawan_sd_edit extends gaji_karyawan_sd
 		// sub_total
 		// potongan
 		// penyesuaian
+		// potongan_bendahara
 		// total
 		// voucher
 		// status
-		// potongan_bendahara
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
@@ -1320,6 +1320,11 @@ class gaji_karyawan_sd_edit extends gaji_karyawan_sd
 			$this->penyesuaian->ViewValue = FormatNumber($this->penyesuaian->ViewValue, 0, -2, -2, -2);
 			$this->penyesuaian->ViewCustomAttributes = "";
 
+			// potongan_bendahara
+			$this->potongan_bendahara->ViewValue = $this->potongan_bendahara->CurrentValue;
+			$this->potongan_bendahara->ViewValue = FormatNumber($this->potongan_bendahara->ViewValue, 0, -2, -2, -2);
+			$this->potongan_bendahara->ViewCustomAttributes = "";
+
 			// total
 			$this->total->ViewValue = $this->total->CurrentValue;
 			$this->total->ViewValue = FormatNumber($this->total->ViewValue, 0, -2, -2, -2);
@@ -1334,11 +1339,6 @@ class gaji_karyawan_sd_edit extends gaji_karyawan_sd
 			$this->status->ViewValue = $this->status->CurrentValue;
 			$this->status->ViewValue = FormatNumber($this->status->ViewValue, 0, -2, -2, -2);
 			$this->status->ViewCustomAttributes = "";
-
-			// potongan_bendahara
-			$this->potongan_bendahara->ViewValue = $this->potongan_bendahara->CurrentValue;
-			$this->potongan_bendahara->ViewValue = FormatNumber($this->potongan_bendahara->ViewValue, 0, -2, -2, -2);
-			$this->potongan_bendahara->ViewCustomAttributes = "";
 
 			// tahun
 			$this->tahun->LinkCustomAttributes = "";
@@ -1405,6 +1405,11 @@ class gaji_karyawan_sd_edit extends gaji_karyawan_sd
 			$this->penyesuaian->HrefValue = "";
 			$this->penyesuaian->TooltipValue = "";
 
+			// potongan_bendahara
+			$this->potongan_bendahara->LinkCustomAttributes = "";
+			$this->potongan_bendahara->HrefValue = "";
+			$this->potongan_bendahara->TooltipValue = "";
+
 			// total
 			$this->total->LinkCustomAttributes = "";
 			$this->total->HrefValue = "";
@@ -1419,11 +1424,6 @@ class gaji_karyawan_sd_edit extends gaji_karyawan_sd
 			$this->status->LinkCustomAttributes = "";
 			$this->status->HrefValue = "";
 			$this->status->TooltipValue = "";
-
-			// potongan_bendahara
-			$this->potongan_bendahara->LinkCustomAttributes = "";
-			$this->potongan_bendahara->HrefValue = "";
-			$this->potongan_bendahara->TooltipValue = "";
 		} elseif ($this->RowType == ROWTYPE_EDIT) { // Edit row
 
 			// tahun
@@ -1581,6 +1581,12 @@ class gaji_karyawan_sd_edit extends gaji_karyawan_sd
 			$this->penyesuaian->EditValue = HtmlEncode($this->penyesuaian->CurrentValue);
 			$this->penyesuaian->PlaceHolder = RemoveHtml($this->penyesuaian->caption());
 
+			// potongan_bendahara
+			$this->potongan_bendahara->EditAttrs["class"] = "form-control";
+			$this->potongan_bendahara->EditCustomAttributes = "";
+			$this->potongan_bendahara->EditValue = HtmlEncode($this->potongan_bendahara->CurrentValue);
+			$this->potongan_bendahara->PlaceHolder = RemoveHtml($this->potongan_bendahara->caption());
+
 			// total
 			$this->total->EditAttrs["class"] = "form-control";
 			$this->total->EditCustomAttributes = "";
@@ -1598,12 +1604,6 @@ class gaji_karyawan_sd_edit extends gaji_karyawan_sd
 			$this->status->EditCustomAttributes = "";
 			$this->status->EditValue = HtmlEncode($this->status->CurrentValue);
 			$this->status->PlaceHolder = RemoveHtml($this->status->caption());
-
-			// potongan_bendahara
-			$this->potongan_bendahara->EditAttrs["class"] = "form-control";
-			$this->potongan_bendahara->EditCustomAttributes = "";
-			$this->potongan_bendahara->EditValue = HtmlEncode($this->potongan_bendahara->CurrentValue);
-			$this->potongan_bendahara->PlaceHolder = RemoveHtml($this->potongan_bendahara->caption());
 
 			// Edit refer script
 			// tahun
@@ -1659,6 +1659,10 @@ class gaji_karyawan_sd_edit extends gaji_karyawan_sd
 			$this->penyesuaian->LinkCustomAttributes = "";
 			$this->penyesuaian->HrefValue = "";
 
+			// potongan_bendahara
+			$this->potongan_bendahara->LinkCustomAttributes = "";
+			$this->potongan_bendahara->HrefValue = "";
+
 			// total
 			$this->total->LinkCustomAttributes = "";
 			$this->total->HrefValue = "";
@@ -1670,10 +1674,6 @@ class gaji_karyawan_sd_edit extends gaji_karyawan_sd
 			// status
 			$this->status->LinkCustomAttributes = "";
 			$this->status->HrefValue = "";
-
-			// potongan_bendahara
-			$this->potongan_bendahara->LinkCustomAttributes = "";
-			$this->potongan_bendahara->HrefValue = "";
 		}
 		if ($this->RowType == ROWTYPE_ADD || $this->RowType == ROWTYPE_EDIT || $this->RowType == ROWTYPE_SEARCH) // Add/Edit/Search row
 			$this->setupFieldTitles();
@@ -1795,6 +1795,14 @@ class gaji_karyawan_sd_edit extends gaji_karyawan_sd
 		if (!CheckInteger($this->penyesuaian->FormValue)) {
 			AddMessage($FormError, $this->penyesuaian->errorMessage());
 		}
+		if ($this->potongan_bendahara->Required) {
+			if (!$this->potongan_bendahara->IsDetailKey && $this->potongan_bendahara->FormValue != NULL && $this->potongan_bendahara->FormValue == "") {
+				AddMessage($FormError, str_replace("%s", $this->potongan_bendahara->caption(), $this->potongan_bendahara->RequiredErrorMessage));
+			}
+		}
+		if (!CheckInteger($this->potongan_bendahara->FormValue)) {
+			AddMessage($FormError, $this->potongan_bendahara->errorMessage());
+		}
 		if ($this->total->Required) {
 			if (!$this->total->IsDetailKey && $this->total->FormValue != NULL && $this->total->FormValue == "") {
 				AddMessage($FormError, str_replace("%s", $this->total->caption(), $this->total->RequiredErrorMessage));
@@ -1818,14 +1826,6 @@ class gaji_karyawan_sd_edit extends gaji_karyawan_sd
 		}
 		if (!CheckInteger($this->status->FormValue)) {
 			AddMessage($FormError, $this->status->errorMessage());
-		}
-		if ($this->potongan_bendahara->Required) {
-			if (!$this->potongan_bendahara->IsDetailKey && $this->potongan_bendahara->FormValue != NULL && $this->potongan_bendahara->FormValue == "") {
-				AddMessage($FormError, str_replace("%s", $this->potongan_bendahara->caption(), $this->potongan_bendahara->RequiredErrorMessage));
-			}
-		}
-		if (!CheckInteger($this->potongan_bendahara->FormValue)) {
-			AddMessage($FormError, $this->potongan_bendahara->errorMessage());
 		}
 
 		// Return validate result
@@ -1903,6 +1903,9 @@ class gaji_karyawan_sd_edit extends gaji_karyawan_sd
 			// penyesuaian
 			$this->penyesuaian->setDbValueDef($rsnew, $this->penyesuaian->CurrentValue, NULL, $this->penyesuaian->ReadOnly);
 
+			// potongan_bendahara
+			$this->potongan_bendahara->setDbValueDef($rsnew, $this->potongan_bendahara->CurrentValue, NULL, $this->potongan_bendahara->ReadOnly);
+
 			// total
 			$this->total->setDbValueDef($rsnew, $this->total->CurrentValue, NULL, $this->total->ReadOnly);
 
@@ -1911,9 +1914,6 @@ class gaji_karyawan_sd_edit extends gaji_karyawan_sd
 
 			// status
 			$this->status->setDbValueDef($rsnew, $this->status->CurrentValue, NULL, $this->status->ReadOnly);
-
-			// potongan_bendahara
-			$this->potongan_bendahara->setDbValueDef($rsnew, $this->potongan_bendahara->CurrentValue, NULL, $this->potongan_bendahara->ReadOnly);
 
 			// Check referential integrity for master table 'm_karyawan_sd'
 			$validMasterRecord = TRUE;

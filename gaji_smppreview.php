@@ -83,6 +83,15 @@ $gaji_smp_preview->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($gaji_smp_preview->potongan_bendahara->Visible) { // potongan_bendahara ?>
+	<?php if ($gaji_smp->SortUrl($gaji_smp_preview->potongan_bendahara) == "") { ?>
+		<th class="<?php echo $gaji_smp_preview->potongan_bendahara->headerCellClass() ?>"><?php echo $gaji_smp_preview->potongan_bendahara->caption() ?></th>
+	<?php } else { ?>
+		<th class="<?php echo $gaji_smp_preview->potongan_bendahara->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_smp_preview->potongan_bendahara->Name) ?>" data-sort-order="<?php echo $gaji_smp_preview->SortField == $gaji_smp_preview->potongan_bendahara->Name && $gaji_smp_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_smp_preview->potongan_bendahara->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_smp_preview->SortField == $gaji_smp_preview->potongan_bendahara->Name) { ?><?php if ($gaji_smp_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_smp_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($gaji_smp_preview->total->Visible) { // total ?>
 	<?php if ($gaji_smp->SortUrl($gaji_smp_preview->total) == "") { ?>
 		<th class="<?php echo $gaji_smp_preview->total->headerCellClass() ?>"><?php echo $gaji_smp_preview->total->caption() ?></th>
@@ -156,6 +165,12 @@ $gaji_smp_preview->ListOptions->render("body", "left", $gaji_smp_preview->RowCou
 		<!-- penyesuaian -->
 		<td<?php echo $gaji_smp_preview->penyesuaian->cellAttributes() ?>>
 <span<?php echo $gaji_smp_preview->penyesuaian->viewAttributes() ?>><?php echo $gaji_smp_preview->penyesuaian->getViewValue() ?></span>
+</td>
+<?php } ?>
+<?php if ($gaji_smp_preview->potongan_bendahara->Visible) { // potongan_bendahara ?>
+		<!-- potongan_bendahara -->
+		<td<?php echo $gaji_smp_preview->potongan_bendahara->cellAttributes() ?>>
+<span<?php echo $gaji_smp_preview->potongan_bendahara->viewAttributes() ?>><?php echo $gaji_smp_preview->potongan_bendahara->getViewValue() ?></span>
 </td>
 <?php } ?>
 <?php if ($gaji_smp_preview->total->Visible) { // total ?>

@@ -1198,10 +1198,10 @@ class generate_pertahun_tk extends DbTable
 
 						//perhitungan
 					$penyesuaian = ($absen_tidak * $absen["absen"]) + ($absen_tidak * $absen["izin"]) + ($sakit * $absen["sakit"]) + ($terlambat * $absen["terlambat"]) + ($pulang_cepat * $absen['pulang_cepat']);
-					$tambahan = ($piket["value"] * $absen["piket"]) +  ($lembur * $absen["lembur"]);
+					//$tambahan = ($piket["value"] * $absen["piket"]) +  ($lembur * $absen["lembur"]);
 
 						//inval2 = ($inval * $absen["inval"]) ;
-					$tambahan = ($piket["value"] * $absen["piket"]) +  ($lembur * $absen["lembur"]);
+					$tambahan_value = ($piket["value"] * $absen["piket"]) +  ($lembur * $absen["lembur"]);
 					$inval2 = ($inval * $absen["inval"]) ;
 
 						//print_r($hadir);
@@ -1221,14 +1221,14 @@ class generate_pertahun_tk extends DbTable
 					$v_voucher = 1 * $absen["voucher"];
 					$value_kehadiran = ($kehadiran["value"] * $query["kehadiran"]);
 			$sub_total = $khusus +$komponen_gapok + $value_kehadiran + $tunjangan_jabatan['value'] + $tunjanagan_tambahan["value"] + ($absen["lembur"] * $lembur) + ($absen["piket"] * $piket["value"]) + $inval2 + $reward; 
-					$total = ($sub_total + $tambahan) - $penyesuaian;
+					$total = ($sub_total + $tambahan_value) - $penyesuaian;
 
 					//$test = $inval;
 					//note salah diinval harusnya tidak nampil
 					//print_r($tunjanagan_khusus);
 					//die;	
 
-					$myquery2 = "INSERT INTO gaji_tu_tk VALUES (NULL,NULL,'".$query["nip"]."','".$query["jenjang_id"]."','".$query["jabatan"]."',NULL,'".$komponen_gapok."','".$hadir	."','".$c_lembur."','".$lembur."','".$reward."','".$inval2."','".$c_piket."','".$piket["value"]."','".$solved."','".$tj_jbtn."',NULL,'".$sub_total."','".$penyesuaian."','".$total."','".$pid."','".$khusus."','".$tambahan."','2','".$pendidikan."','".$lm_kerja."','".$sertif."','".$kehadiran["value"]."','".$tahun."','".$bulan."','".$v_voucher."',NULL,NULL)";
+					$myquery2 = "INSERT INTO gaji_tu_tk VALUES (NULL,NULL,'".$query["nip"]."','".$query["jenjang_id"]."','".$query["jabatan"]."',NULL,'".$komponen_gapok."','".$hadir	."','".$c_lembur."','".$lembur."','".$reward."','".$inval2."','".$c_piket."','".$piket["value"]."','".$solved."','".$tj_jbtn."','".$penyesuaian."','".$sub_total."','".$tambahan_value."','".$total."','".$pid."','".$khusus."','".$tambahan."','2','".$pendidikan."','".$lm_kerja."','".$sertif."','".$kehadiran["value"]."','".$tahun."','".$bulan."','".$v_voucher."',NULL,NULL)";
 
 						//print_r($myquery2);
 						//die;

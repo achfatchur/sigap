@@ -620,10 +620,10 @@ class gaji_sma_preview extends gaji_sma
 		$this->sub_total->setVisibility();
 		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
+		$this->potongan_bendahara->Visible = FALSE;
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
 		$this->status->Visible = FALSE;
-		$this->potongan_bendahara->Visible = FALSE;
 		$this->hideFieldsForAddEdit();
 
 		// Do not use lookup cache

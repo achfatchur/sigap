@@ -620,9 +620,9 @@ class gaji_tk_preview extends gaji_tk
 		$this->sub_total->setVisibility();
 		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
+		$this->potongan_bendahara->setVisibility();
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
-		$this->potongan_bendahara->Visible = FALSE;
 		$this->status->Visible = FALSE;
 		$this->hideFieldsForAddEdit();
 

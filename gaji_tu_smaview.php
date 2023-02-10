@@ -321,16 +321,6 @@ $gaji_tu_sma_view->showMessage();
 </td>
 	</tr>
 <?php } ?>
-<?php if ($gaji_tu_sma_view->potongan->Visible) { // potongan ?>
-	<tr id="r_potongan">
-		<td class="<?php echo $gaji_tu_sma_view->TableLeftColumnClass ?>"><span id="elh_gaji_tu_sma_potongan"><?php echo $gaji_tu_sma_view->potongan->caption() ?></span></td>
-		<td data-name="potongan" <?php echo $gaji_tu_sma_view->potongan->cellAttributes() ?>>
-<span id="el_gaji_tu_sma_potongan">
-<span<?php echo $gaji_tu_sma_view->potongan->viewAttributes() ?>><?php echo $gaji_tu_sma_view->potongan->getViewValue() ?></span>
-</span>
-</td>
-	</tr>
-<?php } ?>
 <?php if ($gaji_tu_sma_view->sub_total->Visible) { // sub_total ?>
 	<tr id="r_sub_total">
 		<td class="<?php echo $gaji_tu_sma_view->TableLeftColumnClass ?>"><span id="elh_gaji_tu_sma_sub_total"><?php echo $gaji_tu_sma_view->sub_total->caption() ?></span></td>
@@ -341,12 +331,32 @@ $gaji_tu_sma_view->showMessage();
 </td>
 	</tr>
 <?php } ?>
+<?php if ($gaji_tu_sma_view->potongan->Visible) { // potongan ?>
+	<tr id="r_potongan">
+		<td class="<?php echo $gaji_tu_sma_view->TableLeftColumnClass ?>"><span id="elh_gaji_tu_sma_potongan"><?php echo $gaji_tu_sma_view->potongan->caption() ?></span></td>
+		<td data-name="potongan" <?php echo $gaji_tu_sma_view->potongan->cellAttributes() ?>>
+<span id="el_gaji_tu_sma_potongan">
+<span<?php echo $gaji_tu_sma_view->potongan->viewAttributes() ?>><?php echo $gaji_tu_sma_view->potongan->getViewValue() ?></span>
+</span>
+</td>
+	</tr>
+<?php } ?>
 <?php if ($gaji_tu_sma_view->penyesuaian->Visible) { // penyesuaian ?>
 	<tr id="r_penyesuaian">
 		<td class="<?php echo $gaji_tu_sma_view->TableLeftColumnClass ?>"><span id="elh_gaji_tu_sma_penyesuaian"><?php echo $gaji_tu_sma_view->penyesuaian->caption() ?></span></td>
 		<td data-name="penyesuaian" <?php echo $gaji_tu_sma_view->penyesuaian->cellAttributes() ?>>
 <span id="el_gaji_tu_sma_penyesuaian">
 <span<?php echo $gaji_tu_sma_view->penyesuaian->viewAttributes() ?>><?php echo $gaji_tu_sma_view->penyesuaian->getViewValue() ?></span>
+</span>
+</td>
+	</tr>
+<?php } ?>
+<?php if ($gaji_tu_sma_view->potongan_bendahara->Visible) { // potongan_bendahara ?>
+	<tr id="r_potongan_bendahara">
+		<td class="<?php echo $gaji_tu_sma_view->TableLeftColumnClass ?>"><span id="elh_gaji_tu_sma_potongan_bendahara"><?php echo $gaji_tu_sma_view->potongan_bendahara->caption() ?></span></td>
+		<td data-name="potongan_bendahara" <?php echo $gaji_tu_sma_view->potongan_bendahara->cellAttributes() ?>>
+<span id="el_gaji_tu_sma_potongan_bendahara">
+<span<?php echo $gaji_tu_sma_view->potongan_bendahara->viewAttributes() ?>><?php echo $gaji_tu_sma_view->potongan_bendahara->getViewValue() ?></span>
 </span>
 </td>
 	</tr>
@@ -377,16 +387,6 @@ $gaji_tu_sma_view->showMessage();
 		<td data-name="status" <?php echo $gaji_tu_sma_view->status->cellAttributes() ?>>
 <span id="el_gaji_tu_sma_status">
 <span<?php echo $gaji_tu_sma_view->status->viewAttributes() ?>><?php echo $gaji_tu_sma_view->status->getViewValue() ?></span>
-</span>
-</td>
-	</tr>
-<?php } ?>
-<?php if ($gaji_tu_sma_view->potongan_bendahara->Visible) { // potongan_bendahara ?>
-	<tr id="r_potongan_bendahara">
-		<td class="<?php echo $gaji_tu_sma_view->TableLeftColumnClass ?>"><span id="elh_gaji_tu_sma_potongan_bendahara"><?php echo $gaji_tu_sma_view->potongan_bendahara->caption() ?></span></td>
-		<td data-name="potongan_bendahara" <?php echo $gaji_tu_sma_view->potongan_bendahara->cellAttributes() ?>>
-<span id="el_gaji_tu_sma_potongan_bendahara">
-<span<?php echo $gaji_tu_sma_view->potongan_bendahara->viewAttributes() ?>><?php echo $gaji_tu_sma_view->potongan_bendahara->getViewValue() ?></span>
 </span>
 </td>
 	</tr>

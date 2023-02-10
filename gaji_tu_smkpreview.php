@@ -83,15 +83,6 @@ $gaji_tu_smk_preview->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
-<?php if ($gaji_tu_smk_preview->potongan->Visible) { // potongan ?>
-	<?php if ($gaji_tu_smk->SortUrl($gaji_tu_smk_preview->potongan) == "") { ?>
-		<th class="<?php echo $gaji_tu_smk_preview->potongan->headerCellClass() ?>"><?php echo $gaji_tu_smk_preview->potongan->caption() ?></th>
-	<?php } else { ?>
-		<th class="<?php echo $gaji_tu_smk_preview->potongan->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_tu_smk_preview->potongan->Name) ?>" data-sort-order="<?php echo $gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->potongan->Name && $gaji_tu_smk_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_preview->potongan->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->potongan->Name) { ?><?php if ($gaji_tu_smk_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
 <?php if ($gaji_tu_smk_preview->sub_total->Visible) { // sub_total ?>
 	<?php if ($gaji_tu_smk->SortUrl($gaji_tu_smk_preview->sub_total) == "") { ?>
 		<th class="<?php echo $gaji_tu_smk_preview->sub_total->headerCellClass() ?>"><?php echo $gaji_tu_smk_preview->sub_total->caption() ?></th>
@@ -101,12 +92,30 @@ $gaji_tu_smk_preview->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($gaji_tu_smk_preview->potongan->Visible) { // potongan ?>
+	<?php if ($gaji_tu_smk->SortUrl($gaji_tu_smk_preview->potongan) == "") { ?>
+		<th class="<?php echo $gaji_tu_smk_preview->potongan->headerCellClass() ?>"><?php echo $gaji_tu_smk_preview->potongan->caption() ?></th>
+	<?php } else { ?>
+		<th class="<?php echo $gaji_tu_smk_preview->potongan->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_tu_smk_preview->potongan->Name) ?>" data-sort-order="<?php echo $gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->potongan->Name && $gaji_tu_smk_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_preview->potongan->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->potongan->Name) { ?><?php if ($gaji_tu_smk_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($gaji_tu_smk_preview->penyesuaian->Visible) { // penyesuaian ?>
 	<?php if ($gaji_tu_smk->SortUrl($gaji_tu_smk_preview->penyesuaian) == "") { ?>
 		<th class="<?php echo $gaji_tu_smk_preview->penyesuaian->headerCellClass() ?>"><?php echo $gaji_tu_smk_preview->penyesuaian->caption() ?></th>
 	<?php } else { ?>
 		<th class="<?php echo $gaji_tu_smk_preview->penyesuaian->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_tu_smk_preview->penyesuaian->Name) ?>" data-sort-order="<?php echo $gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->penyesuaian->Name && $gaji_tu_smk_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_preview->penyesuaian->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->penyesuaian->Name) { ?><?php if ($gaji_tu_smk_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_tu_smk_preview->potongan_bendahara->Visible) { // potongan_bendahara ?>
+	<?php if ($gaji_tu_smk->SortUrl($gaji_tu_smk_preview->potongan_bendahara) == "") { ?>
+		<th class="<?php echo $gaji_tu_smk_preview->potongan_bendahara->headerCellClass() ?>"><?php echo $gaji_tu_smk_preview->potongan_bendahara->caption() ?></th>
+	<?php } else { ?>
+		<th class="<?php echo $gaji_tu_smk_preview->potongan_bendahara->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_tu_smk_preview->potongan_bendahara->Name) ?>" data-sort-order="<?php echo $gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->potongan_bendahara->Name && $gaji_tu_smk_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_preview->potongan_bendahara->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->potongan_bendahara->Name) { ?><?php if ($gaji_tu_smk_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -125,15 +134,6 @@ $gaji_tu_smk_preview->ListOptions->render("header", "left");
 	<?php } else { ?>
 		<th class="<?php echo $gaji_tu_smk_preview->voucher->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_tu_smk_preview->voucher->Name) ?>" data-sort-order="<?php echo $gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->voucher->Name && $gaji_tu_smk_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_preview->voucher->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->voucher->Name) { ?><?php if ($gaji_tu_smk_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
-<?php if ($gaji_tu_smk_preview->potongan_bendahara->Visible) { // potongan_bendahara ?>
-	<?php if ($gaji_tu_smk->SortUrl($gaji_tu_smk_preview->potongan_bendahara) == "") { ?>
-		<th class="<?php echo $gaji_tu_smk_preview->potongan_bendahara->headerCellClass() ?>"><?php echo $gaji_tu_smk_preview->potongan_bendahara->caption() ?></th>
-	<?php } else { ?>
-		<th class="<?php echo $gaji_tu_smk_preview->potongan_bendahara->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_tu_smk_preview->potongan_bendahara->Name) ?>" data-sort-order="<?php echo $gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->potongan_bendahara->Name && $gaji_tu_smk_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_preview->potongan_bendahara->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->potongan_bendahara->Name) { ?><?php if ($gaji_tu_smk_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -194,22 +194,28 @@ $gaji_tu_smk_preview->ListOptions->render("body", "left", $gaji_tu_smk_preview->
 <span<?php echo $gaji_tu_smk_preview->jenjang_id->viewAttributes() ?>><?php echo $gaji_tu_smk_preview->jenjang_id->getViewValue() ?></span>
 </td>
 <?php } ?>
-<?php if ($gaji_tu_smk_preview->potongan->Visible) { // potongan ?>
-		<!-- potongan -->
-		<td<?php echo $gaji_tu_smk_preview->potongan->cellAttributes() ?>>
-<span<?php echo $gaji_tu_smk_preview->potongan->viewAttributes() ?>><?php echo $gaji_tu_smk_preview->potongan->getViewValue() ?></span>
-</td>
-<?php } ?>
 <?php if ($gaji_tu_smk_preview->sub_total->Visible) { // sub_total ?>
 		<!-- sub_total -->
 		<td<?php echo $gaji_tu_smk_preview->sub_total->cellAttributes() ?>>
 <span<?php echo $gaji_tu_smk_preview->sub_total->viewAttributes() ?>><?php echo $gaji_tu_smk_preview->sub_total->getViewValue() ?></span>
 </td>
 <?php } ?>
+<?php if ($gaji_tu_smk_preview->potongan->Visible) { // potongan ?>
+		<!-- potongan -->
+		<td<?php echo $gaji_tu_smk_preview->potongan->cellAttributes() ?>>
+<span<?php echo $gaji_tu_smk_preview->potongan->viewAttributes() ?>><?php echo $gaji_tu_smk_preview->potongan->getViewValue() ?></span>
+</td>
+<?php } ?>
 <?php if ($gaji_tu_smk_preview->penyesuaian->Visible) { // penyesuaian ?>
 		<!-- penyesuaian -->
 		<td<?php echo $gaji_tu_smk_preview->penyesuaian->cellAttributes() ?>>
 <span<?php echo $gaji_tu_smk_preview->penyesuaian->viewAttributes() ?>><?php echo $gaji_tu_smk_preview->penyesuaian->getViewValue() ?></span>
+</td>
+<?php } ?>
+<?php if ($gaji_tu_smk_preview->potongan_bendahara->Visible) { // potongan_bendahara ?>
+		<!-- potongan_bendahara -->
+		<td<?php echo $gaji_tu_smk_preview->potongan_bendahara->cellAttributes() ?>>
+<span<?php echo $gaji_tu_smk_preview->potongan_bendahara->viewAttributes() ?>><?php echo $gaji_tu_smk_preview->potongan_bendahara->getViewValue() ?></span>
 </td>
 <?php } ?>
 <?php if ($gaji_tu_smk_preview->total->Visible) { // total ?>
@@ -222,12 +228,6 @@ $gaji_tu_smk_preview->ListOptions->render("body", "left", $gaji_tu_smk_preview->
 		<!-- voucher -->
 		<td<?php echo $gaji_tu_smk_preview->voucher->cellAttributes() ?>>
 <span<?php echo $gaji_tu_smk_preview->voucher->viewAttributes() ?>><?php echo $gaji_tu_smk_preview->voucher->getViewValue() ?></span>
-</td>
-<?php } ?>
-<?php if ($gaji_tu_smk_preview->potongan_bendahara->Visible) { // potongan_bendahara ?>
-		<!-- potongan_bendahara -->
-		<td<?php echo $gaji_tu_smk_preview->potongan_bendahara->cellAttributes() ?>>
-<span<?php echo $gaji_tu_smk_preview->potongan_bendahara->viewAttributes() ?>><?php echo $gaji_tu_smk_preview->potongan_bendahara->getViewValue() ?></span>
 </td>
 <?php } ?>
 <?php

@@ -819,6 +819,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		$this->tahun->setVisibility();
 		$this->bulan->setVisibility();
 		$this->pegawai->setVisibility();
+		$this->rekbank->setVisibility();
 		$this->jenjang_id->setVisibility();
 		$this->jabatan_id->setVisibility();
 		$this->kehadiran->setVisibility();
@@ -829,6 +830,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		$this->sub_total->setVisibility();
 		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
+		$this->potongan_bendahara->setVisibility();
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
 		$this->status->Visible = FALSE;
@@ -1144,6 +1146,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		$filterList = Concat($filterList, $this->tahun->AdvancedSearch->toJson(), ","); // Field tahun
 		$filterList = Concat($filterList, $this->bulan->AdvancedSearch->toJson(), ","); // Field bulan
 		$filterList = Concat($filterList, $this->pegawai->AdvancedSearch->toJson(), ","); // Field pegawai
+		$filterList = Concat($filterList, $this->rekbank->AdvancedSearch->toJson(), ","); // Field rekbank
 		$filterList = Concat($filterList, $this->jenjang_id->AdvancedSearch->toJson(), ","); // Field jenjang_id
 		$filterList = Concat($filterList, $this->jabatan_id->AdvancedSearch->toJson(), ","); // Field jabatan_id
 		$filterList = Concat($filterList, $this->kehadiran->AdvancedSearch->toJson(), ","); // Field kehadiran
@@ -1154,6 +1157,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		$filterList = Concat($filterList, $this->sub_total->AdvancedSearch->toJson(), ","); // Field sub_total
 		$filterList = Concat($filterList, $this->potongan->AdvancedSearch->toJson(), ","); // Field potongan
 		$filterList = Concat($filterList, $this->penyesuaian->AdvancedSearch->toJson(), ","); // Field penyesuaian
+		$filterList = Concat($filterList, $this->potongan_bendahara->AdvancedSearch->toJson(), ","); // Field potongan_bendahara
 		$filterList = Concat($filterList, $this->total->AdvancedSearch->toJson(), ","); // Field total
 		$filterList = Concat($filterList, $this->voucher->AdvancedSearch->toJson(), ","); // Field voucher
 		$filterList = Concat($filterList, $this->status->AdvancedSearch->toJson(), ","); // Field status
@@ -1226,6 +1230,14 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		$this->pegawai->AdvancedSearch->SearchValue2 = @$filter["y_pegawai"];
 		$this->pegawai->AdvancedSearch->SearchOperator2 = @$filter["w_pegawai"];
 		$this->pegawai->AdvancedSearch->save();
+
+		// Field rekbank
+		$this->rekbank->AdvancedSearch->SearchValue = @$filter["x_rekbank"];
+		$this->rekbank->AdvancedSearch->SearchOperator = @$filter["z_rekbank"];
+		$this->rekbank->AdvancedSearch->SearchCondition = @$filter["v_rekbank"];
+		$this->rekbank->AdvancedSearch->SearchValue2 = @$filter["y_rekbank"];
+		$this->rekbank->AdvancedSearch->SearchOperator2 = @$filter["w_rekbank"];
+		$this->rekbank->AdvancedSearch->save();
 
 		// Field jenjang_id
 		$this->jenjang_id->AdvancedSearch->SearchValue = @$filter["x_jenjang_id"];
@@ -1307,6 +1319,14 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		$this->penyesuaian->AdvancedSearch->SearchOperator2 = @$filter["w_penyesuaian"];
 		$this->penyesuaian->AdvancedSearch->save();
 
+		// Field potongan_bendahara
+		$this->potongan_bendahara->AdvancedSearch->SearchValue = @$filter["x_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchOperator = @$filter["z_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchCondition = @$filter["v_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchValue2 = @$filter["y_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchOperator2 = @$filter["w_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->save();
+
 		// Field total
 		$this->total->AdvancedSearch->SearchValue = @$filter["x_total"];
 		$this->total->AdvancedSearch->SearchOperator = @$filter["z_total"];
@@ -1345,6 +1365,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		$this->buildSearchSql($where, $this->tahun, $default, FALSE); // tahun
 		$this->buildSearchSql($where, $this->bulan, $default, FALSE); // bulan
 		$this->buildSearchSql($where, $this->pegawai, $default, FALSE); // pegawai
+		$this->buildSearchSql($where, $this->rekbank, $default, FALSE); // rekbank
 		$this->buildSearchSql($where, $this->jenjang_id, $default, FALSE); // jenjang_id
 		$this->buildSearchSql($where, $this->jabatan_id, $default, FALSE); // jabatan_id
 		$this->buildSearchSql($where, $this->kehadiran, $default, FALSE); // kehadiran
@@ -1355,6 +1376,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		$this->buildSearchSql($where, $this->sub_total, $default, FALSE); // sub_total
 		$this->buildSearchSql($where, $this->potongan, $default, FALSE); // potongan
 		$this->buildSearchSql($where, $this->penyesuaian, $default, FALSE); // penyesuaian
+		$this->buildSearchSql($where, $this->potongan_bendahara, $default, FALSE); // potongan_bendahara
 		$this->buildSearchSql($where, $this->total, $default, FALSE); // total
 		$this->buildSearchSql($where, $this->voucher, $default, FALSE); // voucher
 		$this->buildSearchSql($where, $this->status, $default, FALSE); // status
@@ -1368,6 +1390,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 			$this->tahun->AdvancedSearch->save(); // tahun
 			$this->bulan->AdvancedSearch->save(); // bulan
 			$this->pegawai->AdvancedSearch->save(); // pegawai
+			$this->rekbank->AdvancedSearch->save(); // rekbank
 			$this->jenjang_id->AdvancedSearch->save(); // jenjang_id
 			$this->jabatan_id->AdvancedSearch->save(); // jabatan_id
 			$this->kehadiran->AdvancedSearch->save(); // kehadiran
@@ -1378,6 +1401,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 			$this->sub_total->AdvancedSearch->save(); // sub_total
 			$this->potongan->AdvancedSearch->save(); // potongan
 			$this->penyesuaian->AdvancedSearch->save(); // penyesuaian
+			$this->potongan_bendahara->AdvancedSearch->save(); // potongan_bendahara
 			$this->total->AdvancedSearch->save(); // total
 			$this->voucher->AdvancedSearch->save(); // voucher
 			$this->status->AdvancedSearch->save(); // status
@@ -1442,6 +1466,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 	{
 		$where = "";
 		$this->buildBasicSearchSql($where, $this->pegawai, $arKeywords, $type);
+		$this->buildBasicSearchSql($where, $this->rekbank, $arKeywords, $type);
 		return $where;
 	}
 
@@ -1564,6 +1589,8 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 			return TRUE;
 		if ($this->pegawai->AdvancedSearch->issetSession())
 			return TRUE;
+		if ($this->rekbank->AdvancedSearch->issetSession())
+			return TRUE;
 		if ($this->jenjang_id->AdvancedSearch->issetSession())
 			return TRUE;
 		if ($this->jabatan_id->AdvancedSearch->issetSession())
@@ -1583,6 +1610,8 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		if ($this->potongan->AdvancedSearch->issetSession())
 			return TRUE;
 		if ($this->penyesuaian->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->potongan_bendahara->AdvancedSearch->issetSession())
 			return TRUE;
 		if ($this->total->AdvancedSearch->issetSession())
 			return TRUE;
@@ -1627,6 +1656,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		$this->tahun->AdvancedSearch->unsetSession();
 		$this->bulan->AdvancedSearch->unsetSession();
 		$this->pegawai->AdvancedSearch->unsetSession();
+		$this->rekbank->AdvancedSearch->unsetSession();
 		$this->jenjang_id->AdvancedSearch->unsetSession();
 		$this->jabatan_id->AdvancedSearch->unsetSession();
 		$this->kehadiran->AdvancedSearch->unsetSession();
@@ -1637,6 +1667,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		$this->sub_total->AdvancedSearch->unsetSession();
 		$this->potongan->AdvancedSearch->unsetSession();
 		$this->penyesuaian->AdvancedSearch->unsetSession();
+		$this->potongan_bendahara->AdvancedSearch->unsetSession();
 		$this->total->AdvancedSearch->unsetSession();
 		$this->voucher->AdvancedSearch->unsetSession();
 		$this->status->AdvancedSearch->unsetSession();
@@ -1655,6 +1686,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		$this->tahun->AdvancedSearch->load();
 		$this->bulan->AdvancedSearch->load();
 		$this->pegawai->AdvancedSearch->load();
+		$this->rekbank->AdvancedSearch->load();
 		$this->jenjang_id->AdvancedSearch->load();
 		$this->jabatan_id->AdvancedSearch->load();
 		$this->kehadiran->AdvancedSearch->load();
@@ -1665,6 +1697,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		$this->sub_total->AdvancedSearch->load();
 		$this->potongan->AdvancedSearch->load();
 		$this->penyesuaian->AdvancedSearch->load();
+		$this->potongan_bendahara->AdvancedSearch->load();
 		$this->total->AdvancedSearch->load();
 		$this->voucher->AdvancedSearch->load();
 		$this->status->AdvancedSearch->load();
@@ -1681,6 +1714,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 			$this->updateSort($this->tahun); // tahun
 			$this->updateSort($this->bulan); // bulan
 			$this->updateSort($this->pegawai); // pegawai
+			$this->updateSort($this->rekbank); // rekbank
 			$this->updateSort($this->jenjang_id); // jenjang_id
 			$this->updateSort($this->jabatan_id); // jabatan_id
 			$this->updateSort($this->kehadiran); // kehadiran
@@ -1691,6 +1725,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 			$this->updateSort($this->sub_total); // sub_total
 			$this->updateSort($this->potongan); // potongan
 			$this->updateSort($this->penyesuaian); // penyesuaian
+			$this->updateSort($this->potongan_bendahara); // potongan_bendahara
 			$this->updateSort($this->total); // total
 			$this->updateSort($this->voucher); // voucher
 			$this->setStartRecordNumber(1); // Reset start position
@@ -1731,6 +1766,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 				$this->tahun->setSort("");
 				$this->bulan->setSort("");
 				$this->pegawai->setSort("");
+				$this->rekbank->setSort("");
 				$this->jenjang_id->setSort("");
 				$this->jabatan_id->setSort("");
 				$this->kehadiran->setSort("");
@@ -1741,6 +1777,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 				$this->sub_total->setSort("");
 				$this->potongan->setSort("");
 				$this->penyesuaian->setSort("");
+				$this->potongan_bendahara->setSort("");
 				$this->total->setSort("");
 				$this->voucher->setSort("");
 			}
@@ -2051,11 +2088,22 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 			if (($this->bulan->AdvancedSearch->SearchValue != "" || $this->bulan->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
 				$this->Command = "search";
 		}
+		if (is_array($this->bulan->AdvancedSearch->SearchValue))
+			$this->bulan->AdvancedSearch->SearchValue = implode(Config("MULTIPLE_OPTION_SEPARATOR"), $this->bulan->AdvancedSearch->SearchValue);
+		if (is_array($this->bulan->AdvancedSearch->SearchValue2))
+			$this->bulan->AdvancedSearch->SearchValue2 = implode(Config("MULTIPLE_OPTION_SEPARATOR"), $this->bulan->AdvancedSearch->SearchValue2);
 
 		// pegawai
 		if (!$this->isAddOrEdit() && $this->pegawai->AdvancedSearch->get()) {
 			$got = TRUE;
 			if (($this->pegawai->AdvancedSearch->SearchValue != "" || $this->pegawai->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// rekbank
+		if (!$this->isAddOrEdit() && $this->rekbank->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->rekbank->AdvancedSearch->SearchValue != "" || $this->rekbank->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
 				$this->Command = "search";
 		}
 
@@ -2126,6 +2174,13 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		if (!$this->isAddOrEdit() && $this->penyesuaian->AdvancedSearch->get()) {
 			$got = TRUE;
 			if (($this->penyesuaian->AdvancedSearch->SearchValue != "" || $this->penyesuaian->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// potongan_bendahara
+		if (!$this->isAddOrEdit() && $this->potongan_bendahara->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->potongan_bendahara->AdvancedSearch->SearchValue != "" || $this->potongan_bendahara->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
 				$this->Command = "search";
 		}
 
@@ -2218,6 +2273,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		$this->tahun->setDbValue($row['tahun']);
 		$this->bulan->setDbValue($row['bulan']);
 		$this->pegawai->setDbValue($row['pegawai']);
+		$this->rekbank->setDbValue($row['rekbank']);
 		$this->jenjang_id->setDbValue($row['jenjang_id']);
 		$this->jabatan_id->setDbValue($row['jabatan_id']);
 		$this->kehadiran->setDbValue($row['kehadiran']);
@@ -2228,6 +2284,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		$this->sub_total->setDbValue($row['sub_total']);
 		$this->potongan->setDbValue($row['potongan']);
 		$this->penyesuaian->setDbValue($row['penyesuaian']);
+		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
 		$this->total->setDbValue($row['total']);
 		$this->voucher->setDbValue($row['voucher']);
 		$this->status->setDbValue($row['status']);
@@ -2241,6 +2298,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		$row['tahun'] = NULL;
 		$row['bulan'] = NULL;
 		$row['pegawai'] = NULL;
+		$row['rekbank'] = NULL;
 		$row['jenjang_id'] = NULL;
 		$row['jabatan_id'] = NULL;
 		$row['kehadiran'] = NULL;
@@ -2251,6 +2309,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		$row['sub_total'] = NULL;
 		$row['potongan'] = NULL;
 		$row['penyesuaian'] = NULL;
+		$row['potongan_bendahara'] = NULL;
 		$row['total'] = NULL;
 		$row['voucher'] = NULL;
 		$row['status'] = NULL;
@@ -2301,6 +2360,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		// tahun
 		// bulan
 		// pegawai
+		// rekbank
 		// jenjang_id
 		// jabatan_id
 		// kehadiran
@@ -2311,6 +2371,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		// sub_total
 		// potongan
 		// penyesuaian
+		// potongan_bendahara
 		// total
 		// voucher
 		// status
@@ -2330,13 +2391,25 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 			if ($curVal != "") {
 				$this->bulan->ViewValue = $this->bulan->lookupCacheOption($curVal);
 				if ($this->bulan->ViewValue === NULL) { // Lookup from database
-					$filterWrk = "`nourut`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$arwrk = explode(",", $curVal);
+					$filterWrk = "";
+					foreach ($arwrk as $wrk) {
+						if ($filterWrk != "")
+							$filterWrk .= " OR ";
+						$filterWrk .= "`nourut`" . SearchString("=", trim($wrk), DATATYPE_NUMBER, "");
+					}
 					$sqlWrk = $this->bulan->Lookup->getSql(FALSE, $filterWrk, '', $this);
 					$rswrk = Conn()->execute($sqlWrk);
 					if ($rswrk && !$rswrk->EOF) { // Lookup values found
-						$arwrk = [];
-						$arwrk[1] = $rswrk->fields('df');
-						$this->bulan->ViewValue = $this->bulan->displayValue($arwrk);
+						$this->bulan->ViewValue = new OptionValues();
+						$ari = 0;
+						while (!$rswrk->EOF) {
+							$arwrk = [];
+							$arwrk[1] = $rswrk->fields('df');
+							$this->bulan->ViewValue->add($this->bulan->displayValue($arwrk));
+							$rswrk->MoveNext();
+							$ari++;
+						}
 						$rswrk->Close();
 					} else {
 						$this->bulan->ViewValue = $this->bulan->CurrentValue;
@@ -2368,6 +2441,10 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 				$this->pegawai->ViewValue = NULL;
 			}
 			$this->pegawai->ViewCustomAttributes = "";
+
+			// rekbank
+			$this->rekbank->ViewValue = $this->rekbank->CurrentValue;
+			$this->rekbank->ViewCustomAttributes = "";
 
 			// jenjang_id
 			$this->jenjang_id->ViewValue = $this->jenjang_id->CurrentValue;
@@ -2455,6 +2532,11 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 			$this->penyesuaian->ViewValue = FormatNumber($this->penyesuaian->ViewValue, 0, -2, -2, -2);
 			$this->penyesuaian->ViewCustomAttributes = "";
 
+			// potongan_bendahara
+			$this->potongan_bendahara->ViewValue = $this->potongan_bendahara->CurrentValue;
+			$this->potongan_bendahara->ViewValue = FormatNumber($this->potongan_bendahara->ViewValue, 0, -2, -2, -2);
+			$this->potongan_bendahara->ViewCustomAttributes = "";
+
 			// total
 			$this->total->ViewValue = $this->total->CurrentValue;
 			$this->total->ViewValue = FormatNumber($this->total->ViewValue, 0, -2, -2, -2);
@@ -2484,6 +2566,11 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 			$this->pegawai->LinkCustomAttributes = "";
 			$this->pegawai->HrefValue = "";
 			$this->pegawai->TooltipValue = "";
+
+			// rekbank
+			$this->rekbank->LinkCustomAttributes = "";
+			$this->rekbank->HrefValue = "";
+			$this->rekbank->TooltipValue = "";
 
 			// jenjang_id
 			$this->jenjang_id->LinkCustomAttributes = "";
@@ -2535,6 +2622,11 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 			$this->penyesuaian->HrefValue = "";
 			$this->penyesuaian->TooltipValue = "";
 
+			// potongan_bendahara
+			$this->potongan_bendahara->LinkCustomAttributes = "";
+			$this->potongan_bendahara->HrefValue = "";
+			$this->potongan_bendahara->TooltipValue = "";
+
 			// total
 			$this->total->LinkCustomAttributes = "";
 			$this->total->HrefValue = "";
@@ -2553,7 +2645,6 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 			$this->tahun->PlaceHolder = RemoveHtml($this->tahun->caption());
 
 			// bulan
-			$this->bulan->EditAttrs["class"] = "form-control";
 			$this->bulan->EditCustomAttributes = "";
 			$curVal = trim(strval($this->bulan->AdvancedSearch->SearchValue));
 			if ($curVal != "")
@@ -2566,7 +2657,13 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 				if ($curVal == "") {
 					$filterWrk = "0=1";
 				} else {
-					$filterWrk = "`nourut`" . SearchString("=", $this->bulan->AdvancedSearch->SearchValue, DATATYPE_NUMBER, "");
+					$arwrk = explode(",", $curVal);
+					$filterWrk = "";
+					foreach ($arwrk as $wrk) {
+						if ($filterWrk != "")
+							$filterWrk .= " OR ";
+						$filterWrk .= "`nourut`" . SearchString("=", trim($wrk), DATATYPE_NUMBER, "");
+					}
 				}
 				$sqlWrk = $this->bulan->Lookup->getSql(TRUE, $filterWrk, '', $this);
 				$rswrk = Conn()->execute($sqlWrk);
@@ -2577,8 +2674,44 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 			}
 
 			// pegawai
-			$this->pegawai->EditAttrs["class"] = "form-control";
 			$this->pegawai->EditCustomAttributes = "";
+			$curVal = trim(strval($this->pegawai->AdvancedSearch->SearchValue));
+			if ($curVal != "")
+				$this->pegawai->AdvancedSearch->ViewValue = $this->pegawai->lookupCacheOption($curVal);
+			else
+				$this->pegawai->AdvancedSearch->ViewValue = $this->pegawai->Lookup !== NULL && is_array($this->pegawai->Lookup->Options) ? $curVal : NULL;
+			if ($this->pegawai->AdvancedSearch->ViewValue !== NULL) { // Load from cache
+				$this->pegawai->EditValue = array_values($this->pegawai->Lookup->Options);
+				if ($this->pegawai->AdvancedSearch->ViewValue == "")
+					$this->pegawai->AdvancedSearch->ViewValue = $Language->phrase("PleaseSelect");
+			} else { // Lookup from database
+				if ($curVal == "") {
+					$filterWrk = "0=1";
+				} else {
+					$filterWrk = "`nip`" . SearchString("=", $this->pegawai->AdvancedSearch->SearchValue, DATATYPE_STRING, "");
+				}
+				$sqlWrk = $this->pegawai->Lookup->getSql(TRUE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				if ($rswrk && !$rswrk->EOF) { // Lookup values found
+					$arwrk = [];
+					$arwrk[1] = HtmlEncode($rswrk->fields('df'));
+					$this->pegawai->AdvancedSearch->ViewValue = $this->pegawai->displayValue($arwrk);
+				} else {
+					$this->pegawai->AdvancedSearch->ViewValue = $Language->phrase("PleaseSelect");
+				}
+				$arwrk = $rswrk ? $rswrk->getRows() : [];
+				if ($rswrk)
+					$rswrk->close();
+				$this->pegawai->EditValue = $arwrk;
+			}
+
+			// rekbank
+			$this->rekbank->EditAttrs["class"] = "form-control";
+			$this->rekbank->EditCustomAttributes = "";
+			if (!$this->rekbank->Raw)
+				$this->rekbank->AdvancedSearch->SearchValue = HtmlDecode($this->rekbank->AdvancedSearch->SearchValue);
+			$this->rekbank->EditValue = HtmlEncode($this->rekbank->AdvancedSearch->SearchValue);
+			$this->rekbank->PlaceHolder = RemoveHtml($this->rekbank->caption());
 
 			// jenjang_id
 			$this->jenjang_id->EditAttrs["class"] = "form-control";
@@ -2640,6 +2773,12 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 			$this->penyesuaian->EditValue = HtmlEncode($this->penyesuaian->AdvancedSearch->SearchValue);
 			$this->penyesuaian->PlaceHolder = RemoveHtml($this->penyesuaian->caption());
 
+			// potongan_bendahara
+			$this->potongan_bendahara->EditAttrs["class"] = "form-control";
+			$this->potongan_bendahara->EditCustomAttributes = "";
+			$this->potongan_bendahara->EditValue = HtmlEncode($this->potongan_bendahara->AdvancedSearch->SearchValue);
+			$this->potongan_bendahara->PlaceHolder = RemoveHtml($this->potongan_bendahara->caption());
+
 			// total
 			$this->total->EditAttrs["class"] = "form-control";
 			$this->total->EditCustomAttributes = "";
@@ -2694,6 +2833,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		$this->tahun->AdvancedSearch->load();
 		$this->bulan->AdvancedSearch->load();
 		$this->pegawai->AdvancedSearch->load();
+		$this->rekbank->AdvancedSearch->load();
 		$this->jenjang_id->AdvancedSearch->load();
 		$this->jabatan_id->AdvancedSearch->load();
 		$this->kehadiran->AdvancedSearch->load();
@@ -2704,6 +2844,7 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		$this->sub_total->AdvancedSearch->load();
 		$this->potongan->AdvancedSearch->load();
 		$this->penyesuaian->AdvancedSearch->load();
+		$this->potongan_bendahara->AdvancedSearch->load();
 		$this->total->AdvancedSearch->load();
 		$this->voucher->AdvancedSearch->load();
 		$this->status->AdvancedSearch->load();

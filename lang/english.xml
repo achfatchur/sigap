@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ew-language date="2023/2/9" version="16.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
+<ew-language date="2023/2/10" version="16.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
   <!--
 	*** Important Notes:
 	1. Language ID should follow: https://developers.google.com/recaptcha/docs/language,
@@ -1835,7 +1835,7 @@
         <phrase id="fldcaption" value="Pegawai" />
       </field>
       <field id="jenjang_id">
-        <phrase id="fldcaption" value="Jenjang" />
+        <phrase id="fldcaption" value="Unit" />
       </field>
       <field id="jabatan_id">
         <phrase id="fldcaption" value="Jabatan" />
@@ -1847,7 +1847,7 @@
         <phrase id="fldcaption" value="Lama Kerja" />
       </field>
       <field id="type">
-        <phrase id="fldcaption" value="Type" />
+        <phrase id="fldcaption" value="Type Jabatan" />
       </field>
       <field id="jenis_guru">
         <phrase id="fldcaption" value="Jenis Guru" />
@@ -1909,6 +1909,9 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
@@ -1917,11 +1920,8 @@
         <phrase id="fldtagvalue1" value="" />
         <phrase id="fldtagcaption1" value="" />
       </field>
-      <field id="potongan_bendahara">
-        <phrase id="fldcaption" value="Unit" />
-      </field>
       <field id="voucher">
-        <phrase id="fldcaption" value="voucher" />
+        <phrase id="fldcaption" value="Voucher" />
       </field>
     </table>
     <table id="gaji_karyawan_sd">
@@ -1971,6 +1971,9 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
@@ -1979,9 +1982,6 @@
       </field>
       <field id="status">
         <phrase id="fldcaption" value="Unit" />
-      </field>
-      <field id="potongan_bendahara">
-        <phrase id="fldcaption" value="potongan bendahara" />
       </field>
     </table>
     <table id="gaji_karyawan_sma">
@@ -2031,6 +2031,9 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Voucher" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
@@ -2039,9 +2042,6 @@
       </field>
       <field id="voucher">
         <phrase id="fldcaption" value="voucher" />
-      </field>
-      <field id="potongan_bendahara">
-        <phrase id="fldcaption" value="potongan bendahara" />
       </field>
     </table>
     <table id="gaji_karyawan_smk">
@@ -2091,17 +2091,17 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
       <field id="voucher">
-        <phrase id="fldcaption" value="Status" />
+        <phrase id="fldcaption" value="Voucher" />
       </field>
       <field id="status">
         <phrase id="fldcaption" value="Unit" />
-      </field>
-      <field id="potongan_bendahara">
-        <phrase id="fldcaption" value="potongan bendahara" />
       </field>
     </table>
     <table id="gaji_karyawan_smp">
@@ -2148,6 +2148,9 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
@@ -2159,9 +2162,6 @@
       </field>
       <field id="status">
         <phrase id="fldcaption" value="Unit" />
-      </field>
-      <field id="potongan_bendahara">
-        <phrase id="fldcaption" value="potongan bendahara" />
       </field>
     </table>
     <table id="gaji_karyawan_tk">
@@ -2211,6 +2211,9 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
@@ -2219,9 +2222,6 @@
       </field>
       <field id="status">
         <phrase id="fldcaption" value="Unit" />
-      </field>
-      <field id="potongan_bendahara">
-        <phrase id="fldcaption" value="potongan bendahara" />
       </field>
     </table>
     <table id="gaji_pokok">
@@ -2367,6 +2367,9 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
@@ -2375,9 +2378,6 @@
       </field>
       <field id="status">
         <phrase id="fldcaption" value="Status" />
-      </field>
-      <field id="potongan_bendahara">
-        <phrase id="fldcaption" value="potongan bendahara" />
       </field>
     </table>
     <table id="gaji_smk">
@@ -2475,6 +2475,9 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
@@ -2483,9 +2486,6 @@
       </field>
       <field id="status">
         <phrase id="fldcaption" value="Status" />
-      </field>
-      <field id="potongan_bendahara">
-        <phrase id="fldcaption" value="potongan bendahara" />
       </field>
     </table>
     <table id="gaji_smp">
@@ -2583,6 +2583,9 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
@@ -2591,9 +2594,6 @@
       </field>
       <field id="status">
         <phrase id="fldcaption" value="Status" />
-      </field>
-      <field id="potongan_bendahara">
-        <phrase id="fldcaption" value="potongan bendahara" />
       </field>
     </table>
     <table id="gaji_tk">
@@ -2620,16 +2620,16 @@
         <phrase id="fldcaption" value="Pegawai" />
       </field>
       <field id="jenjang_id">
-        <phrase id="fldcaption" value="Jenjang" />
+        <phrase id="fldcaption" value="Unit" />
       </field>
       <field id="jabatan_id">
         <phrase id="fldcaption" value="Jabatan" />
       </field>
       <field id="type">
-        <phrase id="fldcaption" value="Type" />
+        <phrase id="fldcaption" value="Type Jabatan" />
       </field>
       <field id="lama_kerja">
-        <phrase id="fldcaption" value="Jabatan" />
+        <phrase id="fldcaption" value="Lama Kerja" />
       </field>
       <field id="jenis_guru">
         <phrase id="fldcaption" value="Jenis Guru" />
@@ -2691,14 +2691,14 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
       <field id="voucher">
         <phrase id="fldcaption" value="Voucher" />
-      </field>
-      <field id="potongan_bendahara">
-        <phrase id="fldcaption" value="potongan bendahara" />
       </field>
       <field id="status">
         <phrase id="fldcaption" value="status" />
@@ -2793,6 +2793,9 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
@@ -2800,10 +2803,7 @@
         <phrase id="fldcaption" value="Voucher" />
       </field>
       <field id="status">
-        <phrase id="fldcaption" value="status" />
-      </field>
-      <field id="potongan_bendahara">
-        <phrase id="fldcaption" value="potongan bendahara" />
+        <phrase id="fldcaption" value="Status" />
       </field>
     </table>
     <table id="gaji_tu_sma">
@@ -2836,7 +2836,7 @@
         <phrase id="fldcaption" value="Jabatan" />
       </field>
       <field id="type_jabatan">
-        <phrase id="fldcaption" value="type jabatan" />
+        <phrase id="fldcaption" value="Type Jabatan" />
       </field>
       <field id="tambahan">
         <phrase id="fldcaption" value="Tambahan Tugas" />
@@ -2884,16 +2884,19 @@
         <phrase id="fldcaption" value="Tunjangan Jabatan" />
       </field>
       <field id="tunjangan2">
-        <phrase id="fldcaption" value="tunjangan 2" />
-      </field>
-      <field id="potongan">
-        <phrase id="fldcaption" value="Potongan" />
+        <phrase id="fldcaption" value="Tunjangan Khusus" />
       </field>
       <field id="sub_total">
         <phrase id="fldcaption" value="Sub Total" />
       </field>
+      <field id="potongan">
+        <phrase id="fldcaption" value="Potongan" />
+      </field>
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
+      </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
       </field>
       <field id="total">
         <phrase id="fldcaption" value="Unit" />
@@ -2903,9 +2906,6 @@
       </field>
       <field id="status">
         <phrase id="fldcaption" value="status" />
-      </field>
-      <field id="potongan_bendahara">
-        <phrase id="fldcaption" value="potongan bendahara" />
       </field>
     </table>
     <table id="gaji_tu_smk">
@@ -2932,7 +2932,7 @@
         <phrase id="fldcaption" value="Pegawai" />
       </field>
       <field id="jenjang_id">
-        <phrase id="fldcaption" value="Jenjang" />
+        <phrase id="fldcaption" value="Unit" />
       </field>
       <field id="jabatan_id">
         <phrase id="fldcaption" value="Jabatan" />
@@ -2985,14 +2985,17 @@
       <field id="tunjangan2">
         <phrase id="fldcaption" value="tunjangan 2" />
       </field>
-      <field id="potongan">
-        <phrase id="fldcaption" value="Potongan" />
-      </field>
       <field id="sub_total">
         <phrase id="fldcaption" value="Sub Total" />
       </field>
+      <field id="potongan">
+        <phrase id="fldcaption" value="Potongan" />
+      </field>
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
+      </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
       </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
@@ -3001,13 +3004,10 @@
         <phrase id="fldcaption" value="Unit" />
       </field>
       <field id="voucher">
-        <phrase id="fldcaption" value="voucher" />
+        <phrase id="fldcaption" value="Voucher" />
       </field>
       <field id="status">
         <phrase id="fldcaption" value="status" />
-      </field>
-      <field id="potongan_bendahara">
-        <phrase id="fldcaption" value="potongan bendahara" />
       </field>
     </table>
     <table id="gaji_tu_smp">
@@ -3040,7 +3040,7 @@
         <phrase id="fldcaption" value="Jabatan" />
       </field>
       <field id="lama_kerja">
-        <phrase id="fldcaption" value="lama kerja" />
+        <phrase id="fldcaption" value="Lama Kerja" />
       </field>
       <field id="ijasah">
         <phrase id="fldcaption" value="Ijasah" />
@@ -3099,17 +3099,17 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
-        <phrase id="fldcaption" value="Unit" />
+        <phrase id="fldcaption" value="Total" />
       </field>
       <field id="voucher">
         <phrase id="fldcaption" value="voucher" />
       </field>
       <field id="status">
         <phrase id="fldcaption" value="status" />
-      </field>
-      <field id="potongan_bendahara">
-        <phrase id="fldcaption" value="potongan bendahara" />
       </field>
     </table>
     <table id="gaji_tu_tk">
@@ -3136,7 +3136,7 @@
         <phrase id="fldcaption" value="Pegawai" />
       </field>
       <field id="jenjang_id">
-        <phrase id="fldcaption" value="Jenjang" />
+        <phrase id="fldcaption" value="Unit" />
       </field>
       <field id="jabatan_id">
         <phrase id="fldcaption" value="Jabatan" />
@@ -3201,17 +3201,17 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
       <field id="voucher">
-        <phrase id="fldcaption" value="voucher" />
+        <phrase id="fldcaption" value="Voucher" />
       </field>
       <field id="status">
         <phrase id="fldcaption" value="status" />
-      </field>
-      <field id="potongan_bendahara">
-        <phrase id="fldcaption" value="potongan bendahara" />
       </field>
     </table>
     <table id="gajisd">
@@ -6757,6 +6757,9 @@
       <field id="pegawai">
         <phrase id="fldcaption" value="Pegawai" />
       </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rekening Bank" />
+      </field>
       <field id="jenjang_id">
         <phrase id="fldcaption" value="Unit" />
       </field>
@@ -6829,6 +6832,9 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
@@ -6836,7 +6842,7 @@
         <phrase id="fldcaption" value="Voucher" />
       </field>
       <field id="pid">
-        <phrase id="fldcaption" value="Unit" />
+        <phrase id="fldcaption" value="Voucher" />
       </field>
     </table>
     <table id="m_reward">
@@ -6870,6 +6876,9 @@
       </field>
       <field id="pegawai">
         <phrase id="fldcaption" value="Pegawai" />
+      </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rekening Bank" />
       </field>
       <field id="jenjang_id">
         <phrase id="fldcaption" value="Jenjang" />
@@ -6937,6 +6946,9 @@
       <field id="sub_total">
         <phrase id="fldcaption" value="Sub Total" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="potongan">
         <phrase id="fldcaption" value="Potongan" />
       </field>
@@ -6967,8 +6979,11 @@
       <field id="pegawai">
         <phrase id="fldcaption" value="Pegawai" />
       </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rekening Bank" />
+      </field>
       <field id="jenjang_id">
-        <phrase id="fldcaption" value="Jenjang" />
+        <phrase id="fldcaption" value="Unit" />
       </field>
       <field id="jabatan_id">
         <phrase id="fldcaption" value="jabatan" />
@@ -7039,6 +7054,9 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Voucher" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
@@ -7063,8 +7081,11 @@
       <field id="pegawai">
         <phrase id="fldcaption" value="Pegawai" />
       </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rekening Bank" />
+      </field>
       <field id="jenjang_id">
-        <phrase id="fldcaption" value="Jenjang" />
+        <phrase id="fldcaption" value="Unit" />
       </field>
       <field id="jabatan_id">
         <phrase id="fldcaption" value="Jabatan" />
@@ -7135,11 +7156,14 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
       <field id="voucher">
-        <phrase id="fldcaption" value="Unit" />
+        <phrase id="fldcaption" value="Voucher" />
       </field>
     </table>
     <table id="vgaji_tu_sma">
@@ -7162,14 +7186,17 @@
       <field id="pegawai">
         <phrase id="fldcaption" value="Pegawai" />
       </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rekening Bank" />
+      </field>
       <field id="jenjang_id">
-        <phrase id="fldcaption" value="Jenjang" />
+        <phrase id="fldcaption" value="Unit" />
       </field>
       <field id="jabatan_id">
         <phrase id="fldcaption" value="Jabatan" />
       </field>
       <field id="type_jabatan">
-        <phrase id="fldcaption" value="type jabatan" />
+        <phrase id="fldcaption" value="Type Jabatan" />
       </field>
       <field id="tambahan">
         <phrase id="fldcaption" value="Tambahan Tugas" />
@@ -7217,7 +7244,7 @@
         <phrase id="fldcaption" value="Tunjangan Jabatan" />
       </field>
       <field id="tunjangan2">
-        <phrase id="fldcaption" value="tunjangan 2" />
+        <phrase id="fldcaption" value="Tunjangan Khusus" />
       </field>
       <field id="potongan">
         <phrase id="fldcaption" value="Potongan" />
@@ -7228,11 +7255,14 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
-        <phrase id="fldcaption" value="Unit" />
+        <phrase id="fldcaption" value="Total" />
       </field>
       <field id="voucher">
-        <phrase id="fldcaption" value="Unit" />
+        <phrase id="fldcaption" value="Voucher" />
       </field>
     </table>
     <table id="vgaji_karyawan_sma">
@@ -7251,6 +7281,9 @@
       </field>
       <field id="pegawai">
         <phrase id="fldcaption" value="Pegawai" />
+      </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rekening Bank" />
       </field>
       <field id="jenjang_id">
         <phrase id="fldcaption" value="Unit" />
@@ -7282,6 +7315,9 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
@@ -7312,14 +7348,14 @@
       <field id="pegawai">
         <phrase id="fldcaption" value="Pegawai" />
       </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rekening Bank" />
+      </field>
       <field id="jenjang_id">
         <phrase id="fldcaption" value="Jenjang" />
       </field>
       <field id="jabatan_id">
         <phrase id="fldcaption" value="Jabatan" />
-      </field>
-      <field id="month">
-        <phrase id="fldcaption" value="Tanggal" />
       </field>
       <field id="lama_kerja">
         <phrase id="fldcaption" value="Lama Kerja" />
@@ -7387,11 +7423,14 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
       <field id="voucher">
-        <phrase id="fldcaption" value="Unit" />
+        <phrase id="fldcaption" value="Voucher" />
       </field>
     </table>
     <table id="vgaji_tu_smk">
@@ -7411,32 +7450,35 @@
       <field id="pegawai">
         <phrase id="fldcaption" value="Pegawai" />
       </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rekening Bank" />
+      </field>
       <field id="jenjang_id">
-        <phrase id="fldcaption" value="Jenjang" />
+        <phrase id="fldcaption" value="Unit" />
       </field>
       <field id="jabatan_id">
         <phrase id="fldcaption" value="Jabatan" />
       </field>
       <field id="type_jabatan">
-        <phrase id="fldcaption" value="type jabatan" />
+        <phrase id="fldcaption" value="Type Jabatan" />
       </field>
       <field id="tambahan">
-        <phrase id="fldcaption" value="tambahan" />
+        <phrase id="fldcaption" value="Tambahan" />
       </field>
       <field id="ijasah">
-        <phrase id="fldcaption" value="Unit" />
+        <phrase id="fldcaption" value="Ijazah" />
       </field>
       <field id="sertif">
         <phrase id="fldcaption" value="Sertifikasi" />
       </field>
       <field id="lama_kerja">
-        <phrase id="fldcaption" value="lama kerja" />
+        <phrase id="fldcaption" value="Lama kerja" />
       </field>
       <field id="kehadiran">
         <phrase id="fldcaption" value="Kehadiran" />
       </field>
       <field id="value_kehadiran">
-        <phrase id="fldcaption" value="tunjangan Tambahan" />
+        <phrase id="fldcaption" value="Value Kehadiran" />
       </field>
       <field id="gapok">
         <phrase id="fldcaption" value="Gaji Pokok" />
@@ -7477,11 +7519,14 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
       <field id="voucher">
-        <phrase id="fldcaption" value="Tunjangan Khusus" />
+        <phrase id="fldcaption" value="Voucher" />
       </field>
     </table>
     <table id="vgaji_tu_sd">
@@ -7500,6 +7545,9 @@
       </field>
       <field id="pegawai">
         <phrase id="fldcaption" value="Pegawai" />
+      </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rekening Bank" />
       </field>
       <field id="jenjang_id">
         <phrase id="fldcaption" value="Jenjang" />
@@ -7559,7 +7607,7 @@
         <phrase id="fldcaption" value="Tunjangan Jabatan" />
       </field>
       <field id="tunjangan2">
-        <phrase id="fldcaption" value="tunjangan 2" />
+        <phrase id="fldcaption" value="Tunjangan Khusus" />
       </field>
       <field id="potongan">
         <phrase id="fldcaption" value="Potongan" />
@@ -7570,11 +7618,14 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
       <field id="voucher">
-        <phrase id="fldcaption" value="Tunjangan Khusus" />
+        <phrase id="fldcaption" value="Voucher" />
       </field>
     </table>
     <table id="vgaji_tu_tk">
@@ -7593,6 +7644,9 @@
       </field>
       <field id="pegawai">
         <phrase id="fldcaption" value="Pegawai" />
+      </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rekening Bank" />
       </field>
       <field id="jenjang_id">
         <phrase id="fldcaption" value="Unit" />
@@ -7651,20 +7705,23 @@
       <field id="tunjangan2">
         <phrase id="fldcaption" value="Tunjangan Khusus" />
       </field>
-      <field id="potongan">
-        <phrase id="fldcaption" value="Potongan" />
-      </field>
       <field id="sub_total">
         <phrase id="fldcaption" value="Sub Total" />
+      </field>
+      <field id="potongan">
+        <phrase id="fldcaption" value="Potongan" />
       </field>
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
-        <phrase id="fldcaption" value="Unit" />
+        <phrase id="fldcaption" value="Total" />
       </field>
       <field id="voucher">
-        <phrase id="fldcaption" value="Value Kehadiran" />
+        <phrase id="fldcaption" value="Voucher" />
       </field>
     </table>
     <table id="vgaji_tu_smp">
@@ -7683,6 +7740,9 @@
       </field>
       <field id="pegawai">
         <phrase id="fldcaption" value="Pegawai" />
+      </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rekening Bank" />
       </field>
       <field id="jenjang_id">
         <phrase id="fldcaption" value="Unit" />
@@ -7750,11 +7810,14 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
-        <phrase id="fldcaption" value="Unit" />
+        <phrase id="fldcaption" value="Total" />
       </field>
       <field id="voucher">
-        <phrase id="fldcaption" value="voucher" />
+        <phrase id="fldcaption" value="Voucher" />
       </field>
     </table>
     <table id="slipgaji">
@@ -7774,11 +7837,14 @@
       <field id="bulan">
         <phrase id="fldcaption" value="Bulan" />
       </field>
-      <field id="jenjang_id">
-        <phrase id="fldcaption" value="Unit" />
-      </field>
       <field id="pegawai">
         <phrase id="fldcaption" value="Pegawai" />
+      </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rekening Bank" />
+      </field>
+      <field id="jenjang_id">
+        <phrase id="fldcaption" value="Unit" />
       </field>
       <field id="jabatan_id">
         <phrase id="fldcaption" value="Jabatan" />
@@ -7807,6 +7873,9 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
@@ -7830,6 +7899,9 @@
       </field>
       <field id="pegawai">
         <phrase id="fldcaption" value="Pegawai" />
+      </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rekening Bank" />
       </field>
       <field id="jenjang_id">
         <phrase id="fldcaption" value="Unit" />
@@ -7860,6 +7932,9 @@
       </field>
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
+      </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
       </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
@@ -7885,8 +7960,11 @@
       <field id="pegawai">
         <phrase id="fldcaption" value="Pegawai" />
       </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rekening Bank " />
+      </field>
       <field id="jenjang_id">
-        <phrase id="fldcaption" value="Jenjang" />
+        <phrase id="fldcaption" value="Unit" />
       </field>
       <field id="jabatan_id">
         <phrase id="fldcaption" value="Jabatan" />
@@ -7915,11 +7993,14 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Voucher" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
       <field id="status">
-        <phrase id="fldcaption" value="Unit" />
+        <phrase id="fldcaption" value="Status" />
       </field>
       <field id="voucher">
         <phrase id="fldcaption" value="Unit" />
@@ -7939,8 +8020,11 @@
       <field id="pegawai">
         <phrase id="fldcaption" value="Pegawai" />
       </field>
+      <field id="rekbank">
+        <phrase id="fldcaption" value="Rekening Bank" />
+      </field>
       <field id="jenjang_id">
-        <phrase id="fldcaption" value="Jenjang" />
+        <phrase id="fldcaption" value="Unit" />
       </field>
       <field id="jabatan_id">
         <phrase id="fldcaption" value="Jabatan" />
@@ -7969,11 +8053,14 @@
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
+      <field id="potongan_bendahara">
+        <phrase id="fldcaption" value="Potongan Bendahara" />
+      </field>
       <field id="total">
         <phrase id="fldcaption" value="Total" />
       </field>
       <field id="voucher">
-        <phrase id="fldcaption" value="Status" />
+        <phrase id="fldcaption" value="Voucher" />
       </field>
     </table>
     <table id="login_pegawai">

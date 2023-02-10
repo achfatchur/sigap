@@ -820,9 +820,9 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 		$this->tahun->setVisibility();
 		$this->bulan->setVisibility();
 		$this->pegawai->setVisibility();
+		$this->rekbank->setVisibility();
 		$this->jenjang_id->setVisibility();
 		$this->jabatan_id->setVisibility();
-		$this->month->setVisibility();
 		$this->lama_kerja->setVisibility();
 		$this->type->setVisibility();
 		$this->jenis_guru->setVisibility();
@@ -845,6 +845,7 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 		$this->sub_total->setVisibility();
 		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
+		$this->potongan_bendahara->setVisibility();
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
 		$this->hideFieldsForAddEdit();
@@ -935,13 +936,19 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 
 			// Get default search criteria
 			AddFilter($this->DefaultSearchWhere, $this->basicSearchWhere(TRUE));
+			AddFilter($this->DefaultSearchWhere, $this->advancedSearchWhere(TRUE));
 
 			// Get basic search values
 			$this->loadBasicSearchValues();
 
+			// Get and validate search values for advanced search
+			$this->loadSearchValues(); // Get search values
+
 			// Process filter list
 			if ($this->processFilterList())
 				$this->terminate();
+			if (!$this->validateSearch())
+				$this->setFailureMessage($SearchError);
 
 			// Restore search parms from Session if not searching / reset / export
 			if (($this->isExport() || $this->Command != "search" && $this->Command != "reset" && $this->Command != "resetall") && $this->Command != "json" && $this->checkSearchParms())
@@ -956,6 +963,10 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 			// Get basic search criteria
 			if ($SearchError == "")
 				$srchBasic = $this->basicSearchWhere();
+
+			// Get search criteria for advanced search
+			if ($SearchError == "")
+				$srchAdvanced = $this->advancedSearchWhere();
 		}
 
 		// Restore display records
@@ -977,7 +988,16 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 			$this->BasicSearch->loadDefault();
 			if ($this->BasicSearch->Keyword != "")
 				$srchBasic = $this->basicSearchWhere();
+
+			// Load advanced search from default
+			if ($this->loadAdvancedSearchDefault()) {
+				$srchAdvanced = $this->advancedSearchWhere();
+			}
 		}
+
+		// Restore search settings from Session
+		if ($SearchError == "")
+			$this->loadAdvancedSearch();
 
 		// Build search criteria
 		AddFilter($this->SearchWhere, $srchAdvanced);
@@ -1144,9 +1164,9 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 		$filterList = Concat($filterList, $this->tahun->AdvancedSearch->toJson(), ","); // Field tahun
 		$filterList = Concat($filterList, $this->bulan->AdvancedSearch->toJson(), ","); // Field bulan
 		$filterList = Concat($filterList, $this->pegawai->AdvancedSearch->toJson(), ","); // Field pegawai
+		$filterList = Concat($filterList, $this->rekbank->AdvancedSearch->toJson(), ","); // Field rekbank
 		$filterList = Concat($filterList, $this->jenjang_id->AdvancedSearch->toJson(), ","); // Field jenjang_id
 		$filterList = Concat($filterList, $this->jabatan_id->AdvancedSearch->toJson(), ","); // Field jabatan_id
-		$filterList = Concat($filterList, $this->month->AdvancedSearch->toJson(), ","); // Field month
 		$filterList = Concat($filterList, $this->lama_kerja->AdvancedSearch->toJson(), ","); // Field lama_kerja
 		$filterList = Concat($filterList, $this->type->AdvancedSearch->toJson(), ","); // Field type
 		$filterList = Concat($filterList, $this->jenis_guru->AdvancedSearch->toJson(), ","); // Field jenis_guru
@@ -1169,6 +1189,7 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 		$filterList = Concat($filterList, $this->sub_total->AdvancedSearch->toJson(), ","); // Field sub_total
 		$filterList = Concat($filterList, $this->potongan->AdvancedSearch->toJson(), ","); // Field potongan
 		$filterList = Concat($filterList, $this->penyesuaian->AdvancedSearch->toJson(), ","); // Field penyesuaian
+		$filterList = Concat($filterList, $this->potongan_bendahara->AdvancedSearch->toJson(), ","); // Field potongan_bendahara
 		$filterList = Concat($filterList, $this->total->AdvancedSearch->toJson(), ","); // Field total
 		$filterList = Concat($filterList, $this->voucher->AdvancedSearch->toJson(), ","); // Field voucher
 		if ($this->BasicSearch->Keyword != "") {
@@ -1249,6 +1270,14 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 		$this->pegawai->AdvancedSearch->SearchOperator2 = @$filter["w_pegawai"];
 		$this->pegawai->AdvancedSearch->save();
 
+		// Field rekbank
+		$this->rekbank->AdvancedSearch->SearchValue = @$filter["x_rekbank"];
+		$this->rekbank->AdvancedSearch->SearchOperator = @$filter["z_rekbank"];
+		$this->rekbank->AdvancedSearch->SearchCondition = @$filter["v_rekbank"];
+		$this->rekbank->AdvancedSearch->SearchValue2 = @$filter["y_rekbank"];
+		$this->rekbank->AdvancedSearch->SearchOperator2 = @$filter["w_rekbank"];
+		$this->rekbank->AdvancedSearch->save();
+
 		// Field jenjang_id
 		$this->jenjang_id->AdvancedSearch->SearchValue = @$filter["x_jenjang_id"];
 		$this->jenjang_id->AdvancedSearch->SearchOperator = @$filter["z_jenjang_id"];
@@ -1264,14 +1293,6 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 		$this->jabatan_id->AdvancedSearch->SearchValue2 = @$filter["y_jabatan_id"];
 		$this->jabatan_id->AdvancedSearch->SearchOperator2 = @$filter["w_jabatan_id"];
 		$this->jabatan_id->AdvancedSearch->save();
-
-		// Field month
-		$this->month->AdvancedSearch->SearchValue = @$filter["x_month"];
-		$this->month->AdvancedSearch->SearchOperator = @$filter["z_month"];
-		$this->month->AdvancedSearch->SearchCondition = @$filter["v_month"];
-		$this->month->AdvancedSearch->SearchValue2 = @$filter["y_month"];
-		$this->month->AdvancedSearch->SearchOperator2 = @$filter["w_month"];
-		$this->month->AdvancedSearch->save();
 
 		// Field lama_kerja
 		$this->lama_kerja->AdvancedSearch->SearchValue = @$filter["x_lama_kerja"];
@@ -1449,6 +1470,14 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 		$this->penyesuaian->AdvancedSearch->SearchOperator2 = @$filter["w_penyesuaian"];
 		$this->penyesuaian->AdvancedSearch->save();
 
+		// Field potongan_bendahara
+		$this->potongan_bendahara->AdvancedSearch->SearchValue = @$filter["x_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchOperator = @$filter["z_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchCondition = @$filter["v_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchValue2 = @$filter["y_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchOperator2 = @$filter["w_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->save();
+
 		// Field total
 		$this->total->AdvancedSearch->SearchValue = @$filter["x_total"];
 		$this->total->AdvancedSearch->SearchOperator = @$filter["z_total"];
@@ -1468,12 +1497,147 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 		$this->BasicSearch->setType(@$filter[Config("TABLE_BASIC_SEARCH_TYPE")]);
 	}
 
+	// Advanced search WHERE clause based on QueryString
+	protected function advancedSearchWhere($default = FALSE)
+	{
+		global $Security;
+		$where = "";
+		if (!$Security->canSearch())
+			return "";
+		$this->buildSearchSql($where, $this->id, $default, FALSE); // id
+		$this->buildSearchSql($where, $this->pid, $default, FALSE); // pid
+		$this->buildSearchSql($where, $this->tahun, $default, FALSE); // tahun
+		$this->buildSearchSql($where, $this->bulan, $default, FALSE); // bulan
+		$this->buildSearchSql($where, $this->pegawai, $default, FALSE); // pegawai
+		$this->buildSearchSql($where, $this->rekbank, $default, FALSE); // rekbank
+		$this->buildSearchSql($where, $this->jenjang_id, $default, FALSE); // jenjang_id
+		$this->buildSearchSql($where, $this->jabatan_id, $default, FALSE); // jabatan_id
+		$this->buildSearchSql($where, $this->lama_kerja, $default, FALSE); // lama_kerja
+		$this->buildSearchSql($where, $this->type, $default, FALSE); // type
+		$this->buildSearchSql($where, $this->jenis_guru, $default, FALSE); // jenis_guru
+		$this->buildSearchSql($where, $this->tambahan, $default, FALSE); // tambahan
+		$this->buildSearchSql($where, $this->periode, $default, FALSE); // periode
+		$this->buildSearchSql($where, $this->tunjangan_periode, $default, FALSE); // tunjangan_periode
+		$this->buildSearchSql($where, $this->kehadiran, $default, FALSE); // kehadiran
+		$this->buildSearchSql($where, $this->jp, $default, FALSE); // jp
+		$this->buildSearchSql($where, $this->value_kehadiran, $default, FALSE); // value_kehadiran
+		$this->buildSearchSql($where, $this->gapok, $default, FALSE); // gapok
+		$this->buildSearchSql($where, $this->total_gapok, $default, FALSE); // total_gapok
+		$this->buildSearchSql($where, $this->lembur, $default, FALSE); // lembur
+		$this->buildSearchSql($where, $this->value_lembur, $default, FALSE); // value_lembur
+		$this->buildSearchSql($where, $this->value_reward, $default, FALSE); // value_reward
+		$this->buildSearchSql($where, $this->value_inval, $default, FALSE); // value_inval
+		$this->buildSearchSql($where, $this->piket_count, $default, FALSE); // piket_count
+		$this->buildSearchSql($where, $this->value_piket, $default, FALSE); // value_piket
+		$this->buildSearchSql($where, $this->tugastambahan, $default, FALSE); // tugastambahan
+		$this->buildSearchSql($where, $this->tj_jabatan, $default, FALSE); // tj_jabatan
+		$this->buildSearchSql($where, $this->sub_total, $default, FALSE); // sub_total
+		$this->buildSearchSql($where, $this->potongan, $default, FALSE); // potongan
+		$this->buildSearchSql($where, $this->penyesuaian, $default, FALSE); // penyesuaian
+		$this->buildSearchSql($where, $this->potongan_bendahara, $default, FALSE); // potongan_bendahara
+		$this->buildSearchSql($where, $this->total, $default, FALSE); // total
+		$this->buildSearchSql($where, $this->voucher, $default, FALSE); // voucher
+
+		// Set up search parm
+		if (!$default && $where != "" && in_array($this->Command, ["", "reset", "resetall"])) {
+			$this->Command = "search";
+		}
+		if (!$default && $this->Command == "search") {
+			$this->id->AdvancedSearch->save(); // id
+			$this->pid->AdvancedSearch->save(); // pid
+			$this->tahun->AdvancedSearch->save(); // tahun
+			$this->bulan->AdvancedSearch->save(); // bulan
+			$this->pegawai->AdvancedSearch->save(); // pegawai
+			$this->rekbank->AdvancedSearch->save(); // rekbank
+			$this->jenjang_id->AdvancedSearch->save(); // jenjang_id
+			$this->jabatan_id->AdvancedSearch->save(); // jabatan_id
+			$this->lama_kerja->AdvancedSearch->save(); // lama_kerja
+			$this->type->AdvancedSearch->save(); // type
+			$this->jenis_guru->AdvancedSearch->save(); // jenis_guru
+			$this->tambahan->AdvancedSearch->save(); // tambahan
+			$this->periode->AdvancedSearch->save(); // periode
+			$this->tunjangan_periode->AdvancedSearch->save(); // tunjangan_periode
+			$this->kehadiran->AdvancedSearch->save(); // kehadiran
+			$this->jp->AdvancedSearch->save(); // jp
+			$this->value_kehadiran->AdvancedSearch->save(); // value_kehadiran
+			$this->gapok->AdvancedSearch->save(); // gapok
+			$this->total_gapok->AdvancedSearch->save(); // total_gapok
+			$this->lembur->AdvancedSearch->save(); // lembur
+			$this->value_lembur->AdvancedSearch->save(); // value_lembur
+			$this->value_reward->AdvancedSearch->save(); // value_reward
+			$this->value_inval->AdvancedSearch->save(); // value_inval
+			$this->piket_count->AdvancedSearch->save(); // piket_count
+			$this->value_piket->AdvancedSearch->save(); // value_piket
+			$this->tugastambahan->AdvancedSearch->save(); // tugastambahan
+			$this->tj_jabatan->AdvancedSearch->save(); // tj_jabatan
+			$this->sub_total->AdvancedSearch->save(); // sub_total
+			$this->potongan->AdvancedSearch->save(); // potongan
+			$this->penyesuaian->AdvancedSearch->save(); // penyesuaian
+			$this->potongan_bendahara->AdvancedSearch->save(); // potongan_bendahara
+			$this->total->AdvancedSearch->save(); // total
+			$this->voucher->AdvancedSearch->save(); // voucher
+		}
+		return $where;
+	}
+
+	// Build search SQL
+	protected function buildSearchSql(&$where, &$fld, $default, $multiValue)
+	{
+		$fldParm = $fld->Param;
+		$fldVal = ($default) ? $fld->AdvancedSearch->SearchValueDefault : $fld->AdvancedSearch->SearchValue;
+		$fldOpr = ($default) ? $fld->AdvancedSearch->SearchOperatorDefault : $fld->AdvancedSearch->SearchOperator;
+		$fldCond = ($default) ? $fld->AdvancedSearch->SearchConditionDefault : $fld->AdvancedSearch->SearchCondition;
+		$fldVal2 = ($default) ? $fld->AdvancedSearch->SearchValue2Default : $fld->AdvancedSearch->SearchValue2;
+		$fldOpr2 = ($default) ? $fld->AdvancedSearch->SearchOperator2Default : $fld->AdvancedSearch->SearchOperator2;
+		$wrk = "";
+		if (is_array($fldVal))
+			$fldVal = implode(Config("MULTIPLE_OPTION_SEPARATOR"), $fldVal);
+		if (is_array($fldVal2))
+			$fldVal2 = implode(Config("MULTIPLE_OPTION_SEPARATOR"), $fldVal2);
+		$fldOpr = strtoupper(trim($fldOpr));
+		if ($fldOpr == "")
+			$fldOpr = "=";
+		$fldOpr2 = strtoupper(trim($fldOpr2));
+		if ($fldOpr2 == "")
+			$fldOpr2 = "=";
+		if (Config("SEARCH_MULTI_VALUE_OPTION") == 1 || !IsMultiSearchOperator($fldOpr))
+			$multiValue = FALSE;
+		if ($multiValue) {
+			$wrk1 = ($fldVal != "") ? GetMultiSearchSql($fld, $fldOpr, $fldVal, $this->Dbid) : ""; // Field value 1
+			$wrk2 = ($fldVal2 != "") ? GetMultiSearchSql($fld, $fldOpr2, $fldVal2, $this->Dbid) : ""; // Field value 2
+			$wrk = $wrk1; // Build final SQL
+			if ($wrk2 != "")
+				$wrk = ($wrk != "") ? "($wrk) $fldCond ($wrk2)" : $wrk2;
+		} else {
+			$fldVal = $this->convertSearchValue($fld, $fldVal);
+			$fldVal2 = $this->convertSearchValue($fld, $fldVal2);
+			$wrk = GetSearchSql($fld, $fldVal, $fldOpr, $fldCond, $fldVal2, $fldOpr2, $this->Dbid);
+		}
+		AddFilter($where, $wrk);
+	}
+
+	// Convert search value
+	protected function convertSearchValue(&$fld, $fldVal)
+	{
+		if ($fldVal == Config("NULL_VALUE") || $fldVal == Config("NOT_NULL_VALUE"))
+			return $fldVal;
+		$value = $fldVal;
+		if ($fld->isBoolean()) {
+			if ($fldVal != "")
+				$value = (SameText($fldVal, "1") || SameText($fldVal, "y") || SameText($fldVal, "t")) ? $fld->TrueValue : $fld->FalseValue;
+		} elseif ($fld->DataType == DATATYPE_DATE || $fld->DataType == DATATYPE_TIME) {
+			if ($fldVal != "")
+				$value = UnFormatDateTime($fldVal, $fld->DateTimeFormat);
+		}
+		return $value;
+	}
+
 	// Return basic search SQL
 	protected function basicSearchSql($arKeywords, $type)
 	{
 		$where = "";
 		$this->buildBasicSearchSql($where, $this->pegawai, $arKeywords, $type);
-		$this->buildBasicSearchSql($where, $this->month, $arKeywords, $type);
+		$this->buildBasicSearchSql($where, $this->rekbank, $arKeywords, $type);
 		return $where;
 	}
 
@@ -1588,6 +1752,72 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 		// Check basic search
 		if ($this->BasicSearch->issetSession())
 			return TRUE;
+		if ($this->id->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->pid->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->tahun->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->bulan->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->pegawai->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->rekbank->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->jenjang_id->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->jabatan_id->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->lama_kerja->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->type->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->jenis_guru->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->tambahan->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->periode->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->tunjangan_periode->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->kehadiran->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->jp->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->value_kehadiran->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->gapok->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->total_gapok->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->lembur->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->value_lembur->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->value_reward->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->value_inval->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->piket_count->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->value_piket->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->tugastambahan->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->tj_jabatan->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->sub_total->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->potongan->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->penyesuaian->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->potongan_bendahara->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->total->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->voucher->AdvancedSearch->issetSession())
+			return TRUE;
 		return FALSE;
 	}
 
@@ -1601,6 +1831,9 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 
 		// Clear basic search parameters
 		$this->resetBasicSearchParms();
+
+		// Clear advanced search parameters
+		$this->resetAdvancedSearchParms();
 	}
 
 	// Load advanced search default values
@@ -1615,6 +1848,44 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 		$this->BasicSearch->unsetSession();
 	}
 
+	// Clear all advanced search parameters
+	protected function resetAdvancedSearchParms()
+	{
+		$this->id->AdvancedSearch->unsetSession();
+		$this->pid->AdvancedSearch->unsetSession();
+		$this->tahun->AdvancedSearch->unsetSession();
+		$this->bulan->AdvancedSearch->unsetSession();
+		$this->pegawai->AdvancedSearch->unsetSession();
+		$this->rekbank->AdvancedSearch->unsetSession();
+		$this->jenjang_id->AdvancedSearch->unsetSession();
+		$this->jabatan_id->AdvancedSearch->unsetSession();
+		$this->lama_kerja->AdvancedSearch->unsetSession();
+		$this->type->AdvancedSearch->unsetSession();
+		$this->jenis_guru->AdvancedSearch->unsetSession();
+		$this->tambahan->AdvancedSearch->unsetSession();
+		$this->periode->AdvancedSearch->unsetSession();
+		$this->tunjangan_periode->AdvancedSearch->unsetSession();
+		$this->kehadiran->AdvancedSearch->unsetSession();
+		$this->jp->AdvancedSearch->unsetSession();
+		$this->value_kehadiran->AdvancedSearch->unsetSession();
+		$this->gapok->AdvancedSearch->unsetSession();
+		$this->total_gapok->AdvancedSearch->unsetSession();
+		$this->lembur->AdvancedSearch->unsetSession();
+		$this->value_lembur->AdvancedSearch->unsetSession();
+		$this->value_reward->AdvancedSearch->unsetSession();
+		$this->value_inval->AdvancedSearch->unsetSession();
+		$this->piket_count->AdvancedSearch->unsetSession();
+		$this->value_piket->AdvancedSearch->unsetSession();
+		$this->tugastambahan->AdvancedSearch->unsetSession();
+		$this->tj_jabatan->AdvancedSearch->unsetSession();
+		$this->sub_total->AdvancedSearch->unsetSession();
+		$this->potongan->AdvancedSearch->unsetSession();
+		$this->penyesuaian->AdvancedSearch->unsetSession();
+		$this->potongan_bendahara->AdvancedSearch->unsetSession();
+		$this->total->AdvancedSearch->unsetSession();
+		$this->voucher->AdvancedSearch->unsetSession();
+	}
+
 	// Restore all search parameters
 	protected function restoreSearchParms()
 	{
@@ -1622,6 +1893,41 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 
 		// Restore basic search values
 		$this->BasicSearch->load();
+
+		// Restore advanced search values
+		$this->id->AdvancedSearch->load();
+		$this->pid->AdvancedSearch->load();
+		$this->tahun->AdvancedSearch->load();
+		$this->bulan->AdvancedSearch->load();
+		$this->pegawai->AdvancedSearch->load();
+		$this->rekbank->AdvancedSearch->load();
+		$this->jenjang_id->AdvancedSearch->load();
+		$this->jabatan_id->AdvancedSearch->load();
+		$this->lama_kerja->AdvancedSearch->load();
+		$this->type->AdvancedSearch->load();
+		$this->jenis_guru->AdvancedSearch->load();
+		$this->tambahan->AdvancedSearch->load();
+		$this->periode->AdvancedSearch->load();
+		$this->tunjangan_periode->AdvancedSearch->load();
+		$this->kehadiran->AdvancedSearch->load();
+		$this->jp->AdvancedSearch->load();
+		$this->value_kehadiran->AdvancedSearch->load();
+		$this->gapok->AdvancedSearch->load();
+		$this->total_gapok->AdvancedSearch->load();
+		$this->lembur->AdvancedSearch->load();
+		$this->value_lembur->AdvancedSearch->load();
+		$this->value_reward->AdvancedSearch->load();
+		$this->value_inval->AdvancedSearch->load();
+		$this->piket_count->AdvancedSearch->load();
+		$this->value_piket->AdvancedSearch->load();
+		$this->tugastambahan->AdvancedSearch->load();
+		$this->tj_jabatan->AdvancedSearch->load();
+		$this->sub_total->AdvancedSearch->load();
+		$this->potongan->AdvancedSearch->load();
+		$this->penyesuaian->AdvancedSearch->load();
+		$this->potongan_bendahara->AdvancedSearch->load();
+		$this->total->AdvancedSearch->load();
+		$this->voucher->AdvancedSearch->load();
 	}
 
 	// Set up sort parameters
@@ -1635,9 +1941,9 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 			$this->updateSort($this->tahun); // tahun
 			$this->updateSort($this->bulan); // bulan
 			$this->updateSort($this->pegawai); // pegawai
+			$this->updateSort($this->rekbank); // rekbank
 			$this->updateSort($this->jenjang_id); // jenjang_id
 			$this->updateSort($this->jabatan_id); // jabatan_id
-			$this->updateSort($this->month); // month
 			$this->updateSort($this->lama_kerja); // lama_kerja
 			$this->updateSort($this->type); // type
 			$this->updateSort($this->jenis_guru); // jenis_guru
@@ -1660,6 +1966,7 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 			$this->updateSort($this->sub_total); // sub_total
 			$this->updateSort($this->potongan); // potongan
 			$this->updateSort($this->penyesuaian); // penyesuaian
+			$this->updateSort($this->potongan_bendahara); // potongan_bendahara
 			$this->updateSort($this->total); // total
 			$this->updateSort($this->voucher); // voucher
 			$this->setStartRecordNumber(1); // Reset start position
@@ -1700,9 +2007,9 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 				$this->tahun->setSort("");
 				$this->bulan->setSort("");
 				$this->pegawai->setSort("");
+				$this->rekbank->setSort("");
 				$this->jenjang_id->setSort("");
 				$this->jabatan_id->setSort("");
-				$this->month->setSort("");
 				$this->lama_kerja->setSort("");
 				$this->type->setSort("");
 				$this->jenis_guru->setSort("");
@@ -1725,6 +2032,7 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 				$this->sub_total->setSort("");
 				$this->potongan->setSort("");
 				$this->penyesuaian->setSort("");
+				$this->potongan_bendahara->setSort("");
 				$this->total->setSort("");
 				$this->voucher->setSort("");
 			}
@@ -2008,6 +2316,250 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 		$this->BasicSearch->setType(Get(Config("TABLE_BASIC_SEARCH_TYPE"), ""), FALSE);
 	}
 
+	// Load search values for validation
+	protected function loadSearchValues()
+	{
+
+		// Load search values
+		$got = FALSE;
+
+		// id
+		if (!$this->isAddOrEdit() && $this->id->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->id->AdvancedSearch->SearchValue != "" || $this->id->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// pid
+		if (!$this->isAddOrEdit() && $this->pid->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->pid->AdvancedSearch->SearchValue != "" || $this->pid->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// tahun
+		if (!$this->isAddOrEdit() && $this->tahun->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->tahun->AdvancedSearch->SearchValue != "" || $this->tahun->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// bulan
+		if (!$this->isAddOrEdit() && $this->bulan->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->bulan->AdvancedSearch->SearchValue != "" || $this->bulan->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+		if (is_array($this->bulan->AdvancedSearch->SearchValue))
+			$this->bulan->AdvancedSearch->SearchValue = implode(Config("MULTIPLE_OPTION_SEPARATOR"), $this->bulan->AdvancedSearch->SearchValue);
+		if (is_array($this->bulan->AdvancedSearch->SearchValue2))
+			$this->bulan->AdvancedSearch->SearchValue2 = implode(Config("MULTIPLE_OPTION_SEPARATOR"), $this->bulan->AdvancedSearch->SearchValue2);
+
+		// pegawai
+		if (!$this->isAddOrEdit() && $this->pegawai->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->pegawai->AdvancedSearch->SearchValue != "" || $this->pegawai->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// rekbank
+		if (!$this->isAddOrEdit() && $this->rekbank->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->rekbank->AdvancedSearch->SearchValue != "" || $this->rekbank->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// jenjang_id
+		if (!$this->isAddOrEdit() && $this->jenjang_id->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->jenjang_id->AdvancedSearch->SearchValue != "" || $this->jenjang_id->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// jabatan_id
+		if (!$this->isAddOrEdit() && $this->jabatan_id->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->jabatan_id->AdvancedSearch->SearchValue != "" || $this->jabatan_id->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// lama_kerja
+		if (!$this->isAddOrEdit() && $this->lama_kerja->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->lama_kerja->AdvancedSearch->SearchValue != "" || $this->lama_kerja->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// type
+		if (!$this->isAddOrEdit() && $this->type->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->type->AdvancedSearch->SearchValue != "" || $this->type->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// jenis_guru
+		if (!$this->isAddOrEdit() && $this->jenis_guru->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->jenis_guru->AdvancedSearch->SearchValue != "" || $this->jenis_guru->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// tambahan
+		if (!$this->isAddOrEdit() && $this->tambahan->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->tambahan->AdvancedSearch->SearchValue != "" || $this->tambahan->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// periode
+		if (!$this->isAddOrEdit() && $this->periode->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->periode->AdvancedSearch->SearchValue != "" || $this->periode->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// tunjangan_periode
+		if (!$this->isAddOrEdit() && $this->tunjangan_periode->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->tunjangan_periode->AdvancedSearch->SearchValue != "" || $this->tunjangan_periode->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// kehadiran
+		if (!$this->isAddOrEdit() && $this->kehadiran->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->kehadiran->AdvancedSearch->SearchValue != "" || $this->kehadiran->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// jp
+		if (!$this->isAddOrEdit() && $this->jp->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->jp->AdvancedSearch->SearchValue != "" || $this->jp->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// value_kehadiran
+		if (!$this->isAddOrEdit() && $this->value_kehadiran->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->value_kehadiran->AdvancedSearch->SearchValue != "" || $this->value_kehadiran->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// gapok
+		if (!$this->isAddOrEdit() && $this->gapok->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->gapok->AdvancedSearch->SearchValue != "" || $this->gapok->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// total_gapok
+		if (!$this->isAddOrEdit() && $this->total_gapok->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->total_gapok->AdvancedSearch->SearchValue != "" || $this->total_gapok->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// lembur
+		if (!$this->isAddOrEdit() && $this->lembur->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->lembur->AdvancedSearch->SearchValue != "" || $this->lembur->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// value_lembur
+		if (!$this->isAddOrEdit() && $this->value_lembur->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->value_lembur->AdvancedSearch->SearchValue != "" || $this->value_lembur->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// value_reward
+		if (!$this->isAddOrEdit() && $this->value_reward->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->value_reward->AdvancedSearch->SearchValue != "" || $this->value_reward->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// value_inval
+		if (!$this->isAddOrEdit() && $this->value_inval->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->value_inval->AdvancedSearch->SearchValue != "" || $this->value_inval->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// piket_count
+		if (!$this->isAddOrEdit() && $this->piket_count->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->piket_count->AdvancedSearch->SearchValue != "" || $this->piket_count->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// value_piket
+		if (!$this->isAddOrEdit() && $this->value_piket->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->value_piket->AdvancedSearch->SearchValue != "" || $this->value_piket->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// tugastambahan
+		if (!$this->isAddOrEdit() && $this->tugastambahan->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->tugastambahan->AdvancedSearch->SearchValue != "" || $this->tugastambahan->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// tj_jabatan
+		if (!$this->isAddOrEdit() && $this->tj_jabatan->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->tj_jabatan->AdvancedSearch->SearchValue != "" || $this->tj_jabatan->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// sub_total
+		if (!$this->isAddOrEdit() && $this->sub_total->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->sub_total->AdvancedSearch->SearchValue != "" || $this->sub_total->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// potongan
+		if (!$this->isAddOrEdit() && $this->potongan->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->potongan->AdvancedSearch->SearchValue != "" || $this->potongan->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// penyesuaian
+		if (!$this->isAddOrEdit() && $this->penyesuaian->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->penyesuaian->AdvancedSearch->SearchValue != "" || $this->penyesuaian->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// potongan_bendahara
+		if (!$this->isAddOrEdit() && $this->potongan_bendahara->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->potongan_bendahara->AdvancedSearch->SearchValue != "" || $this->potongan_bendahara->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// total
+		if (!$this->isAddOrEdit() && $this->total->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->total->AdvancedSearch->SearchValue != "" || $this->total->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// voucher
+		if (!$this->isAddOrEdit() && $this->voucher->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->voucher->AdvancedSearch->SearchValue != "" || $this->voucher->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+		return $got;
+	}
+
 	// Load recordset
 	public function loadRecordset($offset = -1, $rowcnt = -1)
 	{
@@ -2075,9 +2627,9 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 		$this->tahun->setDbValue($row['tahun']);
 		$this->bulan->setDbValue($row['bulan']);
 		$this->pegawai->setDbValue($row['pegawai']);
+		$this->rekbank->setDbValue($row['rekbank']);
 		$this->jenjang_id->setDbValue($row['jenjang_id']);
 		$this->jabatan_id->setDbValue($row['jabatan_id']);
-		$this->month->setDbValue($row['month']);
 		$this->lama_kerja->setDbValue($row['lama_kerja']);
 		$this->type->setDbValue($row['type']);
 		$this->jenis_guru->setDbValue($row['jenis_guru']);
@@ -2100,6 +2652,7 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 		$this->sub_total->setDbValue($row['sub_total']);
 		$this->potongan->setDbValue($row['potongan']);
 		$this->penyesuaian->setDbValue($row['penyesuaian']);
+		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
 		$this->total->setDbValue($row['total']);
 		$this->voucher->setDbValue($row['voucher']);
 	}
@@ -2113,9 +2666,9 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 		$row['tahun'] = NULL;
 		$row['bulan'] = NULL;
 		$row['pegawai'] = NULL;
+		$row['rekbank'] = NULL;
 		$row['jenjang_id'] = NULL;
 		$row['jabatan_id'] = NULL;
-		$row['month'] = NULL;
 		$row['lama_kerja'] = NULL;
 		$row['type'] = NULL;
 		$row['jenis_guru'] = NULL;
@@ -2138,6 +2691,7 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 		$row['sub_total'] = NULL;
 		$row['potongan'] = NULL;
 		$row['penyesuaian'] = NULL;
+		$row['potongan_bendahara'] = NULL;
 		$row['total'] = NULL;
 		$row['voucher'] = NULL;
 		return $row;
@@ -2188,9 +2742,9 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 		// tahun
 		// bulan
 		// pegawai
+		// rekbank
 		// jenjang_id
 		// jabatan_id
-		// month
 		// lama_kerja
 		// type
 		// jenis_guru
@@ -2213,6 +2767,7 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 		// sub_total
 		// potongan
 		// penyesuaian
+		// potongan_bendahara
 		// total
 		// voucher
 
@@ -2232,18 +2787,29 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 			$this->tahun->ViewCustomAttributes = "";
 
 			// bulan
-			$this->bulan->ViewValue = $this->bulan->CurrentValue;
 			$curVal = strval($this->bulan->CurrentValue);
 			if ($curVal != "") {
 				$this->bulan->ViewValue = $this->bulan->lookupCacheOption($curVal);
 				if ($this->bulan->ViewValue === NULL) { // Lookup from database
-					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$arwrk = explode(",", $curVal);
+					$filterWrk = "";
+					foreach ($arwrk as $wrk) {
+						if ($filterWrk != "")
+							$filterWrk .= " OR ";
+						$filterWrk .= "`id`" . SearchString("=", trim($wrk), DATATYPE_NUMBER, "");
+					}
 					$sqlWrk = $this->bulan->Lookup->getSql(FALSE, $filterWrk, '', $this);
 					$rswrk = Conn()->execute($sqlWrk);
 					if ($rswrk && !$rswrk->EOF) { // Lookup values found
-						$arwrk = [];
-						$arwrk[1] = $rswrk->fields('df');
-						$this->bulan->ViewValue = $this->bulan->displayValue($arwrk);
+						$this->bulan->ViewValue = new OptionValues();
+						$ari = 0;
+						while (!$rswrk->EOF) {
+							$arwrk = [];
+							$arwrk[1] = $rswrk->fields('df');
+							$this->bulan->ViewValue->add($this->bulan->displayValue($arwrk));
+							$rswrk->MoveNext();
+							$ari++;
+						}
 						$rswrk->Close();
 					} else {
 						$this->bulan->ViewValue = $this->bulan->CurrentValue;
@@ -2275,6 +2841,10 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 				$this->pegawai->ViewValue = NULL;
 			}
 			$this->pegawai->ViewCustomAttributes = "";
+
+			// rekbank
+			$this->rekbank->ViewValue = $this->rekbank->CurrentValue;
+			$this->rekbank->ViewCustomAttributes = "";
 
 			// jenjang_id
 			$this->jenjang_id->ViewValue = $this->jenjang_id->CurrentValue;
@@ -2321,11 +2891,6 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 				$this->jabatan_id->ViewValue = NULL;
 			}
 			$this->jabatan_id->ViewCustomAttributes = "";
-
-			// month
-			$this->month->ViewValue = $this->month->CurrentValue;
-			$this->month->ViewValue = FormatDateTime($this->month->ViewValue, 0);
-			$this->month->ViewCustomAttributes = "";
 
 			// lama_kerja
 			$this->lama_kerja->ViewValue = $this->lama_kerja->CurrentValue;
@@ -2491,6 +3056,11 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 			$this->penyesuaian->ViewValue = FormatNumber($this->penyesuaian->ViewValue, 0, -2, -2, -2);
 			$this->penyesuaian->ViewCustomAttributes = "";
 
+			// potongan_bendahara
+			$this->potongan_bendahara->ViewValue = $this->potongan_bendahara->CurrentValue;
+			$this->potongan_bendahara->ViewValue = FormatNumber($this->potongan_bendahara->ViewValue, 0, -2, -2, -2);
+			$this->potongan_bendahara->ViewCustomAttributes = "";
+
 			// total
 			$this->total->ViewValue = $this->total->CurrentValue;
 			$this->total->ViewValue = FormatNumber($this->total->ViewValue, 0, -2, -2, -2);
@@ -2516,6 +3086,11 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 			$this->pegawai->HrefValue = "";
 			$this->pegawai->TooltipValue = "";
 
+			// rekbank
+			$this->rekbank->LinkCustomAttributes = "";
+			$this->rekbank->HrefValue = "";
+			$this->rekbank->TooltipValue = "";
+
 			// jenjang_id
 			$this->jenjang_id->LinkCustomAttributes = "";
 			$this->jenjang_id->HrefValue = "";
@@ -2525,11 +3100,6 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 			$this->jabatan_id->LinkCustomAttributes = "";
 			$this->jabatan_id->HrefValue = "";
 			$this->jabatan_id->TooltipValue = "";
-
-			// month
-			$this->month->LinkCustomAttributes = "";
-			$this->month->HrefValue = "";
-			$this->month->TooltipValue = "";
 
 			// lama_kerja
 			$this->lama_kerja->LinkCustomAttributes = "";
@@ -2641,6 +3211,11 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 			$this->penyesuaian->HrefValue = "";
 			$this->penyesuaian->TooltipValue = "";
 
+			// potongan_bendahara
+			$this->potongan_bendahara->LinkCustomAttributes = "";
+			$this->potongan_bendahara->HrefValue = "";
+			$this->potongan_bendahara->TooltipValue = "";
+
 			// total
 			$this->total->LinkCustomAttributes = "";
 			$this->total->HrefValue = "";
@@ -2650,11 +3225,316 @@ class vgaji_guru_sd_list extends vgaji_guru_sd
 			$this->voucher->LinkCustomAttributes = "";
 			$this->voucher->HrefValue = "";
 			$this->voucher->TooltipValue = "";
+		} elseif ($this->RowType == ROWTYPE_SEARCH) { // Search row
+
+			// tahun
+			$this->tahun->EditAttrs["class"] = "form-control";
+			$this->tahun->EditCustomAttributes = "";
+			$this->tahun->EditValue = HtmlEncode($this->tahun->AdvancedSearch->SearchValue);
+			$this->tahun->PlaceHolder = RemoveHtml($this->tahun->caption());
+
+			// bulan
+			$this->bulan->EditCustomAttributes = "";
+			$curVal = trim(strval($this->bulan->AdvancedSearch->SearchValue));
+			if ($curVal != "")
+				$this->bulan->AdvancedSearch->ViewValue = $this->bulan->lookupCacheOption($curVal);
+			else
+				$this->bulan->AdvancedSearch->ViewValue = $this->bulan->Lookup !== NULL && is_array($this->bulan->Lookup->Options) ? $curVal : NULL;
+			if ($this->bulan->AdvancedSearch->ViewValue !== NULL) { // Load from cache
+				$this->bulan->EditValue = array_values($this->bulan->Lookup->Options);
+			} else { // Lookup from database
+				if ($curVal == "") {
+					$filterWrk = "0=1";
+				} else {
+					$arwrk = explode(",", $curVal);
+					$filterWrk = "";
+					foreach ($arwrk as $wrk) {
+						if ($filterWrk != "")
+							$filterWrk .= " OR ";
+						$filterWrk .= "`id`" . SearchString("=", trim($wrk), DATATYPE_NUMBER, "");
+					}
+				}
+				$sqlWrk = $this->bulan->Lookup->getSql(TRUE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				$arwrk = $rswrk ? $rswrk->getRows() : [];
+				if ($rswrk)
+					$rswrk->close();
+				$this->bulan->EditValue = $arwrk;
+			}
+
+			// pegawai
+			$this->pegawai->EditCustomAttributes = "";
+			$curVal = trim(strval($this->pegawai->AdvancedSearch->SearchValue));
+			if ($curVal != "")
+				$this->pegawai->AdvancedSearch->ViewValue = $this->pegawai->lookupCacheOption($curVal);
+			else
+				$this->pegawai->AdvancedSearch->ViewValue = $this->pegawai->Lookup !== NULL && is_array($this->pegawai->Lookup->Options) ? $curVal : NULL;
+			if ($this->pegawai->AdvancedSearch->ViewValue !== NULL) { // Load from cache
+				$this->pegawai->EditValue = array_values($this->pegawai->Lookup->Options);
+				if ($this->pegawai->AdvancedSearch->ViewValue == "")
+					$this->pegawai->AdvancedSearch->ViewValue = $Language->phrase("PleaseSelect");
+			} else { // Lookup from database
+				if ($curVal == "") {
+					$filterWrk = "0=1";
+				} else {
+					$filterWrk = "`nip`" . SearchString("=", $this->pegawai->AdvancedSearch->SearchValue, DATATYPE_STRING, "");
+				}
+				$sqlWrk = $this->pegawai->Lookup->getSql(TRUE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				if ($rswrk && !$rswrk->EOF) { // Lookup values found
+					$arwrk = [];
+					$arwrk[1] = HtmlEncode($rswrk->fields('df'));
+					$this->pegawai->AdvancedSearch->ViewValue = $this->pegawai->displayValue($arwrk);
+				} else {
+					$this->pegawai->AdvancedSearch->ViewValue = $Language->phrase("PleaseSelect");
+				}
+				$arwrk = $rswrk ? $rswrk->getRows() : [];
+				if ($rswrk)
+					$rswrk->close();
+				$this->pegawai->EditValue = $arwrk;
+			}
+
+			// rekbank
+			$this->rekbank->EditAttrs["class"] = "form-control";
+			$this->rekbank->EditCustomAttributes = "";
+			if (!$this->rekbank->Raw)
+				$this->rekbank->AdvancedSearch->SearchValue = HtmlDecode($this->rekbank->AdvancedSearch->SearchValue);
+			$this->rekbank->EditValue = HtmlEncode($this->rekbank->AdvancedSearch->SearchValue);
+			$this->rekbank->PlaceHolder = RemoveHtml($this->rekbank->caption());
+
+			// jenjang_id
+			$this->jenjang_id->EditAttrs["class"] = "form-control";
+			$this->jenjang_id->EditCustomAttributes = "";
+			$this->jenjang_id->EditValue = HtmlEncode($this->jenjang_id->AdvancedSearch->SearchValue);
+			$this->jenjang_id->PlaceHolder = RemoveHtml($this->jenjang_id->caption());
+
+			// jabatan_id
+			$this->jabatan_id->EditAttrs["class"] = "form-control";
+			$this->jabatan_id->EditCustomAttributes = "";
+			$this->jabatan_id->EditValue = HtmlEncode($this->jabatan_id->AdvancedSearch->SearchValue);
+			$this->jabatan_id->PlaceHolder = RemoveHtml($this->jabatan_id->caption());
+
+			// lama_kerja
+			$this->lama_kerja->EditAttrs["class"] = "form-control";
+			$this->lama_kerja->EditCustomAttributes = "";
+			$this->lama_kerja->EditValue = HtmlEncode($this->lama_kerja->AdvancedSearch->SearchValue);
+			$this->lama_kerja->PlaceHolder = RemoveHtml($this->lama_kerja->caption());
+
+			// type
+			$this->type->EditAttrs["class"] = "form-control";
+			$this->type->EditCustomAttributes = "";
+			$this->type->EditValue = HtmlEncode($this->type->AdvancedSearch->SearchValue);
+			$this->type->PlaceHolder = RemoveHtml($this->type->caption());
+
+			// jenis_guru
+			$this->jenis_guru->EditAttrs["class"] = "form-control";
+			$this->jenis_guru->EditCustomAttributes = "";
+			$this->jenis_guru->EditValue = HtmlEncode($this->jenis_guru->AdvancedSearch->SearchValue);
+			$this->jenis_guru->PlaceHolder = RemoveHtml($this->jenis_guru->caption());
+
+			// tambahan
+			$this->tambahan->EditAttrs["class"] = "form-control";
+			$this->tambahan->EditCustomAttributes = "";
+			$this->tambahan->EditValue = HtmlEncode($this->tambahan->AdvancedSearch->SearchValue);
+			$this->tambahan->PlaceHolder = RemoveHtml($this->tambahan->caption());
+
+			// periode
+			$this->periode->EditAttrs["class"] = "form-control";
+			$this->periode->EditCustomAttributes = "";
+			$this->periode->EditValue = HtmlEncode($this->periode->AdvancedSearch->SearchValue);
+			$this->periode->PlaceHolder = RemoveHtml($this->periode->caption());
+
+			// tunjangan_periode
+			$this->tunjangan_periode->EditAttrs["class"] = "form-control";
+			$this->tunjangan_periode->EditCustomAttributes = "";
+			$this->tunjangan_periode->EditValue = HtmlEncode($this->tunjangan_periode->AdvancedSearch->SearchValue);
+			$this->tunjangan_periode->PlaceHolder = RemoveHtml($this->tunjangan_periode->caption());
+
+			// kehadiran
+			$this->kehadiran->EditAttrs["class"] = "form-control";
+			$this->kehadiran->EditCustomAttributes = "";
+			$this->kehadiran->EditValue = HtmlEncode($this->kehadiran->AdvancedSearch->SearchValue);
+			$this->kehadiran->PlaceHolder = RemoveHtml($this->kehadiran->caption());
+
+			// jp
+			$this->jp->EditAttrs["class"] = "form-control";
+			$this->jp->EditCustomAttributes = "";
+			$this->jp->EditValue = HtmlEncode($this->jp->AdvancedSearch->SearchValue);
+			$this->jp->PlaceHolder = RemoveHtml($this->jp->caption());
+
+			// value_kehadiran
+			$this->value_kehadiran->EditAttrs["class"] = "form-control";
+			$this->value_kehadiran->EditCustomAttributes = "";
+			$this->value_kehadiran->EditValue = HtmlEncode($this->value_kehadiran->AdvancedSearch->SearchValue);
+			$this->value_kehadiran->PlaceHolder = RemoveHtml($this->value_kehadiran->caption());
+
+			// gapok
+			$this->gapok->EditAttrs["class"] = "form-control";
+			$this->gapok->EditCustomAttributes = "";
+			$this->gapok->EditValue = HtmlEncode($this->gapok->AdvancedSearch->SearchValue);
+			$this->gapok->PlaceHolder = RemoveHtml($this->gapok->caption());
+
+			// total_gapok
+			$this->total_gapok->EditAttrs["class"] = "form-control";
+			$this->total_gapok->EditCustomAttributes = "";
+			$this->total_gapok->EditValue = HtmlEncode($this->total_gapok->AdvancedSearch->SearchValue);
+			$this->total_gapok->PlaceHolder = RemoveHtml($this->total_gapok->caption());
+
+			// lembur
+			$this->lembur->EditAttrs["class"] = "form-control";
+			$this->lembur->EditCustomAttributes = "";
+			$this->lembur->EditValue = HtmlEncode($this->lembur->AdvancedSearch->SearchValue);
+			$this->lembur->PlaceHolder = RemoveHtml($this->lembur->caption());
+
+			// value_lembur
+			$this->value_lembur->EditAttrs["class"] = "form-control";
+			$this->value_lembur->EditCustomAttributes = "";
+			$this->value_lembur->EditValue = HtmlEncode($this->value_lembur->AdvancedSearch->SearchValue);
+			$this->value_lembur->PlaceHolder = RemoveHtml($this->value_lembur->caption());
+
+			// value_reward
+			$this->value_reward->EditAttrs["class"] = "form-control";
+			$this->value_reward->EditCustomAttributes = "";
+			$this->value_reward->EditValue = HtmlEncode($this->value_reward->AdvancedSearch->SearchValue);
+			$this->value_reward->PlaceHolder = RemoveHtml($this->value_reward->caption());
+
+			// value_inval
+			$this->value_inval->EditAttrs["class"] = "form-control";
+			$this->value_inval->EditCustomAttributes = "";
+			$this->value_inval->EditValue = HtmlEncode($this->value_inval->AdvancedSearch->SearchValue);
+			$this->value_inval->PlaceHolder = RemoveHtml($this->value_inval->caption());
+
+			// piket_count
+			$this->piket_count->EditAttrs["class"] = "form-control";
+			$this->piket_count->EditCustomAttributes = "";
+			$this->piket_count->EditValue = HtmlEncode($this->piket_count->AdvancedSearch->SearchValue);
+			$this->piket_count->PlaceHolder = RemoveHtml($this->piket_count->caption());
+
+			// value_piket
+			$this->value_piket->EditAttrs["class"] = "form-control";
+			$this->value_piket->EditCustomAttributes = "";
+			$this->value_piket->EditValue = HtmlEncode($this->value_piket->AdvancedSearch->SearchValue);
+			$this->value_piket->PlaceHolder = RemoveHtml($this->value_piket->caption());
+
+			// tugastambahan
+			$this->tugastambahan->EditAttrs["class"] = "form-control";
+			$this->tugastambahan->EditCustomAttributes = "";
+			$this->tugastambahan->EditValue = HtmlEncode($this->tugastambahan->AdvancedSearch->SearchValue);
+			$this->tugastambahan->PlaceHolder = RemoveHtml($this->tugastambahan->caption());
+
+			// tj_jabatan
+			$this->tj_jabatan->EditAttrs["class"] = "form-control";
+			$this->tj_jabatan->EditCustomAttributes = "";
+			$this->tj_jabatan->EditValue = HtmlEncode($this->tj_jabatan->AdvancedSearch->SearchValue);
+			$this->tj_jabatan->PlaceHolder = RemoveHtml($this->tj_jabatan->caption());
+
+			// sub_total
+			$this->sub_total->EditAttrs["class"] = "form-control";
+			$this->sub_total->EditCustomAttributes = "";
+			$this->sub_total->EditValue = HtmlEncode($this->sub_total->AdvancedSearch->SearchValue);
+			$this->sub_total->PlaceHolder = RemoveHtml($this->sub_total->caption());
+
+			// potongan
+			$this->potongan->EditAttrs["class"] = "form-control";
+			$this->potongan->EditCustomAttributes = "";
+			$this->potongan->EditValue = HtmlEncode($this->potongan->AdvancedSearch->SearchValue);
+			$this->potongan->PlaceHolder = RemoveHtml($this->potongan->caption());
+
+			// penyesuaian
+			$this->penyesuaian->EditAttrs["class"] = "form-control";
+			$this->penyesuaian->EditCustomAttributes = "";
+			$this->penyesuaian->EditValue = HtmlEncode($this->penyesuaian->AdvancedSearch->SearchValue);
+			$this->penyesuaian->PlaceHolder = RemoveHtml($this->penyesuaian->caption());
+
+			// potongan_bendahara
+			$this->potongan_bendahara->EditAttrs["class"] = "form-control";
+			$this->potongan_bendahara->EditCustomAttributes = "";
+			$this->potongan_bendahara->EditValue = HtmlEncode($this->potongan_bendahara->AdvancedSearch->SearchValue);
+			$this->potongan_bendahara->PlaceHolder = RemoveHtml($this->potongan_bendahara->caption());
+
+			// total
+			$this->total->EditAttrs["class"] = "form-control";
+			$this->total->EditCustomAttributes = "";
+			$this->total->EditValue = HtmlEncode($this->total->AdvancedSearch->SearchValue);
+			$this->total->PlaceHolder = RemoveHtml($this->total->caption());
+
+			// voucher
+			$this->voucher->EditAttrs["class"] = "form-control";
+			$this->voucher->EditCustomAttributes = "";
+			$this->voucher->EditValue = HtmlEncode($this->voucher->AdvancedSearch->SearchValue);
+			$this->voucher->PlaceHolder = RemoveHtml($this->voucher->caption());
 		}
+		if ($this->RowType == ROWTYPE_ADD || $this->RowType == ROWTYPE_EDIT || $this->RowType == ROWTYPE_SEARCH) // Add/Edit/Search row
+			$this->setupFieldTitles();
 
 		// Call Row Rendered event
 		if ($this->RowType != ROWTYPE_AGGREGATEINIT)
 			$this->Row_Rendered();
+	}
+
+	// Validate search
+	protected function validateSearch()
+	{
+		global $SearchError;
+
+		// Initialize
+		$SearchError = "";
+
+		// Check if validation required
+		if (!Config("SERVER_VALIDATE"))
+			return TRUE;
+		if (!CheckInteger($this->tahun->AdvancedSearch->SearchValue)) {
+			AddMessage($SearchError, $this->tahun->errorMessage());
+		}
+
+		// Return validate result
+		$validateSearch = ($SearchError == "");
+
+		// Call Form_CustomValidate event
+		$formCustomError = "";
+		$validateSearch = $validateSearch && $this->Form_CustomValidate($formCustomError);
+		if ($formCustomError != "") {
+			AddMessage($SearchError, $formCustomError);
+		}
+		return $validateSearch;
+	}
+
+	// Load advanced search
+	public function loadAdvancedSearch()
+	{
+		$this->id->AdvancedSearch->load();
+		$this->pid->AdvancedSearch->load();
+		$this->tahun->AdvancedSearch->load();
+		$this->bulan->AdvancedSearch->load();
+		$this->pegawai->AdvancedSearch->load();
+		$this->rekbank->AdvancedSearch->load();
+		$this->jenjang_id->AdvancedSearch->load();
+		$this->jabatan_id->AdvancedSearch->load();
+		$this->lama_kerja->AdvancedSearch->load();
+		$this->type->AdvancedSearch->load();
+		$this->jenis_guru->AdvancedSearch->load();
+		$this->tambahan->AdvancedSearch->load();
+		$this->periode->AdvancedSearch->load();
+		$this->tunjangan_periode->AdvancedSearch->load();
+		$this->kehadiran->AdvancedSearch->load();
+		$this->jp->AdvancedSearch->load();
+		$this->value_kehadiran->AdvancedSearch->load();
+		$this->gapok->AdvancedSearch->load();
+		$this->total_gapok->AdvancedSearch->load();
+		$this->lembur->AdvancedSearch->load();
+		$this->value_lembur->AdvancedSearch->load();
+		$this->value_reward->AdvancedSearch->load();
+		$this->value_inval->AdvancedSearch->load();
+		$this->piket_count->AdvancedSearch->load();
+		$this->value_piket->AdvancedSearch->load();
+		$this->tugastambahan->AdvancedSearch->load();
+		$this->tj_jabatan->AdvancedSearch->load();
+		$this->sub_total->AdvancedSearch->load();
+		$this->potongan->AdvancedSearch->load();
+		$this->penyesuaian->AdvancedSearch->load();
+		$this->potongan_bendahara->AdvancedSearch->load();
+		$this->total->AdvancedSearch->load();
+		$this->voucher->AdvancedSearch->load();
 	}
 
 	// Get export HTML tag

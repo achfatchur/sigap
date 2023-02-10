@@ -82,14 +82,14 @@ $gaji_karyawan_sma_delete->showMessage();
 <?php if ($gaji_karyawan_sma_delete->penyesuaian->Visible) { // penyesuaian ?>
 		<th class="<?php echo $gaji_karyawan_sma_delete->penyesuaian->headerCellClass() ?>"><span id="elh_gaji_karyawan_sma_penyesuaian" class="gaji_karyawan_sma_penyesuaian"><?php echo $gaji_karyawan_sma_delete->penyesuaian->caption() ?></span></th>
 <?php } ?>
+<?php if ($gaji_karyawan_sma_delete->potongan_bendahara->Visible) { // potongan_bendahara ?>
+		<th class="<?php echo $gaji_karyawan_sma_delete->potongan_bendahara->headerCellClass() ?>"><span id="elh_gaji_karyawan_sma_potongan_bendahara" class="gaji_karyawan_sma_potongan_bendahara"><?php echo $gaji_karyawan_sma_delete->potongan_bendahara->caption() ?></span></th>
+<?php } ?>
 <?php if ($gaji_karyawan_sma_delete->total->Visible) { // total ?>
 		<th class="<?php echo $gaji_karyawan_sma_delete->total->headerCellClass() ?>"><span id="elh_gaji_karyawan_sma_total" class="gaji_karyawan_sma_total"><?php echo $gaji_karyawan_sma_delete->total->caption() ?></span></th>
 <?php } ?>
 <?php if ($gaji_karyawan_sma_delete->voucher->Visible) { // voucher ?>
 		<th class="<?php echo $gaji_karyawan_sma_delete->voucher->headerCellClass() ?>"><span id="elh_gaji_karyawan_sma_voucher" class="gaji_karyawan_sma_voucher"><?php echo $gaji_karyawan_sma_delete->voucher->caption() ?></span></th>
-<?php } ?>
-<?php if ($gaji_karyawan_sma_delete->potongan_bendahara->Visible) { // potongan_bendahara ?>
-		<th class="<?php echo $gaji_karyawan_sma_delete->potongan_bendahara->headerCellClass() ?>"><span id="elh_gaji_karyawan_sma_potongan_bendahara" class="gaji_karyawan_sma_potongan_bendahara"><?php echo $gaji_karyawan_sma_delete->potongan_bendahara->caption() ?></span></th>
 <?php } ?>
 	</tr>
 	</thead>
@@ -140,6 +140,13 @@ while (!$gaji_karyawan_sma_delete->Recordset->EOF) {
 </span>
 </td>
 <?php } ?>
+<?php if ($gaji_karyawan_sma_delete->potongan_bendahara->Visible) { // potongan_bendahara ?>
+		<td <?php echo $gaji_karyawan_sma_delete->potongan_bendahara->cellAttributes() ?>>
+<span id="el<?php echo $gaji_karyawan_sma_delete->RowCount ?>_gaji_karyawan_sma_potongan_bendahara" class="gaji_karyawan_sma_potongan_bendahara">
+<span<?php echo $gaji_karyawan_sma_delete->potongan_bendahara->viewAttributes() ?>><?php echo $gaji_karyawan_sma_delete->potongan_bendahara->getViewValue() ?></span>
+</span>
+</td>
+<?php } ?>
 <?php if ($gaji_karyawan_sma_delete->total->Visible) { // total ?>
 		<td <?php echo $gaji_karyawan_sma_delete->total->cellAttributes() ?>>
 <span id="el<?php echo $gaji_karyawan_sma_delete->RowCount ?>_gaji_karyawan_sma_total" class="gaji_karyawan_sma_total">
@@ -151,13 +158,6 @@ while (!$gaji_karyawan_sma_delete->Recordset->EOF) {
 		<td <?php echo $gaji_karyawan_sma_delete->voucher->cellAttributes() ?>>
 <span id="el<?php echo $gaji_karyawan_sma_delete->RowCount ?>_gaji_karyawan_sma_voucher" class="gaji_karyawan_sma_voucher">
 <span<?php echo $gaji_karyawan_sma_delete->voucher->viewAttributes() ?>><?php echo $gaji_karyawan_sma_delete->voucher->getViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
-<?php if ($gaji_karyawan_sma_delete->potongan_bendahara->Visible) { // potongan_bendahara ?>
-		<td <?php echo $gaji_karyawan_sma_delete->potongan_bendahara->cellAttributes() ?>>
-<span id="el<?php echo $gaji_karyawan_sma_delete->RowCount ?>_gaji_karyawan_sma_potongan_bendahara" class="gaji_karyawan_sma_potongan_bendahara">
-<span<?php echo $gaji_karyawan_sma_delete->potongan_bendahara->viewAttributes() ?>><?php echo $gaji_karyawan_sma_delete->potongan_bendahara->getViewValue() ?></span>
 </span>
 </td>
 <?php } ?>

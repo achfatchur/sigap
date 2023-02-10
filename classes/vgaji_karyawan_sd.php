@@ -29,6 +29,7 @@ class vgaji_karyawan_sd extends DbTable
 	public $tahun;
 	public $bulan;
 	public $pegawai;
+	public $rekbank;
 	public $jenjang_id;
 	public $jabatan_id;
 	public $kehadiran;
@@ -39,6 +40,7 @@ class vgaji_karyawan_sd extends DbTable
 	public $sub_total;
 	public $potongan;
 	public $penyesuaian;
+	public $potongan_bendahara;
 	public $total;
 	public $voucher;
 	public $status;
@@ -91,10 +93,8 @@ class vgaji_karyawan_sd extends DbTable
 		$this->fields['tahun'] = &$this->tahun;
 
 		// bulan
-		$this->bulan = new DbField('vgaji_karyawan_sd', 'vgaji_karyawan_sd', 'x_bulan', 'bulan', '`bulan`', '`bulan`', 3, 10, -1, FALSE, '`bulan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->bulan = new DbField('vgaji_karyawan_sd', 'vgaji_karyawan_sd', 'x_bulan', 'bulan', '`bulan`', '`bulan`', 3, 10, -1, FALSE, '`bulan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'CHECKBOX');
 		$this->bulan->Sortable = TRUE; // Allow sort
-		$this->bulan->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->bulan->PleaseSelectText = $Language->phrase("PleaseSelect"); // "PleaseSelect" text
 		$this->bulan->Lookup = new Lookup('bulan', 'bulan', FALSE, 'nourut', ["bulan","","",""], [], [], [], [], [], [], '', '');
 		$this->bulan->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['bulan'] = &$this->bulan;
@@ -106,6 +106,11 @@ class vgaji_karyawan_sd extends DbTable
 		$this->pegawai->PleaseSelectText = $Language->phrase("PleaseSelect"); // "PleaseSelect" text
 		$this->pegawai->Lookup = new Lookup('pegawai', 'pegawai', FALSE, 'nip', ["nama","","",""], [], [], [], [], ["jabatan","jenjang_id"], ["x_jabatan_id","x_jenjang_id"], '', '');
 		$this->fields['pegawai'] = &$this->pegawai;
+
+		// rekbank
+		$this->rekbank = new DbField('vgaji_karyawan_sd', 'vgaji_karyawan_sd', 'x_rekbank', 'rekbank', '`rekbank`', '`rekbank`', 200, 255, -1, FALSE, '`rekbank`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->rekbank->Sortable = TRUE; // Allow sort
+		$this->fields['rekbank'] = &$this->rekbank;
 
 		// jenjang_id
 		$this->jenjang_id = new DbField('vgaji_karyawan_sd', 'vgaji_karyawan_sd', 'x_jenjang_id', 'jenjang_id', '`jenjang_id`', '`jenjang_id`', 3, 10, -1, FALSE, '`jenjang_id`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
@@ -168,6 +173,12 @@ class vgaji_karyawan_sd extends DbTable
 		$this->penyesuaian->Sortable = TRUE; // Allow sort
 		$this->penyesuaian->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['penyesuaian'] = &$this->penyesuaian;
+
+		// potongan_bendahara
+		$this->potongan_bendahara = new DbField('vgaji_karyawan_sd', 'vgaji_karyawan_sd', 'x_potongan_bendahara', 'potongan_bendahara', '`potongan_bendahara`', '`potongan_bendahara`', 20, 100, -1, FALSE, '`potongan_bendahara`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->potongan_bendahara->Sortable = TRUE; // Allow sort
+		$this->potongan_bendahara->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['potongan_bendahara'] = &$this->potongan_bendahara;
 
 		// total
 		$this->total = new DbField('vgaji_karyawan_sd', 'vgaji_karyawan_sd', 'x_total', 'total', '`total`', '`total`', 20, 19, -1, FALSE, '`total`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
@@ -545,6 +556,7 @@ class vgaji_karyawan_sd extends DbTable
 		$this->tahun->DbValue = $row['tahun'];
 		$this->bulan->DbValue = $row['bulan'];
 		$this->pegawai->DbValue = $row['pegawai'];
+		$this->rekbank->DbValue = $row['rekbank'];
 		$this->jenjang_id->DbValue = $row['jenjang_id'];
 		$this->jabatan_id->DbValue = $row['jabatan_id'];
 		$this->kehadiran->DbValue = $row['kehadiran'];
@@ -555,6 +567,7 @@ class vgaji_karyawan_sd extends DbTable
 		$this->sub_total->DbValue = $row['sub_total'];
 		$this->potongan->DbValue = $row['potongan'];
 		$this->penyesuaian->DbValue = $row['penyesuaian'];
+		$this->potongan_bendahara->DbValue = $row['potongan_bendahara'];
 		$this->total->DbValue = $row['total'];
 		$this->voucher->DbValue = $row['voucher'];
 		$this->status->DbValue = $row['status'];
@@ -792,6 +805,7 @@ class vgaji_karyawan_sd extends DbTable
 		$this->tahun->setDbValue($rs->fields('tahun'));
 		$this->bulan->setDbValue($rs->fields('bulan'));
 		$this->pegawai->setDbValue($rs->fields('pegawai'));
+		$this->rekbank->setDbValue($rs->fields('rekbank'));
 		$this->jenjang_id->setDbValue($rs->fields('jenjang_id'));
 		$this->jabatan_id->setDbValue($rs->fields('jabatan_id'));
 		$this->kehadiran->setDbValue($rs->fields('kehadiran'));
@@ -802,6 +816,7 @@ class vgaji_karyawan_sd extends DbTable
 		$this->sub_total->setDbValue($rs->fields('sub_total'));
 		$this->potongan->setDbValue($rs->fields('potongan'));
 		$this->penyesuaian->setDbValue($rs->fields('penyesuaian'));
+		$this->potongan_bendahara->setDbValue($rs->fields('potongan_bendahara'));
 		$this->total->setDbValue($rs->fields('total'));
 		$this->voucher->setDbValue($rs->fields('voucher'));
 		$this->status->setDbValue($rs->fields('status'));
@@ -820,6 +835,7 @@ class vgaji_karyawan_sd extends DbTable
 		// tahun
 		// bulan
 		// pegawai
+		// rekbank
 		// jenjang_id
 		// jabatan_id
 		// kehadiran
@@ -830,6 +846,7 @@ class vgaji_karyawan_sd extends DbTable
 		// sub_total
 		// potongan
 		// penyesuaian
+		// potongan_bendahara
 		// total
 		// voucher
 		// status
@@ -847,13 +864,25 @@ class vgaji_karyawan_sd extends DbTable
 		if ($curVal != "") {
 			$this->bulan->ViewValue = $this->bulan->lookupCacheOption($curVal);
 			if ($this->bulan->ViewValue === NULL) { // Lookup from database
-				$filterWrk = "`nourut`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+				$arwrk = explode(",", $curVal);
+				$filterWrk = "";
+				foreach ($arwrk as $wrk) {
+					if ($filterWrk != "")
+						$filterWrk .= " OR ";
+					$filterWrk .= "`nourut`" . SearchString("=", trim($wrk), DATATYPE_NUMBER, "");
+				}
 				$sqlWrk = $this->bulan->Lookup->getSql(FALSE, $filterWrk, '', $this);
 				$rswrk = Conn()->execute($sqlWrk);
 				if ($rswrk && !$rswrk->EOF) { // Lookup values found
-					$arwrk = [];
-					$arwrk[1] = $rswrk->fields('df');
-					$this->bulan->ViewValue = $this->bulan->displayValue($arwrk);
+					$this->bulan->ViewValue = new OptionValues();
+					$ari = 0;
+					while (!$rswrk->EOF) {
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->bulan->ViewValue->add($this->bulan->displayValue($arwrk));
+						$rswrk->MoveNext();
+						$ari++;
+					}
 					$rswrk->Close();
 				} else {
 					$this->bulan->ViewValue = $this->bulan->CurrentValue;
@@ -885,6 +914,10 @@ class vgaji_karyawan_sd extends DbTable
 			$this->pegawai->ViewValue = NULL;
 		}
 		$this->pegawai->ViewCustomAttributes = "";
+
+		// rekbank
+		$this->rekbank->ViewValue = $this->rekbank->CurrentValue;
+		$this->rekbank->ViewCustomAttributes = "";
 
 		// jenjang_id
 		$this->jenjang_id->ViewValue = $this->jenjang_id->CurrentValue;
@@ -972,6 +1005,11 @@ class vgaji_karyawan_sd extends DbTable
 		$this->penyesuaian->ViewValue = FormatNumber($this->penyesuaian->ViewValue, 0, -2, -2, -2);
 		$this->penyesuaian->ViewCustomAttributes = "";
 
+		// potongan_bendahara
+		$this->potongan_bendahara->ViewValue = $this->potongan_bendahara->CurrentValue;
+		$this->potongan_bendahara->ViewValue = FormatNumber($this->potongan_bendahara->ViewValue, 0, -2, -2, -2);
+		$this->potongan_bendahara->ViewCustomAttributes = "";
+
 		// total
 		$this->total->ViewValue = $this->total->CurrentValue;
 		$this->total->ViewValue = FormatNumber($this->total->ViewValue, 0, -2, -2, -2);
@@ -1006,6 +1044,11 @@ class vgaji_karyawan_sd extends DbTable
 		$this->pegawai->LinkCustomAttributes = "";
 		$this->pegawai->HrefValue = "";
 		$this->pegawai->TooltipValue = "";
+
+		// rekbank
+		$this->rekbank->LinkCustomAttributes = "";
+		$this->rekbank->HrefValue = "";
+		$this->rekbank->TooltipValue = "";
 
 		// jenjang_id
 		$this->jenjang_id->LinkCustomAttributes = "";
@@ -1057,6 +1100,11 @@ class vgaji_karyawan_sd extends DbTable
 		$this->penyesuaian->HrefValue = "";
 		$this->penyesuaian->TooltipValue = "";
 
+		// potongan_bendahara
+		$this->potongan_bendahara->LinkCustomAttributes = "";
+		$this->potongan_bendahara->HrefValue = "";
+		$this->potongan_bendahara->TooltipValue = "";
+
 		// total
 		$this->total->LinkCustomAttributes = "";
 		$this->total->HrefValue = "";
@@ -1100,12 +1148,19 @@ class vgaji_karyawan_sd extends DbTable
 		$this->tahun->PlaceHolder = RemoveHtml($this->tahun->caption());
 
 		// bulan
-		$this->bulan->EditAttrs["class"] = "form-control";
 		$this->bulan->EditCustomAttributes = "";
 
 		// pegawai
 		$this->pegawai->EditAttrs["class"] = "form-control";
 		$this->pegawai->EditCustomAttributes = "";
+
+		// rekbank
+		$this->rekbank->EditAttrs["class"] = "form-control";
+		$this->rekbank->EditCustomAttributes = "";
+		if (!$this->rekbank->Raw)
+			$this->rekbank->CurrentValue = HtmlDecode($this->rekbank->CurrentValue);
+		$this->rekbank->EditValue = $this->rekbank->CurrentValue;
+		$this->rekbank->PlaceHolder = RemoveHtml($this->rekbank->caption());
 
 		// jenjang_id
 		$this->jenjang_id->EditAttrs["class"] = "form-control";
@@ -1167,6 +1222,12 @@ class vgaji_karyawan_sd extends DbTable
 		$this->penyesuaian->EditValue = $this->penyesuaian->CurrentValue;
 		$this->penyesuaian->PlaceHolder = RemoveHtml($this->penyesuaian->caption());
 
+		// potongan_bendahara
+		$this->potongan_bendahara->EditAttrs["class"] = "form-control";
+		$this->potongan_bendahara->EditCustomAttributes = "";
+		$this->potongan_bendahara->EditValue = $this->potongan_bendahara->CurrentValue;
+		$this->potongan_bendahara->PlaceHolder = RemoveHtml($this->potongan_bendahara->caption());
+
 		// total
 		$this->total->EditAttrs["class"] = "form-control";
 		$this->total->EditCustomAttributes = "";
@@ -1218,6 +1279,7 @@ class vgaji_karyawan_sd extends DbTable
 					$doc->exportCaption($this->tahun);
 					$doc->exportCaption($this->bulan);
 					$doc->exportCaption($this->pegawai);
+					$doc->exportCaption($this->rekbank);
 					$doc->exportCaption($this->jenjang_id);
 					$doc->exportCaption($this->jabatan_id);
 					$doc->exportCaption($this->kehadiran);
@@ -1228,6 +1290,7 @@ class vgaji_karyawan_sd extends DbTable
 					$doc->exportCaption($this->sub_total);
 					$doc->exportCaption($this->potongan);
 					$doc->exportCaption($this->penyesuaian);
+					$doc->exportCaption($this->potongan_bendahara);
 					$doc->exportCaption($this->total);
 					$doc->exportCaption($this->voucher);
 					$doc->exportCaption($this->status);
@@ -1236,6 +1299,7 @@ class vgaji_karyawan_sd extends DbTable
 					$doc->exportCaption($this->tahun);
 					$doc->exportCaption($this->bulan);
 					$doc->exportCaption($this->pegawai);
+					$doc->exportCaption($this->rekbank);
 					$doc->exportCaption($this->jenjang_id);
 					$doc->exportCaption($this->jabatan_id);
 					$doc->exportCaption($this->kehadiran);
@@ -1246,6 +1310,7 @@ class vgaji_karyawan_sd extends DbTable
 					$doc->exportCaption($this->sub_total);
 					$doc->exportCaption($this->potongan);
 					$doc->exportCaption($this->penyesuaian);
+					$doc->exportCaption($this->potongan_bendahara);
 					$doc->exportCaption($this->total);
 					$doc->exportCaption($this->voucher);
 					$doc->exportCaption($this->status);
@@ -1284,6 +1349,7 @@ class vgaji_karyawan_sd extends DbTable
 						$doc->exportField($this->tahun);
 						$doc->exportField($this->bulan);
 						$doc->exportField($this->pegawai);
+						$doc->exportField($this->rekbank);
 						$doc->exportField($this->jenjang_id);
 						$doc->exportField($this->jabatan_id);
 						$doc->exportField($this->kehadiran);
@@ -1294,6 +1360,7 @@ class vgaji_karyawan_sd extends DbTable
 						$doc->exportField($this->sub_total);
 						$doc->exportField($this->potongan);
 						$doc->exportField($this->penyesuaian);
+						$doc->exportField($this->potongan_bendahara);
 						$doc->exportField($this->total);
 						$doc->exportField($this->voucher);
 						$doc->exportField($this->status);
@@ -1302,6 +1369,7 @@ class vgaji_karyawan_sd extends DbTable
 						$doc->exportField($this->tahun);
 						$doc->exportField($this->bulan);
 						$doc->exportField($this->pegawai);
+						$doc->exportField($this->rekbank);
 						$doc->exportField($this->jenjang_id);
 						$doc->exportField($this->jabatan_id);
 						$doc->exportField($this->kehadiran);
@@ -1312,6 +1380,7 @@ class vgaji_karyawan_sd extends DbTable
 						$doc->exportField($this->sub_total);
 						$doc->exportField($this->potongan);
 						$doc->exportField($this->penyesuaian);
+						$doc->exportField($this->potongan_bendahara);
 						$doc->exportField($this->total);
 						$doc->exportField($this->voucher);
 						$doc->exportField($this->status);

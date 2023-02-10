@@ -56,9 +56,9 @@ class gaji extends DbTable
 	public $sub_total;
 	public $potongan;
 	public $penyesuaian;
+	public $potongan_bendahara;
 	public $total;
 	public $status;
-	public $potongan_bendahara;
 	public $voucher;
 
 	// Constructor
@@ -292,6 +292,12 @@ class gaji extends DbTable
 		$this->penyesuaian->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['penyesuaian'] = &$this->penyesuaian;
 
+		// potongan_bendahara
+		$this->potongan_bendahara = new DbField('gaji', 'gaji', 'x_potongan_bendahara', 'potongan_bendahara', '`potongan_bendahara`', '`potongan_bendahara`', 20, 20, -1, FALSE, '`potongan_bendahara`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->potongan_bendahara->Sortable = TRUE; // Allow sort
+		$this->potongan_bendahara->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['potongan_bendahara'] = &$this->potongan_bendahara;
+
 		// total
 		$this->total = new DbField('gaji', 'gaji', 'x_total', 'total', '`total`', '`total`', 20, 19, -1, FALSE, '`total`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->total->Sortable = TRUE; // Allow sort
@@ -306,11 +312,6 @@ class gaji extends DbTable
 		$this->status->Lookup = new Lookup('status', 'gaji', FALSE, '', ["","","",""], [], [], [], [], [], [], '', '');
 		$this->status->OptionCount = 1;
 		$this->fields['status'] = &$this->status;
-
-		// potongan_bendahara
-		$this->potongan_bendahara = new DbField('gaji', 'gaji', 'x_potongan_bendahara', 'potongan_bendahara', '`potongan_bendahara`', '`potongan_bendahara`', 201, 65535, -1, FALSE, '`potongan_bendahara`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXTAREA');
-		$this->potongan_bendahara->Sortable = TRUE; // Allow sort
-		$this->fields['potongan_bendahara'] = &$this->potongan_bendahara;
 
 		// voucher
 		$this->voucher = new DbField('gaji', 'gaji', 'x_voucher', 'voucher', '`voucher`', '`voucher`', 20, 20, -1, FALSE, '`voucher`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
@@ -771,9 +772,9 @@ class gaji extends DbTable
 		$this->sub_total->DbValue = $row['sub_total'];
 		$this->potongan->DbValue = $row['potongan'];
 		$this->penyesuaian->DbValue = $row['penyesuaian'];
+		$this->potongan_bendahara->DbValue = $row['potongan_bendahara'];
 		$this->total->DbValue = $row['total'];
 		$this->status->DbValue = $row['status'];
-		$this->potongan_bendahara->DbValue = $row['potongan_bendahara'];
 		$this->voucher->DbValue = $row['voucher'];
 	}
 
@@ -1042,9 +1043,9 @@ class gaji extends DbTable
 		$this->sub_total->setDbValue($rs->fields('sub_total'));
 		$this->potongan->setDbValue($rs->fields('potongan'));
 		$this->penyesuaian->setDbValue($rs->fields('penyesuaian'));
+		$this->potongan_bendahara->setDbValue($rs->fields('potongan_bendahara'));
 		$this->total->setDbValue($rs->fields('total'));
 		$this->status->setDbValue($rs->fields('status'));
-		$this->potongan_bendahara->setDbValue($rs->fields('potongan_bendahara'));
 		$this->voucher->setDbValue($rs->fields('voucher'));
 	}
 
@@ -1088,9 +1089,9 @@ class gaji extends DbTable
 		// sub_total
 		// potongan
 		// penyesuaian
+		// potongan_bendahara
 		// total
 		// status
-		// potongan_bendahara
 		// voucher
 		// id
 
@@ -1371,6 +1372,11 @@ class gaji extends DbTable
 		$this->penyesuaian->ViewValue = FormatNumber($this->penyesuaian->ViewValue, 0, -2, -2, -2);
 		$this->penyesuaian->ViewCustomAttributes = "";
 
+		// potongan_bendahara
+		$this->potongan_bendahara->ViewValue = $this->potongan_bendahara->CurrentValue;
+		$this->potongan_bendahara->ViewValue = FormatNumber($this->potongan_bendahara->ViewValue, 0, -2, -2, -2);
+		$this->potongan_bendahara->ViewCustomAttributes = "";
+
 		// total
 		$this->total->ViewValue = $this->total->CurrentValue;
 		$this->total->ViewValue = FormatNumber($this->total->ViewValue, 0, -2, -2, -2);
@@ -1383,10 +1389,6 @@ class gaji extends DbTable
 			$this->status->ViewValue = NULL;
 		}
 		$this->status->ViewCustomAttributes = "";
-
-		// potongan_bendahara
-		$this->potongan_bendahara->ViewValue = $this->potongan_bendahara->CurrentValue;
-		$this->potongan_bendahara->ViewCustomAttributes = "";
 
 		// voucher
 		$this->voucher->ViewValue = $this->voucher->CurrentValue;
@@ -1548,6 +1550,11 @@ class gaji extends DbTable
 		$this->penyesuaian->HrefValue = "";
 		$this->penyesuaian->TooltipValue = "";
 
+		// potongan_bendahara
+		$this->potongan_bendahara->LinkCustomAttributes = "";
+		$this->potongan_bendahara->HrefValue = "";
+		$this->potongan_bendahara->TooltipValue = "";
+
 		// total
 		$this->total->LinkCustomAttributes = "";
 		$this->total->HrefValue = "";
@@ -1557,11 +1564,6 @@ class gaji extends DbTable
 		$this->status->LinkCustomAttributes = "";
 		$this->status->HrefValue = "";
 		$this->status->TooltipValue = "";
-
-		// potongan_bendahara
-		$this->potongan_bendahara->LinkCustomAttributes = "";
-		$this->potongan_bendahara->HrefValue = "";
-		$this->potongan_bendahara->TooltipValue = "";
 
 		// voucher
 		$this->voucher->LinkCustomAttributes = "";
@@ -1839,6 +1841,12 @@ class gaji extends DbTable
 		$this->penyesuaian->EditValue = $this->penyesuaian->CurrentValue;
 		$this->penyesuaian->PlaceHolder = RemoveHtml($this->penyesuaian->caption());
 
+		// potongan_bendahara
+		$this->potongan_bendahara->EditAttrs["class"] = "form-control";
+		$this->potongan_bendahara->EditCustomAttributes = "";
+		$this->potongan_bendahara->EditValue = $this->potongan_bendahara->CurrentValue;
+		$this->potongan_bendahara->PlaceHolder = RemoveHtml($this->potongan_bendahara->caption());
+
 		// total
 		$this->total->EditAttrs["class"] = "form-control";
 		$this->total->EditCustomAttributes = "";
@@ -1849,12 +1857,6 @@ class gaji extends DbTable
 		$this->status->EditAttrs["class"] = "form-control";
 		$this->status->EditCustomAttributes = "";
 		$this->status->EditValue = $this->status->options(TRUE);
-
-		// potongan_bendahara
-		$this->potongan_bendahara->EditAttrs["class"] = "form-control";
-		$this->potongan_bendahara->EditCustomAttributes = "";
-		$this->potongan_bendahara->EditValue = $this->potongan_bendahara->CurrentValue;
-		$this->potongan_bendahara->PlaceHolder = RemoveHtml($this->potongan_bendahara->caption());
 
 		// voucher
 		$this->voucher->EditAttrs["class"] = "form-control";
@@ -1922,9 +1924,9 @@ class gaji extends DbTable
 					$doc->exportCaption($this->sub_total);
 					$doc->exportCaption($this->potongan);
 					$doc->exportCaption($this->penyesuaian);
+					$doc->exportCaption($this->potongan_bendahara);
 					$doc->exportCaption($this->total);
 					$doc->exportCaption($this->status);
-					$doc->exportCaption($this->potongan_bendahara);
 					$doc->exportCaption($this->voucher);
 				} else {
 					$doc->exportCaption($this->id);
@@ -1958,6 +1960,7 @@ class gaji extends DbTable
 					$doc->exportCaption($this->sub_total);
 					$doc->exportCaption($this->potongan);
 					$doc->exportCaption($this->penyesuaian);
+					$doc->exportCaption($this->potongan_bendahara);
 					$doc->exportCaption($this->total);
 					$doc->exportCaption($this->status);
 					$doc->exportCaption($this->voucher);
@@ -2023,9 +2026,9 @@ class gaji extends DbTable
 						$doc->exportField($this->sub_total);
 						$doc->exportField($this->potongan);
 						$doc->exportField($this->penyesuaian);
+						$doc->exportField($this->potongan_bendahara);
 						$doc->exportField($this->total);
 						$doc->exportField($this->status);
-						$doc->exportField($this->potongan_bendahara);
 						$doc->exportField($this->voucher);
 					} else {
 						$doc->exportField($this->id);
@@ -2059,6 +2062,7 @@ class gaji extends DbTable
 						$doc->exportField($this->sub_total);
 						$doc->exportField($this->potongan);
 						$doc->exportField($this->penyesuaian);
+						$doc->exportField($this->potongan_bendahara);
 						$doc->exportField($this->total);
 						$doc->exportField($this->status);
 						$doc->exportField($this->voucher);

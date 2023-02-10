@@ -229,15 +229,6 @@ $gaji_tu_smk_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
-<?php if ($gaji_tu_smk_list->potongan->Visible) { // potongan ?>
-	<?php if ($gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->potongan) == "") { ?>
-		<th data-name="potongan" class="<?php echo $gaji_tu_smk_list->potongan->headerCellClass() ?>"><div id="elh_gaji_tu_smk_potongan" class="gaji_tu_smk_potongan"><div class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->potongan->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="potongan" class="<?php echo $gaji_tu_smk_list->potongan->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->potongan) ?>', 1);"><div id="elh_gaji_tu_smk_potongan" class="gaji_tu_smk_potongan">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->potongan->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_list->potongan->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_list->potongan->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
 <?php if ($gaji_tu_smk_list->sub_total->Visible) { // sub_total ?>
 	<?php if ($gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->sub_total) == "") { ?>
 		<th data-name="sub_total" class="<?php echo $gaji_tu_smk_list->sub_total->headerCellClass() ?>"><div id="elh_gaji_tu_smk_sub_total" class="gaji_tu_smk_sub_total"><div class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->sub_total->caption() ?></div></div></th>
@@ -247,12 +238,30 @@ $gaji_tu_smk_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($gaji_tu_smk_list->potongan->Visible) { // potongan ?>
+	<?php if ($gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->potongan) == "") { ?>
+		<th data-name="potongan" class="<?php echo $gaji_tu_smk_list->potongan->headerCellClass() ?>"><div id="elh_gaji_tu_smk_potongan" class="gaji_tu_smk_potongan"><div class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->potongan->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="potongan" class="<?php echo $gaji_tu_smk_list->potongan->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->potongan) ?>', 1);"><div id="elh_gaji_tu_smk_potongan" class="gaji_tu_smk_potongan">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->potongan->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_list->potongan->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_list->potongan->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($gaji_tu_smk_list->penyesuaian->Visible) { // penyesuaian ?>
 	<?php if ($gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->penyesuaian) == "") { ?>
 		<th data-name="penyesuaian" class="<?php echo $gaji_tu_smk_list->penyesuaian->headerCellClass() ?>"><div id="elh_gaji_tu_smk_penyesuaian" class="gaji_tu_smk_penyesuaian"><div class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->penyesuaian->caption() ?></div></div></th>
 	<?php } else { ?>
 		<th data-name="penyesuaian" class="<?php echo $gaji_tu_smk_list->penyesuaian->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->penyesuaian) ?>', 1);"><div id="elh_gaji_tu_smk_penyesuaian" class="gaji_tu_smk_penyesuaian">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->penyesuaian->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_list->penyesuaian->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_list->penyesuaian->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_tu_smk_list->potongan_bendahara->Visible) { // potongan_bendahara ?>
+	<?php if ($gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->potongan_bendahara) == "") { ?>
+		<th data-name="potongan_bendahara" class="<?php echo $gaji_tu_smk_list->potongan_bendahara->headerCellClass() ?>"><div id="elh_gaji_tu_smk_potongan_bendahara" class="gaji_tu_smk_potongan_bendahara"><div class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->potongan_bendahara->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="potongan_bendahara" class="<?php echo $gaji_tu_smk_list->potongan_bendahara->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->potongan_bendahara) ?>', 1);"><div id="elh_gaji_tu_smk_potongan_bendahara" class="gaji_tu_smk_potongan_bendahara">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->potongan_bendahara->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_list->potongan_bendahara->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_list->potongan_bendahara->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -271,15 +280,6 @@ $gaji_tu_smk_list->ListOptions->render("header", "left");
 	<?php } else { ?>
 		<th data-name="voucher" class="<?php echo $gaji_tu_smk_list->voucher->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->voucher) ?>', 1);"><div id="elh_gaji_tu_smk_voucher" class="gaji_tu_smk_voucher">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->voucher->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_list->voucher->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_list->voucher->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
-<?php if ($gaji_tu_smk_list->potongan_bendahara->Visible) { // potongan_bendahara ?>
-	<?php if ($gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->potongan_bendahara) == "") { ?>
-		<th data-name="potongan_bendahara" class="<?php echo $gaji_tu_smk_list->potongan_bendahara->headerCellClass() ?>"><div id="elh_gaji_tu_smk_potongan_bendahara" class="gaji_tu_smk_potongan_bendahara"><div class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->potongan_bendahara->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="potongan_bendahara" class="<?php echo $gaji_tu_smk_list->potongan_bendahara->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->potongan_bendahara) ?>', 1);"><div id="elh_gaji_tu_smk_potongan_bendahara" class="gaji_tu_smk_potongan_bendahara">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->potongan_bendahara->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_list->potongan_bendahara->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_list->potongan_bendahara->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -376,13 +376,6 @@ $gaji_tu_smk_list->ListOptions->render("body", "left", $gaji_tu_smk_list->RowCou
 </span>
 </td>
 	<?php } ?>
-	<?php if ($gaji_tu_smk_list->potongan->Visible) { // potongan ?>
-		<td data-name="potongan" <?php echo $gaji_tu_smk_list->potongan->cellAttributes() ?>>
-<span id="el<?php echo $gaji_tu_smk_list->RowCount ?>_gaji_tu_smk_potongan">
-<span<?php echo $gaji_tu_smk_list->potongan->viewAttributes() ?>><?php echo $gaji_tu_smk_list->potongan->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
 	<?php if ($gaji_tu_smk_list->sub_total->Visible) { // sub_total ?>
 		<td data-name="sub_total" <?php echo $gaji_tu_smk_list->sub_total->cellAttributes() ?>>
 <span id="el<?php echo $gaji_tu_smk_list->RowCount ?>_gaji_tu_smk_sub_total">
@@ -390,10 +383,24 @@ $gaji_tu_smk_list->ListOptions->render("body", "left", $gaji_tu_smk_list->RowCou
 </span>
 </td>
 	<?php } ?>
+	<?php if ($gaji_tu_smk_list->potongan->Visible) { // potongan ?>
+		<td data-name="potongan" <?php echo $gaji_tu_smk_list->potongan->cellAttributes() ?>>
+<span id="el<?php echo $gaji_tu_smk_list->RowCount ?>_gaji_tu_smk_potongan">
+<span<?php echo $gaji_tu_smk_list->potongan->viewAttributes() ?>><?php echo $gaji_tu_smk_list->potongan->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
 	<?php if ($gaji_tu_smk_list->penyesuaian->Visible) { // penyesuaian ?>
 		<td data-name="penyesuaian" <?php echo $gaji_tu_smk_list->penyesuaian->cellAttributes() ?>>
 <span id="el<?php echo $gaji_tu_smk_list->RowCount ?>_gaji_tu_smk_penyesuaian">
 <span<?php echo $gaji_tu_smk_list->penyesuaian->viewAttributes() ?>><?php echo $gaji_tu_smk_list->penyesuaian->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($gaji_tu_smk_list->potongan_bendahara->Visible) { // potongan_bendahara ?>
+		<td data-name="potongan_bendahara" <?php echo $gaji_tu_smk_list->potongan_bendahara->cellAttributes() ?>>
+<span id="el<?php echo $gaji_tu_smk_list->RowCount ?>_gaji_tu_smk_potongan_bendahara">
+<span<?php echo $gaji_tu_smk_list->potongan_bendahara->viewAttributes() ?>><?php echo $gaji_tu_smk_list->potongan_bendahara->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>
@@ -408,13 +415,6 @@ $gaji_tu_smk_list->ListOptions->render("body", "left", $gaji_tu_smk_list->RowCou
 		<td data-name="voucher" <?php echo $gaji_tu_smk_list->voucher->cellAttributes() ?>>
 <span id="el<?php echo $gaji_tu_smk_list->RowCount ?>_gaji_tu_smk_voucher">
 <span<?php echo $gaji_tu_smk_list->voucher->viewAttributes() ?>><?php echo $gaji_tu_smk_list->voucher->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($gaji_tu_smk_list->potongan_bendahara->Visible) { // potongan_bendahara ?>
-		<td data-name="potongan_bendahara" <?php echo $gaji_tu_smk_list->potongan_bendahara->cellAttributes() ?>>
-<span id="el<?php echo $gaji_tu_smk_list->RowCount ?>_gaji_tu_smk_potongan_bendahara">
-<span<?php echo $gaji_tu_smk_list->potongan_bendahara->viewAttributes() ?>><?php echo $gaji_tu_smk_list->potongan_bendahara->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

@@ -79,6 +79,8 @@ loadjs.ready("head", function() {
 	// Dynamic selection lists
 	fvgaji_karyawan_smplistsrch.lists["x_bulan"] = <?php echo $vgaji_karyawan_smp_list->bulan->Lookup->toClientList($vgaji_karyawan_smp_list) ?>;
 	fvgaji_karyawan_smplistsrch.lists["x_bulan"].options = <?php echo JsonEncode($vgaji_karyawan_smp_list->bulan->lookupOptions()) ?>;
+	fvgaji_karyawan_smplistsrch.lists["x_pegawai"] = <?php echo $vgaji_karyawan_smp_list->pegawai->Lookup->toClientList($vgaji_karyawan_smp_list) ?>;
+	fvgaji_karyawan_smplistsrch.lists["x_pegawai"].options = <?php echo JsonEncode($vgaji_karyawan_smp_list->pegawai->lookupOptions()) ?>;
 
 	// Filters
 	fvgaji_karyawan_smplistsrch.filterList = <?php echo $vgaji_karyawan_smp_list->getFilterList() ?>;
@@ -205,6 +207,37 @@ $vgaji_karyawan_smp_list->renderRow();
 </div>
 	<?php } ?>
 <?php } ?>
+<?php if ($vgaji_karyawan_smp_list->pegawai->Visible) { // pegawai ?>
+	<?php
+		$vgaji_karyawan_smp_list->SearchColumnCount++;
+		if (($vgaji_karyawan_smp_list->SearchColumnCount - 1) % $vgaji_karyawan_smp_list->SearchFieldsPerRow == 0) {
+			$vgaji_karyawan_smp_list->SearchRowCount++;
+	?>
+<div id="xsr_<?php echo $vgaji_karyawan_smp_list->SearchRowCount ?>" class="ew-row d-sm-flex">
+	<?php
+		}
+	 ?>
+	<div id="xsc_pegawai" class="ew-cell form-group">
+		<label for="x_pegawai" class="ew-search-caption ew-label"><?php echo $vgaji_karyawan_smp_list->pegawai->caption() ?></label>
+		<span class="ew-search-operator">
+<?php echo $Language->phrase("LIKE") ?>
+<input type="hidden" name="z_pegawai" id="z_pegawai" value="LIKE">
+</span>
+		<span id="el_vgaji_karyawan_smp_pegawai" class="ew-search-field">
+<div class="input-group ew-lookup-list">
+	<div class="form-control ew-lookup-text" tabindex="-1" id="lu_x_pegawai"><?php echo EmptyValue(strval($vgaji_karyawan_smp_list->pegawai->AdvancedSearch->ViewValue)) ? $Language->phrase("PleaseSelect") : $vgaji_karyawan_smp_list->pegawai->AdvancedSearch->ViewValue ?></div>
+	<div class="input-group-append">
+		<button type="button" title="<?php echo HtmlEncode(str_replace("%s", RemoveHtml($vgaji_karyawan_smp_list->pegawai->caption()), $Language->phrase("LookupLink", TRUE))) ?>" class="ew-lookup-btn btn btn-default"<?php echo ($vgaji_karyawan_smp_list->pegawai->ReadOnly || $vgaji_karyawan_smp_list->pegawai->Disabled) ? " disabled" : "" ?> onclick="ew.modalLookupShow({lnk:this,el:'x_pegawai',m:0,n:10});"><i class="fas fa-search ew-icon"></i></button>
+	</div>
+</div>
+<?php echo $vgaji_karyawan_smp_list->pegawai->Lookup->getParamTag($vgaji_karyawan_smp_list, "p_x_pegawai") ?>
+<input type="hidden" data-table="vgaji_karyawan_smp" data-field="x_pegawai" data-multiple="0" data-lookup="1" data-value-separator="<?php echo $vgaji_karyawan_smp_list->pegawai->displayValueSeparatorAttribute() ?>" name="x_pegawai" id="x_pegawai" value="<?php echo $vgaji_karyawan_smp_list->pegawai->AdvancedSearch->SearchValue ?>"<?php echo $vgaji_karyawan_smp_list->pegawai->editAttributes() ?>>
+</span>
+	</div>
+	<?php if ($vgaji_karyawan_smp_list->SearchColumnCount % $vgaji_karyawan_smp_list->SearchFieldsPerRow == 0) { ?>
+</div>
+	<?php } ?>
+<?php } ?>
 	<?php if ($vgaji_karyawan_smp_list->SearchColumnCount % $vgaji_karyawan_smp_list->SearchFieldsPerRow > 0) { ?>
 </div>
 	<?php } ?>
@@ -296,6 +329,78 @@ $vgaji_karyawan_smp_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($vgaji_karyawan_smp_list->rekbank->Visible) { // rekbank ?>
+	<?php if ($vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->rekbank) == "") { ?>
+		<th data-name="rekbank" class="<?php echo $vgaji_karyawan_smp_list->rekbank->headerCellClass() ?>"><div id="elh_vgaji_karyawan_smp_rekbank" class="vgaji_karyawan_smp_rekbank"><div class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->rekbank->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="rekbank" class="<?php echo $vgaji_karyawan_smp_list->rekbank->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->rekbank) ?>', 1);"><div id="elh_vgaji_karyawan_smp_rekbank" class="vgaji_karyawan_smp_rekbank">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->rekbank->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($vgaji_karyawan_smp_list->rekbank->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_karyawan_smp_list->rekbank->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($vgaji_karyawan_smp_list->jenjang_id->Visible) { // jenjang_id ?>
+	<?php if ($vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->jenjang_id) == "") { ?>
+		<th data-name="jenjang_id" class="<?php echo $vgaji_karyawan_smp_list->jenjang_id->headerCellClass() ?>"><div id="elh_vgaji_karyawan_smp_jenjang_id" class="vgaji_karyawan_smp_jenjang_id"><div class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->jenjang_id->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="jenjang_id" class="<?php echo $vgaji_karyawan_smp_list->jenjang_id->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->jenjang_id) ?>', 1);"><div id="elh_vgaji_karyawan_smp_jenjang_id" class="vgaji_karyawan_smp_jenjang_id">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->jenjang_id->caption() ?></span><span class="ew-table-header-sort"><?php if ($vgaji_karyawan_smp_list->jenjang_id->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_karyawan_smp_list->jenjang_id->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($vgaji_karyawan_smp_list->jabatan_id->Visible) { // jabatan_id ?>
+	<?php if ($vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->jabatan_id) == "") { ?>
+		<th data-name="jabatan_id" class="<?php echo $vgaji_karyawan_smp_list->jabatan_id->headerCellClass() ?>"><div id="elh_vgaji_karyawan_smp_jabatan_id" class="vgaji_karyawan_smp_jabatan_id"><div class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->jabatan_id->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="jabatan_id" class="<?php echo $vgaji_karyawan_smp_list->jabatan_id->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->jabatan_id) ?>', 1);"><div id="elh_vgaji_karyawan_smp_jabatan_id" class="vgaji_karyawan_smp_jabatan_id">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->jabatan_id->caption() ?></span><span class="ew-table-header-sort"><?php if ($vgaji_karyawan_smp_list->jabatan_id->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_karyawan_smp_list->jabatan_id->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($vgaji_karyawan_smp_list->kehadiran->Visible) { // kehadiran ?>
+	<?php if ($vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->kehadiran) == "") { ?>
+		<th data-name="kehadiran" class="<?php echo $vgaji_karyawan_smp_list->kehadiran->headerCellClass() ?>"><div id="elh_vgaji_karyawan_smp_kehadiran" class="vgaji_karyawan_smp_kehadiran"><div class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->kehadiran->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="kehadiran" class="<?php echo $vgaji_karyawan_smp_list->kehadiran->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->kehadiran) ?>', 1);"><div id="elh_vgaji_karyawan_smp_kehadiran" class="vgaji_karyawan_smp_kehadiran">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->kehadiran->caption() ?></span><span class="ew-table-header-sort"><?php if ($vgaji_karyawan_smp_list->kehadiran->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_karyawan_smp_list->kehadiran->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($vgaji_karyawan_smp_list->gapok->Visible) { // gapok ?>
+	<?php if ($vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->gapok) == "") { ?>
+		<th data-name="gapok" class="<?php echo $vgaji_karyawan_smp_list->gapok->headerCellClass() ?>"><div id="elh_vgaji_karyawan_smp_gapok" class="vgaji_karyawan_smp_gapok"><div class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->gapok->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="gapok" class="<?php echo $vgaji_karyawan_smp_list->gapok->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->gapok) ?>', 1);"><div id="elh_vgaji_karyawan_smp_gapok" class="vgaji_karyawan_smp_gapok">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->gapok->caption() ?></span><span class="ew-table-header-sort"><?php if ($vgaji_karyawan_smp_list->gapok->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_karyawan_smp_list->gapok->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($vgaji_karyawan_smp_list->value_kehadiran->Visible) { // value_kehadiran ?>
+	<?php if ($vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->value_kehadiran) == "") { ?>
+		<th data-name="value_kehadiran" class="<?php echo $vgaji_karyawan_smp_list->value_kehadiran->headerCellClass() ?>"><div id="elh_vgaji_karyawan_smp_value_kehadiran" class="vgaji_karyawan_smp_value_kehadiran"><div class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->value_kehadiran->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="value_kehadiran" class="<?php echo $vgaji_karyawan_smp_list->value_kehadiran->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->value_kehadiran) ?>', 1);"><div id="elh_vgaji_karyawan_smp_value_kehadiran" class="vgaji_karyawan_smp_value_kehadiran">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->value_kehadiran->caption() ?></span><span class="ew-table-header-sort"><?php if ($vgaji_karyawan_smp_list->value_kehadiran->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_karyawan_smp_list->value_kehadiran->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($vgaji_karyawan_smp_list->value_reward->Visible) { // value_reward ?>
+	<?php if ($vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->value_reward) == "") { ?>
+		<th data-name="value_reward" class="<?php echo $vgaji_karyawan_smp_list->value_reward->headerCellClass() ?>"><div id="elh_vgaji_karyawan_smp_value_reward" class="vgaji_karyawan_smp_value_reward"><div class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->value_reward->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="value_reward" class="<?php echo $vgaji_karyawan_smp_list->value_reward->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->value_reward) ?>', 1);"><div id="elh_vgaji_karyawan_smp_value_reward" class="vgaji_karyawan_smp_value_reward">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->value_reward->caption() ?></span><span class="ew-table-header-sort"><?php if ($vgaji_karyawan_smp_list->value_reward->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_karyawan_smp_list->value_reward->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($vgaji_karyawan_smp_list->value_inval->Visible) { // value_inval ?>
+	<?php if ($vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->value_inval) == "") { ?>
+		<th data-name="value_inval" class="<?php echo $vgaji_karyawan_smp_list->value_inval->headerCellClass() ?>"><div id="elh_vgaji_karyawan_smp_value_inval" class="vgaji_karyawan_smp_value_inval"><div class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->value_inval->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="value_inval" class="<?php echo $vgaji_karyawan_smp_list->value_inval->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->value_inval) ?>', 1);"><div id="elh_vgaji_karyawan_smp_value_inval" class="vgaji_karyawan_smp_value_inval">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->value_inval->caption() ?></span><span class="ew-table-header-sort"><?php if ($vgaji_karyawan_smp_list->value_inval->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_karyawan_smp_list->value_inval->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($vgaji_karyawan_smp_list->sub_total->Visible) { // sub_total ?>
 	<?php if ($vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->sub_total) == "") { ?>
 		<th data-name="sub_total" class="<?php echo $vgaji_karyawan_smp_list->sub_total->headerCellClass() ?>"><div id="elh_vgaji_karyawan_smp_sub_total" class="vgaji_karyawan_smp_sub_total"><div class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->sub_total->caption() ?></div></div></th>
@@ -323,12 +428,30 @@ $vgaji_karyawan_smp_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($vgaji_karyawan_smp_list->potongan_bendahara->Visible) { // potongan_bendahara ?>
+	<?php if ($vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->potongan_bendahara) == "") { ?>
+		<th data-name="potongan_bendahara" class="<?php echo $vgaji_karyawan_smp_list->potongan_bendahara->headerCellClass() ?>"><div id="elh_vgaji_karyawan_smp_potongan_bendahara" class="vgaji_karyawan_smp_potongan_bendahara"><div class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->potongan_bendahara->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="potongan_bendahara" class="<?php echo $vgaji_karyawan_smp_list->potongan_bendahara->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->potongan_bendahara) ?>', 1);"><div id="elh_vgaji_karyawan_smp_potongan_bendahara" class="vgaji_karyawan_smp_potongan_bendahara">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->potongan_bendahara->caption() ?></span><span class="ew-table-header-sort"><?php if ($vgaji_karyawan_smp_list->potongan_bendahara->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_karyawan_smp_list->potongan_bendahara->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($vgaji_karyawan_smp_list->total->Visible) { // total ?>
 	<?php if ($vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->total) == "") { ?>
 		<th data-name="total" class="<?php echo $vgaji_karyawan_smp_list->total->headerCellClass() ?>"><div id="elh_vgaji_karyawan_smp_total" class="vgaji_karyawan_smp_total"><div class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->total->caption() ?></div></div></th>
 	<?php } else { ?>
 		<th data-name="total" class="<?php echo $vgaji_karyawan_smp_list->total->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->total) ?>', 1);"><div id="elh_vgaji_karyawan_smp_total" class="vgaji_karyawan_smp_total">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->total->caption() ?></span><span class="ew-table-header-sort"><?php if ($vgaji_karyawan_smp_list->total->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_karyawan_smp_list->total->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($vgaji_karyawan_smp_list->status->Visible) { // status ?>
+	<?php if ($vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->status) == "") { ?>
+		<th data-name="status" class="<?php echo $vgaji_karyawan_smp_list->status->headerCellClass() ?>"><div id="elh_vgaji_karyawan_smp_status" class="vgaji_karyawan_smp_status"><div class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->status->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="status" class="<?php echo $vgaji_karyawan_smp_list->status->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_karyawan_smp_list->SortUrl($vgaji_karyawan_smp_list->status) ?>', 1);"><div id="elh_vgaji_karyawan_smp_status" class="vgaji_karyawan_smp_status">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_karyawan_smp_list->status->caption() ?></span><span class="ew-table-header-sort"><?php if ($vgaji_karyawan_smp_list->status->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_karyawan_smp_list->status->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -427,6 +550,62 @@ $vgaji_karyawan_smp_list->ListOptions->render("body", "left", $vgaji_karyawan_sm
 </span>
 </td>
 	<?php } ?>
+	<?php if ($vgaji_karyawan_smp_list->rekbank->Visible) { // rekbank ?>
+		<td data-name="rekbank" <?php echo $vgaji_karyawan_smp_list->rekbank->cellAttributes() ?>>
+<span id="el<?php echo $vgaji_karyawan_smp_list->RowCount ?>_vgaji_karyawan_smp_rekbank">
+<span<?php echo $vgaji_karyawan_smp_list->rekbank->viewAttributes() ?>><?php echo $vgaji_karyawan_smp_list->rekbank->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($vgaji_karyawan_smp_list->jenjang_id->Visible) { // jenjang_id ?>
+		<td data-name="jenjang_id" <?php echo $vgaji_karyawan_smp_list->jenjang_id->cellAttributes() ?>>
+<span id="el<?php echo $vgaji_karyawan_smp_list->RowCount ?>_vgaji_karyawan_smp_jenjang_id">
+<span<?php echo $vgaji_karyawan_smp_list->jenjang_id->viewAttributes() ?>><?php echo $vgaji_karyawan_smp_list->jenjang_id->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($vgaji_karyawan_smp_list->jabatan_id->Visible) { // jabatan_id ?>
+		<td data-name="jabatan_id" <?php echo $vgaji_karyawan_smp_list->jabatan_id->cellAttributes() ?>>
+<span id="el<?php echo $vgaji_karyawan_smp_list->RowCount ?>_vgaji_karyawan_smp_jabatan_id">
+<span<?php echo $vgaji_karyawan_smp_list->jabatan_id->viewAttributes() ?>><?php echo $vgaji_karyawan_smp_list->jabatan_id->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($vgaji_karyawan_smp_list->kehadiran->Visible) { // kehadiran ?>
+		<td data-name="kehadiran" <?php echo $vgaji_karyawan_smp_list->kehadiran->cellAttributes() ?>>
+<span id="el<?php echo $vgaji_karyawan_smp_list->RowCount ?>_vgaji_karyawan_smp_kehadiran">
+<span<?php echo $vgaji_karyawan_smp_list->kehadiran->viewAttributes() ?>><?php echo $vgaji_karyawan_smp_list->kehadiran->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($vgaji_karyawan_smp_list->gapok->Visible) { // gapok ?>
+		<td data-name="gapok" <?php echo $vgaji_karyawan_smp_list->gapok->cellAttributes() ?>>
+<span id="el<?php echo $vgaji_karyawan_smp_list->RowCount ?>_vgaji_karyawan_smp_gapok">
+<span<?php echo $vgaji_karyawan_smp_list->gapok->viewAttributes() ?>><?php echo $vgaji_karyawan_smp_list->gapok->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($vgaji_karyawan_smp_list->value_kehadiran->Visible) { // value_kehadiran ?>
+		<td data-name="value_kehadiran" <?php echo $vgaji_karyawan_smp_list->value_kehadiran->cellAttributes() ?>>
+<span id="el<?php echo $vgaji_karyawan_smp_list->RowCount ?>_vgaji_karyawan_smp_value_kehadiran">
+<span<?php echo $vgaji_karyawan_smp_list->value_kehadiran->viewAttributes() ?>><?php echo $vgaji_karyawan_smp_list->value_kehadiran->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($vgaji_karyawan_smp_list->value_reward->Visible) { // value_reward ?>
+		<td data-name="value_reward" <?php echo $vgaji_karyawan_smp_list->value_reward->cellAttributes() ?>>
+<span id="el<?php echo $vgaji_karyawan_smp_list->RowCount ?>_vgaji_karyawan_smp_value_reward">
+<span<?php echo $vgaji_karyawan_smp_list->value_reward->viewAttributes() ?>><?php echo $vgaji_karyawan_smp_list->value_reward->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($vgaji_karyawan_smp_list->value_inval->Visible) { // value_inval ?>
+		<td data-name="value_inval" <?php echo $vgaji_karyawan_smp_list->value_inval->cellAttributes() ?>>
+<span id="el<?php echo $vgaji_karyawan_smp_list->RowCount ?>_vgaji_karyawan_smp_value_inval">
+<span<?php echo $vgaji_karyawan_smp_list->value_inval->viewAttributes() ?>><?php echo $vgaji_karyawan_smp_list->value_inval->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
 	<?php if ($vgaji_karyawan_smp_list->sub_total->Visible) { // sub_total ?>
 		<td data-name="sub_total" <?php echo $vgaji_karyawan_smp_list->sub_total->cellAttributes() ?>>
 <span id="el<?php echo $vgaji_karyawan_smp_list->RowCount ?>_vgaji_karyawan_smp_sub_total">
@@ -448,10 +627,24 @@ $vgaji_karyawan_smp_list->ListOptions->render("body", "left", $vgaji_karyawan_sm
 </span>
 </td>
 	<?php } ?>
+	<?php if ($vgaji_karyawan_smp_list->potongan_bendahara->Visible) { // potongan_bendahara ?>
+		<td data-name="potongan_bendahara" <?php echo $vgaji_karyawan_smp_list->potongan_bendahara->cellAttributes() ?>>
+<span id="el<?php echo $vgaji_karyawan_smp_list->RowCount ?>_vgaji_karyawan_smp_potongan_bendahara">
+<span<?php echo $vgaji_karyawan_smp_list->potongan_bendahara->viewAttributes() ?>><?php echo $vgaji_karyawan_smp_list->potongan_bendahara->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
 	<?php if ($vgaji_karyawan_smp_list->total->Visible) { // total ?>
 		<td data-name="total" <?php echo $vgaji_karyawan_smp_list->total->cellAttributes() ?>>
 <span id="el<?php echo $vgaji_karyawan_smp_list->RowCount ?>_vgaji_karyawan_smp_total">
 <span<?php echo $vgaji_karyawan_smp_list->total->viewAttributes() ?>><?php echo $vgaji_karyawan_smp_list->total->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($vgaji_karyawan_smp_list->status->Visible) { // status ?>
+		<td data-name="status" <?php echo $vgaji_karyawan_smp_list->status->cellAttributes() ?>>
+<span id="el<?php echo $vgaji_karyawan_smp_list->RowCount ?>_vgaji_karyawan_smp_status">
+<span<?php echo $vgaji_karyawan_smp_list->status->viewAttributes() ?>><?php echo $vgaji_karyawan_smp_list->status->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

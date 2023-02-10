@@ -328,6 +328,15 @@ $vgaji_guru_smk_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($vgaji_guru_smk_list->rekbank->Visible) { // rekbank ?>
+	<?php if ($vgaji_guru_smk_list->SortUrl($vgaji_guru_smk_list->rekbank) == "") { ?>
+		<th data-name="rekbank" class="<?php echo $vgaji_guru_smk_list->rekbank->headerCellClass() ?>"><div id="elh_vgaji_guru_smk_rekbank" class="vgaji_guru_smk_rekbank"><div class="ew-table-header-caption"><?php echo $vgaji_guru_smk_list->rekbank->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="rekbank" class="<?php echo $vgaji_guru_smk_list->rekbank->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_guru_smk_list->SortUrl($vgaji_guru_smk_list->rekbank) ?>', 1);"><div id="elh_vgaji_guru_smk_rekbank" class="vgaji_guru_smk_rekbank">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_guru_smk_list->rekbank->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($vgaji_guru_smk_list->rekbank->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_guru_smk_list->rekbank->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($vgaji_guru_smk_list->jenjang_id->Visible) { // jenjang_id ?>
 	<?php if ($vgaji_guru_smk_list->SortUrl($vgaji_guru_smk_list->jenjang_id) == "") { ?>
 		<th data-name="jenjang_id" class="<?php echo $vgaji_guru_smk_list->jenjang_id->headerCellClass() ?>"><div id="elh_vgaji_guru_smk_jenjang_id" class="vgaji_guru_smk_jenjang_id"><div class="ew-table-header-caption"><?php echo $vgaji_guru_smk_list->jenjang_id->caption() ?></div></div></th>
@@ -526,6 +535,15 @@ $vgaji_guru_smk_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($vgaji_guru_smk_list->potongan_bendahara->Visible) { // potongan_bendahara ?>
+	<?php if ($vgaji_guru_smk_list->SortUrl($vgaji_guru_smk_list->potongan_bendahara) == "") { ?>
+		<th data-name="potongan_bendahara" class="<?php echo $vgaji_guru_smk_list->potongan_bendahara->headerCellClass() ?>"><div id="elh_vgaji_guru_smk_potongan_bendahara" class="vgaji_guru_smk_potongan_bendahara"><div class="ew-table-header-caption"><?php echo $vgaji_guru_smk_list->potongan_bendahara->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="potongan_bendahara" class="<?php echo $vgaji_guru_smk_list->potongan_bendahara->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_guru_smk_list->SortUrl($vgaji_guru_smk_list->potongan_bendahara) ?>', 1);"><div id="elh_vgaji_guru_smk_potongan_bendahara" class="vgaji_guru_smk_potongan_bendahara">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_guru_smk_list->potongan_bendahara->caption() ?></span><span class="ew-table-header-sort"><?php if ($vgaji_guru_smk_list->potongan_bendahara->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_guru_smk_list->potongan_bendahara->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($vgaji_guru_smk_list->potongan->Visible) { // potongan ?>
 	<?php if ($vgaji_guru_smk_list->SortUrl($vgaji_guru_smk_list->potongan) == "") { ?>
 		<th data-name="potongan" class="<?php echo $vgaji_guru_smk_list->potongan->headerCellClass() ?>"><div id="elh_vgaji_guru_smk_potongan" class="vgaji_guru_smk_potongan"><div class="ew-table-header-caption"><?php echo $vgaji_guru_smk_list->potongan->caption() ?></div></div></th>
@@ -645,6 +663,13 @@ $vgaji_guru_smk_list->ListOptions->render("body", "left", $vgaji_guru_smk_list->
 		<td data-name="pegawai" <?php echo $vgaji_guru_smk_list->pegawai->cellAttributes() ?>>
 <span id="el<?php echo $vgaji_guru_smk_list->RowCount ?>_vgaji_guru_smk_pegawai">
 <span<?php echo $vgaji_guru_smk_list->pegawai->viewAttributes() ?>><?php echo $vgaji_guru_smk_list->pegawai->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($vgaji_guru_smk_list->rekbank->Visible) { // rekbank ?>
+		<td data-name="rekbank" <?php echo $vgaji_guru_smk_list->rekbank->cellAttributes() ?>>
+<span id="el<?php echo $vgaji_guru_smk_list->RowCount ?>_vgaji_guru_smk_rekbank">
+<span<?php echo $vgaji_guru_smk_list->rekbank->viewAttributes() ?>><?php echo $vgaji_guru_smk_list->rekbank->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>
@@ -799,6 +824,13 @@ $vgaji_guru_smk_list->ListOptions->render("body", "left", $vgaji_guru_smk_list->
 		<td data-name="sub_total" <?php echo $vgaji_guru_smk_list->sub_total->cellAttributes() ?>>
 <span id="el<?php echo $vgaji_guru_smk_list->RowCount ?>_vgaji_guru_smk_sub_total">
 <span<?php echo $vgaji_guru_smk_list->sub_total->viewAttributes() ?>><?php echo $vgaji_guru_smk_list->sub_total->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($vgaji_guru_smk_list->potongan_bendahara->Visible) { // potongan_bendahara ?>
+		<td data-name="potongan_bendahara" <?php echo $vgaji_guru_smk_list->potongan_bendahara->cellAttributes() ?>>
+<span id="el<?php echo $vgaji_guru_smk_list->RowCount ?>_vgaji_guru_smk_potongan_bendahara">
+<span<?php echo $vgaji_guru_smk_list->potongan_bendahara->viewAttributes() ?>><?php echo $vgaji_guru_smk_list->potongan_bendahara->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

@@ -266,9 +266,9 @@ Page_Rendering();
 					<td><?=$pegawai['nip']?></td>
 					<td><?=$pegawai['nama']?></td>
 					<td><?=$pegawai['rekbank']?></td>
-					<td>Rp. <?= number_format($data['total'],0,',','.');?></td>
+					<td>Rp. <?= number_format($data['total']+$data['potongan_bendahara'],0,',','.');?></td>
 					<td>Rp. <?= number_format($data['potongan_bendahara'],0,',','.');?></td>
-					<td>Rp. <?= number_format($data['total']-$data['potongan_bendahara'] ,0,',','.');?></td>
+					<td>Rp. <?= number_format($data['total'] ,0,',','.');?></td>
 					<td>
 						<?php if($data['status'] == '1'){ ?>
 							<p style="text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;">Dipublikasi<p>

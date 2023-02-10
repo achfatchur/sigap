@@ -50,9 +50,39 @@ loadjs.ready("head", function() {
 	// Form object for search
 	fvgaji_guru_sdlistsrch = currentSearchForm = new ew.Form("fvgaji_guru_sdlistsrch");
 
-	// Dynamic selection lists
-	// Filters
+	// Validate function for search
+	fvgaji_guru_sdlistsrch.validate = function(fobj) {
+		if (!this.validateRequired)
+			return true; // Ignore validation
+		fobj = fobj || this._form;
+		var infix = "";
+		elm = this.getElements("x" + infix + "_tahun");
+		if (elm && !ew.checkInteger(elm.value))
+			return this.onError(elm, "<?php echo JsEncode($vgaji_guru_sd_list->tahun->errorMessage()) ?>");
 
+		// Call Form_CustomValidate event
+		if (!this.Form_CustomValidate(fobj))
+			return false;
+		return true;
+	}
+
+	// Form_CustomValidate
+	fvgaji_guru_sdlistsrch.Form_CustomValidate = function(fobj) { // DO NOT CHANGE THIS LINE!
+
+		// Your custom validation code here, return false if invalid.
+		return true;
+	}
+
+	// Use JavaScript validation or not
+	fvgaji_guru_sdlistsrch.validateRequired = <?php echo Config("CLIENT_VALIDATE") ? "true" : "false" ?>;
+
+	// Dynamic selection lists
+	fvgaji_guru_sdlistsrch.lists["x_bulan[]"] = <?php echo $vgaji_guru_sd_list->bulan->Lookup->toClientList($vgaji_guru_sd_list) ?>;
+	fvgaji_guru_sdlistsrch.lists["x_bulan[]"].options = <?php echo JsonEncode($vgaji_guru_sd_list->bulan->lookupOptions()) ?>;
+	fvgaji_guru_sdlistsrch.lists["x_pegawai"] = <?php echo $vgaji_guru_sd_list->pegawai->Lookup->toClientList($vgaji_guru_sd_list) ?>;
+	fvgaji_guru_sdlistsrch.lists["x_pegawai"].options = <?php echo JsonEncode($vgaji_guru_sd_list->pegawai->lookupOptions()) ?>;
+
+	// Filters
 	fvgaji_guru_sdlistsrch.filterList = <?php echo $vgaji_guru_sd_list->getFilterList() ?>;
 	loadjs.done("fvgaji_guru_sdlistsrch");
 });
@@ -117,6 +147,99 @@ $vgaji_guru_sd_list->renderOtherOptions();
 <input type="hidden" name="cmd" value="search">
 <input type="hidden" name="t" value="vgaji_guru_sd">
 	<div class="ew-extended-search">
+<?php
+
+// Render search row
+$vgaji_guru_sd->RowType = ROWTYPE_SEARCH;
+$vgaji_guru_sd->resetAttributes();
+$vgaji_guru_sd_list->renderRow();
+?>
+<?php if ($vgaji_guru_sd_list->tahun->Visible) { // tahun ?>
+	<?php
+		$vgaji_guru_sd_list->SearchColumnCount++;
+		if (($vgaji_guru_sd_list->SearchColumnCount - 1) % $vgaji_guru_sd_list->SearchFieldsPerRow == 0) {
+			$vgaji_guru_sd_list->SearchRowCount++;
+	?>
+<div id="xsr_<?php echo $vgaji_guru_sd_list->SearchRowCount ?>" class="ew-row d-sm-flex">
+	<?php
+		}
+	 ?>
+	<div id="xsc_tahun" class="ew-cell form-group">
+		<label for="x_tahun" class="ew-search-caption ew-label"><?php echo $vgaji_guru_sd_list->tahun->caption() ?></label>
+		<span class="ew-search-operator">
+<?php echo $Language->phrase("=") ?>
+<input type="hidden" name="z_tahun" id="z_tahun" value="=">
+</span>
+		<span id="el_vgaji_guru_sd_tahun" class="ew-search-field">
+<input type="text" data-table="vgaji_guru_sd" data-field="x_tahun" name="x_tahun" id="x_tahun" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($vgaji_guru_sd_list->tahun->getPlaceHolder()) ?>" value="<?php echo $vgaji_guru_sd_list->tahun->EditValue ?>"<?php echo $vgaji_guru_sd_list->tahun->editAttributes() ?>>
+</span>
+	</div>
+	<?php if ($vgaji_guru_sd_list->SearchColumnCount % $vgaji_guru_sd_list->SearchFieldsPerRow == 0) { ?>
+</div>
+	<?php } ?>
+<?php } ?>
+<?php if ($vgaji_guru_sd_list->bulan->Visible) { // bulan ?>
+	<?php
+		$vgaji_guru_sd_list->SearchColumnCount++;
+		if (($vgaji_guru_sd_list->SearchColumnCount - 1) % $vgaji_guru_sd_list->SearchFieldsPerRow == 0) {
+			$vgaji_guru_sd_list->SearchRowCount++;
+	?>
+<div id="xsr_<?php echo $vgaji_guru_sd_list->SearchRowCount ?>" class="ew-row d-sm-flex">
+	<?php
+		}
+	 ?>
+	<div id="xsc_bulan" class="ew-cell form-group">
+		<label class="ew-search-caption ew-label"><?php echo $vgaji_guru_sd_list->bulan->caption() ?></label>
+		<span class="ew-search-operator">
+<?php echo $Language->phrase("=") ?>
+<input type="hidden" name="z_bulan" id="z_bulan" value="=">
+</span>
+		<span id="el_vgaji_guru_sd_bulan" class="ew-search-field">
+<div id="tp_x_bulan" class="ew-template"><input type="checkbox" class="custom-control-input" data-table="vgaji_guru_sd" data-field="x_bulan" data-value-separator="<?php echo $vgaji_guru_sd_list->bulan->displayValueSeparatorAttribute() ?>" name="x_bulan[]" id="x_bulan[]" value="{value}"<?php echo $vgaji_guru_sd_list->bulan->editAttributes() ?>></div>
+<div id="dsl_x_bulan" data-repeatcolumn="5" class="ew-item-list d-none"><div>
+<?php echo $vgaji_guru_sd_list->bulan->checkBoxListHtml(FALSE, "x_bulan[]") ?>
+</div></div>
+<?php echo $vgaji_guru_sd_list->bulan->Lookup->getParamTag($vgaji_guru_sd_list, "p_x_bulan") ?>
+</span>
+	</div>
+	<?php if ($vgaji_guru_sd_list->SearchColumnCount % $vgaji_guru_sd_list->SearchFieldsPerRow == 0) { ?>
+</div>
+	<?php } ?>
+<?php } ?>
+<?php if ($vgaji_guru_sd_list->pegawai->Visible) { // pegawai ?>
+	<?php
+		$vgaji_guru_sd_list->SearchColumnCount++;
+		if (($vgaji_guru_sd_list->SearchColumnCount - 1) % $vgaji_guru_sd_list->SearchFieldsPerRow == 0) {
+			$vgaji_guru_sd_list->SearchRowCount++;
+	?>
+<div id="xsr_<?php echo $vgaji_guru_sd_list->SearchRowCount ?>" class="ew-row d-sm-flex">
+	<?php
+		}
+	 ?>
+	<div id="xsc_pegawai" class="ew-cell form-group">
+		<label for="x_pegawai" class="ew-search-caption ew-label"><?php echo $vgaji_guru_sd_list->pegawai->caption() ?></label>
+		<span class="ew-search-operator">
+<?php echo $Language->phrase("LIKE") ?>
+<input type="hidden" name="z_pegawai" id="z_pegawai" value="LIKE">
+</span>
+		<span id="el_vgaji_guru_sd_pegawai" class="ew-search-field">
+<div class="input-group ew-lookup-list">
+	<div class="form-control ew-lookup-text" tabindex="-1" id="lu_x_pegawai"><?php echo EmptyValue(strval($vgaji_guru_sd_list->pegawai->AdvancedSearch->ViewValue)) ? $Language->phrase("PleaseSelect") : $vgaji_guru_sd_list->pegawai->AdvancedSearch->ViewValue ?></div>
+	<div class="input-group-append">
+		<button type="button" title="<?php echo HtmlEncode(str_replace("%s", RemoveHtml($vgaji_guru_sd_list->pegawai->caption()), $Language->phrase("LookupLink", TRUE))) ?>" class="ew-lookup-btn btn btn-default"<?php echo ($vgaji_guru_sd_list->pegawai->ReadOnly || $vgaji_guru_sd_list->pegawai->Disabled) ? " disabled" : "" ?> onclick="ew.modalLookupShow({lnk:this,el:'x_pegawai',m:0,n:10});"><i class="fas fa-search ew-icon"></i></button>
+	</div>
+</div>
+<?php echo $vgaji_guru_sd_list->pegawai->Lookup->getParamTag($vgaji_guru_sd_list, "p_x_pegawai") ?>
+<input type="hidden" data-table="vgaji_guru_sd" data-field="x_pegawai" data-multiple="0" data-lookup="1" data-value-separator="<?php echo $vgaji_guru_sd_list->pegawai->displayValueSeparatorAttribute() ?>" name="x_pegawai" id="x_pegawai" value="<?php echo $vgaji_guru_sd_list->pegawai->AdvancedSearch->SearchValue ?>"<?php echo $vgaji_guru_sd_list->pegawai->editAttributes() ?>>
+</span>
+	</div>
+	<?php if ($vgaji_guru_sd_list->SearchColumnCount % $vgaji_guru_sd_list->SearchFieldsPerRow == 0) { ?>
+</div>
+	<?php } ?>
+<?php } ?>
+	<?php if ($vgaji_guru_sd_list->SearchColumnCount % $vgaji_guru_sd_list->SearchFieldsPerRow > 0) { ?>
+</div>
+	<?php } ?>
 <div id="xsr_<?php echo $vgaji_guru_sd_list->SearchRowCount + 1 ?>" class="ew-row d-sm-flex">
 	<div class="ew-quick-search input-group">
 		<input type="text" name="<?php echo Config("TABLE_BASIC_SEARCH") ?>" id="<?php echo Config("TABLE_BASIC_SEARCH") ?>" class="form-control" value="<?php echo HtmlEncode($vgaji_guru_sd_list->BasicSearch->getKeyword()) ?>" placeholder="<?php echo HtmlEncode($Language->phrase("Search")) ?>">
@@ -205,6 +328,15 @@ $vgaji_guru_sd_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($vgaji_guru_sd_list->rekbank->Visible) { // rekbank ?>
+	<?php if ($vgaji_guru_sd_list->SortUrl($vgaji_guru_sd_list->rekbank) == "") { ?>
+		<th data-name="rekbank" class="<?php echo $vgaji_guru_sd_list->rekbank->headerCellClass() ?>"><div id="elh_vgaji_guru_sd_rekbank" class="vgaji_guru_sd_rekbank"><div class="ew-table-header-caption"><?php echo $vgaji_guru_sd_list->rekbank->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="rekbank" class="<?php echo $vgaji_guru_sd_list->rekbank->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_guru_sd_list->SortUrl($vgaji_guru_sd_list->rekbank) ?>', 1);"><div id="elh_vgaji_guru_sd_rekbank" class="vgaji_guru_sd_rekbank">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_guru_sd_list->rekbank->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($vgaji_guru_sd_list->rekbank->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_guru_sd_list->rekbank->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($vgaji_guru_sd_list->jenjang_id->Visible) { // jenjang_id ?>
 	<?php if ($vgaji_guru_sd_list->SortUrl($vgaji_guru_sd_list->jenjang_id) == "") { ?>
 		<th data-name="jenjang_id" class="<?php echo $vgaji_guru_sd_list->jenjang_id->headerCellClass() ?>"><div id="elh_vgaji_guru_sd_jenjang_id" class="vgaji_guru_sd_jenjang_id"><div class="ew-table-header-caption"><?php echo $vgaji_guru_sd_list->jenjang_id->caption() ?></div></div></th>
@@ -220,15 +352,6 @@ $vgaji_guru_sd_list->ListOptions->render("header", "left");
 	<?php } else { ?>
 		<th data-name="jabatan_id" class="<?php echo $vgaji_guru_sd_list->jabatan_id->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_guru_sd_list->SortUrl($vgaji_guru_sd_list->jabatan_id) ?>', 1);"><div id="elh_vgaji_guru_sd_jabatan_id" class="vgaji_guru_sd_jabatan_id">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_guru_sd_list->jabatan_id->caption() ?></span><span class="ew-table-header-sort"><?php if ($vgaji_guru_sd_list->jabatan_id->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_guru_sd_list->jabatan_id->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
-<?php if ($vgaji_guru_sd_list->month->Visible) { // month ?>
-	<?php if ($vgaji_guru_sd_list->SortUrl($vgaji_guru_sd_list->month) == "") { ?>
-		<th data-name="month" class="<?php echo $vgaji_guru_sd_list->month->headerCellClass() ?>"><div id="elh_vgaji_guru_sd_month" class="vgaji_guru_sd_month"><div class="ew-table-header-caption"><?php echo $vgaji_guru_sd_list->month->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="month" class="<?php echo $vgaji_guru_sd_list->month->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_guru_sd_list->SortUrl($vgaji_guru_sd_list->month) ?>', 1);"><div id="elh_vgaji_guru_sd_month" class="vgaji_guru_sd_month">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_guru_sd_list->month->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($vgaji_guru_sd_list->month->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_guru_sd_list->month->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -430,6 +553,15 @@ $vgaji_guru_sd_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($vgaji_guru_sd_list->potongan_bendahara->Visible) { // potongan_bendahara ?>
+	<?php if ($vgaji_guru_sd_list->SortUrl($vgaji_guru_sd_list->potongan_bendahara) == "") { ?>
+		<th data-name="potongan_bendahara" class="<?php echo $vgaji_guru_sd_list->potongan_bendahara->headerCellClass() ?>"><div id="elh_vgaji_guru_sd_potongan_bendahara" class="vgaji_guru_sd_potongan_bendahara"><div class="ew-table-header-caption"><?php echo $vgaji_guru_sd_list->potongan_bendahara->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="potongan_bendahara" class="<?php echo $vgaji_guru_sd_list->potongan_bendahara->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_guru_sd_list->SortUrl($vgaji_guru_sd_list->potongan_bendahara) ?>', 1);"><div id="elh_vgaji_guru_sd_potongan_bendahara" class="vgaji_guru_sd_potongan_bendahara">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_guru_sd_list->potongan_bendahara->caption() ?></span><span class="ew-table-header-sort"><?php if ($vgaji_guru_sd_list->potongan_bendahara->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_guru_sd_list->potongan_bendahara->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($vgaji_guru_sd_list->total->Visible) { // total ?>
 	<?php if ($vgaji_guru_sd_list->SortUrl($vgaji_guru_sd_list->total) == "") { ?>
 		<th data-name="total" class="<?php echo $vgaji_guru_sd_list->total->headerCellClass() ?>"><div id="elh_vgaji_guru_sd_total" class="vgaji_guru_sd_total"><div class="ew-table-header-caption"><?php echo $vgaji_guru_sd_list->total->caption() ?></div></div></th>
@@ -534,6 +666,13 @@ $vgaji_guru_sd_list->ListOptions->render("body", "left", $vgaji_guru_sd_list->Ro
 </span>
 </td>
 	<?php } ?>
+	<?php if ($vgaji_guru_sd_list->rekbank->Visible) { // rekbank ?>
+		<td data-name="rekbank" <?php echo $vgaji_guru_sd_list->rekbank->cellAttributes() ?>>
+<span id="el<?php echo $vgaji_guru_sd_list->RowCount ?>_vgaji_guru_sd_rekbank">
+<span<?php echo $vgaji_guru_sd_list->rekbank->viewAttributes() ?>><?php echo $vgaji_guru_sd_list->rekbank->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
 	<?php if ($vgaji_guru_sd_list->jenjang_id->Visible) { // jenjang_id ?>
 		<td data-name="jenjang_id" <?php echo $vgaji_guru_sd_list->jenjang_id->cellAttributes() ?>>
 <span id="el<?php echo $vgaji_guru_sd_list->RowCount ?>_vgaji_guru_sd_jenjang_id">
@@ -545,13 +684,6 @@ $vgaji_guru_sd_list->ListOptions->render("body", "left", $vgaji_guru_sd_list->Ro
 		<td data-name="jabatan_id" <?php echo $vgaji_guru_sd_list->jabatan_id->cellAttributes() ?>>
 <span id="el<?php echo $vgaji_guru_sd_list->RowCount ?>_vgaji_guru_sd_jabatan_id">
 <span<?php echo $vgaji_guru_sd_list->jabatan_id->viewAttributes() ?>><?php echo $vgaji_guru_sd_list->jabatan_id->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($vgaji_guru_sd_list->month->Visible) { // month ?>
-		<td data-name="month" <?php echo $vgaji_guru_sd_list->month->cellAttributes() ?>>
-<span id="el<?php echo $vgaji_guru_sd_list->RowCount ?>_vgaji_guru_sd_month">
-<span<?php echo $vgaji_guru_sd_list->month->viewAttributes() ?>><?php echo $vgaji_guru_sd_list->month->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>
@@ -706,6 +838,13 @@ $vgaji_guru_sd_list->ListOptions->render("body", "left", $vgaji_guru_sd_list->Ro
 		<td data-name="penyesuaian" <?php echo $vgaji_guru_sd_list->penyesuaian->cellAttributes() ?>>
 <span id="el<?php echo $vgaji_guru_sd_list->RowCount ?>_vgaji_guru_sd_penyesuaian">
 <span<?php echo $vgaji_guru_sd_list->penyesuaian->viewAttributes() ?>><?php echo $vgaji_guru_sd_list->penyesuaian->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($vgaji_guru_sd_list->potongan_bendahara->Visible) { // potongan_bendahara ?>
+		<td data-name="potongan_bendahara" <?php echo $vgaji_guru_sd_list->potongan_bendahara->cellAttributes() ?>>
+<span id="el<?php echo $vgaji_guru_sd_list->RowCount ?>_vgaji_guru_sd_potongan_bendahara">
+<span<?php echo $vgaji_guru_sd_list->potongan_bendahara->viewAttributes() ?>><?php echo $vgaji_guru_sd_list->potongan_bendahara->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

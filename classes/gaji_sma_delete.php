@@ -611,10 +611,10 @@ class gaji_sma_delete extends gaji_sma
 		$this->sub_total->setVisibility();
 		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
+		$this->potongan_bendahara->Visible = FALSE;
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
 		$this->status->Visible = FALSE;
-		$this->potongan_bendahara->Visible = FALSE;
 		$this->hideFieldsForAddEdit();
 
 		// Do not use lookup cache
@@ -801,10 +801,10 @@ class gaji_sma_delete extends gaji_sma
 		$this->sub_total->setDbValue($row['sub_total']);
 		$this->potongan->setDbValue($row['potongan']);
 		$this->penyesuaian->setDbValue($row['penyesuaian']);
+		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
 		$this->total->setDbValue($row['total']);
 		$this->voucher->setDbValue($row['voucher']);
 		$this->status->setDbValue($row['status']);
-		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
 	}
 
 	// Return a row with default values
@@ -842,10 +842,10 @@ class gaji_sma_delete extends gaji_sma
 		$row['sub_total'] = NULL;
 		$row['potongan'] = NULL;
 		$row['penyesuaian'] = NULL;
+		$row['potongan_bendahara'] = NULL;
 		$row['total'] = NULL;
 		$row['voucher'] = NULL;
 		$row['status'] = NULL;
-		$row['potongan_bendahara'] = NULL;
 		return $row;
 	}
 
@@ -891,10 +891,10 @@ class gaji_sma_delete extends gaji_sma
 		// sub_total
 		// potongan
 		// penyesuaian
+		// potongan_bendahara
 		// total
 		// voucher
 		// status
-		// potongan_bendahara
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 

@@ -50,9 +50,40 @@ loadjs.ready("head", function() {
 	// Form object for search
 	fvgaji_tu_smalistsrch = currentSearchForm = new ew.Form("fvgaji_tu_smalistsrch");
 
-	// Dynamic selection lists
-	// Filters
+	// Validate function for search
+	fvgaji_tu_smalistsrch.validate = function(fobj) {
+		if (!this.validateRequired)
+			return true; // Ignore validation
+		fobj = fobj || this._form;
+		var infix = "";
+		elm = this.getElements("x" + infix + "_tahun");
+		if (elm && !ew.checkInteger(elm.value))
+			return this.onError(elm, "<?php echo JsEncode($vgaji_tu_sma_list->tahun->errorMessage()) ?>");
 
+		// Call Form_CustomValidate event
+		if (!this.Form_CustomValidate(fobj))
+			return false;
+		return true;
+	}
+
+	// Form_CustomValidate
+	fvgaji_tu_smalistsrch.Form_CustomValidate = function(fobj) { // DO NOT CHANGE THIS LINE!
+
+		// Your custom validation code here, return false if invalid.
+		return true;
+	}
+
+	// Use JavaScript validation or not
+	fvgaji_tu_smalistsrch.validateRequired = <?php echo Config("CLIENT_VALIDATE") ? "true" : "false" ?>;
+
+	// Dynamic selection lists
+	fvgaji_tu_smalistsrch.lists["x_bulan[]"] = <?php echo $vgaji_tu_sma_list->bulan->Lookup->toClientList($vgaji_tu_sma_list) ?>;
+	fvgaji_tu_smalistsrch.lists["x_bulan[]"].options = <?php echo JsonEncode($vgaji_tu_sma_list->bulan->lookupOptions()) ?>;
+	fvgaji_tu_smalistsrch.lists["x_pegawai"] = <?php echo $vgaji_tu_sma_list->pegawai->Lookup->toClientList($vgaji_tu_sma_list) ?>;
+	fvgaji_tu_smalistsrch.lists["x_pegawai"].options = <?php echo JsonEncode($vgaji_tu_sma_list->pegawai->lookupOptions()) ?>;
+	fvgaji_tu_smalistsrch.autoSuggests["x_pegawai"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
+
+	// Filters
 	fvgaji_tu_smalistsrch.filterList = <?php echo $vgaji_tu_sma_list->getFilterList() ?>;
 	loadjs.done("fvgaji_tu_smalistsrch");
 });
@@ -117,6 +148,106 @@ $vgaji_tu_sma_list->renderOtherOptions();
 <input type="hidden" name="cmd" value="search">
 <input type="hidden" name="t" value="vgaji_tu_sma">
 	<div class="ew-extended-search">
+<?php
+
+// Render search row
+$vgaji_tu_sma->RowType = ROWTYPE_SEARCH;
+$vgaji_tu_sma->resetAttributes();
+$vgaji_tu_sma_list->renderRow();
+?>
+<?php if ($vgaji_tu_sma_list->tahun->Visible) { // tahun ?>
+	<?php
+		$vgaji_tu_sma_list->SearchColumnCount++;
+		if (($vgaji_tu_sma_list->SearchColumnCount - 1) % $vgaji_tu_sma_list->SearchFieldsPerRow == 0) {
+			$vgaji_tu_sma_list->SearchRowCount++;
+	?>
+<div id="xsr_<?php echo $vgaji_tu_sma_list->SearchRowCount ?>" class="ew-row d-sm-flex">
+	<?php
+		}
+	 ?>
+	<div id="xsc_tahun" class="ew-cell form-group">
+		<label for="x_tahun" class="ew-search-caption ew-label"><?php echo $vgaji_tu_sma_list->tahun->caption() ?></label>
+		<span class="ew-search-operator">
+<?php echo $Language->phrase("=") ?>
+<input type="hidden" name="z_tahun" id="z_tahun" value="=">
+</span>
+		<span id="el_vgaji_tu_sma_tahun" class="ew-search-field">
+<input type="text" data-table="vgaji_tu_sma" data-field="x_tahun" name="x_tahun" id="x_tahun" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($vgaji_tu_sma_list->tahun->getPlaceHolder()) ?>" value="<?php echo $vgaji_tu_sma_list->tahun->EditValue ?>"<?php echo $vgaji_tu_sma_list->tahun->editAttributes() ?>>
+</span>
+	</div>
+	<?php if ($vgaji_tu_sma_list->SearchColumnCount % $vgaji_tu_sma_list->SearchFieldsPerRow == 0) { ?>
+</div>
+	<?php } ?>
+<?php } ?>
+<?php if ($vgaji_tu_sma_list->bulan->Visible) { // bulan ?>
+	<?php
+		$vgaji_tu_sma_list->SearchColumnCount++;
+		if (($vgaji_tu_sma_list->SearchColumnCount - 1) % $vgaji_tu_sma_list->SearchFieldsPerRow == 0) {
+			$vgaji_tu_sma_list->SearchRowCount++;
+	?>
+<div id="xsr_<?php echo $vgaji_tu_sma_list->SearchRowCount ?>" class="ew-row d-sm-flex">
+	<?php
+		}
+	 ?>
+	<div id="xsc_bulan" class="ew-cell form-group">
+		<label class="ew-search-caption ew-label"><?php echo $vgaji_tu_sma_list->bulan->caption() ?></label>
+		<span class="ew-search-operator">
+<?php echo $Language->phrase("=") ?>
+<input type="hidden" name="z_bulan" id="z_bulan" value="=">
+</span>
+		<span id="el_vgaji_tu_sma_bulan" class="ew-search-field">
+<div id="tp_x_bulan" class="ew-template"><input type="checkbox" class="custom-control-input" data-table="vgaji_tu_sma" data-field="x_bulan" data-value-separator="<?php echo $vgaji_tu_sma_list->bulan->displayValueSeparatorAttribute() ?>" name="x_bulan[]" id="x_bulan[]" value="{value}"<?php echo $vgaji_tu_sma_list->bulan->editAttributes() ?>></div>
+<div id="dsl_x_bulan" data-repeatcolumn="5" class="ew-item-list d-none"><div>
+<?php echo $vgaji_tu_sma_list->bulan->checkBoxListHtml(FALSE, "x_bulan[]") ?>
+</div></div>
+<?php echo $vgaji_tu_sma_list->bulan->Lookup->getParamTag($vgaji_tu_sma_list, "p_x_bulan") ?>
+</span>
+	</div>
+	<?php if ($vgaji_tu_sma_list->SearchColumnCount % $vgaji_tu_sma_list->SearchFieldsPerRow == 0) { ?>
+</div>
+	<?php } ?>
+<?php } ?>
+<?php if ($vgaji_tu_sma_list->pegawai->Visible) { // pegawai ?>
+	<?php
+		$vgaji_tu_sma_list->SearchColumnCount++;
+		if (($vgaji_tu_sma_list->SearchColumnCount - 1) % $vgaji_tu_sma_list->SearchFieldsPerRow == 0) {
+			$vgaji_tu_sma_list->SearchRowCount++;
+	?>
+<div id="xsr_<?php echo $vgaji_tu_sma_list->SearchRowCount ?>" class="ew-row d-sm-flex">
+	<?php
+		}
+	 ?>
+	<div id="xsc_pegawai" class="ew-cell form-group">
+		<label class="ew-search-caption ew-label"><?php echo $vgaji_tu_sma_list->pegawai->caption() ?></label>
+		<span class="ew-search-operator">
+<?php echo $Language->phrase("LIKE") ?>
+<input type="hidden" name="z_pegawai" id="z_pegawai" value="LIKE">
+</span>
+		<span id="el_vgaji_tu_sma_pegawai" class="ew-search-field">
+<?php
+$onchange = $vgaji_tu_sma_list->pegawai->EditAttrs->prepend("onchange", "");
+$onchange = ($onchange) ? ' onchange="' . JsEncode($onchange) . '"' : '';
+$vgaji_tu_sma_list->pegawai->EditAttrs["onchange"] = "";
+?>
+<span id="as_x_pegawai">
+	<input type="text" class="form-control" name="sv_x_pegawai" id="sv_x_pegawai" value="<?php echo RemoveHtml($vgaji_tu_sma_list->pegawai->EditValue) ?>" size="30" maxlength="50" placeholder="<?php echo HtmlEncode($vgaji_tu_sma_list->pegawai->getPlaceHolder()) ?>" data-placeholder="<?php echo HtmlEncode($vgaji_tu_sma_list->pegawai->getPlaceHolder()) ?>"<?php echo $vgaji_tu_sma_list->pegawai->editAttributes() ?>>
+</span>
+<input type="hidden" data-table="vgaji_tu_sma" data-field="x_pegawai" data-value-separator="<?php echo $vgaji_tu_sma_list->pegawai->displayValueSeparatorAttribute() ?>" name="x_pegawai" id="x_pegawai" value="<?php echo HtmlEncode($vgaji_tu_sma_list->pegawai->AdvancedSearch->SearchValue) ?>"<?php echo $onchange ?>>
+<script>
+loadjs.ready(["fvgaji_tu_smalistsrch"], function() {
+	fvgaji_tu_smalistsrch.createAutoSuggest({"id":"x_pegawai","forceSelect":false});
+});
+</script>
+<?php echo $vgaji_tu_sma_list->pegawai->Lookup->getParamTag($vgaji_tu_sma_list, "p_x_pegawai") ?>
+</span>
+	</div>
+	<?php if ($vgaji_tu_sma_list->SearchColumnCount % $vgaji_tu_sma_list->SearchFieldsPerRow == 0) { ?>
+</div>
+	<?php } ?>
+<?php } ?>
+	<?php if ($vgaji_tu_sma_list->SearchColumnCount % $vgaji_tu_sma_list->SearchFieldsPerRow > 0) { ?>
+</div>
+	<?php } ?>
 <div id="xsr_<?php echo $vgaji_tu_sma_list->SearchRowCount + 1 ?>" class="ew-row d-sm-flex">
 	<div class="ew-quick-search input-group">
 		<input type="text" name="<?php echo Config("TABLE_BASIC_SEARCH") ?>" id="<?php echo Config("TABLE_BASIC_SEARCH") ?>" class="form-control" value="<?php echo HtmlEncode($vgaji_tu_sma_list->BasicSearch->getKeyword()) ?>" placeholder="<?php echo HtmlEncode($Language->phrase("Search")) ?>">
@@ -202,6 +333,15 @@ $vgaji_tu_sma_list->ListOptions->render("header", "left");
 	<?php } else { ?>
 		<th data-name="pegawai" class="<?php echo $vgaji_tu_sma_list->pegawai->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_tu_sma_list->SortUrl($vgaji_tu_sma_list->pegawai) ?>', 1);"><div id="elh_vgaji_tu_sma_pegawai" class="vgaji_tu_sma_pegawai">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_tu_sma_list->pegawai->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($vgaji_tu_sma_list->pegawai->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_tu_sma_list->pegawai->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($vgaji_tu_sma_list->rekbank->Visible) { // rekbank ?>
+	<?php if ($vgaji_tu_sma_list->SortUrl($vgaji_tu_sma_list->rekbank) == "") { ?>
+		<th data-name="rekbank" class="<?php echo $vgaji_tu_sma_list->rekbank->headerCellClass() ?>"><div id="elh_vgaji_tu_sma_rekbank" class="vgaji_tu_sma_rekbank"><div class="ew-table-header-caption"><?php echo $vgaji_tu_sma_list->rekbank->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="rekbank" class="<?php echo $vgaji_tu_sma_list->rekbank->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_tu_sma_list->SortUrl($vgaji_tu_sma_list->rekbank) ?>', 1);"><div id="elh_vgaji_tu_sma_rekbank" class="vgaji_tu_sma_rekbank">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_tu_sma_list->rekbank->caption() ?></span><span class="ew-table-header-sort"><?php if ($vgaji_tu_sma_list->rekbank->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_tu_sma_list->rekbank->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -403,6 +543,15 @@ $vgaji_tu_sma_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($vgaji_tu_sma_list->potongan_bendahara->Visible) { // potongan_bendahara ?>
+	<?php if ($vgaji_tu_sma_list->SortUrl($vgaji_tu_sma_list->potongan_bendahara) == "") { ?>
+		<th data-name="potongan_bendahara" class="<?php echo $vgaji_tu_sma_list->potongan_bendahara->headerCellClass() ?>"><div id="elh_vgaji_tu_sma_potongan_bendahara" class="vgaji_tu_sma_potongan_bendahara"><div class="ew-table-header-caption"><?php echo $vgaji_tu_sma_list->potongan_bendahara->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="potongan_bendahara" class="<?php echo $vgaji_tu_sma_list->potongan_bendahara->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_tu_sma_list->SortUrl($vgaji_tu_sma_list->potongan_bendahara) ?>', 1);"><div id="elh_vgaji_tu_sma_potongan_bendahara" class="vgaji_tu_sma_potongan_bendahara">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_tu_sma_list->potongan_bendahara->caption() ?></span><span class="ew-table-header-sort"><?php if ($vgaji_tu_sma_list->potongan_bendahara->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_tu_sma_list->potongan_bendahara->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($vgaji_tu_sma_list->total->Visible) { // total ?>
 	<?php if ($vgaji_tu_sma_list->SortUrl($vgaji_tu_sma_list->total) == "") { ?>
 		<th data-name="total" class="<?php echo $vgaji_tu_sma_list->total->headerCellClass() ?>"><div id="elh_vgaji_tu_sma_total" class="vgaji_tu_sma_total"><div class="ew-table-header-caption"><?php echo $vgaji_tu_sma_list->total->caption() ?></div></div></th>
@@ -504,6 +653,13 @@ $vgaji_tu_sma_list->ListOptions->render("body", "left", $vgaji_tu_sma_list->RowC
 		<td data-name="pegawai" <?php echo $vgaji_tu_sma_list->pegawai->cellAttributes() ?>>
 <span id="el<?php echo $vgaji_tu_sma_list->RowCount ?>_vgaji_tu_sma_pegawai">
 <span<?php echo $vgaji_tu_sma_list->pegawai->viewAttributes() ?>><?php echo $vgaji_tu_sma_list->pegawai->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($vgaji_tu_sma_list->rekbank->Visible) { // rekbank ?>
+		<td data-name="rekbank" <?php echo $vgaji_tu_sma_list->rekbank->cellAttributes() ?>>
+<span id="el<?php echo $vgaji_tu_sma_list->RowCount ?>_vgaji_tu_sma_rekbank">
+<span<?php echo $vgaji_tu_sma_list->rekbank->viewAttributes() ?>><?php echo $vgaji_tu_sma_list->rekbank->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>
@@ -658,6 +814,13 @@ $vgaji_tu_sma_list->ListOptions->render("body", "left", $vgaji_tu_sma_list->RowC
 		<td data-name="penyesuaian" <?php echo $vgaji_tu_sma_list->penyesuaian->cellAttributes() ?>>
 <span id="el<?php echo $vgaji_tu_sma_list->RowCount ?>_vgaji_tu_sma_penyesuaian">
 <span<?php echo $vgaji_tu_sma_list->penyesuaian->viewAttributes() ?>><?php echo $vgaji_tu_sma_list->penyesuaian->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($vgaji_tu_sma_list->potongan_bendahara->Visible) { // potongan_bendahara ?>
+		<td data-name="potongan_bendahara" <?php echo $vgaji_tu_sma_list->potongan_bendahara->cellAttributes() ?>>
+<span id="el<?php echo $vgaji_tu_sma_list->RowCount ?>_vgaji_tu_sma_potongan_bendahara">
+<span<?php echo $vgaji_tu_sma_list->potongan_bendahara->viewAttributes() ?>><?php echo $vgaji_tu_sma_list->potongan_bendahara->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

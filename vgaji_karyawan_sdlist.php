@@ -77,8 +77,10 @@ loadjs.ready("head", function() {
 	fvgaji_karyawan_sdlistsrch.validateRequired = <?php echo Config("CLIENT_VALIDATE") ? "true" : "false" ?>;
 
 	// Dynamic selection lists
-	fvgaji_karyawan_sdlistsrch.lists["x_bulan"] = <?php echo $vgaji_karyawan_sd_list->bulan->Lookup->toClientList($vgaji_karyawan_sd_list) ?>;
-	fvgaji_karyawan_sdlistsrch.lists["x_bulan"].options = <?php echo JsonEncode($vgaji_karyawan_sd_list->bulan->lookupOptions()) ?>;
+	fvgaji_karyawan_sdlistsrch.lists["x_bulan[]"] = <?php echo $vgaji_karyawan_sd_list->bulan->Lookup->toClientList($vgaji_karyawan_sd_list) ?>;
+	fvgaji_karyawan_sdlistsrch.lists["x_bulan[]"].options = <?php echo JsonEncode($vgaji_karyawan_sd_list->bulan->lookupOptions()) ?>;
+	fvgaji_karyawan_sdlistsrch.lists["x_pegawai"] = <?php echo $vgaji_karyawan_sd_list->pegawai->Lookup->toClientList($vgaji_karyawan_sd_list) ?>;
+	fvgaji_karyawan_sdlistsrch.lists["x_pegawai"].options = <?php echo JsonEncode($vgaji_karyawan_sd_list->pegawai->lookupOptions()) ?>;
 
 	// Filters
 	fvgaji_karyawan_sdlistsrch.filterList = <?php echo $vgaji_karyawan_sd_list->getFilterList() ?>;
@@ -187,18 +189,48 @@ $vgaji_karyawan_sd_list->renderRow();
 		}
 	 ?>
 	<div id="xsc_bulan" class="ew-cell form-group">
-		<label for="x_bulan" class="ew-search-caption ew-label"><?php echo $vgaji_karyawan_sd_list->bulan->caption() ?></label>
+		<label class="ew-search-caption ew-label"><?php echo $vgaji_karyawan_sd_list->bulan->caption() ?></label>
 		<span class="ew-search-operator">
 <?php echo $Language->phrase("=") ?>
 <input type="hidden" name="z_bulan" id="z_bulan" value="=">
 </span>
 		<span id="el_vgaji_karyawan_sd_bulan" class="ew-search-field">
-<div class="input-group">
-	<select class="custom-select ew-custom-select" data-table="vgaji_karyawan_sd" data-field="x_bulan" data-value-separator="<?php echo $vgaji_karyawan_sd_list->bulan->displayValueSeparatorAttribute() ?>" id="x_bulan" name="x_bulan"<?php echo $vgaji_karyawan_sd_list->bulan->editAttributes() ?>>
-			<?php echo $vgaji_karyawan_sd_list->bulan->selectOptionListHtml("x_bulan") ?>
-		</select>
-</div>
+<div id="tp_x_bulan" class="ew-template"><input type="checkbox" class="custom-control-input" data-table="vgaji_karyawan_sd" data-field="x_bulan" data-value-separator="<?php echo $vgaji_karyawan_sd_list->bulan->displayValueSeparatorAttribute() ?>" name="x_bulan[]" id="x_bulan[]" value="{value}"<?php echo $vgaji_karyawan_sd_list->bulan->editAttributes() ?>></div>
+<div id="dsl_x_bulan" data-repeatcolumn="5" class="ew-item-list d-none"><div>
+<?php echo $vgaji_karyawan_sd_list->bulan->checkBoxListHtml(FALSE, "x_bulan[]") ?>
+</div></div>
 <?php echo $vgaji_karyawan_sd_list->bulan->Lookup->getParamTag($vgaji_karyawan_sd_list, "p_x_bulan") ?>
+</span>
+	</div>
+	<?php if ($vgaji_karyawan_sd_list->SearchColumnCount % $vgaji_karyawan_sd_list->SearchFieldsPerRow == 0) { ?>
+</div>
+	<?php } ?>
+<?php } ?>
+<?php if ($vgaji_karyawan_sd_list->pegawai->Visible) { // pegawai ?>
+	<?php
+		$vgaji_karyawan_sd_list->SearchColumnCount++;
+		if (($vgaji_karyawan_sd_list->SearchColumnCount - 1) % $vgaji_karyawan_sd_list->SearchFieldsPerRow == 0) {
+			$vgaji_karyawan_sd_list->SearchRowCount++;
+	?>
+<div id="xsr_<?php echo $vgaji_karyawan_sd_list->SearchRowCount ?>" class="ew-row d-sm-flex">
+	<?php
+		}
+	 ?>
+	<div id="xsc_pegawai" class="ew-cell form-group">
+		<label for="x_pegawai" class="ew-search-caption ew-label"><?php echo $vgaji_karyawan_sd_list->pegawai->caption() ?></label>
+		<span class="ew-search-operator">
+<?php echo $Language->phrase("LIKE") ?>
+<input type="hidden" name="z_pegawai" id="z_pegawai" value="LIKE">
+</span>
+		<span id="el_vgaji_karyawan_sd_pegawai" class="ew-search-field">
+<div class="input-group ew-lookup-list">
+	<div class="form-control ew-lookup-text" tabindex="-1" id="lu_x_pegawai"><?php echo EmptyValue(strval($vgaji_karyawan_sd_list->pegawai->AdvancedSearch->ViewValue)) ? $Language->phrase("PleaseSelect") : $vgaji_karyawan_sd_list->pegawai->AdvancedSearch->ViewValue ?></div>
+	<div class="input-group-append">
+		<button type="button" title="<?php echo HtmlEncode(str_replace("%s", RemoveHtml($vgaji_karyawan_sd_list->pegawai->caption()), $Language->phrase("LookupLink", TRUE))) ?>" class="ew-lookup-btn btn btn-default"<?php echo ($vgaji_karyawan_sd_list->pegawai->ReadOnly || $vgaji_karyawan_sd_list->pegawai->Disabled) ? " disabled" : "" ?> onclick="ew.modalLookupShow({lnk:this,el:'x_pegawai',m:0,n:10});"><i class="fas fa-search ew-icon"></i></button>
+	</div>
+</div>
+<?php echo $vgaji_karyawan_sd_list->pegawai->Lookup->getParamTag($vgaji_karyawan_sd_list, "p_x_pegawai") ?>
+<input type="hidden" data-table="vgaji_karyawan_sd" data-field="x_pegawai" data-multiple="0" data-lookup="1" data-value-separator="<?php echo $vgaji_karyawan_sd_list->pegawai->displayValueSeparatorAttribute() ?>" name="x_pegawai" id="x_pegawai" value="<?php echo $vgaji_karyawan_sd_list->pegawai->AdvancedSearch->SearchValue ?>"<?php echo $vgaji_karyawan_sd_list->pegawai->editAttributes() ?>>
 </span>
 	</div>
 	<?php if ($vgaji_karyawan_sd_list->SearchColumnCount % $vgaji_karyawan_sd_list->SearchFieldsPerRow == 0) { ?>
@@ -296,6 +328,15 @@ $vgaji_karyawan_sd_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($vgaji_karyawan_sd_list->rekbank->Visible) { // rekbank ?>
+	<?php if ($vgaji_karyawan_sd_list->SortUrl($vgaji_karyawan_sd_list->rekbank) == "") { ?>
+		<th data-name="rekbank" class="<?php echo $vgaji_karyawan_sd_list->rekbank->headerCellClass() ?>"><div id="elh_vgaji_karyawan_sd_rekbank" class="vgaji_karyawan_sd_rekbank"><div class="ew-table-header-caption"><?php echo $vgaji_karyawan_sd_list->rekbank->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="rekbank" class="<?php echo $vgaji_karyawan_sd_list->rekbank->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_karyawan_sd_list->SortUrl($vgaji_karyawan_sd_list->rekbank) ?>', 1);"><div id="elh_vgaji_karyawan_sd_rekbank" class="vgaji_karyawan_sd_rekbank">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_karyawan_sd_list->rekbank->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($vgaji_karyawan_sd_list->rekbank->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_karyawan_sd_list->rekbank->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($vgaji_karyawan_sd_list->jenjang_id->Visible) { // jenjang_id ?>
 	<?php if ($vgaji_karyawan_sd_list->SortUrl($vgaji_karyawan_sd_list->jenjang_id) == "") { ?>
 		<th data-name="jenjang_id" class="<?php echo $vgaji_karyawan_sd_list->jenjang_id->headerCellClass() ?>"><div id="elh_vgaji_karyawan_sd_jenjang_id" class="vgaji_karyawan_sd_jenjang_id"><div class="ew-table-header-caption"><?php echo $vgaji_karyawan_sd_list->jenjang_id->caption() ?></div></div></th>
@@ -383,6 +424,15 @@ $vgaji_karyawan_sd_list->ListOptions->render("header", "left");
 	<?php } else { ?>
 		<th data-name="penyesuaian" class="<?php echo $vgaji_karyawan_sd_list->penyesuaian->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_karyawan_sd_list->SortUrl($vgaji_karyawan_sd_list->penyesuaian) ?>', 1);"><div id="elh_vgaji_karyawan_sd_penyesuaian" class="vgaji_karyawan_sd_penyesuaian">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_karyawan_sd_list->penyesuaian->caption() ?></span><span class="ew-table-header-sort"><?php if ($vgaji_karyawan_sd_list->penyesuaian->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_karyawan_sd_list->penyesuaian->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($vgaji_karyawan_sd_list->potongan_bendahara->Visible) { // potongan_bendahara ?>
+	<?php if ($vgaji_karyawan_sd_list->SortUrl($vgaji_karyawan_sd_list->potongan_bendahara) == "") { ?>
+		<th data-name="potongan_bendahara" class="<?php echo $vgaji_karyawan_sd_list->potongan_bendahara->headerCellClass() ?>"><div id="elh_vgaji_karyawan_sd_potongan_bendahara" class="vgaji_karyawan_sd_potongan_bendahara"><div class="ew-table-header-caption"><?php echo $vgaji_karyawan_sd_list->potongan_bendahara->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="potongan_bendahara" class="<?php echo $vgaji_karyawan_sd_list->potongan_bendahara->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $vgaji_karyawan_sd_list->SortUrl($vgaji_karyawan_sd_list->potongan_bendahara) ?>', 1);"><div id="elh_vgaji_karyawan_sd_potongan_bendahara" class="vgaji_karyawan_sd_potongan_bendahara">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $vgaji_karyawan_sd_list->potongan_bendahara->caption() ?></span><span class="ew-table-header-sort"><?php if ($vgaji_karyawan_sd_list->potongan_bendahara->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($vgaji_karyawan_sd_list->potongan_bendahara->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -490,6 +540,13 @@ $vgaji_karyawan_sd_list->ListOptions->render("body", "left", $vgaji_karyawan_sd_
 </span>
 </td>
 	<?php } ?>
+	<?php if ($vgaji_karyawan_sd_list->rekbank->Visible) { // rekbank ?>
+		<td data-name="rekbank" <?php echo $vgaji_karyawan_sd_list->rekbank->cellAttributes() ?>>
+<span id="el<?php echo $vgaji_karyawan_sd_list->RowCount ?>_vgaji_karyawan_sd_rekbank">
+<span<?php echo $vgaji_karyawan_sd_list->rekbank->viewAttributes() ?>><?php echo $vgaji_karyawan_sd_list->rekbank->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
 	<?php if ($vgaji_karyawan_sd_list->jenjang_id->Visible) { // jenjang_id ?>
 		<td data-name="jenjang_id" <?php echo $vgaji_karyawan_sd_list->jenjang_id->cellAttributes() ?>>
 <span id="el<?php echo $vgaji_karyawan_sd_list->RowCount ?>_vgaji_karyawan_sd_jenjang_id">
@@ -557,6 +614,13 @@ $vgaji_karyawan_sd_list->ListOptions->render("body", "left", $vgaji_karyawan_sd_
 		<td data-name="penyesuaian" <?php echo $vgaji_karyawan_sd_list->penyesuaian->cellAttributes() ?>>
 <span id="el<?php echo $vgaji_karyawan_sd_list->RowCount ?>_vgaji_karyawan_sd_penyesuaian">
 <span<?php echo $vgaji_karyawan_sd_list->penyesuaian->viewAttributes() ?>><?php echo $vgaji_karyawan_sd_list->penyesuaian->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($vgaji_karyawan_sd_list->potongan_bendahara->Visible) { // potongan_bendahara ?>
+		<td data-name="potongan_bendahara" <?php echo $vgaji_karyawan_sd_list->potongan_bendahara->cellAttributes() ?>>
+<span id="el<?php echo $vgaji_karyawan_sd_list->RowCount ?>_vgaji_karyawan_sd_potongan_bendahara">
+<span<?php echo $vgaji_karyawan_sd_list->potongan_bendahara->viewAttributes() ?>><?php echo $vgaji_karyawan_sd_list->potongan_bendahara->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

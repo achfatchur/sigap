@@ -83,6 +83,15 @@ $gaji_karyawan_tk_preview->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($gaji_karyawan_tk_preview->potongan_bendahara->Visible) { // potongan_bendahara ?>
+	<?php if ($gaji_karyawan_tk->SortUrl($gaji_karyawan_tk_preview->potongan_bendahara) == "") { ?>
+		<th class="<?php echo $gaji_karyawan_tk_preview->potongan_bendahara->headerCellClass() ?>"><?php echo $gaji_karyawan_tk_preview->potongan_bendahara->caption() ?></th>
+	<?php } else { ?>
+		<th class="<?php echo $gaji_karyawan_tk_preview->potongan_bendahara->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_karyawan_tk_preview->potongan_bendahara->Name) ?>" data-sort-order="<?php echo $gaji_karyawan_tk_preview->SortField == $gaji_karyawan_tk_preview->potongan_bendahara->Name && $gaji_karyawan_tk_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_tk_preview->potongan_bendahara->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_tk_preview->SortField == $gaji_karyawan_tk_preview->potongan_bendahara->Name) { ?><?php if ($gaji_karyawan_tk_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_tk_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($gaji_karyawan_tk_preview->total->Visible) { // total ?>
 	<?php if ($gaji_karyawan_tk->SortUrl($gaji_karyawan_tk_preview->total) == "") { ?>
 		<th class="<?php echo $gaji_karyawan_tk_preview->total->headerCellClass() ?>"><?php echo $gaji_karyawan_tk_preview->total->caption() ?></th>
@@ -98,15 +107,6 @@ $gaji_karyawan_tk_preview->ListOptions->render("header", "left");
 	<?php } else { ?>
 		<th class="<?php echo $gaji_karyawan_tk_preview->voucher->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_karyawan_tk_preview->voucher->Name) ?>" data-sort-order="<?php echo $gaji_karyawan_tk_preview->SortField == $gaji_karyawan_tk_preview->voucher->Name && $gaji_karyawan_tk_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_tk_preview->voucher->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_tk_preview->SortField == $gaji_karyawan_tk_preview->voucher->Name) { ?><?php if ($gaji_karyawan_tk_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_tk_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
-<?php if ($gaji_karyawan_tk_preview->potongan_bendahara->Visible) { // potongan_bendahara ?>
-	<?php if ($gaji_karyawan_tk->SortUrl($gaji_karyawan_tk_preview->potongan_bendahara) == "") { ?>
-		<th class="<?php echo $gaji_karyawan_tk_preview->potongan_bendahara->headerCellClass() ?>"><?php echo $gaji_karyawan_tk_preview->potongan_bendahara->caption() ?></th>
-	<?php } else { ?>
-		<th class="<?php echo $gaji_karyawan_tk_preview->potongan_bendahara->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_karyawan_tk_preview->potongan_bendahara->Name) ?>" data-sort-order="<?php echo $gaji_karyawan_tk_preview->SortField == $gaji_karyawan_tk_preview->potongan_bendahara->Name && $gaji_karyawan_tk_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_tk_preview->potongan_bendahara->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_tk_preview->SortField == $gaji_karyawan_tk_preview->potongan_bendahara->Name) { ?><?php if ($gaji_karyawan_tk_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_tk_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -167,6 +167,12 @@ $gaji_karyawan_tk_preview->ListOptions->render("body", "left", $gaji_karyawan_tk
 <span<?php echo $gaji_karyawan_tk_preview->penyesuaian->viewAttributes() ?>><?php echo $gaji_karyawan_tk_preview->penyesuaian->getViewValue() ?></span>
 </td>
 <?php } ?>
+<?php if ($gaji_karyawan_tk_preview->potongan_bendahara->Visible) { // potongan_bendahara ?>
+		<!-- potongan_bendahara -->
+		<td<?php echo $gaji_karyawan_tk_preview->potongan_bendahara->cellAttributes() ?>>
+<span<?php echo $gaji_karyawan_tk_preview->potongan_bendahara->viewAttributes() ?>><?php echo $gaji_karyawan_tk_preview->potongan_bendahara->getViewValue() ?></span>
+</td>
+<?php } ?>
 <?php if ($gaji_karyawan_tk_preview->total->Visible) { // total ?>
 		<!-- total -->
 		<td<?php echo $gaji_karyawan_tk_preview->total->cellAttributes() ?>>
@@ -177,12 +183,6 @@ $gaji_karyawan_tk_preview->ListOptions->render("body", "left", $gaji_karyawan_tk
 		<!-- voucher -->
 		<td<?php echo $gaji_karyawan_tk_preview->voucher->cellAttributes() ?>>
 <span<?php echo $gaji_karyawan_tk_preview->voucher->viewAttributes() ?>><?php echo $gaji_karyawan_tk_preview->voucher->getViewValue() ?></span>
-</td>
-<?php } ?>
-<?php if ($gaji_karyawan_tk_preview->potongan_bendahara->Visible) { // potongan_bendahara ?>
-		<!-- potongan_bendahara -->
-		<td<?php echo $gaji_karyawan_tk_preview->potongan_bendahara->cellAttributes() ?>>
-<span<?php echo $gaji_karyawan_tk_preview->potongan_bendahara->viewAttributes() ?>><?php echo $gaji_karyawan_tk_preview->potongan_bendahara->getViewValue() ?></span>
 </td>
 <?php } ?>
 <?php

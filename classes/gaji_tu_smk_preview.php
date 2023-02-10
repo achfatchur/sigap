@@ -614,14 +614,14 @@ class gaji_tu_smk_preview extends gaji_tu_smk
 		$this->tugastambahan->Visible = FALSE;
 		$this->tj_jabatan->Visible = FALSE;
 		$this->tunjangan2->Visible = FALSE;
-		$this->potongan->setVisibility();
 		$this->sub_total->setVisibility();
+		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
+		$this->potongan_bendahara->setVisibility();
 		$this->total->setVisibility();
 		$this->ijasah->Visible = FALSE;
 		$this->voucher->setVisibility();
 		$this->status->Visible = FALSE;
-		$this->potongan_bendahara->setVisibility();
 		$this->hideFieldsForAddEdit();
 
 		// Do not use lookup cache

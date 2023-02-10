@@ -611,9 +611,9 @@ class gaji_delete extends gaji
 		$this->sub_total->setVisibility();
 		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
+		$this->potongan_bendahara->setVisibility();
 		$this->total->setVisibility();
 		$this->status->Visible = FALSE;
-		$this->potongan_bendahara->Visible = FALSE;
 		$this->voucher->setVisibility();
 		$this->hideFieldsForAddEdit();
 
@@ -801,9 +801,9 @@ class gaji_delete extends gaji
 		$this->sub_total->setDbValue($row['sub_total']);
 		$this->potongan->setDbValue($row['potongan']);
 		$this->penyesuaian->setDbValue($row['penyesuaian']);
+		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
 		$this->total->setDbValue($row['total']);
 		$this->status->setDbValue($row['status']);
-		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
 		$this->voucher->setDbValue($row['voucher']);
 	}
 
@@ -842,9 +842,9 @@ class gaji_delete extends gaji
 		$row['sub_total'] = NULL;
 		$row['potongan'] = NULL;
 		$row['penyesuaian'] = NULL;
+		$row['potongan_bendahara'] = NULL;
 		$row['total'] = NULL;
 		$row['status'] = NULL;
-		$row['potongan_bendahara'] = NULL;
 		$row['voucher'] = NULL;
 		return $row;
 	}
@@ -891,9 +891,9 @@ class gaji_delete extends gaji
 		// sub_total
 		// potongan
 		// penyesuaian
+		// potongan_bendahara
 		// total
 		// status
-		// potongan_bendahara
 		// voucher
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
@@ -1176,6 +1176,11 @@ class gaji_delete extends gaji
 			$this->penyesuaian->ViewValue = FormatNumber($this->penyesuaian->ViewValue, 0, -2, -2, -2);
 			$this->penyesuaian->ViewCustomAttributes = "";
 
+			// potongan_bendahara
+			$this->potongan_bendahara->ViewValue = $this->potongan_bendahara->CurrentValue;
+			$this->potongan_bendahara->ViewValue = FormatNumber($this->potongan_bendahara->ViewValue, 0, -2, -2, -2);
+			$this->potongan_bendahara->ViewCustomAttributes = "";
+
 			// total
 			$this->total->ViewValue = $this->total->CurrentValue;
 			$this->total->ViewValue = FormatNumber($this->total->ViewValue, 0, -2, -2, -2);
@@ -1213,6 +1218,11 @@ class gaji_delete extends gaji
 			$this->penyesuaian->LinkCustomAttributes = "";
 			$this->penyesuaian->HrefValue = "";
 			$this->penyesuaian->TooltipValue = "";
+
+			// potongan_bendahara
+			$this->potongan_bendahara->LinkCustomAttributes = "";
+			$this->potongan_bendahara->HrefValue = "";
+			$this->potongan_bendahara->TooltipValue = "";
 
 			// total
 			$this->total->LinkCustomAttributes = "";

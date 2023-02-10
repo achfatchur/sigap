@@ -852,9 +852,9 @@ class gaji_tk_list extends gaji_tk
 		$this->sub_total->setVisibility();
 		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
+		$this->potongan_bendahara->setVisibility();
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
-		$this->potongan_bendahara->Visible = FALSE;
 		$this->status->Visible = FALSE;
 		$this->hideFieldsForAddEdit();
 
@@ -1202,9 +1202,9 @@ class gaji_tk_list extends gaji_tk
 		$filterList = Concat($filterList, $this->sub_total->AdvancedSearch->toJson(), ","); // Field sub_total
 		$filterList = Concat($filterList, $this->potongan->AdvancedSearch->toJson(), ","); // Field potongan
 		$filterList = Concat($filterList, $this->penyesuaian->AdvancedSearch->toJson(), ","); // Field penyesuaian
+		$filterList = Concat($filterList, $this->potongan_bendahara->AdvancedSearch->toJson(), ","); // Field potongan_bendahara
 		$filterList = Concat($filterList, $this->total->AdvancedSearch->toJson(), ","); // Field total
 		$filterList = Concat($filterList, $this->voucher->AdvancedSearch->toJson(), ","); // Field voucher
-		$filterList = Concat($filterList, $this->potongan_bendahara->AdvancedSearch->toJson(), ","); // Field potongan_bendahara
 		$filterList = Concat($filterList, $this->status->AdvancedSearch->toJson(), ","); // Field status
 		if ($this->BasicSearch->Keyword != "") {
 			$wrk = "\"" . Config("TABLE_BASIC_SEARCH") . "\":\"" . JsEncode($this->BasicSearch->Keyword) . "\",\"" . Config("TABLE_BASIC_SEARCH_TYPE") . "\":\"" . JsEncode($this->BasicSearch->Type) . "\"";
@@ -1492,6 +1492,14 @@ class gaji_tk_list extends gaji_tk
 		$this->penyesuaian->AdvancedSearch->SearchOperator2 = @$filter["w_penyesuaian"];
 		$this->penyesuaian->AdvancedSearch->save();
 
+		// Field potongan_bendahara
+		$this->potongan_bendahara->AdvancedSearch->SearchValue = @$filter["x_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchOperator = @$filter["z_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchCondition = @$filter["v_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchValue2 = @$filter["y_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchOperator2 = @$filter["w_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->save();
+
 		// Field total
 		$this->total->AdvancedSearch->SearchValue = @$filter["x_total"];
 		$this->total->AdvancedSearch->SearchOperator = @$filter["z_total"];
@@ -1507,14 +1515,6 @@ class gaji_tk_list extends gaji_tk
 		$this->voucher->AdvancedSearch->SearchValue2 = @$filter["y_voucher"];
 		$this->voucher->AdvancedSearch->SearchOperator2 = @$filter["w_voucher"];
 		$this->voucher->AdvancedSearch->save();
-
-		// Field potongan_bendahara
-		$this->potongan_bendahara->AdvancedSearch->SearchValue = @$filter["x_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->SearchOperator = @$filter["z_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->SearchCondition = @$filter["v_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->SearchValue2 = @$filter["y_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->SearchOperator2 = @$filter["w_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->save();
 
 		// Field status
 		$this->status->AdvancedSearch->SearchValue = @$filter["x_status"];
@@ -1698,6 +1698,7 @@ class gaji_tk_list extends gaji_tk
 			$this->updateSort($this->sub_total); // sub_total
 			$this->updateSort($this->potongan); // potongan
 			$this->updateSort($this->penyesuaian); // penyesuaian
+			$this->updateSort($this->potongan_bendahara); // potongan_bendahara
 			$this->updateSort($this->total); // total
 			$this->updateSort($this->voucher); // voucher
 			$this->setStartRecordNumber(1); // Reset start position
@@ -1751,6 +1752,7 @@ class gaji_tk_list extends gaji_tk
 				$this->sub_total->setSort("");
 				$this->potongan->setSort("");
 				$this->penyesuaian->setSort("");
+				$this->potongan_bendahara->setSort("");
 				$this->total->setSort("");
 				$this->voucher->setSort("");
 			}
@@ -2140,9 +2142,9 @@ class gaji_tk_list extends gaji_tk
 		$this->sub_total->setDbValue($row['sub_total']);
 		$this->potongan->setDbValue($row['potongan']);
 		$this->penyesuaian->setDbValue($row['penyesuaian']);
+		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
 		$this->total->setDbValue($row['total']);
 		$this->voucher->setDbValue($row['voucher']);
-		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
 		$this->status->setDbValue($row['status']);
 	}
 
@@ -2181,9 +2183,9 @@ class gaji_tk_list extends gaji_tk
 		$row['sub_total'] = NULL;
 		$row['potongan'] = NULL;
 		$row['penyesuaian'] = NULL;
+		$row['potongan_bendahara'] = NULL;
 		$row['total'] = NULL;
 		$row['voucher'] = NULL;
-		$row['potongan_bendahara'] = NULL;
 		$row['status'] = NULL;
 		return $row;
 	}
@@ -2259,9 +2261,9 @@ class gaji_tk_list extends gaji_tk
 		// sub_total
 		// potongan
 		// penyesuaian
+		// potongan_bendahara
 		// total
 		// voucher
-		// potongan_bendahara
 		// status
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
@@ -2544,6 +2546,11 @@ class gaji_tk_list extends gaji_tk
 			$this->penyesuaian->ViewValue = FormatNumber($this->penyesuaian->ViewValue, 0, -2, -2, -2);
 			$this->penyesuaian->ViewCustomAttributes = "";
 
+			// potongan_bendahara
+			$this->potongan_bendahara->ViewValue = $this->potongan_bendahara->CurrentValue;
+			$this->potongan_bendahara->ViewValue = FormatNumber($this->potongan_bendahara->ViewValue, 0, -2, -2, -2);
+			$this->potongan_bendahara->ViewCustomAttributes = "";
+
 			// total
 			$this->total->ViewValue = $this->total->CurrentValue;
 			$this->total->ViewValue = FormatNumber($this->total->ViewValue, 0, -2, -2, -2);
@@ -2588,6 +2595,11 @@ class gaji_tk_list extends gaji_tk
 			$this->penyesuaian->LinkCustomAttributes = "";
 			$this->penyesuaian->HrefValue = "";
 			$this->penyesuaian->TooltipValue = "";
+
+			// potongan_bendahara
+			$this->potongan_bendahara->LinkCustomAttributes = "";
+			$this->potongan_bendahara->HrefValue = "";
+			$this->potongan_bendahara->TooltipValue = "";
 
 			// total
 			$this->total->LinkCustomAttributes = "";

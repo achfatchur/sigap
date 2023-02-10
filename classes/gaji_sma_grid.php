@@ -751,10 +751,10 @@ class gaji_sma_grid extends gaji_sma
 		$this->sub_total->setVisibility();
 		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
+		$this->potongan_bendahara->Visible = FALSE;
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
 		$this->status->Visible = FALSE;
-		$this->potongan_bendahara->Visible = FALSE;
 		$this->hideFieldsForAddEdit();
 
 		// Global Page Loading event (in userfn*.php)
@@ -1585,14 +1585,14 @@ class gaji_sma_grid extends gaji_sma
 		$this->potongan->OldValue = $this->potongan->CurrentValue;
 		$this->penyesuaian->CurrentValue = NULL;
 		$this->penyesuaian->OldValue = $this->penyesuaian->CurrentValue;
+		$this->potongan_bendahara->CurrentValue = NULL;
+		$this->potongan_bendahara->OldValue = $this->potongan_bendahara->CurrentValue;
 		$this->total->CurrentValue = NULL;
 		$this->total->OldValue = $this->total->CurrentValue;
 		$this->voucher->CurrentValue = NULL;
 		$this->voucher->OldValue = $this->voucher->CurrentValue;
 		$this->status->CurrentValue = NULL;
 		$this->status->OldValue = $this->status->CurrentValue;
-		$this->potongan_bendahara->CurrentValue = NULL;
-		$this->potongan_bendahara->OldValue = $this->potongan_bendahara->CurrentValue;
 	}
 
 	// Load form values
@@ -1782,10 +1782,10 @@ class gaji_sma_grid extends gaji_sma
 		$this->sub_total->setDbValue($row['sub_total']);
 		$this->potongan->setDbValue($row['potongan']);
 		$this->penyesuaian->setDbValue($row['penyesuaian']);
+		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
 		$this->total->setDbValue($row['total']);
 		$this->voucher->setDbValue($row['voucher']);
 		$this->status->setDbValue($row['status']);
-		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
 	}
 
 	// Return a row with default values
@@ -1824,10 +1824,10 @@ class gaji_sma_grid extends gaji_sma
 		$row['sub_total'] = $this->sub_total->CurrentValue;
 		$row['potongan'] = $this->potongan->CurrentValue;
 		$row['penyesuaian'] = $this->penyesuaian->CurrentValue;
+		$row['potongan_bendahara'] = $this->potongan_bendahara->CurrentValue;
 		$row['total'] = $this->total->CurrentValue;
 		$row['voucher'] = $this->voucher->CurrentValue;
 		$row['status'] = $this->status->CurrentValue;
-		$row['potongan_bendahara'] = $this->potongan_bendahara->CurrentValue;
 		return $row;
 	}
 
@@ -1906,10 +1906,10 @@ class gaji_sma_grid extends gaji_sma
 		// sub_total
 		// potongan
 		// penyesuaian
+		// potongan_bendahara
 		// total
 		// voucher
 		// status
-		// potongan_bendahara
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 

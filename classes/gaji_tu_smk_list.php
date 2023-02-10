@@ -846,14 +846,14 @@ class gaji_tu_smk_list extends gaji_tu_smk
 		$this->tugastambahan->Visible = FALSE;
 		$this->tj_jabatan->Visible = FALSE;
 		$this->tunjangan2->Visible = FALSE;
-		$this->potongan->setVisibility();
 		$this->sub_total->setVisibility();
+		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
+		$this->potongan_bendahara->setVisibility();
 		$this->total->setVisibility();
 		$this->ijasah->Visible = FALSE;
 		$this->voucher->setVisibility();
 		$this->status->Visible = FALSE;
-		$this->potongan_bendahara->setVisibility();
 		$this->hideFieldsForAddEdit();
 
 		// Global Page Loading event (in userfn*.php)
@@ -1195,14 +1195,14 @@ class gaji_tu_smk_list extends gaji_tu_smk
 		$filterList = Concat($filterList, $this->tugastambahan->AdvancedSearch->toJson(), ","); // Field tugastambahan
 		$filterList = Concat($filterList, $this->tj_jabatan->AdvancedSearch->toJson(), ","); // Field tj_jabatan
 		$filterList = Concat($filterList, $this->tunjangan2->AdvancedSearch->toJson(), ","); // Field tunjangan2
-		$filterList = Concat($filterList, $this->potongan->AdvancedSearch->toJson(), ","); // Field potongan
 		$filterList = Concat($filterList, $this->sub_total->AdvancedSearch->toJson(), ","); // Field sub_total
+		$filterList = Concat($filterList, $this->potongan->AdvancedSearch->toJson(), ","); // Field potongan
 		$filterList = Concat($filterList, $this->penyesuaian->AdvancedSearch->toJson(), ","); // Field penyesuaian
+		$filterList = Concat($filterList, $this->potongan_bendahara->AdvancedSearch->toJson(), ","); // Field potongan_bendahara
 		$filterList = Concat($filterList, $this->total->AdvancedSearch->toJson(), ","); // Field total
 		$filterList = Concat($filterList, $this->ijasah->AdvancedSearch->toJson(), ","); // Field ijasah
 		$filterList = Concat($filterList, $this->voucher->AdvancedSearch->toJson(), ","); // Field voucher
 		$filterList = Concat($filterList, $this->status->AdvancedSearch->toJson(), ","); // Field status
-		$filterList = Concat($filterList, $this->potongan_bendahara->AdvancedSearch->toJson(), ","); // Field potongan_bendahara
 		if ($this->BasicSearch->Keyword != "") {
 			$wrk = "\"" . Config("TABLE_BASIC_SEARCH") . "\":\"" . JsEncode($this->BasicSearch->Keyword) . "\",\"" . Config("TABLE_BASIC_SEARCH_TYPE") . "\":\"" . JsEncode($this->BasicSearch->Type) . "\"";
 			$filterList = Concat($filterList, $wrk, ",");
@@ -1441,14 +1441,6 @@ class gaji_tu_smk_list extends gaji_tu_smk
 		$this->tunjangan2->AdvancedSearch->SearchOperator2 = @$filter["w_tunjangan2"];
 		$this->tunjangan2->AdvancedSearch->save();
 
-		// Field potongan
-		$this->potongan->AdvancedSearch->SearchValue = @$filter["x_potongan"];
-		$this->potongan->AdvancedSearch->SearchOperator = @$filter["z_potongan"];
-		$this->potongan->AdvancedSearch->SearchCondition = @$filter["v_potongan"];
-		$this->potongan->AdvancedSearch->SearchValue2 = @$filter["y_potongan"];
-		$this->potongan->AdvancedSearch->SearchOperator2 = @$filter["w_potongan"];
-		$this->potongan->AdvancedSearch->save();
-
 		// Field sub_total
 		$this->sub_total->AdvancedSearch->SearchValue = @$filter["x_sub_total"];
 		$this->sub_total->AdvancedSearch->SearchOperator = @$filter["z_sub_total"];
@@ -1457,6 +1449,14 @@ class gaji_tu_smk_list extends gaji_tu_smk
 		$this->sub_total->AdvancedSearch->SearchOperator2 = @$filter["w_sub_total"];
 		$this->sub_total->AdvancedSearch->save();
 
+		// Field potongan
+		$this->potongan->AdvancedSearch->SearchValue = @$filter["x_potongan"];
+		$this->potongan->AdvancedSearch->SearchOperator = @$filter["z_potongan"];
+		$this->potongan->AdvancedSearch->SearchCondition = @$filter["v_potongan"];
+		$this->potongan->AdvancedSearch->SearchValue2 = @$filter["y_potongan"];
+		$this->potongan->AdvancedSearch->SearchOperator2 = @$filter["w_potongan"];
+		$this->potongan->AdvancedSearch->save();
+
 		// Field penyesuaian
 		$this->penyesuaian->AdvancedSearch->SearchValue = @$filter["x_penyesuaian"];
 		$this->penyesuaian->AdvancedSearch->SearchOperator = @$filter["z_penyesuaian"];
@@ -1464,6 +1464,14 @@ class gaji_tu_smk_list extends gaji_tu_smk
 		$this->penyesuaian->AdvancedSearch->SearchValue2 = @$filter["y_penyesuaian"];
 		$this->penyesuaian->AdvancedSearch->SearchOperator2 = @$filter["w_penyesuaian"];
 		$this->penyesuaian->AdvancedSearch->save();
+
+		// Field potongan_bendahara
+		$this->potongan_bendahara->AdvancedSearch->SearchValue = @$filter["x_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchOperator = @$filter["z_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchCondition = @$filter["v_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchValue2 = @$filter["y_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->SearchOperator2 = @$filter["w_potongan_bendahara"];
+		$this->potongan_bendahara->AdvancedSearch->save();
 
 		// Field total
 		$this->total->AdvancedSearch->SearchValue = @$filter["x_total"];
@@ -1496,14 +1504,6 @@ class gaji_tu_smk_list extends gaji_tu_smk
 		$this->status->AdvancedSearch->SearchValue2 = @$filter["y_status"];
 		$this->status->AdvancedSearch->SearchOperator2 = @$filter["w_status"];
 		$this->status->AdvancedSearch->save();
-
-		// Field potongan_bendahara
-		$this->potongan_bendahara->AdvancedSearch->SearchValue = @$filter["x_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->SearchOperator = @$filter["z_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->SearchCondition = @$filter["v_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->SearchValue2 = @$filter["y_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->SearchOperator2 = @$filter["w_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->save();
 		$this->BasicSearch->setKeyword(@$filter[Config("TABLE_BASIC_SEARCH")]);
 		$this->BasicSearch->setType(@$filter[Config("TABLE_BASIC_SEARCH_TYPE")]);
 	}
@@ -1675,12 +1675,12 @@ class gaji_tu_smk_list extends gaji_tu_smk
 			$this->updateSort($this->bulan); // bulan
 			$this->updateSort($this->pegawai); // pegawai
 			$this->updateSort($this->jenjang_id); // jenjang_id
-			$this->updateSort($this->potongan); // potongan
 			$this->updateSort($this->sub_total); // sub_total
+			$this->updateSort($this->potongan); // potongan
 			$this->updateSort($this->penyesuaian); // penyesuaian
+			$this->updateSort($this->potongan_bendahara); // potongan_bendahara
 			$this->updateSort($this->total); // total
 			$this->updateSort($this->voucher); // voucher
-			$this->updateSort($this->potongan_bendahara); // potongan_bendahara
 			$this->setStartRecordNumber(1); // Reset start position
 		}
 	}
@@ -1730,12 +1730,12 @@ class gaji_tu_smk_list extends gaji_tu_smk
 				$this->bulan->setSort("");
 				$this->pegawai->setSort("");
 				$this->jenjang_id->setSort("");
-				$this->potongan->setSort("");
 				$this->sub_total->setSort("");
+				$this->potongan->setSort("");
 				$this->penyesuaian->setSort("");
+				$this->potongan_bendahara->setSort("");
 				$this->total->setSort("");
 				$this->voucher->setSort("");
-				$this->potongan_bendahara->setSort("");
 			}
 
 			// Reset start position
@@ -2117,14 +2117,14 @@ class gaji_tu_smk_list extends gaji_tu_smk
 		$this->tugastambahan->setDbValue($row['tugastambahan']);
 		$this->tj_jabatan->setDbValue($row['tj_jabatan']);
 		$this->tunjangan2->setDbValue($row['tunjangan2']);
-		$this->potongan->setDbValue($row['potongan']);
 		$this->sub_total->setDbValue($row['sub_total']);
+		$this->potongan->setDbValue($row['potongan']);
 		$this->penyesuaian->setDbValue($row['penyesuaian']);
+		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
 		$this->total->setDbValue($row['total']);
 		$this->ijasah->setDbValue($row['ijasah']);
 		$this->voucher->setDbValue($row['voucher']);
 		$this->status->setDbValue($row['status']);
-		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
 	}
 
 	// Return a row with default values
@@ -2156,14 +2156,14 @@ class gaji_tu_smk_list extends gaji_tu_smk
 		$row['tugastambahan'] = NULL;
 		$row['tj_jabatan'] = NULL;
 		$row['tunjangan2'] = NULL;
-		$row['potongan'] = NULL;
 		$row['sub_total'] = NULL;
+		$row['potongan'] = NULL;
 		$row['penyesuaian'] = NULL;
+		$row['potongan_bendahara'] = NULL;
 		$row['total'] = NULL;
 		$row['ijasah'] = NULL;
 		$row['voucher'] = NULL;
 		$row['status'] = NULL;
-		$row['potongan_bendahara'] = NULL;
 		return $row;
 	}
 
@@ -2232,9 +2232,10 @@ class gaji_tu_smk_list extends gaji_tu_smk
 		// tugastambahan
 		// tj_jabatan
 		// tunjangan2
-		// potongan
 		// sub_total
+		// potongan
 		// penyesuaian
+		// potongan_bendahara
 		// total
 		// ijasah
 
@@ -2242,7 +2243,6 @@ class gaji_tu_smk_list extends gaji_tu_smk
 
 		// voucher
 		// status
-		// potongan_bendahara
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
@@ -2494,20 +2494,25 @@ class gaji_tu_smk_list extends gaji_tu_smk
 			$this->tunjangan2->ViewValue = FormatNumber($this->tunjangan2->ViewValue, 0, -2, -2, -2);
 			$this->tunjangan2->ViewCustomAttributes = "";
 
-			// potongan
-			$this->potongan->ViewValue = $this->potongan->CurrentValue;
-			$this->potongan->ViewValue = FormatNumber($this->potongan->ViewValue, 0, -2, -2, -2);
-			$this->potongan->ViewCustomAttributes = "";
-
 			// sub_total
 			$this->sub_total->ViewValue = $this->sub_total->CurrentValue;
 			$this->sub_total->ViewValue = FormatNumber($this->sub_total->ViewValue, 0, -2, -2, -2);
 			$this->sub_total->ViewCustomAttributes = "";
 
+			// potongan
+			$this->potongan->ViewValue = $this->potongan->CurrentValue;
+			$this->potongan->ViewValue = FormatNumber($this->potongan->ViewValue, 0, -2, -2, -2);
+			$this->potongan->ViewCustomAttributes = "";
+
 			// penyesuaian
 			$this->penyesuaian->ViewValue = $this->penyesuaian->CurrentValue;
 			$this->penyesuaian->ViewValue = FormatNumber($this->penyesuaian->ViewValue, 0, -2, -2, -2);
 			$this->penyesuaian->ViewCustomAttributes = "";
+
+			// potongan_bendahara
+			$this->potongan_bendahara->ViewValue = $this->potongan_bendahara->CurrentValue;
+			$this->potongan_bendahara->ViewValue = FormatNumber($this->potongan_bendahara->ViewValue, 0, -2, -2, -2);
+			$this->potongan_bendahara->ViewCustomAttributes = "";
 
 			// total
 			$this->total->ViewValue = $this->total->CurrentValue;
@@ -2523,11 +2528,6 @@ class gaji_tu_smk_list extends gaji_tu_smk
 			$this->status->ViewValue = $this->status->CurrentValue;
 			$this->status->ViewValue = FormatNumber($this->status->ViewValue, 0, -2, -2, -2);
 			$this->status->ViewCustomAttributes = "";
-
-			// potongan_bendahara
-			$this->potongan_bendahara->ViewValue = $this->potongan_bendahara->CurrentValue;
-			$this->potongan_bendahara->ViewValue = FormatNumber($this->potongan_bendahara->ViewValue, 0, -2, -2, -2);
-			$this->potongan_bendahara->ViewCustomAttributes = "";
 
 			// tahun
 			$this->tahun->LinkCustomAttributes = "";
@@ -2549,20 +2549,25 @@ class gaji_tu_smk_list extends gaji_tu_smk
 			$this->jenjang_id->HrefValue = "";
 			$this->jenjang_id->TooltipValue = "";
 
-			// potongan
-			$this->potongan->LinkCustomAttributes = "";
-			$this->potongan->HrefValue = "";
-			$this->potongan->TooltipValue = "";
-
 			// sub_total
 			$this->sub_total->LinkCustomAttributes = "";
 			$this->sub_total->HrefValue = "";
 			$this->sub_total->TooltipValue = "";
 
+			// potongan
+			$this->potongan->LinkCustomAttributes = "";
+			$this->potongan->HrefValue = "";
+			$this->potongan->TooltipValue = "";
+
 			// penyesuaian
 			$this->penyesuaian->LinkCustomAttributes = "";
 			$this->penyesuaian->HrefValue = "";
 			$this->penyesuaian->TooltipValue = "";
+
+			// potongan_bendahara
+			$this->potongan_bendahara->LinkCustomAttributes = "";
+			$this->potongan_bendahara->HrefValue = "";
+			$this->potongan_bendahara->TooltipValue = "";
 
 			// total
 			$this->total->LinkCustomAttributes = "";
@@ -2573,11 +2578,6 @@ class gaji_tu_smk_list extends gaji_tu_smk
 			$this->voucher->LinkCustomAttributes = "";
 			$this->voucher->HrefValue = "";
 			$this->voucher->TooltipValue = "";
-
-			// potongan_bendahara
-			$this->potongan_bendahara->LinkCustomAttributes = "";
-			$this->potongan_bendahara->HrefValue = "";
-			$this->potongan_bendahara->TooltipValue = "";
 		}
 
 		// Call Row Rendered event

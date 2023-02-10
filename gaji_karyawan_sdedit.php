@@ -157,6 +157,14 @@ loadjs.ready("head", function() {
 				elm = this.getElements("x" + infix + "_penyesuaian");
 				if (elm && !ew.checkInteger(elm.value))
 					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_sd_edit->penyesuaian->errorMessage()) ?>");
+			<?php if ($gaji_karyawan_sd_edit->potongan_bendahara->Required) { ?>
+				elm = this.getElements("x" + infix + "_potongan_bendahara");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_karyawan_sd_edit->potongan_bendahara->caption(), $gaji_karyawan_sd_edit->potongan_bendahara->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_potongan_bendahara");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_sd_edit->potongan_bendahara->errorMessage()) ?>");
 			<?php if ($gaji_karyawan_sd_edit->total->Required) { ?>
 				elm = this.getElements("x" + infix + "_total");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -181,14 +189,6 @@ loadjs.ready("head", function() {
 				elm = this.getElements("x" + infix + "_status");
 				if (elm && !ew.checkInteger(elm.value))
 					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_sd_edit->status->errorMessage()) ?>");
-			<?php if ($gaji_karyawan_sd_edit->potongan_bendahara->Required) { ?>
-				elm = this.getElements("x" + infix + "_potongan_bendahara");
-				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
-					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_karyawan_sd_edit->potongan_bendahara->caption(), $gaji_karyawan_sd_edit->potongan_bendahara->RequiredErrorMessage)) ?>");
-			<?php } ?>
-				elm = this.getElements("x" + infix + "_potongan_bendahara");
-				if (elm && !ew.checkInteger(elm.value))
-					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_sd_edit->potongan_bendahara->errorMessage()) ?>");
 
 				// Call Form_CustomValidate event
 				if (!this.Form_CustomValidate(fobj))
@@ -434,6 +434,16 @@ loadjs.ready(["fgaji_karyawan_sdedit"], function() {
 <?php echo $gaji_karyawan_sd_edit->penyesuaian->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
+<?php if ($gaji_karyawan_sd_edit->potongan_bendahara->Visible) { // potongan_bendahara ?>
+	<div id="r_potongan_bendahara" class="form-group row">
+		<label id="elh_gaji_karyawan_sd_potongan_bendahara" for="x_potongan_bendahara" class="<?php echo $gaji_karyawan_sd_edit->LeftColumnClass ?>"><?php echo $gaji_karyawan_sd_edit->potongan_bendahara->caption() ?><?php echo $gaji_karyawan_sd_edit->potongan_bendahara->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
+		<div class="<?php echo $gaji_karyawan_sd_edit->RightColumnClass ?>"><div <?php echo $gaji_karyawan_sd_edit->potongan_bendahara->cellAttributes() ?>>
+<span id="el_gaji_karyawan_sd_potongan_bendahara">
+<input type="text" data-table="gaji_karyawan_sd" data-field="x_potongan_bendahara" name="x_potongan_bendahara" id="x_potongan_bendahara" size="30" maxlength="100" placeholder="<?php echo HtmlEncode($gaji_karyawan_sd_edit->potongan_bendahara->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_sd_edit->potongan_bendahara->EditValue ?>"<?php echo $gaji_karyawan_sd_edit->potongan_bendahara->editAttributes() ?>>
+</span>
+<?php echo $gaji_karyawan_sd_edit->potongan_bendahara->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
 <?php if ($gaji_karyawan_sd_edit->total->Visible) { // total ?>
 	<div id="r_total" class="form-group row">
 		<label id="elh_gaji_karyawan_sd_total" for="x_total" class="<?php echo $gaji_karyawan_sd_edit->LeftColumnClass ?>"><?php echo $gaji_karyawan_sd_edit->total->caption() ?><?php echo $gaji_karyawan_sd_edit->total->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
@@ -462,16 +472,6 @@ loadjs.ready(["fgaji_karyawan_sdedit"], function() {
 <input type="text" data-table="gaji_karyawan_sd" data-field="x_status" name="x_status" id="x_status" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($gaji_karyawan_sd_edit->status->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_sd_edit->status->EditValue ?>"<?php echo $gaji_karyawan_sd_edit->status->editAttributes() ?>>
 </span>
 <?php echo $gaji_karyawan_sd_edit->status->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($gaji_karyawan_sd_edit->potongan_bendahara->Visible) { // potongan_bendahara ?>
-	<div id="r_potongan_bendahara" class="form-group row">
-		<label id="elh_gaji_karyawan_sd_potongan_bendahara" for="x_potongan_bendahara" class="<?php echo $gaji_karyawan_sd_edit->LeftColumnClass ?>"><?php echo $gaji_karyawan_sd_edit->potongan_bendahara->caption() ?><?php echo $gaji_karyawan_sd_edit->potongan_bendahara->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
-		<div class="<?php echo $gaji_karyawan_sd_edit->RightColumnClass ?>"><div <?php echo $gaji_karyawan_sd_edit->potongan_bendahara->cellAttributes() ?>>
-<span id="el_gaji_karyawan_sd_potongan_bendahara">
-<input type="text" data-table="gaji_karyawan_sd" data-field="x_potongan_bendahara" name="x_potongan_bendahara" id="x_potongan_bendahara" size="30" maxlength="100" placeholder="<?php echo HtmlEncode($gaji_karyawan_sd_edit->potongan_bendahara->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_sd_edit->potongan_bendahara->EditValue ?>"<?php echo $gaji_karyawan_sd_edit->potongan_bendahara->editAttributes() ?>>
-</span>
-<?php echo $gaji_karyawan_sd_edit->potongan_bendahara->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
 </div><!-- /page* -->
