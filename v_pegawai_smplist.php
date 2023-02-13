@@ -253,15 +253,6 @@ $v_pegawai_smp_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
-<?php if ($v_pegawai_smp_list->username->Visible) { // username ?>
-	<?php if ($v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->username) == "") { ?>
-		<th data-name="username" class="<?php echo $v_pegawai_smp_list->username->headerCellClass() ?>"><div id="elh_v_pegawai_smp_username" class="v_pegawai_smp_username"><div class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->username->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="username" class="<?php echo $v_pegawai_smp_list->username->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->username) ?>', 1);"><div id="elh_v_pegawai_smp_username" class="v_pegawai_smp_username">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->username->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($v_pegawai_smp_list->username->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_pegawai_smp_list->username->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
 <?php if ($v_pegawai_smp_list->password->Visible) { // password ?>
 	<?php if ($v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->password) == "") { ?>
 		<th data-name="password" class="<?php echo $v_pegawai_smp_list->password->headerCellClass() ?>"><div id="elh_v_pegawai_smp_password" class="v_pegawai_smp_password"><div class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->password->caption() ?></div></div></th>
@@ -295,15 +286,6 @@ $v_pegawai_smp_list->ListOptions->render("header", "left");
 	<?php } else { ?>
 		<th data-name="periode_jabatan" class="<?php echo $v_pegawai_smp_list->periode_jabatan->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->periode_jabatan) ?>', 1);"><div id="elh_v_pegawai_smp_periode_jabatan" class="v_pegawai_smp_periode_jabatan">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->periode_jabatan->caption() ?></span><span class="ew-table-header-sort"><?php if ($v_pegawai_smp_list->periode_jabatan->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_pegawai_smp_list->periode_jabatan->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
-<?php if ($v_pegawai_smp_list->jjm->Visible) { // jjm ?>
-	<?php if ($v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->jjm) == "") { ?>
-		<th data-name="jjm" class="<?php echo $v_pegawai_smp_list->jjm->headerCellClass() ?>"><div id="elh_v_pegawai_smp_jjm" class="v_pegawai_smp_jjm"><div class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->jjm->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="jjm" class="<?php echo $v_pegawai_smp_list->jjm->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->jjm) ?>', 1);"><div id="elh_v_pegawai_smp_jjm" class="v_pegawai_smp_jjm">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->jjm->caption() ?></span><span class="ew-table-header-sort"><?php if ($v_pegawai_smp_list->jjm->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_pegawai_smp_list->jjm->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -451,33 +433,6 @@ $v_pegawai_smp_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
-<?php if ($v_pegawai_smp_list->status->Visible) { // status ?>
-	<?php if ($v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->status) == "") { ?>
-		<th data-name="status" class="<?php echo $v_pegawai_smp_list->status->headerCellClass() ?>"><div id="elh_v_pegawai_smp_status" class="v_pegawai_smp_status"><div class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->status->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="status" class="<?php echo $v_pegawai_smp_list->status->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->status) ?>', 1);"><div id="elh_v_pegawai_smp_status" class="v_pegawai_smp_status">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->status->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($v_pegawai_smp_list->status->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_pegawai_smp_list->status->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
-<?php if ($v_pegawai_smp_list->foto->Visible) { // foto ?>
-	<?php if ($v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->foto) == "") { ?>
-		<th data-name="foto" class="<?php echo $v_pegawai_smp_list->foto->headerCellClass() ?>"><div id="elh_v_pegawai_smp_foto" class="v_pegawai_smp_foto"><div class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->foto->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="foto" class="<?php echo $v_pegawai_smp_list->foto->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->foto) ?>', 1);"><div id="elh_v_pegawai_smp_foto" class="v_pegawai_smp_foto">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->foto->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($v_pegawai_smp_list->foto->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_pegawai_smp_list->foto->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
-<?php if ($v_pegawai_smp_list->file_cv->Visible) { // file_cv ?>
-	<?php if ($v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->file_cv) == "") { ?>
-		<th data-name="file_cv" class="<?php echo $v_pegawai_smp_list->file_cv->headerCellClass() ?>"><div id="elh_v_pegawai_smp_file_cv" class="v_pegawai_smp_file_cv"><div class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->file_cv->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="file_cv" class="<?php echo $v_pegawai_smp_list->file_cv->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->file_cv) ?>', 1);"><div id="elh_v_pegawai_smp_file_cv" class="v_pegawai_smp_file_cv">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->file_cv->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($v_pegawai_smp_list->file_cv->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_pegawai_smp_list->file_cv->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
 <?php if ($v_pegawai_smp_list->mulai_bekerja->Visible) { // mulai_bekerja ?>
 	<?php if ($v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->mulai_bekerja) == "") { ?>
 		<th data-name="mulai_bekerja" class="<?php echo $v_pegawai_smp_list->mulai_bekerja->headerCellClass() ?>"><div id="elh_v_pegawai_smp_mulai_bekerja" class="v_pegawai_smp_mulai_bekerja"><div class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->mulai_bekerja->caption() ?></div></div></th>
@@ -487,39 +442,12 @@ $v_pegawai_smp_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
-<?php if ($v_pegawai_smp_list->keterangan->Visible) { // keterangan ?>
-	<?php if ($v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->keterangan) == "") { ?>
-		<th data-name="keterangan" class="<?php echo $v_pegawai_smp_list->keterangan->headerCellClass() ?>"><div id="elh_v_pegawai_smp_keterangan" class="v_pegawai_smp_keterangan"><div class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->keterangan->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="keterangan" class="<?php echo $v_pegawai_smp_list->keterangan->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->keterangan) ?>', 1);"><div id="elh_v_pegawai_smp_keterangan" class="v_pegawai_smp_keterangan">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->keterangan->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($v_pegawai_smp_list->keterangan->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_pegawai_smp_list->keterangan->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
 <?php if ($v_pegawai_smp_list->level->Visible) { // level ?>
 	<?php if ($v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->level) == "") { ?>
 		<th data-name="level" class="<?php echo $v_pegawai_smp_list->level->headerCellClass() ?>"><div id="elh_v_pegawai_smp_level" class="v_pegawai_smp_level"><div class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->level->caption() ?></div></div></th>
 	<?php } else { ?>
 		<th data-name="level" class="<?php echo $v_pegawai_smp_list->level->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->level) ?>', 1);"><div id="elh_v_pegawai_smp_level" class="v_pegawai_smp_level">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->level->caption() ?></span><span class="ew-table-header-sort"><?php if ($v_pegawai_smp_list->level->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_pegawai_smp_list->level->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
-<?php if ($v_pegawai_smp_list->aktif->Visible) { // aktif ?>
-	<?php if ($v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->aktif) == "") { ?>
-		<th data-name="aktif" class="<?php echo $v_pegawai_smp_list->aktif->headerCellClass() ?>"><div id="elh_v_pegawai_smp_aktif" class="v_pegawai_smp_aktif"><div class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->aktif->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="aktif" class="<?php echo $v_pegawai_smp_list->aktif->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->aktif) ?>', 1);"><div id="elh_v_pegawai_smp_aktif" class="v_pegawai_smp_aktif">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->aktif->caption() ?></span><span class="ew-table-header-sort"><?php if ($v_pegawai_smp_list->aktif->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_pegawai_smp_list->aktif->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
-<?php if ($v_pegawai_smp_list->kehadiran->Visible) { // kehadiran ?>
-	<?php if ($v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->kehadiran) == "") { ?>
-		<th data-name="kehadiran" class="<?php echo $v_pegawai_smp_list->kehadiran->headerCellClass() ?>"><div id="elh_v_pegawai_smp_kehadiran" class="v_pegawai_smp_kehadiran"><div class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->kehadiran->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="kehadiran" class="<?php echo $v_pegawai_smp_list->kehadiran->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_pegawai_smp_list->SortUrl($v_pegawai_smp_list->kehadiran) ?>', 1);"><div id="elh_v_pegawai_smp_kehadiran" class="v_pegawai_smp_kehadiran">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_pegawai_smp_list->kehadiran->caption() ?></span><span class="ew-table-header-sort"><?php if ($v_pegawai_smp_list->kehadiran->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_pegawai_smp_list->kehadiran->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -595,13 +523,6 @@ $v_pegawai_smp_list->ListOptions->render("body", "left", $v_pegawai_smp_list->Ro
 </span>
 </td>
 	<?php } ?>
-	<?php if ($v_pegawai_smp_list->username->Visible) { // username ?>
-		<td data-name="username" <?php echo $v_pegawai_smp_list->username->cellAttributes() ?>>
-<span id="el<?php echo $v_pegawai_smp_list->RowCount ?>_v_pegawai_smp_username">
-<span<?php echo $v_pegawai_smp_list->username->viewAttributes() ?>><?php echo $v_pegawai_smp_list->username->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
 	<?php if ($v_pegawai_smp_list->password->Visible) { // password ?>
 		<td data-name="password" <?php echo $v_pegawai_smp_list->password->cellAttributes() ?>>
 <span id="el<?php echo $v_pegawai_smp_list->RowCount ?>_v_pegawai_smp_password">
@@ -627,13 +548,6 @@ $v_pegawai_smp_list->ListOptions->render("body", "left", $v_pegawai_smp_list->Ro
 		<td data-name="periode_jabatan" <?php echo $v_pegawai_smp_list->periode_jabatan->cellAttributes() ?>>
 <span id="el<?php echo $v_pegawai_smp_list->RowCount ?>_v_pegawai_smp_periode_jabatan">
 <span<?php echo $v_pegawai_smp_list->periode_jabatan->viewAttributes() ?>><?php echo $v_pegawai_smp_list->periode_jabatan->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($v_pegawai_smp_list->jjm->Visible) { // jjm ?>
-		<td data-name="jjm" <?php echo $v_pegawai_smp_list->jjm->cellAttributes() ?>>
-<span id="el<?php echo $v_pegawai_smp_list->RowCount ?>_v_pegawai_smp_jjm">
-<span<?php echo $v_pegawai_smp_list->jjm->viewAttributes() ?>><?php echo $v_pegawai_smp_list->jjm->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>
@@ -749,27 +663,6 @@ $v_pegawai_smp_list->ListOptions->render("body", "left", $v_pegawai_smp_list->Ro
 </span>
 </td>
 	<?php } ?>
-	<?php if ($v_pegawai_smp_list->status->Visible) { // status ?>
-		<td data-name="status" <?php echo $v_pegawai_smp_list->status->cellAttributes() ?>>
-<span id="el<?php echo $v_pegawai_smp_list->RowCount ?>_v_pegawai_smp_status">
-<span<?php echo $v_pegawai_smp_list->status->viewAttributes() ?>><?php echo $v_pegawai_smp_list->status->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($v_pegawai_smp_list->foto->Visible) { // foto ?>
-		<td data-name="foto" <?php echo $v_pegawai_smp_list->foto->cellAttributes() ?>>
-<span id="el<?php echo $v_pegawai_smp_list->RowCount ?>_v_pegawai_smp_foto">
-<span<?php echo $v_pegawai_smp_list->foto->viewAttributes() ?>><?php echo GetFileViewTag($v_pegawai_smp_list->foto, $v_pegawai_smp_list->foto->getViewValue(), FALSE) ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($v_pegawai_smp_list->file_cv->Visible) { // file_cv ?>
-		<td data-name="file_cv" <?php echo $v_pegawai_smp_list->file_cv->cellAttributes() ?>>
-<span id="el<?php echo $v_pegawai_smp_list->RowCount ?>_v_pegawai_smp_file_cv">
-<span<?php echo $v_pegawai_smp_list->file_cv->viewAttributes() ?>><?php echo GetFileViewTag($v_pegawai_smp_list->file_cv, $v_pegawai_smp_list->file_cv->getViewValue(), FALSE) ?></span>
-</span>
-</td>
-	<?php } ?>
 	<?php if ($v_pegawai_smp_list->mulai_bekerja->Visible) { // mulai_bekerja ?>
 		<td data-name="mulai_bekerja" <?php echo $v_pegawai_smp_list->mulai_bekerja->cellAttributes() ?>>
 <span id="el<?php echo $v_pegawai_smp_list->RowCount ?>_v_pegawai_smp_mulai_bekerja">
@@ -777,31 +670,10 @@ $v_pegawai_smp_list->ListOptions->render("body", "left", $v_pegawai_smp_list->Ro
 </span>
 </td>
 	<?php } ?>
-	<?php if ($v_pegawai_smp_list->keterangan->Visible) { // keterangan ?>
-		<td data-name="keterangan" <?php echo $v_pegawai_smp_list->keterangan->cellAttributes() ?>>
-<span id="el<?php echo $v_pegawai_smp_list->RowCount ?>_v_pegawai_smp_keterangan">
-<span<?php echo $v_pegawai_smp_list->keterangan->viewAttributes() ?>><?php echo $v_pegawai_smp_list->keterangan->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
 	<?php if ($v_pegawai_smp_list->level->Visible) { // level ?>
 		<td data-name="level" <?php echo $v_pegawai_smp_list->level->cellAttributes() ?>>
 <span id="el<?php echo $v_pegawai_smp_list->RowCount ?>_v_pegawai_smp_level">
 <span<?php echo $v_pegawai_smp_list->level->viewAttributes() ?>><?php echo $v_pegawai_smp_list->level->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($v_pegawai_smp_list->aktif->Visible) { // aktif ?>
-		<td data-name="aktif" <?php echo $v_pegawai_smp_list->aktif->cellAttributes() ?>>
-<span id="el<?php echo $v_pegawai_smp_list->RowCount ?>_v_pegawai_smp_aktif">
-<span<?php echo $v_pegawai_smp_list->aktif->viewAttributes() ?>><?php echo $v_pegawai_smp_list->aktif->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($v_pegawai_smp_list->kehadiran->Visible) { // kehadiran ?>
-		<td data-name="kehadiran" <?php echo $v_pegawai_smp_list->kehadiran->cellAttributes() ?>>
-<span id="el<?php echo $v_pegawai_smp_list->RowCount ?>_v_pegawai_smp_kehadiran">
-<span<?php echo $v_pegawai_smp_list->kehadiran->viewAttributes() ?>><?php echo $v_pegawai_smp_list->kehadiran->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

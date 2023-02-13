@@ -818,12 +818,12 @@ class v_pegawai_sma_list extends v_pegawai_sma
 		$this->id->Visible = FALSE;
 		$this->pid->Visible = FALSE;
 		$this->nip->setVisibility();
-		$this->username->setVisibility();
+		$this->username->Visible = FALSE;
 		$this->password->setVisibility();
 		$this->jenjang_id->setVisibility();
 		$this->jabatan->setVisibility();
 		$this->periode_jabatan->setVisibility();
-		$this->jjm->setVisibility();
+		$this->jjm->Visible = FALSE;
 		$this->status_peg->setVisibility();
 		$this->type->setVisibility();
 		$this->sertif->setVisibility();
@@ -840,14 +840,14 @@ class v_pegawai_sma_list extends v_pegawai_sma
 		$this->jurusan->setVisibility();
 		$this->agama->setVisibility();
 		$this->jenkel->setVisibility();
-		$this->status->setVisibility();
-		$this->foto->setVisibility();
-		$this->file_cv->setVisibility();
+		$this->status->Visible = FALSE;
+		$this->foto->Visible = FALSE;
+		$this->file_cv->Visible = FALSE;
 		$this->mulai_bekerja->setVisibility();
 		$this->keterangan->setVisibility();
 		$this->level->setVisibility();
-		$this->aktif->setVisibility();
-		$this->kehadiran->setVisibility();
+		$this->aktif->Visible = FALSE;
+		$this->kehadiran->Visible = FALSE;
 		$this->hideFieldsForAddEdit();
 
 		// Global Page Loading event (in userfn*.php)
@@ -1640,7 +1640,6 @@ class v_pegawai_sma_list extends v_pegawai_sma
 	{
 		$where = "";
 		$this->buildBasicSearchSql($where, $this->nip, $arKeywords, $type);
-		$this->buildBasicSearchSql($where, $this->username, $arKeywords, $type);
 		$this->buildBasicSearchSql($where, $this->password, $arKeywords, $type);
 		$this->buildBasicSearchSql($where, $this->type, $arKeywords, $type);
 		$this->buildBasicSearchSql($where, $this->nama, $arKeywords, $type);
@@ -1652,9 +1651,6 @@ class v_pegawai_sma_list extends v_pegawai_sma
 		$this->buildBasicSearchSql($where, $this->jurusan, $arKeywords, $type);
 		$this->buildBasicSearchSql($where, $this->agama, $arKeywords, $type);
 		$this->buildBasicSearchSql($where, $this->jenkel, $arKeywords, $type);
-		$this->buildBasicSearchSql($where, $this->status, $arKeywords, $type);
-		$this->buildBasicSearchSql($where, $this->foto, $arKeywords, $type);
-		$this->buildBasicSearchSql($where, $this->file_cv, $arKeywords, $type);
 		$this->buildBasicSearchSql($where, $this->keterangan, $arKeywords, $type);
 		return $where;
 	}
@@ -1957,12 +1953,10 @@ class v_pegawai_sma_list extends v_pegawai_sma
 			$this->CurrentOrder = Get("order");
 			$this->CurrentOrderType = Get("ordertype", "");
 			$this->updateSort($this->nip); // nip
-			$this->updateSort($this->username); // username
 			$this->updateSort($this->password); // password
 			$this->updateSort($this->jenjang_id); // jenjang_id
 			$this->updateSort($this->jabatan); // jabatan
 			$this->updateSort($this->periode_jabatan); // periode_jabatan
-			$this->updateSort($this->jjm); // jjm
 			$this->updateSort($this->status_peg); // status_peg
 			$this->updateSort($this->type); // type
 			$this->updateSort($this->sertif); // sertif
@@ -1979,14 +1973,9 @@ class v_pegawai_sma_list extends v_pegawai_sma
 			$this->updateSort($this->jurusan); // jurusan
 			$this->updateSort($this->agama); // agama
 			$this->updateSort($this->jenkel); // jenkel
-			$this->updateSort($this->status); // status
-			$this->updateSort($this->foto); // foto
-			$this->updateSort($this->file_cv); // file_cv
 			$this->updateSort($this->mulai_bekerja); // mulai_bekerja
 			$this->updateSort($this->keterangan); // keterangan
 			$this->updateSort($this->level); // level
-			$this->updateSort($this->aktif); // aktif
-			$this->updateSort($this->kehadiran); // kehadiran
 			$this->setStartRecordNumber(1); // Reset start position
 		}
 	}
@@ -2023,12 +2012,10 @@ class v_pegawai_sma_list extends v_pegawai_sma
 				$orderBy = "";
 				$this->setSessionOrderBy($orderBy);
 				$this->nip->setSort("");
-				$this->username->setSort("");
 				$this->password->setSort("");
 				$this->jenjang_id->setSort("");
 				$this->jabatan->setSort("");
 				$this->periode_jabatan->setSort("");
-				$this->jjm->setSort("");
 				$this->status_peg->setSort("");
 				$this->type->setSort("");
 				$this->sertif->setSort("");
@@ -2045,14 +2032,9 @@ class v_pegawai_sma_list extends v_pegawai_sma
 				$this->jurusan->setSort("");
 				$this->agama->setSort("");
 				$this->jenkel->setSort("");
-				$this->status->setSort("");
-				$this->foto->setSort("");
-				$this->file_cv->setSort("");
 				$this->mulai_bekerja->setSort("");
 				$this->keterangan->setSort("");
 				$this->level->setSort("");
-				$this->aktif->setSort("");
-				$this->kehadiran->setSort("");
 			}
 
 			// Reset start position
@@ -2807,11 +2789,17 @@ class v_pegawai_sma_list extends v_pegawai_sma
 		// pid
 		// nip
 		// username
+
+		$this->username->CellCssStyle = "white-space: nowrap;";
+
 		// password
 		// jenjang_id
 		// jabatan
 		// periode_jabatan
 		// jjm
+
+		$this->jjm->CellCssStyle = "white-space: nowrap;";
+
 		// status_peg
 		// type
 		// sertif
@@ -2829,14 +2817,24 @@ class v_pegawai_sma_list extends v_pegawai_sma
 		// agama
 		// jenkel
 		// status
+
+		$this->status->CellCssStyle = "white-space: nowrap;";
+
 		// foto
+		$this->foto->CellCssStyle = "white-space: nowrap;";
+
 		// file_cv
+		$this->file_cv->CellCssStyle = "white-space: nowrap;";
+
 		// mulai_bekerja
 		// keterangan
 		// level
 		// aktif
-		// kehadiran
 
+		$this->aktif->CellCssStyle = "white-space: nowrap;";
+
+		// kehadiran
+		$this->kehadiran->CellCssStyle = "white-space: nowrap;";
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
 			// id
@@ -2851,10 +2849,6 @@ class v_pegawai_sma_list extends v_pegawai_sma
 			// nip
 			$this->nip->ViewValue = $this->nip->CurrentValue;
 			$this->nip->ViewCustomAttributes = "";
-
-			// username
-			$this->username->ViewValue = $this->username->CurrentValue;
-			$this->username->ViewCustomAttributes = "";
 
 			// password
 			$this->password->ViewValue = $this->password->CurrentValue;
@@ -2908,11 +2902,6 @@ class v_pegawai_sma_list extends v_pegawai_sma
 			$this->periode_jabatan->ViewValue = $this->periode_jabatan->CurrentValue;
 			$this->periode_jabatan->ViewValue = FormatNumber($this->periode_jabatan->ViewValue, 0, -2, -2, -2);
 			$this->periode_jabatan->ViewCustomAttributes = "";
-
-			// jjm
-			$this->jjm->ViewValue = $this->jjm->CurrentValue;
-			$this->jjm->ViewValue = FormatNumber($this->jjm->ViewValue, 0, -2, -2, -2);
-			$this->jjm->ViewCustomAttributes = "";
 
 			// status_peg
 			$curVal = strval($this->status_peg->CurrentValue);
@@ -3107,26 +3096,6 @@ class v_pegawai_sma_list extends v_pegawai_sma
 			}
 			$this->jenkel->ViewCustomAttributes = "";
 
-			// status
-			$this->status->ViewValue = $this->status->CurrentValue;
-			$this->status->ViewCustomAttributes = "";
-
-			// foto
-			if (!EmptyValue($this->foto->Upload->DbValue)) {
-				$this->foto->ViewValue = $this->foto->Upload->DbValue;
-			} else {
-				$this->foto->ViewValue = "";
-			}
-			$this->foto->ViewCustomAttributes = "";
-
-			// file_cv
-			if (!EmptyValue($this->file_cv->Upload->DbValue)) {
-				$this->file_cv->ViewValue = $this->file_cv->Upload->DbValue;
-			} else {
-				$this->file_cv->ViewValue = "";
-			}
-			$this->file_cv->ViewCustomAttributes = "";
-
 			// mulai_bekerja
 			$this->mulai_bekerja->ViewValue = $this->mulai_bekerja->CurrentValue;
 			$this->mulai_bekerja->ViewCustomAttributes = "";
@@ -3157,25 +3126,10 @@ class v_pegawai_sma_list extends v_pegawai_sma
 			}
 			$this->level->ViewCustomAttributes = "";
 
-			// aktif
-			$this->aktif->ViewValue = $this->aktif->CurrentValue;
-			$this->aktif->ViewValue = FormatNumber($this->aktif->ViewValue, 0, -2, -2, -2);
-			$this->aktif->ViewCustomAttributes = "";
-
-			// kehadiran
-			$this->kehadiran->ViewValue = $this->kehadiran->CurrentValue;
-			$this->kehadiran->ViewValue = FormatNumber($this->kehadiran->ViewValue, 0, -2, -2, -2);
-			$this->kehadiran->ViewCustomAttributes = "";
-
 			// nip
 			$this->nip->LinkCustomAttributes = "";
 			$this->nip->HrefValue = "";
 			$this->nip->TooltipValue = "";
-
-			// username
-			$this->username->LinkCustomAttributes = "";
-			$this->username->HrefValue = "";
-			$this->username->TooltipValue = "";
 
 			// password
 			$this->password->LinkCustomAttributes = "";
@@ -3196,11 +3150,6 @@ class v_pegawai_sma_list extends v_pegawai_sma
 			$this->periode_jabatan->LinkCustomAttributes = "";
 			$this->periode_jabatan->HrefValue = "";
 			$this->periode_jabatan->TooltipValue = "";
-
-			// jjm
-			$this->jjm->LinkCustomAttributes = "";
-			$this->jjm->HrefValue = "";
-			$this->jjm->TooltipValue = "";
 
 			// status_peg
 			$this->status_peg->LinkCustomAttributes = "";
@@ -3282,23 +3231,6 @@ class v_pegawai_sma_list extends v_pegawai_sma
 			$this->jenkel->HrefValue = "";
 			$this->jenkel->TooltipValue = "";
 
-			// status
-			$this->status->LinkCustomAttributes = "";
-			$this->status->HrefValue = "";
-			$this->status->TooltipValue = "";
-
-			// foto
-			$this->foto->LinkCustomAttributes = "";
-			$this->foto->HrefValue = "";
-			$this->foto->ExportHrefValue = $this->foto->UploadPath . $this->foto->Upload->DbValue;
-			$this->foto->TooltipValue = "";
-
-			// file_cv
-			$this->file_cv->LinkCustomAttributes = "";
-			$this->file_cv->HrefValue = "";
-			$this->file_cv->ExportHrefValue = $this->file_cv->UploadPath . $this->file_cv->Upload->DbValue;
-			$this->file_cv->TooltipValue = "";
-
 			// mulai_bekerja
 			$this->mulai_bekerja->LinkCustomAttributes = "";
 			$this->mulai_bekerja->HrefValue = "";
@@ -3313,16 +3245,6 @@ class v_pegawai_sma_list extends v_pegawai_sma
 			$this->level->LinkCustomAttributes = "";
 			$this->level->HrefValue = "";
 			$this->level->TooltipValue = "";
-
-			// aktif
-			$this->aktif->LinkCustomAttributes = "";
-			$this->aktif->HrefValue = "";
-			$this->aktif->TooltipValue = "";
-
-			// kehadiran
-			$this->kehadiran->LinkCustomAttributes = "";
-			$this->kehadiran->HrefValue = "";
-			$this->kehadiran->TooltipValue = "";
 		} elseif ($this->RowType == ROWTYPE_SEARCH) { // Search row
 
 			// nip
@@ -3332,14 +3254,6 @@ class v_pegawai_sma_list extends v_pegawai_sma
 				$this->nip->AdvancedSearch->SearchValue = HtmlDecode($this->nip->AdvancedSearch->SearchValue);
 			$this->nip->EditValue = HtmlEncode($this->nip->AdvancedSearch->SearchValue);
 			$this->nip->PlaceHolder = RemoveHtml($this->nip->caption());
-
-			// username
-			$this->username->EditAttrs["class"] = "form-control";
-			$this->username->EditCustomAttributes = "";
-			if (!$this->username->Raw)
-				$this->username->AdvancedSearch->SearchValue = HtmlDecode($this->username->AdvancedSearch->SearchValue);
-			$this->username->EditValue = HtmlEncode($this->username->AdvancedSearch->SearchValue);
-			$this->username->PlaceHolder = RemoveHtml($this->username->caption());
 
 			// password
 			$this->password->EditAttrs["class"] = "form-control";
@@ -3390,12 +3304,6 @@ class v_pegawai_sma_list extends v_pegawai_sma
 			$this->periode_jabatan->EditCustomAttributes = "";
 			$this->periode_jabatan->EditValue = HtmlEncode($this->periode_jabatan->AdvancedSearch->SearchValue);
 			$this->periode_jabatan->PlaceHolder = RemoveHtml($this->periode_jabatan->caption());
-
-			// jjm
-			$this->jjm->EditAttrs["class"] = "form-control";
-			$this->jjm->EditCustomAttributes = "";
-			$this->jjm->EditValue = HtmlEncode($this->jjm->AdvancedSearch->SearchValue);
-			$this->jjm->PlaceHolder = RemoveHtml($this->jjm->caption());
 
 			// status_peg
 			$this->status_peg->EditAttrs["class"] = "form-control";
@@ -3494,30 +3402,6 @@ class v_pegawai_sma_list extends v_pegawai_sma
 			// jenkel
 			$this->jenkel->EditCustomAttributes = "";
 
-			// status
-			$this->status->EditAttrs["class"] = "form-control";
-			$this->status->EditCustomAttributes = "";
-			if (!$this->status->Raw)
-				$this->status->AdvancedSearch->SearchValue = HtmlDecode($this->status->AdvancedSearch->SearchValue);
-			$this->status->EditValue = HtmlEncode($this->status->AdvancedSearch->SearchValue);
-			$this->status->PlaceHolder = RemoveHtml($this->status->caption());
-
-			// foto
-			$this->foto->EditAttrs["class"] = "form-control";
-			$this->foto->EditCustomAttributes = "";
-			if (!$this->foto->Raw)
-				$this->foto->AdvancedSearch->SearchValue = HtmlDecode($this->foto->AdvancedSearch->SearchValue);
-			$this->foto->EditValue = HtmlEncode($this->foto->AdvancedSearch->SearchValue);
-			$this->foto->PlaceHolder = RemoveHtml($this->foto->caption());
-
-			// file_cv
-			$this->file_cv->EditAttrs["class"] = "form-control";
-			$this->file_cv->EditCustomAttributes = "";
-			if (!$this->file_cv->Raw)
-				$this->file_cv->AdvancedSearch->SearchValue = HtmlDecode($this->file_cv->AdvancedSearch->SearchValue);
-			$this->file_cv->EditValue = HtmlEncode($this->file_cv->AdvancedSearch->SearchValue);
-			$this->file_cv->PlaceHolder = RemoveHtml($this->file_cv->caption());
-
 			// mulai_bekerja
 			$this->mulai_bekerja->EditAttrs["class"] = "form-control";
 			$this->mulai_bekerja->EditCustomAttributes = "";
@@ -3535,18 +3419,6 @@ class v_pegawai_sma_list extends v_pegawai_sma
 			// level
 			$this->level->EditAttrs["class"] = "form-control";
 			$this->level->EditCustomAttributes = "";
-
-			// aktif
-			$this->aktif->EditAttrs["class"] = "form-control";
-			$this->aktif->EditCustomAttributes = "";
-			$this->aktif->EditValue = HtmlEncode($this->aktif->AdvancedSearch->SearchValue);
-			$this->aktif->PlaceHolder = RemoveHtml($this->aktif->caption());
-
-			// kehadiran
-			$this->kehadiran->EditAttrs["class"] = "form-control";
-			$this->kehadiran->EditCustomAttributes = "";
-			$this->kehadiran->EditValue = HtmlEncode($this->kehadiran->AdvancedSearch->SearchValue);
-			$this->kehadiran->PlaceHolder = RemoveHtml($this->kehadiran->caption());
 		}
 		if ($this->RowType == ROWTYPE_ADD || $this->RowType == ROWTYPE_EDIT || $this->RowType == ROWTYPE_SEARCH) // Add/Edit/Search row
 			$this->setupFieldTitles();

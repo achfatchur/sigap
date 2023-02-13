@@ -579,12 +579,12 @@ class v_pegawai_sd_delete extends v_pegawai_sd
 		$this->id->Visible = FALSE;
 		$this->pid->Visible = FALSE;
 		$this->nip->setVisibility();
-		$this->username->setVisibility();
+		$this->username->Visible = FALSE;
 		$this->password->setVisibility();
 		$this->jenjang_id->setVisibility();
 		$this->jabatan->setVisibility();
 		$this->periode_jabatan->setVisibility();
-		$this->jjm->setVisibility();
+		$this->jjm->Visible = FALSE;
 		$this->status_peg->setVisibility();
 		$this->type->setVisibility();
 		$this->sertif->setVisibility();
@@ -600,15 +600,15 @@ class v_pegawai_sd_delete extends v_pegawai_sd
 		$this->pendidikan->setVisibility();
 		$this->jurusan->setVisibility();
 		$this->agama->setVisibility();
-		$this->status->setVisibility();
+		$this->status->Visible = FALSE;
 		$this->jenkel->setVisibility();
-		$this->foto->setVisibility();
-		$this->file_cv->setVisibility();
+		$this->foto->Visible = FALSE;
+		$this->file_cv->Visible = FALSE;
 		$this->mulai_bekerja->setVisibility();
-		$this->keterangan->setVisibility();
+		$this->keterangan->Visible = FALSE;
 		$this->level->setVisibility();
-		$this->aktif->setVisibility();
-		$this->kehadiran->setVisibility();
+		$this->aktif->Visible = FALSE;
+		$this->kehadiran->Visible = FALSE;
 		$this->hideFieldsForAddEdit();
 
 		// Do not use lookup cache
@@ -856,11 +856,17 @@ class v_pegawai_sd_delete extends v_pegawai_sd
 		// pid
 		// nip
 		// username
+
+		$this->username->CellCssStyle = "white-space: nowrap;";
+
 		// password
 		// jenjang_id
 		// jabatan
 		// periode_jabatan
 		// jjm
+
+		$this->jjm->CellCssStyle = "white-space: nowrap;";
+
 		// status_peg
 		// type
 		// sertif
@@ -877,15 +883,29 @@ class v_pegawai_sd_delete extends v_pegawai_sd
 		// jurusan
 		// agama
 		// status
+
+		$this->status->CellCssStyle = "white-space: nowrap;";
+
 		// jenkel
 		// foto
+
+		$this->foto->CellCssStyle = "white-space: nowrap;";
+
 		// file_cv
+		$this->file_cv->CellCssStyle = "white-space: nowrap;";
+
 		// mulai_bekerja
 		// keterangan
+
+		$this->keterangan->CellCssStyle = "white-space: nowrap;";
+
 		// level
 		// aktif
-		// kehadiran
 
+		$this->aktif->CellCssStyle = "white-space: nowrap;";
+
+		// kehadiran
+		$this->kehadiran->CellCssStyle = "white-space: nowrap;";
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
 			// id
@@ -900,10 +920,6 @@ class v_pegawai_sd_delete extends v_pegawai_sd
 			// nip
 			$this->nip->ViewValue = $this->nip->CurrentValue;
 			$this->nip->ViewCustomAttributes = "";
-
-			// username
-			$this->username->ViewValue = $this->username->CurrentValue;
-			$this->username->ViewCustomAttributes = "";
 
 			// password
 			$this->password->ViewValue = $this->password->CurrentValue;
@@ -957,11 +973,6 @@ class v_pegawai_sd_delete extends v_pegawai_sd
 			$this->periode_jabatan->ViewValue = $this->periode_jabatan->CurrentValue;
 			$this->periode_jabatan->ViewValue = FormatNumber($this->periode_jabatan->ViewValue, 0, -2, -2, -2);
 			$this->periode_jabatan->ViewCustomAttributes = "";
-
-			// jjm
-			$this->jjm->ViewValue = $this->jjm->CurrentValue;
-			$this->jjm->ViewValue = FormatNumber($this->jjm->ViewValue, 0, -2, -2, -2);
-			$this->jjm->ViewCustomAttributes = "";
 
 			// status_peg
 			$curVal = strval($this->status_peg->CurrentValue);
@@ -1134,10 +1145,6 @@ class v_pegawai_sd_delete extends v_pegawai_sd
 			}
 			$this->agama->ViewCustomAttributes = "";
 
-			// status
-			$this->status->ViewValue = $this->status->CurrentValue;
-			$this->status->ViewCustomAttributes = "";
-
 			// jenkel
 			$curVal = strval($this->jenkel->CurrentValue);
 			if ($curVal != "") {
@@ -1160,29 +1167,9 @@ class v_pegawai_sd_delete extends v_pegawai_sd
 			}
 			$this->jenkel->ViewCustomAttributes = "";
 
-			// foto
-			if (!EmptyValue($this->foto->Upload->DbValue)) {
-				$this->foto->ViewValue = $this->foto->Upload->DbValue;
-			} else {
-				$this->foto->ViewValue = "";
-			}
-			$this->foto->ViewCustomAttributes = "";
-
-			// file_cv
-			if (!EmptyValue($this->file_cv->Upload->DbValue)) {
-				$this->file_cv->ViewValue = $this->file_cv->Upload->DbValue;
-			} else {
-				$this->file_cv->ViewValue = "";
-			}
-			$this->file_cv->ViewCustomAttributes = "";
-
 			// mulai_bekerja
 			$this->mulai_bekerja->ViewValue = $this->mulai_bekerja->CurrentValue;
 			$this->mulai_bekerja->ViewCustomAttributes = "";
-
-			// keterangan
-			$this->keterangan->ViewValue = $this->keterangan->CurrentValue;
-			$this->keterangan->ViewCustomAttributes = "";
 
 			// level
 			$curVal = strval($this->level->CurrentValue);
@@ -1206,25 +1193,10 @@ class v_pegawai_sd_delete extends v_pegawai_sd
 			}
 			$this->level->ViewCustomAttributes = "";
 
-			// aktif
-			$this->aktif->ViewValue = $this->aktif->CurrentValue;
-			$this->aktif->ViewValue = FormatNumber($this->aktif->ViewValue, 0, -2, -2, -2);
-			$this->aktif->ViewCustomAttributes = "";
-
-			// kehadiran
-			$this->kehadiran->ViewValue = $this->kehadiran->CurrentValue;
-			$this->kehadiran->ViewValue = FormatNumber($this->kehadiran->ViewValue, 0, -2, -2, -2);
-			$this->kehadiran->ViewCustomAttributes = "";
-
 			// nip
 			$this->nip->LinkCustomAttributes = "";
 			$this->nip->HrefValue = "";
 			$this->nip->TooltipValue = "";
-
-			// username
-			$this->username->LinkCustomAttributes = "";
-			$this->username->HrefValue = "";
-			$this->username->TooltipValue = "";
 
 			// password
 			$this->password->LinkCustomAttributes = "";
@@ -1245,11 +1217,6 @@ class v_pegawai_sd_delete extends v_pegawai_sd
 			$this->periode_jabatan->LinkCustomAttributes = "";
 			$this->periode_jabatan->HrefValue = "";
 			$this->periode_jabatan->TooltipValue = "";
-
-			// jjm
-			$this->jjm->LinkCustomAttributes = "";
-			$this->jjm->HrefValue = "";
-			$this->jjm->TooltipValue = "";
 
 			// status_peg
 			$this->status_peg->LinkCustomAttributes = "";
@@ -1326,52 +1293,20 @@ class v_pegawai_sd_delete extends v_pegawai_sd
 			$this->agama->HrefValue = "";
 			$this->agama->TooltipValue = "";
 
-			// status
-			$this->status->LinkCustomAttributes = "";
-			$this->status->HrefValue = "";
-			$this->status->TooltipValue = "";
-
 			// jenkel
 			$this->jenkel->LinkCustomAttributes = "";
 			$this->jenkel->HrefValue = "";
 			$this->jenkel->TooltipValue = "";
-
-			// foto
-			$this->foto->LinkCustomAttributes = "";
-			$this->foto->HrefValue = "";
-			$this->foto->ExportHrefValue = $this->foto->UploadPath . $this->foto->Upload->DbValue;
-			$this->foto->TooltipValue = "";
-
-			// file_cv
-			$this->file_cv->LinkCustomAttributes = "";
-			$this->file_cv->HrefValue = "";
-			$this->file_cv->ExportHrefValue = $this->file_cv->UploadPath . $this->file_cv->Upload->DbValue;
-			$this->file_cv->TooltipValue = "";
 
 			// mulai_bekerja
 			$this->mulai_bekerja->LinkCustomAttributes = "";
 			$this->mulai_bekerja->HrefValue = "";
 			$this->mulai_bekerja->TooltipValue = "";
 
-			// keterangan
-			$this->keterangan->LinkCustomAttributes = "";
-			$this->keterangan->HrefValue = "";
-			$this->keterangan->TooltipValue = "";
-
 			// level
 			$this->level->LinkCustomAttributes = "";
 			$this->level->HrefValue = "";
 			$this->level->TooltipValue = "";
-
-			// aktif
-			$this->aktif->LinkCustomAttributes = "";
-			$this->aktif->HrefValue = "";
-			$this->aktif->TooltipValue = "";
-
-			// kehadiran
-			$this->kehadiran->LinkCustomAttributes = "";
-			$this->kehadiran->HrefValue = "";
-			$this->kehadiran->TooltipValue = "";
 		}
 
 		// Call Row Rendered event

@@ -73,9 +73,6 @@ $v_pegawai_smk_delete->showMessage();
 <?php if ($v_pegawai_smk_delete->nip->Visible) { // nip ?>
 		<th class="<?php echo $v_pegawai_smk_delete->nip->headerCellClass() ?>"><span id="elh_v_pegawai_smk_nip" class="v_pegawai_smk_nip"><?php echo $v_pegawai_smk_delete->nip->caption() ?></span></th>
 <?php } ?>
-<?php if ($v_pegawai_smk_delete->username->Visible) { // username ?>
-		<th class="<?php echo $v_pegawai_smk_delete->username->headerCellClass() ?>"><span id="elh_v_pegawai_smk_username" class="v_pegawai_smk_username"><?php echo $v_pegawai_smk_delete->username->caption() ?></span></th>
-<?php } ?>
 <?php if ($v_pegawai_smk_delete->password->Visible) { // password ?>
 		<th class="<?php echo $v_pegawai_smk_delete->password->headerCellClass() ?>"><span id="elh_v_pegawai_smk_password" class="v_pegawai_smk_password"><?php echo $v_pegawai_smk_delete->password->caption() ?></span></th>
 <?php } ?>
@@ -87,9 +84,6 @@ $v_pegawai_smk_delete->showMessage();
 <?php } ?>
 <?php if ($v_pegawai_smk_delete->periode_jabatan->Visible) { // periode_jabatan ?>
 		<th class="<?php echo $v_pegawai_smk_delete->periode_jabatan->headerCellClass() ?>"><span id="elh_v_pegawai_smk_periode_jabatan" class="v_pegawai_smk_periode_jabatan"><?php echo $v_pegawai_smk_delete->periode_jabatan->caption() ?></span></th>
-<?php } ?>
-<?php if ($v_pegawai_smk_delete->jjm->Visible) { // jjm ?>
-		<th class="<?php echo $v_pegawai_smk_delete->jjm->headerCellClass() ?>"><span id="elh_v_pegawai_smk_jjm" class="v_pegawai_smk_jjm"><?php echo $v_pegawai_smk_delete->jjm->caption() ?></span></th>
 <?php } ?>
 <?php if ($v_pegawai_smk_delete->status_peg->Visible) { // status_peg ?>
 		<th class="<?php echo $v_pegawai_smk_delete->status_peg->headerCellClass() ?>"><span id="elh_v_pegawai_smk_status_peg" class="v_pegawai_smk_status_peg"><?php echo $v_pegawai_smk_delete->status_peg->caption() ?></span></th>
@@ -139,29 +133,11 @@ $v_pegawai_smk_delete->showMessage();
 <?php if ($v_pegawai_smk_delete->jenkel->Visible) { // jenkel ?>
 		<th class="<?php echo $v_pegawai_smk_delete->jenkel->headerCellClass() ?>"><span id="elh_v_pegawai_smk_jenkel" class="v_pegawai_smk_jenkel"><?php echo $v_pegawai_smk_delete->jenkel->caption() ?></span></th>
 <?php } ?>
-<?php if ($v_pegawai_smk_delete->status->Visible) { // status ?>
-		<th class="<?php echo $v_pegawai_smk_delete->status->headerCellClass() ?>"><span id="elh_v_pegawai_smk_status" class="v_pegawai_smk_status"><?php echo $v_pegawai_smk_delete->status->caption() ?></span></th>
-<?php } ?>
-<?php if ($v_pegawai_smk_delete->foto->Visible) { // foto ?>
-		<th class="<?php echo $v_pegawai_smk_delete->foto->headerCellClass() ?>"><span id="elh_v_pegawai_smk_foto" class="v_pegawai_smk_foto"><?php echo $v_pegawai_smk_delete->foto->caption() ?></span></th>
-<?php } ?>
-<?php if ($v_pegawai_smk_delete->file_cv->Visible) { // file_cv ?>
-		<th class="<?php echo $v_pegawai_smk_delete->file_cv->headerCellClass() ?>"><span id="elh_v_pegawai_smk_file_cv" class="v_pegawai_smk_file_cv"><?php echo $v_pegawai_smk_delete->file_cv->caption() ?></span></th>
-<?php } ?>
 <?php if ($v_pegawai_smk_delete->mulai_bekerja->Visible) { // mulai_bekerja ?>
 		<th class="<?php echo $v_pegawai_smk_delete->mulai_bekerja->headerCellClass() ?>"><span id="elh_v_pegawai_smk_mulai_bekerja" class="v_pegawai_smk_mulai_bekerja"><?php echo $v_pegawai_smk_delete->mulai_bekerja->caption() ?></span></th>
 <?php } ?>
-<?php if ($v_pegawai_smk_delete->keterangan->Visible) { // keterangan ?>
-		<th class="<?php echo $v_pegawai_smk_delete->keterangan->headerCellClass() ?>"><span id="elh_v_pegawai_smk_keterangan" class="v_pegawai_smk_keterangan"><?php echo $v_pegawai_smk_delete->keterangan->caption() ?></span></th>
-<?php } ?>
 <?php if ($v_pegawai_smk_delete->level->Visible) { // level ?>
 		<th class="<?php echo $v_pegawai_smk_delete->level->headerCellClass() ?>"><span id="elh_v_pegawai_smk_level" class="v_pegawai_smk_level"><?php echo $v_pegawai_smk_delete->level->caption() ?></span></th>
-<?php } ?>
-<?php if ($v_pegawai_smk_delete->aktif->Visible) { // aktif ?>
-		<th class="<?php echo $v_pegawai_smk_delete->aktif->headerCellClass() ?>"><span id="elh_v_pegawai_smk_aktif" class="v_pegawai_smk_aktif"><?php echo $v_pegawai_smk_delete->aktif->caption() ?></span></th>
-<?php } ?>
-<?php if ($v_pegawai_smk_delete->kehadiran->Visible) { // kehadiran ?>
-		<th class="<?php echo $v_pegawai_smk_delete->kehadiran->headerCellClass() ?>"><span id="elh_v_pegawai_smk_kehadiran" class="v_pegawai_smk_kehadiran"><?php echo $v_pegawai_smk_delete->kehadiran->caption() ?></span></th>
 <?php } ?>
 	</tr>
 	</thead>
@@ -191,13 +167,6 @@ while (!$v_pegawai_smk_delete->Recordset->EOF) {
 </span>
 </td>
 <?php } ?>
-<?php if ($v_pegawai_smk_delete->username->Visible) { // username ?>
-		<td <?php echo $v_pegawai_smk_delete->username->cellAttributes() ?>>
-<span id="el<?php echo $v_pegawai_smk_delete->RowCount ?>_v_pegawai_smk_username" class="v_pegawai_smk_username">
-<span<?php echo $v_pegawai_smk_delete->username->viewAttributes() ?>><?php echo $v_pegawai_smk_delete->username->getViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
 <?php if ($v_pegawai_smk_delete->password->Visible) { // password ?>
 		<td <?php echo $v_pegawai_smk_delete->password->cellAttributes() ?>>
 <span id="el<?php echo $v_pegawai_smk_delete->RowCount ?>_v_pegawai_smk_password" class="v_pegawai_smk_password">
@@ -223,13 +192,6 @@ while (!$v_pegawai_smk_delete->Recordset->EOF) {
 		<td <?php echo $v_pegawai_smk_delete->periode_jabatan->cellAttributes() ?>>
 <span id="el<?php echo $v_pegawai_smk_delete->RowCount ?>_v_pegawai_smk_periode_jabatan" class="v_pegawai_smk_periode_jabatan">
 <span<?php echo $v_pegawai_smk_delete->periode_jabatan->viewAttributes() ?>><?php echo $v_pegawai_smk_delete->periode_jabatan->getViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
-<?php if ($v_pegawai_smk_delete->jjm->Visible) { // jjm ?>
-		<td <?php echo $v_pegawai_smk_delete->jjm->cellAttributes() ?>>
-<span id="el<?php echo $v_pegawai_smk_delete->RowCount ?>_v_pegawai_smk_jjm" class="v_pegawai_smk_jjm">
-<span<?php echo $v_pegawai_smk_delete->jjm->viewAttributes() ?>><?php echo $v_pegawai_smk_delete->jjm->getViewValue() ?></span>
 </span>
 </td>
 <?php } ?>
@@ -345,27 +307,6 @@ while (!$v_pegawai_smk_delete->Recordset->EOF) {
 </span>
 </td>
 <?php } ?>
-<?php if ($v_pegawai_smk_delete->status->Visible) { // status ?>
-		<td <?php echo $v_pegawai_smk_delete->status->cellAttributes() ?>>
-<span id="el<?php echo $v_pegawai_smk_delete->RowCount ?>_v_pegawai_smk_status" class="v_pegawai_smk_status">
-<span<?php echo $v_pegawai_smk_delete->status->viewAttributes() ?>><?php echo $v_pegawai_smk_delete->status->getViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
-<?php if ($v_pegawai_smk_delete->foto->Visible) { // foto ?>
-		<td <?php echo $v_pegawai_smk_delete->foto->cellAttributes() ?>>
-<span id="el<?php echo $v_pegawai_smk_delete->RowCount ?>_v_pegawai_smk_foto" class="v_pegawai_smk_foto">
-<span<?php echo $v_pegawai_smk_delete->foto->viewAttributes() ?>><?php echo GetFileViewTag($v_pegawai_smk_delete->foto, $v_pegawai_smk_delete->foto->getViewValue(), FALSE) ?></span>
-</span>
-</td>
-<?php } ?>
-<?php if ($v_pegawai_smk_delete->file_cv->Visible) { // file_cv ?>
-		<td <?php echo $v_pegawai_smk_delete->file_cv->cellAttributes() ?>>
-<span id="el<?php echo $v_pegawai_smk_delete->RowCount ?>_v_pegawai_smk_file_cv" class="v_pegawai_smk_file_cv">
-<span<?php echo $v_pegawai_smk_delete->file_cv->viewAttributes() ?>><?php echo GetFileViewTag($v_pegawai_smk_delete->file_cv, $v_pegawai_smk_delete->file_cv->getViewValue(), FALSE) ?></span>
-</span>
-</td>
-<?php } ?>
 <?php if ($v_pegawai_smk_delete->mulai_bekerja->Visible) { // mulai_bekerja ?>
 		<td <?php echo $v_pegawai_smk_delete->mulai_bekerja->cellAttributes() ?>>
 <span id="el<?php echo $v_pegawai_smk_delete->RowCount ?>_v_pegawai_smk_mulai_bekerja" class="v_pegawai_smk_mulai_bekerja">
@@ -373,31 +314,10 @@ while (!$v_pegawai_smk_delete->Recordset->EOF) {
 </span>
 </td>
 <?php } ?>
-<?php if ($v_pegawai_smk_delete->keterangan->Visible) { // keterangan ?>
-		<td <?php echo $v_pegawai_smk_delete->keterangan->cellAttributes() ?>>
-<span id="el<?php echo $v_pegawai_smk_delete->RowCount ?>_v_pegawai_smk_keterangan" class="v_pegawai_smk_keterangan">
-<span<?php echo $v_pegawai_smk_delete->keterangan->viewAttributes() ?>><?php echo $v_pegawai_smk_delete->keterangan->getViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
 <?php if ($v_pegawai_smk_delete->level->Visible) { // level ?>
 		<td <?php echo $v_pegawai_smk_delete->level->cellAttributes() ?>>
 <span id="el<?php echo $v_pegawai_smk_delete->RowCount ?>_v_pegawai_smk_level" class="v_pegawai_smk_level">
 <span<?php echo $v_pegawai_smk_delete->level->viewAttributes() ?>><?php echo $v_pegawai_smk_delete->level->getViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
-<?php if ($v_pegawai_smk_delete->aktif->Visible) { // aktif ?>
-		<td <?php echo $v_pegawai_smk_delete->aktif->cellAttributes() ?>>
-<span id="el<?php echo $v_pegawai_smk_delete->RowCount ?>_v_pegawai_smk_aktif" class="v_pegawai_smk_aktif">
-<span<?php echo $v_pegawai_smk_delete->aktif->viewAttributes() ?>><?php echo $v_pegawai_smk_delete->aktif->getViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
-<?php if ($v_pegawai_smk_delete->kehadiran->Visible) { // kehadiran ?>
-		<td <?php echo $v_pegawai_smk_delete->kehadiran->cellAttributes() ?>>
-<span id="el<?php echo $v_pegawai_smk_delete->RowCount ?>_v_pegawai_smk_kehadiran" class="v_pegawai_smk_kehadiran">
-<span<?php echo $v_pegawai_smk_delete->kehadiran->viewAttributes() ?>><?php echo $v_pegawai_smk_delete->kehadiran->getViewValue() ?></span>
 </span>
 </td>
 <?php } ?>

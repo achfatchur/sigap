@@ -106,7 +106,7 @@ class v_pengurus_yayasan extends DbTable
 
 		// username
 		$this->username = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_username', 'username', '`username`', '`username`', 200, 255, -1, FALSE, '`username`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->username->Sortable = TRUE; // Allow sort
+		$this->username->Sortable = FALSE; // Allow sort
 		$this->fields['username'] = &$this->username;
 
 		// password
@@ -116,7 +116,7 @@ class v_pengurus_yayasan extends DbTable
 
 		// jenjang_id
 		$this->jenjang_id = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_jenjang_id', 'jenjang_id', '`jenjang_id`', '`jenjang_id`', 3, 11, -1, FALSE, '`jenjang_id`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->jenjang_id->Sortable = TRUE; // Allow sort
+		$this->jenjang_id->Sortable = FALSE; // Allow sort
 		$this->jenjang_id->UsePleaseSelect = TRUE; // Use PleaseSelect by default
 		$this->jenjang_id->PleaseSelectText = $Language->phrase("PleaseSelect"); // "PleaseSelect" text
 		$this->jenjang_id->Lookup = new Lookup('jenjang_id', 'tpendidikan', FALSE, 'nourut', ["name","","",""], [], [], [], [], [], [], '`nourut` ASC', '');
@@ -124,10 +124,8 @@ class v_pengurus_yayasan extends DbTable
 		$this->fields['jenjang_id'] = &$this->jenjang_id;
 
 		// jabatan
-		$this->jabatan = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_jabatan', 'jabatan', '`jabatan`', '`jabatan`', 3, 11, -1, FALSE, '`jabatan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->jabatan = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_jabatan', 'jabatan', '`jabatan`', '`jabatan`', 3, 11, -1, FALSE, '`jabatan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->jabatan->Sortable = TRUE; // Allow sort
-		$this->jabatan->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->jabatan->PleaseSelectText = $Language->phrase("PleaseSelect"); // "PleaseSelect" text
 		$this->jabatan->Lookup = new Lookup('jabatan', 'jabatan', FALSE, 'id', ["nama_jabatan","","",""], [], [], [], [], ["type_jabatan"], ["x_type"], '', '');
 		$this->jabatan->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['jabatan'] = &$this->jabatan;
@@ -140,13 +138,13 @@ class v_pengurus_yayasan extends DbTable
 
 		// jjm
 		$this->jjm = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_jjm', 'jjm', '`jjm`', '`jjm`', 3, 10, -1, FALSE, '`jjm`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->jjm->Sortable = TRUE; // Allow sort
+		$this->jjm->Sortable = FALSE; // Allow sort
 		$this->jjm->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['jjm'] = &$this->jjm;
 
 		// status_peg
 		$this->status_peg = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_status_peg', 'status_peg', '`status_peg`', '`status_peg`', 3, 11, -1, FALSE, '`status_peg`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->status_peg->Sortable = TRUE; // Allow sort
+		$this->status_peg->Sortable = FALSE; // Allow sort
 		$this->status_peg->UsePleaseSelect = TRUE; // Use PleaseSelect by default
 		$this->status_peg->PleaseSelectText = $Language->phrase("PleaseSelect"); // "PleaseSelect" text
 		$this->status_peg->Lookup = new Lookup('status_peg', 'status_kepeg', FALSE, 'id', ["name","","",""], [], [], [], [], [], [], '', '');
@@ -155,14 +153,14 @@ class v_pengurus_yayasan extends DbTable
 
 		// type
 		$this->type = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_type', 'type', '`type`', '`type`', 3, 11, -1, FALSE, '`type`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->type->Sortable = TRUE; // Allow sort
+		$this->type->Sortable = FALSE; // Allow sort
 		$this->type->Lookup = new Lookup('type', 'jenis_jabatan', FALSE, 'id', ["name","","",""], [], [], [], [], [], [], '', '');
 		$this->type->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['type'] = &$this->type;
 
 		// sertif
 		$this->sertif = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_sertif', 'sertif', '`sertif`', '`sertif`', 3, 11, -1, FALSE, '`sertif`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->sertif->Sortable = TRUE; // Allow sort
+		$this->sertif->Sortable = FALSE; // Allow sort
 		$this->sertif->UsePleaseSelect = TRUE; // Use PleaseSelect by default
 		$this->sertif->PleaseSelectText = $Language->phrase("PleaseSelect"); // "PleaseSelect" text
 		$this->sertif->Lookup = new Lookup('sertif', 'sertif', FALSE, 'id', ["name","","",""], [], [], [], [], [], [], '', '');
@@ -171,7 +169,7 @@ class v_pengurus_yayasan extends DbTable
 
 		// tambahan
 		$this->tambahan = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_tambahan', 'tambahan', '`tambahan`', '`tambahan`', 3, 11, -1, FALSE, '`tambahan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->tambahan->Sortable = TRUE; // Allow sort
+		$this->tambahan->Sortable = FALSE; // Allow sort
 		$this->tambahan->UsePleaseSelect = TRUE; // Use PleaseSelect by default
 		$this->tambahan->PleaseSelectText = $Language->phrase("PleaseSelect"); // "PleaseSelect" text
 		$this->tambahan->Lookup = new Lookup('tambahan', 'tambahan_tugas', FALSE, 'id', ["name","","",""], [], [], [], [], [], [], '', '');
@@ -211,7 +209,7 @@ class v_pengurus_yayasan extends DbTable
 
 		// tgllahir
 		$this->tgllahir = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_tgllahir', 'tgllahir', '`tgllahir`', CastDateFieldForLike("`tgllahir`", 0, "DB"), 133, 10, 0, FALSE, '`tgllahir`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->tgllahir->Sortable = TRUE; // Allow sort
+		$this->tgllahir->Sortable = FALSE; // Allow sort
 		$this->tgllahir->DefaultErrorMessage = str_replace("%s", $GLOBALS["DATE_FORMAT"], $Language->phrase("IncorrectDate"));
 		$this->fields['tgllahir'] = &$this->tgllahir;
 
@@ -222,7 +220,7 @@ class v_pengurus_yayasan extends DbTable
 
 		// pendidikan
 		$this->pendidikan = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_pendidikan', 'pendidikan', '`pendidikan`', '`pendidikan`', 3, 11, -1, FALSE, '`pendidikan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->pendidikan->Sortable = TRUE; // Allow sort
+		$this->pendidikan->Sortable = FALSE; // Allow sort
 		$this->pendidikan->UsePleaseSelect = TRUE; // Use PleaseSelect by default
 		$this->pendidikan->PleaseSelectText = $Language->phrase("PleaseSelect"); // "PleaseSelect" text
 		$this->pendidikan->Lookup = new Lookup('pendidikan', 'mpendidikan', FALSE, 'id', ["name","","",""], [], [], [], [], [], [], '`id` ASC', '');
@@ -230,14 +228,12 @@ class v_pengurus_yayasan extends DbTable
 
 		// jurusan
 		$this->jurusan = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_jurusan', 'jurusan', '`jurusan`', '`jurusan`', 200, 50, -1, FALSE, '`jurusan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->jurusan->Sortable = TRUE; // Allow sort
+		$this->jurusan->Sortable = FALSE; // Allow sort
 		$this->fields['jurusan'] = &$this->jurusan;
 
 		// agama
-		$this->agama = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_agama', 'agama', '`agama`', '`agama`', 200, 20, -1, FALSE, '`agama`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->agama = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_agama', 'agama', '`agama`', '`agama`', 200, 20, -1, FALSE, '`agama`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->agama->Sortable = TRUE; // Allow sort
-		$this->agama->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->agama->PleaseSelectText = $Language->phrase("PleaseSelect"); // "PleaseSelect" text
 		$this->agama->Lookup = new Lookup('agama', 'agama', FALSE, 'name', ["name","","",""], [], [], [], [], [], [], '', '');
 		$this->fields['agama'] = &$this->agama;
 
@@ -249,42 +245,40 @@ class v_pengurus_yayasan extends DbTable
 
 		// status
 		$this->status = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_status', 'status', '`status`', '`status`', 200, 20, -1, FALSE, '`status`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->status->Sortable = TRUE; // Allow sort
+		$this->status->Sortable = FALSE; // Allow sort
 		$this->fields['status'] = &$this->status;
 
 		// foto
 		$this->foto = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_foto', 'foto', '`foto`', '`foto`', 200, 255, -1, TRUE, '`foto`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'FILE');
-		$this->foto->Sortable = TRUE; // Allow sort
+		$this->foto->Sortable = FALSE; // Allow sort
 		$this->fields['foto'] = &$this->foto;
 
 		// file_cv
 		$this->file_cv = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_file_cv', 'file_cv', '`file_cv`', '`file_cv`', 200, 255, -1, TRUE, '`file_cv`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'FILE');
-		$this->file_cv->Sortable = TRUE; // Allow sort
+		$this->file_cv->Sortable = FALSE; // Allow sort
 		$this->fields['file_cv'] = &$this->file_cv;
 
 		// mulai_bekerja
 		$this->mulai_bekerja = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_mulai_bekerja', 'mulai_bekerja', '`mulai_bekerja`', '`mulai_bekerja`', 18, 4, -1, FALSE, '`mulai_bekerja`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->mulai_bekerja->Sortable = TRUE; // Allow sort
+		$this->mulai_bekerja->Sortable = FALSE; // Allow sort
 		$this->mulai_bekerja->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['mulai_bekerja'] = &$this->mulai_bekerja;
 
 		// keterangan
 		$this->keterangan = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_keterangan', 'keterangan', '`keterangan`', '`keterangan`', 200, 255, -1, FALSE, '`keterangan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->keterangan->Sortable = TRUE; // Allow sort
+		$this->keterangan->Sortable = FALSE; // Allow sort
 		$this->fields['keterangan'] = &$this->keterangan;
 
 		// level
-		$this->level = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_level', 'level', '`level`', '`level`', 3, 11, -1, FALSE, '`level`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->level = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_level', 'level', '`level`', '`level`', 3, 11, -1, FALSE, '`level`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->level->Sortable = TRUE; // Allow sort
-		$this->level->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->level->PleaseSelectText = $Language->phrase("PleaseSelect"); // "PleaseSelect" text
 		$this->level->Lookup = new Lookup('level', 'userlevels', FALSE, 'userlevelid', ["userlevelname","","",""], [], [], [], [], [], [], '', '');
 		$this->level->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['level'] = &$this->level;
 
 		// aktif
 		$this->aktif = new DbField('v_pengurus_yayasan', 'v_pengurus_yayasan', 'x_aktif', 'aktif', '`aktif`', '`aktif`', 16, 4, -1, FALSE, '`aktif`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->aktif->Sortable = TRUE; // Allow sort
+		$this->aktif->Sortable = FALSE; // Allow sort
 		$this->aktif->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['aktif'] = &$this->aktif;
 
@@ -966,15 +960,34 @@ class v_pengurus_yayasan extends DbTable
 		// id
 		// nip
 		// username
+
+		$this->username->CellCssStyle = "white-space: nowrap;";
+
 		// password
 		// jenjang_id
+
+		$this->jenjang_id->CellCssStyle = "white-space: nowrap;";
+
 		// jabatan
 		// periode_jabatan
+
+		$this->periode_jabatan->CellCssStyle = "white-space: nowrap;";
+
 		// jjm
+		$this->jjm->CellCssStyle = "white-space: nowrap;";
+
 		// status_peg
+		$this->status_peg->CellCssStyle = "white-space: nowrap;";
+
 		// type
+		$this->type->CellCssStyle = "white-space: nowrap;";
+
 		// sertif
+		$this->sertif->CellCssStyle = "white-space: nowrap;";
+
 		// tambahan
+		$this->tambahan->CellCssStyle = "white-space: nowrap;";
+
 		// lama_kerja
 		// nama
 		// alamat
@@ -982,9 +995,17 @@ class v_pengurus_yayasan extends DbTable
 		// wa
 		// hp
 		// tgllahir
+
+		$this->tgllahir->CellCssStyle = "white-space: nowrap;";
+
 		// rekbank
 		// pendidikan
+
+		$this->pendidikan->CellCssStyle = "white-space: nowrap;";
+
 		// jurusan
+		$this->jurusan->CellCssStyle = "white-space: nowrap;";
+
 		// agama
 		// jenkel
 		// status
@@ -992,6 +1013,9 @@ class v_pengurus_yayasan extends DbTable
 		// file_cv
 		// mulai_bekerja
 		// keterangan
+
+		$this->keterangan->CellCssStyle = "white-space: nowrap;";
+
 		// level
 		// aktif
 		// kehadiran
@@ -1035,6 +1059,7 @@ class v_pengurus_yayasan extends DbTable
 		$this->jenjang_id->ViewCustomAttributes = "";
 
 		// jabatan
+		$this->jabatan->ViewValue = $this->jabatan->CurrentValue;
 		$curVal = strval($this->jabatan->CurrentValue);
 		if ($curVal != "") {
 			$this->jabatan->ViewValue = $this->jabatan->lookupCacheOption($curVal);
@@ -1216,6 +1241,7 @@ class v_pengurus_yayasan extends DbTable
 		$this->jurusan->ViewCustomAttributes = "";
 
 		// agama
+		$this->agama->ViewValue = $this->agama->CurrentValue;
 		$curVal = strval($this->agama->CurrentValue);
 		if ($curVal != "") {
 			$this->agama->ViewValue = $this->agama->lookupCacheOption($curVal);
@@ -1288,6 +1314,7 @@ class v_pengurus_yayasan extends DbTable
 		$this->keterangan->ViewCustomAttributes = "";
 
 		// level
+		$this->level->ViewValue = $this->level->CurrentValue;
 		$curVal = strval($this->level->CurrentValue);
 		if ($curVal != "") {
 			$this->level->ViewValue = $this->level->lookupCacheOption($curVal);
@@ -1533,6 +1560,27 @@ class v_pengurus_yayasan extends DbTable
 		// jabatan
 		$this->jabatan->EditAttrs["class"] = "form-control";
 		$this->jabatan->EditCustomAttributes = "";
+		$this->jabatan->EditValue = $this->jabatan->CurrentValue;
+		$curVal = strval($this->jabatan->CurrentValue);
+		if ($curVal != "") {
+			$this->jabatan->EditValue = $this->jabatan->lookupCacheOption($curVal);
+			if ($this->jabatan->EditValue === NULL) { // Lookup from database
+				$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+				$sqlWrk = $this->jabatan->Lookup->getSql(FALSE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				if ($rswrk && !$rswrk->EOF) { // Lookup values found
+					$arwrk = [];
+					$arwrk[1] = $rswrk->fields('df');
+					$this->jabatan->EditValue = $this->jabatan->displayValue($arwrk);
+					$rswrk->Close();
+				} else {
+					$this->jabatan->EditValue = $this->jabatan->CurrentValue;
+				}
+			}
+		} else {
+			$this->jabatan->EditValue = NULL;
+		}
+		$this->jabatan->ViewCustomAttributes = "";
 
 		// periode_jabatan
 		$this->periode_jabatan->EditAttrs["class"] = "form-control";
@@ -1639,6 +1687,27 @@ class v_pengurus_yayasan extends DbTable
 		// agama
 		$this->agama->EditAttrs["class"] = "form-control";
 		$this->agama->EditCustomAttributes = "";
+		$this->agama->EditValue = $this->agama->CurrentValue;
+		$curVal = strval($this->agama->CurrentValue);
+		if ($curVal != "") {
+			$this->agama->EditValue = $this->agama->lookupCacheOption($curVal);
+			if ($this->agama->EditValue === NULL) { // Lookup from database
+				$filterWrk = "`name`" . SearchString("=", $curVal, DATATYPE_STRING, "");
+				$sqlWrk = $this->agama->Lookup->getSql(FALSE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				if ($rswrk && !$rswrk->EOF) { // Lookup values found
+					$arwrk = [];
+					$arwrk[1] = $rswrk->fields('df');
+					$this->agama->EditValue = $this->agama->displayValue($arwrk);
+					$rswrk->Close();
+				} else {
+					$this->agama->EditValue = $this->agama->CurrentValue;
+				}
+			}
+		} else {
+			$this->agama->EditValue = NULL;
+		}
+		$this->agama->ViewCustomAttributes = "";
 
 		// jenkel
 		$this->jenkel->EditCustomAttributes = "";
@@ -1690,6 +1759,27 @@ class v_pengurus_yayasan extends DbTable
 		// level
 		$this->level->EditAttrs["class"] = "form-control";
 		$this->level->EditCustomAttributes = "";
+		$this->level->EditValue = $this->level->CurrentValue;
+		$curVal = strval($this->level->CurrentValue);
+		if ($curVal != "") {
+			$this->level->EditValue = $this->level->lookupCacheOption($curVal);
+			if ($this->level->EditValue === NULL) { // Lookup from database
+				$filterWrk = "`userlevelid`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+				$sqlWrk = $this->level->Lookup->getSql(FALSE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				if ($rswrk && !$rswrk->EOF) { // Lookup values found
+					$arwrk = [];
+					$arwrk[1] = $rswrk->fields('df');
+					$this->level->EditValue = $this->level->displayValue($arwrk);
+					$rswrk->Close();
+				} else {
+					$this->level->EditValue = $this->level->CurrentValue;
+				}
+			}
+		} else {
+			$this->level->EditValue = NULL;
+		}
+		$this->level->ViewCustomAttributes = "";
 
 		// aktif
 		$this->aktif->EditAttrs["class"] = "form-control";
@@ -1767,35 +1857,18 @@ class v_pengurus_yayasan extends DbTable
 				} else {
 					$doc->exportCaption($this->id);
 					$doc->exportCaption($this->nip);
-					$doc->exportCaption($this->username);
 					$doc->exportCaption($this->password);
-					$doc->exportCaption($this->jenjang_id);
 					$doc->exportCaption($this->jabatan);
-					$doc->exportCaption($this->periode_jabatan);
-					$doc->exportCaption($this->jjm);
-					$doc->exportCaption($this->status_peg);
-					$doc->exportCaption($this->type);
-					$doc->exportCaption($this->sertif);
-					$doc->exportCaption($this->tambahan);
 					$doc->exportCaption($this->lama_kerja);
 					$doc->exportCaption($this->nama);
 					$doc->exportCaption($this->alamat);
 					$doc->exportCaption($this->_email);
 					$doc->exportCaption($this->wa);
 					$doc->exportCaption($this->hp);
-					$doc->exportCaption($this->tgllahir);
 					$doc->exportCaption($this->rekbank);
-					$doc->exportCaption($this->pendidikan);
-					$doc->exportCaption($this->jurusan);
 					$doc->exportCaption($this->agama);
 					$doc->exportCaption($this->jenkel);
-					$doc->exportCaption($this->status);
-					$doc->exportCaption($this->foto);
-					$doc->exportCaption($this->file_cv);
-					$doc->exportCaption($this->mulai_bekerja);
-					$doc->exportCaption($this->keterangan);
 					$doc->exportCaption($this->level);
-					$doc->exportCaption($this->aktif);
 					$doc->exportCaption($this->kehadiran);
 				}
 				$doc->endExportRow();
@@ -1863,35 +1936,18 @@ class v_pengurus_yayasan extends DbTable
 					} else {
 						$doc->exportField($this->id);
 						$doc->exportField($this->nip);
-						$doc->exportField($this->username);
 						$doc->exportField($this->password);
-						$doc->exportField($this->jenjang_id);
 						$doc->exportField($this->jabatan);
-						$doc->exportField($this->periode_jabatan);
-						$doc->exportField($this->jjm);
-						$doc->exportField($this->status_peg);
-						$doc->exportField($this->type);
-						$doc->exportField($this->sertif);
-						$doc->exportField($this->tambahan);
 						$doc->exportField($this->lama_kerja);
 						$doc->exportField($this->nama);
 						$doc->exportField($this->alamat);
 						$doc->exportField($this->_email);
 						$doc->exportField($this->wa);
 						$doc->exportField($this->hp);
-						$doc->exportField($this->tgllahir);
 						$doc->exportField($this->rekbank);
-						$doc->exportField($this->pendidikan);
-						$doc->exportField($this->jurusan);
 						$doc->exportField($this->agama);
 						$doc->exportField($this->jenkel);
-						$doc->exportField($this->status);
-						$doc->exportField($this->foto);
-						$doc->exportField($this->file_cv);
-						$doc->exportField($this->mulai_bekerja);
-						$doc->exportField($this->keterangan);
 						$doc->exportField($this->level);
-						$doc->exportField($this->aktif);
 						$doc->exportField($this->kehadiran);
 					}
 					$doc->endExportRow($rowCnt);
@@ -2157,6 +2213,14 @@ class v_pengurus_yayasan extends DbTable
 	function Row_Rendering() {
 
 		// Enter your code here
+	if (CurrentPageID() == "add"  && CurrentPageID() == "edit") {
+		$this->agama->ReadOnly = TRUE;
+		$this->jabatan->ReadOnly = TRUE;
+		$this->level->ReadOnly = TRUE;
+	}	
+			$this->agama->CurrentValue = 'ISLAM';
+			$this->jabatan->CurrentValue = '151';
+			$this->level->CurrentValue = '1';
 	}
 
 	// Row Rendered event

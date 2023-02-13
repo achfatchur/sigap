@@ -578,35 +578,35 @@ class v_pengurus_yayasan_delete extends v_pengurus_yayasan
 		$this->CurrentAction = Param("action"); // Set up current action
 		$this->id->Visible = FALSE;
 		$this->nip->setVisibility();
-		$this->username->setVisibility();
+		$this->username->Visible = FALSE;
 		$this->password->setVisibility();
-		$this->jenjang_id->setVisibility();
+		$this->jenjang_id->Visible = FALSE;
 		$this->jabatan->setVisibility();
-		$this->periode_jabatan->setVisibility();
-		$this->jjm->setVisibility();
-		$this->status_peg->setVisibility();
-		$this->type->setVisibility();
-		$this->sertif->setVisibility();
-		$this->tambahan->setVisibility();
+		$this->periode_jabatan->Visible = FALSE;
+		$this->jjm->Visible = FALSE;
+		$this->status_peg->Visible = FALSE;
+		$this->type->Visible = FALSE;
+		$this->sertif->Visible = FALSE;
+		$this->tambahan->Visible = FALSE;
 		$this->lama_kerja->setVisibility();
 		$this->nama->setVisibility();
 		$this->alamat->setVisibility();
 		$this->_email->setVisibility();
 		$this->wa->setVisibility();
 		$this->hp->setVisibility();
-		$this->tgllahir->setVisibility();
+		$this->tgllahir->Visible = FALSE;
 		$this->rekbank->setVisibility();
-		$this->pendidikan->setVisibility();
-		$this->jurusan->setVisibility();
+		$this->pendidikan->Visible = FALSE;
+		$this->jurusan->Visible = FALSE;
 		$this->agama->setVisibility();
 		$this->jenkel->setVisibility();
-		$this->status->setVisibility();
-		$this->foto->setVisibility();
-		$this->file_cv->setVisibility();
-		$this->mulai_bekerja->setVisibility();
-		$this->keterangan->setVisibility();
+		$this->status->Visible = FALSE;
+		$this->foto->Visible = FALSE;
+		$this->file_cv->Visible = FALSE;
+		$this->mulai_bekerja->Visible = FALSE;
+		$this->keterangan->Visible = FALSE;
 		$this->level->setVisibility();
-		$this->aktif->setVisibility();
+		$this->aktif->Visible = FALSE;
 		$this->kehadiran->setVisibility();
 		$this->hideFieldsForAddEdit();
 
@@ -852,15 +852,34 @@ class v_pengurus_yayasan_delete extends v_pengurus_yayasan
 		// id
 		// nip
 		// username
+
+		$this->username->CellCssStyle = "white-space: nowrap;";
+
 		// password
 		// jenjang_id
+
+		$this->jenjang_id->CellCssStyle = "white-space: nowrap;";
+
 		// jabatan
 		// periode_jabatan
+
+		$this->periode_jabatan->CellCssStyle = "white-space: nowrap;";
+
 		// jjm
+		$this->jjm->CellCssStyle = "white-space: nowrap;";
+
 		// status_peg
+		$this->status_peg->CellCssStyle = "white-space: nowrap;";
+
 		// type
+		$this->type->CellCssStyle = "white-space: nowrap;";
+
 		// sertif
+		$this->sertif->CellCssStyle = "white-space: nowrap;";
+
 		// tambahan
+		$this->tambahan->CellCssStyle = "white-space: nowrap;";
+
 		// lama_kerja
 		// nama
 		// alamat
@@ -868,9 +887,17 @@ class v_pengurus_yayasan_delete extends v_pengurus_yayasan
 		// wa
 		// hp
 		// tgllahir
+
+		$this->tgllahir->CellCssStyle = "white-space: nowrap;";
+
 		// rekbank
 		// pendidikan
+
+		$this->pendidikan->CellCssStyle = "white-space: nowrap;";
+
 		// jurusan
+		$this->jurusan->CellCssStyle = "white-space: nowrap;";
+
 		// agama
 		// jenkel
 		// status
@@ -878,6 +905,9 @@ class v_pengurus_yayasan_delete extends v_pengurus_yayasan
 		// file_cv
 		// mulai_bekerja
 		// keterangan
+
+		$this->keterangan->CellCssStyle = "white-space: nowrap;";
+
 		// level
 		// aktif
 		// kehadiran
@@ -892,37 +922,12 @@ class v_pengurus_yayasan_delete extends v_pengurus_yayasan
 			$this->nip->ViewValue = $this->nip->CurrentValue;
 			$this->nip->ViewCustomAttributes = "";
 
-			// username
-			$this->username->ViewValue = $this->username->CurrentValue;
-			$this->username->ViewCustomAttributes = "";
-
 			// password
 			$this->password->ViewValue = $this->password->CurrentValue;
 			$this->password->ViewCustomAttributes = "";
 
-			// jenjang_id
-			$curVal = strval($this->jenjang_id->CurrentValue);
-			if ($curVal != "") {
-				$this->jenjang_id->ViewValue = $this->jenjang_id->lookupCacheOption($curVal);
-				if ($this->jenjang_id->ViewValue === NULL) { // Lookup from database
-					$filterWrk = "`nourut`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
-					$sqlWrk = $this->jenjang_id->Lookup->getSql(FALSE, $filterWrk, '', $this);
-					$rswrk = Conn()->execute($sqlWrk);
-					if ($rswrk && !$rswrk->EOF) { // Lookup values found
-						$arwrk = [];
-						$arwrk[1] = $rswrk->fields('df');
-						$this->jenjang_id->ViewValue = $this->jenjang_id->displayValue($arwrk);
-						$rswrk->Close();
-					} else {
-						$this->jenjang_id->ViewValue = $this->jenjang_id->CurrentValue;
-					}
-				}
-			} else {
-				$this->jenjang_id->ViewValue = NULL;
-			}
-			$this->jenjang_id->ViewCustomAttributes = "";
-
 			// jabatan
+			$this->jabatan->ViewValue = $this->jabatan->CurrentValue;
 			$curVal = strval($this->jabatan->CurrentValue);
 			if ($curVal != "") {
 				$this->jabatan->ViewValue = $this->jabatan->lookupCacheOption($curVal);
@@ -943,105 +948,6 @@ class v_pengurus_yayasan_delete extends v_pengurus_yayasan
 				$this->jabatan->ViewValue = NULL;
 			}
 			$this->jabatan->ViewCustomAttributes = "";
-
-			// periode_jabatan
-			$this->periode_jabatan->ViewValue = $this->periode_jabatan->CurrentValue;
-			$this->periode_jabatan->ViewValue = FormatNumber($this->periode_jabatan->ViewValue, 0, -2, -2, -2);
-			$this->periode_jabatan->ViewCustomAttributes = "";
-
-			// jjm
-			$this->jjm->ViewValue = $this->jjm->CurrentValue;
-			$this->jjm->ViewValue = FormatNumber($this->jjm->ViewValue, 0, -2, -2, -2);
-			$this->jjm->ViewCustomAttributes = "";
-
-			// status_peg
-			$curVal = strval($this->status_peg->CurrentValue);
-			if ($curVal != "") {
-				$this->status_peg->ViewValue = $this->status_peg->lookupCacheOption($curVal);
-				if ($this->status_peg->ViewValue === NULL) { // Lookup from database
-					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
-					$sqlWrk = $this->status_peg->Lookup->getSql(FALSE, $filterWrk, '', $this);
-					$rswrk = Conn()->execute($sqlWrk);
-					if ($rswrk && !$rswrk->EOF) { // Lookup values found
-						$arwrk = [];
-						$arwrk[1] = $rswrk->fields('df');
-						$this->status_peg->ViewValue = $this->status_peg->displayValue($arwrk);
-						$rswrk->Close();
-					} else {
-						$this->status_peg->ViewValue = $this->status_peg->CurrentValue;
-					}
-				}
-			} else {
-				$this->status_peg->ViewValue = NULL;
-			}
-			$this->status_peg->ViewCustomAttributes = "";
-
-			// type
-			$this->type->ViewValue = $this->type->CurrentValue;
-			$curVal = strval($this->type->CurrentValue);
-			if ($curVal != "") {
-				$this->type->ViewValue = $this->type->lookupCacheOption($curVal);
-				if ($this->type->ViewValue === NULL) { // Lookup from database
-					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
-					$sqlWrk = $this->type->Lookup->getSql(FALSE, $filterWrk, '', $this);
-					$rswrk = Conn()->execute($sqlWrk);
-					if ($rswrk && !$rswrk->EOF) { // Lookup values found
-						$arwrk = [];
-						$arwrk[1] = $rswrk->fields('df');
-						$this->type->ViewValue = $this->type->displayValue($arwrk);
-						$rswrk->Close();
-					} else {
-						$this->type->ViewValue = $this->type->CurrentValue;
-					}
-				}
-			} else {
-				$this->type->ViewValue = NULL;
-			}
-			$this->type->ViewCustomAttributes = "";
-
-			// sertif
-			$curVal = strval($this->sertif->CurrentValue);
-			if ($curVal != "") {
-				$this->sertif->ViewValue = $this->sertif->lookupCacheOption($curVal);
-				if ($this->sertif->ViewValue === NULL) { // Lookup from database
-					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
-					$sqlWrk = $this->sertif->Lookup->getSql(FALSE, $filterWrk, '', $this);
-					$rswrk = Conn()->execute($sqlWrk);
-					if ($rswrk && !$rswrk->EOF) { // Lookup values found
-						$arwrk = [];
-						$arwrk[1] = $rswrk->fields('df');
-						$this->sertif->ViewValue = $this->sertif->displayValue($arwrk);
-						$rswrk->Close();
-					} else {
-						$this->sertif->ViewValue = $this->sertif->CurrentValue;
-					}
-				}
-			} else {
-				$this->sertif->ViewValue = NULL;
-			}
-			$this->sertif->ViewCustomAttributes = "";
-
-			// tambahan
-			$curVal = strval($this->tambahan->CurrentValue);
-			if ($curVal != "") {
-				$this->tambahan->ViewValue = $this->tambahan->lookupCacheOption($curVal);
-				if ($this->tambahan->ViewValue === NULL) { // Lookup from database
-					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
-					$sqlWrk = $this->tambahan->Lookup->getSql(FALSE, $filterWrk, '', $this);
-					$rswrk = Conn()->execute($sqlWrk);
-					if ($rswrk && !$rswrk->EOF) { // Lookup values found
-						$arwrk = [];
-						$arwrk[1] = $rswrk->fields('df');
-						$this->tambahan->ViewValue = $this->tambahan->displayValue($arwrk);
-						$rswrk->Close();
-					} else {
-						$this->tambahan->ViewValue = $this->tambahan->CurrentValue;
-					}
-				}
-			} else {
-				$this->tambahan->ViewValue = NULL;
-			}
-			$this->tambahan->ViewCustomAttributes = "";
 
 			// lama_kerja
 			$this->lama_kerja->ViewValue = $this->lama_kerja->CurrentValue;
@@ -1068,42 +974,12 @@ class v_pengurus_yayasan_delete extends v_pengurus_yayasan
 			$this->hp->ViewValue = $this->hp->CurrentValue;
 			$this->hp->ViewCustomAttributes = "";
 
-			// tgllahir
-			$this->tgllahir->ViewValue = $this->tgllahir->CurrentValue;
-			$this->tgllahir->ViewValue = FormatDateTime($this->tgllahir->ViewValue, 0);
-			$this->tgllahir->ViewCustomAttributes = "";
-
 			// rekbank
 			$this->rekbank->ViewValue = $this->rekbank->CurrentValue;
 			$this->rekbank->ViewCustomAttributes = "";
 
-			// pendidikan
-			$curVal = strval($this->pendidikan->CurrentValue);
-			if ($curVal != "") {
-				$this->pendidikan->ViewValue = $this->pendidikan->lookupCacheOption($curVal);
-				if ($this->pendidikan->ViewValue === NULL) { // Lookup from database
-					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
-					$sqlWrk = $this->pendidikan->Lookup->getSql(FALSE, $filterWrk, '', $this);
-					$rswrk = Conn()->execute($sqlWrk);
-					if ($rswrk && !$rswrk->EOF) { // Lookup values found
-						$arwrk = [];
-						$arwrk[1] = $rswrk->fields('df');
-						$this->pendidikan->ViewValue = $this->pendidikan->displayValue($arwrk);
-						$rswrk->Close();
-					} else {
-						$this->pendidikan->ViewValue = $this->pendidikan->CurrentValue;
-					}
-				}
-			} else {
-				$this->pendidikan->ViewValue = NULL;
-			}
-			$this->pendidikan->ViewCustomAttributes = "";
-
-			// jurusan
-			$this->jurusan->ViewValue = $this->jurusan->CurrentValue;
-			$this->jurusan->ViewCustomAttributes = "";
-
 			// agama
+			$this->agama->ViewValue = $this->agama->CurrentValue;
 			$curVal = strval($this->agama->CurrentValue);
 			if ($curVal != "") {
 				$this->agama->ViewValue = $this->agama->lookupCacheOption($curVal);
@@ -1147,35 +1023,8 @@ class v_pengurus_yayasan_delete extends v_pengurus_yayasan
 			}
 			$this->jenkel->ViewCustomAttributes = "";
 
-			// status
-			$this->status->ViewValue = $this->status->CurrentValue;
-			$this->status->ViewCustomAttributes = "";
-
-			// foto
-			if (!EmptyValue($this->foto->Upload->DbValue)) {
-				$this->foto->ViewValue = $this->foto->Upload->DbValue;
-			} else {
-				$this->foto->ViewValue = "";
-			}
-			$this->foto->ViewCustomAttributes = "";
-
-			// file_cv
-			if (!EmptyValue($this->file_cv->Upload->DbValue)) {
-				$this->file_cv->ViewValue = $this->file_cv->Upload->DbValue;
-			} else {
-				$this->file_cv->ViewValue = "";
-			}
-			$this->file_cv->ViewCustomAttributes = "";
-
-			// mulai_bekerja
-			$this->mulai_bekerja->ViewValue = $this->mulai_bekerja->CurrentValue;
-			$this->mulai_bekerja->ViewCustomAttributes = "";
-
-			// keterangan
-			$this->keterangan->ViewValue = $this->keterangan->CurrentValue;
-			$this->keterangan->ViewCustomAttributes = "";
-
 			// level
+			$this->level->ViewValue = $this->level->CurrentValue;
 			$curVal = strval($this->level->CurrentValue);
 			if ($curVal != "") {
 				$this->level->ViewValue = $this->level->lookupCacheOption($curVal);
@@ -1197,11 +1046,6 @@ class v_pengurus_yayasan_delete extends v_pengurus_yayasan
 			}
 			$this->level->ViewCustomAttributes = "";
 
-			// aktif
-			$this->aktif->ViewValue = $this->aktif->CurrentValue;
-			$this->aktif->ViewValue = FormatNumber($this->aktif->ViewValue, 0, -2, -2, -2);
-			$this->aktif->ViewCustomAttributes = "";
-
 			// kehadiran
 			$this->kehadiran->ViewValue = $this->kehadiran->CurrentValue;
 			$this->kehadiran->ViewValue = FormatNumber($this->kehadiran->ViewValue, 0, -2, -2, -2);
@@ -1212,55 +1056,15 @@ class v_pengurus_yayasan_delete extends v_pengurus_yayasan
 			$this->nip->HrefValue = "";
 			$this->nip->TooltipValue = "";
 
-			// username
-			$this->username->LinkCustomAttributes = "";
-			$this->username->HrefValue = "";
-			$this->username->TooltipValue = "";
-
 			// password
 			$this->password->LinkCustomAttributes = "";
 			$this->password->HrefValue = "";
 			$this->password->TooltipValue = "";
 
-			// jenjang_id
-			$this->jenjang_id->LinkCustomAttributes = "";
-			$this->jenjang_id->HrefValue = "";
-			$this->jenjang_id->TooltipValue = "";
-
 			// jabatan
 			$this->jabatan->LinkCustomAttributes = "";
 			$this->jabatan->HrefValue = "";
 			$this->jabatan->TooltipValue = "";
-
-			// periode_jabatan
-			$this->periode_jabatan->LinkCustomAttributes = "";
-			$this->periode_jabatan->HrefValue = "";
-			$this->periode_jabatan->TooltipValue = "";
-
-			// jjm
-			$this->jjm->LinkCustomAttributes = "";
-			$this->jjm->HrefValue = "";
-			$this->jjm->TooltipValue = "";
-
-			// status_peg
-			$this->status_peg->LinkCustomAttributes = "";
-			$this->status_peg->HrefValue = "";
-			$this->status_peg->TooltipValue = "";
-
-			// type
-			$this->type->LinkCustomAttributes = "";
-			$this->type->HrefValue = "";
-			$this->type->TooltipValue = "";
-
-			// sertif
-			$this->sertif->LinkCustomAttributes = "";
-			$this->sertif->HrefValue = "";
-			$this->sertif->TooltipValue = "";
-
-			// tambahan
-			$this->tambahan->LinkCustomAttributes = "";
-			$this->tambahan->HrefValue = "";
-			$this->tambahan->TooltipValue = "";
 
 			// lama_kerja
 			$this->lama_kerja->LinkCustomAttributes = "";
@@ -1292,25 +1096,10 @@ class v_pengurus_yayasan_delete extends v_pengurus_yayasan
 			$this->hp->HrefValue = "";
 			$this->hp->TooltipValue = "";
 
-			// tgllahir
-			$this->tgllahir->LinkCustomAttributes = "";
-			$this->tgllahir->HrefValue = "";
-			$this->tgllahir->TooltipValue = "";
-
 			// rekbank
 			$this->rekbank->LinkCustomAttributes = "";
 			$this->rekbank->HrefValue = "";
 			$this->rekbank->TooltipValue = "";
-
-			// pendidikan
-			$this->pendidikan->LinkCustomAttributes = "";
-			$this->pendidikan->HrefValue = "";
-			$this->pendidikan->TooltipValue = "";
-
-			// jurusan
-			$this->jurusan->LinkCustomAttributes = "";
-			$this->jurusan->HrefValue = "";
-			$this->jurusan->TooltipValue = "";
 
 			// agama
 			$this->agama->LinkCustomAttributes = "";
@@ -1322,42 +1111,10 @@ class v_pengurus_yayasan_delete extends v_pengurus_yayasan
 			$this->jenkel->HrefValue = "";
 			$this->jenkel->TooltipValue = "";
 
-			// status
-			$this->status->LinkCustomAttributes = "";
-			$this->status->HrefValue = "";
-			$this->status->TooltipValue = "";
-
-			// foto
-			$this->foto->LinkCustomAttributes = "";
-			$this->foto->HrefValue = "";
-			$this->foto->ExportHrefValue = $this->foto->UploadPath . $this->foto->Upload->DbValue;
-			$this->foto->TooltipValue = "";
-
-			// file_cv
-			$this->file_cv->LinkCustomAttributes = "";
-			$this->file_cv->HrefValue = "";
-			$this->file_cv->ExportHrefValue = $this->file_cv->UploadPath . $this->file_cv->Upload->DbValue;
-			$this->file_cv->TooltipValue = "";
-
-			// mulai_bekerja
-			$this->mulai_bekerja->LinkCustomAttributes = "";
-			$this->mulai_bekerja->HrefValue = "";
-			$this->mulai_bekerja->TooltipValue = "";
-
-			// keterangan
-			$this->keterangan->LinkCustomAttributes = "";
-			$this->keterangan->HrefValue = "";
-			$this->keterangan->TooltipValue = "";
-
 			// level
 			$this->level->LinkCustomAttributes = "";
 			$this->level->HrefValue = "";
 			$this->level->TooltipValue = "";
-
-			// aktif
-			$this->aktif->LinkCustomAttributes = "";
-			$this->aktif->HrefValue = "";
-			$this->aktif->TooltipValue = "";
 
 			// kehadiran
 			$this->kehadiran->LinkCustomAttributes = "";

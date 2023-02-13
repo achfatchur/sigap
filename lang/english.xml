@@ -8105,7 +8105,7 @@
         <phrase id="fldcaption" value="Potongan" />
       </field>
       <field id="total">
-        <phrase id="fldcaption" value="Total" />
+        <phrase id="fldcaption" value="WhatsApp" />
       </field>
     </table>
     <table id="v_pengurus_yayasan">
@@ -8465,7 +8465,7 @@
         <phrase id="fldcaption" value="Email" />
       </field>
       <field id="wa">
-        <phrase id="fldcaption" value="WhatApps" />
+        <phrase id="fldcaption" value="WhatsApp" />
       </field>
       <field id="hp">
         <phrase id="fldcaption" value="No.HP" />
@@ -8564,7 +8564,7 @@
         <phrase id="fldcaption" value="Alamat" />
       </field>
       <field id="wa">
-        <phrase id="fldcaption" value="WhatApps" />
+        <phrase id="fldcaption" value="WhatsApp" />
       </field>
       <field id="_email">
         <phrase id="fldcaption" value="Email" />
@@ -8714,7 +8714,7 @@
         <phrase id="fldcaption" value="Aktif" />
       </field>
       <field id="kehadiran">
-        <phrase id="fldcaption" value="kehadiran" />
+        <phrase id="fldcaption" value="WhatsApp" />
       </field>
     </table>
     <table id="slip_gaji_yayasan">

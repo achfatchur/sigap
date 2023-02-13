@@ -673,12 +673,12 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 		$this->id->Visible = FALSE;
 		$this->pid->Visible = FALSE;
 		$this->nip->setVisibility();
-		$this->username->setVisibility();
+		$this->username->Visible = FALSE;
 		$this->password->setVisibility();
 		$this->jenjang_id->setVisibility();
 		$this->jabatan->setVisibility();
 		$this->periode_jabatan->setVisibility();
-		$this->jjm->setVisibility();
+		$this->jjm->Visible = FALSE;
 		$this->status_peg->setVisibility();
 		$this->type->setVisibility();
 		$this->sertif->setVisibility();
@@ -695,14 +695,14 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 		$this->jurusan->setVisibility();
 		$this->agama->setVisibility();
 		$this->jenkel->setVisibility();
-		$this->status->setVisibility();
-		$this->foto->setVisibility();
-		$this->file_cv->setVisibility();
+		$this->status->Visible = FALSE;
+		$this->foto->Visible = FALSE;
+		$this->file_cv->Visible = FALSE;
 		$this->mulai_bekerja->setVisibility();
 		$this->keterangan->setVisibility();
 		$this->level->setVisibility();
-		$this->aktif->setVisibility();
-		$this->kehadiran->setVisibility();
+		$this->aktif->Visible = FALSE;
+		$this->kehadiran->Visible = FALSE;
 		$this->hideFieldsForAddEdit();
 
 		// Do not use lookup cache
@@ -878,12 +878,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 	protected function getUploadFiles()
 	{
 		global $CurrentForm, $Language;
-		$this->foto->Upload->Index = $CurrentForm->Index;
-		$this->foto->Upload->uploadFile();
-		$this->foto->CurrentValue = $this->foto->Upload->FileName;
-		$this->file_cv->Upload->Index = $CurrentForm->Index;
-		$this->file_cv->Upload->uploadFile();
-		$this->file_cv->CurrentValue = $this->file_cv->Upload->FileName;
 	}
 
 	// Load form values
@@ -892,7 +886,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 
 		// Load from form
 		global $CurrentForm;
-		$this->getUploadFiles(); // Get upload files
 
 		// Check field name 'nip' first before field var 'x_nip'
 		$val = $CurrentForm->hasValue("nip") ? $CurrentForm->getValue("nip") : $CurrentForm->getValue("x_nip");
@@ -901,15 +894,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 				$this->nip->Visible = FALSE; // Disable update for API request
 			else
 				$this->nip->setFormValue($val);
-		}
-
-		// Check field name 'username' first before field var 'x_username'
-		$val = $CurrentForm->hasValue("username") ? $CurrentForm->getValue("username") : $CurrentForm->getValue("x_username");
-		if (!$this->username->IsDetailKey) {
-			if (IsApi() && $val == NULL)
-				$this->username->Visible = FALSE; // Disable update for API request
-			else
-				$this->username->setFormValue($val);
 		}
 
 		// Check field name 'password' first before field var 'x_password'
@@ -946,15 +930,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 				$this->periode_jabatan->Visible = FALSE; // Disable update for API request
 			else
 				$this->periode_jabatan->setFormValue($val);
-		}
-
-		// Check field name 'jjm' first before field var 'x_jjm'
-		$val = $CurrentForm->hasValue("jjm") ? $CurrentForm->getValue("jjm") : $CurrentForm->getValue("x_jjm");
-		if (!$this->jjm->IsDetailKey) {
-			if (IsApi() && $val == NULL)
-				$this->jjm->Visible = FALSE; // Disable update for API request
-			else
-				$this->jjm->setFormValue($val);
 		}
 
 		// Check field name 'status_peg' first before field var 'x_status_peg'
@@ -1102,15 +1077,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 				$this->jenkel->setFormValue($val);
 		}
 
-		// Check field name 'status' first before field var 'x_status'
-		$val = $CurrentForm->hasValue("status") ? $CurrentForm->getValue("status") : $CurrentForm->getValue("x_status");
-		if (!$this->status->IsDetailKey) {
-			if (IsApi() && $val == NULL)
-				$this->status->Visible = FALSE; // Disable update for API request
-			else
-				$this->status->setFormValue($val);
-		}
-
 		// Check field name 'mulai_bekerja' first before field var 'x_mulai_bekerja'
 		$val = $CurrentForm->hasValue("mulai_bekerja") ? $CurrentForm->getValue("mulai_bekerja") : $CurrentForm->getValue("x_mulai_bekerja");
 		if (!$this->mulai_bekerja->IsDetailKey) {
@@ -1138,24 +1104,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 				$this->level->setFormValue($val);
 		}
 
-		// Check field name 'aktif' first before field var 'x_aktif'
-		$val = $CurrentForm->hasValue("aktif") ? $CurrentForm->getValue("aktif") : $CurrentForm->getValue("x_aktif");
-		if (!$this->aktif->IsDetailKey) {
-			if (IsApi() && $val == NULL)
-				$this->aktif->Visible = FALSE; // Disable update for API request
-			else
-				$this->aktif->setFormValue($val);
-		}
-
-		// Check field name 'kehadiran' first before field var 'x_kehadiran'
-		$val = $CurrentForm->hasValue("kehadiran") ? $CurrentForm->getValue("kehadiran") : $CurrentForm->getValue("x_kehadiran");
-		if (!$this->kehadiran->IsDetailKey) {
-			if (IsApi() && $val == NULL)
-				$this->kehadiran->Visible = FALSE; // Disable update for API request
-			else
-				$this->kehadiran->setFormValue($val);
-		}
-
 		// Check field name 'id' first before field var 'x_id'
 		$val = $CurrentForm->hasValue("id") ? $CurrentForm->getValue("id") : $CurrentForm->getValue("x_id");
 		if (!$this->id->IsDetailKey)
@@ -1168,12 +1116,10 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 		global $CurrentForm;
 		$this->id->CurrentValue = $this->id->FormValue;
 		$this->nip->CurrentValue = $this->nip->FormValue;
-		$this->username->CurrentValue = $this->username->FormValue;
 		$this->password->CurrentValue = $this->password->FormValue;
 		$this->jenjang_id->CurrentValue = $this->jenjang_id->FormValue;
 		$this->jabatan->CurrentValue = $this->jabatan->FormValue;
 		$this->periode_jabatan->CurrentValue = $this->periode_jabatan->FormValue;
-		$this->jjm->CurrentValue = $this->jjm->FormValue;
 		$this->status_peg->CurrentValue = $this->status_peg->FormValue;
 		$this->type->CurrentValue = $this->type->FormValue;
 		$this->sertif->CurrentValue = $this->sertif->FormValue;
@@ -1191,12 +1137,9 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 		$this->jurusan->CurrentValue = $this->jurusan->FormValue;
 		$this->agama->CurrentValue = $this->agama->FormValue;
 		$this->jenkel->CurrentValue = $this->jenkel->FormValue;
-		$this->status->CurrentValue = $this->status->FormValue;
 		$this->mulai_bekerja->CurrentValue = $this->mulai_bekerja->FormValue;
 		$this->keterangan->CurrentValue = $this->keterangan->FormValue;
 		$this->level->CurrentValue = $this->level->FormValue;
-		$this->aktif->CurrentValue = $this->aktif->FormValue;
-		$this->kehadiran->CurrentValue = $this->kehadiran->FormValue;
 	}
 
 	// Load row based on key values
@@ -1394,10 +1337,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 			$this->nip->ViewValue = $this->nip->CurrentValue;
 			$this->nip->ViewCustomAttributes = "";
 
-			// username
-			$this->username->ViewValue = $this->username->CurrentValue;
-			$this->username->ViewCustomAttributes = "";
-
 			// password
 			$this->password->ViewValue = $this->password->CurrentValue;
 			$this->password->ViewCustomAttributes = "";
@@ -1450,11 +1389,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 			$this->periode_jabatan->ViewValue = $this->periode_jabatan->CurrentValue;
 			$this->periode_jabatan->ViewValue = FormatNumber($this->periode_jabatan->ViewValue, 0, -2, -2, -2);
 			$this->periode_jabatan->ViewCustomAttributes = "";
-
-			// jjm
-			$this->jjm->ViewValue = $this->jjm->CurrentValue;
-			$this->jjm->ViewValue = FormatNumber($this->jjm->ViewValue, 0, -2, -2, -2);
-			$this->jjm->ViewCustomAttributes = "";
 
 			// status_peg
 			$curVal = strval($this->status_peg->CurrentValue);
@@ -1649,26 +1583,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 			}
 			$this->jenkel->ViewCustomAttributes = "";
 
-			// status
-			$this->status->ViewValue = $this->status->CurrentValue;
-			$this->status->ViewCustomAttributes = "";
-
-			// foto
-			if (!EmptyValue($this->foto->Upload->DbValue)) {
-				$this->foto->ViewValue = $this->foto->Upload->DbValue;
-			} else {
-				$this->foto->ViewValue = "";
-			}
-			$this->foto->ViewCustomAttributes = "";
-
-			// file_cv
-			if (!EmptyValue($this->file_cv->Upload->DbValue)) {
-				$this->file_cv->ViewValue = $this->file_cv->Upload->DbValue;
-			} else {
-				$this->file_cv->ViewValue = "";
-			}
-			$this->file_cv->ViewCustomAttributes = "";
-
 			// mulai_bekerja
 			$this->mulai_bekerja->ViewValue = $this->mulai_bekerja->CurrentValue;
 			$this->mulai_bekerja->ViewCustomAttributes = "";
@@ -1699,25 +1613,10 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 			}
 			$this->level->ViewCustomAttributes = "";
 
-			// aktif
-			$this->aktif->ViewValue = $this->aktif->CurrentValue;
-			$this->aktif->ViewValue = FormatNumber($this->aktif->ViewValue, 0, -2, -2, -2);
-			$this->aktif->ViewCustomAttributes = "";
-
-			// kehadiran
-			$this->kehadiran->ViewValue = $this->kehadiran->CurrentValue;
-			$this->kehadiran->ViewValue = FormatNumber($this->kehadiran->ViewValue, 0, -2, -2, -2);
-			$this->kehadiran->ViewCustomAttributes = "";
-
 			// nip
 			$this->nip->LinkCustomAttributes = "";
 			$this->nip->HrefValue = "";
 			$this->nip->TooltipValue = "";
-
-			// username
-			$this->username->LinkCustomAttributes = "";
-			$this->username->HrefValue = "";
-			$this->username->TooltipValue = "";
 
 			// password
 			$this->password->LinkCustomAttributes = "";
@@ -1738,11 +1637,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 			$this->periode_jabatan->LinkCustomAttributes = "";
 			$this->periode_jabatan->HrefValue = "";
 			$this->periode_jabatan->TooltipValue = "";
-
-			// jjm
-			$this->jjm->LinkCustomAttributes = "";
-			$this->jjm->HrefValue = "";
-			$this->jjm->TooltipValue = "";
 
 			// status_peg
 			$this->status_peg->LinkCustomAttributes = "";
@@ -1824,23 +1718,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 			$this->jenkel->HrefValue = "";
 			$this->jenkel->TooltipValue = "";
 
-			// status
-			$this->status->LinkCustomAttributes = "";
-			$this->status->HrefValue = "";
-			$this->status->TooltipValue = "";
-
-			// foto
-			$this->foto->LinkCustomAttributes = "";
-			$this->foto->HrefValue = "";
-			$this->foto->ExportHrefValue = $this->foto->UploadPath . $this->foto->Upload->DbValue;
-			$this->foto->TooltipValue = "";
-
-			// file_cv
-			$this->file_cv->LinkCustomAttributes = "";
-			$this->file_cv->HrefValue = "";
-			$this->file_cv->ExportHrefValue = $this->file_cv->UploadPath . $this->file_cv->Upload->DbValue;
-			$this->file_cv->TooltipValue = "";
-
 			// mulai_bekerja
 			$this->mulai_bekerja->LinkCustomAttributes = "";
 			$this->mulai_bekerja->HrefValue = "";
@@ -1855,16 +1732,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 			$this->level->LinkCustomAttributes = "";
 			$this->level->HrefValue = "";
 			$this->level->TooltipValue = "";
-
-			// aktif
-			$this->aktif->LinkCustomAttributes = "";
-			$this->aktif->HrefValue = "";
-			$this->aktif->TooltipValue = "";
-
-			// kehadiran
-			$this->kehadiran->LinkCustomAttributes = "";
-			$this->kehadiran->HrefValue = "";
-			$this->kehadiran->TooltipValue = "";
 		} elseif ($this->RowType == ROWTYPE_EDIT) { // Edit row
 
 			// nip
@@ -1874,14 +1741,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 				$this->nip->CurrentValue = HtmlDecode($this->nip->CurrentValue);
 			$this->nip->EditValue = HtmlEncode($this->nip->CurrentValue);
 			$this->nip->PlaceHolder = RemoveHtml($this->nip->caption());
-
-			// username
-			$this->username->EditAttrs["class"] = "form-control";
-			$this->username->EditCustomAttributes = "";
-			if (!$this->username->Raw)
-				$this->username->CurrentValue = HtmlDecode($this->username->CurrentValue);
-			$this->username->EditValue = HtmlEncode($this->username->CurrentValue);
-			$this->username->PlaceHolder = RemoveHtml($this->username->caption());
 
 			// password
 			$this->password->EditAttrs["class"] = "form-control";
@@ -1960,12 +1819,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 			$this->periode_jabatan->EditCustomAttributes = "";
 			$this->periode_jabatan->EditValue = HtmlEncode($this->periode_jabatan->CurrentValue);
 			$this->periode_jabatan->PlaceHolder = RemoveHtml($this->periode_jabatan->caption());
-
-			// jjm
-			$this->jjm->EditAttrs["class"] = "form-control";
-			$this->jjm->EditCustomAttributes = "";
-			$this->jjm->EditValue = HtmlEncode($this->jjm->CurrentValue);
-			$this->jjm->PlaceHolder = RemoveHtml($this->jjm->caption());
 
 			// status_peg
 			$this->status_peg->EditCustomAttributes = "";
@@ -2235,40 +2088,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 				$this->jenkel->EditValue = $arwrk;
 			}
 
-			// status
-			$this->status->EditAttrs["class"] = "form-control";
-			$this->status->EditCustomAttributes = "";
-			if (!$this->status->Raw)
-				$this->status->CurrentValue = HtmlDecode($this->status->CurrentValue);
-			$this->status->EditValue = HtmlEncode($this->status->CurrentValue);
-			$this->status->PlaceHolder = RemoveHtml($this->status->caption());
-
-			// foto
-			$this->foto->EditAttrs["class"] = "form-control";
-			$this->foto->EditCustomAttributes = "";
-			if (!EmptyValue($this->foto->Upload->DbValue)) {
-				$this->foto->EditValue = $this->foto->Upload->DbValue;
-			} else {
-				$this->foto->EditValue = "";
-			}
-			if (!EmptyValue($this->foto->CurrentValue))
-					$this->foto->Upload->FileName = $this->foto->CurrentValue;
-			if ($this->isShow())
-				RenderUploadField($this->foto);
-
-			// file_cv
-			$this->file_cv->EditAttrs["class"] = "form-control";
-			$this->file_cv->EditCustomAttributes = "";
-			if (!EmptyValue($this->file_cv->Upload->DbValue)) {
-				$this->file_cv->EditValue = $this->file_cv->Upload->DbValue;
-			} else {
-				$this->file_cv->EditValue = "";
-			}
-			if (!EmptyValue($this->file_cv->CurrentValue))
-					$this->file_cv->Upload->FileName = $this->file_cv->CurrentValue;
-			if ($this->isShow())
-				RenderUploadField($this->file_cv);
-
 			// mulai_bekerja
 			$this->mulai_bekerja->EditAttrs["class"] = "form-control";
 			$this->mulai_bekerja->EditCustomAttributes = "";
@@ -2307,27 +2126,11 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 				$this->level->EditValue = $arwrk;
 			}
 
-			// aktif
-			$this->aktif->EditAttrs["class"] = "form-control";
-			$this->aktif->EditCustomAttributes = "";
-			$this->aktif->EditValue = HtmlEncode($this->aktif->CurrentValue);
-			$this->aktif->PlaceHolder = RemoveHtml($this->aktif->caption());
-
-			// kehadiran
-			$this->kehadiran->EditAttrs["class"] = "form-control";
-			$this->kehadiran->EditCustomAttributes = "";
-			$this->kehadiran->EditValue = HtmlEncode($this->kehadiran->CurrentValue);
-			$this->kehadiran->PlaceHolder = RemoveHtml($this->kehadiran->caption());
-
 			// Edit refer script
 			// nip
 
 			$this->nip->LinkCustomAttributes = "";
 			$this->nip->HrefValue = "";
-
-			// username
-			$this->username->LinkCustomAttributes = "";
-			$this->username->HrefValue = "";
 
 			// password
 			$this->password->LinkCustomAttributes = "";
@@ -2344,10 +2147,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 			// periode_jabatan
 			$this->periode_jabatan->LinkCustomAttributes = "";
 			$this->periode_jabatan->HrefValue = "";
-
-			// jjm
-			$this->jjm->LinkCustomAttributes = "";
-			$this->jjm->HrefValue = "";
 
 			// status_peg
 			$this->status_peg->LinkCustomAttributes = "";
@@ -2413,20 +2212,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 			$this->jenkel->LinkCustomAttributes = "";
 			$this->jenkel->HrefValue = "";
 
-			// status
-			$this->status->LinkCustomAttributes = "";
-			$this->status->HrefValue = "";
-
-			// foto
-			$this->foto->LinkCustomAttributes = "";
-			$this->foto->HrefValue = "";
-			$this->foto->ExportHrefValue = $this->foto->UploadPath . $this->foto->Upload->DbValue;
-
-			// file_cv
-			$this->file_cv->LinkCustomAttributes = "";
-			$this->file_cv->HrefValue = "";
-			$this->file_cv->ExportHrefValue = $this->file_cv->UploadPath . $this->file_cv->Upload->DbValue;
-
 			// mulai_bekerja
 			$this->mulai_bekerja->LinkCustomAttributes = "";
 			$this->mulai_bekerja->HrefValue = "";
@@ -2438,14 +2223,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 			// level
 			$this->level->LinkCustomAttributes = "";
 			$this->level->HrefValue = "";
-
-			// aktif
-			$this->aktif->LinkCustomAttributes = "";
-			$this->aktif->HrefValue = "";
-
-			// kehadiran
-			$this->kehadiran->LinkCustomAttributes = "";
-			$this->kehadiran->HrefValue = "";
 		}
 		if ($this->RowType == ROWTYPE_ADD || $this->RowType == ROWTYPE_EDIT || $this->RowType == ROWTYPE_SEARCH) // Add/Edit/Search row
 			$this->setupFieldTitles();
@@ -2471,11 +2248,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 				AddMessage($FormError, str_replace("%s", $this->nip->caption(), $this->nip->RequiredErrorMessage));
 			}
 		}
-		if ($this->username->Required) {
-			if (!$this->username->IsDetailKey && $this->username->FormValue != NULL && $this->username->FormValue == "") {
-				AddMessage($FormError, str_replace("%s", $this->username->caption(), $this->username->RequiredErrorMessage));
-			}
-		}
 		if ($this->password->Required) {
 			if (!$this->password->IsDetailKey && $this->password->FormValue != NULL && $this->password->FormValue == "") {
 				AddMessage($FormError, str_replace("%s", $this->password->caption(), $this->password->RequiredErrorMessage));
@@ -2498,14 +2270,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 		}
 		if (!CheckInteger($this->periode_jabatan->FormValue)) {
 			AddMessage($FormError, $this->periode_jabatan->errorMessage());
-		}
-		if ($this->jjm->Required) {
-			if (!$this->jjm->IsDetailKey && $this->jjm->FormValue != NULL && $this->jjm->FormValue == "") {
-				AddMessage($FormError, str_replace("%s", $this->jjm->caption(), $this->jjm->RequiredErrorMessage));
-			}
-		}
-		if (!CheckInteger($this->jjm->FormValue)) {
-			AddMessage($FormError, $this->jjm->errorMessage());
 		}
 		if ($this->status_peg->Required) {
 			if (!$this->status_peg->IsDetailKey && $this->status_peg->FormValue != NULL && $this->status_peg->FormValue == "") {
@@ -2596,21 +2360,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 				AddMessage($FormError, str_replace("%s", $this->jenkel->caption(), $this->jenkel->RequiredErrorMessage));
 			}
 		}
-		if ($this->status->Required) {
-			if (!$this->status->IsDetailKey && $this->status->FormValue != NULL && $this->status->FormValue == "") {
-				AddMessage($FormError, str_replace("%s", $this->status->caption(), $this->status->RequiredErrorMessage));
-			}
-		}
-		if ($this->foto->Required) {
-			if ($this->foto->Upload->FileName == "" && !$this->foto->Upload->KeepFile) {
-				AddMessage($FormError, str_replace("%s", $this->foto->caption(), $this->foto->RequiredErrorMessage));
-			}
-		}
-		if ($this->file_cv->Required) {
-			if ($this->file_cv->Upload->FileName == "" && !$this->file_cv->Upload->KeepFile) {
-				AddMessage($FormError, str_replace("%s", $this->file_cv->caption(), $this->file_cv->RequiredErrorMessage));
-			}
-		}
 		if ($this->mulai_bekerja->Required) {
 			if (!$this->mulai_bekerja->IsDetailKey && $this->mulai_bekerja->FormValue != NULL && $this->mulai_bekerja->FormValue == "") {
 				AddMessage($FormError, str_replace("%s", $this->mulai_bekerja->caption(), $this->mulai_bekerja->RequiredErrorMessage));
@@ -2628,22 +2377,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 			if (!$this->level->IsDetailKey && $this->level->FormValue != NULL && $this->level->FormValue == "") {
 				AddMessage($FormError, str_replace("%s", $this->level->caption(), $this->level->RequiredErrorMessage));
 			}
-		}
-		if ($this->aktif->Required) {
-			if (!$this->aktif->IsDetailKey && $this->aktif->FormValue != NULL && $this->aktif->FormValue == "") {
-				AddMessage($FormError, str_replace("%s", $this->aktif->caption(), $this->aktif->RequiredErrorMessage));
-			}
-		}
-		if (!CheckInteger($this->aktif->FormValue)) {
-			AddMessage($FormError, $this->aktif->errorMessage());
-		}
-		if ($this->kehadiran->Required) {
-			if (!$this->kehadiran->IsDetailKey && $this->kehadiran->FormValue != NULL && $this->kehadiran->FormValue == "") {
-				AddMessage($FormError, str_replace("%s", $this->kehadiran->caption(), $this->kehadiran->RequiredErrorMessage));
-			}
-		}
-		if (!CheckInteger($this->kehadiran->FormValue)) {
-			AddMessage($FormError, $this->kehadiran->errorMessage());
 		}
 
 		// Return validate result
@@ -2685,9 +2418,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 			// nip
 			$this->nip->setDbValueDef($rsnew, $this->nip->CurrentValue, NULL, $this->nip->ReadOnly);
 
-			// username
-			$this->username->setDbValueDef($rsnew, $this->username->CurrentValue, NULL, $this->username->ReadOnly);
-
 			// password
 			$this->password->setDbValueDef($rsnew, $this->password->CurrentValue, NULL, $this->password->ReadOnly);
 
@@ -2699,9 +2429,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 
 			// periode_jabatan
 			$this->periode_jabatan->setDbValueDef($rsnew, $this->periode_jabatan->CurrentValue, NULL, $this->periode_jabatan->ReadOnly);
-
-			// jjm
-			$this->jjm->setDbValueDef($rsnew, $this->jjm->CurrentValue, NULL, $this->jjm->ReadOnly);
 
 			// status_peg
 			$this->status_peg->setDbValueDef($rsnew, $this->status_peg->CurrentValue, NULL, $this->status_peg->ReadOnly);
@@ -2751,29 +2478,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 			// jenkel
 			$this->jenkel->setDbValueDef($rsnew, $this->jenkel->CurrentValue, NULL, $this->jenkel->ReadOnly);
 
-			// status
-			$this->status->setDbValueDef($rsnew, $this->status->CurrentValue, NULL, $this->status->ReadOnly);
-
-			// foto
-			if ($this->foto->Visible && !$this->foto->ReadOnly && !$this->foto->Upload->KeepFile) {
-				$this->foto->Upload->DbValue = $rsold['foto']; // Get original value
-				if ($this->foto->Upload->FileName == "") {
-					$rsnew['foto'] = NULL;
-				} else {
-					$rsnew['foto'] = $this->foto->Upload->FileName;
-				}
-			}
-
-			// file_cv
-			if ($this->file_cv->Visible && !$this->file_cv->ReadOnly && !$this->file_cv->Upload->KeepFile) {
-				$this->file_cv->Upload->DbValue = $rsold['file_cv']; // Get original value
-				if ($this->file_cv->Upload->FileName == "") {
-					$rsnew['file_cv'] = NULL;
-				} else {
-					$rsnew['file_cv'] = $this->file_cv->Upload->FileName;
-				}
-			}
-
 			// mulai_bekerja
 			$this->mulai_bekerja->setDbValueDef($rsnew, $this->mulai_bekerja->CurrentValue, NULL, $this->mulai_bekerja->ReadOnly);
 
@@ -2782,90 +2486,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 
 			// level
 			$this->level->setDbValueDef($rsnew, $this->level->CurrentValue, NULL, $this->level->ReadOnly);
-
-			// aktif
-			$this->aktif->setDbValueDef($rsnew, $this->aktif->CurrentValue, NULL, $this->aktif->ReadOnly);
-
-			// kehadiran
-			$this->kehadiran->setDbValueDef($rsnew, $this->kehadiran->CurrentValue, NULL, $this->kehadiran->ReadOnly);
-			if ($this->foto->Visible && !$this->foto->Upload->KeepFile) {
-				$oldFiles = EmptyValue($this->foto->Upload->DbValue) ? [] : [$this->foto->htmlDecode($this->foto->Upload->DbValue)];
-				if (!EmptyValue($this->foto->Upload->FileName)) {
-					$newFiles = [$this->foto->Upload->FileName];
-					$NewFileCount = count($newFiles);
-					for ($i = 0; $i < $NewFileCount; $i++) {
-						if ($newFiles[$i] != "") {
-							$file = $newFiles[$i];
-							$tempPath = UploadTempPath($this->foto, $this->foto->Upload->Index);
-							if (file_exists($tempPath . $file)) {
-								if (Config("DELETE_UPLOADED_FILES")) {
-									$oldFileFound = FALSE;
-									$oldFileCount = count($oldFiles);
-									for ($j = 0; $j < $oldFileCount; $j++) {
-										$oldFile = $oldFiles[$j];
-										if ($oldFile == $file) { // Old file found, no need to delete anymore
-											array_splice($oldFiles, $j, 1);
-											$oldFileFound = TRUE;
-											break;
-										}
-									}
-									if ($oldFileFound) // No need to check if file exists further
-										continue;
-								}
-								$file1 = UniqueFilename($this->foto->physicalUploadPath(), $file); // Get new file name
-								if ($file1 != $file) { // Rename temp file
-									while (file_exists($tempPath . $file1) || file_exists($this->foto->physicalUploadPath() . $file1)) // Make sure no file name clash
-										$file1 = UniqueFilename($this->foto->physicalUploadPath(), $file1, TRUE); // Use indexed name
-									rename($tempPath . $file, $tempPath . $file1);
-									$newFiles[$i] = $file1;
-								}
-							}
-						}
-					}
-					$this->foto->Upload->DbValue = empty($oldFiles) ? "" : implode(Config("MULTIPLE_UPLOAD_SEPARATOR"), $oldFiles);
-					$this->foto->Upload->FileName = implode(Config("MULTIPLE_UPLOAD_SEPARATOR"), $newFiles);
-					$this->foto->setDbValueDef($rsnew, $this->foto->Upload->FileName, NULL, $this->foto->ReadOnly);
-				}
-			}
-			if ($this->file_cv->Visible && !$this->file_cv->Upload->KeepFile) {
-				$oldFiles = EmptyValue($this->file_cv->Upload->DbValue) ? [] : [$this->file_cv->htmlDecode($this->file_cv->Upload->DbValue)];
-				if (!EmptyValue($this->file_cv->Upload->FileName)) {
-					$newFiles = [$this->file_cv->Upload->FileName];
-					$NewFileCount = count($newFiles);
-					for ($i = 0; $i < $NewFileCount; $i++) {
-						if ($newFiles[$i] != "") {
-							$file = $newFiles[$i];
-							$tempPath = UploadTempPath($this->file_cv, $this->file_cv->Upload->Index);
-							if (file_exists($tempPath . $file)) {
-								if (Config("DELETE_UPLOADED_FILES")) {
-									$oldFileFound = FALSE;
-									$oldFileCount = count($oldFiles);
-									for ($j = 0; $j < $oldFileCount; $j++) {
-										$oldFile = $oldFiles[$j];
-										if ($oldFile == $file) { // Old file found, no need to delete anymore
-											array_splice($oldFiles, $j, 1);
-											$oldFileFound = TRUE;
-											break;
-										}
-									}
-									if ($oldFileFound) // No need to check if file exists further
-										continue;
-								}
-								$file1 = UniqueFilename($this->file_cv->physicalUploadPath(), $file); // Get new file name
-								if ($file1 != $file) { // Rename temp file
-									while (file_exists($tempPath . $file1) || file_exists($this->file_cv->physicalUploadPath() . $file1)) // Make sure no file name clash
-										$file1 = UniqueFilename($this->file_cv->physicalUploadPath(), $file1, TRUE); // Use indexed name
-									rename($tempPath . $file, $tempPath . $file1);
-									$newFiles[$i] = $file1;
-								}
-							}
-						}
-					}
-					$this->file_cv->Upload->DbValue = empty($oldFiles) ? "" : implode(Config("MULTIPLE_UPLOAD_SEPARATOR"), $oldFiles);
-					$this->file_cv->Upload->FileName = implode(Config("MULTIPLE_UPLOAD_SEPARATOR"), $newFiles);
-					$this->file_cv->setDbValueDef($rsnew, $this->file_cv->Upload->FileName, NULL, $this->file_cv->ReadOnly);
-				}
-			}
 
 			// Call Row Updating event
 			$updateRow = $this->Row_Updating($rsold, $rsnew);
@@ -2891,64 +2511,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 					$editRow = TRUE; // No field to update
 				$conn->raiseErrorFn = "";
 				if ($editRow) {
-					if ($this->foto->Visible && !$this->foto->Upload->KeepFile) {
-						$oldFiles = EmptyValue($this->foto->Upload->DbValue) ? [] : [$this->foto->htmlDecode($this->foto->Upload->DbValue)];
-						if (!EmptyValue($this->foto->Upload->FileName)) {
-							$newFiles = [$this->foto->Upload->FileName];
-							$newFiles2 = [$this->foto->htmlDecode($rsnew['foto'])];
-							$newFileCount = count($newFiles);
-							for ($i = 0; $i < $newFileCount; $i++) {
-								if ($newFiles[$i] != "") {
-									$file = UploadTempPath($this->foto, $this->foto->Upload->Index) . $newFiles[$i];
-									if (file_exists($file)) {
-										if (@$newFiles2[$i] != "") // Use correct file name
-											$newFiles[$i] = $newFiles2[$i];
-										if (!$this->foto->Upload->SaveToFile($newFiles[$i], TRUE, $i)) { // Just replace
-											$this->setFailureMessage($Language->phrase("UploadErrMsg7"));
-											return FALSE;
-										}
-									}
-								}
-							}
-						} else {
-							$newFiles = [];
-						}
-						if (Config("DELETE_UPLOADED_FILES")) {
-							foreach ($oldFiles as $oldFile) {
-								if ($oldFile != "" && !in_array($oldFile, $newFiles))
-									@unlink($this->foto->oldPhysicalUploadPath() . $oldFile);
-							}
-						}
-					}
-					if ($this->file_cv->Visible && !$this->file_cv->Upload->KeepFile) {
-						$oldFiles = EmptyValue($this->file_cv->Upload->DbValue) ? [] : [$this->file_cv->htmlDecode($this->file_cv->Upload->DbValue)];
-						if (!EmptyValue($this->file_cv->Upload->FileName)) {
-							$newFiles = [$this->file_cv->Upload->FileName];
-							$newFiles2 = [$this->file_cv->htmlDecode($rsnew['file_cv'])];
-							$newFileCount = count($newFiles);
-							for ($i = 0; $i < $newFileCount; $i++) {
-								if ($newFiles[$i] != "") {
-									$file = UploadTempPath($this->file_cv, $this->file_cv->Upload->Index) . $newFiles[$i];
-									if (file_exists($file)) {
-										if (@$newFiles2[$i] != "") // Use correct file name
-											$newFiles[$i] = $newFiles2[$i];
-										if (!$this->file_cv->Upload->SaveToFile($newFiles[$i], TRUE, $i)) { // Just replace
-											$this->setFailureMessage($Language->phrase("UploadErrMsg7"));
-											return FALSE;
-										}
-									}
-								}
-							}
-						} else {
-							$newFiles = [];
-						}
-						if (Config("DELETE_UPLOADED_FILES")) {
-							foreach ($oldFiles as $oldFile) {
-								if ($oldFile != "" && !in_array($oldFile, $newFiles))
-									@unlink($this->file_cv->oldPhysicalUploadPath() . $oldFile);
-							}
-						}
-					}
 				}
 			} else {
 				if ($this->getSuccessMessage() != "" || $this->getFailureMessage() != "") {
@@ -2971,12 +2533,6 @@ class v_pegawai_sma_edit extends v_pegawai_sma
 
 		// Clean upload path if any
 		if ($editRow) {
-
-			// foto
-			CleanUploadTempPath($this->foto, $this->foto->Upload->Index);
-
-			// file_cv
-			CleanUploadTempPath($this->file_cv, $this->file_cv->Upload->Index);
 		}
 
 		// Write JSON for API request

@@ -56,23 +56,10 @@ loadjs.ready("head", function() {
 		for (var i = startcnt; i <= rowcnt; i++) {
 			var infix = ($k[0]) ? String(i) : "";
 			$fobj.data("rowindex", infix);
-			<?php if ($v_pegawai_sma_add->pid->Required) { ?>
-				elm = this.getElements("x" + infix + "_pid");
-				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
-					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $v_pegawai_sma_add->pid->caption(), $v_pegawai_sma_add->pid->RequiredErrorMessage)) ?>");
-			<?php } ?>
-				elm = this.getElements("x" + infix + "_pid");
-				if (elm && !ew.checkInteger(elm.value))
-					return this.onError(elm, "<?php echo JsEncode($v_pegawai_sma_add->pid->errorMessage()) ?>");
 			<?php if ($v_pegawai_sma_add->nip->Required) { ?>
 				elm = this.getElements("x" + infix + "_nip");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
 					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $v_pegawai_sma_add->nip->caption(), $v_pegawai_sma_add->nip->RequiredErrorMessage)) ?>");
-			<?php } ?>
-			<?php if ($v_pegawai_sma_add->username->Required) { ?>
-				elm = this.getElements("x" + infix + "_username");
-				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
-					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $v_pegawai_sma_add->username->caption(), $v_pegawai_sma_add->username->RequiredErrorMessage)) ?>");
 			<?php } ?>
 			<?php if ($v_pegawai_sma_add->password->Required) { ?>
 				elm = this.getElements("x" + infix + "_password");
@@ -97,14 +84,6 @@ loadjs.ready("head", function() {
 				elm = this.getElements("x" + infix + "_periode_jabatan");
 				if (elm && !ew.checkInteger(elm.value))
 					return this.onError(elm, "<?php echo JsEncode($v_pegawai_sma_add->periode_jabatan->errorMessage()) ?>");
-			<?php if ($v_pegawai_sma_add->jjm->Required) { ?>
-				elm = this.getElements("x" + infix + "_jjm");
-				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
-					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $v_pegawai_sma_add->jjm->caption(), $v_pegawai_sma_add->jjm->RequiredErrorMessage)) ?>");
-			<?php } ?>
-				elm = this.getElements("x" + infix + "_jjm");
-				if (elm && !ew.checkInteger(elm.value))
-					return this.onError(elm, "<?php echo JsEncode($v_pegawai_sma_add->jjm->errorMessage()) ?>");
 			<?php if ($v_pegawai_sma_add->status_peg->Required) { ?>
 				elm = this.getElements("x" + infix + "_status_peg");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -194,23 +173,6 @@ loadjs.ready("head", function() {
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
 					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $v_pegawai_sma_add->jenkel->caption(), $v_pegawai_sma_add->jenkel->RequiredErrorMessage)) ?>");
 			<?php } ?>
-			<?php if ($v_pegawai_sma_add->status->Required) { ?>
-				elm = this.getElements("x" + infix + "_status");
-				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
-					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $v_pegawai_sma_add->status->caption(), $v_pegawai_sma_add->status->RequiredErrorMessage)) ?>");
-			<?php } ?>
-			<?php if ($v_pegawai_sma_add->foto->Required) { ?>
-				felm = this.getElements("x" + infix + "_foto");
-				elm = this.getElements("fn_x" + infix + "_foto");
-				if (felm && elm && !ew.hasValue(elm))
-					return this.onError(felm, "<?php echo JsEncode(str_replace("%s", $v_pegawai_sma_add->foto->caption(), $v_pegawai_sma_add->foto->RequiredErrorMessage)) ?>");
-			<?php } ?>
-			<?php if ($v_pegawai_sma_add->file_cv->Required) { ?>
-				felm = this.getElements("x" + infix + "_file_cv");
-				elm = this.getElements("fn_x" + infix + "_file_cv");
-				if (felm && elm && !ew.hasValue(elm))
-					return this.onError(felm, "<?php echo JsEncode(str_replace("%s", $v_pegawai_sma_add->file_cv->caption(), $v_pegawai_sma_add->file_cv->RequiredErrorMessage)) ?>");
-			<?php } ?>
 			<?php if ($v_pegawai_sma_add->mulai_bekerja->Required) { ?>
 				elm = this.getElements("x" + infix + "_mulai_bekerja");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -229,22 +191,6 @@ loadjs.ready("head", function() {
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
 					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $v_pegawai_sma_add->level->caption(), $v_pegawai_sma_add->level->RequiredErrorMessage)) ?>");
 			<?php } ?>
-			<?php if ($v_pegawai_sma_add->aktif->Required) { ?>
-				elm = this.getElements("x" + infix + "_aktif");
-				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
-					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $v_pegawai_sma_add->aktif->caption(), $v_pegawai_sma_add->aktif->RequiredErrorMessage)) ?>");
-			<?php } ?>
-				elm = this.getElements("x" + infix + "_aktif");
-				if (elm && !ew.checkInteger(elm.value))
-					return this.onError(elm, "<?php echo JsEncode($v_pegawai_sma_add->aktif->errorMessage()) ?>");
-			<?php if ($v_pegawai_sma_add->kehadiran->Required) { ?>
-				elm = this.getElements("x" + infix + "_kehadiran");
-				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
-					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $v_pegawai_sma_add->kehadiran->caption(), $v_pegawai_sma_add->kehadiran->RequiredErrorMessage)) ?>");
-			<?php } ?>
-				elm = this.getElements("x" + infix + "_kehadiran");
-				if (elm && !ew.checkInteger(elm.value))
-					return this.onError(elm, "<?php echo JsEncode($v_pegawai_sma_add->kehadiran->errorMessage()) ?>");
 
 				// Call Form_CustomValidate event
 				if (!this.Form_CustomValidate(fobj))
@@ -317,16 +263,6 @@ $v_pegawai_sma_add->showMessage();
 <input type="hidden" name="action" id="action" value="insert">
 <input type="hidden" name="modal" value="<?php echo (int)$v_pegawai_sma_add->IsModal ?>">
 <div class="ew-add-div"><!-- page* -->
-<?php if ($v_pegawai_sma_add->pid->Visible) { // pid ?>
-	<div id="r_pid" class="form-group row">
-		<label id="elh_v_pegawai_sma_pid" for="x_pid" class="<?php echo $v_pegawai_sma_add->LeftColumnClass ?>"><?php echo $v_pegawai_sma_add->pid->caption() ?><?php echo $v_pegawai_sma_add->pid->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
-		<div class="<?php echo $v_pegawai_sma_add->RightColumnClass ?>"><div <?php echo $v_pegawai_sma_add->pid->cellAttributes() ?>>
-<span id="el_v_pegawai_sma_pid">
-<input type="text" data-table="v_pegawai_sma" data-field="x_pid" name="x_pid" id="x_pid" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($v_pegawai_sma_add->pid->getPlaceHolder()) ?>" value="<?php echo $v_pegawai_sma_add->pid->EditValue ?>"<?php echo $v_pegawai_sma_add->pid->editAttributes() ?>>
-</span>
-<?php echo $v_pegawai_sma_add->pid->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
 <?php if ($v_pegawai_sma_add->nip->Visible) { // nip ?>
 	<div id="r_nip" class="form-group row">
 		<label id="elh_v_pegawai_sma_nip" for="x_nip" class="<?php echo $v_pegawai_sma_add->LeftColumnClass ?>"><?php echo $v_pegawai_sma_add->nip->caption() ?><?php echo $v_pegawai_sma_add->nip->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
@@ -335,16 +271,6 @@ $v_pegawai_sma_add->showMessage();
 <input type="text" data-table="v_pegawai_sma" data-field="x_nip" name="x_nip" id="x_nip" size="30" maxlength="50" placeholder="<?php echo HtmlEncode($v_pegawai_sma_add->nip->getPlaceHolder()) ?>" value="<?php echo $v_pegawai_sma_add->nip->EditValue ?>"<?php echo $v_pegawai_sma_add->nip->editAttributes() ?>>
 </span>
 <?php echo $v_pegawai_sma_add->nip->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($v_pegawai_sma_add->username->Visible) { // username ?>
-	<div id="r_username" class="form-group row">
-		<label id="elh_v_pegawai_sma_username" for="x_username" class="<?php echo $v_pegawai_sma_add->LeftColumnClass ?>"><?php echo $v_pegawai_sma_add->username->caption() ?><?php echo $v_pegawai_sma_add->username->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
-		<div class="<?php echo $v_pegawai_sma_add->RightColumnClass ?>"><div <?php echo $v_pegawai_sma_add->username->cellAttributes() ?>>
-<span id="el_v_pegawai_sma_username">
-<input type="text" data-table="v_pegawai_sma" data-field="x_username" name="x_username" id="x_username" size="30" maxlength="255" placeholder="<?php echo HtmlEncode($v_pegawai_sma_add->username->getPlaceHolder()) ?>" value="<?php echo $v_pegawai_sma_add->username->EditValue ?>"<?php echo $v_pegawai_sma_add->username->editAttributes() ?>>
-</span>
-<?php echo $v_pegawai_sma_add->username->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
 <?php if ($v_pegawai_sma_add->password->Visible) { // password ?>
@@ -400,16 +326,6 @@ $v_pegawai_sma_add->showMessage();
 <input type="text" data-table="v_pegawai_sma" data-field="x_periode_jabatan" name="x_periode_jabatan" id="x_periode_jabatan" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($v_pegawai_sma_add->periode_jabatan->getPlaceHolder()) ?>" value="<?php echo $v_pegawai_sma_add->periode_jabatan->EditValue ?>"<?php echo $v_pegawai_sma_add->periode_jabatan->editAttributes() ?>>
 </span>
 <?php echo $v_pegawai_sma_add->periode_jabatan->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($v_pegawai_sma_add->jjm->Visible) { // jjm ?>
-	<div id="r_jjm" class="form-group row">
-		<label id="elh_v_pegawai_sma_jjm" for="x_jjm" class="<?php echo $v_pegawai_sma_add->LeftColumnClass ?>"><?php echo $v_pegawai_sma_add->jjm->caption() ?><?php echo $v_pegawai_sma_add->jjm->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
-		<div class="<?php echo $v_pegawai_sma_add->RightColumnClass ?>"><div <?php echo $v_pegawai_sma_add->jjm->cellAttributes() ?>>
-<span id="el_v_pegawai_sma_jjm">
-<input type="text" data-table="v_pegawai_sma" data-field="x_jjm" name="x_jjm" id="x_jjm" size="30" maxlength="10" placeholder="<?php echo HtmlEncode($v_pegawai_sma_add->jjm->getPlaceHolder()) ?>" value="<?php echo $v_pegawai_sma_add->jjm->EditValue ?>"<?php echo $v_pegawai_sma_add->jjm->editAttributes() ?>>
-</span>
-<?php echo $v_pegawai_sma_add->jjm->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
 <?php if ($v_pegawai_sma_add->status_peg->Visible) { // status_peg ?>
@@ -630,62 +546,6 @@ loadjs.ready(["fv_pegawai_smaadd", "datetimepicker"], function() {
 <?php echo $v_pegawai_sma_add->jenkel->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
-<?php if ($v_pegawai_sma_add->status->Visible) { // status ?>
-	<div id="r_status" class="form-group row">
-		<label id="elh_v_pegawai_sma_status" for="x_status" class="<?php echo $v_pegawai_sma_add->LeftColumnClass ?>"><?php echo $v_pegawai_sma_add->status->caption() ?><?php echo $v_pegawai_sma_add->status->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
-		<div class="<?php echo $v_pegawai_sma_add->RightColumnClass ?>"><div <?php echo $v_pegawai_sma_add->status->cellAttributes() ?>>
-<span id="el_v_pegawai_sma_status">
-<input type="text" data-table="v_pegawai_sma" data-field="x_status" name="x_status" id="x_status" size="30" maxlength="20" placeholder="<?php echo HtmlEncode($v_pegawai_sma_add->status->getPlaceHolder()) ?>" value="<?php echo $v_pegawai_sma_add->status->EditValue ?>"<?php echo $v_pegawai_sma_add->status->editAttributes() ?>>
-</span>
-<?php echo $v_pegawai_sma_add->status->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($v_pegawai_sma_add->foto->Visible) { // foto ?>
-	<div id="r_foto" class="form-group row">
-		<label id="elh_v_pegawai_sma_foto" class="<?php echo $v_pegawai_sma_add->LeftColumnClass ?>"><?php echo $v_pegawai_sma_add->foto->caption() ?><?php echo $v_pegawai_sma_add->foto->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
-		<div class="<?php echo $v_pegawai_sma_add->RightColumnClass ?>"><div <?php echo $v_pegawai_sma_add->foto->cellAttributes() ?>>
-<span id="el_v_pegawai_sma_foto">
-<div id="fd_x_foto">
-<div class="input-group">
-	<div class="custom-file">
-		<input type="file" class="custom-file-input" title="<?php echo $v_pegawai_sma_add->foto->title() ?>" data-table="v_pegawai_sma" data-field="x_foto" name="x_foto" id="x_foto" lang="<?php echo CurrentLanguageID() ?>"<?php echo $v_pegawai_sma_add->foto->editAttributes() ?><?php if ($v_pegawai_sma_add->foto->ReadOnly || $v_pegawai_sma_add->foto->Disabled) echo " disabled"; ?>>
-		<label class="custom-file-label ew-file-label" for="x_foto"><?php echo $Language->phrase("ChooseFile") ?></label>
-	</div>
-</div>
-<input type="hidden" name="fn_x_foto" id= "fn_x_foto" value="<?php echo $v_pegawai_sma_add->foto->Upload->FileName ?>">
-<input type="hidden" name="fa_x_foto" id= "fa_x_foto" value="0">
-<input type="hidden" name="fs_x_foto" id= "fs_x_foto" value="255">
-<input type="hidden" name="fx_x_foto" id= "fx_x_foto" value="<?php echo $v_pegawai_sma_add->foto->UploadAllowedFileExt ?>">
-<input type="hidden" name="fm_x_foto" id= "fm_x_foto" value="<?php echo $v_pegawai_sma_add->foto->UploadMaxFileSize ?>">
-</div>
-<table id="ft_x_foto" class="table table-sm float-left ew-upload-table"><tbody class="files"></tbody></table>
-</span>
-<?php echo $v_pegawai_sma_add->foto->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($v_pegawai_sma_add->file_cv->Visible) { // file_cv ?>
-	<div id="r_file_cv" class="form-group row">
-		<label id="elh_v_pegawai_sma_file_cv" class="<?php echo $v_pegawai_sma_add->LeftColumnClass ?>"><?php echo $v_pegawai_sma_add->file_cv->caption() ?><?php echo $v_pegawai_sma_add->file_cv->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
-		<div class="<?php echo $v_pegawai_sma_add->RightColumnClass ?>"><div <?php echo $v_pegawai_sma_add->file_cv->cellAttributes() ?>>
-<span id="el_v_pegawai_sma_file_cv">
-<div id="fd_x_file_cv">
-<div class="input-group">
-	<div class="custom-file">
-		<input type="file" class="custom-file-input" title="<?php echo $v_pegawai_sma_add->file_cv->title() ?>" data-table="v_pegawai_sma" data-field="x_file_cv" name="x_file_cv" id="x_file_cv" lang="<?php echo CurrentLanguageID() ?>"<?php echo $v_pegawai_sma_add->file_cv->editAttributes() ?><?php if ($v_pegawai_sma_add->file_cv->ReadOnly || $v_pegawai_sma_add->file_cv->Disabled) echo " disabled"; ?>>
-		<label class="custom-file-label ew-file-label" for="x_file_cv"><?php echo $Language->phrase("ChooseFile") ?></label>
-	</div>
-</div>
-<input type="hidden" name="fn_x_file_cv" id= "fn_x_file_cv" value="<?php echo $v_pegawai_sma_add->file_cv->Upload->FileName ?>">
-<input type="hidden" name="fa_x_file_cv" id= "fa_x_file_cv" value="0">
-<input type="hidden" name="fs_x_file_cv" id= "fs_x_file_cv" value="255">
-<input type="hidden" name="fx_x_file_cv" id= "fx_x_file_cv" value="<?php echo $v_pegawai_sma_add->file_cv->UploadAllowedFileExt ?>">
-<input type="hidden" name="fm_x_file_cv" id= "fm_x_file_cv" value="<?php echo $v_pegawai_sma_add->file_cv->UploadMaxFileSize ?>">
-</div>
-<table id="ft_x_file_cv" class="table table-sm float-left ew-upload-table"><tbody class="files"></tbody></table>
-</span>
-<?php echo $v_pegawai_sma_add->file_cv->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
 <?php if ($v_pegawai_sma_add->mulai_bekerja->Visible) { // mulai_bekerja ?>
 	<div id="r_mulai_bekerja" class="form-group row">
 		<label id="elh_v_pegawai_sma_mulai_bekerja" for="x_mulai_bekerja" class="<?php echo $v_pegawai_sma_add->LeftColumnClass ?>"><?php echo $v_pegawai_sma_add->mulai_bekerja->caption() ?><?php echo $v_pegawai_sma_add->mulai_bekerja->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
@@ -719,26 +579,6 @@ loadjs.ready(["fv_pegawai_smaadd", "datetimepicker"], function() {
 <?php echo $v_pegawai_sma_add->level->Lookup->getParamTag($v_pegawai_sma_add, "p_x_level") ?>
 </span>
 <?php echo $v_pegawai_sma_add->level->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($v_pegawai_sma_add->aktif->Visible) { // aktif ?>
-	<div id="r_aktif" class="form-group row">
-		<label id="elh_v_pegawai_sma_aktif" for="x_aktif" class="<?php echo $v_pegawai_sma_add->LeftColumnClass ?>"><?php echo $v_pegawai_sma_add->aktif->caption() ?><?php echo $v_pegawai_sma_add->aktif->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
-		<div class="<?php echo $v_pegawai_sma_add->RightColumnClass ?>"><div <?php echo $v_pegawai_sma_add->aktif->cellAttributes() ?>>
-<span id="el_v_pegawai_sma_aktif">
-<input type="text" data-table="v_pegawai_sma" data-field="x_aktif" name="x_aktif" id="x_aktif" size="30" maxlength="4" placeholder="<?php echo HtmlEncode($v_pegawai_sma_add->aktif->getPlaceHolder()) ?>" value="<?php echo $v_pegawai_sma_add->aktif->EditValue ?>"<?php echo $v_pegawai_sma_add->aktif->editAttributes() ?>>
-</span>
-<?php echo $v_pegawai_sma_add->aktif->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($v_pegawai_sma_add->kehadiran->Visible) { // kehadiran ?>
-	<div id="r_kehadiran" class="form-group row">
-		<label id="elh_v_pegawai_sma_kehadiran" for="x_kehadiran" class="<?php echo $v_pegawai_sma_add->LeftColumnClass ?>"><?php echo $v_pegawai_sma_add->kehadiran->caption() ?><?php echo $v_pegawai_sma_add->kehadiran->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
-		<div class="<?php echo $v_pegawai_sma_add->RightColumnClass ?>"><div <?php echo $v_pegawai_sma_add->kehadiran->cellAttributes() ?>>
-<span id="el_v_pegawai_sma_kehadiran">
-<input type="text" data-table="v_pegawai_sma" data-field="x_kehadiran" name="x_kehadiran" id="x_kehadiran" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($v_pegawai_sma_add->kehadiran->getPlaceHolder()) ?>" value="<?php echo $v_pegawai_sma_add->kehadiran->EditValue ?>"<?php echo $v_pegawai_sma_add->kehadiran->editAttributes() ?>>
-</span>
-<?php echo $v_pegawai_sma_add->kehadiran->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
 </div><!-- /page* -->

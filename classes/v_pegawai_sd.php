@@ -73,7 +73,7 @@ class v_pegawai_sd extends DbTable
 		$this->TableType = 'VIEW';
 
 		// Update Table
-		$this->UpdateTable = "pegawai";
+		$this->UpdateTable = "`v_pegawai_sd`";
 		$this->Dbid = 'DB';
 		$this->ExportAll = TRUE;
 		$this->ExportPageBreakCount = 0; // Page break per every n record (PDF only)
@@ -113,7 +113,7 @@ class v_pegawai_sd extends DbTable
 
 		// username
 		$this->username = new DbField('v_pegawai_sd', 'v_pegawai_sd', 'x_username', 'username', '`username`', '`username`', 200, 255, -1, FALSE, '`username`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->username->Sortable = TRUE; // Allow sort
+		$this->username->Sortable = FALSE; // Allow sort
 		$this->fields['username'] = &$this->username;
 
 		// password
@@ -147,7 +147,7 @@ class v_pegawai_sd extends DbTable
 
 		// jjm
 		$this->jjm = new DbField('v_pegawai_sd', 'v_pegawai_sd', 'x_jjm', 'jjm', '`jjm`', '`jjm`', 3, 10, -1, FALSE, '`jjm`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->jjm->Sortable = TRUE; // Allow sort
+		$this->jjm->Sortable = FALSE; // Allow sort
 		$this->jjm->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['jjm'] = &$this->jjm;
 
@@ -250,7 +250,7 @@ class v_pegawai_sd extends DbTable
 
 		// status
 		$this->status = new DbField('v_pegawai_sd', 'v_pegawai_sd', 'x_status', 'status', '`status`', '`status`', 200, 20, -1, FALSE, '`status`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->status->Sortable = TRUE; // Allow sort
+		$this->status->Sortable = FALSE; // Allow sort
 		$this->fields['status'] = &$this->status;
 
 		// jenkel
@@ -261,12 +261,12 @@ class v_pegawai_sd extends DbTable
 
 		// foto
 		$this->foto = new DbField('v_pegawai_sd', 'v_pegawai_sd', 'x_foto', 'foto', '`foto`', '`foto`', 200, 255, -1, TRUE, '`foto`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'FILE');
-		$this->foto->Sortable = TRUE; // Allow sort
+		$this->foto->Sortable = FALSE; // Allow sort
 		$this->fields['foto'] = &$this->foto;
 
 		// file_cv
 		$this->file_cv = new DbField('v_pegawai_sd', 'v_pegawai_sd', 'x_file_cv', 'file_cv', '`file_cv`', '`file_cv`', 200, 255, -1, TRUE, '`file_cv`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'FILE');
-		$this->file_cv->Sortable = TRUE; // Allow sort
+		$this->file_cv->Sortable = FALSE; // Allow sort
 		$this->fields['file_cv'] = &$this->file_cv;
 
 		// mulai_bekerja
@@ -277,7 +277,7 @@ class v_pegawai_sd extends DbTable
 
 		// keterangan
 		$this->keterangan = new DbField('v_pegawai_sd', 'v_pegawai_sd', 'x_keterangan', 'keterangan', '`keterangan`', '`keterangan`', 200, 255, -1, FALSE, '`keterangan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->keterangan->Sortable = TRUE; // Allow sort
+		$this->keterangan->Sortable = FALSE; // Allow sort
 		$this->fields['keterangan'] = &$this->keterangan;
 
 		// level
@@ -291,13 +291,13 @@ class v_pegawai_sd extends DbTable
 
 		// aktif
 		$this->aktif = new DbField('v_pegawai_sd', 'v_pegawai_sd', 'x_aktif', 'aktif', '`aktif`', '`aktif`', 16, 4, -1, FALSE, '`aktif`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->aktif->Sortable = TRUE; // Allow sort
+		$this->aktif->Sortable = FALSE; // Allow sort
 		$this->aktif->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['aktif'] = &$this->aktif;
 
 		// kehadiran
 		$this->kehadiran = new DbField('v_pegawai_sd', 'v_pegawai_sd', 'x_kehadiran', 'kehadiran', '`kehadiran`', '`kehadiran`', 3, 11, -1, FALSE, '`kehadiran`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->kehadiran->Sortable = TRUE; // Allow sort
+		$this->kehadiran->Sortable = FALSE; // Allow sort
 		$this->kehadiran->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['kehadiran'] = &$this->kehadiran;
 	}
@@ -976,11 +976,17 @@ class v_pegawai_sd extends DbTable
 		// pid
 		// nip
 		// username
+
+		$this->username->CellCssStyle = "white-space: nowrap;";
+
 		// password
 		// jenjang_id
 		// jabatan
 		// periode_jabatan
 		// jjm
+
+		$this->jjm->CellCssStyle = "white-space: nowrap;";
+
 		// status_peg
 		// type
 		// sertif
@@ -997,16 +1003,31 @@ class v_pegawai_sd extends DbTable
 		// jurusan
 		// agama
 		// status
+
+		$this->status->CellCssStyle = "white-space: nowrap;";
+
 		// jenkel
 		// foto
+
+		$this->foto->CellCssStyle = "white-space: nowrap;";
+
 		// file_cv
+		$this->file_cv->CellCssStyle = "white-space: nowrap;";
+
 		// mulai_bekerja
 		// keterangan
+
+		$this->keterangan->CellCssStyle = "white-space: nowrap;";
+
 		// level
 		// aktif
-		// kehadiran
-		// id
 
+		$this->aktif->CellCssStyle = "white-space: nowrap;";
+
+		// kehadiran
+		$this->kehadiran->CellCssStyle = "white-space: nowrap;";
+
+		// id
 		$this->id->ViewValue = $this->id->CurrentValue;
 		$this->id->ViewCustomAttributes = "";
 
@@ -1580,7 +1601,26 @@ class v_pegawai_sd extends DbTable
 		$this->type->EditAttrs["class"] = "form-control";
 		$this->type->EditCustomAttributes = "";
 		$this->type->EditValue = $this->type->CurrentValue;
-		$this->type->PlaceHolder = RemoveHtml($this->type->caption());
+		$curVal = strval($this->type->CurrentValue);
+		if ($curVal != "") {
+			$this->type->EditValue = $this->type->lookupCacheOption($curVal);
+			if ($this->type->EditValue === NULL) { // Lookup from database
+				$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+				$sqlWrk = $this->type->Lookup->getSql(FALSE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				if ($rswrk && !$rswrk->EOF) { // Lookup values found
+					$arwrk = [];
+					$arwrk[1] = $rswrk->fields('df');
+					$this->type->EditValue = $this->type->displayValue($arwrk);
+					$rswrk->Close();
+				} else {
+					$this->type->EditValue = $this->type->CurrentValue;
+				}
+			}
+		} else {
+			$this->type->EditValue = NULL;
+		}
+		$this->type->ViewCustomAttributes = "";
 
 		// sertif
 		$this->sertif->EditAttrs["class"] = "form-control";
@@ -1716,6 +1756,26 @@ class v_pegawai_sd extends DbTable
 		// level
 		$this->level->EditAttrs["class"] = "form-control";
 		$this->level->EditCustomAttributes = "";
+		$curVal = strval($this->level->CurrentValue);
+		if ($curVal != "") {
+			$this->level->EditValue = $this->level->lookupCacheOption($curVal);
+			if ($this->level->EditValue === NULL) { // Lookup from database
+				$filterWrk = "`userlevelid`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+				$sqlWrk = $this->level->Lookup->getSql(FALSE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				if ($rswrk && !$rswrk->EOF) { // Lookup values found
+					$arwrk = [];
+					$arwrk[1] = $rswrk->fields('df');
+					$this->level->EditValue = $this->level->displayValue($arwrk);
+					$rswrk->Close();
+				} else {
+					$this->level->EditValue = $this->level->CurrentValue;
+				}
+			}
+		} else {
+			$this->level->EditValue = NULL;
+		}
+		$this->level->ViewCustomAttributes = "";
 
 		// aktif
 		$this->aktif->EditAttrs["class"] = "form-control";
@@ -1761,12 +1821,10 @@ class v_pegawai_sd extends DbTable
 					$doc->exportCaption($this->id);
 					$doc->exportCaption($this->pid);
 					$doc->exportCaption($this->nip);
-					$doc->exportCaption($this->username);
 					$doc->exportCaption($this->password);
 					$doc->exportCaption($this->jenjang_id);
 					$doc->exportCaption($this->jabatan);
 					$doc->exportCaption($this->periode_jabatan);
-					$doc->exportCaption($this->jjm);
 					$doc->exportCaption($this->status_peg);
 					$doc->exportCaption($this->type);
 					$doc->exportCaption($this->sertif);
@@ -1784,23 +1842,16 @@ class v_pegawai_sd extends DbTable
 					$doc->exportCaption($this->agama);
 					$doc->exportCaption($this->status);
 					$doc->exportCaption($this->jenkel);
-					$doc->exportCaption($this->foto);
-					$doc->exportCaption($this->file_cv);
 					$doc->exportCaption($this->mulai_bekerja);
-					$doc->exportCaption($this->keterangan);
 					$doc->exportCaption($this->level);
-					$doc->exportCaption($this->aktif);
-					$doc->exportCaption($this->kehadiran);
 				} else {
 					$doc->exportCaption($this->id);
 					$doc->exportCaption($this->pid);
 					$doc->exportCaption($this->nip);
-					$doc->exportCaption($this->username);
 					$doc->exportCaption($this->password);
 					$doc->exportCaption($this->jenjang_id);
 					$doc->exportCaption($this->jabatan);
 					$doc->exportCaption($this->periode_jabatan);
-					$doc->exportCaption($this->jjm);
 					$doc->exportCaption($this->status_peg);
 					$doc->exportCaption($this->type);
 					$doc->exportCaption($this->sertif);
@@ -1816,15 +1867,9 @@ class v_pegawai_sd extends DbTable
 					$doc->exportCaption($this->pendidikan);
 					$doc->exportCaption($this->jurusan);
 					$doc->exportCaption($this->agama);
-					$doc->exportCaption($this->status);
 					$doc->exportCaption($this->jenkel);
-					$doc->exportCaption($this->foto);
-					$doc->exportCaption($this->file_cv);
 					$doc->exportCaption($this->mulai_bekerja);
-					$doc->exportCaption($this->keterangan);
 					$doc->exportCaption($this->level);
-					$doc->exportCaption($this->aktif);
-					$doc->exportCaption($this->kehadiran);
 				}
 				$doc->endExportRow();
 			}
@@ -1859,12 +1904,10 @@ class v_pegawai_sd extends DbTable
 						$doc->exportField($this->id);
 						$doc->exportField($this->pid);
 						$doc->exportField($this->nip);
-						$doc->exportField($this->username);
 						$doc->exportField($this->password);
 						$doc->exportField($this->jenjang_id);
 						$doc->exportField($this->jabatan);
 						$doc->exportField($this->periode_jabatan);
-						$doc->exportField($this->jjm);
 						$doc->exportField($this->status_peg);
 						$doc->exportField($this->type);
 						$doc->exportField($this->sertif);
@@ -1882,23 +1925,16 @@ class v_pegawai_sd extends DbTable
 						$doc->exportField($this->agama);
 						$doc->exportField($this->status);
 						$doc->exportField($this->jenkel);
-						$doc->exportField($this->foto);
-						$doc->exportField($this->file_cv);
 						$doc->exportField($this->mulai_bekerja);
-						$doc->exportField($this->keterangan);
 						$doc->exportField($this->level);
-						$doc->exportField($this->aktif);
-						$doc->exportField($this->kehadiran);
 					} else {
 						$doc->exportField($this->id);
 						$doc->exportField($this->pid);
 						$doc->exportField($this->nip);
-						$doc->exportField($this->username);
 						$doc->exportField($this->password);
 						$doc->exportField($this->jenjang_id);
 						$doc->exportField($this->jabatan);
 						$doc->exportField($this->periode_jabatan);
-						$doc->exportField($this->jjm);
 						$doc->exportField($this->status_peg);
 						$doc->exportField($this->type);
 						$doc->exportField($this->sertif);
@@ -1914,15 +1950,9 @@ class v_pegawai_sd extends DbTable
 						$doc->exportField($this->pendidikan);
 						$doc->exportField($this->jurusan);
 						$doc->exportField($this->agama);
-						$doc->exportField($this->status);
 						$doc->exportField($this->jenkel);
-						$doc->exportField($this->foto);
-						$doc->exportField($this->file_cv);
 						$doc->exportField($this->mulai_bekerja);
-						$doc->exportField($this->keterangan);
 						$doc->exportField($this->level);
-						$doc->exportField($this->aktif);
-						$doc->exportField($this->kehadiran);
 					}
 					$doc->endExportRow($rowCnt);
 				}
@@ -2187,6 +2217,15 @@ class v_pegawai_sd extends DbTable
 	function Row_Rendering() {
 
 		// Enter your code here
+	if (CurrentPageID() == "add"  || CurrentPageID() == "edit") {
+		$this->agama->ReadOnly = TRUE;
+		$this->jenjang_id->ReadOnly = TRUE;
+		$this->level->ReadOnly = TRUE;
+		$this->type->ReadOnly = TRUE;
+	}	
+			$this->agama->CurrentValue = 'ISLAM';
+			$this->jenjang_id->CurrentValue = '2';
+			$this->level->CurrentValue = '1';
 	}
 
 	// Row Rendered event
