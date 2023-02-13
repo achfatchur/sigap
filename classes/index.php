@@ -567,6 +567,8 @@ class index
 			$this->terminate("v_pegawai_smalist.php");
 		if ($Security->allowList(CurrentProjectID() . 'v_pegawai_smk'))
 			$this->terminate("v_pegawai_smklist.php");
+		if ($Security->allowList(CurrentProjectID() . 'slip_gaji_yayasan'))
+			$this->terminate("slip_gaji_yayasanlist.php");
 		if ($Security->isLoggedIn()) {
 			$this->setFailureMessage(DeniedMessage() . "<br><br><a href=\"logout.php\">" . $Language->phrase("BackToLogin") . "</a>");
 		} else {

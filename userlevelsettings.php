@@ -415,7 +415,9 @@ $USER_LEVEL_PRIVS = [["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen","-2","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_pegawai_sma","-2","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_pegawai_sma","0","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_pegawai_smk","-2","0"],
-	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_pegawai_smk","0","0"]];
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_pegawai_smk","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}slip_gaji_yayasan","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}slip_gaji_yayasan","0","0"]];
 
 // User level table info
 $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
@@ -585,7 +587,7 @@ $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3
 	["tunjangan_jabatan","tunjangan_jabatan","Tunjangan Jabatan",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["tunjangan_khusus","tunjangan_khusus","Tunjangan Khusus",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["generate_perbulan","generate_perbulan","generate perbulan",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
-	["m_yayasan","m_yayasan","Input HR Pengurus Yayasan pr",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["m_yayasan","m_yayasan","Input HR Pengurus Yayasan",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["yayasan","yayasan","Detil Yayasan",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["home.php","home","HOME",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["m_jp_pegawai","m_jp_pegawai","JJM Pegawai",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
@@ -620,4 +622,5 @@ $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3
 	["v_pegawai_sd","v_pegawai_sd","Pegawai SD",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["v_pegawai_smp","v_pegawai_smp","Pegawai SMP",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["v_pegawai_sma","v_pegawai_sma","Pegawai SMA",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
-	["v_pegawai_smk","v_pegawai_smk","Pegawai SMK",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];
+	["v_pegawai_smk","v_pegawai_smk","Pegawai SMK",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["slip_gaji_yayasan","slip_gaji_yayasan","Slip Gaji Yayasan",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];

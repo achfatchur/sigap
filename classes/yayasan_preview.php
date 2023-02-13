@@ -591,6 +591,8 @@ class yayasan_preview extends yayasan
 		$this->setupListOptions();
 		$this->id->Visible = FALSE;
 		$this->m_id->Visible = FALSE;
+		$this->bulan->Visible = FALSE;
+		$this->tahun->Visible = FALSE;
 		$this->id_pegawai->setVisibility();
 		$this->datetime->Visible = FALSE;
 		$this->gaji_pokok->setVisibility();
@@ -620,6 +622,7 @@ class yayasan_preview extends yayasan
 		$this->setupOtherOptions();
 
 		// Set up lookup cache
+		$this->setupLookupOptions($this->bulan);
 		$this->setupLookupOptions($this->id_pegawai);
 
 		// Load filter
@@ -819,7 +822,7 @@ class yayasan_preview extends yayasan
 		$masterTblVar = Get("t", "");
 		$url = "";
 		if ($masterTblVar == "m_yayasan") {
-			$url = "" . Config("TABLE_SHOW_MASTER") . "=m_yayasan&fk_id=" . urlencode(strval($this->m_id->QueryStringValue)) . "";
+			$url = "" . Config("TABLE_SHOW_MASTER") . "=m_yayasan&fk_id=" . urlencode(strval($this->m_id->QueryStringValue)) . "&fk_bulan=" . urlencode(strval($this->bulan->QueryStringValue)) . "&fk_tahun=" . urlencode(strval($this->tahun->QueryStringValue)) . "";
 		}
 		return $url;
 	}
@@ -833,9 +836,33 @@ class yayasan_preview extends yayasan
 			$x = strpos($f, $find);
 			if ($x !== FALSE) {
 				$x += strlen($find);
-				$val = substr($f, $x);
+				$y = strpos($f, " AND ", $x);
+				if ($y !== FALSE)
+					$val = substr($f, $x, $y-$x);
+				else
+					$val = "";
 				$val = $this->unquoteValue($val, "DB");
  				$this->m_id->setQueryStringValue($val);
+			}
+			$find = "`bulan`=";
+			$x = strpos($f, $find);
+			if ($x !== FALSE) {
+				$x += strlen($find);
+				$y = strpos($f, " AND ", $x);
+				if ($y !== FALSE)
+					$val = substr($f, $x, $y-$x);
+				else
+					$val = "";
+				$val = $this->unquoteValue($val, "DB");
+ 				$this->bulan->setQueryStringValue($val);
+			}
+			$find = "`tahun`=";
+			$x = strpos($f, $find);
+			if ($x !== FALSE) {
+				$x += strlen($find);
+				$val = substr($f, $x);
+				$val = $this->unquoteValue($val, "DB");
+ 				$this->tahun->setQueryStringValue($val);
 			}
 		}
 	}
@@ -877,6 +904,8 @@ class yayasan_preview extends yayasan
 
 			// Set up lookup SQL and connection
 			switch ($fld->FieldVar) {
+				case "x_bulan":
+					break;
 				case "x_id_pegawai":
 					break;
 				default:
@@ -899,6 +928,8 @@ class yayasan_preview extends yayasan
 
 					// Format the field values
 					switch ($fld->FieldVar) {
+						case "x_bulan":
+							break;
 						case "x_id_pegawai":
 							break;
 					}

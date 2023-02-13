@@ -104,7 +104,7 @@ class jabatan extends DbTable
 
 		// type_guru
 		$this->type_guru = new DbField('jabatan', 'jabatan', 'x_type_guru', 'type_guru', '`type_guru`', '`type_guru`', 3, 11, -1, FALSE, '`type_guru`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->type_guru->Sortable = TRUE; // Allow sort
+		$this->type_guru->Sortable = FALSE; // Allow sort
 		$this->type_guru->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['type_guru'] = &$this->type_guru;
 
@@ -116,6 +116,7 @@ class jabatan extends DbTable
 		// c_by
 		$this->c_by = new DbField('jabatan', 'jabatan', 'x_c_by', 'c_by', '`c_by`', '`c_by`', 3, 11, -1, FALSE, '`c_by`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->c_by->Sortable = TRUE; // Allow sort
+		$this->c_by->Lookup = new Lookup('c_by', 'pegawai', FALSE, 'id', ["nama","","",""], [], [], [], [], [], [], '', '');
 		$this->c_by->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['c_by'] = &$this->c_by;
 
@@ -128,6 +129,7 @@ class jabatan extends DbTable
 		// u_by
 		$this->u_by = new DbField('jabatan', 'jabatan', 'x_u_by', 'u_by', '`u_by`', '`u_by`', 3, 11, -1, FALSE, '`u_by`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->u_by->Sortable = TRUE; // Allow sort
+		$this->u_by->Lookup = new Lookup('u_by', 'pegawai', FALSE, 'id', ["nama","","",""], [], [], [], [], [], [], '', '');
 		$this->u_by->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['u_by'] = &$this->u_by;
 
@@ -923,7 +925,25 @@ class jabatan extends DbTable
 
 		// c_by
 		$this->c_by->ViewValue = $this->c_by->CurrentValue;
-		$this->c_by->ViewValue = FormatNumber($this->c_by->ViewValue, 0, -2, -2, -2);
+		$curVal = strval($this->c_by->CurrentValue);
+		if ($curVal != "") {
+			$this->c_by->ViewValue = $this->c_by->lookupCacheOption($curVal);
+			if ($this->c_by->ViewValue === NULL) { // Lookup from database
+				$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+				$sqlWrk = $this->c_by->Lookup->getSql(FALSE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				if ($rswrk && !$rswrk->EOF) { // Lookup values found
+					$arwrk = [];
+					$arwrk[1] = $rswrk->fields('df');
+					$this->c_by->ViewValue = $this->c_by->displayValue($arwrk);
+					$rswrk->Close();
+				} else {
+					$this->c_by->ViewValue = $this->c_by->CurrentValue;
+				}
+			}
+		} else {
+			$this->c_by->ViewValue = NULL;
+		}
 		$this->c_by->ViewCustomAttributes = "";
 
 		// c_date
@@ -933,7 +953,25 @@ class jabatan extends DbTable
 
 		// u_by
 		$this->u_by->ViewValue = $this->u_by->CurrentValue;
-		$this->u_by->ViewValue = FormatNumber($this->u_by->ViewValue, 0, -2, -2, -2);
+		$curVal = strval($this->u_by->CurrentValue);
+		if ($curVal != "") {
+			$this->u_by->ViewValue = $this->u_by->lookupCacheOption($curVal);
+			if ($this->u_by->ViewValue === NULL) { // Lookup from database
+				$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+				$sqlWrk = $this->u_by->Lookup->getSql(FALSE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				if ($rswrk && !$rswrk->EOF) { // Lookup values found
+					$arwrk = [];
+					$arwrk[1] = $rswrk->fields('df');
+					$this->u_by->ViewValue = $this->u_by->displayValue($arwrk);
+					$rswrk->Close();
+				} else {
+					$this->u_by->ViewValue = $this->u_by->CurrentValue;
+				}
+			}
+		} else {
+			$this->u_by->ViewValue = NULL;
+		}
 		$this->u_by->ViewCustomAttributes = "";
 
 		// u_date
@@ -1053,30 +1091,11 @@ class jabatan extends DbTable
 		$this->keterangan->PlaceHolder = RemoveHtml($this->keterangan->caption());
 
 		// c_by
-		$this->c_by->EditAttrs["class"] = "form-control";
-		$this->c_by->EditCustomAttributes = "";
-		$this->c_by->EditValue = $this->c_by->CurrentValue;
-		$this->c_by->PlaceHolder = RemoveHtml($this->c_by->caption());
-
 		// c_date
-		$this->c_date->EditAttrs["class"] = "form-control";
-		$this->c_date->EditCustomAttributes = "";
-		$this->c_date->EditValue = FormatDateTime($this->c_date->CurrentValue, 8);
-		$this->c_date->PlaceHolder = RemoveHtml($this->c_date->caption());
-
 		// u_by
-		$this->u_by->EditAttrs["class"] = "form-control";
-		$this->u_by->EditCustomAttributes = "";
-		$this->u_by->EditValue = $this->u_by->CurrentValue;
-		$this->u_by->PlaceHolder = RemoveHtml($this->u_by->caption());
-
 		// u_date
-		$this->u_date->EditAttrs["class"] = "form-control";
-		$this->u_date->EditCustomAttributes = "";
-		$this->u_date->EditValue = FormatDateTime($this->u_date->CurrentValue, 8);
-		$this->u_date->PlaceHolder = RemoveHtml($this->u_date->caption());
-
 		// aktif
+
 		$this->aktif->EditAttrs["class"] = "form-control";
 		$this->aktif->EditCustomAttributes = "";
 		$this->aktif->EditValue = $this->aktif->CurrentValue;
@@ -1127,7 +1146,6 @@ class jabatan extends DbTable
 					$doc->exportCaption($this->nama_jabatan);
 					$doc->exportCaption($this->type_jabatan);
 					$doc->exportCaption($this->jenjang);
-					$doc->exportCaption($this->type_guru);
 					$doc->exportCaption($this->keterangan);
 					$doc->exportCaption($this->c_by);
 					$doc->exportCaption($this->c_date);
@@ -1181,7 +1199,6 @@ class jabatan extends DbTable
 						$doc->exportField($this->nama_jabatan);
 						$doc->exportField($this->type_jabatan);
 						$doc->exportField($this->jenjang);
-						$doc->exportField($this->type_guru);
 						$doc->exportField($this->keterangan);
 						$doc->exportField($this->c_by);
 						$doc->exportField($this->c_date);

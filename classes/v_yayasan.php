@@ -783,7 +783,6 @@ class v_yayasan extends DbTable
 
 		// tahun
 		$this->tahun->ViewValue = $this->tahun->CurrentValue;
-		$this->tahun->ViewValue = FormatNumber($this->tahun->ViewValue, 0, -2, -2, -2);
 		$this->tahun->ViewCustomAttributes = "";
 
 		// id_pegawai

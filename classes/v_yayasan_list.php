@@ -907,13 +907,19 @@ class v_yayasan_list extends v_yayasan
 
 			// Get default search criteria
 			AddFilter($this->DefaultSearchWhere, $this->basicSearchWhere(TRUE));
+			AddFilter($this->DefaultSearchWhere, $this->advancedSearchWhere(TRUE));
 
 			// Get basic search values
 			$this->loadBasicSearchValues();
 
+			// Get and validate search values for advanced search
+			$this->loadSearchValues(); // Get search values
+
 			// Process filter list
 			if ($this->processFilterList())
 				$this->terminate();
+			if (!$this->validateSearch())
+				$this->setFailureMessage($SearchError);
 
 			// Restore search parms from Session if not searching / reset / export
 			if (($this->isExport() || $this->Command != "search" && $this->Command != "reset" && $this->Command != "resetall") && $this->Command != "json" && $this->checkSearchParms())
@@ -928,6 +934,10 @@ class v_yayasan_list extends v_yayasan
 			// Get basic search criteria
 			if ($SearchError == "")
 				$srchBasic = $this->basicSearchWhere();
+
+			// Get search criteria for advanced search
+			if ($SearchError == "")
+				$srchAdvanced = $this->advancedSearchWhere();
 		}
 
 		// Restore display records
@@ -949,7 +959,16 @@ class v_yayasan_list extends v_yayasan
 			$this->BasicSearch->loadDefault();
 			if ($this->BasicSearch->Keyword != "")
 				$srchBasic = $this->basicSearchWhere();
+
+			// Load advanced search from default
+			if ($this->loadAdvancedSearchDefault()) {
+				$srchAdvanced = $this->advancedSearchWhere();
+			}
 		}
+
+		// Restore search settings from Session
+		if ($SearchError == "")
+			$this->loadAdvancedSearch();
 
 		// Build search criteria
 		AddFilter($this->SearchWhere, $srchAdvanced);
@@ -1233,10 +1252,98 @@ class v_yayasan_list extends v_yayasan
 		$this->BasicSearch->setType(@$filter[Config("TABLE_BASIC_SEARCH_TYPE")]);
 	}
 
+	// Advanced search WHERE clause based on QueryString
+	protected function advancedSearchWhere($default = FALSE)
+	{
+		global $Security;
+		$where = "";
+		if (!$Security->canSearch())
+			return "";
+		$this->buildSearchSql($where, $this->id, $default, FALSE); // id
+		$this->buildSearchSql($where, $this->m_id, $default, FALSE); // m_id
+		$this->buildSearchSql($where, $this->bulan, $default, FALSE); // bulan
+		$this->buildSearchSql($where, $this->tahun, $default, FALSE); // tahun
+		$this->buildSearchSql($where, $this->id_pegawai, $default, FALSE); // id_pegawai
+		$this->buildSearchSql($where, $this->rekbank, $default, FALSE); // rekbank
+		$this->buildSearchSql($where, $this->gaji_pokok, $default, FALSE); // gaji_pokok
+		$this->buildSearchSql($where, $this->potongan, $default, FALSE); // potongan
+		$this->buildSearchSql($where, $this->total, $default, FALSE); // total
+
+		// Set up search parm
+		if (!$default && $where != "" && in_array($this->Command, ["", "reset", "resetall"])) {
+			$this->Command = "search";
+		}
+		if (!$default && $this->Command == "search") {
+			$this->id->AdvancedSearch->save(); // id
+			$this->m_id->AdvancedSearch->save(); // m_id
+			$this->bulan->AdvancedSearch->save(); // bulan
+			$this->tahun->AdvancedSearch->save(); // tahun
+			$this->id_pegawai->AdvancedSearch->save(); // id_pegawai
+			$this->rekbank->AdvancedSearch->save(); // rekbank
+			$this->gaji_pokok->AdvancedSearch->save(); // gaji_pokok
+			$this->potongan->AdvancedSearch->save(); // potongan
+			$this->total->AdvancedSearch->save(); // total
+		}
+		return $where;
+	}
+
+	// Build search SQL
+	protected function buildSearchSql(&$where, &$fld, $default, $multiValue)
+	{
+		$fldParm = $fld->Param;
+		$fldVal = ($default) ? $fld->AdvancedSearch->SearchValueDefault : $fld->AdvancedSearch->SearchValue;
+		$fldOpr = ($default) ? $fld->AdvancedSearch->SearchOperatorDefault : $fld->AdvancedSearch->SearchOperator;
+		$fldCond = ($default) ? $fld->AdvancedSearch->SearchConditionDefault : $fld->AdvancedSearch->SearchCondition;
+		$fldVal2 = ($default) ? $fld->AdvancedSearch->SearchValue2Default : $fld->AdvancedSearch->SearchValue2;
+		$fldOpr2 = ($default) ? $fld->AdvancedSearch->SearchOperator2Default : $fld->AdvancedSearch->SearchOperator2;
+		$wrk = "";
+		if (is_array($fldVal))
+			$fldVal = implode(Config("MULTIPLE_OPTION_SEPARATOR"), $fldVal);
+		if (is_array($fldVal2))
+			$fldVal2 = implode(Config("MULTIPLE_OPTION_SEPARATOR"), $fldVal2);
+		$fldOpr = strtoupper(trim($fldOpr));
+		if ($fldOpr == "")
+			$fldOpr = "=";
+		$fldOpr2 = strtoupper(trim($fldOpr2));
+		if ($fldOpr2 == "")
+			$fldOpr2 = "=";
+		if (Config("SEARCH_MULTI_VALUE_OPTION") == 1 || !IsMultiSearchOperator($fldOpr))
+			$multiValue = FALSE;
+		if ($multiValue) {
+			$wrk1 = ($fldVal != "") ? GetMultiSearchSql($fld, $fldOpr, $fldVal, $this->Dbid) : ""; // Field value 1
+			$wrk2 = ($fldVal2 != "") ? GetMultiSearchSql($fld, $fldOpr2, $fldVal2, $this->Dbid) : ""; // Field value 2
+			$wrk = $wrk1; // Build final SQL
+			if ($wrk2 != "")
+				$wrk = ($wrk != "") ? "($wrk) $fldCond ($wrk2)" : $wrk2;
+		} else {
+			$fldVal = $this->convertSearchValue($fld, $fldVal);
+			$fldVal2 = $this->convertSearchValue($fld, $fldVal2);
+			$wrk = GetSearchSql($fld, $fldVal, $fldOpr, $fldCond, $fldVal2, $fldOpr2, $this->Dbid);
+		}
+		AddFilter($where, $wrk);
+	}
+
+	// Convert search value
+	protected function convertSearchValue(&$fld, $fldVal)
+	{
+		if ($fldVal == Config("NULL_VALUE") || $fldVal == Config("NOT_NULL_VALUE"))
+			return $fldVal;
+		$value = $fldVal;
+		if ($fld->isBoolean()) {
+			if ($fldVal != "")
+				$value = (SameText($fldVal, "1") || SameText($fldVal, "y") || SameText($fldVal, "t")) ? $fld->TrueValue : $fld->FalseValue;
+		} elseif ($fld->DataType == DATATYPE_DATE || $fld->DataType == DATATYPE_TIME) {
+			if ($fldVal != "")
+				$value = UnFormatDateTime($fldVal, $fld->DateTimeFormat);
+		}
+		return $value;
+	}
+
 	// Return basic search SQL
 	protected function basicSearchSql($arKeywords, $type)
 	{
 		$where = "";
+		$this->buildBasicSearchSql($where, $this->id_pegawai, $arKeywords, $type);
 		$this->buildBasicSearchSql($where, $this->rekbank, $arKeywords, $type);
 		return $where;
 	}
@@ -1352,6 +1459,24 @@ class v_yayasan_list extends v_yayasan
 		// Check basic search
 		if ($this->BasicSearch->issetSession())
 			return TRUE;
+		if ($this->id->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->m_id->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->bulan->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->tahun->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->id_pegawai->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->rekbank->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->gaji_pokok->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->potongan->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->total->AdvancedSearch->issetSession())
+			return TRUE;
 		return FALSE;
 	}
 
@@ -1365,6 +1490,9 @@ class v_yayasan_list extends v_yayasan
 
 		// Clear basic search parameters
 		$this->resetBasicSearchParms();
+
+		// Clear advanced search parameters
+		$this->resetAdvancedSearchParms();
 	}
 
 	// Load advanced search default values
@@ -1379,6 +1507,20 @@ class v_yayasan_list extends v_yayasan
 		$this->BasicSearch->unsetSession();
 	}
 
+	// Clear all advanced search parameters
+	protected function resetAdvancedSearchParms()
+	{
+		$this->id->AdvancedSearch->unsetSession();
+		$this->m_id->AdvancedSearch->unsetSession();
+		$this->bulan->AdvancedSearch->unsetSession();
+		$this->tahun->AdvancedSearch->unsetSession();
+		$this->id_pegawai->AdvancedSearch->unsetSession();
+		$this->rekbank->AdvancedSearch->unsetSession();
+		$this->gaji_pokok->AdvancedSearch->unsetSession();
+		$this->potongan->AdvancedSearch->unsetSession();
+		$this->total->AdvancedSearch->unsetSession();
+	}
+
 	// Restore all search parameters
 	protected function restoreSearchParms()
 	{
@@ -1386,6 +1528,17 @@ class v_yayasan_list extends v_yayasan
 
 		// Restore basic search values
 		$this->BasicSearch->load();
+
+		// Restore advanced search values
+		$this->id->AdvancedSearch->load();
+		$this->m_id->AdvancedSearch->load();
+		$this->bulan->AdvancedSearch->load();
+		$this->tahun->AdvancedSearch->load();
+		$this->id_pegawai->AdvancedSearch->load();
+		$this->rekbank->AdvancedSearch->load();
+		$this->gaji_pokok->AdvancedSearch->load();
+		$this->potongan->AdvancedSearch->load();
+		$this->total->AdvancedSearch->load();
 	}
 
 	// Set up sort parameters
@@ -1726,6 +1879,78 @@ class v_yayasan_list extends v_yayasan
 		$this->BasicSearch->setType(Get(Config("TABLE_BASIC_SEARCH_TYPE"), ""), FALSE);
 	}
 
+	// Load search values for validation
+	protected function loadSearchValues()
+	{
+
+		// Load search values
+		$got = FALSE;
+
+		// id
+		if (!$this->isAddOrEdit() && $this->id->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->id->AdvancedSearch->SearchValue != "" || $this->id->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// m_id
+		if (!$this->isAddOrEdit() && $this->m_id->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->m_id->AdvancedSearch->SearchValue != "" || $this->m_id->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// bulan
+		if (!$this->isAddOrEdit() && $this->bulan->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->bulan->AdvancedSearch->SearchValue != "" || $this->bulan->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// tahun
+		if (!$this->isAddOrEdit() && $this->tahun->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->tahun->AdvancedSearch->SearchValue != "" || $this->tahun->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// id_pegawai
+		if (!$this->isAddOrEdit() && $this->id_pegawai->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->id_pegawai->AdvancedSearch->SearchValue != "" || $this->id_pegawai->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// rekbank
+		if (!$this->isAddOrEdit() && $this->rekbank->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->rekbank->AdvancedSearch->SearchValue != "" || $this->rekbank->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// gaji_pokok
+		if (!$this->isAddOrEdit() && $this->gaji_pokok->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->gaji_pokok->AdvancedSearch->SearchValue != "" || $this->gaji_pokok->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// potongan
+		if (!$this->isAddOrEdit() && $this->potongan->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->potongan->AdvancedSearch->SearchValue != "" || $this->potongan->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// total
+		if (!$this->isAddOrEdit() && $this->total->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->total->AdvancedSearch->SearchValue != "" || $this->total->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+		return $got;
+	}
+
 	// Load recordset
 	public function loadRecordset($offset = -1, $rowcnt = -1)
 	{
@@ -1900,7 +2125,6 @@ class v_yayasan_list extends v_yayasan
 
 			// tahun
 			$this->tahun->ViewValue = $this->tahun->CurrentValue;
-			$this->tahun->ViewValue = FormatNumber($this->tahun->ViewValue, 0, -2, -2, -2);
 			$this->tahun->ViewCustomAttributes = "";
 
 			// id_pegawai
@@ -1979,11 +2203,117 @@ class v_yayasan_list extends v_yayasan
 			$this->total->LinkCustomAttributes = "";
 			$this->total->HrefValue = "";
 			$this->total->TooltipValue = "";
+		} elseif ($this->RowType == ROWTYPE_SEARCH) { // Search row
+
+			// bulan
+			$this->bulan->EditAttrs["class"] = "form-control";
+			$this->bulan->EditCustomAttributes = "";
+			$curVal = trim(strval($this->bulan->AdvancedSearch->SearchValue));
+			if ($curVal != "")
+				$this->bulan->AdvancedSearch->ViewValue = $this->bulan->lookupCacheOption($curVal);
+			else
+				$this->bulan->AdvancedSearch->ViewValue = $this->bulan->Lookup !== NULL && is_array($this->bulan->Lookup->Options) ? $curVal : NULL;
+			if ($this->bulan->AdvancedSearch->ViewValue !== NULL) { // Load from cache
+				$this->bulan->EditValue = array_values($this->bulan->Lookup->Options);
+			} else { // Lookup from database
+				if ($curVal == "") {
+					$filterWrk = "0=1";
+				} else {
+					$filterWrk = "`id`" . SearchString("=", $this->bulan->AdvancedSearch->SearchValue, DATATYPE_NUMBER, "");
+				}
+				$sqlWrk = $this->bulan->Lookup->getSql(TRUE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				$arwrk = $rswrk ? $rswrk->getRows() : [];
+				if ($rswrk)
+					$rswrk->close();
+				$this->bulan->EditValue = $arwrk;
+			}
+
+			// tahun
+			$this->tahun->EditAttrs["class"] = "form-control";
+			$this->tahun->EditCustomAttributes = "";
+			$this->tahun->EditValue = HtmlEncode($this->tahun->AdvancedSearch->SearchValue);
+			$this->tahun->PlaceHolder = RemoveHtml($this->tahun->caption());
+
+			// id_pegawai
+			$this->id_pegawai->EditAttrs["class"] = "form-control";
+			$this->id_pegawai->EditCustomAttributes = "";
+			$this->id_pegawai->EditValue = HtmlEncode($this->id_pegawai->AdvancedSearch->SearchValue);
+			$this->id_pegawai->PlaceHolder = RemoveHtml($this->id_pegawai->caption());
+
+			// rekbank
+			$this->rekbank->EditAttrs["class"] = "form-control";
+			$this->rekbank->EditCustomAttributes = "";
+			if (!$this->rekbank->Raw)
+				$this->rekbank->AdvancedSearch->SearchValue = HtmlDecode($this->rekbank->AdvancedSearch->SearchValue);
+			$this->rekbank->EditValue = HtmlEncode($this->rekbank->AdvancedSearch->SearchValue);
+			$this->rekbank->PlaceHolder = RemoveHtml($this->rekbank->caption());
+
+			// gaji_pokok
+			$this->gaji_pokok->EditAttrs["class"] = "form-control";
+			$this->gaji_pokok->EditCustomAttributes = "";
+			$this->gaji_pokok->EditValue = HtmlEncode($this->gaji_pokok->AdvancedSearch->SearchValue);
+			$this->gaji_pokok->PlaceHolder = RemoveHtml($this->gaji_pokok->caption());
+
+			// potongan
+			$this->potongan->EditAttrs["class"] = "form-control";
+			$this->potongan->EditCustomAttributes = "";
+			$this->potongan->EditValue = HtmlEncode($this->potongan->AdvancedSearch->SearchValue);
+			$this->potongan->PlaceHolder = RemoveHtml($this->potongan->caption());
+
+			// total
+			$this->total->EditAttrs["class"] = "form-control";
+			$this->total->EditCustomAttributes = "readonly";
+			$this->total->EditValue = HtmlEncode($this->total->AdvancedSearch->SearchValue);
+			$this->total->PlaceHolder = RemoveHtml($this->total->caption());
 		}
+		if ($this->RowType == ROWTYPE_ADD || $this->RowType == ROWTYPE_EDIT || $this->RowType == ROWTYPE_SEARCH) // Add/Edit/Search row
+			$this->setupFieldTitles();
 
 		// Call Row Rendered event
 		if ($this->RowType != ROWTYPE_AGGREGATEINIT)
 			$this->Row_Rendered();
+	}
+
+	// Validate search
+	protected function validateSearch()
+	{
+		global $SearchError;
+
+		// Initialize
+		$SearchError = "";
+
+		// Check if validation required
+		if (!Config("SERVER_VALIDATE"))
+			return TRUE;
+		if (!CheckInteger($this->tahun->AdvancedSearch->SearchValue)) {
+			AddMessage($SearchError, $this->tahun->errorMessage());
+		}
+
+		// Return validate result
+		$validateSearch = ($SearchError == "");
+
+		// Call Form_CustomValidate event
+		$formCustomError = "";
+		$validateSearch = $validateSearch && $this->Form_CustomValidate($formCustomError);
+		if ($formCustomError != "") {
+			AddMessage($SearchError, $formCustomError);
+		}
+		return $validateSearch;
+	}
+
+	// Load advanced search
+	public function loadAdvancedSearch()
+	{
+		$this->id->AdvancedSearch->load();
+		$this->m_id->AdvancedSearch->load();
+		$this->bulan->AdvancedSearch->load();
+		$this->tahun->AdvancedSearch->load();
+		$this->id_pegawai->AdvancedSearch->load();
+		$this->rekbank->AdvancedSearch->load();
+		$this->gaji_pokok->AdvancedSearch->load();
+		$this->potongan->AdvancedSearch->load();
+		$this->total->AdvancedSearch->load();
 	}
 
 	// Get export HTML tag

@@ -205,66 +205,12 @@ $jabatan_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
-<?php if ($jabatan_list->type_guru->Visible) { // type_guru ?>
-	<?php if ($jabatan_list->SortUrl($jabatan_list->type_guru) == "") { ?>
-		<th data-name="type_guru" class="<?php echo $jabatan_list->type_guru->headerCellClass() ?>"><div id="elh_jabatan_type_guru" class="jabatan_type_guru"><div class="ew-table-header-caption"><?php echo $jabatan_list->type_guru->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="type_guru" class="<?php echo $jabatan_list->type_guru->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $jabatan_list->SortUrl($jabatan_list->type_guru) ?>', 1);"><div id="elh_jabatan_type_guru" class="jabatan_type_guru">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $jabatan_list->type_guru->caption() ?></span><span class="ew-table-header-sort"><?php if ($jabatan_list->type_guru->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($jabatan_list->type_guru->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
 <?php if ($jabatan_list->keterangan->Visible) { // keterangan ?>
 	<?php if ($jabatan_list->SortUrl($jabatan_list->keterangan) == "") { ?>
 		<th data-name="keterangan" class="<?php echo $jabatan_list->keterangan->headerCellClass() ?>"><div id="elh_jabatan_keterangan" class="jabatan_keterangan"><div class="ew-table-header-caption"><?php echo $jabatan_list->keterangan->caption() ?></div></div></th>
 	<?php } else { ?>
 		<th data-name="keterangan" class="<?php echo $jabatan_list->keterangan->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $jabatan_list->SortUrl($jabatan_list->keterangan) ?>', 1);"><div id="elh_jabatan_keterangan" class="jabatan_keterangan">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $jabatan_list->keterangan->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($jabatan_list->keterangan->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($jabatan_list->keterangan->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
-<?php if ($jabatan_list->c_by->Visible) { // c_by ?>
-	<?php if ($jabatan_list->SortUrl($jabatan_list->c_by) == "") { ?>
-		<th data-name="c_by" class="<?php echo $jabatan_list->c_by->headerCellClass() ?>"><div id="elh_jabatan_c_by" class="jabatan_c_by"><div class="ew-table-header-caption"><?php echo $jabatan_list->c_by->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="c_by" class="<?php echo $jabatan_list->c_by->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $jabatan_list->SortUrl($jabatan_list->c_by) ?>', 1);"><div id="elh_jabatan_c_by" class="jabatan_c_by">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $jabatan_list->c_by->caption() ?></span><span class="ew-table-header-sort"><?php if ($jabatan_list->c_by->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($jabatan_list->c_by->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
-<?php if ($jabatan_list->c_date->Visible) { // c_date ?>
-	<?php if ($jabatan_list->SortUrl($jabatan_list->c_date) == "") { ?>
-		<th data-name="c_date" class="<?php echo $jabatan_list->c_date->headerCellClass() ?>"><div id="elh_jabatan_c_date" class="jabatan_c_date"><div class="ew-table-header-caption"><?php echo $jabatan_list->c_date->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="c_date" class="<?php echo $jabatan_list->c_date->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $jabatan_list->SortUrl($jabatan_list->c_date) ?>', 1);"><div id="elh_jabatan_c_date" class="jabatan_c_date">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $jabatan_list->c_date->caption() ?></span><span class="ew-table-header-sort"><?php if ($jabatan_list->c_date->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($jabatan_list->c_date->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
-<?php if ($jabatan_list->u_by->Visible) { // u_by ?>
-	<?php if ($jabatan_list->SortUrl($jabatan_list->u_by) == "") { ?>
-		<th data-name="u_by" class="<?php echo $jabatan_list->u_by->headerCellClass() ?>"><div id="elh_jabatan_u_by" class="jabatan_u_by"><div class="ew-table-header-caption"><?php echo $jabatan_list->u_by->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="u_by" class="<?php echo $jabatan_list->u_by->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $jabatan_list->SortUrl($jabatan_list->u_by) ?>', 1);"><div id="elh_jabatan_u_by" class="jabatan_u_by">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $jabatan_list->u_by->caption() ?></span><span class="ew-table-header-sort"><?php if ($jabatan_list->u_by->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($jabatan_list->u_by->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
-<?php if ($jabatan_list->u_date->Visible) { // u_date ?>
-	<?php if ($jabatan_list->SortUrl($jabatan_list->u_date) == "") { ?>
-		<th data-name="u_date" class="<?php echo $jabatan_list->u_date->headerCellClass() ?>"><div id="elh_jabatan_u_date" class="jabatan_u_date"><div class="ew-table-header-caption"><?php echo $jabatan_list->u_date->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="u_date" class="<?php echo $jabatan_list->u_date->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $jabatan_list->SortUrl($jabatan_list->u_date) ?>', 1);"><div id="elh_jabatan_u_date" class="jabatan_u_date">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $jabatan_list->u_date->caption() ?></span><span class="ew-table-header-sort"><?php if ($jabatan_list->u_date->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($jabatan_list->u_date->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
-<?php if ($jabatan_list->aktif->Visible) { // aktif ?>
-	<?php if ($jabatan_list->SortUrl($jabatan_list->aktif) == "") { ?>
-		<th data-name="aktif" class="<?php echo $jabatan_list->aktif->headerCellClass() ?>"><div id="elh_jabatan_aktif" class="jabatan_aktif"><div class="ew-table-header-caption"><?php echo $jabatan_list->aktif->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="aktif" class="<?php echo $jabatan_list->aktif->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $jabatan_list->SortUrl($jabatan_list->aktif) ?>', 1);"><div id="elh_jabatan_aktif" class="jabatan_aktif">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $jabatan_list->aktif->caption() ?></span><span class="ew-table-header-sort"><?php if ($jabatan_list->aktif->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($jabatan_list->aktif->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -354,52 +300,10 @@ $jabatan_list->ListOptions->render("body", "left", $jabatan_list->RowCount);
 </span>
 </td>
 	<?php } ?>
-	<?php if ($jabatan_list->type_guru->Visible) { // type_guru ?>
-		<td data-name="type_guru" <?php echo $jabatan_list->type_guru->cellAttributes() ?>>
-<span id="el<?php echo $jabatan_list->RowCount ?>_jabatan_type_guru">
-<span<?php echo $jabatan_list->type_guru->viewAttributes() ?>><?php echo $jabatan_list->type_guru->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
 	<?php if ($jabatan_list->keterangan->Visible) { // keterangan ?>
 		<td data-name="keterangan" <?php echo $jabatan_list->keterangan->cellAttributes() ?>>
 <span id="el<?php echo $jabatan_list->RowCount ?>_jabatan_keterangan">
 <span<?php echo $jabatan_list->keterangan->viewAttributes() ?>><?php echo $jabatan_list->keterangan->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($jabatan_list->c_by->Visible) { // c_by ?>
-		<td data-name="c_by" <?php echo $jabatan_list->c_by->cellAttributes() ?>>
-<span id="el<?php echo $jabatan_list->RowCount ?>_jabatan_c_by">
-<span<?php echo $jabatan_list->c_by->viewAttributes() ?>><?php echo $jabatan_list->c_by->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($jabatan_list->c_date->Visible) { // c_date ?>
-		<td data-name="c_date" <?php echo $jabatan_list->c_date->cellAttributes() ?>>
-<span id="el<?php echo $jabatan_list->RowCount ?>_jabatan_c_date">
-<span<?php echo $jabatan_list->c_date->viewAttributes() ?>><?php echo $jabatan_list->c_date->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($jabatan_list->u_by->Visible) { // u_by ?>
-		<td data-name="u_by" <?php echo $jabatan_list->u_by->cellAttributes() ?>>
-<span id="el<?php echo $jabatan_list->RowCount ?>_jabatan_u_by">
-<span<?php echo $jabatan_list->u_by->viewAttributes() ?>><?php echo $jabatan_list->u_by->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($jabatan_list->u_date->Visible) { // u_date ?>
-		<td data-name="u_date" <?php echo $jabatan_list->u_date->cellAttributes() ?>>
-<span id="el<?php echo $jabatan_list->RowCount ?>_jabatan_u_date">
-<span<?php echo $jabatan_list->u_date->viewAttributes() ?>><?php echo $jabatan_list->u_date->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($jabatan_list->aktif->Visible) { // aktif ?>
-		<td data-name="aktif" <?php echo $jabatan_list->aktif->cellAttributes() ?>>
-<span id="el<?php echo $jabatan_list->RowCount ?>_jabatan_aktif">
-<span<?php echo $jabatan_list->aktif->viewAttributes() ?>><?php echo $jabatan_list->aktif->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

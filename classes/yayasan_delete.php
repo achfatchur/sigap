@@ -582,6 +582,8 @@ class yayasan_delete extends yayasan
 		$this->CurrentAction = Param("action"); // Set up current action
 		$this->id->Visible = FALSE;
 		$this->m_id->Visible = FALSE;
+		$this->bulan->Visible = FALSE;
+		$this->tahun->Visible = FALSE;
 		$this->id_pegawai->setVisibility();
 		$this->datetime->Visible = FALSE;
 		$this->gaji_pokok->setVisibility();
@@ -608,6 +610,7 @@ class yayasan_delete extends yayasan
 		$this->createToken();
 
 		// Set up lookup cache
+		$this->setupLookupOptions($this->bulan);
 		$this->setupLookupOptions($this->id_pegawai);
 
 		// Check permission
@@ -738,6 +741,8 @@ class yayasan_delete extends yayasan
 			return;
 		$this->id->setDbValue($row['id']);
 		$this->m_id->setDbValue($row['m_id']);
+		$this->bulan->setDbValue($row['bulan']);
+		$this->tahun->setDbValue($row['tahun']);
 		$this->id_pegawai->setDbValue($row['id_pegawai']);
 		$this->datetime->setDbValue($row['datetime']);
 		$this->gaji_pokok->setDbValue($row['gaji_pokok']);
@@ -751,6 +756,8 @@ class yayasan_delete extends yayasan
 		$row = [];
 		$row['id'] = NULL;
 		$row['m_id'] = NULL;
+		$row['bulan'] = NULL;
+		$row['tahun'] = NULL;
 		$row['id_pegawai'] = NULL;
 		$row['datetime'] = NULL;
 		$row['gaji_pokok'] = NULL;
@@ -772,6 +779,8 @@ class yayasan_delete extends yayasan
 		// Common render codes for all row types
 		// id
 		// m_id
+		// bulan
+		// tahun
 		// id_pegawai
 		// datetime
 		// gaji_pokok
@@ -788,6 +797,33 @@ class yayasan_delete extends yayasan
 			$this->m_id->ViewValue = $this->m_id->CurrentValue;
 			$this->m_id->ViewValue = FormatNumber($this->m_id->ViewValue, 0, -2, -2, -2);
 			$this->m_id->ViewCustomAttributes = "";
+
+			// bulan
+			$this->bulan->ViewValue = $this->bulan->CurrentValue;
+			$curVal = strval($this->bulan->CurrentValue);
+			if ($curVal != "") {
+				$this->bulan->ViewValue = $this->bulan->lookupCacheOption($curVal);
+				if ($this->bulan->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->bulan->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->bulan->ViewValue = $this->bulan->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->bulan->ViewValue = $this->bulan->CurrentValue;
+					}
+				}
+			} else {
+				$this->bulan->ViewValue = NULL;
+			}
+			$this->bulan->ViewCustomAttributes = "";
+
+			// tahun
+			$this->tahun->ViewValue = $this->tahun->CurrentValue;
+			$this->tahun->ViewCustomAttributes = "";
 
 			// id_pegawai
 			$this->id_pegawai->ViewValue = $this->id_pegawai->CurrentValue;
@@ -972,6 +1008,24 @@ class yayasan_delete extends yayasan
 				} else {
 					$validMaster = FALSE;
 				}
+				if (($parm = Get("fk_bulan", Get("bulan"))) !== NULL) {
+					$GLOBALS["m_yayasan"]->bulan->setQueryStringValue($parm);
+					$this->bulan->setQueryStringValue($GLOBALS["m_yayasan"]->bulan->QueryStringValue);
+					$this->bulan->setSessionValue($this->bulan->QueryStringValue);
+					if (!is_numeric($GLOBALS["m_yayasan"]->bulan->QueryStringValue))
+						$validMaster = FALSE;
+				} else {
+					$validMaster = FALSE;
+				}
+				if (($parm = Get("fk_tahun", Get("tahun"))) !== NULL) {
+					$GLOBALS["m_yayasan"]->tahun->setQueryStringValue($parm);
+					$this->tahun->setQueryStringValue($GLOBALS["m_yayasan"]->tahun->QueryStringValue);
+					$this->tahun->setSessionValue($this->tahun->QueryStringValue);
+					if (!is_numeric($GLOBALS["m_yayasan"]->tahun->QueryStringValue))
+						$validMaster = FALSE;
+				} else {
+					$validMaster = FALSE;
+				}
 			}
 		} elseif (($master = Post(Config("TABLE_SHOW_MASTER"), Post(Config("TABLE_MASTER")))) !== NULL) {
 			$masterTblVar = $master;
@@ -987,6 +1041,24 @@ class yayasan_delete extends yayasan
 					$this->m_id->setFormValue($GLOBALS["m_yayasan"]->id->FormValue);
 					$this->m_id->setSessionValue($this->m_id->FormValue);
 					if (!is_numeric($GLOBALS["m_yayasan"]->id->FormValue))
+						$validMaster = FALSE;
+				} else {
+					$validMaster = FALSE;
+				}
+				if (($parm = Post("fk_bulan", Post("bulan"))) !== NULL) {
+					$GLOBALS["m_yayasan"]->bulan->setFormValue($parm);
+					$this->bulan->setFormValue($GLOBALS["m_yayasan"]->bulan->FormValue);
+					$this->bulan->setSessionValue($this->bulan->FormValue);
+					if (!is_numeric($GLOBALS["m_yayasan"]->bulan->FormValue))
+						$validMaster = FALSE;
+				} else {
+					$validMaster = FALSE;
+				}
+				if (($parm = Post("fk_tahun", Post("tahun"))) !== NULL) {
+					$GLOBALS["m_yayasan"]->tahun->setFormValue($parm);
+					$this->tahun->setFormValue($GLOBALS["m_yayasan"]->tahun->FormValue);
+					$this->tahun->setSessionValue($this->tahun->FormValue);
+					if (!is_numeric($GLOBALS["m_yayasan"]->tahun->FormValue))
 						$validMaster = FALSE;
 				} else {
 					$validMaster = FALSE;
@@ -1008,6 +1080,10 @@ class yayasan_delete extends yayasan
 			if ($masterTblVar != "m_yayasan") {
 				if ($this->m_id->CurrentValue == "")
 					$this->m_id->setSessionValue("");
+				if ($this->bulan->CurrentValue == "")
+					$this->bulan->setSessionValue("");
+				if ($this->tahun->CurrentValue == "")
+					$this->tahun->setSessionValue("");
 			}
 		}
 		$this->DbMasterFilter = $this->getMasterFilter(); // Get master filter
@@ -1039,6 +1115,8 @@ class yayasan_delete extends yayasan
 
 			// Set up lookup SQL and connection
 			switch ($fld->FieldVar) {
+				case "x_bulan":
+					break;
 				case "x_id_pegawai":
 					break;
 				default:
@@ -1061,6 +1139,8 @@ class yayasan_delete extends yayasan
 
 					// Format the field values
 					switch ($fld->FieldVar) {
+						case "x_bulan":
+							break;
 						case "x_id_pegawai":
 							break;
 					}

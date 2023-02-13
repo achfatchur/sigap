@@ -580,13 +580,13 @@ class jabatan_delete extends jabatan
 		$this->nama_jabatan->setVisibility();
 		$this->type_jabatan->setVisibility();
 		$this->jenjang->setVisibility();
-		$this->type_guru->setVisibility();
+		$this->type_guru->Visible = FALSE;
 		$this->keterangan->setVisibility();
-		$this->c_by->setVisibility();
-		$this->c_date->setVisibility();
-		$this->u_by->setVisibility();
-		$this->u_date->setVisibility();
-		$this->aktif->setVisibility();
+		$this->c_by->Visible = FALSE;
+		$this->c_date->Visible = FALSE;
+		$this->u_by->Visible = FALSE;
+		$this->u_date->Visible = FALSE;
+		$this->aktif->Visible = FALSE;
 		$this->hideFieldsForAddEdit();
 
 		// Do not use lookup cache
@@ -610,6 +610,8 @@ class jabatan_delete extends jabatan
 		// Set up lookup cache
 		$this->setupLookupOptions($this->type_jabatan);
 		$this->setupLookupOptions($this->jenjang);
+		$this->setupLookupOptions($this->c_by);
+		$this->setupLookupOptions($this->u_by);
 
 		// Check permission
 		if (!$Security->canDelete()) {
@@ -842,18 +844,31 @@ class jabatan_delete extends jabatan
 			}
 			$this->jenjang->ViewCustomAttributes = "";
 
-			// type_guru
-			$this->type_guru->ViewValue = $this->type_guru->CurrentValue;
-			$this->type_guru->ViewValue = FormatNumber($this->type_guru->ViewValue, 0, -2, -2, -2);
-			$this->type_guru->ViewCustomAttributes = "";
-
 			// keterangan
 			$this->keterangan->ViewValue = $this->keterangan->CurrentValue;
 			$this->keterangan->ViewCustomAttributes = "";
 
 			// c_by
 			$this->c_by->ViewValue = $this->c_by->CurrentValue;
-			$this->c_by->ViewValue = FormatNumber($this->c_by->ViewValue, 0, -2, -2, -2);
+			$curVal = strval($this->c_by->CurrentValue);
+			if ($curVal != "") {
+				$this->c_by->ViewValue = $this->c_by->lookupCacheOption($curVal);
+				if ($this->c_by->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->c_by->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->c_by->ViewValue = $this->c_by->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->c_by->ViewValue = $this->c_by->CurrentValue;
+					}
+				}
+			} else {
+				$this->c_by->ViewValue = NULL;
+			}
 			$this->c_by->ViewCustomAttributes = "";
 
 			// c_date
@@ -863,7 +878,25 @@ class jabatan_delete extends jabatan
 
 			// u_by
 			$this->u_by->ViewValue = $this->u_by->CurrentValue;
-			$this->u_by->ViewValue = FormatNumber($this->u_by->ViewValue, 0, -2, -2, -2);
+			$curVal = strval($this->u_by->CurrentValue);
+			if ($curVal != "") {
+				$this->u_by->ViewValue = $this->u_by->lookupCacheOption($curVal);
+				if ($this->u_by->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->u_by->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->u_by->ViewValue = $this->u_by->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->u_by->ViewValue = $this->u_by->CurrentValue;
+					}
+				}
+			} else {
+				$this->u_by->ViewValue = NULL;
+			}
 			$this->u_by->ViewCustomAttributes = "";
 
 			// u_date
@@ -891,40 +924,10 @@ class jabatan_delete extends jabatan
 			$this->jenjang->HrefValue = "";
 			$this->jenjang->TooltipValue = "";
 
-			// type_guru
-			$this->type_guru->LinkCustomAttributes = "";
-			$this->type_guru->HrefValue = "";
-			$this->type_guru->TooltipValue = "";
-
 			// keterangan
 			$this->keterangan->LinkCustomAttributes = "";
 			$this->keterangan->HrefValue = "";
 			$this->keterangan->TooltipValue = "";
-
-			// c_by
-			$this->c_by->LinkCustomAttributes = "";
-			$this->c_by->HrefValue = "";
-			$this->c_by->TooltipValue = "";
-
-			// c_date
-			$this->c_date->LinkCustomAttributes = "";
-			$this->c_date->HrefValue = "";
-			$this->c_date->TooltipValue = "";
-
-			// u_by
-			$this->u_by->LinkCustomAttributes = "";
-			$this->u_by->HrefValue = "";
-			$this->u_by->TooltipValue = "";
-
-			// u_date
-			$this->u_date->LinkCustomAttributes = "";
-			$this->u_date->HrefValue = "";
-			$this->u_date->TooltipValue = "";
-
-			// aktif
-			$this->aktif->LinkCustomAttributes = "";
-			$this->aktif->HrefValue = "";
-			$this->aktif->TooltipValue = "";
 		}
 
 		// Call Row Rendered event
@@ -1051,6 +1054,10 @@ class jabatan_delete extends jabatan
 					break;
 				case "x_jenjang":
 					break;
+				case "x_c_by":
+					break;
+				case "x_u_by":
+					break;
 				default:
 					$lookupFilter = "";
 					break;
@@ -1074,6 +1081,10 @@ class jabatan_delete extends jabatan
 						case "x_type_jabatan":
 							break;
 						case "x_jenjang":
+							break;
+						case "x_c_by":
+							break;
+						case "x_u_by":
 							break;
 					}
 					$ar[strval($row[0])] = $row;

@@ -56,24 +56,28 @@ function Menu_Rendering($menu) {
 	// Change menu items here
 	//$id_user = CurrentUserInfo("jabatan");
 
-   $id_user = CurrentUserInfo("nip");
+ $id_user = CurrentUserInfo("nip");
 
 	//$query = ExecuteRow("SELECT * FROM transaction_event WHERE user_id= '".$id_user."'");
 	$query = ExecuteRow("SELECT * FROM pegawai where nip='".$id_user."'");
-	if(CurrentUserLevel() == '1'){    
+	if(CurrentUserLevel() == '1'){
 	if ($menu->Id == "menu") { // Sidebar menu
 		$menu->Clear(); // Clear all menu items
+		if($query['jabatan'] == '151'){
+		$menu->addMenuItem(1, "HOME", "HOME", "home.php");
+		$menu->addMenuItem(1, "Slip Gaji Pengurus Yayasan", "Slip Gaji Pengurus Yayasan", "slip_gaji_yayasanlist.php");
+			}
 	 if ($query['jenjang_id'] == '1') {   
 	 	if ($query['type'] == '1') {
-		$menu->addMenuItem(1, "HOME", "HOME", "home.php");
-		$menu->addMenuItem(1, "Slip Gaji GURU TK", "Slip Gaji GURU TK", "v_totalgajitklist.php");   
+			$menu->addMenuItem(1, "HOME", "HOME", "home.php");
+			$menu->addMenuItem(1, "Slip Gaji GURU TK", "Slip Gaji GURU TK", "v_totalgajitklist.php");   
 		}elseif($query['type'] == '2') {
-		$menu->addMenuItem(1, "HOME", "HOME", "home.php");
-		$menu->addMenuItem(1, "Slip Gaji TU TK", "Slip Gaji TU TK", "v_totalgajitutklist.php");
-		}else{
-		$menu->addMenuItem(1, "HOME", "HOME", "home.php");
-		$menu->addMenuItem(1, "Slip Gaji KARYAWAN TK", "Slip Gaji KARYAWAN TK", "v_totalgajikaryawantklist.php");
-		}
+			$menu->addMenuItem(1, "HOME", "HOME", "home.php");
+			$menu->addMenuItem(1, "Slip Gaji TU TK", "Slip Gaji TU TK", "v_totalgajitutklist.php");
+		}elseif($query['type'] == '3'){
+			$menu->addMenuItem(1, "HOME", "HOME", "home.php");
+			$menu->addMenuItem(1, "Slip Gaji KARYAWAN TK", "Slip Gaji KARYAWAN TK", "v_totalgajikaryawantklist.php");
+			}
 		}elseif ($query['jenjang_id'] == '2') {
 			if ($query['type'] == '1') {
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
@@ -81,7 +85,7 @@ function Menu_Rendering($menu) {
 				}elseif($query['type'] == '2') {
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
 				$menu->addMenuItem(1, "Slip Gaji TU SD", "Slip Gaji TU SD", "v_totalgajitulist.php");
-				}else{
+				}elseif($query['type'] == '3'){
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
 				$menu->addMenuItem(1, "Slip Gaji KARYAWAN SD", "Slip Gaji KARYAWAN SD", "v_totalgajikakryawanlist.php");
 				}	
@@ -92,7 +96,7 @@ function Menu_Rendering($menu) {
 				}elseif($query['type'] == '2') {
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
 				$menu->addMenuItem(1, "Slip Gaji TU SMP", "Slip Gaji TU SMP", "v_totalgajitusmplist.php");
-				}else{
+				}elseif($query['type'] == '3'){
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
 				$menu->addMenuItem(1, "Slip Gaji KARYAWAN SMP", "Slip Gaji KARYAWAN SMP", "v_totalgajikaryawansmplist.php");
 				}
@@ -103,10 +107,10 @@ function Menu_Rendering($menu) {
 				}elseif($query['type'] == '2') {
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
 				$menu->addMenuItem(1, "Slip Gaji TU SMA", "Slip Gaji TU SMA", "v_totalgajitusmalist.php");
-				}else{
+				}elseif($query['type'] == '3'){
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
 				$menu->addMenuItem(1, "Slip Gaji KARYAWAN SMA", "Slip Gaji KARYAWAN SMA", "v_totalgajikaryawansmalist.php");
-				}
+				}		
 		}else{
 			if ($query['type'] == '1') {
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
@@ -114,13 +118,13 @@ function Menu_Rendering($menu) {
 				}elseif($query['type'] == '2') {
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
 				$menu->addMenuItem(1, "Slip Gaji TU SMK", "Slip Gaji TU SMK", "v_totalgajitusmklist.php");
-				}else{
+				}elseif($query['type'] == '3'){
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
 				$menu->addMenuItem(1, "Slip Gaji KARYAWAN SMK", "Slip Gaji KARYAWAN SMK", "v_totalgajikaryawansmklist.php");
 				}
+			}
 		}
 	}
-}
 }
 
 function Menu_Rendered($menu) {

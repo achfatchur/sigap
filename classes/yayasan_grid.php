@@ -722,6 +722,8 @@ class yayasan_grid extends yayasan
 		$this->setupListOptions();
 		$this->id->Visible = FALSE;
 		$this->m_id->Visible = FALSE;
+		$this->bulan->Visible = FALSE;
+		$this->tahun->Visible = FALSE;
 		$this->id_pegawai->setVisibility();
 		$this->datetime->Visible = FALSE;
 		$this->gaji_pokok->setVisibility();
@@ -751,6 +753,7 @@ class yayasan_grid extends yayasan
 		$this->setupOtherOptions();
 
 		// Set up lookup cache
+		$this->setupLookupOptions($this->bulan);
 		$this->setupLookupOptions($this->id_pegawai);
 
 		// Search filters
@@ -1284,6 +1287,8 @@ class yayasan_grid extends yayasan
 				$this->DbMasterFilter = "";
 				$this->DbDetailFilter = "";
 				$this->m_id->setSessionValue("");
+				$this->bulan->setSessionValue("");
+				$this->tahun->setSessionValue("");
 			}
 
 			// Reset sorting order
@@ -1526,6 +1531,10 @@ class yayasan_grid extends yayasan
 		$this->id->OldValue = $this->id->CurrentValue;
 		$this->m_id->CurrentValue = NULL;
 		$this->m_id->OldValue = $this->m_id->CurrentValue;
+		$this->bulan->CurrentValue = NULL;
+		$this->bulan->OldValue = $this->bulan->CurrentValue;
+		$this->tahun->CurrentValue = NULL;
+		$this->tahun->OldValue = $this->tahun->CurrentValue;
 		$this->id_pegawai->CurrentValue = NULL;
 		$this->id_pegawai->OldValue = $this->id_pegawai->CurrentValue;
 		$this->datetime->CurrentValue = NULL;
@@ -1672,6 +1681,8 @@ class yayasan_grid extends yayasan
 			return;
 		$this->id->setDbValue($row['id']);
 		$this->m_id->setDbValue($row['m_id']);
+		$this->bulan->setDbValue($row['bulan']);
+		$this->tahun->setDbValue($row['tahun']);
 		$this->id_pegawai->setDbValue($row['id_pegawai']);
 		$this->datetime->setDbValue($row['datetime']);
 		$this->gaji_pokok->setDbValue($row['gaji_pokok']);
@@ -1686,6 +1697,8 @@ class yayasan_grid extends yayasan
 		$row = [];
 		$row['id'] = $this->id->CurrentValue;
 		$row['m_id'] = $this->m_id->CurrentValue;
+		$row['bulan'] = $this->bulan->CurrentValue;
+		$row['tahun'] = $this->tahun->CurrentValue;
 		$row['id_pegawai'] = $this->id_pegawai->CurrentValue;
 		$row['datetime'] = $this->datetime->CurrentValue;
 		$row['gaji_pokok'] = $this->gaji_pokok->CurrentValue;
@@ -1740,6 +1753,8 @@ class yayasan_grid extends yayasan
 		// Common render codes for all row types
 		// id
 		// m_id
+		// bulan
+		// tahun
 		// id_pegawai
 		// datetime
 		// gaji_pokok
@@ -1756,6 +1771,33 @@ class yayasan_grid extends yayasan
 			$this->m_id->ViewValue = $this->m_id->CurrentValue;
 			$this->m_id->ViewValue = FormatNumber($this->m_id->ViewValue, 0, -2, -2, -2);
 			$this->m_id->ViewCustomAttributes = "";
+
+			// bulan
+			$this->bulan->ViewValue = $this->bulan->CurrentValue;
+			$curVal = strval($this->bulan->CurrentValue);
+			if ($curVal != "") {
+				$this->bulan->ViewValue = $this->bulan->lookupCacheOption($curVal);
+				if ($this->bulan->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->bulan->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->bulan->ViewValue = $this->bulan->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->bulan->ViewValue = $this->bulan->CurrentValue;
+					}
+				}
+			} else {
+				$this->bulan->ViewValue = NULL;
+			}
+			$this->bulan->ViewCustomAttributes = "";
+
+			// tahun
+			$this->tahun->ViewValue = $this->tahun->CurrentValue;
+			$this->tahun->ViewCustomAttributes = "";
 
 			// id_pegawai
 			$this->id_pegawai->ViewValue = $this->id_pegawai->CurrentValue;
@@ -2134,6 +2176,18 @@ class yayasan_grid extends yayasan
 			} else {
 				$validMasterRecord = FALSE;
 			}
+			$keyValue = isset($rsnew['bulan']) ? $rsnew['bulan'] : $rsold['bulan'];
+			if (strval($keyValue) != "") {
+				$masterFilter = str_replace("@bulan@", AdjustSql($keyValue), $masterFilter);
+			} else {
+				$validMasterRecord = FALSE;
+			}
+			$keyValue = isset($rsnew['tahun']) ? $rsnew['tahun'] : $rsold['tahun'];
+			if (strval($keyValue) != "") {
+				$masterFilter = str_replace("@tahun@", AdjustSql($keyValue), $masterFilter);
+			} else {
+				$validMasterRecord = FALSE;
+			}
 			if ($validMasterRecord) {
 				if (!isset($GLOBALS["m_yayasan"]))
 					$GLOBALS["m_yayasan"] = new m_yayasan();
@@ -2212,6 +2266,8 @@ class yayasan_grid extends yayasan
 		// Set up foreign key field value from Session
 			if ($this->getCurrentMasterTable() == "m_yayasan") {
 				$this->m_id->CurrentValue = $this->m_id->getSessionValue();
+				$this->bulan->CurrentValue = $this->bulan->getSessionValue();
+				$this->tahun->CurrentValue = $this->tahun->getSessionValue();
 			}
 
 		// Check referential integrity for master table 'yayasan'
@@ -2219,6 +2275,16 @@ class yayasan_grid extends yayasan
 		$masterFilter = $this->sqlMasterFilter_m_yayasan();
 		if ($this->m_id->getSessionValue() != "") {
 			$masterFilter = str_replace("@id@", AdjustSql($this->m_id->getSessionValue(), "DB"), $masterFilter);
+		} else {
+			$validMasterRecord = FALSE;
+		}
+		if ($this->bulan->getSessionValue() != "") {
+			$masterFilter = str_replace("@bulan@", AdjustSql($this->bulan->getSessionValue(), "DB"), $masterFilter);
+		} else {
+			$validMasterRecord = FALSE;
+		}
+		if ($this->tahun->getSessionValue() != "") {
+			$masterFilter = str_replace("@tahun@", AdjustSql($this->tahun->getSessionValue(), "DB"), $masterFilter);
 		} else {
 			$validMasterRecord = FALSE;
 		}
@@ -2257,6 +2323,16 @@ class yayasan_grid extends yayasan
 		// m_id
 		if ($this->m_id->getSessionValue() != "") {
 			$rsnew['m_id'] = $this->m_id->getSessionValue();
+		}
+
+		// bulan
+		if ($this->bulan->getSessionValue() != "") {
+			$rsnew['bulan'] = $this->bulan->getSessionValue();
+		}
+
+		// tahun
+		if ($this->tahun->getSessionValue() != "") {
+			$rsnew['tahun'] = $this->tahun->getSessionValue();
 		}
 
 		// Call Row Inserting event
@@ -2309,6 +2385,12 @@ class yayasan_grid extends yayasan
 			$this->m_id->Visible = FALSE;
 			if ($GLOBALS["m_yayasan"]->EventCancelled)
 				$this->EventCancelled = TRUE;
+			$this->bulan->Visible = FALSE;
+			if ($GLOBALS["m_yayasan"]->EventCancelled)
+				$this->EventCancelled = TRUE;
+			$this->tahun->Visible = FALSE;
+			if ($GLOBALS["m_yayasan"]->EventCancelled)
+				$this->EventCancelled = TRUE;
 		}
 		$this->DbMasterFilter = $this->getMasterFilter(); // Get master filter
 		$this->DbDetailFilter = $this->getDetailFilter(); // Get detail filter
@@ -2328,6 +2410,8 @@ class yayasan_grid extends yayasan
 
 			// Set up lookup SQL and connection
 			switch ($fld->FieldVar) {
+				case "x_bulan":
+					break;
 				case "x_id_pegawai":
 					break;
 				default:
@@ -2350,6 +2434,8 @@ class yayasan_grid extends yayasan
 
 					// Format the field values
 					switch ($fld->FieldVar) {
+						case "x_bulan":
+							break;
 						case "x_id_pegawai":
 							break;
 					}

@@ -56,11 +56,6 @@ loadjs.ready("head", function() {
 		for (var i = startcnt; i <= rowcnt; i++) {
 			var infix = ($k[0]) ? String(i) : "";
 			$fobj.data("rowindex", infix);
-			<?php if ($generate_pertahun_sd_add->profesi->Required) { ?>
-				elm = this.getElements("x" + infix + "_profesi");
-				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
-					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $generate_pertahun_sd_add->profesi->caption(), $generate_pertahun_sd_add->profesi->RequiredErrorMessage)) ?>");
-			<?php } ?>
 			<?php if ($generate_pertahun_sd_add->tahun->Required) { ?>
 				elm = this.getElements("x" + infix + "_tahun");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -102,8 +97,6 @@ loadjs.ready("head", function() {
 	fgenerate_pertahun_sdadd.validateRequired = <?php echo Config("CLIENT_VALIDATE") ? "true" : "false" ?>;
 
 	// Dynamic selection lists
-	fgenerate_pertahun_sdadd.lists["x_profesi"] = <?php echo $generate_pertahun_sd_add->profesi->Lookup->toClientList($generate_pertahun_sd_add) ?>;
-	fgenerate_pertahun_sdadd.lists["x_profesi"].options = <?php echo JsonEncode($generate_pertahun_sd_add->profesi->lookupOptions()) ?>;
 	fgenerate_pertahun_sdadd.lists["x_bulan[]"] = <?php echo $generate_pertahun_sd_add->bulan->Lookup->toClientList($generate_pertahun_sd_add) ?>;
 	fgenerate_pertahun_sdadd.lists["x_bulan[]"].options = <?php echo JsonEncode($generate_pertahun_sd_add->bulan->lookupOptions()) ?>;
 	loadjs.done("fgenerate_pertahun_sdadd");
@@ -128,21 +121,6 @@ $generate_pertahun_sd_add->showMessage();
 <input type="hidden" name="action" id="action" value="insert">
 <input type="hidden" name="modal" value="<?php echo (int)$generate_pertahun_sd_add->IsModal ?>">
 <div class="ew-add-div"><!-- page* -->
-<?php if ($generate_pertahun_sd_add->profesi->Visible) { // profesi ?>
-	<div id="r_profesi" class="form-group row">
-		<label id="elh_generate_pertahun_sd_profesi" for="x_profesi" class="<?php echo $generate_pertahun_sd_add->LeftColumnClass ?>"><?php echo $generate_pertahun_sd_add->profesi->caption() ?><?php echo $generate_pertahun_sd_add->profesi->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
-		<div class="<?php echo $generate_pertahun_sd_add->RightColumnClass ?>"><div <?php echo $generate_pertahun_sd_add->profesi->cellAttributes() ?>>
-<span id="el_generate_pertahun_sd_profesi">
-<div class="input-group">
-	<select class="custom-select ew-custom-select" data-table="generate_pertahun_sd" data-field="x_profesi" data-value-separator="<?php echo $generate_pertahun_sd_add->profesi->displayValueSeparatorAttribute() ?>" id="x_profesi" name="x_profesi"<?php echo $generate_pertahun_sd_add->profesi->editAttributes() ?>>
-			<?php echo $generate_pertahun_sd_add->profesi->selectOptionListHtml("x_profesi") ?>
-		</select>
-</div>
-<?php echo $generate_pertahun_sd_add->profesi->Lookup->getParamTag($generate_pertahun_sd_add, "p_x_profesi") ?>
-</span>
-<?php echo $generate_pertahun_sd_add->profesi->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
 <?php if ($generate_pertahun_sd_add->tahun->Visible) { // tahun ?>
 	<div id="r_tahun" class="form-group row">
 		<label id="elh_generate_pertahun_sd_tahun" for="x_tahun" class="<?php echo $generate_pertahun_sd_add->LeftColumnClass ?>"><?php echo $generate_pertahun_sd_add->tahun->caption() ?><?php echo $generate_pertahun_sd_add->tahun->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>

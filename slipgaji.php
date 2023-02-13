@@ -39,8 +39,9 @@ Page_Rendering();
 	$id_gaji = $_GET['id'];
 	$table = $_GET['table'];
 	$gaji = ExecuteRow ("SELECT * FROM ".$table." WHERE id ='".$id_gaji."'");
-	$m_p = ExecuteScalar("SELECT id FROM m_penyesuaian WHERE bulan = '".$gaji['bulan']."' AND tahun = '".$gaji['tahun']."'");
-	$penyesuaian = ExecuteRow("SELECT * FROM penyesuaian WHERE nip ='".$nip."' AND m_id ='".$m_p."'");
+	$bulan = ExecuteScalar("select `bulan` from bulan where id='".$gaji["bulan"]."'");
+	//$m_p = ExecuteScalar("SELECT id FROM m_penyesuaian WHERE bulan = '".$gaji['bulan']."' AND tahun = '".$gaji['tahun']."'");
+	//$penyesuaian = ExecuteRow("SELECT * FROM penyesuaian WHERE nip ='".$nip."' AND m_id ='".$m_p."'");
 	$nama_lengkap = ExecuteRow("select * from pegawai where nip='".$nip."'");
 	$jabatan_v = ExecuteScalar("SELECT nama_jabatan FROM jabatan WHERE id = '".$jabatan."'");
 	$jenjang_v = ExecuteScalar("SELECT name FROM tpendidikan WHERE nourut = '".$jenjang."'");
@@ -92,7 +93,7 @@ Page_Rendering();
 					<img style="width: 100px;" src="download.png">
 				</td>
 				<td style="text-align: center;">
-					<h4 class="text-end" style="font-size: 15px;">SLIP HR GURU - TU - KARYAWAN & KEAMANAN</h4>
+					<h4 class="text-end" style="font-size: 15px;">SLIP HR Pengurus Yayasan</h4>
 					<p class="text-end" style="font-size: 12px;">
 						TP. WACHID HASYIM PUSAT SURABAYA 
 						<br>
@@ -109,12 +110,10 @@ Page_Rendering();
 						<b style="font-size: 15px;"><u>Data Penerima</u></b>   
 						<p style="font-size: 12px;">
 
-						<br>BULAN : JULI 2022
+						<br>BULAN : <?=$bulan?> <?=$gaji['tahun']?>
 						<br>NIP : <?=$nama_lengkap['nip']?>
 						<br>NAMA : <?=$nama_lengkap['nama']?>  
-						<br>JABATAN :   <?=$jabatan_v?>
-						<br>UNIT : <?=$jenjang_v?>
-						<br>STATUS : <?=$status?>
+
 					</table>
 					</p>
 					</td>
@@ -124,44 +123,26 @@ Page_Rendering();
 					<b style="font-size: 15px;"><u>PENGHASILAN</u></b>
 					<br>
 					<p style="font-size: 12px;">
-					<br> Jabatan = RP
-					<br> Gaji Pokok = RP
-					<br> Kehadiran = RP
-					<br> INVAL/GJ 13 = RP
-					<br> Ngaji = RP
-					<br> Lain-Lain = RP
-					<br><b>Penyesuaian</b>
-					<br> Piket = <?=$penyesuaian['piket']?>
-					<br> Inval = <?=$penyesuaian['inval']?>
-					<br> Lembur = <?=$penyesuaian['lembur']?>
-					<br><b>Total Penyesuaian = <?=$penyesuaian['total2']?></b>
+					<br> Gaji Pokok = RP <?=number_format($gaji['gaji_pokok'],0,',','.')?>
+					<br><b>Total Penyesuaian = <?=number_format($gaji['gaji_pokok'],0,',','.')?></b>
 					</p>
-					<h2 style="text-align: right;padding: 15px; font-size: 20px;">Total Penghasilan <u>Rp. <?= number_format($gaji['total'],0,',','.');?></u></h2>
+					<h2 style="text-align: right;padding: 15px; font-size: 20px;">Total Penghasilan <u>Rp. <?= number_format($gaji['gaji_pokok'],0,',','.');?></u></h2>
 				</td>
 				<td style="width: 50%;max-width: 50%;min-width: 50%;padding: 10px;">
 					<b style="font-size: 15px;"><u>POTONGAN</u></b>
 					<br>
 					<p style="font-size: 12px;">
-					<br><b>Potongan Bendahara	: <?=$gaji['potongan_bendahara'];?></b>
-					<br><b>Potongan Unit</b>
-					<br> Absen = <?=$penyesuaian['absen']?>
-					<br> Absen/Jam = <?=$penyesuaian['absen_jam']?>
-					<br> Izin = <?=$penyesuaian['izin']?>
-					<br> Izin/Jam = <?=$penyesuaian['izin_jam']?>
-					<br> Sakit = <?=$penyesuaian['sakit']?>
-					<br> Sakit/Jam = <?=$penyesuaian['sakit_jam']?>
-					<br> Terlambat = <?=$penyesuaian['terlambat']?>
-					<br> Pulang Cepat = <?=$penyesuaian['pulang_cepat']?>
-					<br><b>Total Potongan Unit = <?=$penyesuaian['total']?></b>
+					<br><b>Potongan : <?=number_format($gaji['potongan'],0,',','.');?></b>
+					<br><b>Total Potongan Potongan = <?=number_format($gaji['potongan'],0,',','.')?></b>
 
 					</p>
-					<h2 style="text-align: right;padding: 10px; font-size: 20px;">Total Potongan <u>Rp. <?= number_format($gaji['potongan_bendahara']+$penyesuaian['total'],0,',','.');?></u></h2>
+					<h2 style="text-align: right;padding: 10px; font-size: 20px;">Total Potongan <u>Rp. <?= number_format($gaji['potongan'],0,',','.');?></u></h2>
 				</td>
 				</tr> 
 				<tr>
 					<td colspan="2" style="padding: 10px;">
-						<b style="text-align: center;padding: 10px; font-size: 12px;">    
-						Penerimaan Bersih = <u><?=$gaji['sub_total']?></u>
+						<b style="text-align: center;padding: 10px; font-size: 15px;">    
+						Penerimaan Bersih = <u><?=number_format($gaji['total'],0,',','.')?></u>
 						</b>            
 					</td>
 				</tr> 

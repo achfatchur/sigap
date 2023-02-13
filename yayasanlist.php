@@ -128,6 +128,8 @@ $yayasan_list->showMessage();
 <?php if ($yayasan->getCurrentMasterTable() == "m_yayasan" && $yayasan->CurrentAction) { ?>
 <input type="hidden" name="<?php echo Config("TABLE_SHOW_MASTER") ?>" value="m_yayasan">
 <input type="hidden" name="fk_id" value="<?php echo HtmlEncode($yayasan_list->m_id->getSessionValue()) ?>">
+<input type="hidden" name="fk_bulan" value="<?php echo HtmlEncode($yayasan_list->bulan->getSessionValue()) ?>">
+<input type="hidden" name="fk_tahun" value="<?php echo HtmlEncode($yayasan_list->tahun->getSessionValue()) ?>">
 <?php } ?>
 <div id="gmp_yayasan" class="<?php echo ResponsiveTableClass() ?>card-body ew-grid-middle-panel">
 <?php if ($yayasan_list->TotalRecords > 0 || $yayasan_list->isGridEdit()) { ?>

@@ -57,8 +57,8 @@
 							</center>
 							<br>
 							<form role="form" action="" method="post" enctype="multipart/form-data" class="login-box">
-							<input class="form-control" type="text" name="username" placeholder="Masukkan NIP" required>
-							<input class="form-control" type="password" name="password" placeholder="Masukkan Password" required>
+							<input class="form-control" type="text" style="color:black; font-weight: bold;" name="username" placeholder="Masukkan NIP" required>
+							<input class="form-control" type="password" style="color:black; font-weight: bold;" name="password" placeholder="Masukkan Password" required>
 							<div class="form-button">
 								<button id="submit" type="submit" name="simpan" class="ibtn">Login</button>
 							</div>

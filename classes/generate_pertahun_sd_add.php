@@ -675,7 +675,7 @@ class generate_pertahun_sd_add extends generate_pertahun_sd
 		$CurrentForm = new HttpForm();
 		$this->CurrentAction = Param("action"); // Set up current action
 		$this->id->Visible = FALSE;
-		$this->profesi->setVisibility();
+		$this->profesi->Visible = FALSE;
 		$this->tahun->setVisibility();
 		$this->bulan->setVisibility();
 		$this->bulan2->Visible = FALSE;
@@ -839,15 +839,6 @@ class generate_pertahun_sd_add extends generate_pertahun_sd
 		// Load from form
 		global $CurrentForm;
 
-		// Check field name 'profesi' first before field var 'x_profesi'
-		$val = $CurrentForm->hasValue("profesi") ? $CurrentForm->getValue("profesi") : $CurrentForm->getValue("x_profesi");
-		if (!$this->profesi->IsDetailKey) {
-			if (IsApi() && $val == NULL)
-				$this->profesi->Visible = FALSE; // Disable update for API request
-			else
-				$this->profesi->setFormValue($val);
-		}
-
 		// Check field name 'tahun' first before field var 'x_tahun'
 		$val = $CurrentForm->hasValue("tahun") ? $CurrentForm->getValue("tahun") : $CurrentForm->getValue("x_tahun");
 		if (!$this->tahun->IsDetailKey) {
@@ -874,7 +865,6 @@ class generate_pertahun_sd_add extends generate_pertahun_sd
 	public function restoreFormValues()
 	{
 		global $CurrentForm;
-		$this->profesi->CurrentValue = $this->profesi->FormValue;
 		$this->tahun->CurrentValue = $this->tahun->FormValue;
 		$this->bulan->CurrentValue = $this->bulan->FormValue;
 	}
@@ -1063,11 +1053,6 @@ class generate_pertahun_sd_add extends generate_pertahun_sd
 			}
 			$this->bulan2->ViewCustomAttributes = "";
 
-			// profesi
-			$this->profesi->LinkCustomAttributes = "";
-			$this->profesi->HrefValue = "";
-			$this->profesi->TooltipValue = "";
-
 			// tahun
 			$this->tahun->LinkCustomAttributes = "";
 			$this->tahun->HrefValue = "";
@@ -1078,30 +1063,6 @@ class generate_pertahun_sd_add extends generate_pertahun_sd
 			$this->bulan->HrefValue = "";
 			$this->bulan->TooltipValue = "";
 		} elseif ($this->RowType == ROWTYPE_ADD) { // Add row
-
-			// profesi
-			$this->profesi->EditAttrs["class"] = "form-control";
-			$this->profesi->EditCustomAttributes = "";
-			$curVal = trim(strval($this->profesi->CurrentValue));
-			if ($curVal != "")
-				$this->profesi->ViewValue = $this->profesi->lookupCacheOption($curVal);
-			else
-				$this->profesi->ViewValue = $this->profesi->Lookup !== NULL && is_array($this->profesi->Lookup->Options) ? $curVal : NULL;
-			if ($this->profesi->ViewValue !== NULL) { // Load from cache
-				$this->profesi->EditValue = array_values($this->profesi->Lookup->Options);
-			} else { // Lookup from database
-				if ($curVal == "") {
-					$filterWrk = "0=1";
-				} else {
-					$filterWrk = "`id`" . SearchString("=", $this->profesi->CurrentValue, DATATYPE_NUMBER, "");
-				}
-				$sqlWrk = $this->profesi->Lookup->getSql(TRUE, $filterWrk, '', $this);
-				$rswrk = Conn()->execute($sqlWrk);
-				$arwrk = $rswrk ? $rswrk->getRows() : [];
-				if ($rswrk)
-					$rswrk->close();
-				$this->profesi->EditValue = $arwrk;
-			}
 
 			// tahun
 			$this->tahun->EditAttrs["class"] = "form-control";
@@ -1139,12 +1100,8 @@ class generate_pertahun_sd_add extends generate_pertahun_sd
 			}
 
 			// Add refer script
-			// profesi
-
-			$this->profesi->LinkCustomAttributes = "";
-			$this->profesi->HrefValue = "";
-
 			// tahun
+
 			$this->tahun->LinkCustomAttributes = "";
 			$this->tahun->HrefValue = "";
 
@@ -1171,11 +1128,6 @@ class generate_pertahun_sd_add extends generate_pertahun_sd
 		// Check if validation required
 		if (!Config("SERVER_VALIDATE"))
 			return ($FormError == "");
-		if ($this->profesi->Required) {
-			if (!$this->profesi->IsDetailKey && $this->profesi->FormValue != NULL && $this->profesi->FormValue == "") {
-				AddMessage($FormError, str_replace("%s", $this->profesi->caption(), $this->profesi->RequiredErrorMessage));
-			}
-		}
 		if ($this->tahun->Required) {
 			if (!$this->tahun->IsDetailKey && $this->tahun->FormValue != NULL && $this->tahun->FormValue == "") {
 				AddMessage($FormError, str_replace("%s", $this->tahun->caption(), $this->tahun->RequiredErrorMessage));
@@ -1213,9 +1165,6 @@ class generate_pertahun_sd_add extends generate_pertahun_sd
 		if ($rsold) {
 		}
 		$rsnew = [];
-
-		// profesi
-		$this->profesi->setDbValueDef($rsnew, $this->profesi->CurrentValue, NULL, FALSE);
 
 		// tahun
 		$this->tahun->setDbValueDef($rsnew, $this->tahun->CurrentValue, NULL, FALSE);

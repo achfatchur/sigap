@@ -132,15 +132,6 @@ $generate_pertahun_smp_list->renderListOptions();
 // Render list options (header, left)
 $generate_pertahun_smp_list->ListOptions->render("header", "left");
 ?>
-<?php if ($generate_pertahun_smp_list->profesi->Visible) { // profesi ?>
-	<?php if ($generate_pertahun_smp_list->SortUrl($generate_pertahun_smp_list->profesi) == "") { ?>
-		<th data-name="profesi" class="<?php echo $generate_pertahun_smp_list->profesi->headerCellClass() ?>"><div id="elh_generate_pertahun_smp_profesi" class="generate_pertahun_smp_profesi"><div class="ew-table-header-caption"><?php echo $generate_pertahun_smp_list->profesi->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="profesi" class="<?php echo $generate_pertahun_smp_list->profesi->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $generate_pertahun_smp_list->SortUrl($generate_pertahun_smp_list->profesi) ?>', 1);"><div id="elh_generate_pertahun_smp_profesi" class="generate_pertahun_smp_profesi">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $generate_pertahun_smp_list->profesi->caption() ?></span><span class="ew-table-header-sort"><?php if ($generate_pertahun_smp_list->profesi->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($generate_pertahun_smp_list->profesi->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
 <?php if ($generate_pertahun_smp_list->tahun->Visible) { // tahun ?>
 	<?php if ($generate_pertahun_smp_list->SortUrl($generate_pertahun_smp_list->tahun) == "") { ?>
 		<th data-name="tahun" class="<?php echo $generate_pertahun_smp_list->tahun->headerCellClass() ?>"><div id="elh_generate_pertahun_smp_tahun" class="generate_pertahun_smp_tahun"><div class="ew-table-header-caption"><?php echo $generate_pertahun_smp_list->tahun->caption() ?></div></div></th>
@@ -224,13 +215,6 @@ while ($generate_pertahun_smp_list->RecordCount < $generate_pertahun_smp_list->S
 // Render list options (body, left)
 $generate_pertahun_smp_list->ListOptions->render("body", "left", $generate_pertahun_smp_list->RowCount);
 ?>
-	<?php if ($generate_pertahun_smp_list->profesi->Visible) { // profesi ?>
-		<td data-name="profesi" <?php echo $generate_pertahun_smp_list->profesi->cellAttributes() ?>>
-<span id="el<?php echo $generate_pertahun_smp_list->RowCount ?>_generate_pertahun_smp_profesi">
-<span<?php echo $generate_pertahun_smp_list->profesi->viewAttributes() ?>><?php echo $generate_pertahun_smp_list->profesi->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
 	<?php if ($generate_pertahun_smp_list->tahun->Visible) { // tahun ?>
 		<td data-name="tahun" <?php echo $generate_pertahun_smp_list->tahun->cellAttributes() ?>>
 <span id="el<?php echo $generate_pertahun_smp_list->RowCount ?>_generate_pertahun_smp_tahun">

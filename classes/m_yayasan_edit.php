@@ -1024,7 +1024,6 @@ class m_yayasan_edit extends m_yayasan
 
 			// tahun
 			$this->tahun->ViewValue = $this->tahun->CurrentValue;
-			$this->tahun->ViewValue = FormatNumber($this->tahun->ViewValue, 0, -2, -2, -2);
 			$this->tahun->ViewCustomAttributes = "";
 
 			// datetime
@@ -1391,6 +1390,12 @@ class m_yayasan_edit extends m_yayasan
 					$GLOBALS["yayasan_grid"]->m_id->IsDetailKey = TRUE;
 					$GLOBALS["yayasan_grid"]->m_id->CurrentValue = $this->id->CurrentValue;
 					$GLOBALS["yayasan_grid"]->m_id->setSessionValue($GLOBALS["yayasan_grid"]->m_id->CurrentValue);
+					$GLOBALS["yayasan_grid"]->bulan->IsDetailKey = TRUE;
+					$GLOBALS["yayasan_grid"]->bulan->CurrentValue = $this->bulan->CurrentValue;
+					$GLOBALS["yayasan_grid"]->bulan->setSessionValue($GLOBALS["yayasan_grid"]->bulan->CurrentValue);
+					$GLOBALS["yayasan_grid"]->tahun->IsDetailKey = TRUE;
+					$GLOBALS["yayasan_grid"]->tahun->CurrentValue = $this->tahun->CurrentValue;
+					$GLOBALS["yayasan_grid"]->tahun->setSessionValue($GLOBALS["yayasan_grid"]->tahun->CurrentValue);
 				}
 			}
 		}

@@ -878,7 +878,7 @@ class m_yayasan_view extends m_yayasan
 		// "detail_yayasan"
 		$item = &$option->add("detail_yayasan");
 		$body = $Language->phrase("ViewPageDetailLink") . $Language->TablePhrase("yayasan", "TblCaption");
-		$body = "<a class=\"btn btn-default ew-row-link ew-detail\" data-action=\"list\" href=\"" . HtmlEncode("yayasanlist.php?" . Config("TABLE_SHOW_MASTER") . "=m_yayasan&fk_id=" . urlencode(strval($this->id->CurrentValue)) . "") . "\">" . $body . "</a>";
+		$body = "<a class=\"btn btn-default ew-row-link ew-detail\" data-action=\"list\" href=\"" . HtmlEncode("yayasanlist.php?" . Config("TABLE_SHOW_MASTER") . "=m_yayasan&fk_id=" . urlencode(strval($this->id->CurrentValue)) . "&fk_bulan=" . urlencode(strval($this->bulan->CurrentValue)) . "&fk_tahun=" . urlencode(strval($this->tahun->CurrentValue)) . "") . "\">" . $body . "</a>";
 		$links = "";
 		if (!isset($GLOBALS["yayasan_grid"]))
 			$GLOBALS["yayasan_grid"] = new yayasan_grid();
@@ -1062,7 +1062,6 @@ class m_yayasan_view extends m_yayasan
 
 			// tahun
 			$this->tahun->ViewValue = $this->tahun->CurrentValue;
-			$this->tahun->ViewValue = FormatNumber($this->tahun->ViewValue, 0, -2, -2, -2);
 			$this->tahun->ViewCustomAttributes = "";
 
 			// datetime
@@ -1125,6 +1124,12 @@ class m_yayasan_view extends m_yayasan
 					$GLOBALS["yayasan_grid"]->m_id->IsDetailKey = TRUE;
 					$GLOBALS["yayasan_grid"]->m_id->CurrentValue = $this->id->CurrentValue;
 					$GLOBALS["yayasan_grid"]->m_id->setSessionValue($GLOBALS["yayasan_grid"]->m_id->CurrentValue);
+					$GLOBALS["yayasan_grid"]->bulan->IsDetailKey = TRUE;
+					$GLOBALS["yayasan_grid"]->bulan->CurrentValue = $this->bulan->CurrentValue;
+					$GLOBALS["yayasan_grid"]->bulan->setSessionValue($GLOBALS["yayasan_grid"]->bulan->CurrentValue);
+					$GLOBALS["yayasan_grid"]->tahun->IsDetailKey = TRUE;
+					$GLOBALS["yayasan_grid"]->tahun->CurrentValue = $this->tahun->CurrentValue;
+					$GLOBALS["yayasan_grid"]->tahun->setSessionValue($GLOBALS["yayasan_grid"]->tahun->CurrentValue);
 				}
 			}
 		}

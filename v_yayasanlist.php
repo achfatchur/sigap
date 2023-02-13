@@ -50,9 +50,37 @@ loadjs.ready("head", function() {
 	// Form object for search
 	fv_yayasanlistsrch = currentSearchForm = new ew.Form("fv_yayasanlistsrch");
 
-	// Dynamic selection lists
-	// Filters
+	// Validate function for search
+	fv_yayasanlistsrch.validate = function(fobj) {
+		if (!this.validateRequired)
+			return true; // Ignore validation
+		fobj = fobj || this._form;
+		var infix = "";
+		elm = this.getElements("x" + infix + "_tahun");
+		if (elm && !ew.checkInteger(elm.value))
+			return this.onError(elm, "<?php echo JsEncode($v_yayasan_list->tahun->errorMessage()) ?>");
 
+		// Call Form_CustomValidate event
+		if (!this.Form_CustomValidate(fobj))
+			return false;
+		return true;
+	}
+
+	// Form_CustomValidate
+	fv_yayasanlistsrch.Form_CustomValidate = function(fobj) { // DO NOT CHANGE THIS LINE!
+
+		// Your custom validation code here, return false if invalid.
+		return true;
+	}
+
+	// Use JavaScript validation or not
+	fv_yayasanlistsrch.validateRequired = <?php echo Config("CLIENT_VALIDATE") ? "true" : "false" ?>;
+
+	// Dynamic selection lists
+	fv_yayasanlistsrch.lists["x_bulan"] = <?php echo $v_yayasan_list->bulan->Lookup->toClientList($v_yayasan_list) ?>;
+	fv_yayasanlistsrch.lists["x_bulan"].options = <?php echo JsonEncode($v_yayasan_list->bulan->lookupOptions()) ?>;
+
+	// Filters
 	fv_yayasanlistsrch.filterList = <?php echo $v_yayasan_list->getFilterList() ?>;
 	loadjs.done("fv_yayasanlistsrch");
 });
@@ -117,6 +145,69 @@ $v_yayasan_list->renderOtherOptions();
 <input type="hidden" name="cmd" value="search">
 <input type="hidden" name="t" value="v_yayasan">
 	<div class="ew-extended-search">
+<?php
+
+// Render search row
+$v_yayasan->RowType = ROWTYPE_SEARCH;
+$v_yayasan->resetAttributes();
+$v_yayasan_list->renderRow();
+?>
+<?php if ($v_yayasan_list->bulan->Visible) { // bulan ?>
+	<?php
+		$v_yayasan_list->SearchColumnCount++;
+		if (($v_yayasan_list->SearchColumnCount - 1) % $v_yayasan_list->SearchFieldsPerRow == 0) {
+			$v_yayasan_list->SearchRowCount++;
+	?>
+<div id="xsr_<?php echo $v_yayasan_list->SearchRowCount ?>" class="ew-row d-sm-flex">
+	<?php
+		}
+	 ?>
+	<div id="xsc_bulan" class="ew-cell form-group">
+		<label for="x_bulan" class="ew-search-caption ew-label"><?php echo $v_yayasan_list->bulan->caption() ?></label>
+		<span class="ew-search-operator">
+<?php echo $Language->phrase("=") ?>
+<input type="hidden" name="z_bulan" id="z_bulan" value="=">
+</span>
+		<span id="el_v_yayasan_bulan" class="ew-search-field">
+<div class="input-group">
+	<select class="custom-select ew-custom-select" data-table="v_yayasan" data-field="x_bulan" data-value-separator="<?php echo $v_yayasan_list->bulan->displayValueSeparatorAttribute() ?>" id="x_bulan" name="x_bulan"<?php echo $v_yayasan_list->bulan->editAttributes() ?>>
+			<?php echo $v_yayasan_list->bulan->selectOptionListHtml("x_bulan") ?>
+		</select>
+</div>
+<?php echo $v_yayasan_list->bulan->Lookup->getParamTag($v_yayasan_list, "p_x_bulan") ?>
+</span>
+	</div>
+	<?php if ($v_yayasan_list->SearchColumnCount % $v_yayasan_list->SearchFieldsPerRow == 0) { ?>
+</div>
+	<?php } ?>
+<?php } ?>
+<?php if ($v_yayasan_list->tahun->Visible) { // tahun ?>
+	<?php
+		$v_yayasan_list->SearchColumnCount++;
+		if (($v_yayasan_list->SearchColumnCount - 1) % $v_yayasan_list->SearchFieldsPerRow == 0) {
+			$v_yayasan_list->SearchRowCount++;
+	?>
+<div id="xsr_<?php echo $v_yayasan_list->SearchRowCount ?>" class="ew-row d-sm-flex">
+	<?php
+		}
+	 ?>
+	<div id="xsc_tahun" class="ew-cell form-group">
+		<label for="x_tahun" class="ew-search-caption ew-label"><?php echo $v_yayasan_list->tahun->caption() ?></label>
+		<span class="ew-search-operator">
+<?php echo $Language->phrase("=") ?>
+<input type="hidden" name="z_tahun" id="z_tahun" value="=">
+</span>
+		<span id="el_v_yayasan_tahun" class="ew-search-field">
+<input type="text" data-table="v_yayasan" data-field="x_tahun" name="x_tahun" id="x_tahun" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($v_yayasan_list->tahun->getPlaceHolder()) ?>" value="<?php echo $v_yayasan_list->tahun->EditValue ?>"<?php echo $v_yayasan_list->tahun->editAttributes() ?>>
+</span>
+	</div>
+	<?php if ($v_yayasan_list->SearchColumnCount % $v_yayasan_list->SearchFieldsPerRow == 0) { ?>
+</div>
+	<?php } ?>
+<?php } ?>
+	<?php if ($v_yayasan_list->SearchColumnCount % $v_yayasan_list->SearchFieldsPerRow > 0) { ?>
+</div>
+	<?php } ?>
 <div id="xsr_<?php echo $v_yayasan_list->SearchRowCount + 1 ?>" class="ew-row d-sm-flex">
 	<div class="ew-quick-search input-group">
 		<input type="text" name="<?php echo Config("TABLE_BASIC_SEARCH") ?>" id="<?php echo Config("TABLE_BASIC_SEARCH") ?>" class="form-control" value="<?php echo HtmlEncode($v_yayasan_list->BasicSearch->getKeyword()) ?>" placeholder="<?php echo HtmlEncode($Language->phrase("Search")) ?>">
@@ -201,7 +292,7 @@ $v_yayasan_list->ListOptions->render("header", "left");
 		<th data-name="id_pegawai" class="<?php echo $v_yayasan_list->id_pegawai->headerCellClass() ?>"><div id="elh_v_yayasan_id_pegawai" class="v_yayasan_id_pegawai"><div class="ew-table-header-caption"><?php echo $v_yayasan_list->id_pegawai->caption() ?></div></div></th>
 	<?php } else { ?>
 		<th data-name="id_pegawai" class="<?php echo $v_yayasan_list->id_pegawai->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_yayasan_list->SortUrl($v_yayasan_list->id_pegawai) ?>', 1);"><div id="elh_v_yayasan_id_pegawai" class="v_yayasan_id_pegawai">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_yayasan_list->id_pegawai->caption() ?></span><span class="ew-table-header-sort"><?php if ($v_yayasan_list->id_pegawai->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_yayasan_list->id_pegawai->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_yayasan_list->id_pegawai->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($v_yayasan_list->id_pegawai->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_yayasan_list->id_pegawai->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>

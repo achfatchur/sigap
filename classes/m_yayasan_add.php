@@ -1010,7 +1010,6 @@ class m_yayasan_add extends m_yayasan
 
 			// tahun
 			$this->tahun->ViewValue = $this->tahun->CurrentValue;
-			$this->tahun->ViewValue = FormatNumber($this->tahun->ViewValue, 0, -2, -2, -2);
 			$this->tahun->ViewCustomAttributes = "";
 
 			// datetime
@@ -1286,6 +1285,8 @@ class m_yayasan_add extends m_yayasan
 			$detailTblVar = explode(",", $this->getCurrentDetailTable());
 			if (in_array("yayasan", $detailTblVar) && $GLOBALS["yayasan"]->DetailAdd) {
 				$GLOBALS["yayasan"]->m_id->setSessionValue($this->id->CurrentValue); // Set master key
+				$GLOBALS["yayasan"]->bulan->setSessionValue($this->bulan->CurrentValue); // Set master key
+				$GLOBALS["yayasan"]->tahun->setSessionValue($this->tahun->CurrentValue); // Set master key
 				if (!isset($GLOBALS["yayasan_grid"]))
 					$GLOBALS["yayasan_grid"] = new yayasan_grid(); // Get detail page object
 				$Security->loadCurrentUserLevel($this->ProjectID . "yayasan"); // Load user level of detail table
@@ -1293,6 +1294,8 @@ class m_yayasan_add extends m_yayasan
 				$Security->loadCurrentUserLevel($this->ProjectID . $this->TableName); // Restore user level of master table
 				if (!$addRow) {
 					$GLOBALS["yayasan"]->m_id->setSessionValue(""); // Clear master key if insert failed
+					$GLOBALS["yayasan"]->bulan->setSessionValue(""); // Clear master key if insert failed
+					$GLOBALS["yayasan"]->tahun->setSessionValue(""); // Clear master key if insert failed
 				}
 			}
 		}
@@ -1356,6 +1359,12 @@ class m_yayasan_add extends m_yayasan
 					$GLOBALS["yayasan_grid"]->m_id->IsDetailKey = TRUE;
 					$GLOBALS["yayasan_grid"]->m_id->CurrentValue = $this->id->CurrentValue;
 					$GLOBALS["yayasan_grid"]->m_id->setSessionValue($GLOBALS["yayasan_grid"]->m_id->CurrentValue);
+					$GLOBALS["yayasan_grid"]->bulan->IsDetailKey = TRUE;
+					$GLOBALS["yayasan_grid"]->bulan->CurrentValue = $this->bulan->CurrentValue;
+					$GLOBALS["yayasan_grid"]->bulan->setSessionValue($GLOBALS["yayasan_grid"]->bulan->CurrentValue);
+					$GLOBALS["yayasan_grid"]->tahun->IsDetailKey = TRUE;
+					$GLOBALS["yayasan_grid"]->tahun->CurrentValue = $this->tahun->CurrentValue;
+					$GLOBALS["yayasan_grid"]->tahun->setSessionValue($GLOBALS["yayasan_grid"]->tahun->CurrentValue);
 				}
 			}
 		}

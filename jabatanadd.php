@@ -71,14 +71,6 @@ loadjs.ready("head", function() {
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
 					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $jabatan_add->jenjang->caption(), $jabatan_add->jenjang->RequiredErrorMessage)) ?>");
 			<?php } ?>
-			<?php if ($jabatan_add->type_guru->Required) { ?>
-				elm = this.getElements("x" + infix + "_type_guru");
-				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
-					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $jabatan_add->type_guru->caption(), $jabatan_add->type_guru->RequiredErrorMessage)) ?>");
-			<?php } ?>
-				elm = this.getElements("x" + infix + "_type_guru");
-				if (elm && !ew.checkInteger(elm.value))
-					return this.onError(elm, "<?php echo JsEncode($jabatan_add->type_guru->errorMessage()) ?>");
 			<?php if ($jabatan_add->keterangan->Required) { ?>
 				elm = this.getElements("x" + infix + "_keterangan");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -89,41 +81,21 @@ loadjs.ready("head", function() {
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
 					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $jabatan_add->c_by->caption(), $jabatan_add->c_by->RequiredErrorMessage)) ?>");
 			<?php } ?>
-				elm = this.getElements("x" + infix + "_c_by");
-				if (elm && !ew.checkInteger(elm.value))
-					return this.onError(elm, "<?php echo JsEncode($jabatan_add->c_by->errorMessage()) ?>");
 			<?php if ($jabatan_add->c_date->Required) { ?>
 				elm = this.getElements("x" + infix + "_c_date");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
 					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $jabatan_add->c_date->caption(), $jabatan_add->c_date->RequiredErrorMessage)) ?>");
 			<?php } ?>
-				elm = this.getElements("x" + infix + "_c_date");
-				if (elm && !ew.checkDateDef(elm.value))
-					return this.onError(elm, "<?php echo JsEncode($jabatan_add->c_date->errorMessage()) ?>");
 			<?php if ($jabatan_add->u_by->Required) { ?>
 				elm = this.getElements("x" + infix + "_u_by");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
 					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $jabatan_add->u_by->caption(), $jabatan_add->u_by->RequiredErrorMessage)) ?>");
 			<?php } ?>
-				elm = this.getElements("x" + infix + "_u_by");
-				if (elm && !ew.checkInteger(elm.value))
-					return this.onError(elm, "<?php echo JsEncode($jabatan_add->u_by->errorMessage()) ?>");
 			<?php if ($jabatan_add->u_date->Required) { ?>
 				elm = this.getElements("x" + infix + "_u_date");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
 					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $jabatan_add->u_date->caption(), $jabatan_add->u_date->RequiredErrorMessage)) ?>");
 			<?php } ?>
-				elm = this.getElements("x" + infix + "_u_date");
-				if (elm && !ew.checkDateDef(elm.value))
-					return this.onError(elm, "<?php echo JsEncode($jabatan_add->u_date->errorMessage()) ?>");
-			<?php if ($jabatan_add->aktif->Required) { ?>
-				elm = this.getElements("x" + infix + "_aktif");
-				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
-					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $jabatan_add->aktif->caption(), $jabatan_add->aktif->RequiredErrorMessage)) ?>");
-			<?php } ?>
-				elm = this.getElements("x" + infix + "_aktif");
-				if (elm && !ew.checkInteger(elm.value))
-					return this.onError(elm, "<?php echo JsEncode($jabatan_add->aktif->errorMessage()) ?>");
 
 				// Call Form_CustomValidate event
 				if (!this.Form_CustomValidate(fobj))
@@ -156,6 +128,12 @@ loadjs.ready("head", function() {
 	fjabatanadd.lists["x_type_jabatan"].options = <?php echo JsonEncode($jabatan_add->type_jabatan->lookupOptions()) ?>;
 	fjabatanadd.lists["x_jenjang"] = <?php echo $jabatan_add->jenjang->Lookup->toClientList($jabatan_add) ?>;
 	fjabatanadd.lists["x_jenjang"].options = <?php echo JsonEncode($jabatan_add->jenjang->lookupOptions()) ?>;
+	fjabatanadd.lists["x_c_by"] = <?php echo $jabatan_add->c_by->Lookup->toClientList($jabatan_add) ?>;
+	fjabatanadd.lists["x_c_by"].options = <?php echo JsonEncode($jabatan_add->c_by->lookupOptions()) ?>;
+	fjabatanadd.autoSuggests["x_c_by"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
+	fjabatanadd.lists["x_u_by"] = <?php echo $jabatan_add->u_by->Lookup->toClientList($jabatan_add) ?>;
+	fjabatanadd.lists["x_u_by"].options = <?php echo JsonEncode($jabatan_add->u_by->lookupOptions()) ?>;
+	fjabatanadd.autoSuggests["x_u_by"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
 	loadjs.done("fjabatanadd");
 });
 </script>
@@ -223,16 +201,6 @@ $jabatan_add->showMessage();
 <?php echo $jabatan_add->jenjang->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
-<?php if ($jabatan_add->type_guru->Visible) { // type_guru ?>
-	<div id="r_type_guru" class="form-group row">
-		<label id="elh_jabatan_type_guru" for="x_type_guru" class="<?php echo $jabatan_add->LeftColumnClass ?>"><?php echo $jabatan_add->type_guru->caption() ?><?php echo $jabatan_add->type_guru->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
-		<div class="<?php echo $jabatan_add->RightColumnClass ?>"><div <?php echo $jabatan_add->type_guru->cellAttributes() ?>>
-<span id="el_jabatan_type_guru">
-<input type="text" data-table="jabatan" data-field="x_type_guru" name="x_type_guru" id="x_type_guru" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($jabatan_add->type_guru->getPlaceHolder()) ?>" value="<?php echo $jabatan_add->type_guru->EditValue ?>"<?php echo $jabatan_add->type_guru->editAttributes() ?>>
-</span>
-<?php echo $jabatan_add->type_guru->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
 <?php if ($jabatan_add->keterangan->Visible) { // keterangan ?>
 	<div id="r_keterangan" class="form-group row">
 		<label id="elh_jabatan_keterangan" for="x_keterangan" class="<?php echo $jabatan_add->LeftColumnClass ?>"><?php echo $jabatan_add->keterangan->caption() ?><?php echo $jabatan_add->keterangan->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
@@ -241,70 +209,6 @@ $jabatan_add->showMessage();
 <input type="text" data-table="jabatan" data-field="x_keterangan" name="x_keterangan" id="x_keterangan" size="30" maxlength="255" placeholder="<?php echo HtmlEncode($jabatan_add->keterangan->getPlaceHolder()) ?>" value="<?php echo $jabatan_add->keterangan->EditValue ?>"<?php echo $jabatan_add->keterangan->editAttributes() ?>>
 </span>
 <?php echo $jabatan_add->keterangan->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($jabatan_add->c_by->Visible) { // c_by ?>
-	<div id="r_c_by" class="form-group row">
-		<label id="elh_jabatan_c_by" for="x_c_by" class="<?php echo $jabatan_add->LeftColumnClass ?>"><?php echo $jabatan_add->c_by->caption() ?><?php echo $jabatan_add->c_by->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
-		<div class="<?php echo $jabatan_add->RightColumnClass ?>"><div <?php echo $jabatan_add->c_by->cellAttributes() ?>>
-<span id="el_jabatan_c_by">
-<input type="text" data-table="jabatan" data-field="x_c_by" name="x_c_by" id="x_c_by" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($jabatan_add->c_by->getPlaceHolder()) ?>" value="<?php echo $jabatan_add->c_by->EditValue ?>"<?php echo $jabatan_add->c_by->editAttributes() ?>>
-</span>
-<?php echo $jabatan_add->c_by->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($jabatan_add->c_date->Visible) { // c_date ?>
-	<div id="r_c_date" class="form-group row">
-		<label id="elh_jabatan_c_date" for="x_c_date" class="<?php echo $jabatan_add->LeftColumnClass ?>"><?php echo $jabatan_add->c_date->caption() ?><?php echo $jabatan_add->c_date->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
-		<div class="<?php echo $jabatan_add->RightColumnClass ?>"><div <?php echo $jabatan_add->c_date->cellAttributes() ?>>
-<span id="el_jabatan_c_date">
-<input type="text" data-table="jabatan" data-field="x_c_date" name="x_c_date" id="x_c_date" maxlength="19" placeholder="<?php echo HtmlEncode($jabatan_add->c_date->getPlaceHolder()) ?>" value="<?php echo $jabatan_add->c_date->EditValue ?>"<?php echo $jabatan_add->c_date->editAttributes() ?>>
-<?php if (!$jabatan_add->c_date->ReadOnly && !$jabatan_add->c_date->Disabled && !isset($jabatan_add->c_date->EditAttrs["readonly"]) && !isset($jabatan_add->c_date->EditAttrs["disabled"])) { ?>
-<script>
-loadjs.ready(["fjabatanadd", "datetimepicker"], function() {
-	ew.createDateTimePicker("fjabatanadd", "x_c_date", {"ignoreReadonly":true,"useCurrent":false,"format":0});
-});
-</script>
-<?php } ?>
-</span>
-<?php echo $jabatan_add->c_date->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($jabatan_add->u_by->Visible) { // u_by ?>
-	<div id="r_u_by" class="form-group row">
-		<label id="elh_jabatan_u_by" for="x_u_by" class="<?php echo $jabatan_add->LeftColumnClass ?>"><?php echo $jabatan_add->u_by->caption() ?><?php echo $jabatan_add->u_by->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
-		<div class="<?php echo $jabatan_add->RightColumnClass ?>"><div <?php echo $jabatan_add->u_by->cellAttributes() ?>>
-<span id="el_jabatan_u_by">
-<input type="text" data-table="jabatan" data-field="x_u_by" name="x_u_by" id="x_u_by" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($jabatan_add->u_by->getPlaceHolder()) ?>" value="<?php echo $jabatan_add->u_by->EditValue ?>"<?php echo $jabatan_add->u_by->editAttributes() ?>>
-</span>
-<?php echo $jabatan_add->u_by->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($jabatan_add->u_date->Visible) { // u_date ?>
-	<div id="r_u_date" class="form-group row">
-		<label id="elh_jabatan_u_date" for="x_u_date" class="<?php echo $jabatan_add->LeftColumnClass ?>"><?php echo $jabatan_add->u_date->caption() ?><?php echo $jabatan_add->u_date->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
-		<div class="<?php echo $jabatan_add->RightColumnClass ?>"><div <?php echo $jabatan_add->u_date->cellAttributes() ?>>
-<span id="el_jabatan_u_date">
-<input type="text" data-table="jabatan" data-field="x_u_date" name="x_u_date" id="x_u_date" maxlength="19" placeholder="<?php echo HtmlEncode($jabatan_add->u_date->getPlaceHolder()) ?>" value="<?php echo $jabatan_add->u_date->EditValue ?>"<?php echo $jabatan_add->u_date->editAttributes() ?>>
-<?php if (!$jabatan_add->u_date->ReadOnly && !$jabatan_add->u_date->Disabled && !isset($jabatan_add->u_date->EditAttrs["readonly"]) && !isset($jabatan_add->u_date->EditAttrs["disabled"])) { ?>
-<script>
-loadjs.ready(["fjabatanadd", "datetimepicker"], function() {
-	ew.createDateTimePicker("fjabatanadd", "x_u_date", {"ignoreReadonly":true,"useCurrent":false,"format":0});
-});
-</script>
-<?php } ?>
-</span>
-<?php echo $jabatan_add->u_date->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($jabatan_add->aktif->Visible) { // aktif ?>
-	<div id="r_aktif" class="form-group row">
-		<label id="elh_jabatan_aktif" for="x_aktif" class="<?php echo $jabatan_add->LeftColumnClass ?>"><?php echo $jabatan_add->aktif->caption() ?><?php echo $jabatan_add->aktif->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
-		<div class="<?php echo $jabatan_add->RightColumnClass ?>"><div <?php echo $jabatan_add->aktif->cellAttributes() ?>>
-<span id="el_jabatan_aktif">
-<input type="text" data-table="jabatan" data-field="x_aktif" name="x_aktif" id="x_aktif" size="30" maxlength="4" placeholder="<?php echo HtmlEncode($jabatan_add->aktif->getPlaceHolder()) ?>" value="<?php echo $jabatan_add->aktif->EditValue ?>"<?php echo $jabatan_add->aktif->editAttributes() ?>>
-</span>
-<?php echo $jabatan_add->aktif->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
 </div><!-- /page* -->

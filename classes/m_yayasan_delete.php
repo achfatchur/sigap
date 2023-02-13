@@ -794,7 +794,6 @@ class m_yayasan_delete extends m_yayasan
 
 			// tahun
 			$this->tahun->ViewValue = $this->tahun->CurrentValue;
-			$this->tahun->ViewValue = FormatNumber($this->tahun->ViewValue, 0, -2, -2, -2);
 			$this->tahun->ViewCustomAttributes = "";
 
 			// datetime
@@ -840,18 +839,6 @@ class m_yayasan_delete extends m_yayasan
 			return FALSE;
 		}
 		$rows = ($rs) ? $rs->getRows() : [];
-
-		// Check if records exist for detail table 'yayasan'
-		if (!isset($GLOBALS["yayasan"]))
-			$GLOBALS["yayasan"] = new yayasan();
-		foreach ($rows as $row) {
-			$rsdetail = $GLOBALS["yayasan"]->loadRs("`m_id` = " . QuotedValue($row['id'], DATATYPE_NUMBER, 'DB'));
-			if ($rsdetail && !$rsdetail->EOF) {
-				$relatedRecordMsg = str_replace("%t", "yayasan", $Language->phrase("RelatedRecordExists"));
-				$this->setFailureMessage($relatedRecordMsg);
-				return FALSE;
-			}
-		}
 		$conn->beginTrans();
 
 		// Clone old rows

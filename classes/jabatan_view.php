@@ -763,6 +763,8 @@ class jabatan_view extends jabatan
 		// Set up lookup cache
 		$this->setupLookupOptions($this->type_jabatan);
 		$this->setupLookupOptions($this->jenjang);
+		$this->setupLookupOptions($this->c_by);
+		$this->setupLookupOptions($this->u_by);
 
 		// Check permission
 		if (!$Security->canView()) {
@@ -1139,7 +1141,25 @@ class jabatan_view extends jabatan
 
 			// c_by
 			$this->c_by->ViewValue = $this->c_by->CurrentValue;
-			$this->c_by->ViewValue = FormatNumber($this->c_by->ViewValue, 0, -2, -2, -2);
+			$curVal = strval($this->c_by->CurrentValue);
+			if ($curVal != "") {
+				$this->c_by->ViewValue = $this->c_by->lookupCacheOption($curVal);
+				if ($this->c_by->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->c_by->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->c_by->ViewValue = $this->c_by->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->c_by->ViewValue = $this->c_by->CurrentValue;
+					}
+				}
+			} else {
+				$this->c_by->ViewValue = NULL;
+			}
 			$this->c_by->ViewCustomAttributes = "";
 
 			// c_date
@@ -1149,7 +1169,25 @@ class jabatan_view extends jabatan
 
 			// u_by
 			$this->u_by->ViewValue = $this->u_by->CurrentValue;
-			$this->u_by->ViewValue = FormatNumber($this->u_by->ViewValue, 0, -2, -2, -2);
+			$curVal = strval($this->u_by->CurrentValue);
+			if ($curVal != "") {
+				$this->u_by->ViewValue = $this->u_by->lookupCacheOption($curVal);
+				if ($this->u_by->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->u_by->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->u_by->ViewValue = $this->u_by->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->u_by->ViewValue = $this->u_by->CurrentValue;
+					}
+				}
+			} else {
+				$this->u_by->ViewValue = NULL;
+			}
 			$this->u_by->ViewCustomAttributes = "";
 
 			// u_date
@@ -1282,6 +1320,10 @@ class jabatan_view extends jabatan
 					break;
 				case "x_jenjang":
 					break;
+				case "x_c_by":
+					break;
+				case "x_u_by":
+					break;
 				default:
 					$lookupFilter = "";
 					break;
@@ -1305,6 +1347,10 @@ class jabatan_view extends jabatan
 						case "x_type_jabatan":
 							break;
 						case "x_jenjang":
+							break;
+						case "x_c_by":
+							break;
+						case "x_u_by":
 							break;
 					}
 					$ar[strval($row[0])] = $row;

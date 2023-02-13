@@ -1020,386 +1020,353 @@ class generate_pertahun_tk extends DbTable
 	function Row_Inserted($rsold, &$rsnew) {
 
 		//echo "Row Inserted"
-			//	$tahun = $rsnew["tahun"];	
-				//	$bulan = $rsnew["bulan"];
-				//  $bulan_query = ExecuteRows("SELECT * FROM bulan where id= '$bulan'");
-				//  $bulan_query = ExecuteRows("SELECT * FROM m_semeter where detil_smtr ='$bulan'");
-				//  print_r($bulan_query);
-				//  die;
-				//	foreach ($bulan_query as $row) {
+				//	$tahun = $rsnew["tahun"];	
+					//	$bulan = $rsnew["bulan"];
+					//  $bulan_query = ExecuteRows("SELECT * FROM bulan where id= '$bulan'");
+					//  $bulan_query = ExecuteRows("SELECT * FROM m_semeter where detil_smtr ='$bulan'");
+					//  print_r($bulan_query);
+					//  die;
+					//	foreach ($bulan_query as $row) {
 
-					$data_bulan = explode(",", $rsnew['bulan']);
-					$tahun = $rsnew['tahun'];
-					$profesi =$rsnew['profesi'];
-					$id=$rsnew['id'];
-				foreach ($data_bulan as $bulan) {
+						$data_bulan = explode(",", $rsnew['bulan']);
+						$tahun = $rsnew['tahun'];
 
-				//insert field bulan 2	
-				$querymy2 = "INSERT INTO generate_pertahun_tk VALUES(NULL,'".$tahun."',NULL,'".$profesi."','".$bulan."')";
-				$Result2 = Execute($querymy2);
+						//$profesi =$rsnew['profesi'];
+						$id=$rsnew['id'];
+					foreach ($data_bulan as $bulan) {
 
-				//delete field bulan ketika generate bulan2
-				$delete ="DELETE FROM generate_pertahun_tk WHERE bulan2 is null";
-				$delete2 = Execute($delete);
-				$delete_clone ="DELETE FROM generate_pertahun_tk WHERE id < '".$id."' AND tahun ='".$tahun."' AND bulan2='".$bulan."' AND profesi ='".$profesi."'";	
+					//insert field bulan 2	
+					$querymy2 = "INSERT INTO generate_pertahun_tk VALUES(NULL,'".$tahun."',NULL,NULL,'".$bulan."')";
+					$Result2 = Execute($querymy2);
 
-				//print_r($delete_clone);
-				//die;
+					//delete field bulan ketika generate bulan2
+					$delete ="DELETE FROM generate_pertahun_tk WHERE bulan2 is null";
+					$delete2 = Execute($delete);
+					$delete_clone ="DELETE FROM generate_pertahun_tk WHERE id < '".$id."' AND tahun ='".$tahun."' AND bulan2='".$bulan."'";	
+
+					//print_r($delete_clone);
+					//die;
 
 				$clone_delete = execute($delete_clone);	
-		if($this->profesi->CurrentValue == '1'){
-			$delete_detil_karyawan ="DELETE FROM gaji_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
-			$detil_delete = execute($delete_detil_karyawan);
-			$delete_m_sd ="DELETE FROM m_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."' ORDER BY id asc";	
-			$clone_delete = execute($delete_m_sd);	
+				$delete_detil_guru ="DELETE FROM gaji_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
+				$detil_delete_guru = execute($delete_detil_guru);
+				$delete_guru ="DELETE FROM m_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."' ORDER BY id asc";	
+				$clone_delete_guru = execute($delete_guru);	
 
-					//$querymy2 = "INSERT INTO m_tk VALUES (NULL,'".$tahun."',NULL,'".$bulan."')";
-					//$Result2 = Execute($querymy2);	
+						//$querymy2 = "INSERT INTO m_tk VALUES (NULL,'".$tahun."',NULL,'".$bulan."')";
+						//$Result2 = Execute($querymy2);	
 
-					$querymy = "INSERT INTO m_tk VALUES (NULL,'".$tahun."','".$bulan."',NULL,NULL)";
-					$Result = Execute($querymy);
+						$querymy_guru = "INSERT INTO m_tk VALUES (NULL,'".$tahun."','".$bulan."',NULL,NULL)";
+						$Result = Execute($querymy_guru);
 
-					// print_r($querymy);
-					// die;
+						// print_r($querymy);
+						// die;
 
-					$pid = ExecuteScalar("select id from m_tk order by id DESC limit 1");
-					$row2 = ExecuteRows("SELECT * FROM pegawai where jenjang_id ='1' AND `type`= '1'");
-
-					//print_r($row);
-					//die;
-
-				foreach($row2 as $query){
-
-					//value piket
-					$reward = ExecuteScalar("select value from m_reward where jenjang ='".$query["jenjang_id"]."'");
-					$piket= ExecuteRow("select * from m_piket where jenjang='1' AND jenis_sertif ='".$query['sertif']."' AND type_jabatan='1'");
-
-					//value kehadiran
-					$kehadiran=ExecuteRow("Select * from m_kehadiran where jenjang='1' AND jenis_jabatan='1' AND sertif='".$query['sertif']."'");	
-
-					//print_r($kehadiran);
-					//die;																		
-
-					$tunjanagan_tambahan=ExecuteRow("select * from tunjangan_tambahan where jenjang='1' AND kualifikasi='".$query['tambahan']."'");
-					$absen =ExecuteRow("SELECT * FROM penyesuaian INNER JOIN m_penyesuaian ON m_penyesuaian.id = penyesuaian.m_id WHERE penyesuaian.nip='".$query['nip']."' AND  m_penyesuaian.tahun='".$tahun."' AND m_penyesuaian.bulan='".$bulan."' ORDER BY m_penyesuaian.id DESC");	
-					$absen_tidak = ExecuteScalar("SELECT value FROM m_tidakhadir WHERE jenjang_id='".$query["jenjang_id"]."'");								
-					$sakit = ExecuteScalar("SELECT perhari FROM m_sakit WHERE jenjang_id='".$query["jenjang_id"]."'");				
-					$telambat = ExecuteScalar("SELECT value FROM terlambat WHERE jenjang_id='".$query["jenjang_id"]."'");
-					$pulang_cepat = ExecuteScalar("SELECT perhari FROM m_pulangcepat WHERE jenjang_id='".$query["jenjang_id"]."'");
-					$query2 = ExecuteRow("SELECT * FROM jabatan JOIN gajitunjangan ON jabatan.id = gajitunjangan.pidjabatan where gajitunjangan.pidjabatan='9'");
-
-					//$piket = ExecuteScalar("SELECT value FROM m_piket WHERE jenjang_id='".$query["jenjang_id"]."'");
-					$inval = ExecuteScalar("SELECT value FROM m_inval WHERE jenjang_id='".$query["jenjang_id"]."' AND jabatan_id='".$query["type"]."'");
-
-					//print_r($tunjanagan_tambahan);
-					//die;	
-
-					$lembur = ExecuteScalar("SELECT value_perjam FROM m_lembur WHERE jenjang_id='".$query["jenjang_id"]."'");
-					$penyesuaian = ($absen_tidak * $absen["absen"]) + ($absen_tidak * $absen["izin"]) + ($sakit * $absen["sakit"]) + ($telambat * $absen["terlambat"]) + ($pulang_cepat * $absen['pulang_cepat']);
-
-					//print_r($inval);
-					//die;
-
-			if($query['jabatan'] == '5'){
-				$tunjangan_berkala=ExecuteRow("SELECT * FROM tunjangan_berkala WHERE jenjang='".$query['jenjang_id']."' AND kualifikasi ='5' AND lama='".$query['periode_jabatan']."'");
-			}else if ($query['jabatan']  == '15'){
-				$tunjangan_berkala=ExecuteRow("SELECT * FROM tunjangan_berkala WHERE jenjang='$jenjang' AND kualifikasi ='15' AND lama='".$query['periode_jabatan']."'");
-			}else{
-				$tunjangan_berkala =0;
-			}
-
-					//print_r($tunjanagan_tambahan);
-					//die;
-
-					$gaji_pokok=ExecuteRow("SELECT * FROM gaji_pokok WHERE jenjang_id='1' AND lama_kerja='".$query['lama_kerja']."'");
-					$tunjangan_jabatan=ExecuteRow("SELECT * FROM tunjangan_jabatan WHERE unit='1' AND jabatan='".$query['jabatan']."'");
-
-					//perhitungan
-					$tambahan = ($piket["value"] * $absen["piket"]) +  ($lembur * $absen["lembur"]);
-					$inval2 = ($inval * $absen["inval"]) ;
-							$sub_total = $tunjangan_jabatan['value'] + ($gaji_pokok["value"] * $query["jjm"]) + ($kehadiran["value"]* $query["jjm"]) + $tunjangan_berkala["value"] + $tunjanagan_tambahan["value"] + ($absen["lembur"] * $lembur) + ($absen["piket"] * $piket["value"]) + $inval2 + $reward; 
-
-					//$test = $reward;
-					//print_r($test);
-					//die;
-
-					$komponen_gapok= ($gaji_pokok["value"] * $query["jjm"]);
-						$value_kehadiran = ($kehadiran["value"]* $query["jjm"]);
-						$total = ($sub_total + $tambahan) - $penyesuaian;
-						$solved = 1 * $tunjanagan_tambahan["value"];
-						$tj_jbtn = 1 * $tunjangan_jabatan["value"];
-						$lm_kerja = 1 * $query["lama_kerja"];
-						$sertif = 1 * $query["sertif"];
-						$tgs_tmbhn = 1 * $query["tambahan"];
-						$solve_periode = 1 * $query["periode_jabatan"];
-						$solve_value_per = 1 * $tunjangan_berkala["value"];
-
-					//	print_r($tunjangan_berkala);
-					//	die;
-
-						$piket_new = 1 * $absen["piket"];
-						$v_piket = 1 * $piket["value"];
-						$v_lembur = 1 * $lembur;
-						$c_lembur = 1 * $absen["lembur"];
-						$v_jjm = 1 * $query["jjm"];
-						$v_voucher = 1 * $absen["voucher"];
-						$v_kehadiran = 1 * $kehadiran["value"];
-
-						//print_r($solved);
-						//die;
-
-				$myquery = "INSERT INTO gaji_tk VALUES (NULL,'".$query["nip"]."','".date('Y-m-d H:i:s')."','".date('Y-m-d')."','".$c_lembur."','".$v_lembur."','".$query["jabatan"]."','".$gaji_pokok["value"]."','".$total."','".$reward."','".$inval2."','".$piket_new."','".$v_piket."','".$solved."','".$tj_jbtn."','".$v_jjm."','".$sub_total."','".$penyesuaian."','".$query["jenjang_id"]."','".$tambahan."','".$pid."','".$v_jjm."','".$query["type"]."','".$sertif."','".$tgs_tmbhn."','".$v_kehadiran."','".$solve_periode."','".$solve_value_per."','".$komponen_gapok."','".$lm_kerja."', NULL, '".$tahun."','".$bulan."', NULL,'".$v_voucher."')";
-
-					//print_r($myquery);
-					//die;
-					//$myquery = "INSERT INTO gaji_smk VALUES (NULL,'".$query["nip"]."','".date('Y-m-d H:i:s')."','".date('Y-m-d')."',NULL,NULL,'".$query["jabatan"]."',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'1',NULL,$id,NULL,'".$query['type']."',NULL,NULL,NULL,NULL,NULL, NULL, NULL, NULL, '".$tahun."', '".$bulan."', NULL)";
-					//print_r($myquery);
-					//die;
-
-				$myResult = Execute($myquery);
-				}
-			}elseif($this->profesi->CurrentValue == '2'){
-		$delete_detil_karyawan ="DELETE FROM gaji_tu_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
-		$detil_delete = execute($delete_detil_karyawan);
-		$delete_m_sd ="DELETE FROM m_tu_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."' ORDER BY id asc";	
-		$clone_delete = execute($delete_m_sd);
-						$querymy = "INSERT INTO m_tu_tk VALUES (NULL,'".$tahun."','".$bulan."',NULL,NULL)";
-						$Result = Execute($querymy);
-						$pid = ExecuteScalar("select id from m_tu_tk order by id DESC limit 1");
-						$row2 = ExecuteRows("SELECT * FROM pegawai where jenjang_id ='1' AND `type`= '2'");
+						$pid_guru = ExecuteScalar("select id from m_tk order by id DESC limit 1");
+						$row2_guru = ExecuteRows("SELECT * FROM pegawai where jenjang_id ='1' AND `type`= '1'");
 
 						//print_r($row);
 						//die;
 
-			foreach($row2 as $query){
-					$reward = ExecuteScalar("select value from m_reward where jenjang ='".$query["jenjang_id"]."'");
+					foreach($row2_guru as $query_guru){
 
-					//$kehadiran=ExecuteRow("Select * from m_kehadiran where jenjang='1' AND jenis_jabatan='1'");	
-					$piket= ExecuteRow("select * from m_piket where jenjang='1' AND type_jabatan='2'");	
-					$kehadiran=ExecuteRow("Select * from m_kehadiran where jenjang='1' AND jenis_jabatan='2'");																		
-					$tunjanagan_tambahan=ExecuteRow("select * from tunjangan_tambahan where jenjang='1' AND kualifikasi='".$query['tambahan']."'");
-					$absen =ExecuteRow("SELECT * FROM penyesuaian INNER JOIN m_penyesuaian ON m_penyesuaian.id = penyesuaian.m_id WHERE penyesuaian.nip='".$query['nip']."' AND  m_penyesuaian.tahun='".$tahun."' AND m_penyesuaian.bulan='".$bulan."' ORDER BY m_penyesuaian.id DESC");	
-					$absen_tidak = ExecuteScalar("SELECT value FROM m_tidakhadir WHERE jenjang_id='".$query["jenjang_id"]."' AND type='".$query["type"]."'");								
-					$sakit = ExecuteScalar("SELECT perhari FROM m_sakit WHERE jenjang_id='".$query["jenjang_id"]."' AND jabatan='".$query["jabatan"]."'");				
-					$terlambat = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$query["jenjang_id"]."' AND type='".$query["type"]."'");
-					$pulang_cepat = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$query["jenjang_id"]."' AND type='".$query["type"]."'");
-					$query2 = ExecuteRow("SELECT * FROM jabatan JOIN gajitunjangan ON jabatan.id = gajitunjangan.pidjabatan where gajitunjangan.pidjabatan='9'");
+						//value piket
+						$reward_guru = ExecuteScalar("select value from m_reward where jenjang ='".$query_guru["jenjang_id"]."'");
+						$piket_guru= ExecuteRow("select * from m_piket where jenjang='1' AND jenis_sertif ='".$query_guru['sertif']."' AND type_jabatan='1'");
+
+						//value kehadiran
+						$kehadiran_guru=ExecuteRow("Select * from m_kehadiran where jenjang='1' AND jenis_jabatan='1' AND sertif='".$query_guru['sertif']."'");	
+
+						//print_r($kehadiran);
+						//die;																		
+
+						$tunjanagan_tambahan_guru=ExecuteRow("select * from tunjangan_tambahan where jenjang='1' AND kualifikasi='".$query_guru['tambahan']."'");
+						$absen_guru=ExecuteRow("SELECT * FROM penyesuaian INNER JOIN m_penyesuaian ON m_penyesuaian.id = penyesuaian.m_id WHERE penyesuaian.nip='".$query_guru['nip']."' AND  m_penyesuaian.tahun='".$tahun."' AND m_penyesuaian.bulan='".$bulan."' ORDER BY m_penyesuaian.id DESC");	
+						$absen_tidak_guru = ExecuteScalar("SELECT value FROM m_tidakhadir WHERE jenjang_id='".$query_guru["jenjang_id"]."'");								
+						$sakit_guru = ExecuteScalar("SELECT perhari FROM m_sakit WHERE jenjang_id='".$query_guru["jenjang_id"]."'");				
+						$telambat_guru = ExecuteScalar("SELECT value FROM terlambat WHERE jenjang_id='".$query_guru["jenjang_id"]."'");
+						$pulang_cepat_guru = ExecuteScalar("SELECT perhari FROM m_pulangcepat WHERE jenjang_id='".$query_guru["jenjang_id"]."'");
+						$query2_guru = ExecuteRow("SELECT * FROM jabatan JOIN gajitunjangan ON jabatan.id = gajitunjangan.pidjabatan where gajitunjangan.pidjabatan='9'");
 
 						//$piket = ExecuteScalar("SELECT value FROM m_piket WHERE jenjang_id='".$query["jenjang_id"]."'");
-					$inval = ExecuteScalar("SELECT value FROM m_inval WHERE jenjang_id='".$query["jenjang_id"]."'");
-					$lembur = ExecuteScalar("SELECT value_perjam FROM m_lembur WHERE jenjang_id='".$query["jenjang_id"]."'");
-					$gaji_pokok=ExecuteRow("SELECT * FROM gaji_pokok_tu WHERE jenjang_id='1' AND lama_kerja='".$query['lama_kerja']."' AND ijazah= '".$query['pendidikan']."'");
+						$inval_guru = ExecuteScalar("SELECT value FROM m_inval WHERE jenjang_id='".$query_guru["jenjang_id"]."' AND jabatan_id='".$query_guru["type"]."'");
 
-						//print_r($gaji_pokok);
+						//print_r($tunjanagan_tambahan);
+						//die;	
+
+						$lembur_guru = ExecuteScalar("SELECT value_perjam FROM m_lembur WHERE jenjang_id='".$query_guru["jenjang_id"]."'");
+						$penyesuaian_guru = ($absen_tidak_guru * $absen_guru["absen"]) + ($absen_tidak_guru * $absen_guru["izin"]) + ($sakit_guru * $absen_guru["sakit"]) + ($telambat_guru * $absen_guru["terlambat"]) + ($pulang_cepat_guru * $absen_guru['pulang_cepat']);
+
+						//print_r($inval);
+						//die;
+				//if($query['jabatan'] == '5'){
+
+					$tunjangan_berkala_guru=ExecuteRow("SELECT * FROM tunjangan_berkala WHERE jenjang='".$query_guru['jenjang_id']."' AND kualifikasi ='".$query_guru["jabatan"]."' AND lama='".$query_guru['periode_jabatan']."'");
+
+				//}else if ($query['jabatan']  == '15'){
+				//	$tunjangan_berkala=ExecuteRow("SELECT * FROM tunjangan_berkala WHERE jenjang='$jenjang' AND kualifikasi ='15' AND lama='".$query['periode_jabatan']."'");
+				//}else{
+				//	$tunjangan_berkala =0;
+				//}
+						//print_r($tunjanagan_tambahan);
 						//die;
 
-					$tunjangan_jabatan=ExecuteRow("SELECT * FROM tunjangan_jabatan WHERE unit='1' AND jabatan='".$query['jabatan']."'");		
-					$tunjanagan_khusus=ExecuteScalar("select value from tunjangan_khusu where unit='1' AND jabatan ='".$query["type"]."' ");
+						$gaji_pokok_guru=ExecuteRow("SELECT * FROM gaji_pokok WHERE jenjang_id='1' AND lama_kerja='".$query_guru['lama_kerja']."'");
+						$tunjangan_jabatan_guru=ExecuteRow("SELECT * FROM tunjangan_jabatan WHERE unit='1' AND jabatan='".$query_guru['jabatan']."'");
 
 						//perhitungan
-					$penyesuaian = ($absen_tidak * $absen["absen"]) + ($absen_tidak * $absen["izin"]) + ($sakit * $absen["sakit"]) + ($terlambat * $absen["terlambat"]) + ($pulang_cepat * $absen['pulang_cepat']);
-					//$tambahan = ($piket["value"] * $absen["piket"]) +  ($lembur * $absen["lembur"]);
+						$tambahan_guru = ($piket_guru["value"] * $absen_guru["piket"]) +  ($lembur_guru * $absen_guru["lembur"]);
+						$inval2_guru = ($inval_guru * $absen_guru["inval"]) ;
+								$sub_total_guru = $tunjangan_jabatan_guru['value'] + ($gaji_pokok_guru["value"] * $query_guru["jjm"]) + ($kehadiran_guru["value"]* $query_guru["jjm"]) + $tunjangan_berkala_guru["value"] + $tunjanagan_tambahan_guru["value"] + ($absen_guru["lembur"] * $lembur_guru) + ($absen_guru["piket"] * $piket_guru["value"]) + $inval2_guru + $reward_guru; 
 
-						//inval2 = ($inval * $absen["inval"]) ;
-					$tambahan_value = ($piket["value"] * $absen["piket"]) +  ($lembur * $absen["lembur"]);
-					$inval2 = ($inval * $absen["inval"]) ;
-
-						//print_r($hadir);
+						//$test = $reward;
+						//print_r($test);
 						//die;
 
-					$komponen_gapok=1 * $gaji_pokok["value"];
-					$hadir =1*$query["kehadiran"];
-					$khusus = 1 * $tunjanagan_khusus;
-					$tambahan = 1 * $query["tambahan"];
-					$solved = 1 * $tunjanagan_tambahan["value"];
-					$tj_jbtn = 1 * $tunjangan_jabatan["value"];
-					$lm_kerja = 1 * $query["lama_kerja"];
-					$sertif = 1 * $query["sertif"];
-					$pendidikan =1* $query["pendidikan"];
-					$c_lembur = 1 * $absen["lembur"];
-					$c_piket = 1 * $absen["piket"];
-					$v_voucher = 1 * $absen["voucher"];
-					$value_kehadiran = ($kehadiran["value"] * $query["kehadiran"]);
-			$sub_total = $khusus +$komponen_gapok + $value_kehadiran + $tunjangan_jabatan['value'] + $tunjanagan_tambahan["value"] + ($absen["lembur"] * $lembur) + ($absen["piket"] * $piket["value"]) + $inval2 + $reward; 
-					$total = ($sub_total + $tambahan_value) - $penyesuaian;
+						$komponen_gapok_guru= ($gaji_pokok_guru["value"] * $query_guru["jjm"]);
+						$value_kehadiran_guru = ($kehadiran_guru["value"]* $query_guru["jjm"]);
+						$total_guru = ($sub_total_guru + $tambahan_guru) - $penyesuaian_guru;
+						$solved_guru = 1 * $tunjanagan_tambahan_guru["value"];
+						$tj_jbtn_guru = 1 * $tunjangan_jabatan_guru["value"];
+						$lm_kerja_guru = 1 * $query_guru["lama_kerja"];
+						$sertif_guru = 1 * $query_guru["sertif"];
+						$tgs_tmbhn_guru = 1 * $query_guru["tambahan"];
+						$solve_periode_guru = 1 * $query_guru["periode_jabatan"];
+						$solve_value_per_guru = 1 * $tunjangan_berkala_guru["value"];
 
-					//$test = $inval;
-					//note salah diinval harusnya tidak nampil
-					//print_r($tunjanagan_khusus);
-					//die;	
+						//	print_r($tunjangan_berkala);
+						//	die;
 
-					$myquery2 = "INSERT INTO gaji_tu_tk VALUES (NULL,NULL,'".$query["nip"]."','".$query["jenjang_id"]."','".$query["jabatan"]."',NULL,'".$komponen_gapok."','".$hadir	."','".$c_lembur."','".$lembur."','".$reward."','".$inval2."','".$c_piket."','".$piket["value"]."','".$solved."','".$tj_jbtn."','".$penyesuaian."','".$sub_total."','".$tambahan_value."','".$total."','".$pid."','".$khusus."','".$tambahan."','2','".$pendidikan."','".$lm_kerja."','".$sertif."','".$kehadiran["value"]."','".$tahun."','".$bulan."','".$v_voucher."',NULL,NULL)";
+							$piket_new_guru = 1 * $absen_guru["piket"];
+							$v_piket_guru = 1 * $piket_guru["value"];
+							$v_lembur_guru = 1 * $lembur_guru;
+							$c_lembur_guru = 1 * $absen_guru["lembur"];
+							$v_jjm_guru = 1 * $query_guru["jjm"];
+							$v_voucher_guru = 1 * $absen_guru["voucher"];
+							$v_kehadiran_guru = 1 * $kehadiran_guru["value"];
 
-						//print_r($myquery2);
+							//print_r($solved);
+							//die;
+
+					$myquery_guru = "INSERT INTO gaji_tk VALUES (NULL,'".$query_guru["nip"]."','".date('Y-m-d H:i:s')."','".date('Y-m-d')."','".$c_lembur_guru."','".$v_lembur_guru."','".$query_guru["jabatan"]."','".$gaji_pokok_guru["value"]."','".$total_guru."','".$reward_guru."','".$inval2_guru."','".$piket_new_guru."','".$v_piket_guru."','".$solved_guru."','".$tj_jbtn_guru."','".$v_jjm_guru."','".$sub_total_guru."','".$penyesuaian_guru."','".$query_guru["jenjang_id"]."','".$tambahan_guru."','".$pid_guru."','".$v_jjm_guru."','".$query_guru["type"]."','".$sertif_guru."','".$tgs_tmbhn_guru."','".$v_kehadiran_guru."','".$solve_periode_guru."','".$solve_value_per_guru."','".$komponen_gapok_guru."','".$lm_kerja_guru."', NULL,'".$bulan."','".$tahun."', NULL,'".$v_voucher_guru."')";
+
+						//print_r($myquery);
 						//die;
+						//$myquery = "INSERT INTO gaji_smk VALUES (NULL,'".$query["nip"]."','".date('Y-m-d H:i:s')."','".date('Y-m-d')."',NULL,NULL,'".$query["jabatan"]."',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'1',NULL,$id,NULL,'".$query['type']."',NULL,NULL,NULL,NULL,NULL, NULL, NULL, NULL, '".$tahun."', '".$bulan."', NULL)";
+						//print_r($myquery);
+						//die;
+					//print_r($myquery_guru);
+					//die;
 
-					$Result = Execute($myquery2);
-						}
-	}else{
-		$delete_detil_karyawan ="DELETE FROM gaji_karyawan_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
-		$detil_delete = execute($delete_detil_karyawan);
-		$delete_m_sd ="DELETE FROM m_karyawan_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."' ORDER BY id asc";	
-		$clone_delete = execute($delete_m_sd);
-			$querymy = "INSERT INTO m_karyawan_tk VALUES (NULL,'".$tahun."','".$bulan."',NULL,NULL)";
-			$Result = Execute($querymy);
-			$pid = ExecuteScalar("select id from m_karyawan_tk order by id DESC limit 1");
-			$row2 = ExecuteRows("SELECT * FROM pegawai where jenjang_id ='1' AND `type`= '3'");	
-	foreach($row2 as $query){
-		$reward = ExecuteScalar("select value from m_reward where jenjang ='".$query["jenjang_id"]."' AND jabatan ='".$query["jabatan"]."'");
+					$myResult_guru = Execute($myquery_guru);
+					}
+			$delete_detil_tu ="DELETE FROM gaji_tu_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
+			$detil_delete_tu = execute($delete_detil_tu);
+			$delete_m_tu ="DELETE FROM m_tu_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."' ORDER BY id asc";	
+			$clone_delete_tu = execute($delete_m_tu);
+							$querymy_tu = "INSERT INTO m_tu_tk VALUES (NULL,'".$tahun."','".$bulan."',NULL,NULL)";
+							$Result = Execute($querymy_tu);
+							$pid_tu = ExecuteScalar("select id from m_tu_tk order by id DESC limit 1");
+							$row2_tu = ExecuteRows("SELECT * FROM pegawai where jenjang_id ='1' AND `type`= '2'");
 
-			//$querypotongan = ExecuteRow("SELECT * FROM potongan_sma WHERE nama= '".$query["nip"]."' ORDER BY datetime DESC");
-			$kehadiran= ExecuteRow("Select * from m_kehadiran where jenjang='1' AND jabatan= '".$query["jabatan"]."'");	
+							//print_r($row);
+							//die;
 
-				//GAJI POKOK
-			$query2 = ExecuteRow("SELECT * FROM jabatan JOIN gajitunjangan ON jabatan.id = gajitunjangan.pidjabatan where gajitunjangan.pidjabatan='9'");
-			$querypokok = ExecuteRow("SELECT * FROM gaji_pokok_kayawan where jenjang_id='1' AND jabatan_id= '".$query["jabatan"]."'");		
-			$inval = ExecuteScalar("SELECT value FROM m_inval WHERE jenjang_id='".$query["jenjang_id"]."'");
-			$lembur = ExecuteScalar("SELECT value_perjam FROM m_lembur WHERE jenjang_id='".$query["jenjang_id"]."'");							
-			$piket= ExecuteRow("select * from m_piket where jenjang='1' AND type_jabatan='3'");							//Gaji Pokok	
-			$kehadiran = ExecuteRow("select * from m_kehadiran where jenjang ='1' AND jenis_jabatan='3' AND jabatan='".$query["jabatan"]."'");
-			$gaji_pokok=ExecuteRow("SELECT * FROM gaji_pokok_kayawan WHERE jenjang_id='1' AND jabatan_id= '".$query["jabatan"]."'");	
-			$absen =ExecuteRow("SELECT * FROM penyesuaian INNER JOIN m_penyesuaian ON m_penyesuaian.id = penyesuaian.m_id WHERE penyesuaian.nip='".$query['nip']."' AND  m_penyesuaian.tahun='".$tahun."' AND m_penyesuaian.bulan='".$bulan."' ORDER BY m_penyesuaian.id DESC");	
-			$absen_tidak = ExecuteScalar("SELECT value FROM m_tidakhadir WHERE jenjang_id='".$query["jenjang_id"]."' AND jabatan_id='".$query["jabatan"]."'");								
-			$sakit = ExecuteScalar("SELECT perhari FROM m_sakit WHERE jenjang_id='".$query["jenjang_id"]."' AND jabatan='".$query["jabatan"]."'");				
-			$terlambat = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$query["jenjang_id"]."' AND type='".$query["type"]."'");
-			$pulang_cepat = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$query["jenjang_id"]."' AND type='".$query["type"]."'");$lembur = ExecuteScalar("SELECT value_perjam FROM m_lembur WHERE jenjang_id='".$query["jenjang_id"]."'");
-			$inval2 = $inval * $absen["inval"];
-			$penyesuaian = ($absen_tidak * $absen["absen"]) + ($absen_tidak * $absen["izin"]) + ($sakit * $absen["sakit"]) + ($terlambat * $absen["terlambat"]) + ($pulang_cepat * $absen['pulang_cepat']);
-			$tambahan	= ($piket["value"] * $absen["piket"]) + ($lembur * $absen["lembur"]);								
-			$value_inval = 1 * $inval; 
-			$komponen_gapok =1 * $gaji_pokok["value"];
-			$v_gapok = 1 * $gaji_pokok["value"];
-			$v_voucher = 1 * $absen["voucher"];
-			$c_jjm = 1 * $query["kehadiran"];
-			$t_kehadiran = $query["kehadiran"] * $kehadiran["value"];
-			$v_kehadiran = 1 * $kehadiran["value"];
+				foreach($row2_tu as $query_tu){
+						$reward_tu = ExecuteScalar("select value from m_reward where jenjang ='".$query_tu["jenjang_id"]."'");
 
-			//INSERT INTO `gaji_karyawan_sma` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`) 
-			$sub_total = $komponen_gapok + $t_kehadiran + $inval2;
-			$total = ($sub_total + $tambahan) - $penyesuaian;
+						//$kehadiran=ExecuteRow("Select * from m_kehadiran where jenjang='1' AND jenis_jabatan='1'");	
+						$piket_tu= ExecuteRow("select * from m_piket where jenjang='1' AND type_jabatan='2'");	
+						$kehadiran_tu=ExecuteRow("Select * from m_kehadiran where jenjang='1' AND jenis_jabatan='2'");																		
+						$tunjanagan_tambahan_tu=ExecuteRow("select * from tunjangan_tambahan where jenjang='1' AND kualifikasi='".$query_tu['tambahan']."'");
+						$absen_tu =ExecuteRow("SELECT * FROM penyesuaian INNER JOIN m_penyesuaian ON m_penyesuaian.id = penyesuaian.m_id WHERE penyesuaian.nip='".$query_tu['nip']."' AND  m_penyesuaian.tahun='".$tahun."' AND m_penyesuaian.bulan='".$bulan."' ORDER BY m_penyesuaian.id DESC");	
+						$absen_tidak_tu = ExecuteScalar("SELECT value FROM m_tidakhadir WHERE jenjang_id='".$query_tu["jenjang_id"]."' AND type='".$query_tu["type"]."'");								
+						$sakit_tu = ExecuteScalar("SELECT perhari FROM m_sakit WHERE jenjang_id='".$query_tu["jenjang_id"]."' AND jabatan='".$query_tu["jabatan"]."'");				
+						$terlambat_tu = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$query_tu["jenjang_id"]."' AND type='".$query_tu["type"]."'");
+						$pulang_cepat_tu = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$query_tu["jenjang_id"]."' AND type='".$query_tu["type"]."'");
+						$query2_tu = ExecuteRow("SELECT * FROM jabatan JOIN gajitunjangan ON jabatan.id = gajitunjangan.pidjabatan where gajitunjangan.pidjabatan='9'");
 
-			//print_r($v_kehadiran);
-			//die;
+							//$piket = ExecuteScalar("SELECT value FROM m_piket WHERE jenjang_id='".$query["jenjang_id"]."'");
+						$inval_tu = ExecuteScalar("SELECT value FROM m_inval WHERE jenjang_id='".$query_tu["jenjang_id"]."'");
+						$lembur_tu = ExecuteScalar("SELECT value_perjam FROM m_lembur WHERE jenjang_id='".$query_tu["jenjang_id"]."'");
+						$gaji_pokok_tu = ExecuteRow("SELECT * FROM gaji_pokok_tu WHERE jenjang_id='1' AND lama_kerja='".$query_tu['lama_kerja']."' AND ijazah= '".$query_tu['pendidikan']."'");
 
-			$myquery2 = "INSERT INTO gaji_karyawan_tk VALUES (NULL, '".$query["nip"]."','".$query["jabatan"]."','4','".$komponen_gapok."',NULL,'".$inval2."','".$c_jjm."','".$sub_total."','".$penyesuaian."','".$tambahan."','".$total."','".$pid."','".$v_kehadiran."',NULL,'".$tahun."', '".$bulan."','".$v_voucher."',NULL)";
+							//print_r($gaji_pokok);
+							//die;
 
-			//print_r($myquery2);
-			//die;
+						$tunjangan_jabatan_tu=ExecuteRow("SELECT * FROM tunjangan_jabatan WHERE unit='1' AND jabatan='".$query_tu['jabatan']."'");		
+						$tunjanagan_khusus_tu=ExecuteScalar("select value from tunjangan_khusu where unit='1' AND jabatan ='".$query_tu["type"]."' ");
 
-			$Result = Execute($myquery2);
+							//perhitungan
+						$penyesuaian_tu = ($absen_tidak_tu * $absen_tu["absen"]) + ($absen_tidak_tu * $absen_tu["izin"]) + ($sakit_tu * $absen_tu["sakit"]) + ($terlambat_tu * $absen_tu["terlambat"]) + ($pulang_cepat_tu * $absen_tu['pulang_cepat']);
+
+						//$tambahan = ($piket["value"] * $absen["piket"]) +  ($lembur * $absen["lembur"]);
+							//inval2 = ($inval * $absen["inval"]) ;
+
+						$tambahan_value_tu = ($piket_tu["value"] * $absen_tu["piket"]) +  ($lembur_tu * $absen_tu["lembur"]);
+						$inval2_tu = ($inval_tu * $absen_tu["inval"]) ;
+
+							//print_r($hadir);
+							//die;
+
+						$komponen_gapok_tu = 1 * $gaji_pokok_tu["value"];
+						$hadir_tu =1*$query_tu["kehadiran"];
+						$khusus_tu = 1 * $tunjanagan_khusus_tu;
+						$tambahan_tu = 1 * $query_tu["tambahan"];
+						$solved_tu = 1 * $tunjanagan_tambahan_tu["value"];
+						$tj_jbtn_tu = 1 * $tunjangan_jabatan_tu["value"];
+						$lm_kerja_tu = 1 * $query_tu["lama_kerja"];
+						$sertif_tu = 1 * $query_tu["sertif"];
+						$pendidikan_tu =1* $query_tu["pendidikan"];
+						$c_lembur_tu = 1 * $absen_tu["lembur"];
+						$c_piket_tu = 1 * $absen_tu["piket"];
+						$v_voucher_tu = 1 * $absen_tu["voucher"];
+						$value_kehadiran_tu = ($kehadiran["value"] * $query["kehadiran"]);
+						$sub_total_tu = $khusus_tu +$komponen_gapok_tu + $value_kehadiran_tu + $tunjangan_jabatan_tu['value'] + $tunjanagan_tambahan_tu["value"] + ($absen_tu["lembur"] * $lembur_tu) + ($absen_tu["piket"] * $piket_tu["value"]) + $inval2_tu + $reward_tu; 
+						$total_tu = ($sub_total_tu + $tambahan_value_tu) - $penyesuaian_tu;
+
+						//$test = $inval;
+						//note salah diinval harusnya tidak nampil
+						//print_r($tunjanagan_khusus);
+						//die;	
+
+						$myquery2_tu = "INSERT INTO gaji_tu_tk VALUES (NULL,NULL,'".$query_tu["nip"]."','".$query_tu["jenjang_id"]."','".$query_tu["jabatan"]."',NULL,'".$komponen_gapok_tu."','".$hadir_tu."','".$c_lembur_tu."','".$lembur_tu."','".$reward_tu."','".$inval2_tu."','".$c_piket_tu."','".$piket_tu["value"]."','".$solved_tu."','".$tj_jbtn_tu."','".$penyesuaian_tu."','".$sub_total_tu."','".$tambahan_value_tu."','".$total_tu."','".$pid_tu."','".$khusus_tu."','".$tambahan_tu."','2','".$pendidikan_tu."','".$lm_kerja_tu."','".$sertif_tu."','".$kehadiran_tu["value"]."','".$tahun."','".$bulan."','".$v_voucher_tu."',NULL,NULL)";
+
+							//print_r($myquery2);
+							//die;
+
+						$Result_tu = Execute($myquery2_tu);
+							}
+			$delete_detil_karyawan ="DELETE FROM gaji_karyawan_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
+			$detil_delete_karyawan = execute($delete_detil_karyawan);
+			$delete_m_karyawan ="DELETE FROM m_karyawan_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."' ORDER BY id asc";	
+			$clone_delete_karyawan = execute($delete_m_karyawan);
+				$querymy_karyawan = "INSERT INTO m_karyawan_tk VALUES (NULL,'".$tahun."','".$bulan."',NULL,NULL)";
+				$Result_karyawan = Execute($querymy_karyawan);
+				$pid_karyawan = ExecuteScalar("select id from m_karyawan_tk order by id DESC limit 1");
+				$row2_karyawan = ExecuteRows("SELECT * FROM pegawai where jenjang_id ='1' AND `type`= '3'");	
+		foreach($row2_karyawan as $query_karyawan){
+			$reward_karyawan = ExecuteScalar("select value from m_reward where jenjang ='".$query_karyawan["jenjang_id"]."' AND jabatan ='".$query_karyawan["jabatan"]."'");
+
+				//$querypotongan = ExecuteRow("SELECT * FROM potongan_sma WHERE nama= '".$query["nip"]."' ORDER BY datetime DESC");
+				$kehadiran_karyawan= ExecuteRow("Select * from m_kehadiran where jenjang='1' AND jabatan= '".$query_karyawan["jabatan"]."'");	
+
+					//GAJI POKOK
+				$query2_karyawan = ExecuteRow("SELECT * FROM jabatan JOIN gajitunjangan ON jabatan.id = gajitunjangan.pidjabatan where gajitunjangan.pidjabatan='9'");
+				$querypokok_karyawan = ExecuteRow("SELECT * FROM gaji_pokok_kayawan where jenjang_id='1' AND jabatan_id= '".$query_karyawan["jabatan"]."'");		
+				$inval_karyawan = ExecuteScalar("SELECT value FROM m_inval WHERE jenjang_id='".$query_karyawan["jenjang_id"]."'");
+				$lembur_karyawan = ExecuteScalar("SELECT value_perjam FROM m_lembur WHERE jenjang_id='".$query_karyawan["jenjang_id"]."'");							
+				$piket_karyawan= ExecuteRow("select * from m_piket where jenjang='1' AND type_jabatan='3'");							//Gaji Pokok	
+				$kehadiran_karyawan = ExecuteRow("select * from m_kehadiran where jenjang ='1' AND jenis_jabatan='3' AND jabatan='".$query_karyawan["jabatan"]."'");
+				$gaji_pokok_karyawan=ExecuteRow("SELECT * FROM gaji_pokok_kayawan WHERE jenjang_id='1' AND jabatan_id= '".$query_karyawan["jabatan"]."'");	
+				$absen_karyawan =ExecuteRow("SELECT * FROM penyesuaian INNER JOIN m_penyesuaian ON m_penyesuaian.id = penyesuaian.m_id WHERE penyesuaian.nip='".$query_karyawan['nip']."' AND  m_penyesuaian.tahun='".$tahun."' AND m_penyesuaian.bulan='".$bulan."' ORDER BY m_penyesuaian.id DESC");	
+				$absen_tidak_karyawan = ExecuteScalar("SELECT value FROM m_tidakhadir WHERE jenjang_id='".$query_karyawan["jenjang_id"]."' AND jabatan_id='".$query_karyawan["jabatan"]."'");								
+				$sakit_karyawan = ExecuteScalar("SELECT perhari FROM m_sakit WHERE jenjang_id='".$query_karyawan["jenjang_id"]."' AND jabatan='".$query_karyawan["jabatan"]."'");				
+				$terlambat_karyawan = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$query_karyawan["jenjang_id"]."' AND type='".$query_karyawan["type"]."'");
+				$pulang_cepat_karyawan = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$query_karyawan["jenjang_id"]."' AND type='".$query_karyawan["type"]."'");
+				$lembur_karyawan = ExecuteScalar("SELECT value_perjam FROM m_lembur WHERE jenjang_id='".$query_karyawan["jenjang_id"]."'");
+				$inval2_karyawan = $inval_karyawan * $absen_karyawan["inval"];
+				$penyesuaian_karyawan = ($absen_tidak_karyawan * $absen_karyawan["absen"]) + ($absen_tidak_karyawan * $absen_karyawan["izin"]) + ($sakit_karyawan * $absen_karyawan["sakit"]) + ($terlambat_karyawan * $absen_karyawan["terlambat"]) + ($pulang_cepat_karyawan * $absen_karyawan['pulang_cepat']);
+				$tambahan_karyawan	= ($piket_karyawan["value"] * $absen_karyawan["piket"]) + ($lembur_karyawan * $absen_karyawan["lembur"]);								
+				$value_inval_karyawan = 1 * $inval_karyawan; 
+				$komponen_gapok_karyawan =1 * $gaji_pokok_karyawan["value"];
+				$v_gapok_karyawan = 1 * $gaji_pokok_karyawan["value"];
+				$v_voucher_karyawan = 1 * $absen_karyawan["voucher"];
+				$c_jjm_karyawan = 1 * $query_karyawan["kehadiran"];
+				$t_kehadiran_karyawan = $query_karyawan["kehadiran"] * $kehadiran_karyawan["value"];
+				$v_kehadiran_karyawan = 1 * $kehadiran_karyawan["value"];
+
+				//INSERT INTO `gaji_karyawan_sma` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`) 
+				$sub_total_karyawan = $komponen_gapok_karyawan + $t_kehadiran_karyawan + $inval2_karyawan;
+				$total_karyawan = ($sub_total_karyawan + $tambahan_karyawan) - $penyesuaian_karyawan;
+
+				//print_r($v_kehadiran);
+				//die;
+
+				$myquery2_karyawan = "INSERT INTO gaji_karyawan_tk VALUES (NULL, '".$query_karyawan["nip"]."','".$query_karyawan["jabatan"]."','4','".$komponen_gapok_karyawan."',NULL,'".$inval2_karyawan."','".$c_jjm_karyawan."','".$sub_total_karyawan."','".$penyesuaian_karyawan."','".$tambahan_karyawan."','".$total_karyawan."','".$pid_karyawan."','".$v_kehadiran_karyawan."',NULL,'".$tahun."', '".$bulan."','".$v_voucher_karyawan."',NULL)";
+
+				//print_r($myquery2);
+				//die;
+
+				$Result_karyawan = Execute($myquery2_karyawan);
 							}
 						}
-					}
-		if ($this->profesi->CurrentValue =='1') {
-		$this->terminate("m_tklist.php");
-		}else if($this->profesi->CurrentValue =='2'){
-		$this->terminate("m_tu_tklist.php");
-		}else{
-		$this->terminate("m_karyawan_tklist.php");
-		}
-	}
 
+			/*if ($this->profesi->CurrentValue =='1') {
+			$this->terminate("m_tklist.php");
+			}else if($this->profesi->CurrentValue =='2'){
+			$this->terminate("m_tu_tklist.php");
+			}else{
+			$this->terminate("m_karyawan_tklist.php");
+			}*/
+	}
 	// Row Updating event
 	function Row_Updating($rsold, &$rsnew) {
-
 		// Enter your code here
 		// To cancel, set return value to FALSE
-
 		return TRUE;
 	}
-
 	// Row Updated event
 	function Row_Updated($rsold, &$rsnew) {
-
 		//echo "Row Updated";
 	}
-
 	// Row Update Conflict event
 	function Row_UpdateConflict($rsold, &$rsnew) {
-
 		// Enter your code here
 		// To ignore conflict, set return value to FALSE
-
 		return TRUE;
 	}
-
 	// Grid Inserting event
 	function Grid_Inserting() {
-
 		// Enter your code here
 		// To reject grid insert, set return value to FALSE
-
 		return TRUE;
 	}
-
 	// Grid Inserted event
 	function Grid_Inserted($rsnew) {
-
 		//echo "Grid Inserted";
 	}
-
 	// Grid Updating event
 	function Grid_Updating($rsold) {
-
 		// Enter your code here
 		// To reject grid update, set return value to FALSE
-
 		return TRUE;
 	}
-
 	// Grid Updated event
 	function Grid_Updated($rsold, $rsnew) {
-
 		//echo "Grid Updated";
 	}
-
 	// Row Deleting event
 	function Row_Deleting(&$rs) {
-
 		// Enter your code here
 		// To cancel, set return value to False
-
 		return TRUE;
 	}
-
 	// Row Deleted event
 	function Row_Deleted(&$rs) {
-
 		//echo "Row Deleted";
 	}
-
 	// Email Sending event
 	function Email_Sending($email, &$args) {
-
 		//var_dump($email); var_dump($args); exit();
 		return TRUE;
 	}
-
 	// Lookup Selecting event
 	function Lookup_Selecting($fld, &$filter) {
-
 		//var_dump($fld->Name, $fld->Lookup, $filter); // Uncomment to view the filter
 		// Enter your code here
-
 	}
-
 	// Row Rendering event
 	function Row_Rendering() {
-
 		// Enter your code here
 	}
-
 	// Row Rendered event
 	function Row_Rendered() {
-
 		// To view properties of field class, use:
 		//var_dump($this-><FieldName>);
-
 	}
-
 	// User ID Filtering event
 	function UserID_Filtering(&$filter) {
-
 		// Enter your code here
 	}
 }

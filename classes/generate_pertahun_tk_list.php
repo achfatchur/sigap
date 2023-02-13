@@ -816,7 +816,7 @@ class generate_pertahun_tk_list extends generate_pertahun_tk
 		// Setup export options
 		$this->setupExportOptions();
 		$this->id->Visible = FALSE;
-		$this->profesi->setVisibility();
+		$this->profesi->Visible = FALSE;
 		$this->tahun->setVisibility();
 		$this->bulan->Visible = FALSE;
 		$this->bulan2->setVisibility();
@@ -1062,7 +1062,6 @@ class generate_pertahun_tk_list extends generate_pertahun_tk
 		if (Get("order") !== NULL) {
 			$this->CurrentOrder = Get("order");
 			$this->CurrentOrderType = Get("ordertype", "");
-			$this->updateSort($this->profesi); // profesi
 			$this->updateSort($this->tahun); // tahun
 			$this->updateSort($this->bulan2); // bulan2
 			$this->setStartRecordNumber(1); // Reset start position
@@ -1096,7 +1095,6 @@ class generate_pertahun_tk_list extends generate_pertahun_tk
 			if ($this->Command == "resetsort") {
 				$orderBy = "";
 				$this->setSessionOrderBy($orderBy);
-				$this->profesi->setSort("");
 				$this->tahun->setSort("");
 				$this->bulan2->setSort("");
 			}
@@ -1593,11 +1591,6 @@ class generate_pertahun_tk_list extends generate_pertahun_tk
 				$this->bulan2->ViewValue = NULL;
 			}
 			$this->bulan2->ViewCustomAttributes = "";
-
-			// profesi
-			$this->profesi->LinkCustomAttributes = "";
-			$this->profesi->HrefValue = "";
-			$this->profesi->TooltipValue = "";
 
 			// tahun
 			$this->tahun->LinkCustomAttributes = "";

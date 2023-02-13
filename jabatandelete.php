@@ -79,26 +79,8 @@ $jabatan_delete->showMessage();
 <?php if ($jabatan_delete->jenjang->Visible) { // jenjang ?>
 		<th class="<?php echo $jabatan_delete->jenjang->headerCellClass() ?>"><span id="elh_jabatan_jenjang" class="jabatan_jenjang"><?php echo $jabatan_delete->jenjang->caption() ?></span></th>
 <?php } ?>
-<?php if ($jabatan_delete->type_guru->Visible) { // type_guru ?>
-		<th class="<?php echo $jabatan_delete->type_guru->headerCellClass() ?>"><span id="elh_jabatan_type_guru" class="jabatan_type_guru"><?php echo $jabatan_delete->type_guru->caption() ?></span></th>
-<?php } ?>
 <?php if ($jabatan_delete->keterangan->Visible) { // keterangan ?>
 		<th class="<?php echo $jabatan_delete->keterangan->headerCellClass() ?>"><span id="elh_jabatan_keterangan" class="jabatan_keterangan"><?php echo $jabatan_delete->keterangan->caption() ?></span></th>
-<?php } ?>
-<?php if ($jabatan_delete->c_by->Visible) { // c_by ?>
-		<th class="<?php echo $jabatan_delete->c_by->headerCellClass() ?>"><span id="elh_jabatan_c_by" class="jabatan_c_by"><?php echo $jabatan_delete->c_by->caption() ?></span></th>
-<?php } ?>
-<?php if ($jabatan_delete->c_date->Visible) { // c_date ?>
-		<th class="<?php echo $jabatan_delete->c_date->headerCellClass() ?>"><span id="elh_jabatan_c_date" class="jabatan_c_date"><?php echo $jabatan_delete->c_date->caption() ?></span></th>
-<?php } ?>
-<?php if ($jabatan_delete->u_by->Visible) { // u_by ?>
-		<th class="<?php echo $jabatan_delete->u_by->headerCellClass() ?>"><span id="elh_jabatan_u_by" class="jabatan_u_by"><?php echo $jabatan_delete->u_by->caption() ?></span></th>
-<?php } ?>
-<?php if ($jabatan_delete->u_date->Visible) { // u_date ?>
-		<th class="<?php echo $jabatan_delete->u_date->headerCellClass() ?>"><span id="elh_jabatan_u_date" class="jabatan_u_date"><?php echo $jabatan_delete->u_date->caption() ?></span></th>
-<?php } ?>
-<?php if ($jabatan_delete->aktif->Visible) { // aktif ?>
-		<th class="<?php echo $jabatan_delete->aktif->headerCellClass() ?>"><span id="elh_jabatan_aktif" class="jabatan_aktif"><?php echo $jabatan_delete->aktif->caption() ?></span></th>
 <?php } ?>
 	</tr>
 	</thead>
@@ -142,52 +124,10 @@ while (!$jabatan_delete->Recordset->EOF) {
 </span>
 </td>
 <?php } ?>
-<?php if ($jabatan_delete->type_guru->Visible) { // type_guru ?>
-		<td <?php echo $jabatan_delete->type_guru->cellAttributes() ?>>
-<span id="el<?php echo $jabatan_delete->RowCount ?>_jabatan_type_guru" class="jabatan_type_guru">
-<span<?php echo $jabatan_delete->type_guru->viewAttributes() ?>><?php echo $jabatan_delete->type_guru->getViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
 <?php if ($jabatan_delete->keterangan->Visible) { // keterangan ?>
 		<td <?php echo $jabatan_delete->keterangan->cellAttributes() ?>>
 <span id="el<?php echo $jabatan_delete->RowCount ?>_jabatan_keterangan" class="jabatan_keterangan">
 <span<?php echo $jabatan_delete->keterangan->viewAttributes() ?>><?php echo $jabatan_delete->keterangan->getViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
-<?php if ($jabatan_delete->c_by->Visible) { // c_by ?>
-		<td <?php echo $jabatan_delete->c_by->cellAttributes() ?>>
-<span id="el<?php echo $jabatan_delete->RowCount ?>_jabatan_c_by" class="jabatan_c_by">
-<span<?php echo $jabatan_delete->c_by->viewAttributes() ?>><?php echo $jabatan_delete->c_by->getViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
-<?php if ($jabatan_delete->c_date->Visible) { // c_date ?>
-		<td <?php echo $jabatan_delete->c_date->cellAttributes() ?>>
-<span id="el<?php echo $jabatan_delete->RowCount ?>_jabatan_c_date" class="jabatan_c_date">
-<span<?php echo $jabatan_delete->c_date->viewAttributes() ?>><?php echo $jabatan_delete->c_date->getViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
-<?php if ($jabatan_delete->u_by->Visible) { // u_by ?>
-		<td <?php echo $jabatan_delete->u_by->cellAttributes() ?>>
-<span id="el<?php echo $jabatan_delete->RowCount ?>_jabatan_u_by" class="jabatan_u_by">
-<span<?php echo $jabatan_delete->u_by->viewAttributes() ?>><?php echo $jabatan_delete->u_by->getViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
-<?php if ($jabatan_delete->u_date->Visible) { // u_date ?>
-		<td <?php echo $jabatan_delete->u_date->cellAttributes() ?>>
-<span id="el<?php echo $jabatan_delete->RowCount ?>_jabatan_u_date" class="jabatan_u_date">
-<span<?php echo $jabatan_delete->u_date->viewAttributes() ?>><?php echo $jabatan_delete->u_date->getViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
-<?php if ($jabatan_delete->aktif->Visible) { // aktif ?>
-		<td <?php echo $jabatan_delete->aktif->cellAttributes() ?>>
-<span id="el<?php echo $jabatan_delete->RowCount ?>_jabatan_aktif" class="jabatan_aktif">
-<span<?php echo $jabatan_delete->aktif->viewAttributes() ?>><?php echo $jabatan_delete->aktif->getViewValue() ?></span>
 </span>
 </td>
 <?php } ?>

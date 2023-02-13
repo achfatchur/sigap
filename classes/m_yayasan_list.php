@@ -1271,7 +1271,7 @@ class m_yayasan_list extends m_yayasan
 		$opt = $this->ListOptions["detail_yayasan"];
 		if ($Security->allowList(CurrentProjectID() . 'yayasan')) {
 			$body = $Language->phrase("DetailLink") . $Language->TablePhrase("yayasan", "TblCaption");
-			$body = "<a class=\"btn btn-default ew-row-link ew-detail\" data-action=\"list\" href=\"" . HtmlEncode("yayasanlist.php?" . Config("TABLE_SHOW_MASTER") . "=m_yayasan&fk_id=" . urlencode(strval($this->id->CurrentValue)) . "") . "\">" . $body . "</a>";
+			$body = "<a class=\"btn btn-default ew-row-link ew-detail\" data-action=\"list\" href=\"" . HtmlEncode("yayasanlist.php?" . Config("TABLE_SHOW_MASTER") . "=m_yayasan&fk_id=" . urlencode(strval($this->id->CurrentValue)) . "&fk_bulan=" . urlencode(strval($this->bulan->CurrentValue)) . "&fk_tahun=" . urlencode(strval($this->tahun->CurrentValue)) . "") . "\">" . $body . "</a>";
 			$links = "";
 			if ($GLOBALS["yayasan_grid"]->DetailView && $Security->canView() && $Security->allowView(CurrentProjectID() . 'm_yayasan')) {
 				$caption = $Language->phrase("MasterDetailViewLink");
@@ -1531,6 +1531,8 @@ class m_yayasan_list extends m_yayasan
 		$links = "";
 		$btngrps = "";
 		$sqlwrk = "`m_id`=" . AdjustSql($this->id->CurrentValue, $this->Dbid) . "";
+		$sqlwrk = $sqlwrk . " AND " . "`bulan`=" . AdjustSql($this->bulan->CurrentValue, $this->Dbid) . "";
+		$sqlwrk = $sqlwrk . " AND " . "`tahun`=" . AdjustSql($this->tahun->CurrentValue, $this->Dbid) . "";
 
 		// Column "detail_yayasan"
 		if ($this->DetailPages && $this->DetailPages["yayasan"] && $this->DetailPages["yayasan"]->Visible) {
@@ -1542,7 +1544,7 @@ class m_yayasan_list extends m_yayasan
 				$label = $Language->TablePhrase("yayasan", "TblCaption");
 				$link = "<li class=\"nav-item\"><a href=\"#\" class=\"nav-link\" data-toggle=\"tab\" data-table=\"yayasan\" data-url=\"" . $url . "\">" . $label . "</a></li>";
 				$links .= $link;
-				$detaillnk = JsEncodeAttribute("yayasanlist.php?" . Config("TABLE_SHOW_MASTER") . "=m_yayasan&fk_id=" . urlencode(strval($this->id->CurrentValue)) . "");
+				$detaillnk = JsEncodeAttribute("yayasanlist.php?" . Config("TABLE_SHOW_MASTER") . "=m_yayasan&fk_id=" . urlencode(strval($this->id->CurrentValue)) . "&fk_bulan=" . urlencode(strval($this->bulan->CurrentValue)) . "&fk_tahun=" . urlencode(strval($this->tahun->CurrentValue)) . "");
 				$btngrp .= "<a href=\"#\" class=\"mr-2\" title=\"" . $Language->TablePhrase("yayasan", "TblCaption") . "\" onclick=\"window.location='" . $detaillnk . "';return false;\">" . $Language->phrase("MasterDetailListLink") . "</a>";
 			}
 			if (!isset($GLOBALS["yayasan_grid"]))
@@ -1755,7 +1757,6 @@ class m_yayasan_list extends m_yayasan
 
 			// tahun
 			$this->tahun->ViewValue = $this->tahun->CurrentValue;
-			$this->tahun->ViewValue = FormatNumber($this->tahun->ViewValue, 0, -2, -2, -2);
 			$this->tahun->ViewCustomAttributes = "";
 
 			// datetime

@@ -816,7 +816,7 @@ class generate_pertahun_smk_list extends generate_pertahun_smk
 		// Setup export options
 		$this->setupExportOptions();
 		$this->id->Visible = FALSE;
-		$this->profesi->setVisibility();
+		$this->profesi->Visible = FALSE;
 		$this->tahun->setVisibility();
 		$this->bulan->Visible = FALSE;
 		$this->bulan2->setVisibility();
@@ -1062,7 +1062,6 @@ class generate_pertahun_smk_list extends generate_pertahun_smk
 		if (Get("order") !== NULL) {
 			$this->CurrentOrder = Get("order");
 			$this->CurrentOrderType = Get("ordertype", "");
-			$this->updateSort($this->profesi); // profesi
 			$this->updateSort($this->tahun); // tahun
 			$this->updateSort($this->bulan2); // bulan2
 			$this->setStartRecordNumber(1); // Reset start position
@@ -1096,7 +1095,6 @@ class generate_pertahun_smk_list extends generate_pertahun_smk
 			if ($this->Command == "resetsort") {
 				$orderBy = "";
 				$this->setSessionOrderBy($orderBy);
-				$this->profesi->setSort("");
 				$this->tahun->setSort("");
 				$this->bulan2->setSort("");
 			}
@@ -1117,12 +1115,6 @@ class generate_pertahun_smk_list extends generate_pertahun_smk
 		$item->Body = "";
 		$item->OnLeft = FALSE;
 		$item->Visible = FALSE;
-
-		// "view"
-		$item = &$this->ListOptions->add("view");
-		$item->CssClass = "text-nowrap";
-		$item->Visible = $Security->canView();
-		$item->OnLeft = FALSE;
 
 		// List actions
 		$item = &$this->ListOptions->add("listactions");
@@ -1176,15 +1168,6 @@ class generate_pertahun_smk_list extends generate_pertahun_smk
 		// "sequence"
 		$opt = $this->ListOptions["sequence"];
 		$opt->Body = FormatSequenceNumber($this->RecordCount);
-
-		// "view"
-		$opt = $this->ListOptions["view"];
-		$viewcaption = HtmlTitle($Language->phrase("ViewLink"));
-		if ($Security->canView()) {
-			$opt->Body = "<a class=\"ew-row-link ew-view\" title=\"" . $viewcaption . "\" data-caption=\"" . $viewcaption . "\" href=\"" . HtmlEncode($this->ViewUrl) . "\">" . $Language->phrase("ViewLink") . "</a>";
-		} else {
-			$opt->Body = "";
-		}
 
 		// Set up list action buttons
 		$opt = $this->ListOptions["listactions"];
@@ -1608,11 +1591,6 @@ class generate_pertahun_smk_list extends generate_pertahun_smk
 				$this->bulan2->ViewValue = NULL;
 			}
 			$this->bulan2->ViewCustomAttributes = "";
-
-			// profesi
-			$this->profesi->LinkCustomAttributes = "";
-			$this->profesi->HrefValue = "";
-			$this->profesi->TooltipValue = "";
 
 			// tahun
 			$this->tahun->LinkCustomAttributes = "";

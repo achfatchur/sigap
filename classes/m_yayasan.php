@@ -75,6 +75,7 @@ class m_yayasan extends DbTable
 
 		// bulan
 		$this->bulan = new DbField('m_yayasan', 'm_yayasan', 'x_bulan', 'bulan', '`bulan`', '`bulan`', 3, 11, -1, FALSE, '`bulan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->bulan->IsForeignKey = TRUE; // Foreign key field
 		$this->bulan->Sortable = TRUE; // Allow sort
 		$this->bulan->UsePleaseSelect = TRUE; // Use PleaseSelect by default
 		$this->bulan->PleaseSelectText = $Language->phrase("PleaseSelect"); // "PleaseSelect" text
@@ -84,6 +85,7 @@ class m_yayasan extends DbTable
 
 		// tahun
 		$this->tahun = new DbField('m_yayasan', 'm_yayasan', 'x_tahun', 'tahun', '`tahun`', '`tahun`', 3, 11, -1, FALSE, '`tahun`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->tahun->IsForeignKey = TRUE; // Foreign key field
 		$this->tahun->Sortable = TRUE; // Allow sort
 		$this->tahun->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['tahun'] = &$this->tahun;
@@ -155,6 +157,8 @@ class m_yayasan extends DbTable
 		if ($this->getCurrentDetailTable() == "yayasan") {
 			$detailUrl = $GLOBALS["yayasan"]->getListUrl() . "?" . Config("TABLE_SHOW_MASTER") . "=" . $this->TableVar;
 			$detailUrl .= "&fk_id=" . urlencode($this->id->CurrentValue);
+			$detailUrl .= "&fk_bulan=" . urlencode($this->bulan->CurrentValue);
+			$detailUrl .= "&fk_tahun=" . urlencode($this->tahun->CurrentValue);
 		}
 		if ($detailUrl == "")
 			$detailUrl = "m_yayasanlist.php";
@@ -447,10 +451,18 @@ class m_yayasan extends DbTable
 			$cascadeUpdate = TRUE;
 			$rscascade['m_id'] = $rs['id'];
 		}
+		if ($rsold && (isset($rs['bulan']) && $rsold['bulan'] != $rs['bulan'])) { // Update detail field 'bulan'
+			$cascadeUpdate = TRUE;
+			$rscascade['bulan'] = $rs['bulan'];
+		}
+		if ($rsold && (isset($rs['tahun']) && $rsold['tahun'] != $rs['tahun'])) { // Update detail field 'tahun'
+			$cascadeUpdate = TRUE;
+			$rscascade['tahun'] = $rs['tahun'];
+		}
 		if ($cascadeUpdate) {
 			if (!isset($GLOBALS["yayasan"]))
 				$GLOBALS["yayasan"] = new yayasan();
-			$rswrk = $GLOBALS["yayasan"]->loadRs("`m_id` = " . QuotedValue($rsold['id'], DATATYPE_NUMBER, 'DB'));
+			$rswrk = $GLOBALS["yayasan"]->loadRs("`m_id` = " . QuotedValue($rsold['id'], DATATYPE_NUMBER, 'DB') . " AND " . "`bulan` = " . QuotedValue($rsold['bulan'], DATATYPE_NUMBER, 'DB') . " AND " . "`tahun` = " . QuotedValue($rsold['tahun'], DATATYPE_NUMBER, 'DB'));
 			while ($rswrk && !$rswrk->EOF) {
 				$rskey = [];
 				$fldname = 'id';
@@ -498,6 +510,32 @@ class m_yayasan extends DbTable
 	{
 		$success = TRUE;
 		$conn = $this->getConnection();
+
+		// Cascade delete detail table 'yayasan'
+		if (!isset($GLOBALS["yayasan"]))
+			$GLOBALS["yayasan"] = new yayasan();
+		$rscascade = $GLOBALS["yayasan"]->loadRs("`m_id` = " . QuotedValue($rs['id'], DATATYPE_NUMBER, "DB") . " AND " . "`bulan` = " . QuotedValue($rs['bulan'], DATATYPE_NUMBER, "DB") . " AND " . "`tahun` = " . QuotedValue($rs['tahun'], DATATYPE_NUMBER, "DB"));
+		$dtlrows = ($rscascade) ? $rscascade->getRows() : [];
+
+		// Call Row Deleting event
+		foreach ($dtlrows as $dtlrow) {
+			$success = $GLOBALS["yayasan"]->Row_Deleting($dtlrow);
+			if (!$success)
+				break;
+		}
+		if ($success) {
+			foreach ($dtlrows as $dtlrow) {
+				$success = $GLOBALS["yayasan"]->delete($dtlrow); // Delete
+				if (!$success)
+					break;
+			}
+		}
+
+		// Call Row Deleted event
+		if ($success) {
+			foreach ($dtlrows as $dtlrow)
+				$GLOBALS["yayasan"]->Row_Deleted($dtlrow);
+		}
 		if ($success)
 			$success = $conn->execute($this->deleteSql($rs, $where, $curfilter));
 		return $success;
@@ -805,7 +843,6 @@ class m_yayasan extends DbTable
 
 		// tahun
 		$this->tahun->ViewValue = $this->tahun->CurrentValue;
-		$this->tahun->ViewValue = FormatNumber($this->tahun->ViewValue, 0, -2, -2, -2);
 		$this->tahun->ViewCustomAttributes = "";
 
 		// datetime
@@ -1164,7 +1201,9 @@ class m_yayasan extends DbTable
 							.("'".date('Y-m-d H:i:s')."'").","
 							.(isset($row[1]) ? "'".$row[1]."'" : "NULL").","
 							.(isset($row[2]) ? "'".$row[2]."'" : "NULL").","
-							."'".$total."'),";
+							."'".$total."',"
+							."'".$rsnew["tahun"]."',"
+							."'".$rsnew["bulan"]."'),";
 						}
 							if ($XLSXdata != "") {
 								$myquery = "INSERT INTO `yayasan` VALUES ".rtrim($XLSXdata, ',') . ';';

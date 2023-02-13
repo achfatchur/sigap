@@ -56,6 +56,22 @@ loadjs.ready("head", function() {
 		for (var i = startcnt; i <= rowcnt; i++) {
 			var infix = ($k[0]) ? String(i) : "";
 			$fobj.data("rowindex", infix);
+			<?php if ($yayasan_add->bulan->Required) { ?>
+				elm = this.getElements("x" + infix + "_bulan");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $yayasan_add->bulan->caption(), $yayasan_add->bulan->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_bulan");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($yayasan_add->bulan->errorMessage()) ?>");
+			<?php if ($yayasan_add->tahun->Required) { ?>
+				elm = this.getElements("x" + infix + "_tahun");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $yayasan_add->tahun->caption(), $yayasan_add->tahun->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_tahun");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($yayasan_add->tahun->errorMessage()) ?>");
 			<?php if ($yayasan_add->id_pegawai->Required) { ?>
 				elm = this.getElements("x" + infix + "_id_pegawai");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -116,6 +132,9 @@ loadjs.ready("head", function() {
 	fyayasanadd.validateRequired = <?php echo Config("CLIENT_VALIDATE") ? "true" : "false" ?>;
 
 	// Dynamic selection lists
+	fyayasanadd.lists["x_bulan"] = <?php echo $yayasan_add->bulan->Lookup->toClientList($yayasan_add) ?>;
+	fyayasanadd.lists["x_bulan"].options = <?php echo JsonEncode($yayasan_add->bulan->lookupOptions()) ?>;
+	fyayasanadd.autoSuggests["x_bulan"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
 	fyayasanadd.lists["x_id_pegawai"] = <?php echo $yayasan_add->id_pegawai->Lookup->toClientList($yayasan_add) ?>;
 	fyayasanadd.lists["x_id_pegawai"].options = <?php echo JsonEncode($yayasan_add->id_pegawai->lookupOptions()) ?>;
 	fyayasanadd.autoSuggests["x_id_pegawai"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
@@ -144,8 +163,58 @@ $yayasan_add->showMessage();
 <?php if ($yayasan->getCurrentMasterTable() == "m_yayasan") { ?>
 <input type="hidden" name="<?php echo Config("TABLE_SHOW_MASTER") ?>" value="m_yayasan">
 <input type="hidden" name="fk_id" value="<?php echo HtmlEncode($yayasan_add->m_id->getSessionValue()) ?>">
+<input type="hidden" name="fk_bulan" value="<?php echo HtmlEncode($yayasan_add->bulan->getSessionValue()) ?>">
+<input type="hidden" name="fk_tahun" value="<?php echo HtmlEncode($yayasan_add->tahun->getSessionValue()) ?>">
 <?php } ?>
 <div class="ew-add-div"><!-- page* -->
+<?php if ($yayasan_add->bulan->Visible) { // bulan ?>
+	<div id="r_bulan" class="form-group row">
+		<label id="elh_yayasan_bulan" class="<?php echo $yayasan_add->LeftColumnClass ?>"><?php echo $yayasan_add->bulan->caption() ?><?php echo $yayasan_add->bulan->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
+		<div class="<?php echo $yayasan_add->RightColumnClass ?>"><div <?php echo $yayasan_add->bulan->cellAttributes() ?>>
+<?php if ($yayasan_add->bulan->getSessionValue() != "") { ?>
+<span id="el_yayasan_bulan">
+<span<?php echo $yayasan_add->bulan->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($yayasan_add->bulan->ViewValue)) ?>"></span>
+</span>
+<input type="hidden" id="x_bulan" name="x_bulan" value="<?php echo HtmlEncode($yayasan_add->bulan->CurrentValue) ?>">
+<?php } else { ?>
+<span id="el_yayasan_bulan">
+<?php
+$onchange = $yayasan_add->bulan->EditAttrs->prepend("onchange", "");
+$onchange = ($onchange) ? ' onchange="' . JsEncode($onchange) . '"' : '';
+$yayasan_add->bulan->EditAttrs["onchange"] = "";
+?>
+<span id="as_x_bulan">
+	<input type="text" class="form-control" name="sv_x_bulan" id="sv_x_bulan" value="<?php echo RemoveHtml($yayasan_add->bulan->EditValue) ?>" size="30" maxlength="10" placeholder="<?php echo HtmlEncode($yayasan_add->bulan->getPlaceHolder()) ?>" data-placeholder="<?php echo HtmlEncode($yayasan_add->bulan->getPlaceHolder()) ?>"<?php echo $yayasan_add->bulan->editAttributes() ?>>
+</span>
+<input type="hidden" data-table="yayasan" data-field="x_bulan" data-value-separator="<?php echo $yayasan_add->bulan->displayValueSeparatorAttribute() ?>" name="x_bulan" id="x_bulan" value="<?php echo HtmlEncode($yayasan_add->bulan->CurrentValue) ?>"<?php echo $onchange ?>>
+<script>
+loadjs.ready(["fyayasanadd"], function() {
+	fyayasanadd.createAutoSuggest({"id":"x_bulan","forceSelect":false});
+});
+</script>
+<?php echo $yayasan_add->bulan->Lookup->getParamTag($yayasan_add, "p_x_bulan") ?>
+</span>
+<?php } ?>
+<?php echo $yayasan_add->bulan->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
+<?php if ($yayasan_add->tahun->Visible) { // tahun ?>
+	<div id="r_tahun" class="form-group row">
+		<label id="elh_yayasan_tahun" for="x_tahun" class="<?php echo $yayasan_add->LeftColumnClass ?>"><?php echo $yayasan_add->tahun->caption() ?><?php echo $yayasan_add->tahun->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
+		<div class="<?php echo $yayasan_add->RightColumnClass ?>"><div <?php echo $yayasan_add->tahun->cellAttributes() ?>>
+<?php if ($yayasan_add->tahun->getSessionValue() != "") { ?>
+<span id="el_yayasan_tahun">
+<span<?php echo $yayasan_add->tahun->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($yayasan_add->tahun->ViewValue)) ?>"></span>
+</span>
+<input type="hidden" id="x_tahun" name="x_tahun" value="<?php echo HtmlEncode($yayasan_add->tahun->CurrentValue) ?>">
+<?php } else { ?>
+<span id="el_yayasan_tahun">
+<input type="text" data-table="yayasan" data-field="x_tahun" name="x_tahun" id="x_tahun" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($yayasan_add->tahun->getPlaceHolder()) ?>" value="<?php echo $yayasan_add->tahun->EditValue ?>"<?php echo $yayasan_add->tahun->editAttributes() ?>>
+</span>
+<?php } ?>
+<?php echo $yayasan_add->tahun->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
 <?php if ($yayasan_add->id_pegawai->Visible) { // id_pegawai ?>
 	<div id="r_id_pegawai" class="form-group row">
 		<label id="elh_yayasan_id_pegawai" class="<?php echo $yayasan_add->LeftColumnClass ?>"><?php echo $yayasan_add->id_pegawai->caption() ?><?php echo $yayasan_add->id_pegawai->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
