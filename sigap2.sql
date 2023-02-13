@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `absen` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.absen: ~6 rows (approximately)
+-- Dumping data for table sigap2.absen: ~7 rows (approximately)
 INSERT INTO `absen` (`id`, `bulan`, `tahun`, `jumlah_hari_kerja`, `datetime`, `createuser`) VALUES
 	(1, 4, 2023, NULL, '2023-01-24 04:15:02', -1),
 	(2, 5, 2024, 29, '2023-01-18 09:38:24', -1),
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `absen_detil` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.absen_detil: ~9 rows (approximately)
+-- Dumping data for table sigap2.absen_detil: ~10 rows (approximately)
 INSERT INTO `absen_detil` (`id`, `pid`, `pegawai`, `masuk`, `absen`, `ijin`, `sakit`, `pulang_cepat`, `piket`, `inval`, `lembur`, `terlambat`, `jenjang`, `date`, `penyesuaian`) VALUES
 	(3, 1, '10230', 2, 3, 1, 2, NULL, 2, NULL, 2, 2, 4, NULL, NULL),
 	(5, 2, '102390', 2, 2, 2, 2, NULL, NULL, NULL, NULL, 2, 4, NULL, NULL),
@@ -412,7 +412,7 @@ CREATE TABLE IF NOT EXISTS `gajisd` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gajisd: ~0 rows (approximately)
+-- Dumping data for table sigap2.gajisd: ~1 rows (approximately)
 INSERT INTO `gajisd` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(1, 2, 2, NULL, NULL);
 
@@ -607,7 +607,7 @@ CREATE TABLE IF NOT EXISTS `gajitunjangan` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gajitunjangan: ~8 rows (approximately)
+-- Dumping data for table sigap2.gajitunjangan: ~11 rows (approximately)
 INSERT INTO `gajitunjangan` (`id`, `pidjabatan`, `value_kehadiran`, `gapok`, `tunjangan_jabatan`, `reward`, `lembur`, `piket`, `inval`, `jam_lebih`, `tunjangan_khusus`, `ekstrakuri`) VALUES
 	(1, 1, 65500, 80000, NULL, 40000, 40000, 30000, 10000, 70000, 120000, NULL),
 	(2, 2, 65500, 40000, 1500000, 30000, 42000, 30000, 10000, 70000, NULL, NULL),
@@ -645,7 +645,7 @@ CREATE TABLE IF NOT EXISTS `gaji_karyawan_sd` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_karyawan_sd: ~1 rows (approximately)
+-- Dumping data for table sigap2.gaji_karyawan_sd: ~3 rows (approximately)
 INSERT INTO `gaji_karyawan_sd` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`, `voucher`, `potongan_bendahara`) VALUES
 	(74, '10232124', 11, 4, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 6, 60000, NULL, 2023, 12, 0, NULL),
 	(75, '10232124', 11, 4, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 7, 60000, NULL, 2024, 1, 0, NULL),
@@ -675,7 +675,7 @@ CREATE TABLE IF NOT EXISTS `gaji_karyawan_sma` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=415 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_karyawan_sma: ~28 rows (approximately)
+-- Dumping data for table sigap2.gaji_karyawan_sma: ~42 rows (approximately)
 INSERT INTO `gaji_karyawan_sma` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`, `voucher`, `potongan_bendahara`) VALUES
 	(359, '102321', 11, 4, 300000, NULL, 0, 26, 1860000, 0, 0, 1860000, 64, 60000, NULL, 2023, 7, 0, NULL),
 	(360, '3578102612760004', 5, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 64, 0, NULL, 2023, 7, 0, NULL),
@@ -813,7 +813,7 @@ CREATE TABLE IF NOT EXISTS `gaji_karyawan_tk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=394 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_karyawan_tk: ~24 rows (approximately)
+-- Dumping data for table sigap2.gaji_karyawan_tk: ~30 rows (approximately)
 INSERT INTO `gaji_karyawan_tk` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`, `voucher`, `potongan_bendahara`) VALUES
 	(208, '10236', 11, 4, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 28, 60000, NULL, 2023, 3, 0, NULL),
 	(209, '1023271', 12, 4, 450000, NULL, 0, 0, 450000, 0, 0, 450000, 28, 75000, NULL, 2023, 3, 0, NULL),
@@ -1142,7 +1142,7 @@ CREATE TABLE IF NOT EXISTS `gaji_pokok_tu` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=527 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_pokok_tu: ~415 rows (approximately)
+-- Dumping data for table sigap2.gaji_pokok_tu: ~433 rows (approximately)
 INSERT INTO `gaji_pokok_tu` (`id`, `jenjang_id`, `value`, `ijazah`, `lama_kerja`) VALUES
 	(84, 4, 65000, 3, 0),
 	(85, 4, 80000, 8, 0),
@@ -1618,7 +1618,7 @@ CREATE TABLE IF NOT EXISTS `gaji_sma` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3850 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_sma: ~92 rows (approximately)
+-- Dumping data for table sigap2.gaji_sma: ~138 rows (approximately)
 INSERT INTO `gaji_sma` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `tahun`, `bulan`, `potongan_bendahara`, `voucher`) VALUES
 	(3712, '10230', '2023-02-09 10:33:23', '2023-02-09', 0, 13000, 5, 2500, 3783000, 50000, 0, 0, 7000, 125000, 450000, 48, 3883000, 0, 4, 0, 558, 48, 1, 1, 2, 56000, 4, 450000, 120000, 2, NULL, 2023, 2, 50000, 0),
 	(3713, '10235', '2023-02-09 10:33:23', '2023-02-09', 0, 13000, 9, 1500, 3200000, 50000, 0, 0, 8250, 0, 0, 48, 3290000, 0, 4, 0, 558, 48, 1, 2, 0, 66000, 0, 0, 72000, 0, NULL, 2023, 2, 90000, 0),
@@ -1799,7 +1799,7 @@ CREATE TABLE IF NOT EXISTS `gaji_smk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=364 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_smk: ~48 rows (approximately)
+-- Dumping data for table sigap2.gaji_smk: ~144 rows (approximately)
 INSERT INTO `gaji_smk` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `tahun`, `bulan`, `potongan_bendahara`, `voucher`) VALUES
 	(220, '102327', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 2500, 1175000, 50000, 0, 0, 7000, 100000, 575000, 0, 1175000, 0, 5, 0, 46, 0, 1, 1, 2, 56000, 4, 450000, 0, 2, NULL, 2023, 2, NULL, 0),
 	(221, '198304102006070420', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 60, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
@@ -1986,7 +1986,7 @@ CREATE TABLE IF NOT EXISTS `gaji_smp` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=380 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_smp: ~43 rows (approximately)
+-- Dumping data for table sigap2.gaji_smp: ~86 rows (approximately)
 INSERT INTO `gaji_smp` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `tahun`, `bulan`, `potongan_bendahara`, `voucher`) VALUES
 	(251, '10238', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 8250, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 2, 0, 66000, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
 	(252, '102323', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 2500, 1050000, 50000, 0, 0, 7000, 100000, 450000, 0, 1050000, 0, 3, 0, 21, 0, 1, 1, 2, 56000, 4, 450000, 0, 2, NULL, 2023, 1, NULL, 0),
@@ -2115,7 +2115,7 @@ CREATE TABLE IF NOT EXISTS `gaji_tk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=214 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_tk: ~51 rows (approximately)
+-- Dumping data for table sigap2.gaji_tk: ~54 rows (approximately)
 INSERT INTO `gaji_tk` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `bulan`, `tahun`, `potongan_bendahara`, `voucher`) VALUES
 	(157, '10236', '2023-02-06 09:50:35', '2023-02-06', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 8250, 0, 450000, 0, 500000, 0, 1, 0, 46, 0, 1, 2, 0, 66000, 0, 0, 0, 0, NULL, 2023, 3, NULL, 0),
 	(158, '1023271', '2023-02-06 09:50:35', '2023-02-06', 0, 13000, 5, 2500, 1075000, 50000, 0, 0, 7000, 125000, 450000, 0, 1075000, 0, 1, 0, 46, 0, 1, 1, 2, 56000, 4, 450000, 0, 2, NULL, 2023, 3, NULL, 0),
@@ -2210,7 +2210,7 @@ CREATE TABLE IF NOT EXISTS `gaji_tu_sd` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_tu_sd: ~1 rows (approximately)
+-- Dumping data for table sigap2.gaji_tu_sd: ~2 rows (approximately)
 INSERT INTO `gaji_tu_sd` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `tunjangan2`, `tambahan`, `type_jabatan`, `ijasah`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`) VALUES
 	(83, NULL, '10232712', 2, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 0, 0, 0, 50000, 0, 50000, 20, 0, 0, 2, 0, 2, 0, 54000, 2023, 1, 0, NULL, NULL),
 	(84, NULL, '10232712', 2, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 0, 0, 0, 50000, 0, 50000, 21, 0, 0, 2, 0, 2, 0, 54000, 2023, 11, 0, NULL, NULL);
@@ -2253,7 +2253,7 @@ CREATE TABLE IF NOT EXISTS `gaji_tu_sma` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=339 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_tu_sma: ~8 rows (approximately)
+-- Dumping data for table sigap2.gaji_tu_sma: ~12 rows (approximately)
 INSERT INTO `gaji_tu_sma` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `tunjangan2`, `tambahan`, `type_jabatan`, `ijasah`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`) VALUES
 	(323, NULL, '10239', 4, 7, NULL, 105000, 26, 0, 13000, 50000, 0, 0, 8250, 0, 150000, NULL, 1779000, 0, 1779000, 248, 70000, 0, 2, 8, 6, 2, 54000, 2023, 12, 0, NULL, NULL),
 	(324, NULL, '102390', 4, 6, NULL, 92500, 26, 0, 13000, 50000, 0, 0, 8250, 100000, 70000, NULL, 1786500, 0, 1786503, 248, 70000, 3, 2, 8, 3, 2, 54000, 2023, 12, 0, NULL, NULL),
@@ -2306,7 +2306,7 @@ CREATE TABLE IF NOT EXISTS `gaji_tu_smk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_tu_smk: ~0 rows (approximately)
+-- Dumping data for table sigap2.gaji_tu_smk: ~2 rows (approximately)
 INSERT INTO `gaji_tu_smk` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `ijasah`, `tunjangan2`, `tambahan`, `type_jabatan`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`) VALUES
 	(80, NULL, '1023231', 5, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 100000, 0, 0, 220000, 0, 220000, 24, 0, 70000, 2, 2, 2, 1, 54000, 2023, 1, 0, NULL, NULL),
 	(81, NULL, '1023231', 5, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 100000, 0, 0, 220000, 0, 220000, 25, 0, 70000, 2, 2, 2, 1, 54000, 2023, 11, 0, NULL, NULL);
@@ -2349,7 +2349,7 @@ CREATE TABLE IF NOT EXISTS `gaji_tu_smp` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_tu_smp: ~0 rows (approximately)
+-- Dumping data for table sigap2.gaji_tu_smp: ~2 rows (approximately)
 INSERT INTO `gaji_tu_smp` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `tunjangan2`, `tambahan`, `type_jabatan`, `ijasah`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`) VALUES
 	(80, NULL, '1023232', 3, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 100000, 70000, 0, 220000, 0, 220000, 14, 0, 2, 2, 0, 2, 1, 54000, 2023, 1, 0, NULL, NULL),
 	(82, NULL, '1023232', 3, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 100000, 70000, 0, 220000, 0, 220000, 16, 0, 2, 2, 0, 2, 1, 54000, 2023, 11, 0, NULL, NULL);
@@ -2424,7 +2424,7 @@ CREATE TABLE IF NOT EXISTS `generate_perbulan` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.generate_perbulan: ~11 rows (approximately)
+-- Dumping data for table sigap2.generate_perbulan: ~12 rows (approximately)
 INSERT INTO `generate_perbulan` (`id`, `tahun`, `bulan`) VALUES
 	(1, 2023, 'januari,Februari,Maret'),
 	(2, 2023, 'januari,Februari,Maret'),
@@ -2467,7 +2467,7 @@ CREATE TABLE IF NOT EXISTS `generate_pertahun_sd` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=274 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.generate_pertahun_sd: ~4 rows (approximately)
+-- Dumping data for table sigap2.generate_pertahun_sd: ~3 rows (approximately)
 INSERT INTO `generate_pertahun_sd` (`id`, `tahun`, `bulan`, `profesi`, `bulan2`) VALUES
 	(267, 2023, NULL, 1, 1),
 	(271, 2023, NULL, 2, 1),
@@ -2520,7 +2520,7 @@ CREATE TABLE IF NOT EXISTS `generate_pertahun_tk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=359 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.generate_pertahun_tk: ~2 rows (approximately)
+-- Dumping data for table sigap2.generate_pertahun_tk: ~3 rows (approximately)
 INSERT INTO `generate_pertahun_tk` (`id`, `tahun`, `bulan`, `profesi`, `bulan2`) VALUES
 	(325, 2023, NULL, 2, 7),
 	(348, 2023, NULL, NULL, 1),
@@ -2811,7 +2811,7 @@ CREATE TABLE IF NOT EXISTS `jenis_jabatan` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.jenis_jabatan: ~2 rows (approximately)
+-- Dumping data for table sigap2.jenis_jabatan: ~3 rows (approximately)
 INSERT INTO `jenis_jabatan` (`id`, `name`) VALUES
 	(1, 'Pimpinan &amp; Guru'),
 	(2, 'Tenaga Kependidikan'),
@@ -2825,7 +2825,7 @@ CREATE TABLE IF NOT EXISTS `jenis_lembur` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.jenis_lembur: ~0 rows (approximately)
+-- Dumping data for table sigap2.jenis_lembur: ~1 rows (approximately)
 INSERT INTO `jenis_lembur` (`id`, `nama`, `aktif`) VALUES
 	(1, 'Kejar deadline', '1');
 
@@ -2868,7 +2868,7 @@ CREATE TABLE IF NOT EXISTS `mpendidikan` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.mpendidikan: ~8 rows (approximately)
+-- Dumping data for table sigap2.mpendidikan: ~10 rows (approximately)
 INSERT INTO `mpendidikan` (`id`, `name`) VALUES
 	(1, 'SD'),
 	(2, 'SMP'),
@@ -2958,7 +2958,7 @@ CREATE TABLE IF NOT EXISTS `m_karyawan_sd` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_karyawan_sd: ~2 rows (approximately)
+-- Dumping data for table sigap2.m_karyawan_sd: ~5 rows (approximately)
 INSERT INTO `m_karyawan_sd` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(4, 2024, 12, NULL, NULL),
 	(5, 2024, 12, NULL, NULL),
@@ -2976,7 +2976,7 @@ CREATE TABLE IF NOT EXISTS `m_karyawan_sma` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_karyawan_sma: ~2 rows (approximately)
+-- Dumping data for table sigap2.m_karyawan_sma: ~4 rows (approximately)
 INSERT INTO `m_karyawan_sma` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(63, 2023, 6, NULL, NULL),
 	(64, 2023, 7, NULL, NULL),
@@ -3043,7 +3043,7 @@ CREATE TABLE IF NOT EXISTS `m_kehadiran` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.m_kehadiran: ~29 rows (approximately)
+-- Dumping data for table sigap2.m_kehadiran: ~32 rows (approximately)
 INSERT INTO `m_kehadiran` (`id`, `jenjang`, `jenis_jabatan`, `sertif`, `value`, `jabatan`) VALUES
 	(1, 4, 1, 1, 56000, NULL),
 	(2, 4, 1, 2, 66000, NULL),
@@ -3121,7 +3121,7 @@ CREATE TABLE IF NOT EXISTS `m_piket` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.m_piket: ~15 rows (approximately)
+-- Dumping data for table sigap2.m_piket: ~16 rows (approximately)
 INSERT INTO `m_piket` (`id`, `jenjang`, `type_jabatan`, `jenis_sertif`, `value`) VALUES
 	(1, 4, 1, 1, 7000),
 	(2, 4, 1, 2, 8250),
@@ -3198,7 +3198,7 @@ CREATE TABLE IF NOT EXISTS `m_potongan_smk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_potongan_smk: ~2 rows (approximately)
+-- Dumping data for table sigap2.m_potongan_smk: ~3 rows (approximately)
 INSERT INTO `m_potongan_smk` (`id`, `bulan`, `tahun`, `c_by`, `datetime`, `import_file`) VALUES
 	(1, 4, 2023, -1, '2023-01-25 07:09:34', NULL),
 	(2, 4, 2023, -1, '2023-01-25 07:10:45', NULL),
@@ -3321,7 +3321,7 @@ CREATE TABLE IF NOT EXISTS `m_sma` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=561 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_sma: ~1 rows (approximately)
+-- Dumping data for table sigap2.m_sma: ~3 rows (approximately)
 INSERT INTO `m_sma` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(558, 2023, 2, NULL, NULL),
 	(559, 2023, 1, NULL, NULL),
@@ -3337,7 +3337,7 @@ CREATE TABLE IF NOT EXISTS `m_smk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_smk: ~2 rows (approximately)
+-- Dumping data for table sigap2.m_smk: ~3 rows (approximately)
 INSERT INTO `m_smk` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(46, '2023', 2, NULL, NULL),
 	(47, '2023', 1, NULL, NULL),
@@ -3353,7 +3353,7 @@ CREATE TABLE IF NOT EXISTS `m_smp` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_smp: ~1 rows (approximately)
+-- Dumping data for table sigap2.m_smp: ~2 rows (approximately)
 INSERT INTO `m_smp` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(21, '2023', 1, NULL, NULL),
 	(23, '2023', 11, NULL, NULL);
@@ -3416,7 +3416,7 @@ CREATE TABLE IF NOT EXISTS `m_tu_sd` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_tu_sd: ~1 rows (approximately)
+-- Dumping data for table sigap2.m_tu_sd: ~2 rows (approximately)
 INSERT INTO `m_tu_sd` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(20, '2023', 1, NULL, NULL),
 	(21, '2023', 11, NULL, NULL);
@@ -3431,7 +3431,7 @@ CREATE TABLE IF NOT EXISTS `m_tu_sma` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=252 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_tu_sma: ~2 rows (approximately)
+-- Dumping data for table sigap2.m_tu_sma: ~3 rows (approximately)
 INSERT INTO `m_tu_sma` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(248, '2023', 12, NULL, NULL),
 	(250, '2023', 1, NULL, NULL),
@@ -3447,7 +3447,7 @@ CREATE TABLE IF NOT EXISTS `m_tu_smk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_tu_smk: ~1 rows (approximately)
+-- Dumping data for table sigap2.m_tu_smk: ~2 rows (approximately)
 INSERT INTO `m_tu_smk` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(24, '2023', 1, NULL, NULL),
 	(25, '2023', 11, NULL, NULL);
@@ -3462,7 +3462,7 @@ CREATE TABLE IF NOT EXISTS `m_tu_smp` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_tu_smp: ~2 rows (approximately)
+-- Dumping data for table sigap2.m_tu_smp: ~3 rows (approximately)
 INSERT INTO `m_tu_smp` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(10, '2023', 8, NULL, NULL),
 	(14, '2023', 1, NULL, NULL),
@@ -3494,7 +3494,7 @@ CREATE TABLE IF NOT EXISTS `m_yayasan` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.m_yayasan: ~0 rows (approximately)
+-- Dumping data for table sigap2.m_yayasan: ~4 rows (approximately)
 INSERT INTO `m_yayasan` (`id`, `bulan`, `tahun`, `datetime`, `import_file`) VALUES
 	(7, 1, 2023, '2023-02-13 03:19:42', 'Template Pengurus Yayasan (5).xlsx'),
 	(8, 1, 2024, '2023-02-13 03:26:25', 'Template Pengurus Yayasan (1).xlsx'),
@@ -3539,7 +3539,7 @@ CREATE TABLE IF NOT EXISTS `pegawai` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=428 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.pegawai: ~401 rows (approximately)
+-- Dumping data for table sigap2.pegawai: ~403 rows (approximately)
 INSERT INTO `pegawai` (`id`, `pid`, `nama`, `alamat`, `email`, `wa`, `hp`, `tgllahir`, `nip`, `rekbank`, `pendidikan`, `jurusan`, `agama`, `jenkel`, `status`, `foto`, `file_cv`, `jabatan`, `mulai_bekerja`, `keterangan`, `username`, `password`, `level`, `aktif`, `jenjang_id`, `type`, `sertif`, `tambahan`, `periode_jabatan`, `lama_kerja`, `status_peg`, `jjm`, `kehadiran`) VALUES
 	(6, NULL, 'Fitria', 'surabaya', 'fitria@gmail.com', NULL, NULL, NULL, '10230', '11313411', NULL, NULL, NULL, 'Wanita', NULL, NULL, NULL, 5, NULL, NULL, 'Fitria', 'asdf12', 1, 1, 4, 1, 1, 2, 4, 2, NULL, 48, NULL),
 	(11, NULL, 'Dito', 'surabaya', 'dito@gmail.com', '085970248011', NULL, NULL, '10235', NULL, NULL, NULL, NULL, 'Wanita', NULL, NULL, NULL, 9, NULL, NULL, 'dito', 'asdf123', 1, 1, 4, 1, 2, NULL, NULL, NULL, NULL, 48, NULL),
@@ -4131,7 +4131,7 @@ CREATE TABLE IF NOT EXISTS `potongan_sma` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.potongan_sma: ~17 rows (approximately)
+-- Dumping data for table sigap2.potongan_sma: ~20 rows (approximately)
 INSERT INTO `potongan_sma` (`id`, `datetime`, `month`, `nama`, `jenjang_id`, `jabatan_id`, `terlambat`, `value_terlambat`, `izin`, `value_izin`, `u_by`, `sakit`, `value_sakit`, `totalpotongan`, `tidakhadir`, `value_tidakhadir`, `pulcep`, `value_pulcep`, `tidakhadirjam`, `tidakhadirjamvalue`, `sakitperjam`, `sakitperjamvalue`, `izinperjam`, `izinperjamvalue`, `sertif`, `tahun`, `bulan`, `pid`) VALUES
 	(97, NULL, NULL, '10235', 4, 9, 2, 50000, 2, NULL, NULL, 2, NULL, NULL, 2, NULL, 2, NULL, 3, NULL, 1, NULL, NULL, NULL, 2, NULL, NULL, NULL),
 	(98, '2023-01-18 07:28:55', NULL, '10235', 4, 9, 4, 16500, 3, NULL, NULL, NULL, NULL, 66000, NULL, NULL, NULL, 16500, NULL, 16500, NULL, 8250, NULL, 16500, 2, NULL, NULL, NULL),
@@ -4187,7 +4187,7 @@ CREATE TABLE IF NOT EXISTS `potongan_smk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.potongan_smk: ~9 rows (approximately)
+-- Dumping data for table sigap2.potongan_smk: ~10 rows (approximately)
 INSERT INTO `potongan_smk` (`id`, `u_by`, `datetime`, `month`, `nama`, `jenjang_id`, `jabatan_id`, `terlambat`, `value_terlambat`, `izin`, `value_izin`, `sakit`, `value_sakit`, `totalpotongan`, `tidakhadir`, `value_tidakhadir`, `pulcep`, `value_pulcep`, `tidakhadirjam`, `tidakhadirjamvalue`, `sakitperjam`, `sakitperjamvalue`, `izinperjam`, `izinperjamvalue`, `sertif`, `tahun`, `bulan`, `pid`) VALUES
 	(59, -1, '2022-12-16 04:03:38', NULL, '110123', 1, 1, 2, 15000, 2, 40000, NULL, 23000, 168000, NULL, 40000, 2, 20000, 2, 9000, NULL, 4000, NULL, 9000, NULL, NULL, NULL, NULL),
 	(61, -1, '2022-12-16 04:09:21', NULL, '110124', 1, 2, 2, 30000, 2, 30000, NULL, 27000, 164000, NULL, 30000, 2, 18000, 2, 4000, NULL, 7000, NULL, 4000, NULL, NULL, NULL, NULL),
@@ -4505,7 +4505,7 @@ CREATE TABLE IF NOT EXISTS `tunjangan_berkala` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.tunjangan_berkala: ~117 rows (approximately)
+-- Dumping data for table sigap2.tunjangan_berkala: ~120 rows (approximately)
 INSERT INTO `tunjangan_berkala` (`id`, `jenjang`, `kualifikasi`, `lama`, `value`) VALUES
 	(21, 3, 5, 1, 382500),
 	(22, 3, 15, 1, 330000),
@@ -4684,7 +4684,7 @@ CREATE TABLE IF NOT EXISTS `tunjangan_tambahan` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.tunjangan_tambahan: ~11 rows (approximately)
+-- Dumping data for table sigap2.tunjangan_tambahan: ~13 rows (approximately)
 INSERT INTO `tunjangan_tambahan` (`id`, `jenjang`, `kualifikasi`, `value`) VALUES
 	(5, 4, 3, 100000),
 	(6, 4, 5, 100000),
@@ -4733,7 +4733,7 @@ CREATE TABLE IF NOT EXISTS `userlevelpermissions` (
   PRIMARY KEY (`userlevelid`,`tablename`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.userlevelpermissions: ~1,437 rows (approximately)
+-- Dumping data for table sigap2.userlevelpermissions: ~1,879 rows (approximately)
 INSERT INTO `userlevelpermissions` (`userlevelid`, `tablename`, `permission`) VALUES
 	(-2, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen', 0),
 	(-2, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen_detil', 0),
@@ -6622,7 +6622,7 @@ CREATE TABLE IF NOT EXISTS `userlevels` (
   PRIMARY KEY (`userlevelid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.userlevels: ~13 rows (approximately)
+-- Dumping data for table sigap2.userlevels: ~15 rows (approximately)
 INSERT INTO `userlevels` (`userlevelid`, `userlevelname`) VALUES
 	(-2, 'Anonymous'),
 	(-1, 'Administrator'),
