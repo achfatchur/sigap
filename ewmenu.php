@@ -17,6 +17,7 @@ echo $topMenu->toScript();
 
 // Sidebar menu
 $sideMenu = new Menu("menu", TRUE, FALSE);
+$sideMenu->addMenuItem(1623, "mi_backup_restore", $MenuLanguage->MenuPhrase("1623", "MenuText"), $MenuRelativePath . "backup_restore.php", -1, "", AllowListMenu('{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}backup_restore.php'), FALSE, FALSE, "", "", FALSE);
 $sideMenu->addMenuItem(1135, "mi_home", $MenuLanguage->MenuPhrase("1135", "MenuText"), $MenuRelativePath . "home.php", -1, "", AllowListMenu('{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}home.php'), FALSE, FALSE, "fas fa-home", "", FALSE);
 $sideMenu->addMenuItem(40, "mi_pegawai", $MenuLanguage->MenuPhrase("40", "MenuText"), $MenuRelativePath . "pegawailist.php", -1, "", AllowListMenu('{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}pegawai'), FALSE, FALSE, "fa fa-user", "", FALSE);
 $sideMenu->addMenuItem(1621, "mci_Pengguna", $MenuLanguage->MenuPhrase("1621", "MenuText"), "", -1, "", TRUE, FALSE, TRUE, "fa fa-user", "", FALSE);

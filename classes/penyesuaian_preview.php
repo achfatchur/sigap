@@ -633,6 +633,7 @@ class penyesuaian_preview extends penyesuaian
 
 		// Set up lookup cache
 		$this->setupLookupOptions($this->nip);
+		$this->setupLookupOptions($this->jenjang_id);
 
 		// Load filter
 		$filter = Get("f", "");
@@ -864,6 +865,8 @@ class penyesuaian_preview extends penyesuaian
 			switch ($fld->FieldVar) {
 				case "x_nip":
 					break;
+				case "x_jenjang_id":
+					break;
 				default:
 					$lookupFilter = "";
 					break;
@@ -885,6 +888,8 @@ class penyesuaian_preview extends penyesuaian
 					// Format the field values
 					switch ($fld->FieldVar) {
 						case "x_nip":
+							break;
+						case "x_jenjang_id":
 							break;
 					}
 					$ar[strval($row[0])] = $row;

@@ -764,6 +764,7 @@ class penyesuaian_grid extends penyesuaian
 
 		// Set up lookup cache
 		$this->setupLookupOptions($this->nip);
+		$this->setupLookupOptions($this->jenjang_id);
 
 		// Search filters
 		$srchAdvanced = ""; // Advanced search filter
@@ -2017,7 +2018,25 @@ class penyesuaian_grid extends penyesuaian
 
 			// jenjang_id
 			$this->jenjang_id->ViewValue = $this->jenjang_id->CurrentValue;
-			$this->jenjang_id->ViewValue = FormatNumber($this->jenjang_id->ViewValue, 0, -2, -2, -2);
+			$curVal = strval($this->jenjang_id->CurrentValue);
+			if ($curVal != "") {
+				$this->jenjang_id->ViewValue = $this->jenjang_id->lookupCacheOption($curVal);
+				if ($this->jenjang_id->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`nourut`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->jenjang_id->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->jenjang_id->ViewValue = $this->jenjang_id->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->jenjang_id->ViewValue = $this->jenjang_id->CurrentValue;
+					}
+				}
+			} else {
+				$this->jenjang_id->ViewValue = NULL;
+			}
 			$this->jenjang_id->ViewCustomAttributes = "";
 
 			// absen
@@ -2199,6 +2218,25 @@ class penyesuaian_grid extends penyesuaian
 			$this->jenjang_id->EditAttrs["class"] = "form-control";
 			$this->jenjang_id->EditCustomAttributes = "";
 			$this->jenjang_id->EditValue = HtmlEncode($this->jenjang_id->CurrentValue);
+			$curVal = strval($this->jenjang_id->CurrentValue);
+			if ($curVal != "") {
+				$this->jenjang_id->EditValue = $this->jenjang_id->lookupCacheOption($curVal);
+				if ($this->jenjang_id->EditValue === NULL) { // Lookup from database
+					$filterWrk = "`nourut`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->jenjang_id->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = HtmlEncode($rswrk->fields('df'));
+						$this->jenjang_id->EditValue = $this->jenjang_id->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->jenjang_id->EditValue = HtmlEncode($this->jenjang_id->CurrentValue);
+					}
+				}
+			} else {
+				$this->jenjang_id->EditValue = NULL;
+			}
 			$this->jenjang_id->PlaceHolder = RemoveHtml($this->jenjang_id->caption());
 
 			// absen
@@ -2380,6 +2418,25 @@ class penyesuaian_grid extends penyesuaian
 			$this->jenjang_id->EditAttrs["class"] = "form-control";
 			$this->jenjang_id->EditCustomAttributes = "";
 			$this->jenjang_id->EditValue = HtmlEncode($this->jenjang_id->CurrentValue);
+			$curVal = strval($this->jenjang_id->CurrentValue);
+			if ($curVal != "") {
+				$this->jenjang_id->EditValue = $this->jenjang_id->lookupCacheOption($curVal);
+				if ($this->jenjang_id->EditValue === NULL) { // Lookup from database
+					$filterWrk = "`nourut`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->jenjang_id->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = HtmlEncode($rswrk->fields('df'));
+						$this->jenjang_id->EditValue = $this->jenjang_id->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->jenjang_id->EditValue = HtmlEncode($this->jenjang_id->CurrentValue);
+					}
+				}
+			} else {
+				$this->jenjang_id->EditValue = NULL;
+			}
 			$this->jenjang_id->PlaceHolder = RemoveHtml($this->jenjang_id->caption());
 
 			// absen
@@ -3039,6 +3096,8 @@ class penyesuaian_grid extends penyesuaian
 			switch ($fld->FieldVar) {
 				case "x_nip":
 					break;
+				case "x_jenjang_id":
+					break;
 				default:
 					$lookupFilter = "";
 					break;
@@ -3060,6 +3119,8 @@ class penyesuaian_grid extends penyesuaian
 					// Format the field values
 					switch ($fld->FieldVar) {
 						case "x_nip":
+							break;
+						case "x_jenjang_id":
 							break;
 					}
 					$ar[strval($row[0])] = $row;

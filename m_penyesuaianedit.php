@@ -69,6 +69,11 @@ loadjs.ready("head", function() {
 				elm = this.getElements("x" + infix + "_tahun");
 				if (elm && !ew.checkInteger(elm.value))
 					return this.onError(elm, "<?php echo JsEncode($m_penyesuaian_edit->tahun->errorMessage()) ?>");
+			<?php if ($m_penyesuaian_edit->c_by->Required) { ?>
+				elm = this.getElements("x" + infix + "_c_by");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $m_penyesuaian_edit->c_by->caption(), $m_penyesuaian_edit->c_by->RequiredErrorMessage)) ?>");
+			<?php } ?>
 			<?php if ($m_penyesuaian_edit->import_file->Required) { ?>
 				felm = this.getElements("x" + infix + "_import_file");
 				elm = this.getElements("fn_x" + infix + "_import_file");
@@ -105,6 +110,9 @@ loadjs.ready("head", function() {
 	// Dynamic selection lists
 	fm_penyesuaianedit.lists["x_bulan"] = <?php echo $m_penyesuaian_edit->bulan->Lookup->toClientList($m_penyesuaian_edit) ?>;
 	fm_penyesuaianedit.lists["x_bulan"].options = <?php echo JsonEncode($m_penyesuaian_edit->bulan->lookupOptions()) ?>;
+	fm_penyesuaianedit.lists["x_c_by"] = <?php echo $m_penyesuaian_edit->c_by->Lookup->toClientList($m_penyesuaian_edit) ?>;
+	fm_penyesuaianedit.lists["x_c_by"].options = <?php echo JsonEncode($m_penyesuaian_edit->c_by->lookupOptions()) ?>;
+	fm_penyesuaianedit.autoSuggests["x_c_by"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
 	loadjs.done("fm_penyesuaianedit");
 });
 </script>

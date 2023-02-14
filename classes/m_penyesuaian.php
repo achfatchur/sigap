@@ -785,7 +785,6 @@ class m_penyesuaian extends DbTable
 
 		// tahun
 		$this->tahun->ViewValue = $this->tahun->CurrentValue;
-		$this->tahun->ViewValue = FormatNumber($this->tahun->ViewValue, 0, -2, -2, -2);
 		$this->tahun->ViewCustomAttributes = "";
 
 		// c_by
@@ -1108,6 +1107,12 @@ class m_penyesuaian extends DbTable
 	function Recordset_Selecting(&$filter) {
 
 		// Enter your code here
+	if(CurrentUserLevel() != '-1'){
+	$nip = CurrentUserInfo("id");
+	if($nip != '' OR $nip != FALSE) {
+	AddFilter($filter, "c_by = $nip");
+			}
+		}
 	}
 
 	// Recordset Selected event
@@ -1148,14 +1153,13 @@ class m_penyesuaian extends DbTable
 		// Enter your code here
 		// To cancel, set return value to FALSE
 
-
-				$rsnew['datetime'] = date('Y-m-d H:i:s');
-				$rsnew['c_by'] = CurrentUserInfo("id");
-				$m_penyesuaian = ExecuteRow("SELECT * FROM m_penyesuaian WHERE bulan = '".$rsnew['bulan']."' AND tahun = '".$rsnew['tahun']."'");
-				if(!empty($m_penyesuaian)){
-					$delete_d = Execute("DELETE FROM penyesuaian WHERE m_id = '".$m_penyesuaian['id']."'");
-					$delete_m = Execute("DELETE FROM m_penyesuaian WHERE id = '".$m_penyesuaian['id']."'");
-				}
+					$rsnew['datetime'] = date('Y-m-d H:i:s');
+					$rsnew['c_by'] = CurrentUserInfo("id");
+					$m_penyesuaian = ExecuteRow("SELECT * FROM m_penyesuaian WHERE bulan = '".$rsnew['bulan']."' AND tahun = '".$rsnew['tahun']."'");
+					if(!empty($m_penyesuaian)){
+						$delete_d = Execute("DELETE FROM penyesuaian WHERE m_id = '".$m_penyesuaian['id']."'");
+						$delete_m = Execute("DELETE FROM m_penyesuaian WHERE id = '".$m_penyesuaian['id']."'");
+					}
 		return TRUE;
 	}
 
@@ -1163,263 +1167,336 @@ class m_penyesuaian extends DbTable
 	function Row_Inserted($rsold, &$rsnew) {
 
 		//echo "Row Inserted"
-					$bulan = $rsnew['bulan'];
-						$tahun = $rsnew['tahun'];
+$bulan = $rsnew['bulan'];
+$tahun = $rsnew['tahun'];
 
-						//echo "Row Inserted"
-						if ($rsnew["import_file"]){
-								$path2file = "files/".$rsnew["import_file"];
-								$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-								if($reader) {
-									$reader->setReadDataOnly(true);
-									$spreadsheet = $reader->load($path2file);
-									$worksheet = $spreadsheet->getActiveSheet();
-									$highestRow = $worksheet->getHighestRow();
-									$highestColumn = $worksheet->getHighestColumn();
-									$startRowIdx = 2;
-									$records = $worksheet->rangeToArray("B" . $startRowIdx . ":"  . $highestColumn. $highestRow);
-									$XLSXdata = "";
-									foreach($records as $row) {
-										$jenjang = ExecuteScalar("SELECT nourut FROM tpendidikan WHERE name='".$row[1]."'");
-										$pegawai = ExecuteRow("SELECT * FROM pegawai WHERE nip='".$row[0]."'");
-										$absen = ExecuteScalar("SELECT value FROM m_tidakhadir WHERE jenjang_id='".$jenjang."'");
-										$izin = ExecuteScalar("SELECT value FROM jenis_ijin WHERE jenjang_id='".$jenjang."'");
-										$sakit = ExecuteScalar("SELECT perhari FROM m_sakit WHERE jenjang_id='".$jenjang."'");
-										$absen_jam = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$jenjang."'");
-										$izin_jam = ExecuteScalar("SELECT valueperjam FROM jenis_ijin WHERE jenjang_id='".$jenjang."'");
-										$sakit_jam = ExecuteScalar("SELECT perjam FROM m_sakit WHERE jenjang_id='".$jenjang."'");
-										$telambat = ExecuteScalar("SELECT value FROM terlambat WHERE jenjang_id='".$jenjang."'");
-										$pulang_cepat = ExecuteScalar("SELECT perhari FROM m_pulangcepat WHERE jenjang_id='".$jenjang."'");
-										$piket = ExecuteScalar("SELECT value FROM m_piket WHERE jenjang_id='".$jenjang."'");
-										$inval = ExecuteScalar("SELECT value FROM m_inval WHERE jenjang_id='".$jenjang."'");
-										$lembur = ExecuteScalar("SELECT value_perjam FROM m_lembur WHERE jenjang_id='".$jenjang."'");
-										$potongan = ($absen * $row[2]) + ($izin * $row[4]) + ($sakit * $row[6]) + ($absen_jam * $row[3]) + ($izin_jam * $row[5]) + ($sakit_jam * $row[7]) + ($telambat * $row[8]) + ($pulang_cepat * $row[9]);
-										$penyesuaian = ($piket * $row[10]) + ($inval * $row[11]) + ($lembur * $row[12]);
+//echo "Row Inserted"
+if ($rsnew["import_file"]){
+		$path2file = "files/".$rsnew["import_file"];
+		$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+		if($reader) {
+	$reader->setReadDataOnly(true);
+	$spreadsheet = $reader->load($path2file);
+	$worksheet = $spreadsheet->getActiveSheet();
+	$highestRow = $worksheet->getHighestRow();
+	$highestColumn = $worksheet->getHighestColumn();
+	$startRowIdx = 2;
+	$records = $worksheet->rangeToArray("B" . $startRowIdx . ":"  . $highestColumn. $highestRow);
+	$XLSXdata = "";
+	foreach($records as $row) {
+	$jenjang = ExecuteScalar("SELECT nourut FROM tpendidikan WHERE name='".$row[1]."'");
+	$data_pegawai = ExecuteRow("select * from pegawai where nip='".$row[0]."'");
+	$pegawai = ExecuteRow("SELECT * FROM pegawai WHERE nip='".$row[0]."'");
+	//terlambat untuk guru sama dengan absen guru
+	$absen_guru = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$jenjang."' AND jabatan_id='".$data_pegawai["jabatan"]."' AND sertif='".$data_pegawai["sertif"]."'");
+	$piket_guru =ExecuteScalar("SELECT value FROM m_piket WHERE jenjang='".$jenjang."' AND type_jabatan='".$data_pegawai["type"]."' AND jenis_sertif='".$data_pegawai["sertif"]."'");
+	$izin_guru = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$jenjang."' AND jabatan_id='".$data_pegawai["jabatan"]."' AND sertif='".$data_pegawai["sertif"]."'");
+	//$sakit_guru = ExecuteScalar("SELECT perhari FROM m_sakit WHERE jenjang_id='".$jenjang."' AND jabatan='".$data_pegawai["type"]."' AND sertif='".$data_pegawai["sertif"]."'");
+	$sakit_jam_guru = ExecuteScalar("SELECT perjam FROM m_sakit WHERE jenjang_id='".$jenjang."' AND `type`='".$data_pegawai["type"]."' AND sertif='".$data_pegawai["sertif"]."'");
 
-										//PENGECEKKAN DATA GAJI
-										$gaji_sma = ExecuteRow("SELECT * FROM gaji_sma WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-										if(!empty($gaji_sma)){
-											Execute("UPDATE gaji_sma SET potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_sma['id']."'");
-										}
-										$gaji_tu_sma = ExecuteRow("SELECT * FROM gaji_tu_sma WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-										if(!empty($gaji_tu_sma)){
-											Execute("UPDATE gaji_tu_sma SET potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_sma['id']."'");
-										}
-										$gaji_karyawan_sma = ExecuteRow("SELECT * FROM gaji_karyawan_sma WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-										if(!empty($gaji_karyawan_sma)){
-											Execute("UPDATE gaji_karyawan_sma SET potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_sma['id']."'");
-										}
-										$gaji_smk = ExecuteRow("SELECT * FROM gaji_smk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-										if(!empty($gaji_smk)){
-											Execute("UPDATE gaji_smk SET potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_smk['id']."'");
-										}
-										$gaji_tu_smk = ExecuteRow("SELECT * FROM gaji_tu_smk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-										if(!empty($gaji_tu_smk)){
-											Execute("UPDATE gaji_tu_smk SET potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_smk['id']."'");
-										}
-										$gaji_karyawan_smk = ExecuteRow("SELECT * FROM gaji_karyawan_smk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-										if(!empty($gaji_karyawan_smk)){
-											Execute("UPDATE gaji_karyawan_smk SET potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_smk['id']."'");
-										}
-										$gaji_smp = ExecuteRow("SELECT * FROM gaji_smp WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-										if(!empty($gaji_smp)){
-											Execute("UPDATE gaji_smp SET potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_smp['id']."'");
-										}
-										$gaji_tu_smp = ExecuteRow("SELECT * FROM gaji_tu_smp WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-										if(!empty($gaji_tu_smp)){
-											Execute("UPDATE gaji_tu_smp SET potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_smp['id']."'");
-										}
-										$gaji_karyawan_smp = ExecuteRow("SELECT * FROM gaji_karyawan_smp WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-										if(!empty($gaji_karyawan_smp)){
-											Execute("UPDATE gaji_karyawan_smp SET potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_smp['id']."'");
-										}
-										$gaji = ExecuteRow("SELECT * FROM gaji WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-										if(!empty($gaji)){
-											Execute("UPDATE gaji SET potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji['id']."'");
-										}
-										$gaji_tu_sd = ExecuteRow("SELECT * FROM gaji_tu_sd WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-										if(!empty($gaji_tu_sd)){
-											Execute("UPDATE gaji_tu_sd SET potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_sd['id']."'");
-										}
-										$gaji_karyawan_sd = ExecuteRow("SELECT * FROM gaji_karyawan_sd WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-										if(!empty($gaji_karyawan_sd)){
-											Execute("UPDATE gaji_karyawan_sd SET potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_sd['id']."'");
-										}
-										$gaji_tk = ExecuteRow("SELECT * FROM gaji_tk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-										if(!empty($gaji_tk)){
-											Execute("UPDATE gaji_tk SET potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tk['id']."'");
-										}
-										$gaji_tu_tk = ExecuteRow("SELECT * FROM gaji_tu_tk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-										if(!empty($gaji_tu_tk)){
-											Execute("UPDATE gaji_tu_tk SET potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_tk['id']."'");
-										}
-										$gaji_karyawan_tk = ExecuteRow("SELECT * FROM gaji_karyawan_tk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-										if(!empty($gaji_karyawan_tk)){
-											Execute("UPDATE gaji_karyawan_tk SET potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_tk['id']."'");
-										}
-										$XLSXdata .= "("
-										.("NULL").","
-										."'".$rsnew["id"]."',"
-										.("'".date('Y-m-d H:i:s')."'").","
-										.(isset($row[0]) ? "'".$row[0]."'" : "NULL").","
-										."'".$jenjang."',"
-										.(isset($row[2]) ? "'".$row[2]."'" : "NULL").","
-										.(isset($row[4]) ? "'".$row[4]."'" : "NULL").","
-										.(isset($row[6]) ? "'".$row[6]."'" : "NULL").","
-										.(isset($row[8]) ? "'".$row[8]."'" : "NULL").","
-										.(isset($row[9]) ? "'".$row[9]."'" : "NULL").","
-										.(isset($row[10]) ? "'".$row[10]."'" : "NULL").","
-										.(isset($row[11]) ? "'".$row[11]."'" : "NULL").","
-										.(isset($row[12]) ? "'".$row[12]."'" : "NULL").","
-										."'".$potongan."',"
-										."'".$penyesuaian."',"
-										.(isset($row[13]) ? "'".$row[13]."'" : "NULL").","
-										.(isset($row[3]) ? "'".$row[3]."'" : "NULL").","
-										.(isset($row[5]) ? "'".$row[5]."'" : "NULL").","
-										.(isset($row[7]) ? "'".$row[7]."'" : "NULL")."),";
-									}
-										if ($XLSXdata != "") {
-											$myquery = "INSERT INTO `penyesuaian` VALUES ".rtrim($XLSXdata, ',') . ';';
-											$myResult = Execute($myquery);
-										}
-								}
-						}
-						//$this->terminate("penyesuaianlist.php?showmaster=m_penyesuaian&fk_id=".$rsnew["id"]."");
-						return TRUE;
-					}
+	$absen = ExecuteScalar("SELECT value FROM m_tidakhadir WHERE jenjang_id='".$jenjang."'");
+	$izin = ExecuteScalar("SELECT value FROM m_tidakhadir WHERE jenjang_id='".$jenjang."' AND jabatan_id='".$data_pegawai["jabatan"]."'");
+	$sakit = ExecuteScalar("SELECT perhari FROM m_sakit WHERE jenjang_id='".$jenjang."' AND jabatan='".$data_pegawai["jabatan"]."'");
+	$absen_jam = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$jenjang."' AND jabatan_id='".$data_pegawai["jabatan"]."'");
+	$izin_jam = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$jenjang."' AND jabatan_id='".$data_pegawai["jabatan"]."'");
+	$sakit_jam = ExecuteScalar("SELECT perjam FROM m_sakit WHERE jenjang_id='".$jenjang."' AND jabatan='".$data_pegawai["jabatan"]."'");
+	$telambat = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$jenjang."' AND jabatan_id='".$data_pegawai["jabatan"]."'");
+	$pulang_cepat = ExecuteScalar("SELECT perhari FROM m_pulangcepat WHERE jenjang_id='".$jenjang."'");
+	$piket = ExecuteScalar("SELECT value FROM m_piket WHERE jenjang='".$jenjang."' AND type_jabatan='".$data_pegawai["type"]."'");
+	$inval = ExecuteScalar("SELECT value FROM m_inval WHERE jenjang_id='".$jenjang."' AND jabatan_id='".$data_pegawai["type"]."'");
+	//print_r($inval);
+	//die;
+	$lembur = ExecuteScalar("SELECT value_perjam FROM m_lembur WHERE jenjang_id='".$jenjang."'");
+	if($data_pegawai["type"] == '1'){
+		$potongan = ($absen_guru * $row[2]) + ($absen_guru * $row[4]) + ($sakit_jam_guru * $row[6]) + ($absen_guru * $row[3]) + ($izin_guru * $row[5]) + ($sakit_jam_guru * $row[7]) + ($absen_guru * $row[8]) + ($absen_guru * $row[9]);
+		//print_r($test_absen);
+		//die;
+		$penyesuaian = ($piket_guru * $row[10]) + ($inval * $row[11]) + ($lembur * $row[12]);
+	}else{
+		$potongan = ($absen * $row[2]) + ($izin * $row[4]) + ($sakit * $row[6]) + ($absen_jam * $row[3]) + ($izin_jam * $row[5]) + ($sakit_jam * $row[7]) + ($telambat * $row[8]) + ($pulang_cepat * $row[9]);
+		$penyesuaian = ($piket * $row[10]) + ($inval * $row[11]) + ($lembur * $row[12]);
+	}
 
-		// Row Updating event
+	//$test_absen= $absen_guru * $row[2];
+	//$test_sakit = $sakit_jam_guru * $row[6];
+
+
+
+	//PENGECEKKAN DATA GAJI
+	$gaji_sma = ExecuteRow("SELECT * FROM gaji_sma WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+	$total_gaji_sma = $gaji_sma["total"]-$potongan_guru+$penyesuaian_guru;
+
+			if(!empty($gaji_sma)){
+				Execute("UPDATE gaji_sma SET total = '".$total_gaji_sma."',potongan = '".$potongan_guru."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian_guru."' WHERE id ='".$gaji_sma['id']."'");
+			}
+			$gaji_tu_sma = ExecuteRow("SELECT * FROM gaji_tu_sma WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+			$total_gaji_tu_sma=$gaji_tu_sma["total"]-$potongan+$penyesuaian; 
+			if(!empty($gaji_tu_sma)){
+				Execute("UPDATE gaji_tu_sma SET total = '".$total_gaji_tu_sma."', potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_sma['id']."'");
+			}
+			$gaji_karyawan_sma = ExecuteRow("SELECT * FROM gaji_karyawan_sma WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+			$total_gaji_karyawan_sma=$gaji_karyawan_sma["total"]-$potongan+$penyesuaian;
+			if(!empty($gaji_karyawan_sma)){
+				Execute("UPDATE gaji_karyawan_sma SET total='".$total_gaji_karyawan_sma."', potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_sma['id']."'");
+			}
+			$gaji_smk = ExecuteRow("SELECT * FROM gaji_smk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+			$total_gaji_smk = $gaji_smk["total"]-$potongan+$penyesuaian_guru;
+			if(!empty($gaji_smk)){
+				Execute("UPDATE gaji_smk SET total='".$total_gaji_smk."', potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian_guru."' WHERE id ='".$gaji_smk['id']."'");
+			}
+			$gaji_tu_smk = ExecuteRow("SELECT * FROM gaji_tu_smk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+			$total_gaji_tu_smk = $gaji_tu_smk["total"]-$potongan+$penyesuaian;
+			if(!empty($gaji_tu_smk)){
+				Execute("UPDATE gaji_tu_smk SET total ='".$total_gaji_tu_smk."', potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_smk['id']."'");
+			}
+			$gaji_karyawan_smk = ExecuteRow("SELECT * FROM gaji_karyawan_smk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+			$total_gaji_karyawan_smk=$gaji_karyawan_smk["total"]-$potongan+$penyesuaian;
+			if(!empty($gaji_karyawan_smk)){
+				Execute("UPDATE gaji_karyawan_smk SET total='".$total_gaji_karyawan_smk."',potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_smk['id']."'");
+			}
+			$gaji_smp = ExecuteRow("SELECT * FROM gaji_smp WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+			$total_gaji_smp = $gaji_smp["total"]-$potongan_guru+$penyesuaian_guru;
+			if(!empty($gaji_smp)){
+				Execute("UPDATE gaji_smp SET total='".$total_gaji_smp."',potongan = '".$potongan_guru."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian_guru."' WHERE id ='".$gaji_smp['id']."'");
+			}
+			$gaji_tu_smp = ExecuteRow("SELECT * FROM gaji_tu_smp WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+			$total_gaji_tu_smp = $gaji_tu_smp["total"]-$potongan+$penyesuaian;
+			if(!empty($gaji_tu_smp)){
+				Execute("UPDATE gaji_tu_smp SET total='".$total_gaji_tu_smp."',potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_smp['id']."'");
+			}
+			$gaji_karyawan_smp = ExecuteRow("SELECT * FROM gaji_karyawan_smp WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+			$total_gaji_karyawan_smp=$gaji_karyawan_smp["total"]-$potongan+$penyesuaian;
+			if(!empty($gaji_karyawan_smp)){
+				Execute("UPDATE gaji_karyawan_smp SET total='".$total_gaji_karyawan_smp."', potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_smp['id']."'");
+			}
+			$gaji = ExecuteRow("SELECT * FROM gaji WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+			$total_gaji_sd=$gaji["total"]-$potongan_guru+$penyesuaian_guru;
+			if(!empty($gaji)){
+				Execute("UPDATE gaji SET total='".$total_gaji_sd."',potongan = '".$potongan_guru."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian_guru."' WHERE id ='".$gaji['id']."'");
+			}
+			$gaji_tu_sd = ExecuteRow("SELECT * FROM gaji_tu_sd WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+			$total_gaji_tu_sd=$gaji_tu_sd["total"]-$potongan_guru+$penyesuaian;
+			if(!empty($gaji_tu_sd)){
+				Execute("UPDATE gaji_tu_sd SET total='".$total_gaji_tu_sd."' , potongan = '".$potongan_guru."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_sd['id']."'");
+			}
+			$gaji_karyawan_sd = ExecuteRow("SELECT * FROM gaji_karyawan_sd WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+			$total_gaji_karyawan_sd=$gaji_karyawan_sd["total"]-$potongan+$penyesuaian;
+			if(!empty($gaji_karyawan_sd)){
+				Execute("UPDATE gaji_karyawan_sd SET total='".$total_gaji_karyawan_sd."',potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_sd['id']."'");
+			}
+			$gaji_tk = ExecuteRow("SELECT * FROM gaji_tk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+			$total_gaji_tk=$gaji_tk["total"]-$potongan_guru+$penyesuaian_guru;
+			if(!empty($gaji_tk)){
+				Execute("UPDATE gaji_tk SET total='".$total_gaji_tk."' ,potongan = '".$potongan_guru."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian_guru."' WHERE id ='".$gaji_tk['id']."'");
+			}
+			$gaji_tu_tk = ExecuteRow("SELECT * FROM gaji_tu_tk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+			$total_gaji_tu_tk=$gaji_tu_tk["total"]-$potongan+$penyesuaian;
+			if(!empty($gaji_tu_tk)){
+				Execute("UPDATE gaji_tu_tk SET total='".$total_gaji_tu_tk."' ,potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_tk['id']."'");
+			}
+			$gaji_karyawan_tk = ExecuteRow("SELECT * FROM gaji_karyawan_tk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+			$total_gaji_karyawan_tk=$gaji_karyawan_tk["total"]-$potongan+$penyesuaian;
+			if(!empty($gaji_karyawan_tk)){
+				Execute("UPDATE gaji_karyawan_tk SET total='".$total_gaji_karyawan_tk."',potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_tk['id']."'");
+			}
+			$XLSXdata .= "("
+			.("NULL").","
+			."'".$rsnew["id"]."',"
+			.("'".date('Y-m-d H:i:s')."'").","
+			.(isset($row[0]) ? "'".$row[0]."'" : "NULL").","
+			."'".$jenjang."',"
+			.(isset($row[2]) ? "'".$row[2]."'" : "NULL").","
+			.(isset($row[4]) ? "'".$row[4]."'" : "NULL").","
+			.(isset($row[6]) ? "'".$row[6]."'" : "NULL").","
+			.(isset($row[8]) ? "'".$row[8]."'" : "NULL").","
+			.(isset($row[9]) ? "'".$row[9]."'" : "NULL").","
+			.(isset($row[10]) ? "'".$row[10]."'" : "NULL").","
+			.(isset($row[11]) ? "'".$row[11]."'" : "NULL").","
+			.(isset($row[12]) ? "'".$row[12]."'" : "NULL").","
+			."'".$potongan."',"
+			."'".$penyesuaian."',"
+			.(isset($row[13]) ? "'".$row[13]."'" : "NULL").","
+			.(isset($row[3]) ? "'".$row[3]."'" : "NULL").","
+			.(isset($row[5]) ? "'".$row[5]."'" : "NULL").","
+			.(isset($row[7]) ? "'".$row[7]."'" : "NULL")."),";
+		}
+			if ($XLSXdata != "") {
+				$myquery = "INSERT INTO `penyesuaian` VALUES ".rtrim($XLSXdata, ',') . ';';
+				$myResult = Execute($myquery);
+			}
+	}
+}
+$this->terminate("penyesuaianlist.php?showmaster=m_penyesuaian&fk_id=".$rsnew["id"]."");
+return TRUE;
+}
+
 	// Row Updating event
 	function Row_Updating($rsold, &$rsnew) {
 
 		// Enter your code here
 		// To cancel, set return value to FALSE
 
-					$bulan = $rsnew['bulan'];
-					$tahun = $rsnew['tahun'];
-					$rsnew['datetime'] = date('Y-m-d H:i:s');
-					$rsnew['c_by'] = CurrentUserInfo("id");
-					$id = $rsold['id'];
-					$delete = Execute("DELETE FROM penyesuaian WHERE m_id = '".$id."'");
-					if ($rsnew["import_file"]){
-								$path2file = "files/".$rsnew["import_file"];
-								$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-								if($reader) {
-									$reader->setReadDataOnly(true);
-									$spreadsheet = $reader->load($path2file);
-									$worksheet = $spreadsheet->getActiveSheet();
-									$highestRow = $worksheet->getHighestRow();
-									$highestColumn = $worksheet->getHighestColumn();
-									$startRowIdx = 2;
-									$records = $worksheet->rangeToArray("B" . $startRowIdx . ":"  . $highestColumn. $highestRow);
-									$XLSXdata = "";
-									foreach($records as $row) {
-										$jenjang = ExecuteScalar("SELECT nourut FROM tpendidikan WHERE name='".$row[1]."'");
-										$pegawai = ExecuteRow("SELECT * FROM pegawai WHERE nip='".$row[0]."'");
-										$absen = ExecuteScalar("SELECT value FROM m_tidakhadir WHERE jenjang_id='".$jenjang."'");
-										$izin = ExecuteScalar("SELECT value FROM jenis_ijin WHERE jenjang_id='".$jenjang."'");
-										$sakit = ExecuteScalar("SELECT perhari FROM m_sakit WHERE jenjang_id='".$jenjang."'");
-										$absen_jam = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$jenjang."'");
-										$izin_jam = ExecuteScalar("SELECT valueperjam FROM jenis_ijin WHERE jenjang_id='".$jenjang."'");
-										$sakit_jam = ExecuteScalar("SELECT perjam FROM m_sakit WHERE jenjang_id='".$jenjang."'");
-										$telambat = ExecuteScalar("SELECT value FROM terlambat WHERE jenjang_id='".$jenjang."'");
-										$pulang_cepat = ExecuteScalar("SELECT perhari FROM m_pulangcepat WHERE jenjang_id='".$jenjang."'");
-										$piket = ExecuteScalar("SELECT value FROM m_piket WHERE jenjang_id='".$jenjang."'");
-										$inval = ExecuteScalar("SELECT value FROM m_inval WHERE jenjang_id='".$jenjang."'");
-										$lembur = ExecuteScalar("SELECT value_perjam FROM m_lembur WHERE jenjang_id='".$jenjang."'");
-										$potongan = ($absen * $row['2']) + ($izin * $row['4']) + ($sakit * $row['6']) + ($absen_jam * $row['3']) + ($izin_jam * $row['5']) + ($sakit_jam * $row['7']) + ($telambat * $row['8']) + ($pulang_cepat * $row['9']);
-										$penyesuaian = ($piket * $row['10']) + ($inval * $row['11']) + ($lembur * $row['12']);
-
-										//PENGECEKKAN DATA GAJI
-									$gaji_sma = ExecuteRow("SELECT * FROM gaji_sma WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-									if(!empty($gaji_sma)){
-										Execute("UPDATE gaji_sma SET potongan = '".$potongan."', voucher = '".$row[12]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_sma['id']."'");
-									}
-									$gaji_tu_sma = ExecuteRow("SELECT * FROM gaji_tu_sma WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-									if(!empty($gaji_tu_sma)){
-										Execute("UPDATE gaji_tu_sma SET potongan = '".$potongan."', voucher = '".$row[12]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_sma['id']."'");
-									}
-									$gaji_karyawan_sma = ExecuteRow("SELECT * FROM gaji_karyawan_sma WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-									if(!empty($gaji_karyawan_sma)){
-										Execute("UPDATE gaji_karyawan_sma SET potongan = '".$potongan."', voucher = '".$row[12]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_sma['id']."'");
-									}
-									$gaji_smk = ExecuteRow("SELECT * FROM gaji_smk WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-									if(!empty($gaji_smk)){
-										Execute("UPDATE gaji_smk SET potongan = '".$potongan."', voucher = '".$row[12]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_smk['id']."'");
-									}
-									$gaji_tu_smk = ExecuteRow("SELECT * FROM gaji_tu_smk WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-									if(!empty($gaji_tu_smk)){
-										Execute("UPDATE gaji_tu_smk SET potongan = '".$potongan."', voucher = '".$row[12]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_smk['id']."'");
-									}
-									$gaji_karyawan_smk = ExecuteRow("SELECT * FROM gaji_karyawan_smk WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-									if(!empty($gaji_karyawan_smk)){
-										Execute("UPDATE gaji_karyawan_smk SET potongan = '".$potongan."', voucher = '".$row[12]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_smk['id']."'");
-									}
-									$gaji_smp = ExecuteRow("SELECT * FROM gaji_smp WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-									if(!empty($gaji_smp)){
-										Execute("UPDATE gaji_smp SET potongan = '".$potongan."', voucher = '".$row[12]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_smp['id']."'");
-									}
-									$gaji_tu_smp = ExecuteRow("SELECT * FROM gaji_tu_smp WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-									if(!empty($gaji_tu_smp)){
-										Execute("UPDATE gaji_tu_smp SET potongan = '".$potongan."', voucher = '".$row[12]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_smp['id']."'");
-									}
-									$gaji_karyawan_smp = ExecuteRow("SELECT * FROM gaji_karyawan_smp WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-									if(!empty($gaji_karyawan_smp)){
-										Execute("UPDATE gaji_karyawan_smp SET potongan = '".$potongan."', voucher = '".$row[12]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_smp['id']."'");
-									}
-									$gaji = ExecuteRow("SELECT * FROM gaji WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-									if(!empty($gaji)){
-										Execute("UPDATE gaji SET potongan = '".$potongan."', voucher = '".$row[12]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji['id']."'");
-									}
-									$gaji_tu_sd = ExecuteRow("SELECT * FROM gaji_tu_sd WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-									if(!empty($gaji_tu_sd)){
-										Execute("UPDATE gaji_tu_sd SET potongan = '".$potongan."', voucher = '".$row[12]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_sd['id']."'");
-									}
-									$gaji_karyawan_sd = ExecuteRow("SELECT * FROM gaji_karyawan_sd WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-									if(!empty($gaji_karyawan_sd)){
-										Execute("UPDATE gaji_karyawan_sd SET potongan = '".$potongan."', voucher = '".$row[12]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_sd['id']."'");
-									}
-									$gaji_tk = ExecuteRow("SELECT * FROM gaji_tk WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-									if(!empty($gaji_tk)){
-										Execute("UPDATE gaji_tk SET potongan = '".$potongan."', voucher = '".$row[12]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tk['id']."'");
-									}
-									$gaji_tu_tk = ExecuteRow("SELECT * FROM gaji_tu_tk WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-									if(!empty($gaji_tu_tk)){
-										Execute("UPDATE gaji_tu_tk SET potongan = '".$potongan."', voucher = '".$row[12]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_tk['id']."'");
-									}
-									$gaji_karyawan_tk = ExecuteRow("SELECT * FROM gaji_karyawan_tk WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-									if(!empty($gaji_karyawan_tk)){
-										Execute("UPDATE gaji_karyawan_tk SET potongan = '".$potongan."', voucher = '".$row[12]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_tk['id']."'");
-									}
-										$XLSXdata .= "("
-										.("NULL").","
-										."'".$id."',"
-										.("'".date('Y-m-d H:i:s')."'").","
-										.(isset($row[0]) ? "'".$row[0]."'" : "NULL").","
-										."'".$jenjang."',"
-										.(isset($row[2]) ? "'".$row[2]."'" : "NULL").","
-										.(isset($row[4]) ? "'".$row[4]."'" : "NULL").","
-										.(isset($row[6]) ? "'".$row[6]."'" : "NULL").","
-										.(isset($row[8]) ? "'".$row[8]."'" : "NULL").","
-										.(isset($row[9]) ? "'".$row[9]."'" : "NULL").","
-										.(isset($row[10]) ? "'".$row[10]."'" : "NULL").","
-										.(isset($row[11]) ? "'".$row[11]."'" : "NULL").","
-										.(isset($row[12]) ? "'".$row[12]."'" : "NULL").","
-										."'".$potongan."',"
-										."'".$penyesuaian."',"
-										.(isset($row[13]) ? "'".$row[13]."'" : "NULL").","
-										.(isset($row[3]) ? "'".$row[3]."'" : "NULL").","
-										.(isset($row[5]) ? "'".$row[5]."'" : "NULL").","
-										.(isset($row[7]) ? "'".$row[7]."'" : "NULL")."),";
-									}
-										if ($XLSXdata != "") {
-											$myquery = "INSERT INTO `penyesuaian` VALUES ".rtrim($XLSXdata, ',') . ';';
-											$myResult = Execute($myquery);
-										}
-								}
-						}
-					return TRUE;
-					$this->terminate("penyesuaianlist.php?showmaster=m_penyesuaian&fk_id=".$rsnew["id"]."");
+		$bulan = $rsnew['bulan'];
+		$tahun = $rsnew['tahun'];
+		
+		//echo "Row Inserted"
+		if ($rsnew["import_file"]){
+				$path2file = "files/".$rsnew["import_file"];
+				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+				if($reader) {
+			$reader->setReadDataOnly(true);
+			$spreadsheet = $reader->load($path2file);
+			$worksheet = $spreadsheet->getActiveSheet();
+			$highestRow = $worksheet->getHighestRow();
+			$highestColumn = $worksheet->getHighestColumn();
+			$startRowIdx = 2;
+			$records = $worksheet->rangeToArray("B" . $startRowIdx . ":"  . $highestColumn. $highestRow);
+			$XLSXdata = "";
+			foreach($records as $row) {
+			$jenjang = ExecuteScalar("SELECT nourut FROM tpendidikan WHERE name='".$row[1]."'");
+			$data_pegawai = ExecuteRow("select * from pegawai where nip='".$row[0]."'");
+			$pegawai = ExecuteRow("SELECT * FROM pegawai WHERE nip='".$row[0]."'");
+			//terlambat untuk guru sama dengan absen guru
+			$absen_guru = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$jenjang."' AND jabatan_id='".$data_pegawai["jabatan"]."' AND sertif='".$data_pegawai["sertif"]."'");
+			$piket_guru =ExecuteScalar("SELECT value FROM m_piket WHERE jenjang='".$jenjang."' AND type_jabatan='".$data_pegawai["type"]."' AND jenis_sertif='".$data_pegawai["sertif"]."'");
+			$izin_guru = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$jenjang."' AND jabatan_id='".$data_pegawai["jabatan"]."' AND sertif='".$data_pegawai["sertif"]."'");
+			//$sakit_guru = ExecuteScalar("SELECT perhari FROM m_sakit WHERE jenjang_id='".$jenjang."' AND jabatan='".$data_pegawai["type"]."' AND sertif='".$data_pegawai["sertif"]."'");
+			$sakit_jam_guru = ExecuteScalar("SELECT perjam FROM m_sakit WHERE jenjang_id='".$jenjang."' AND `type`='".$data_pegawai["type"]."' AND sertif='".$data_pegawai["sertif"]."'");
+		
+			$absen = ExecuteScalar("SELECT value FROM m_tidakhadir WHERE jenjang_id='".$jenjang."'");
+			$izin = ExecuteScalar("SELECT value FROM m_tidakhadir WHERE jenjang_id='".$jenjang."' AND jabatan_id='".$data_pegawai["jabatan"]."'");
+			$sakit = ExecuteScalar("SELECT perhari FROM m_sakit WHERE jenjang_id='".$jenjang."' AND jabatan='".$data_pegawai["jabatan"]."'");
+			$absen_jam = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$jenjang."' AND jabatan_id='".$data_pegawai["jabatan"]."'");
+			$izin_jam = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$jenjang."' AND jabatan_id='".$data_pegawai["jabatan"]."'");
+			$sakit_jam = ExecuteScalar("SELECT perjam FROM m_sakit WHERE jenjang_id='".$jenjang."' AND jabatan='".$data_pegawai["jabatan"]."'");
+			$telambat = ExecuteScalar("SELECT perjam_value FROM m_tidakhadir WHERE jenjang_id='".$jenjang."' AND jabatan_id='".$data_pegawai["jabatan"]."'");
+			$pulang_cepat = ExecuteScalar("SELECT perhari FROM m_pulangcepat WHERE jenjang_id='".$jenjang."'");
+			$piket = ExecuteScalar("SELECT value FROM m_piket WHERE jenjang='".$jenjang."' AND type_jabatan='".$data_pegawai["type"]."'");
+			$inval = ExecuteScalar("SELECT value FROM m_inval WHERE jenjang_id='".$jenjang."' AND jabatan_id='".$data_pegawai["type"]."'");
+			//print_r($inval);
+			//die;
+			$lembur = ExecuteScalar("SELECT value_perjam FROM m_lembur WHERE jenjang_id='".$jenjang."'");
+			if($data_pegawai["type"] == '1'){
+				$potongan = ($absen_guru * $row[2]) + ($absen_guru * $row[4]) + ($sakit_jam_guru * $row[6]) + ($absen_guru * $row[3]) + ($izin_guru * $row[5]) + ($sakit_jam_guru * $row[7]) + ($absen_guru * $row[8]) + ($absen_guru * $row[9]);
+				//print_r($test_absen);
+				//die;
+				$penyesuaian = ($piket_guru * $row[10]) + ($inval * $row[11]) + ($lembur * $row[12]);
+			}else{
+				$potongan = ($absen * $row[2]) + ($izin * $row[4]) + ($sakit * $row[6]) + ($absen_jam * $row[3]) + ($izin_jam * $row[5]) + ($sakit_jam * $row[7]) + ($telambat * $row[8]) + ($pulang_cepat * $row[9]);
+				$penyesuaian = ($piket * $row[10]) + ($inval * $row[11]) + ($lembur * $row[12]);
+			}
+		
+			//$test_absen= $absen_guru * $row[2];
+			//$test_sakit = $sakit_jam_guru * $row[6];
+		
+		
+		
+			//PENGECEKKAN DATA GAJI
+			$gaji_sma = ExecuteRow("SELECT * FROM gaji_sma WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+			$total_gaji_sma = $gaji_sma["total"]-$potongan_guru+$penyesuaian_guru;
+		
+					if(!empty($gaji_sma)){
+						Execute("UPDATE gaji_sma SET total = '".$total_gaji_sma."',potongan = '".$potongan_guru."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian_guru."' WHERE id ='".$gaji_sma['id']."'");
+					}
+					$gaji_tu_sma = ExecuteRow("SELECT * FROM gaji_tu_sma WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+					$total_gaji_tu_sma=$gaji_tu_sma["total"]-$potongan+$penyesuaian; 
+					if(!empty($gaji_tu_sma)){
+						Execute("UPDATE gaji_tu_sma SET total = '".$total_gaji_tu_sma."', potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_sma['id']."'");
+					}
+					$gaji_karyawan_sma = ExecuteRow("SELECT * FROM gaji_karyawan_sma WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+					$total_gaji_karyawan_sma=$gaji_karyawan_sma["total"]-$potongan+$penyesuaian;
+					if(!empty($gaji_karyawan_sma)){
+						Execute("UPDATE gaji_karyawan_sma SET total='".$total_gaji_karyawan_sma."', potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_sma['id']."'");
+					}
+					$gaji_smk = ExecuteRow("SELECT * FROM gaji_smk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+					$total_gaji_smk = $gaji_smk["total"]-$potongan+$penyesuaian_guru;
+					if(!empty($gaji_smk)){
+						Execute("UPDATE gaji_smk SET total='".$total_gaji_smk."', potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian_guru."' WHERE id ='".$gaji_smk['id']."'");
+					}
+					$gaji_tu_smk = ExecuteRow("SELECT * FROM gaji_tu_smk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+					$total_gaji_tu_smk = $gaji_tu_smk["total"]-$potongan+$penyesuaian;
+					if(!empty($gaji_tu_smk)){
+						Execute("UPDATE gaji_tu_smk SET total ='".$total_gaji_tu_smk."', potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_smk['id']."'");
+					}
+					$gaji_karyawan_smk = ExecuteRow("SELECT * FROM gaji_karyawan_smk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+					$total_gaji_karyawan_smk=$gaji_karyawan_smk["total"]-$potongan+$penyesuaian;
+					if(!empty($gaji_karyawan_smk)){
+						Execute("UPDATE gaji_karyawan_smk SET total='".$total_gaji_karyawan_smk."',potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_smk['id']."'");
+					}
+					$gaji_smp = ExecuteRow("SELECT * FROM gaji_smp WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+					$total_gaji_smp = $gaji_smp["total"]-$potongan_guru+$penyesuaian_guru;
+					if(!empty($gaji_smp)){
+						Execute("UPDATE gaji_smp SET total='".$total_gaji_smp."',potongan = '".$potongan_guru."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian_guru."' WHERE id ='".$gaji_smp['id']."'");
+					}
+					$gaji_tu_smp = ExecuteRow("SELECT * FROM gaji_tu_smp WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+					$total_gaji_tu_smp = $gaji_tu_smp["total"]-$potongan+$penyesuaian;
+					if(!empty($gaji_tu_smp)){
+						Execute("UPDATE gaji_tu_smp SET total='".$total_gaji_tu_smp."',potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_smp['id']."'");
+					}
+					$gaji_karyawan_smp = ExecuteRow("SELECT * FROM gaji_karyawan_smp WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+					$total_gaji_karyawan_smp=$gaji_karyawan_smp["total"]-$potongan+$penyesuaian;
+					if(!empty($gaji_karyawan_smp)){
+						Execute("UPDATE gaji_karyawan_smp SET total='".$total_gaji_karyawan_smp."', potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_smp['id']."'");
+					}
+					$gaji = ExecuteRow("SELECT * FROM gaji WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+					$total_gaji_sd=$gaji["total"]-$potongan_guru+$penyesuaian_guru;
+					if(!empty($gaji)){
+						Execute("UPDATE gaji SET total='".$total_gaji_sd."',potongan = '".$potongan_guru."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian_guru."' WHERE id ='".$gaji['id']."'");
+					}
+					$gaji_tu_sd = ExecuteRow("SELECT * FROM gaji_tu_sd WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+					$total_gaji_tu_sd=$gaji_tu_sd["total"]-$potongan_guru+$penyesuaian;
+					if(!empty($gaji_tu_sd)){
+						Execute("UPDATE gaji_tu_sd SET total='".$total_gaji_tu_sd."' , potongan = '".$potongan_guru."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_sd['id']."'");
+					}
+					$gaji_karyawan_sd = ExecuteRow("SELECT * FROM gaji_karyawan_sd WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+					$total_gaji_karyawan_sd=$gaji_karyawan_sd["total"]-$potongan+$penyesuaian;
+					if(!empty($gaji_karyawan_sd)){
+						Execute("UPDATE gaji_karyawan_sd SET total='".$total_gaji_karyawan_sd."',potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_sd['id']."'");
+					}
+					$gaji_tk = ExecuteRow("SELECT * FROM gaji_tk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+					$total_gaji_tk=$gaji_tk["total"]-$potongan_guru+$penyesuaian_guru;
+					if(!empty($gaji_tk)){
+						Execute("UPDATE gaji_tk SET total='".$total_gaji_tk."' ,potongan = '".$potongan_guru."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian_guru."' WHERE id ='".$gaji_tk['id']."'");
+					}
+					$gaji_tu_tk = ExecuteRow("SELECT * FROM gaji_tu_tk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+					$total_gaji_tu_tk=$gaji_tu_tk["total"]-$potongan+$penyesuaian;
+					if(!empty($gaji_tu_tk)){
+						Execute("UPDATE gaji_tu_tk SET total='".$total_gaji_tu_tk."' ,potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_tk['id']."'");
+					}
+					$gaji_karyawan_tk = ExecuteRow("SELECT * FROM gaji_karyawan_tk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+					$total_gaji_karyawan_tk=$gaji_karyawan_tk["total"]-$potongan+$penyesuaian;
+					if(!empty($gaji_karyawan_tk)){
+						Execute("UPDATE gaji_karyawan_tk SET total='".$total_gaji_karyawan_tk."',potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_tk['id']."'");
+					}
+					$XLSXdata .= "("
+					.("NULL").","
+					."'".$rsnew["id"]."',"
+					.("'".date('Y-m-d H:i:s')."'").","
+					.(isset($row[0]) ? "'".$row[0]."'" : "NULL").","
+					."'".$jenjang."',"
+					.(isset($row[2]) ? "'".$row[2]."'" : "NULL").","
+					.(isset($row[4]) ? "'".$row[4]."'" : "NULL").","
+					.(isset($row[6]) ? "'".$row[6]."'" : "NULL").","
+					.(isset($row[8]) ? "'".$row[8]."'" : "NULL").","
+					.(isset($row[9]) ? "'".$row[9]."'" : "NULL").","
+					.(isset($row[10]) ? "'".$row[10]."'" : "NULL").","
+					.(isset($row[11]) ? "'".$row[11]."'" : "NULL").","
+					.(isset($row[12]) ? "'".$row[12]."'" : "NULL").","
+					."'".$potongan."',"
+					."'".$penyesuaian."',"
+					.(isset($row[13]) ? "'".$row[13]."'" : "NULL").","
+					.(isset($row[3]) ? "'".$row[3]."'" : "NULL").","
+					.(isset($row[5]) ? "'".$row[5]."'" : "NULL").","
+					.(isset($row[7]) ? "'".$row[7]."'" : "NULL")."),";
+				}
+					if ($XLSXdata != "") {
+						$myquery = "INSERT INTO `penyesuaian` VALUES ".rtrim($XLSXdata, ',') . ';';
+						$myResult = Execute($myquery);
+					}
+			}
+		}
+		$this->terminate("penyesuaianlist.php?showmaster=m_penyesuaian&fk_id=".$rsnew["id"]."");
+		return TRUE;
 	}
 
 	// Row Updated event

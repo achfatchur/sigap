@@ -111,6 +111,7 @@ class penyesuaian extends DbTable
 		// jenjang_id
 		$this->jenjang_id = new DbField('penyesuaian', 'penyesuaian', 'x_jenjang_id', 'jenjang_id', '`jenjang_id`', '`jenjang_id`', 3, 20, -1, FALSE, '`jenjang_id`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->jenjang_id->Sortable = TRUE; // Allow sort
+		$this->jenjang_id->Lookup = new Lookup('jenjang_id', 'tpendidikan', FALSE, 'nourut', ["name","","",""], [], [], [], [], [], [], '', '');
 		$this->jenjang_id->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['jenjang_id'] = &$this->jenjang_id;
 
@@ -945,7 +946,25 @@ class penyesuaian extends DbTable
 
 		// jenjang_id
 		$this->jenjang_id->ViewValue = $this->jenjang_id->CurrentValue;
-		$this->jenjang_id->ViewValue = FormatNumber($this->jenjang_id->ViewValue, 0, -2, -2, -2);
+		$curVal = strval($this->jenjang_id->CurrentValue);
+		if ($curVal != "") {
+			$this->jenjang_id->ViewValue = $this->jenjang_id->lookupCacheOption($curVal);
+			if ($this->jenjang_id->ViewValue === NULL) { // Lookup from database
+				$filterWrk = "`nourut`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+				$sqlWrk = $this->jenjang_id->Lookup->getSql(FALSE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				if ($rswrk && !$rswrk->EOF) { // Lookup values found
+					$arwrk = [];
+					$arwrk[1] = $rswrk->fields('df');
+					$this->jenjang_id->ViewValue = $this->jenjang_id->displayValue($arwrk);
+					$rswrk->Close();
+				} else {
+					$this->jenjang_id->ViewValue = $this->jenjang_id->CurrentValue;
+				}
+			}
+		} else {
+			$this->jenjang_id->ViewValue = NULL;
+		}
 		$this->jenjang_id->ViewCustomAttributes = "";
 
 		// absen

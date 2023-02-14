@@ -1156,6 +1156,14 @@ class m_inval_list extends m_inval
 		$item->ShowInDropDown = FALSE;
 		$item->ShowInButtonGroup = FALSE;
 
+		// "sequence"
+		$item = &$this->ListOptions->add("sequence");
+		$item->CssClass = "text-nowrap";
+		$item->Visible = TRUE;
+		$item->OnLeft = TRUE; // Always on left
+		$item->ShowInDropDown = FALSE;
+		$item->ShowInButtonGroup = FALSE;
+
 		// Drop down button for ListOptions
 		$this->ListOptions->UseDropDownButton = FALSE;
 		$this->ListOptions->DropDownButtonPhrase = $Language->phrase("ButtonListOptions");
@@ -1180,6 +1188,10 @@ class m_inval_list extends m_inval
 
 		// Call ListOptions_Rendering event
 		$this->ListOptions_Rendering();
+
+		// "sequence"
+		$opt = $this->ListOptions["sequence"];
+		$opt->Body = FormatSequenceNumber($this->RecordCount);
 
 		// "view"
 		$opt = $this->ListOptions["view"];

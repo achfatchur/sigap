@@ -774,6 +774,7 @@ class penyesuaian_view extends penyesuaian
 
 		// Set up lookup cache
 		$this->setupLookupOptions($this->nip);
+		$this->setupLookupOptions($this->jenjang_id);
 
 		// Check permission
 		if (!$Security->canView()) {
@@ -1048,7 +1049,25 @@ class penyesuaian_view extends penyesuaian
 
 			// jenjang_id
 			$this->jenjang_id->ViewValue = $this->jenjang_id->CurrentValue;
-			$this->jenjang_id->ViewValue = FormatNumber($this->jenjang_id->ViewValue, 0, -2, -2, -2);
+			$curVal = strval($this->jenjang_id->CurrentValue);
+			if ($curVal != "") {
+				$this->jenjang_id->ViewValue = $this->jenjang_id->lookupCacheOption($curVal);
+				if ($this->jenjang_id->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`nourut`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->jenjang_id->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->jenjang_id->ViewValue = $this->jenjang_id->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->jenjang_id->ViewValue = $this->jenjang_id->CurrentValue;
+					}
+				}
+			} else {
+				$this->jenjang_id->ViewValue = NULL;
+			}
 			$this->jenjang_id->ViewCustomAttributes = "";
 
 			// absen
@@ -1316,6 +1335,8 @@ class penyesuaian_view extends penyesuaian
 			switch ($fld->FieldVar) {
 				case "x_nip":
 					break;
+				case "x_jenjang_id":
+					break;
 				default:
 					$lookupFilter = "";
 					break;
@@ -1337,6 +1358,8 @@ class penyesuaian_view extends penyesuaian
 					// Format the field values
 					switch ($fld->FieldVar) {
 						case "x_nip":
+							break;
+						case "x_jenjang_id":
 							break;
 					}
 					$ar[strval($row[0])] = $row;

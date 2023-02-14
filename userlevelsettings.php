@@ -417,7 +417,9 @@ $USER_LEVEL_PRIVS = [["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen","-2","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_pegawai_smk","-2","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_pegawai_smk","0","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}slip_gaji_yayasan","-2","0"],
-	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}slip_gaji_yayasan","0","0"]];
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}slip_gaji_yayasan","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}backup_restore.php","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}backup_restore.php","0","0"]];
 
 // User level table info
 $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
@@ -476,7 +478,7 @@ $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3
 	["komentar","komentar","Komentar",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["lembur","lembur","Lembur",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["m_bpjs","m_bpjs"," BPJS Kesehatan",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
-	["m_inval","m_inval","m inval",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["m_inval","m_inval","Master Inval",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["m_karyawan_sd","m_karyawan_sd","Sistem Gaji Karyawan SD",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["m_karyawan_sma","m_karyawan_sma","Sistem Gaji Karyawan SMA",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["m_karyawan_smk","m_karyawan_smk","Sistem Gaji Karyawan SMK",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
@@ -623,4 +625,5 @@ $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3
 	["v_pegawai_smp","v_pegawai_smp","Pegawai SMP",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["v_pegawai_sma","v_pegawai_sma","Pegawai SMA",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["v_pegawai_smk","v_pegawai_smk","Pegawai SMK",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
-	["slip_gaji_yayasan","slip_gaji_yayasan","Slip Gaji Yayasan",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];
+	["slip_gaji_yayasan","slip_gaji_yayasan","Slip Gaji Yayasan",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["backup_restore.php","backup_restore","Back UP Restore DataBase",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];

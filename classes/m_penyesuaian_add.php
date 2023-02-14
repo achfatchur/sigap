@@ -677,7 +677,7 @@ class m_penyesuaian_add extends m_penyesuaian
 		$this->id->Visible = FALSE;
 		$this->bulan->setVisibility();
 		$this->tahun->setVisibility();
-		$this->c_by->Visible = FALSE;
+		$this->c_by->setVisibility();
 		$this->datetime->Visible = FALSE;
 		$this->import_file->setVisibility();
 		$this->hideFieldsForAddEdit();
@@ -876,6 +876,15 @@ class m_penyesuaian_add extends m_penyesuaian
 				$this->tahun->setFormValue($val);
 		}
 
+		// Check field name 'c_by' first before field var 'x_c_by'
+		$val = $CurrentForm->hasValue("c_by") ? $CurrentForm->getValue("c_by") : $CurrentForm->getValue("x_c_by");
+		if (!$this->c_by->IsDetailKey) {
+			if (IsApi() && $val == NULL)
+				$this->c_by->Visible = FALSE; // Disable update for API request
+			else
+				$this->c_by->setFormValue($val);
+		}
+
 		// Check field name 'id' first before field var 'x_id'
 		$val = $CurrentForm->hasValue("id") ? $CurrentForm->getValue("id") : $CurrentForm->getValue("x_id");
 	}
@@ -886,6 +895,7 @@ class m_penyesuaian_add extends m_penyesuaian
 		global $CurrentForm;
 		$this->bulan->CurrentValue = $this->bulan->FormValue;
 		$this->tahun->CurrentValue = $this->tahun->FormValue;
+		$this->c_by->CurrentValue = $this->c_by->FormValue;
 	}
 
 	// Load row based on key values
@@ -1017,7 +1027,6 @@ class m_penyesuaian_add extends m_penyesuaian
 
 			// tahun
 			$this->tahun->ViewValue = $this->tahun->CurrentValue;
-			$this->tahun->ViewValue = FormatNumber($this->tahun->ViewValue, 0, -2, -2, -2);
 			$this->tahun->ViewCustomAttributes = "";
 
 			// c_by
@@ -1066,6 +1075,11 @@ class m_penyesuaian_add extends m_penyesuaian
 			$this->tahun->HrefValue = "";
 			$this->tahun->TooltipValue = "";
 
+			// c_by
+			$this->c_by->LinkCustomAttributes = "";
+			$this->c_by->HrefValue = "";
+			$this->c_by->TooltipValue = "";
+
 			// import_file
 			$this->import_file->LinkCustomAttributes = "";
 			$this->import_file->HrefValue = "";
@@ -1103,7 +1117,9 @@ class m_penyesuaian_add extends m_penyesuaian
 			$this->tahun->EditValue = HtmlEncode($this->tahun->CurrentValue);
 			$this->tahun->PlaceHolder = RemoveHtml($this->tahun->caption());
 
+			// c_by
 			// import_file
+
 			$this->import_file->EditAttrs["class"] = "form-control";
 			$this->import_file->EditCustomAttributes = "";
 			if (!EmptyValue($this->import_file->Upload->DbValue)) {
@@ -1125,6 +1141,10 @@ class m_penyesuaian_add extends m_penyesuaian
 			// tahun
 			$this->tahun->LinkCustomAttributes = "";
 			$this->tahun->HrefValue = "";
+
+			// c_by
+			$this->c_by->LinkCustomAttributes = "";
+			$this->c_by->HrefValue = "";
 
 			// import_file
 			$this->import_file->LinkCustomAttributes = "";
@@ -1162,6 +1182,11 @@ class m_penyesuaian_add extends m_penyesuaian
 		}
 		if (!CheckInteger($this->tahun->FormValue)) {
 			AddMessage($FormError, $this->tahun->errorMessage());
+		}
+		if ($this->c_by->Required) {
+			if (!$this->c_by->IsDetailKey && $this->c_by->FormValue != NULL && $this->c_by->FormValue == "") {
+				AddMessage($FormError, str_replace("%s", $this->c_by->caption(), $this->c_by->RequiredErrorMessage));
+			}
 		}
 		if ($this->import_file->Required) {
 			if ($this->import_file->Upload->FileName == "" && !$this->import_file->Upload->KeepFile) {
@@ -1210,6 +1235,10 @@ class m_penyesuaian_add extends m_penyesuaian
 
 		// tahun
 		$this->tahun->setDbValueDef($rsnew, $this->tahun->CurrentValue, NULL, FALSE);
+
+		// c_by
+		$this->c_by->CurrentValue = CurrentUserID();
+		$this->c_by->setDbValueDef($rsnew, $this->c_by->CurrentValue, NULL);
 
 		// import_file
 		if ($this->import_file->Visible && !$this->import_file->Upload->KeepFile) {

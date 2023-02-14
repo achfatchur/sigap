@@ -217,6 +217,9 @@ loadjs.ready("head", function() {
 	// Dynamic selection lists
 	fpenyesuaiangrid.lists["x_nip"] = <?php echo $penyesuaian_grid->nip->Lookup->toClientList($penyesuaian_grid) ?>;
 	fpenyesuaiangrid.lists["x_nip"].options = <?php echo JsonEncode($penyesuaian_grid->nip->lookupOptions()) ?>;
+	fpenyesuaiangrid.lists["x_jenjang_id"] = <?php echo $penyesuaian_grid->jenjang_id->Lookup->toClientList($penyesuaian_grid) ?>;
+	fpenyesuaiangrid.lists["x_jenjang_id"].options = <?php echo JsonEncode($penyesuaian_grid->jenjang_id->lookupOptions()) ?>;
+	fpenyesuaiangrid.autoSuggests["x_jenjang_id"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
 	loadjs.done("fpenyesuaiangrid");
 });
 </script>
@@ -548,13 +551,41 @@ $penyesuaian_grid->ListOptions->render("body", "left", $penyesuaian_grid->RowCou
 		<td data-name="jenjang_id" <?php echo $penyesuaian_grid->jenjang_id->cellAttributes() ?>>
 <?php if ($penyesuaian->RowType == ROWTYPE_ADD) { // Add record ?>
 <span id="el<?php echo $penyesuaian_grid->RowCount ?>_penyesuaian_jenjang_id" class="form-group">
-<input type="text" data-table="penyesuaian" data-field="x_jenjang_id" name="x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" id="x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" size="30" maxlength="20" placeholder="<?php echo HtmlEncode($penyesuaian_grid->jenjang_id->getPlaceHolder()) ?>" value="<?php echo $penyesuaian_grid->jenjang_id->EditValue ?>"<?php echo $penyesuaian_grid->jenjang_id->editAttributes() ?>>
+<?php
+$onchange = $penyesuaian_grid->jenjang_id->EditAttrs->prepend("onchange", "");
+$onchange = ($onchange) ? ' onchange="' . JsEncode($onchange) . '"' : '';
+$penyesuaian_grid->jenjang_id->EditAttrs["onchange"] = "";
+?>
+<span id="as_x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id">
+	<input type="text" class="form-control" name="sv_x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" id="sv_x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" value="<?php echo RemoveHtml($penyesuaian_grid->jenjang_id->EditValue) ?>" size="30" maxlength="20" placeholder="<?php echo HtmlEncode($penyesuaian_grid->jenjang_id->getPlaceHolder()) ?>" data-placeholder="<?php echo HtmlEncode($penyesuaian_grid->jenjang_id->getPlaceHolder()) ?>"<?php echo $penyesuaian_grid->jenjang_id->editAttributes() ?>>
+</span>
+<input type="hidden" data-table="penyesuaian" data-field="x_jenjang_id" data-value-separator="<?php echo $penyesuaian_grid->jenjang_id->displayValueSeparatorAttribute() ?>" name="x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" id="x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" value="<?php echo HtmlEncode($penyesuaian_grid->jenjang_id->CurrentValue) ?>"<?php echo $onchange ?>>
+<script>
+loadjs.ready(["fpenyesuaiangrid"], function() {
+	fpenyesuaiangrid.createAutoSuggest({"id":"x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id","forceSelect":false});
+});
+</script>
+<?php echo $penyesuaian_grid->jenjang_id->Lookup->getParamTag($penyesuaian_grid, "p_x" . $penyesuaian_grid->RowIndex . "_jenjang_id") ?>
 </span>
 <input type="hidden" data-table="penyesuaian" data-field="x_jenjang_id" name="o<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" id="o<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" value="<?php echo HtmlEncode($penyesuaian_grid->jenjang_id->OldValue) ?>">
 <?php } ?>
 <?php if ($penyesuaian->RowType == ROWTYPE_EDIT) { // Edit record ?>
 <span id="el<?php echo $penyesuaian_grid->RowCount ?>_penyesuaian_jenjang_id" class="form-group">
-<input type="text" data-table="penyesuaian" data-field="x_jenjang_id" name="x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" id="x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" size="30" maxlength="20" placeholder="<?php echo HtmlEncode($penyesuaian_grid->jenjang_id->getPlaceHolder()) ?>" value="<?php echo $penyesuaian_grid->jenjang_id->EditValue ?>"<?php echo $penyesuaian_grid->jenjang_id->editAttributes() ?>>
+<?php
+$onchange = $penyesuaian_grid->jenjang_id->EditAttrs->prepend("onchange", "");
+$onchange = ($onchange) ? ' onchange="' . JsEncode($onchange) . '"' : '';
+$penyesuaian_grid->jenjang_id->EditAttrs["onchange"] = "";
+?>
+<span id="as_x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id">
+	<input type="text" class="form-control" name="sv_x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" id="sv_x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" value="<?php echo RemoveHtml($penyesuaian_grid->jenjang_id->EditValue) ?>" size="30" maxlength="20" placeholder="<?php echo HtmlEncode($penyesuaian_grid->jenjang_id->getPlaceHolder()) ?>" data-placeholder="<?php echo HtmlEncode($penyesuaian_grid->jenjang_id->getPlaceHolder()) ?>"<?php echo $penyesuaian_grid->jenjang_id->editAttributes() ?>>
+</span>
+<input type="hidden" data-table="penyesuaian" data-field="x_jenjang_id" data-value-separator="<?php echo $penyesuaian_grid->jenjang_id->displayValueSeparatorAttribute() ?>" name="x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" id="x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" value="<?php echo HtmlEncode($penyesuaian_grid->jenjang_id->CurrentValue) ?>"<?php echo $onchange ?>>
+<script>
+loadjs.ready(["fpenyesuaiangrid"], function() {
+	fpenyesuaiangrid.createAutoSuggest({"id":"x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id","forceSelect":false});
+});
+</script>
+<?php echo $penyesuaian_grid->jenjang_id->Lookup->getParamTag($penyesuaian_grid, "p_x" . $penyesuaian_grid->RowIndex . "_jenjang_id") ?>
 </span>
 <?php } ?>
 <?php if ($penyesuaian->RowType == ROWTYPE_VIEW) { // View record ?>
@@ -1018,7 +1049,21 @@ $penyesuaian_grid->ListOptions->render("body", "left", $penyesuaian_grid->RowInd
 		<td data-name="jenjang_id">
 <?php if (!$penyesuaian->isConfirm()) { ?>
 <span id="el$rowindex$_penyesuaian_jenjang_id" class="form-group penyesuaian_jenjang_id">
-<input type="text" data-table="penyesuaian" data-field="x_jenjang_id" name="x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" id="x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" size="30" maxlength="20" placeholder="<?php echo HtmlEncode($penyesuaian_grid->jenjang_id->getPlaceHolder()) ?>" value="<?php echo $penyesuaian_grid->jenjang_id->EditValue ?>"<?php echo $penyesuaian_grid->jenjang_id->editAttributes() ?>>
+<?php
+$onchange = $penyesuaian_grid->jenjang_id->EditAttrs->prepend("onchange", "");
+$onchange = ($onchange) ? ' onchange="' . JsEncode($onchange) . '"' : '';
+$penyesuaian_grid->jenjang_id->EditAttrs["onchange"] = "";
+?>
+<span id="as_x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id">
+	<input type="text" class="form-control" name="sv_x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" id="sv_x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" value="<?php echo RemoveHtml($penyesuaian_grid->jenjang_id->EditValue) ?>" size="30" maxlength="20" placeholder="<?php echo HtmlEncode($penyesuaian_grid->jenjang_id->getPlaceHolder()) ?>" data-placeholder="<?php echo HtmlEncode($penyesuaian_grid->jenjang_id->getPlaceHolder()) ?>"<?php echo $penyesuaian_grid->jenjang_id->editAttributes() ?>>
+</span>
+<input type="hidden" data-table="penyesuaian" data-field="x_jenjang_id" data-value-separator="<?php echo $penyesuaian_grid->jenjang_id->displayValueSeparatorAttribute() ?>" name="x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" id="x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id" value="<?php echo HtmlEncode($penyesuaian_grid->jenjang_id->CurrentValue) ?>"<?php echo $onchange ?>>
+<script>
+loadjs.ready(["fpenyesuaiangrid"], function() {
+	fpenyesuaiangrid.createAutoSuggest({"id":"x<?php echo $penyesuaian_grid->RowIndex ?>_jenjang_id","forceSelect":false});
+});
+</script>
+<?php echo $penyesuaian_grid->jenjang_id->Lookup->getParamTag($penyesuaian_grid, "p_x" . $penyesuaian_grid->RowIndex . "_jenjang_id") ?>
 </span>
 <?php } else { ?>
 <span id="el$rowindex$_penyesuaian_jenjang_id" class="form-group penyesuaian_jenjang_id">

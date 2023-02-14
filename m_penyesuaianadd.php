@@ -69,6 +69,11 @@ loadjs.ready("head", function() {
 				elm = this.getElements("x" + infix + "_tahun");
 				if (elm && !ew.checkInteger(elm.value))
 					return this.onError(elm, "<?php echo JsEncode($m_penyesuaian_add->tahun->errorMessage()) ?>");
+			<?php if ($m_penyesuaian_add->c_by->Required) { ?>
+				elm = this.getElements("x" + infix + "_c_by");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $m_penyesuaian_add->c_by->caption(), $m_penyesuaian_add->c_by->RequiredErrorMessage)) ?>");
+			<?php } ?>
 			<?php if ($m_penyesuaian_add->import_file->Required) { ?>
 				felm = this.getElements("x" + infix + "_import_file");
 				elm = this.getElements("fn_x" + infix + "_import_file");
@@ -105,6 +110,9 @@ loadjs.ready("head", function() {
 	// Dynamic selection lists
 	fm_penyesuaianadd.lists["x_bulan"] = <?php echo $m_penyesuaian_add->bulan->Lookup->toClientList($m_penyesuaian_add) ?>;
 	fm_penyesuaianadd.lists["x_bulan"].options = <?php echo JsonEncode($m_penyesuaian_add->bulan->lookupOptions()) ?>;
+	fm_penyesuaianadd.lists["x_c_by"] = <?php echo $m_penyesuaian_add->c_by->Lookup->toClientList($m_penyesuaian_add) ?>;
+	fm_penyesuaianadd.lists["x_c_by"].options = <?php echo JsonEncode($m_penyesuaian_add->c_by->lookupOptions()) ?>;
+	fm_penyesuaianadd.autoSuggests["x_c_by"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
 	loadjs.done("fm_penyesuaianadd");
 });
 </script>

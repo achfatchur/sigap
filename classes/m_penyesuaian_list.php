@@ -1739,7 +1739,6 @@ class m_penyesuaian_list extends m_penyesuaian
 
 			// tahun
 			$this->tahun->ViewValue = $this->tahun->CurrentValue;
-			$this->tahun->ViewValue = FormatNumber($this->tahun->ViewValue, 0, -2, -2, -2);
 			$this->tahun->ViewCustomAttributes = "";
 
 			// c_by
