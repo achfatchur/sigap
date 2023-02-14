@@ -1388,9 +1388,6 @@ return TRUE;
 		
 			//$test_absen= $absen_guru * $row[2];
 			//$test_sakit = $sakit_jam_guru * $row[6];
-		
-		
-		
 			//PENGECEKKAN DATA GAJI
 			$gaji_sma = ExecuteRow("SELECT * FROM gaji_sma WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
 			$total_gaji_sma = $gaji_sma["total"]-$potongan_guru+$penyesuaian_guru;

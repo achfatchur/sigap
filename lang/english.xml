@@ -856,9 +856,6 @@
   <project>
     <phrase id="bodytitle" value="SIGAP YWH" />
     <phrase id="footertext" value="&amp;copy;2022 PT PrimaVisi." />
-    <menu id="1623">
-      <phrase id="menutext" value="Back UP Restore DataBase" />
-    </menu>
     <menu id="1160">
       <phrase id="menutext" value="Login Pegawai" />
     </menu>
@@ -1560,6 +1557,9 @@
     </menu>
     <menu id="53">
       <phrase id="menutext" value="userlevelpermissions" />
+    </menu>
+    <menu id="1623">
+      <phrase id="menutext" value="Back UP Restore DataBase" />
     </menu>
     <menu id="1378">
       <phrase id="menutext" value="Logout" />

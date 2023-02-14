@@ -39,34 +39,34 @@ $database   = "sigap2";
 $port   = "3306";
 $connect    = mysqli_connect($host, $user, $password, $database);
 
-	if(isset($_POST['restore'])){
+    if(isset($_POST['restore'])){
 		mysqli_query($connect, "DROP DATABASE ".$database."");
 		mysqli_query($connect, "CREATE DATABASE ".$database."");
-		$nama_file=$_FILES['datafile']['name'];
-		$ukuran=$_FILES['datafile']['size'];
-		$uploaddir='db_restore/';
-		$alamatfile=$uploaddir.$nama_file;
-		if (move_uploaded_file($_FILES['datafile']['tmp_name'],$alamatfile)){
-			$filename = 'db_restore/'.$nama_file.'';     
-		}
-		else{
-			echo "Restore Database Gagal, kode error = " . $_FILES['location']['error'];
-		}
+        $nama_file=$_FILES['datafile']['name'];
+        $ukuran=$_FILES['datafile']['size'];
+        $uploaddir='db_restore/';
+        $alamatfile=$uploaddir.$nama_file;
+        if (move_uploaded_file($_FILES['datafile']['tmp_name'],$alamatfile)){
+            $filename = 'db_restore/'.$nama_file.'';     
+        }
+        else{
+            echo "Restore Database Gagal, kode error = " . $_FILES['location']['error'];
+        }
 
-		\CodexShaper\Dumper\Drivers\MysqlDumper::create()
-		->setHost($host)
-		->setPort($port)
-		->setDbName($database)
-		->setPassword($password)
-		->setUserName($user)
-		->setRestorePath($filename)
-		->restore();
+        \CodexShaper\Dumper\Drivers\MysqlDumper::create()
+        ->setHost($host)
+        ->setPort($port)
+        ->setDbName($database)
+        ->setPassword($password)
+        ->setUserName($user)
+        ->setRestorePath($filename)
+        ->restore();
 
-		echo ("<script LANGUAGE='JavaScript'>
-		window.alert('Berhasil Proses Data');
-		window.location.href='payrols.php';
-		</script>");
-	}
+        echo ("<script LANGUAGE='JavaScript'>
+        window.alert('Berhasil Proses Data');
+        window.location.href='payrols.php';
+        </script>");
+    }
 
 	if(isset($_POST['backup'])){
 		\CodexShaper\Dumper\Drivers\MysqlDumper::create()
@@ -82,11 +82,11 @@ $connect    = mysqli_connect($host, $user, $password, $database);
 		window.alert('Berhasil Proses Data');
 		window.location.href='payrols.php';
 		</script>");
-	}
+    }
 ?>
 <div class="container">
   <div class="row">
-	<div class="col-6">
+    <div class="col-6">
 		<div class="box-content">
 			<h4>Backup Database SIGAP</h4><br>
 			<form role="form" action="<?php echo CurrentPageName() ?>" method="post">
@@ -101,7 +101,7 @@ $connect    = mysqli_connect($host, $user, $password, $database);
 			</form>
 		</div>
 	</div>
-	<div class="col-6">
+    <div class="col-6">
 		<div class="box-content">
 			<?php
 				$dir    ="db_backup/";							
@@ -149,7 +149,7 @@ $connect    = mysqli_connect($host, $user, $password, $database);
   </div>
   <br><br>
   <div class="row">
-	<div class="col-6">
+    <div class="col-6">
 		<div class="box-content">
 			<h4>Restore Database SIGAP</h4><br>
 			<form enctype="multipart/form-data" role="form" action="<?php echo CurrentPageName() ?>" method="post">
