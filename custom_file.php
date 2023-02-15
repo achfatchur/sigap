@@ -149,8 +149,6 @@ Page_Rendering();
 					<b style="font-size: 15px;"><u>POTONGAN</u></b>
 					<br>
 					<p style="font-size: 12px;">
-					<br><b>Potongan Bendahara	: <?=number_format($gaji['potongan_bendahara'],0,',','.');?></b>
-					<br><b>Potongan Unit : <?=number_format($gaji_detil['potongan'],0,',','.')?></b>
 					<br> Absen = <?=$penyesuaian['absen']?>
 					<br> Absen/Jam = <?=$penyesuaian['absen_jam']?>
 					<br> Izin = <?=$penyesuaian['izin']?>
@@ -159,6 +157,8 @@ Page_Rendering();
 					<br> Sakit/Jam = <?=$penyesuaian['sakit_jam']?>
 					<br> Terlambat = <?=$penyesuaian['terlambat']?>
 					<br> Pulang Cepat = <?=$penyesuaian['pulang_cepat']?>
+					<br><b>Potongan Bendahara	: <?=number_format($gaji['potongan_bendahara'],0,',','.');?></b>
+					<br><b>Potongan Unit : <?=number_format($gaji_detil['potongan'],0,',','.')?></b>
 					<br><b>Total Potongan Unit =<?=number_format($gaji_detil['potongan'],0,',','.')?></b>
 
 					</p>
@@ -176,7 +176,7 @@ Page_Rendering();
 			<p style="margin: 20px;margin-top: 30px;text-align: center;font-size: 12px;">
 				<b>
 				Surabaya, Bendahara
-				<br><br><br><br><br><br><br><br>
+				<br><br><br><br>
 				<u>H.M.KHUDARTONO</u>
 				</b>    
 			</p>
@@ -189,7 +189,6 @@ Page_Rendering();
 	</script>
 
 <?php if (Config("DEBUG")) echo GetDebugMessage(); ?>
-<?php include_once "footer.php"; ?>
 <?php
 $custom_file->terminate();
 ?>

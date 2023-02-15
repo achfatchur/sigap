@@ -172,7 +172,6 @@ $connect    = mysqli_connect($host, $user, $password, $database);
 	</div>
   </div>
 </div>
-
 <?php if (Config("DEBUG")) echo GetDebugMessage(); ?>
 <?php include_once "footer.php"; ?>
 <?php
