@@ -998,7 +998,7 @@
       <phrase id="menutext" value="Proses Gaji SMK" />
     </menu>
     <menu id="936">
-      <phrase id="menutext" value="Potongan Bendahara" />
+      <phrase id="menutext" value="Slip Gaji" />
     </menu>
     <menu id="1">
       <phrase id="menutext" value="Absen" />
@@ -1736,7 +1736,7 @@
       </field>
     </table>
     <table id="custom_file">
-      <phrase id="tblcaption" value="Potongan Bendahara" />
+      <phrase id="tblcaption" value="Slip Gaji" />
     </table>
     <table id="daftarbarang">
       <phrase id="tblcaption" value="Daftar Barang" />

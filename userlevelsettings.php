@@ -430,7 +430,7 @@ $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3
 	["barangnew","barangnew","barangnew",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["berita","berita","Berita",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["bulan","bulan","bulan",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
-	["custom_file.php","custom_file","Potongan Bendahara",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["custom_file.php","custom_file","Slip Gaji",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["daftarbarang","daftarbarang","Daftar Barang",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["dinasluar","dinasluar","Dinas Luar",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["gaji","gaji","Gaji Guru SD",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],

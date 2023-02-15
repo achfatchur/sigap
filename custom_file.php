@@ -189,6 +189,7 @@ Page_Rendering();
 	</script>
 
 <?php if (Config("DEBUG")) echo GetDebugMessage(); ?>
+<?php include_once "footer.php"; ?>
 <?php
 $custom_file->terminate();
 ?>
