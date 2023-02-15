@@ -26,7 +26,6 @@ class v_totalgajisma extends DbTable
 
 	// Fields
 	public $id;
-	public $datetime;
 	public $bulan;
 	public $tahun;
 	public $pegawai;
@@ -74,12 +73,6 @@ class v_totalgajisma extends DbTable
 		$this->id->Sortable = TRUE; // Allow sort
 		$this->id->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['id'] = &$this->id;
-
-		// datetime
-		$this->datetime = new DbField('v_totalgajisma', 'v_totalgajisma', 'x_datetime', 'datetime', '`datetime`', CastDateFieldForLike("`datetime`", 0, "DB"), 135, 19, 0, FALSE, '`datetime`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->datetime->Sortable = TRUE; // Allow sort
-		$this->datetime->DefaultErrorMessage = str_replace("%s", $GLOBALS["DATE_FORMAT"], $Language->phrase("IncorrectDate"));
-		$this->fields['datetime'] = &$this->datetime;
 
 		// bulan
 		$this->bulan = new DbField('v_totalgajisma', 'v_totalgajisma', 'x_bulan', 'bulan', '`bulan`', '`bulan`', 3, 10, -1, FALSE, '`bulan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
@@ -226,7 +219,7 @@ class v_totalgajisma extends DbTable
 	}
 	public function getSqlOrderBy() // Order By
 	{
-		return ($this->SqlOrderBy != "") ? $this->SqlOrderBy : "`datetime` DESC";
+		return ($this->SqlOrderBy != "") ? $this->SqlOrderBy : "";
 	}
 	public function sqlOrderBy() // For backward compatibility
 	{
@@ -482,7 +475,6 @@ class v_totalgajisma extends DbTable
 			return;
 		$row = is_array($rs) ? $rs : $rs->fields;
 		$this->id->DbValue = $row['id'];
-		$this->datetime->DbValue = $row['datetime'];
 		$this->bulan->DbValue = $row['bulan'];
 		$this->tahun->DbValue = $row['tahun'];
 		$this->pegawai->DbValue = $row['pegawai'];
@@ -720,7 +712,6 @@ class v_totalgajisma extends DbTable
 	public function loadListRowValues(&$rs)
 	{
 		$this->id->setDbValue($rs->fields('id'));
-		$this->datetime->setDbValue($rs->fields('datetime'));
 		$this->bulan->setDbValue($rs->fields('bulan'));
 		$this->tahun->setDbValue($rs->fields('tahun'));
 		$this->pegawai->setDbValue($rs->fields('pegawai'));
@@ -739,7 +730,6 @@ class v_totalgajisma extends DbTable
 
 		// Common render codes
 		// id
-		// datetime
 		// bulan
 		// tahun
 		// pegawai
@@ -750,11 +740,6 @@ class v_totalgajisma extends DbTable
 
 		$this->id->ViewValue = $this->id->CurrentValue;
 		$this->id->ViewCustomAttributes = "";
-
-		// datetime
-		$this->datetime->ViewValue = $this->datetime->CurrentValue;
-		$this->datetime->ViewValue = FormatDateTime($this->datetime->ViewValue, 0);
-		$this->datetime->ViewCustomAttributes = "";
 
 		// bulan
 		$curVal = strval($this->bulan->CurrentValue);
@@ -823,11 +808,6 @@ class v_totalgajisma extends DbTable
 		$this->id->HrefValue = "";
 		$this->id->TooltipValue = "";
 
-		// datetime
-		$this->datetime->LinkCustomAttributes = "";
-		$this->datetime->HrefValue = "";
-		$this->datetime->TooltipValue = "";
-
 		// bulan
 		$this->bulan->LinkCustomAttributes = "";
 		$this->bulan->HrefValue = "";
@@ -878,12 +858,6 @@ class v_totalgajisma extends DbTable
 		$this->id->EditCustomAttributes = "";
 		$this->id->EditValue = $this->id->CurrentValue;
 		$this->id->ViewCustomAttributes = "";
-
-		// datetime
-		$this->datetime->EditAttrs["class"] = "form-control";
-		$this->datetime->EditCustomAttributes = "";
-		$this->datetime->EditValue = FormatDateTime($this->datetime->CurrentValue, 8);
-		$this->datetime->PlaceHolder = RemoveHtml($this->datetime->caption());
 
 		// bulan
 		$this->bulan->EditAttrs["class"] = "form-control";
@@ -947,7 +921,6 @@ class v_totalgajisma extends DbTable
 				$doc->beginExportRow();
 				if ($exportPageType == "view") {
 					$doc->exportCaption($this->id);
-					$doc->exportCaption($this->datetime);
 					$doc->exportCaption($this->bulan);
 					$doc->exportCaption($this->tahun);
 					$doc->exportCaption($this->pegawai);
@@ -956,7 +929,6 @@ class v_totalgajisma extends DbTable
 					$doc->exportCaption($this->status);
 				} else {
 					$doc->exportCaption($this->id);
-					$doc->exportCaption($this->datetime);
 					$doc->exportCaption($this->bulan);
 					$doc->exportCaption($this->tahun);
 					$doc->exportCaption($this->pegawai);
@@ -995,7 +967,6 @@ class v_totalgajisma extends DbTable
 					$doc->beginExportRow($rowCnt); // Allow CSS styles if enabled
 					if ($exportPageType == "view") {
 						$doc->exportField($this->id);
-						$doc->exportField($this->datetime);
 						$doc->exportField($this->bulan);
 						$doc->exportField($this->tahun);
 						$doc->exportField($this->pegawai);
@@ -1004,7 +975,6 @@ class v_totalgajisma extends DbTable
 						$doc->exportField($this->status);
 					} else {
 						$doc->exportField($this->id);
-						$doc->exportField($this->datetime);
 						$doc->exportField($this->bulan);
 						$doc->exportField($this->tahun);
 						$doc->exportField($this->pegawai);

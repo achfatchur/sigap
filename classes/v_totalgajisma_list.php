@@ -818,7 +818,6 @@ class v_totalgajisma_list extends v_totalgajisma
 		// Setup export options
 		$this->setupExportOptions();
 		$this->id->Visible = FALSE;
-		$this->datetime->Visible = FALSE;
 		$this->bulan->setVisibility();
 		$this->tahun->setVisibility();
 		$this->pegawai->setVisibility();
@@ -1132,7 +1131,6 @@ class v_totalgajisma_list extends v_totalgajisma
 		$filterList = "";
 		$savedFilterList = "";
 		$filterList = Concat($filterList, $this->id->AdvancedSearch->toJson(), ","); // Field id
-		$filterList = Concat($filterList, $this->datetime->AdvancedSearch->toJson(), ","); // Field datetime
 		$filterList = Concat($filterList, $this->bulan->AdvancedSearch->toJson(), ","); // Field bulan
 		$filterList = Concat($filterList, $this->tahun->AdvancedSearch->toJson(), ","); // Field tahun
 		$filterList = Concat($filterList, $this->pegawai->AdvancedSearch->toJson(), ","); // Field pegawai
@@ -1184,14 +1182,6 @@ class v_totalgajisma_list extends v_totalgajisma
 		$this->id->AdvancedSearch->SearchValue2 = @$filter["y_id"];
 		$this->id->AdvancedSearch->SearchOperator2 = @$filter["w_id"];
 		$this->id->AdvancedSearch->save();
-
-		// Field datetime
-		$this->datetime->AdvancedSearch->SearchValue = @$filter["x_datetime"];
-		$this->datetime->AdvancedSearch->SearchOperator = @$filter["z_datetime"];
-		$this->datetime->AdvancedSearch->SearchCondition = @$filter["v_datetime"];
-		$this->datetime->AdvancedSearch->SearchValue2 = @$filter["y_datetime"];
-		$this->datetime->AdvancedSearch->SearchOperator2 = @$filter["w_datetime"];
-		$this->datetime->AdvancedSearch->save();
 
 		// Field bulan
 		$this->bulan->AdvancedSearch->SearchValue = @$filter["x_bulan"];
@@ -1252,7 +1242,6 @@ class v_totalgajisma_list extends v_totalgajisma
 		if (!$Security->canSearch())
 			return "";
 		$this->buildSearchSql($where, $this->id, $default, FALSE); // id
-		$this->buildSearchSql($where, $this->datetime, $default, FALSE); // datetime
 		$this->buildSearchSql($where, $this->bulan, $default, FALSE); // bulan
 		$this->buildSearchSql($where, $this->tahun, $default, FALSE); // tahun
 		$this->buildSearchSql($where, $this->pegawai, $default, FALSE); // pegawai
@@ -1266,7 +1255,6 @@ class v_totalgajisma_list extends v_totalgajisma
 		}
 		if (!$default && $this->Command == "search") {
 			$this->id->AdvancedSearch->save(); // id
-			$this->datetime->AdvancedSearch->save(); // datetime
 			$this->bulan->AdvancedSearch->save(); // bulan
 			$this->tahun->AdvancedSearch->save(); // tahun
 			$this->pegawai->AdvancedSearch->save(); // pegawai
@@ -1450,8 +1438,6 @@ class v_totalgajisma_list extends v_totalgajisma
 			return TRUE;
 		if ($this->id->AdvancedSearch->issetSession())
 			return TRUE;
-		if ($this->datetime->AdvancedSearch->issetSession())
-			return TRUE;
 		if ($this->bulan->AdvancedSearch->issetSession())
 			return TRUE;
 		if ($this->tahun->AdvancedSearch->issetSession())
@@ -1498,7 +1484,6 @@ class v_totalgajisma_list extends v_totalgajisma
 	protected function resetAdvancedSearchParms()
 	{
 		$this->id->AdvancedSearch->unsetSession();
-		$this->datetime->AdvancedSearch->unsetSession();
 		$this->bulan->AdvancedSearch->unsetSession();
 		$this->tahun->AdvancedSearch->unsetSession();
 		$this->pegawai->AdvancedSearch->unsetSession();
@@ -1517,7 +1502,6 @@ class v_totalgajisma_list extends v_totalgajisma
 
 		// Restore advanced search values
 		$this->id->AdvancedSearch->load();
-		$this->datetime->AdvancedSearch->load();
 		$this->bulan->AdvancedSearch->load();
 		$this->tahun->AdvancedSearch->load();
 		$this->pegawai->AdvancedSearch->load();
@@ -1872,13 +1856,6 @@ class v_totalgajisma_list extends v_totalgajisma
 				$this->Command = "search";
 		}
 
-		// datetime
-		if (!$this->isAddOrEdit() && $this->datetime->AdvancedSearch->get()) {
-			$got = TRUE;
-			if (($this->datetime->AdvancedSearch->SearchValue != "" || $this->datetime->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
-				$this->Command = "search";
-		}
-
 		// bulan
 		if (!$this->isAddOrEdit() && $this->bulan->AdvancedSearch->get()) {
 			$got = TRUE;
@@ -1986,7 +1963,6 @@ class v_totalgajisma_list extends v_totalgajisma
 		if (!$rs || $rs->EOF)
 			return;
 		$this->id->setDbValue($row['id']);
-		$this->datetime->setDbValue($row['datetime']);
 		$this->bulan->setDbValue($row['bulan']);
 		$this->tahun->setDbValue($row['tahun']);
 		$this->pegawai->setDbValue($row['pegawai']);
@@ -2000,7 +1976,6 @@ class v_totalgajisma_list extends v_totalgajisma
 	{
 		$row = [];
 		$row['id'] = NULL;
-		$row['datetime'] = NULL;
 		$row['bulan'] = NULL;
 		$row['tahun'] = NULL;
 		$row['pegawai'] = NULL;
@@ -2051,7 +2026,6 @@ class v_totalgajisma_list extends v_totalgajisma
 
 		// Common render codes for all row types
 		// id
-		// datetime
 		// bulan
 		// tahun
 		// pegawai
@@ -2064,11 +2038,6 @@ class v_totalgajisma_list extends v_totalgajisma
 			// id
 			$this->id->ViewValue = $this->id->CurrentValue;
 			$this->id->ViewCustomAttributes = "";
-
-			// datetime
-			$this->datetime->ViewValue = $this->datetime->CurrentValue;
-			$this->datetime->ViewValue = FormatDateTime($this->datetime->ViewValue, 0);
-			$this->datetime->ViewCustomAttributes = "";
 
 			// bulan
 			$curVal = strval($this->bulan->CurrentValue);
@@ -2232,7 +2201,6 @@ class v_totalgajisma_list extends v_totalgajisma
 	public function loadAdvancedSearch()
 	{
 		$this->id->AdvancedSearch->load();
-		$this->datetime->AdvancedSearch->load();
 		$this->bulan->AdvancedSearch->load();
 		$this->tahun->AdvancedSearch->load();
 		$this->pegawai->AdvancedSearch->load();

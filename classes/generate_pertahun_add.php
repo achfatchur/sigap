@@ -1298,58 +1298,43 @@ class generate_pertahun_add extends generate_pertahun
 		// Example:
 		//$url = "your URL";
 
-	if ($this->profesi->CurrentValue ='1') {
+	/*if ($this->profesi->CurrentValue ='1') {
 	$url = "gaji_smalist.php";
 	}else if($this->profesi->CurrentValue ='2'){
 	$url = "gaji_tu_smalist.php";
 	}else{
 	$url = "gaji_karyawan_smalist.php";
-	}	
+	}*/	
 	}
-
 	// Message Showing event
 	// $type = ''|'success'|'failure'|'warning'
 	function Message_Showing(&$msg, $type) {
 		if ($type == 'success') {
-
 			//$msg = "your success message";
 		} elseif ($type == 'failure') {
-
 			//$msg = "your failure message";
 		} elseif ($type == 'warning') {
-
 			//$msg = "your warning message";
 		} else {
-
 			//$msg = "your message";
 		}
 	}
-
 	// Page Render event
 	function Page_Render() {
-
 		//echo "Page Render";
 	}
-
 	// Page Data Rendering event
 	function Page_DataRendering(&$header) {
-
 		// Example:
 		//$header = "your header";
-
 	}
-
 	// Page Data Rendered event
 	function Page_DataRendered(&$footer) {
-
 		// Example:
 		//$footer = "your footer";
-
 	}
-
 	// Form Custom Validate event
 	function Form_CustomValidate(&$customError) {
-
 		// Return error message in CustomError
 		return TRUE;
 	}

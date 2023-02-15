@@ -8,7 +8,6 @@ class ComposerStaticInit644938af8e3926824f06ee4f48219c7b
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
         'f9e61f18f0291090ecf3f67a829046de' => __DIR__ . '/..' . '/athari/yalinqo/YaLinqo/Linq.php',
@@ -25,9 +24,7 @@ class ComposerStaticInit644938af8e3926824f06ee4f48219c7b
         ),
         'S' => 
         array (
-            'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
-            'Symfony\\Component\\Process\\' => 26,
             'Svg\\' => 4,
             'Slim\\Middleware\\' => 16,
             'Slim\\HttpCache\\' => 15,
@@ -69,7 +66,6 @@ class ComposerStaticInit644938af8e3926824f06ee4f48219c7b
         'C' => 
         array (
             'Complex\\' => 8,
-            'CodexShaper\\Dumper\\' => 19,
         ),
     );
 
@@ -82,17 +78,9 @@ class ComposerStaticInit644938af8e3926824f06ee4f48219c7b
         array (
             0 => __DIR__ . '/..' . '/athari/yalinqo/YaLinqo',
         ),
-        'Symfony\\Polyfill\\Php80\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
-        ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
-        ),
-        'Symfony\\Component\\Process\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/process',
         ),
         'Svg\\' => 
         array (
@@ -187,10 +175,6 @@ class ComposerStaticInit644938af8e3926824f06ee4f48219c7b
         array (
             0 => __DIR__ . '/..' . '/markbaker/complex/classes/src',
         ),
-        'CodexShaper\\Dumper\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/codexshaper/database-backup-restore/src',
-        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -226,7 +210,6 @@ class ComposerStaticInit644938af8e3926824f06ee4f48219c7b
     );
 
     public static $classMap = array (
-        'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Dompdf\\Cpdf' => __DIR__ . '/..' . '/hkvstore/dompdf/lib/Cpdf.php',
         'HTML5_Data' => __DIR__ . '/..' . '/hkvstore/dompdf/lib/html5lib/Data.php',
@@ -235,10 +218,7 @@ class ComposerStaticInit644938af8e3926824f06ee4f48219c7b
         'HTML5_Tokenizer' => __DIR__ . '/..' . '/hkvstore/dompdf/lib/html5lib/Tokenizer.php',
         'HTML5_TreeBuilder' => __DIR__ . '/..' . '/hkvstore/dompdf/lib/html5lib/TreeBuilder.php',
         'Mobile_Detect' => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
-        'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
-        'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
-        'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
-        'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
+        'Stringable' => __DIR__ . '/..' . '/myclabs/php-enum/stubs/Stringable.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

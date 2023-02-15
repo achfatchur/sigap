@@ -25,8 +25,7 @@
 		"dflydev/dot-access-data": "^1.1.0",
 		"delight-im/cookie": "^3.3.1",
 		"phpoffice/phpspreadsheet": "^1.7.0",
-		"hkvstore/dompdf": "~0.8.301",
-		"codexshaper/database-backup-restore": "^1.1"
+		"hkvstore/dompdf": "~0.8.301"
 	},
 	"autoload": {}
 }
