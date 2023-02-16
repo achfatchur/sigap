@@ -124,11 +124,13 @@ $connect    = mysqli_connect($host, $user, $password, $database);
 					// menghitung jumlah file
 					$jumlah_file    =count($files);
 					$jumlah_page    =ceil($jumlah_file / $page); 
+					
 					echo 'Jumlah file: '.$jumlah_file.' | Jumlah page: '.$jumlah_page.'<hr/><div> </div>';
 					// membuka isi file dalam folder
 					for($x=$start;$x<($start+$page);$x++){
 						if($x<$jumlah_file){
 							print '» <a href="'.$dir.$files[$x].'" target="_blank">'.ucwords($files[$x]).'</a><br/>';
+							print '» <br><a href="db_backup/download.php">Download it!</a>';
 						}
 					}
 					if($jumlah_file>$page){
