@@ -129,8 +129,8 @@ $connect    = mysqli_connect($host, $user, $password, $database);
 					// membuka isi file dalam folder
 					for($x=$start;$x<($start+$page);$x++){
 						if($x<$jumlah_file){
-							print '» <a href="'.$dir.$files[$x].'" target="_blank">'.ucwords($files[$x]).'</a><br/>';
-							print '» <br><a href="db_backup/download.php">Download it!</a>';
+							print '» <a href="./db_backup/'.$files[$x].'" target="_blank" download="backup_sigap.sql">'.ucwords($files[$x]).'</a><br/>';
+							//print '» <br><a href="./db_backup/download.php?path=Backup_SIGAP-14-February-2023.sql">'.ucwords($files[$x]).'</a>';
 						}
 					}
 					if($jumlah_file>$page){
