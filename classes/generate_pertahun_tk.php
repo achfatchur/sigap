@@ -1117,8 +1117,8 @@ class generate_pertahun_tk extends DbTable
 						//perhitungan
 						$tambahan_guru = ($piket_guru["value"] * $absen_guru["piket"]) +  ($lembur_guru * $absen_guru["lembur"]);
 						$inval2_guru = ($inval_guru * $absen_guru["inval"]) ;
-								$sub_total_guru = $tunjangan_jabatan_guru['value'] + ($gaji_pokok_guru["value"] * $query_guru["jjm"]) + ($kehadiran_guru["value"]* $query_guru["jjm"]) + $tunjangan_berkala_guru["value"] + $tunjanagan_tambahan_guru["value"] + ($absen_guru["lembur"] * $lembur_guru) + ($absen_guru["piket"] * $piket_guru["value"]) + $inval2_guru + $reward_guru; 
-
+						$sub_total_guru = $tunjangan_jabatan_guru['value'] + ($gaji_pokok_guru["value"] * $query_guru["jjm"]) + ($kehadiran_guru["value"] * $query_guru["jjm"]) + $tunjangan_berkala_guru["value"] + $tunjanagan_tambahan_guru["value"] + ($absen_guru["lembur"] * $lembur_guru) + ($absen_guru["piket"] * $piket_guru["value"]) + $inval2_guru + $reward_guru; 
+						//print_r($kehadiran_guru["value"])
 						//$test = $reward;
 						//print_r($test);
 						//die;
@@ -1160,10 +1160,10 @@ class generate_pertahun_tk extends DbTable
 
 					$myResult_guru = Execute($myquery_guru);
 					}
-			$delete_detil_tu ="DELETE FROM gaji_tu_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
-			$detil_delete_tu = execute($delete_detil_tu);
-			$delete_m_tu ="DELETE FROM m_tu_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."' ORDER BY id asc";	
-			$clone_delete_tu = execute($delete_m_tu);
+					$delete_detil_tu ="DELETE FROM gaji_tu_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
+					$detil_delete_tu = execute($delete_detil_tu);
+					$delete_m_tu ="DELETE FROM m_tu_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."' ORDER BY id asc";	
+					$clone_delete_tu = execute($delete_m_tu);
 							$querymy_tu = "INSERT INTO m_tu_tk VALUES (NULL,'".$tahun."','".$bulan."',NULL,NULL)";
 							$Result = Execute($querymy_tu);
 							$pid_tu = ExecuteScalar("select id from m_tu_tk order by id DESC limit 1");
@@ -1221,7 +1221,9 @@ class generate_pertahun_tk extends DbTable
 						$c_lembur_tu = 1 * $absen_tu["lembur"];
 						$c_piket_tu = 1 * $absen_tu["piket"];
 						$v_voucher_tu = 1 * $absen_tu["voucher"];
-						$value_kehadiran_tu = ($kehadiran["value"] * $query["kehadiran"]);
+						$value_kehadiran_tu = ($kehadiran_tu["value"] * $query_tu["kehadiran"]);
+						//print_r($query_tu["kehadiran"]);
+						//die;
 						$sub_total_tu = $khusus_tu +$komponen_gapok_tu + $value_kehadiran_tu + $tunjangan_jabatan_tu['value'] + $tunjanagan_tambahan_tu["value"] + ($absen_tu["lembur"] * $lembur_tu) + ($absen_tu["piket"] * $piket_tu["value"]) + $inval2_tu + $reward_tu; 
 						$total_tu = ($sub_total_tu + $tambahan_value_tu) - $penyesuaian_tu;
 
@@ -1283,7 +1285,7 @@ class generate_pertahun_tk extends DbTable
 				//print_r($v_kehadiran);
 				//die;
 
-				$myquery2_karyawan = "INSERT INTO gaji_karyawan_tk VALUES (NULL, '".$query_karyawan["nip"]."','".$query_karyawan["jabatan"]."','4','".$komponen_gapok_karyawan."',NULL,'".$inval2_karyawan."','".$c_jjm_karyawan."','".$sub_total_karyawan."','".$penyesuaian_karyawan."','".$tambahan_karyawan."','".$total_karyawan."','".$pid_karyawan."','".$v_kehadiran_karyawan."',NULL,'".$tahun."', '".$bulan."','".$v_voucher_karyawan."',NULL)";
+				$myquery2_karyawan = "INSERT INTO gaji_karyawan_tk VALUES (NULL, '".$query_karyawan["nip"]."','".$query_karyawan["jabatan"]."','1','".$komponen_gapok_karyawan."',NULL,'".$inval2_karyawan."','".$c_jjm_karyawan."','".$sub_total_karyawan."','".$penyesuaian_karyawan."','".$tambahan_karyawan."','".$total_karyawan."','".$pid_karyawan."','".$v_kehadiran_karyawan."',NULL,'".$tahun."', '".$bulan."','".$v_voucher_karyawan."',NULL)";
 
 				//print_r($myquery2);
 				//die;
