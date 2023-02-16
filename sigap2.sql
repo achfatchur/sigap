@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `absen` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.absen: ~6 rows (approximately)
+-- Dumping data for table sigap2.absen: ~7 rows (approximately)
 INSERT INTO `absen` (`id`, `bulan`, `tahun`, `jumlah_hari_kerja`, `datetime`, `createuser`) VALUES
 	(1, 4, 2023, NULL, '2023-01-24 04:15:02', -1),
 	(2, 5, 2024, 29, '2023-01-18 09:38:24', -1),
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `absen_detil` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.absen_detil: ~9 rows (approximately)
+-- Dumping data for table sigap2.absen_detil: ~10 rows (approximately)
 INSERT INTO `absen_detil` (`id`, `pid`, `pegawai`, `masuk`, `absen`, `ijin`, `sakit`, `pulang_cepat`, `piket`, `inval`, `lembur`, `terlambat`, `jenjang`, `date`, `penyesuaian`) VALUES
 	(3, 1, '10230', 2, 3, 1, 2, NULL, 2, NULL, 2, 2, 4, NULL, NULL),
 	(5, 2, '102390', 2, 2, 2, 2, NULL, NULL, NULL, NULL, 2, 4, NULL, NULL),
@@ -412,7 +412,7 @@ CREATE TABLE IF NOT EXISTS `gajisd` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gajisd: ~0 rows (approximately)
+-- Dumping data for table sigap2.gajisd: ~1 rows (approximately)
 INSERT INTO `gajisd` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(1, 2, 2, NULL, NULL);
 
@@ -607,7 +607,7 @@ CREATE TABLE IF NOT EXISTS `gajitunjangan` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gajitunjangan: ~8 rows (approximately)
+-- Dumping data for table sigap2.gajitunjangan: ~11 rows (approximately)
 INSERT INTO `gajitunjangan` (`id`, `pidjabatan`, `value_kehadiran`, `gapok`, `tunjangan_jabatan`, `reward`, `lembur`, `piket`, `inval`, `jam_lebih`, `tunjangan_khusus`, `ekstrakuri`) VALUES
 	(1, 1, 65500, 80000, NULL, 40000, 40000, 30000, 10000, 70000, 120000, NULL),
 	(2, 2, 65500, 40000, 1500000, 30000, 42000, 30000, 10000, 70000, NULL, NULL),
@@ -1131,7 +1131,7 @@ CREATE TABLE IF NOT EXISTS `gaji_pokok_tu` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=527 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_pokok_tu: ~415 rows (approximately)
+-- Dumping data for table sigap2.gaji_pokok_tu: ~433 rows (approximately)
 INSERT INTO `gaji_pokok_tu` (`id`, `jenjang_id`, `value`, `ijazah`, `lama_kerja`) VALUES
 	(84, 4, 65000, 3, 0),
 	(85, 4, 80000, 8, 0),
@@ -2200,7 +2200,7 @@ CREATE TABLE IF NOT EXISTS `gaji_tu_sd` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_tu_sd: ~1 rows (approximately)
+-- Dumping data for table sigap2.gaji_tu_sd: ~2 rows (approximately)
 INSERT INTO `gaji_tu_sd` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `tunjangan2`, `tambahan`, `type_jabatan`, `ijasah`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`) VALUES
 	(83, NULL, '10232712', 2, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 0, 0, 0, 50000, 0, 50000, 20, 0, 0, 2, 0, 2, 0, 54000, 2023, 1, 0, NULL, NULL),
 	(84, NULL, '10232712', 2, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 0, 0, 0, 50000, 0, 50000, 21, 0, 0, 2, 0, 2, 0, 54000, 2023, 11, 0, NULL, NULL);
@@ -2296,7 +2296,7 @@ CREATE TABLE IF NOT EXISTS `gaji_tu_smk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_tu_smk: ~0 rows (approximately)
+-- Dumping data for table sigap2.gaji_tu_smk: ~2 rows (approximately)
 INSERT INTO `gaji_tu_smk` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `ijasah`, `tunjangan2`, `tambahan`, `type_jabatan`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`) VALUES
 	(80, NULL, '1023231', 5, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 100000, 0, 0, 220000, 0, 220000, 24, 0, 70000, 2, 2, 2, 1, 54000, 2023, 1, 0, NULL, NULL),
 	(81, NULL, '1023231', 5, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 100000, 0, 0, 220000, 0, 220000, 25, 0, 70000, 2, 2, 2, 1, 54000, 2023, 11, 0, NULL, NULL);
@@ -2408,7 +2408,7 @@ CREATE TABLE IF NOT EXISTS `generate_perbulan` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.generate_perbulan: ~11 rows (approximately)
+-- Dumping data for table sigap2.generate_perbulan: ~12 rows (approximately)
 INSERT INTO `generate_perbulan` (`id`, `tahun`, `bulan`) VALUES
 	(1, 2023, 'januari,Februari,Maret'),
 	(2, 2023, 'januari,Februari,Maret'),
@@ -2504,7 +2504,7 @@ CREATE TABLE IF NOT EXISTS `generate_pertahun_tk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=381 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.generate_pertahun_tk: ~3 rows (approximately)
+-- Dumping data for table sigap2.generate_pertahun_tk: ~4 rows (approximately)
 INSERT INTO `generate_pertahun_tk` (`id`, `tahun`, `bulan`, `profesi`, `bulan2`) VALUES
 	(325, 2023, NULL, 2, 7),
 	(372, 2023, NULL, NULL, 1),
@@ -2796,7 +2796,7 @@ CREATE TABLE IF NOT EXISTS `jenis_jabatan` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.jenis_jabatan: ~2 rows (approximately)
+-- Dumping data for table sigap2.jenis_jabatan: ~3 rows (approximately)
 INSERT INTO `jenis_jabatan` (`id`, `name`) VALUES
 	(1, 'Pimpinan &amp; Guru'),
 	(2, 'Tenaga Kependidikan'),
@@ -2810,7 +2810,7 @@ CREATE TABLE IF NOT EXISTS `jenis_lembur` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.jenis_lembur: ~0 rows (approximately)
+-- Dumping data for table sigap2.jenis_lembur: ~1 rows (approximately)
 INSERT INTO `jenis_lembur` (`id`, `nama`, `aktif`) VALUES
 	(1, 'Kejar deadline', '1');
 
@@ -2853,7 +2853,7 @@ CREATE TABLE IF NOT EXISTS `mpendidikan` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.mpendidikan: ~8 rows (approximately)
+-- Dumping data for table sigap2.mpendidikan: ~10 rows (approximately)
 INSERT INTO `mpendidikan` (`id`, `name`) VALUES
 	(1, 'SD'),
 	(2, 'SMP'),
@@ -2961,7 +2961,7 @@ CREATE TABLE IF NOT EXISTS `m_karyawan_sma` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_karyawan_sma: ~4 rows (approximately)
+-- Dumping data for table sigap2.m_karyawan_sma: ~5 rows (approximately)
 INSERT INTO `m_karyawan_sma` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(63, 2023, 6, NULL, NULL),
 	(64, 2023, 7, NULL, NULL),
@@ -3010,7 +3010,7 @@ CREATE TABLE IF NOT EXISTS `m_karyawan_tk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_karyawan_tk: ~5 rows (approximately)
+-- Dumping data for table sigap2.m_karyawan_tk: ~6 rows (approximately)
 INSERT INTO `m_karyawan_tk` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(28, 2023, 3, NULL, NULL),
 	(48, 2023, 12, NULL, NULL),
@@ -3030,7 +3030,7 @@ CREATE TABLE IF NOT EXISTS `m_kehadiran` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.m_kehadiran: ~29 rows (approximately)
+-- Dumping data for table sigap2.m_kehadiran: ~32 rows (approximately)
 INSERT INTO `m_kehadiran` (`id`, `jenjang`, `jenis_jabatan`, `sertif`, `value`, `jabatan`) VALUES
 	(1, 4, 1, 1, 56000, NULL),
 	(2, 4, 1, 2, 66000, NULL),
@@ -3093,7 +3093,7 @@ CREATE TABLE IF NOT EXISTS `m_penyesuaian` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.m_penyesuaian: ~9 rows (approximately)
+-- Dumping data for table sigap2.m_penyesuaian: ~10 rows (approximately)
 INSERT INTO `m_penyesuaian` (`id`, `bulan`, `tahun`, `c_by`, `datetime`, `import_file`) VALUES
 	(6, 11, 2023, 31, '2023-02-14 04:02:59', 'Template Penyesuaian (1).xlsx'),
 	(8, 7, 2023, 31, '2023-02-14 04:39:24', 'Template Penyesuaian (3).xlsx'),
@@ -3116,7 +3116,7 @@ CREATE TABLE IF NOT EXISTS `m_piket` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.m_piket: ~15 rows (approximately)
+-- Dumping data for table sigap2.m_piket: ~16 rows (approximately)
 INSERT INTO `m_piket` (`id`, `jenjang`, `type_jabatan`, `jenis_sertif`, `value`) VALUES
 	(1, 4, 1, 1, 7000),
 	(2, 4, 1, 2, 8250),
@@ -3193,7 +3193,7 @@ CREATE TABLE IF NOT EXISTS `m_potongan_smk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_potongan_smk: ~2 rows (approximately)
+-- Dumping data for table sigap2.m_potongan_smk: ~3 rows (approximately)
 INSERT INTO `m_potongan_smk` (`id`, `bulan`, `tahun`, `c_by`, `datetime`, `import_file`) VALUES
 	(1, 4, 2023, -1, '2023-01-25 07:09:34', NULL),
 	(2, 4, 2023, -1, '2023-01-25 07:10:45', NULL),
@@ -3316,7 +3316,7 @@ CREATE TABLE IF NOT EXISTS `m_sma` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=562 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_sma: ~2 rows (approximately)
+-- Dumping data for table sigap2.m_sma: ~4 rows (approximately)
 INSERT INTO `m_sma` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(558, 2023, 2, NULL, NULL),
 	(559, 2023, 1, NULL, NULL),
@@ -3333,7 +3333,7 @@ CREATE TABLE IF NOT EXISTS `m_smk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_smk: ~2 rows (approximately)
+-- Dumping data for table sigap2.m_smk: ~3 rows (approximately)
 INSERT INTO `m_smk` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(46, '2023', 2, NULL, NULL),
 	(47, '2023', 1, NULL, NULL),
@@ -3396,7 +3396,7 @@ CREATE TABLE IF NOT EXISTS `m_tk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_tk: ~3 rows (approximately)
+-- Dumping data for table sigap2.m_tk: ~4 rows (approximately)
 INSERT INTO `m_tk` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(48, '2023', 3, NULL, NULL),
 	(70, '2023', 1, NULL, NULL),
@@ -3413,7 +3413,7 @@ CREATE TABLE IF NOT EXISTS `m_tu_sd` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_tu_sd: ~1 rows (approximately)
+-- Dumping data for table sigap2.m_tu_sd: ~2 rows (approximately)
 INSERT INTO `m_tu_sd` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(20, '2023', 1, NULL, NULL),
 	(21, '2023', 11, NULL, NULL);
@@ -3444,7 +3444,7 @@ CREATE TABLE IF NOT EXISTS `m_tu_smk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_tu_smk: ~1 rows (approximately)
+-- Dumping data for table sigap2.m_tu_smk: ~2 rows (approximately)
 INSERT INTO `m_tu_smk` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(24, '2023', 1, NULL, NULL),
 	(25, '2023', 11, NULL, NULL);
@@ -3475,7 +3475,7 @@ CREATE TABLE IF NOT EXISTS `m_tu_tk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.m_tu_tk: ~3 rows (approximately)
+-- Dumping data for table sigap2.m_tu_tk: ~4 rows (approximately)
 INSERT INTO `m_tu_tk` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
 	(19, '2023', 7, NULL, NULL),
 	(34, '2023', 1, NULL, NULL),
@@ -3537,7 +3537,7 @@ CREATE TABLE IF NOT EXISTS `pegawai` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=428 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.pegawai: ~401 rows (approximately)
+-- Dumping data for table sigap2.pegawai: ~16 rows (approximately)
 INSERT INTO `pegawai` (`id`, `pid`, `nama`, `alamat`, `email`, `wa`, `hp`, `tgllahir`, `nip`, `rekbank`, `pendidikan`, `jurusan`, `agama`, `jenkel`, `status`, `foto`, `file_cv`, `jabatan`, `mulai_bekerja`, `keterangan`, `username`, `password`, `level`, `aktif`, `jenjang_id`, `type`, `sertif`, `tambahan`, `periode_jabatan`, `lama_kerja`, `status_peg`, `jjm`, `kehadiran`) VALUES
 	(6, NULL, 'Fitria', 'surabaya', 'fitria@gmail.com', NULL, NULL, NULL, '10230', '11313411', NULL, NULL, NULL, 'Wanita', NULL, NULL, NULL, 5, NULL, NULL, 'Fitria', 'asdf12', 1, 1, 4, 1, 1, 2, 4, 2, NULL, 48, NULL),
 	(11, NULL, 'Dito', 'surabaya', 'dito@gmail.com', '085970248011', NULL, NULL, '10235', NULL, NULL, NULL, NULL, 'Wanita', NULL, NULL, NULL, 9, NULL, NULL, 'dito', 'asdf123', 1, 1, 4, 1, 2, NULL, NULL, NULL, NULL, 48, NULL),
@@ -3552,396 +3552,9 @@ INSERT INTO `pegawai` (`id`, `pid`, `nama`, `alamat`, `email`, `wa`, `hp`, `tgll
 	(35, NULL, 'Unit TK', NULL, NULL, NULL, NULL, NULL, 'tk', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'tk', '123456', 8, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(36, NULL, 'Dwi', 'surabaya', 'Dwi@gmail.com', NULL, NULL, NULL, '10239', NULL, 8, NULL, NULL, 'Wanita', NULL, NULL, NULL, 7, NULL, NULL, 'dwi', 'asdf123', 1, 1, 4, 2, 2, NULL, NULL, 6, NULL, NULL, 26),
 	(37, NULL, 'Hartini', 'surabaya', 'Dwi@gmail.com', NULL, NULL, NULL, '102390', NULL, 8, NULL, NULL, 'Wanita', NULL, NULL, NULL, 6, NULL, NULL, 'hartini', 'asdf123', 1, 1, 4, 2, 2, 3, NULL, 3, NULL, NULL, 26),
-	(38, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin-1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin-1', '123456', 2, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(39, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '113142', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin-2', '123456', 2, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(40, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '113143', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin-3', '123456', 2, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(41, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '113144', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin-4', '113144', 2, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(42, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '113145', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin-5', '113144', 2, 1, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(38, NULL, 'admin', NULL, NULL, NULL, NULL, NULL, 'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', 'admin', 2, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(43, NULL, 'Bendahara', NULL, NULL, NULL, NULL, NULL, 'bendahara', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'bendahara', '123456', 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(44, NULL, 'Panitia PPDB', 'Sidotopo Wetan Baru No.37 Surabaya', 'ppdb', '', '', '2022-11-08', '', '', NULL, NULL, 'islam', 'Others', '', NULL, NULL, NULL, '2022', NULL, 'ppdb', '123456', NULL, 1, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(45, NULL, 'Sulicha,S.Pd', 'Tambak Deres III/3', 'zulikaika162@gmail.com', '081217527863', '081217527863', '2023-01-13', '1970070420', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023', NULL, 'zulikaika162@gmail.com', '123456', 1, 1, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(46, NULL, 'Ani wahyu Kurniati,S.Pd', 'Jl. Mohammad Noer 140 C', 'aniwahyu740@gmail.com', '085732233838', '085732233838', '1983-12-04', '19831204200207035421', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023', NULL, 'aniwahyu740@gmail.com', '123456', NULL, 1, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(47, NULL, 'Sanulis', 'Jl. Mohammad Noer 140 C', 'sanulist@gmail.com', '08563685557', '08563685557', '1981-07-17', '1981071', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023', NULL, 'sanulist@gmail.com', '123456', NULL, 1, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(48, NULL, 'Emilya Kartika Sari,S.Pd', 'Gembong 4/47A', 'emil.go.ek@yahoo.com', '085732766067', '085732766067', '1990-07-23', '199007232015070541', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'emil.go.ek@yahoo.com', '123456', NULL, 1, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(49, NULL, 'Ratna Oktavia Ismanisih,S.Pd', 'bulak Banteng Lor  1/127', 'satpamcml@gmail.com', '082331584200', '082331584200', '1992-06-11', '19920611', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023', NULL, 'satpamcml@gmail.com', '123456', NULL, 1, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(50, NULL, 'Yuli Widjajati,S.Pd', 'Sidomulyo IB/20', 'yuliwidjajati01@gmail.com', '081703512251', '081703512251', '1969-07-13', '19690701', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023', NULL, 'yuliwidjajati01@gmail.com', '123456', NULL, 1, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(51, NULL, 'Mutafarriqoh,m.Psi', 'Petukangan I/16', 'mutafarriqoh81@gmail.com', '089678707416', '089678707416', '1981-12-13', '198112132016070555', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'mutafarriqoh81@gmail.com', '123456', NULL, 1, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(52, NULL, 'Panitia PPDB', 'Sidotopo Wetan Baru No.37 Surabaya', 'ppdb', NULL, NULL, '2022-11-08', 'panitiaPPDB', NULL, NULL, NULL, NULL, 'Wanita', NULL, NULL, NULL, 6, '2022', NULL, 'ppdb', '123456', 1, 1, 1, 2, NULL, NULL, NULL, 1, NULL, 0, 26),
-	(53, NULL, 'IRMA SELVIANTI, M.PD', 'Gilang RT. 07 RW.02 Ds. Taman, Sda\r\n', 'Irma@demo.com', '', '', '1992-09-20', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Irma@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(54, NULL, 'NUR FAJRIYATUL MUNAWAROH, M.PD', '3578104305940005Medokan kampung, RT.001, RW.002\r\n', 'Fajriya@demo.com', '', '', '1994-05-03', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Fajriya@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(55, NULL, 'CHUSNATUL HASANAH, S.PD', 'Dinoyo 9/ 3-A RT. 02 RW.05\r\n', 'Chusnatul@demo.com', '', '', '1994-02-03', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Chusnatul@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(56, NULL, 'SITI AMINAH. S.PD', 'Kedung Cowek V/16\r\n', 'Aminah@demo.com', '', '', '1993-08-13', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Aminah@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(57, NULL, 'ANIA SULISTYAWATI, S.PD', '', 'Ania@demo.com', '', '', '1994-02-01', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Ania@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(58, NULL, 'NOVIRHA AGISTANTIA, S.PD', 'Tandes Kidul Gg 4 No.30\r\n', 'Novirha@demo.com', '', '', '1993-11-26', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Novirha@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(59, NULL, 'CHAYATUN NUCHUS, S.PD', 'Sejo RT.02 RW.03, Pasuruan\r\n', 'Nuchus@demo.com', '', '', '1994-11-10', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Nuchus@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(60, NULL, 'YOSSY MULIYANA SARI, S.PD', 'Sidotopo Wetan Baru 1A no 22\r\n', 'Yossy@demo.com', '', '', '1995-04-20', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Yossy@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(61, NULL, 'WAAHIDUN PUTRI AZIS, S.PD', 'Setro Baru Utara Gg. 4 No.28,\r\n', 'Waahidun@demo.com', '', '', '1996-12-13', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Waahidun@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(62, NULL, 'ERLINDA ROCHMATIN, S,PD', 'Dukuh Setro II Gg.2 No.3\r\n', 'Erlinda@demo.com', '', '', '2023-01-13', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Erlinda@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(63, NULL, 'JAZILATUL KHI?MIYAH, S.PD', 'Kapas Baru Gg 6 No 42\r\n', 'Jazilatul@demo.com', '', '', '1995-07-21', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Jazilatul@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(64, NULL, 'FADILA TARWIYAH ITSNAINI, S.PD', 'Jl. Pogot Jaya Gg II No. 18 \r\n', 'Fadila@demo.com', '', '', '1993-05-31', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Fadila@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(65, NULL, 'PAVLINA VIDIA SARI, S.PD', 'Jangur RT/RW 001/002, Lamongan\r\n', 'Pavlina@demo.com', '', '', '1996-07-31', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Pavlina@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(66, NULL, 'FIKA CITRA WIDARISMA, S.PD', 'Kupang Gunung Barat 4/58\r\n', 'Fika@demo.com', '', '', '1997-07-30', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Fika@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(67, NULL, 'NELLA TIKA ANGGRAINI,S.PD', 'Medaan Ayu  Utara 12/37\r\n', 'Nella@demo.com', '', '', '1996-09-21', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Nella@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(68, NULL, 'JANNATUL FIRDA PRAMAISWARI., S.PD', 'Jl. Benteng 17 b Surabaya\r\n', 'Jannatul@demo.com', '', '', '1998-10-11', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Jannatul@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(69, NULL, 'NUR AFNI AULIYAH, S.PD', 'Jl. Ploso VII No. 27 Sirabaya\r\n', 'Afni@demo.com', '', '', '1998-12-10', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Afni@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(70, NULL, 'IMTIHANA ROSYIDAH, S.PD', 'Jl. Sumur Banteng RT.10 RW.03 Ds. Lowayu\r\n', 'Imtihana@demo.com', '', '', '1999-07-02', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Imtihana@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(71, NULL, 'INDI RIZKA AISYI, S.PD', 'Jl. Bonowati 2/1, Surabaya\r\n', 'Indi@demo.com', '', '', '1999-03-15', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Indi@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(72, NULL, 'FAIQOTUL AINIYAH, S.PD', 'Jl. Kol. Sugiono Pandean III/41, Sidoarjo\r\n', 'Faiqotul@demo.com', '', '', '1995-11-04', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Faiqotul@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(73, NULL, 'NUR MUFIDATUL CHOIRIYAH, S.PD', 'Ds. Wilayut RT. 16 RW. 04 Sidoarjo\r\n', 'Choiriyah@demo.com', '', '', '1993-09-09', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Choiriyah@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(74, NULL, 'ACHMAD FAHMY, M.PD', 'Jl. Dupak Rukun 62 Surabaya\r\n', 'Fahmy@demo.com', '', '', '1991-12-31', '-', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2023', NULL, 'Fahmy@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(75, NULL, 'ULIL ABSOR, M.PD', 'Dukuh Bulak Banteng Sekolahan 9A no.36\r\n', 'Ulil@demo.com', '', '', '1995-09-09', '-', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2023', NULL, 'Ulil@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(76, NULL, 'ANDI SUWANDI, S, PD', 'Jl. Wonokusumo Jaya 1/100, Semampir\r\n', 'Andi@demo.com', '', '', '1992-12-20', '-', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2023', NULL, 'Andi@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(77, NULL, 'LINDAH LANASARI, S.PD', 'Tambak Laban 34-A, Rt. 08, Rw. 03\r\n', 'Lindah@demo.com', '', '', '1996-06-14', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Lindah@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(78, NULL, 'ST. FATIMAH RIYANA, S.PD', 'Desa Teja Timur Kec Pamekasan\r\n', 'Riyana@demo.com', '', '', '1997-06-14', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Riyana@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(79, NULL, 'IVONE YULIANTI, S.PD', 'Jl. Manyar Dukuh 104, Rt. 08, Rw. 03, \r\n', 'Ivone@demo.com', '', '', '1996-07-02', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Ivone@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(80, NULL, 'HALIMATUS SYA&#039;DIYAH, S.PD', 'Jl. Bulak Setro 3 no 6, Rt. 01, Rw. 05, Bulak\r\n', 'Halimatus@demo.com', '', '', '2000-09-20', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Halimatus@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(81, NULL, 'ALIFIATUL FAUZIAH, S.PD', 'Jl. Wonosari no 18, Pegiriab, semampir \r\n', 'Alifiatul@demo.com', '', '', '1999-11-20', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Alifiatul@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(82, NULL, 'ANIS DWI SETYANI, S.KOM', 'Tuwowo 3e no.2', 'Anis@demo.com', '', '', '1999-05-18', '-', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2023', NULL, 'Anis@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(83, NULL, 'RAYHAN', '', 'Rayhan@demo.com', '', '', '1970-01-01', '-', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, 'Rayhan@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(84, NULL, 'M RIZAL AFANDI', '', 'Rizal@demo.com', '', '', '1970-01-01', '-', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, 'Rizal@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(85, NULL, 'MUSTOFA', '', 'Mustofa@demo.com', '', '', '1970-01-01', '-', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, 'Mustofa@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(86, NULL, 'HARIS', '', 'Haris@demo.com', '', '', '1970-01-01', '-', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, 'Haris@demo.com', '123456', NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(87, NULL, 'Dra. NINING PARANTIANINGSIH', 'Jl. Kedinding Lor Raflesia 1 No. 3', 'nparantianingsih@gmail.com', '081336449249', '081336449249', '2023-01-16', '196512051993070226', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'nparantianingsih@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(88, NULL, 'KUNCAHYANING FITRIA SANTOSO, M.Pd.', 'Jl. Pacar Keling 2/77', 'zaicha.ria22@gmail.com', '083831106386', '083831106386', '2023-01-18', '199202222015070546', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'zaicha.ria22@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(89, NULL, 'AINUL YAQIN, S.Si.', 'Jl. Bulak Banteng Baru Gg Mawar No. 15 Surabaya', 'ainulyaqinpwh1@gmail.com', '085655815700', '085655815700', '2023-01-18', '198008252004070404', '', NULL, NULL, 'islam', 'Male', 'GTY', NULL, NULL, NULL, '2023', NULL, 'ainulyaqinpwh1@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(90, NULL, 'TAUFIQ HIDAYAT, S.Si.', 'Jl. Kapas Baru 2/106', 'taufiqkur29@gmail.com', '085648029960', '085648029960', '2023-01-16', '198306292008070448', '', NULL, NULL, 'islam', 'Male', 'GTY', NULL, NULL, NULL, '2023', NULL, 'taufiqkur29@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(91, NULL, 'CATTRI SIGIT WIDYASTUTI, S.Pd.', 'JL. Margodadi VI/15', 'cattrisigwh@yahoo.com', '082140909027', '082140909027', '2023-01-18', '198011212007070433', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'cattrisigwh@yahoo.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(92, NULL, 'H. ABDUL HADI, S.Pd.I', 'JL. Sidorukun 1 no. 123', 'abdhadipwh1@gmail.com', '081332938304', '081332938304', '2023-01-16', '195508061997070291', '', NULL, NULL, 'islam', 'Male', 'GTY', NULL, NULL, NULL, '2023', NULL, 'abdhadipwh1@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(93, NULL, 'H. ACHMAD FADLAN, S.Ag.', 'Jl. Sidesermo Dalam no. 16', 'ahmadfadlan271@gmail.com', '085855581945', '085855581945', '2023-01-18', '196402131995070258', '', NULL, NULL, 'islam', 'Male', 'GTY', NULL, NULL, NULL, '2023', NULL, 'ahmadfadlan271@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(94, NULL, 'AKHMAD FAUZI, S.Pd.I.', 'JL. Platuk Baru IA/71A', 'caica7915@gmail.com', '089520164531', '089520164531', '2023-01-18', '197905112010070338', '', NULL, NULL, 'islam', 'Male', 'GTY', NULL, NULL, NULL, '2023', NULL, 'caica7915@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(95, NULL, 'AHMAD SUWAIFIE, S.H.', 'Jl. Ngelom II/15 Taman', 'ifie81@yahoo.com', '085648910344', '085648910344', '2023-01-18', '198111252006070423', '', NULL, NULL, 'islam', 'Male', 'GTT', NULL, NULL, NULL, '2023', NULL, 'ifie81@yahoo.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(96, NULL, 'ALIP NURFAIZAH, S.Pd.', 'PERUM GRAHA MUTIARA INDAH A11/05', 'aliefnurfaizah@gmail.com', '081330455277', '081330455277', '2023-01-18', '198402172007070436', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'aliefnurfaizah@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(97, NULL, 'ANNA LATIFAH, S.Pd.', 'JL. Randu Agung III/55', 'annalatifah45@gmail.com', '081235747783', '081235747783', '2023-01-18', '197503091998070251', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'annalatifah45@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(98, NULL, 'ASKUR, S.Pd. M.Pd.I.', 'JL. Tambak Wedi Barat 5-E  No. 45', 'askurdpkwh@gmail.com', '', '', '2023-01-16', '', '', NULL, NULL, 'islam', 'Male', 'GTY', NULL, NULL, NULL, '2023', NULL, 'askurdpkwh@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(99, NULL, 'AULIA ZULFIKAR, S.Pd.', 'Jl. Wonorejo I/1D', 'auliazulfikar1004@gmail.com', '089531900475', '089531900475', '2023-01-18', '198304102006070420', '', NULL, NULL, 'islam', 'Male', 'GTY', NULL, NULL, NULL, '2023', NULL, 'auliazulfikar1004@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(100, NULL, 'CHOIRIYAH, S.Pd.', 'Jl. Bulak Rukem 3C/4', 'choiriyahspd3@gmail.com', '082131841556', '082131841556', '2023-01-16', '197002261998070248', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'choiriyahspd3@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(101, NULL, 'CHOIRUR ROBIAH, S.Psi.', 'JL. SIDOMULYO 2-E /10- B', 'choirurrobiah989@gmail.com', '085806500168', '085806500168', '2023-01-18', '198411252010070486', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'choirurrobiah989@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(102, NULL, 'DWI ISTRIANA SUWITARINI, S.Psi.', 'Jl. Tenggumung Karya Lor 83', 'dwiistriana11@gmail.com', '08813584344', '08813584344', '2023-01-18', '197404241999070326', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'dwiistriana11@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(103, NULL, 'GANDUNG SUPRI HARTOYO, S.Pd.', 'Jl. Gading 1/23', 'gandungwachidhasyim@gmail.com', '083856926004', '083856926004', '2023-01-16', '196709081999070325', '', NULL, NULL, 'islam', 'Male', 'GTY', NULL, NULL, NULL, '2023', NULL, 'gandungwachidhasyim@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(104, NULL, 'GATOT SUGIANTO, S.Pd.', 'Jl. Rangkah VII/70-b', 'smpwachidhasyim@yahoo.com', '083830754144', '083830754144', '2023-01-18', '197612261997070286', '', NULL, NULL, 'islam', 'Male', 'GTY', NULL, NULL, NULL, '2023', NULL, 'smpwachidhasyim@yahoo.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(105, NULL, 'HUSNUL KHOTIMAH, S.Or.', 'Jl. Bumiarjo 5/56B', 'chusnulkhotimwh@yahoo.com', '85732149029', '85732149029', '2023-01-18', '199201062014070526', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'chusnulkhotimwh@yahoo.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(106, NULL, 'SITTY CHOLIFAH', 'DUKUH SETRO RAWASAN 5/12', 'ifasitty@gmail.com', '087856644482', '087856644482', '1989-03-05', '198903052016070583', '', NULL, NULL, 'islam', 'Female', 'Tenaga Kependidikan', NULL, NULL, NULL, '2023', NULL, 'ifasitty@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(107, NULL, 'Drs. KUNTO BUDI WARSONO', 'Jl. Tenggumung Wetan Gang Salak No 5', 'KUNTOBW@GMAIL.COM', '081515022918', '081515022918', '2023-01-16', '196208291986070105', '', NULL, NULL, 'islam', 'Male', 'GTY', NULL, NULL, NULL, '2023', NULL, 'KUNTOBW@GMAIL.COM', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(108, NULL, 'WIWIN SUSILOWATI', 'JATIPURWO 7/25', 'wiwiensusilowati732@gmail.com', '085852270773', '085852270773', '1974-03-30', '197403301995070267', '', NULL, NULL, 'islam', 'Female', 'Tenaga Kependidikan', NULL, NULL, NULL, '2023', NULL, 'wiwiensusilowati732@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(109, NULL, 'LUTFIYAH KUSUMA', 'PANDEGILING 4/11', 'lutfiyahk7@gmail.com', '085808238501', '085808238501', '2023-01-13', '198202262006070479', '', NULL, NULL, 'islam', 'Female', 'Tenaga Kependidikan', NULL, NULL, NULL, '2023', NULL, 'lutfiyahk7@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(110, NULL, 'IVA VITYANA', 'DUKUH BULAK BANTENG SUROPATI III NO. 4 SURABAYA', 'ivavityana12@gmail.com', '081282976805', '081282976805', '1972-02-08', '197202081991070203', '', NULL, NULL, 'islam', 'Female', 'Tenaga Kependidikan', NULL, NULL, NULL, '2023', NULL, 'ivavityana12@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(111, NULL, 'NURUL CHOLIDAH', 'PLEMAHAN 6/11', 'rulbams@gmail.com', '087779998470', '087779998470', '1975-12-21', '197512211995070268', '', NULL, NULL, 'islam', 'Female', 'Tenaga Kependidikan', NULL, NULL, NULL, '2023', NULL, 'rulbams@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(112, NULL, 'Dra. Hj. KUSTANTRI NURWATI', 'JL. Jogoloyo Besar A No 32', 'kustantrinurwati12@gmail.com', '083130037637', '083130037637', '2023-01-16', '196512271993070227', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'kustantrinurwati12@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(113, NULL, 'MOCH ZAINUL ARIFIN, SE.', 'JL. Margodadi III No 41', 'zaimazing@gmail.com', '085755809448', '085755809448', '2023-01-18', '197803282006070271', '', NULL, NULL, 'islam', 'Male', 'GTY', NULL, NULL, NULL, '2023', NULL, 'zaimazing@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(114, NULL, 'NUR HAYATI, S.Ag.', 'Jl. Rungkut Tengah III No 3', 'qcctc@sby.oas.co.id', '081938226575', '081938226575', '2023-01-18', '197501302000070339', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'qcctc@sby.oas.co.id', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(115, NULL, 'NUR SUCI INDAH UTAMI, S.SI.', 'JL. BULAK BANTENG LOR BHINEKA 8/49', 'nsuci13@gmail.com', '85732821511', '85732821511', '2023-01-18', '198610132011070497', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'nsuci13@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(116, NULL, 'NURIL FARAHANI, S.Si.', 'JL. Sidokapasan V/18', 'nurilfarahani@yahoo.co.id', '082141287748', '082141287748', '2023-01-18', '198104162007070343', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'nurilfarahani@yahoo.co.id', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(117, NULL, 'NURUL HIDAYAT, S.Pd.I.', 'JL. Rangkah Buntu 2/16', 'nurulhidayatwh@yahoo.com', '085850087567', '085850087567', '2023-01-16', '196705282012070509', '', NULL, NULL, 'islam', 'Male', 'GTY', NULL, NULL, NULL, '2023', NULL, 'nurulhidayatwh@yahoo.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(118, NULL, 'NURULITA, S.Si.', 'JL. Tempurejo V/7', 'nurulitanurulita7@gmail.com', '081249805734', '081249805734', '2023-01-18', '197608042004070398', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'nurulitanurulita7@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(119, NULL, 'PAMUJI, S.Pd.', 'JL. Kedinding Lor Kemuning I/35', 'pamudjipwh@yahoo.com', '081703413112', '081703413112', '2023-01-16', '196606072001070132', '', NULL, NULL, 'islam', 'Male', 'GTY', NULL, NULL, NULL, '2023', NULL, 'pamudjipwh@yahoo.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(120, NULL, 'QURROTU AINY, S.Psi.', 'JL. Peneleh IX/40-42', 'qainy.starsnake@gmail.com', '082190971280', '082190971280', '2023-01-18', '197710262008070465', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'qainy.starsnake@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(121, NULL, 'RINA SULFIANA, S.Si.', 'Jl. Bulak Setro Indah II Blok B-37', 'rsulfiananjatmiko@gmail.com', '081803124887', '081803124887', '2023-01-18', '198101232006070421', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'rsulfiananjatmiko@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(122, NULL, 'SELI MARDIANA, S.Pd.I', 'JL. Kedinding Lor Gang Rafflesia 2 No. 6', 'selimardiana33@gmail.com', '081250139886', '081250139886', '2023-01-18', '198607102012070507', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'selimardiana33@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(123, NULL, 'SITI RAHMAH, S.Pd.', 'Jl. Kedinding Lor Teratai No. 154', 'rahmahsiti673@gmail.com', '081332158575', '081332158575', '2023-01-16', '197101091996070265', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'rahmahsiti673@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(124, NULL, 'SRI UTARI, S.Pd.', 'JL. Sidotopo Wetan Baru IVA No. 62', 'sriut8418@gmail.com', '081313164771', '081313164771', '2023-01-18', '197208221999070316', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'sriut8418@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(125, NULL, 'YAYUK MURTINI, S.Pd.', 'JL. Sidotopo Wetan V No. 56', 'yayukmurwh@yahoo.com', '081325279450', '081325279450', '2023-01-16', '196801071994070195', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'yayukmurwh@yahoo.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(126, NULL, 'SUMIYATI, S.Pd.', 'JL. Gembong Kinco 9A', 'Mrdandre09@gmail.com', '081232711729', '081232711729', '2023-01-16', '196912161999070314', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'Mrdandre09@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(127, NULL, 'YULIA RACHMA, S.Pd.', 'JL. KALILOM LOR INDAH GG DUKU NO.4', 'yulia290875@gmail.com', '082132261145', '082132261145', '2023-01-18', '197508291999070317', '', NULL, NULL, 'islam', 'Female', 'Guru', NULL, NULL, NULL, '2023', NULL, 'yulia290875@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(128, NULL, 'Z. HASANAH MS, S.Pd.', 'JL. BULAK BANTENG BARU KENANGA II/81', 'hazasahsmpwh@yahoo.com', '081807983580', '081807983580', '2023-01-18', '197606202001070361', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'hazasahsmpwh@yahoo.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(129, NULL, 'AGUSTINAH TANJUNG, S.Pd.', 'JL. TAMBAK SEGARAN WETAN 1/90', 'tinatanjung.tt@gmail.com', '085607772658', '085607772658', '2023-01-18', '198008292014070532', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'tinatanjung.tt@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(130, NULL, 'YUKA YUANANDA WICAKSONO, S.Pd.', 'PERUM JAYA ABADII - 11', 'yukayuanandawicaksono@gmail.com', '085806330558', '085806330558', '2023-01-18', '199610182021110863', '', NULL, NULL, 'islam', 'Male', 'GTT', NULL, NULL, NULL, '2023', NULL, 'yukayuanandawicaksono@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(131, NULL, 'ARDESTI DEBY ARINDA, S.Pd.', 'JL. TAMBAK WEDI BARU GG.18-D UTARA NO.9', 'ardestidebyarinda@gmail.com', '0895803046840', '0895803046840', '2023-01-18', '199803202022010866', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'ardestidebyarinda@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(132, NULL, 'INDAH JAUHAROH, S.Pd.', 'JL. WONOAYU. 81', 'indahjauharoh5@gmail.com', '089620069488', '089620069488', '2023-01-18', '199607072021110864', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'indahjauharoh5@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(133, NULL, 'ROBBIYATUL MU&#039;AMALAH, S.Pd.', '', 'bellarobbiyatul@gmail.com', '085899913732', '085899913732', '2023-01-18', '199806152021110865', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'bellarobbiyatul@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(134, NULL, 'EKO WAHYUDI, S.Pd.', 'Dusun Gumukrejo RT 06 RW 01\r\nDesa Sidorejo, Kec. Purwoharjo, Banyuwangi ', 'eko78996@gmail.com', '082143258989', '082143258989', '2023-01-16', '', '', NULL, NULL, 'islam', 'Male', 'GTY', NULL, NULL, NULL, '2023', NULL, 'eko78996@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(135, NULL, 'NAJMI ZIANA WALIDA, S.Pd.', 'Dusun Krajan RT 03 RW 03\r\nSentul, Purwodadi Pasuruan ', 'ziananajmi@gmail.com', '083833843418', '083833843418', '2023-01-16', '', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'ziananajmi@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(136, NULL, 'MAULANA AHMAD MAHADI, S.Pd.', 'Dsn, Somber Desa Petapan Kecamatan Labang Kabupaten Bangkalan 69163', 'maulanaahmadmspd@gmail.com', '085850836441', '085850836441', '2023-01-18', '', '', NULL, NULL, 'islam', 'Male', 'GTY', NULL, NULL, NULL, '2023', NULL, 'maulanaahmadmspd@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(137, NULL, 'YASMIN AISYAH AKILAH RAHMAN, S.Pd.', 'Jl. Bronggalan Sawah VI A no. 31\r\nKel. Pacar Kembang Kec, Tambak Sari, Surabaya 60138', 'yasmin.arrahman1@gmail.com', '', '', '2023-01-18', '', '', NULL, NULL, 'islam', 'Female', 'GTY', NULL, NULL, NULL, '2023', NULL, 'yasmin.arrahman1@gmail.com', '123456', NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(138, NULL, 'Panitia PPDB', 'Sidotopo Wetan Baru No.37 Surabaya', 'ppdb', '', '', '2022-11-08', '', '', NULL, NULL, 'islam', 'Others', '', NULL, NULL, NULL, '2022', NULL, 'ppdb', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(139, NULL, 'Achmad Rizki, S.IIP.', 'Jalan 1', '7@gmail.com', '', '', '2022-12-05', '', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, '7@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(140, NULL, 'Shobahul Hoir, S.Pd., M.Pd.', 'Jalan 2', '2@gmail.com', '', '', '2022-12-05', '', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, '2@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(141, NULL, 'Akhmad Suhardianto, S.Hum.', 'Jalan 11', '1@gmail.com', '', '', '2022-12-05', '', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, '1@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(142, NULL, 'Nofi Ridoningsih, S.Ag., S.Pd.', '', '4@gmail.com', '', '', '2022-12-05', '', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, '4@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(143, NULL, 'Luqman Affandi, S.Si., M.Si.', 'Jlan 6', '6@gmail.com', '', '', '2022-12-05', '', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, '6@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(144, NULL, 'Zaenal Ahmad, S.Psi.', 'Jalan 5', '5@gmail.com', '', '', '2022-12-05', '', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, '5@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(145, NULL, 'Gatot Sugiyanto, S.Pd.', 'Jalan 3', '3@gmail.com', '', '', '2022-12-05', '', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, '3@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(146, NULL, 'SADIKIN', '', '3578171005780011@gmail.com', '', '', '1970-01-01', '3578171005780011', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578171005780011@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(147, NULL, 'WILUDJENG', '', '3578164404680002@gmail.com', '', '', '1970-01-01', '3578164404680002', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578164404680002@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(148, NULL, 'AKHMAD SUHARDIANTO', '', '3578152104890001@gmail.com', '', '', '1970-01-01', '3578152104890001', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578152104890001@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(149, NULL, 'MOCHAMMAD RIZQI WACHID SETYAWAN', '', '3578081005990004@gmail.com', '', '', '1970-01-01', '3578081005990004', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578081005990004@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(150, NULL, 'ZULAIKHAH', '', '3578174905600001@gmail.com', '', '', '1970-01-01', '3578174905600001', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578174905600001@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(151, NULL, 'AINUR MAULUD FINA', '', '3578166610880002@gmail.com', '', '', '1970-01-01', '3578166610880002', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578166610880002@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(152, NULL, 'CHRISTINA HANJAR SESANTI', '', '3578104406840008@gmail.com', '', '', '1970-01-01', '3578104406840008', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578104406840008@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(153, NULL, 'KUSTINI', '', '3578107103570001@gmail.com', '', '', '1970-01-01', '3578107103570001', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578107103570001@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(154, NULL, 'SHOBAHUL HOIR', '', '3578172009850003@gmail.com', '', '', '1970-01-01', '3578172009850003', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578172009850003@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(155, NULL, 'FITRI FAJRIYAH', '', '3578176908920001@gmail.com', '', '', '1970-01-01', '3578176908920001', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578176908920001@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(156, NULL, 'MOCH. ANSOR', '', '3578290802610001@gmail.com', '', '', '1970-01-01', '3578290802610001', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578290802610001@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(157, NULL, 'TITIM YUDHA SETYAWATI', '', '3507125312760003@gmail.com', '', '', '1970-01-01', '3507125312760003', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3507125312760003@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(158, NULL, 'NOFI RIDONINGSIH', '', '3578177110750002@gmail.com', '', '', '1970-01-01', '3578177110750002', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578177110750002@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(159, NULL, 'RIYATI', '', '3578106707700007@gmail.com', '', '', '1970-01-01', '3578106707700007', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578106707700007@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(160, NULL, 'ZAENAL AHMAD', '', '3318021307950001@gmail.com', '', '', '1970-01-01', '3318021307950001', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3318021307950001@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(161, NULL, 'ENI KUSRINI', '', '3578174103730002@gmail.com', '', '', '1970-01-01', '3578174103730002', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578174103730002@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(162, NULL, 'SOEBAGIJO', '', '3578172801700001@gmail.com', '', '', '1970-01-01', '3578172801700001', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578172801700001@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(163, NULL, 'ANI ROSIDAH', '', '3578115511810005@gmail.com', '', '', '1970-01-01', '3578115511810005', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578115511810005@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(164, NULL, 'KUSNINTYASTUTIK', '', '3578174806780006@gmail.com', '', '', '1970-01-01', '3578174806780006', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578174806780006@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(165, NULL, 'SANCOKO', '', '3578100107750004@gmail.com', '', '', '1970-01-01', '3578100107750004', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578100107750004@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(166, NULL, 'NUNUN LUSYATI', '', '3578175908760001@gmail.com', '', '', '1970-01-01', '3578175908760001', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578175908760001@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(167, NULL, 'DITA ROFIQA DAMAYANTI', '', '3578196903960001@gmail.com', '', '', '1970-01-01', '3578196903960001', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578196903960001@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(168, NULL, 'RUKMANINGSIH', '', '3578174803810011@gmail.com', '', '', '1970-01-01', '3578174803810011', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578174803810011@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(169, NULL, 'USWATUN HASANAH', '', '3578105009820004@gmail.com', '', '', '1970-01-01', '3578105009820004', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578105009820004@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(170, NULL, 'AMALIYA MUFIDAH', '', '3524136904780002@gmail.com', '', '', '1970-01-01', '3524136904780002', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3524136904780002@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(171, NULL, 'FULLATUL AINI', '', '3578167006760220@gmail.com', '', '', '1970-01-01', '3578167006760220', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578167006760220@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(172, NULL, 'LUQMAN AFFANDI', '', '3578171412910002@gmail.com', '', '', '1970-01-01', '3578171412910002', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578171412910002@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(173, NULL, 'QURROTUN AQYUN', '', '3527034411894028@gmail.com', '', '', '1970-01-01', '3527034411894028', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3527034411894028@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(174, NULL, 'ABDUL HARIS', '', '3578102204820010@gmail.com', '', '', '1970-01-01', '3578102204820010', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578102204820010@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(175, NULL, 'ABDUL MUJIB HAMBALI', '', '3578171409590002@gmail.com', '', '', '1970-01-01', '3578171409590002', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578171409590002@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(176, NULL, 'AHMAD RAHMATULLAH', '', '3578161009930005@gmail.com', '', '', '1970-01-01', '3578161009930005', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578161009930005@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(177, NULL, 'ANIS SOFIYAH', '', '3578045203920004@gmail.com', '', '', '1970-01-01', '3578045203920004', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578045203920004@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(178, NULL, 'MISBAKHUL MUNIR', '', '3578282504960001@gmail.com', '', '', '1970-01-01', '3578282504960001', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578282504960001@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(179, NULL, 'RAHMAT SUDANI', '', '3578271302990004@gmail.com', '', '', '1970-01-01', '3578271302990004', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578271302990004@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(180, NULL, 'DANI CANTONA', '', '3578102704970005@gmail.com', '', '', '1970-01-01', '3578102704970005', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578102704970005@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(181, NULL, 'HARIJANTO', '', '3578062406600003@gmail.com', '', '', '1970-01-01', '3578062406600003', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578062406600003@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(182, NULL, 'RISKY MAULANA', '', '3578110303980002@gmail.com', '', '', '1970-01-01', '3578110303980002', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578110303980002@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(183, NULL, 'RR. NURUL QOMARIYAH', '', '3578164305700006@gmail.com', '', '', '1970-01-01', '3578164305700006', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578164305700006@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(184, NULL, 'KURNIA TSALITSATIN ROBANIYAH', '', '3578055111810009@gmail.com', '', '', '1970-01-01', '3578055111810009', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578055111810009@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(185, NULL, 'NUR HOLIFAH', '', '3578176910940002@gmail.com', '', '', '1970-01-01', '3578176910940002', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578176910940002@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(186, NULL, 'SRI RAHAYU', '', '3578164112650003@gmail.com', '', '', '1970-01-01', '3578164112650003', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578164112650003@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(187, NULL, 'AHMAD BAIDHOWI', '', '3513212603970001@gmail.com', '', '', '1970-01-01', '3513212603970001', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3513212603970001@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(188, NULL, 'IKA SAFITRI', '', '3514126808820003@gmail.com', '', '', '1970-01-01', '3514126808820003', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3514126808820003@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(189, NULL, 'MUTIARA HANY HAMDIYAH', '', '3525124312940002@gmail.com', '', '', '1970-01-01', '3525124312940002', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3525124312940002@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(190, NULL, 'GATOT SUGIANTO', '', '3578102612760004@gmail.com', '', '', '1970-01-01', '3578102612760004', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578102612760004@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(191, NULL, 'SITI ROHMI', '', '3578102612761114@gmail.com', '', '', '1970-01-01', '3578102612761114', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578102612761114@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(192, NULL, 'SITI MUSAWAROH', '', '3578165507710006@gmail.com', '', '', '1970-01-01', '3578165507710006', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578165507710006@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(193, NULL, 'ACHMAD ZAINI', '', '3578165507711006@gmail.com', '', '', '1970-01-01', '3578165507711006', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578165507711006@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(194, NULL, 'SOEDJOKO', '', '3578161404690001@gmail.com', '', '', '1970-01-01', '3578161404690001', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578161404690001@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(195, NULL, 'KUN WARIATI', '', '3578295412710002@gmail.com', '', '', '1970-01-01', '3578295412710002', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578295412710002@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(196, NULL, 'ACHMAD RIZKI', '', '3578161506970003@gmail.com', '', '', '1970-01-01', '3578161506970003', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578161506970003@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(197, NULL, 'MOCHAMAD THORIQ NURDIN', '', '3578051311890004@gmail.com', '', '', '1970-01-01', '3578051311890004', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578051311890004@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(198, NULL, 'ABDUL AZIES', '', '3578172010790002@gmail.com', '', '', '1970-01-01', '3578172010790002', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578172010790002@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(199, NULL, 'BUDIMAN W.', '', '3578170707550002@gmail.com', '', '', '1970-01-01', '3578170707550002', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578170707550002@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(200, NULL, 'ILYAS NOERSOLIM', '', '3578081505630004@gmail.com', '', '', '1970-01-01', '3578081505630004', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578081505630004@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(201, NULL, 'SUPRIJANTO', '', '3578081505630005@gmail.com', '', '', '1970-01-01', '3578081505630005', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578081505630005@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(202, NULL, 'FAHMI BIN SALEH A.', '', '3578161406900005@gmail.com', '', '', '1970-01-01', '3578161406900005', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3578161406900005@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(203, NULL, 'WISNU PRADINATA', '', '3528040303970001@gmail.com', '', '', '1970-01-01', '3528040303970001', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, '3528040303970001@gmail.com', '123456', NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(204, NULL, 'Panitia PPDB', 'Sidotopo Wetan Baru No.37 Surabaya', 'ppdb', '', '', '2022-11-08', '', '', NULL, NULL, 'islam', 'Others', '', NULL, NULL, NULL, '2022', NULL, 'ppdb', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(205, NULL, 'Aulia Zulfikar, S.Pd', '', 'malika110719@gmail.com', '', '', '2023-01-13', '1983 04 10 2006 07 0420', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, 'malika110719@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(206, NULL, 'Djumadi, S.Pd', '', 'djumadi_hilmy@yahoo.co.id', '', '', '2023-01-13', '1969 05 27 1996 07 0283', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, 'djumadi_hilmy@yahoo.co.id', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(207, NULL, 'Rokayah', '', 'rukayahwh@gmail.com', '', '', '2023-01-13', '1988 11 18 2011 07 0498', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'rukayahwh@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(208, NULL, 'Achmad Junaidi, S.Kom', '', 'junales@gmail.com', '', '', '2023-01-13', '1984 08 25 2010 07 0492', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, 'junales@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(209, NULL, 'Soe eniek', '', 'latapameidindaanissa@gmail.com', '', '', '2023-01-12', '1970 04 06 1996 07 0319', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, 'latapameidindaanissa@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(210, NULL, 'H. Abd. Ro&#039;uf', '', 'abdulrouf@gmail.com', '', '', '2023-01-12', '1967 01 12 1998 07 0311', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, 'abdulrouf@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(211, NULL, 'Sri Rahayu', '', 'srirahayum567@gmail.com', '', '', '2023-01-12', '1965 12 01 1999 07 0327', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'srirahayum567@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(212, NULL, 'Soebagijo', '', 'soebagijo1970@gmail.com', '', '', '2023-01-12', '1970 01 28 2000 07 0310', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, 'soebagijo1970@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(213, NULL, 'Nunik Haryani', '', 'hanna3aulia@gmail.com', '', '', '2023-01-12', '1976 04 05 2003 07 0393', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'hanna3aulia@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(214, NULL, 'Wiwik Winarti', '', 'wiwiknarendra@yahoo.com', '', '', '2023-01-12', '1976 06 04 2004 07 0397', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'wiwiknarendra@yahoo.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(215, NULL, 'Ahsanuddin, S.Ag', '', 'ahsanuddin7642@gmail.com', '', '', '2023-01-13', '1976 04 01 2004 07 0401', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, 'ahsanuddin7642@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(216, NULL, 'Siswati', '', 'busiswati2016@gmail.com', '', '', '2023-01-12', '1977 04 09 2004 07 0403', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'busiswati2016@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(217, NULL, 'M. Syafiuddin Zamzam', '', 'iukz@email.com', '', '', '2023-01-13', '1981 10 03 2004 07 0399', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, 'iukz@email.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(218, NULL, 'Suliha Kamil', '', 'sulihakamil@gmail.com', '', '', '2023-01-13', '1980 08 30 2008 07 0456', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'sulihakamil@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(219, NULL, 'Deddy Purwanto', '', 'y1nxt5@erapor-smk.net', '', '', '2023-01-13', '1980 12 17 2005 07 0411', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, 'y1nxt5@erapor-smk.net', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(220, NULL, 'Febriani Setyawati', '', 'poseidoncake605@gmail.com', '', '', '2023-01-13', '1982 02 07 2008 07 0458', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'poseidoncake605@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(221, NULL, 'Catur Budi Darmawan', '', 'arekkentir666@yahoo.com', '', '', '2023-01-12', '1974 04 13 2008 07 0462', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, 'arekkentir666@yahoo.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(222, NULL, 'Hekmah Amala', '', 'hekmahamala84@gmail.com', '', '', '2023-01-13', '1984 11 10 2008 07 0461', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'hekmahamala84@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(223, NULL, 'M. Setiyawan', '', 'awanisti@gmail.com', '', '', '2023-01-13', '1984 04 22 2008 07 0464', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, 'awanisti@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(224, NULL, 'Aisyah Noormawati', '', 'noormawatiaisyah@yahoo.com', '', '', '2023-01-12', '1975 03 17 2009 07 0477', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'noormawatiaisyah@yahoo.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(225, NULL, 'Elok Tri Cahyani', '', 'eloktricahyani29@gmail.com', '', '', '2023-01-13', '1981 09 29 2009 07 0468', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'eloktricahyani29@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(226, NULL, 'Roni Fauzi', '', 'roni.fauzi@gmail.com', '', '', '2023-01-13', '1987 03 10 2010 07 0491', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, 'roni.fauzi@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(227, NULL, 'Sriyani', '', 'cuteziendah46@gmail.com', '', '', '2023-01-13', '1984 06 22 2010 07 0490', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'cuteziendah46@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(228, NULL, 'Ayu Dwi Cahyani', '', 'ayudwicahyani8@gmail.com', '', '', '2023-01-13', '1980 05 03 2010 07 0499', '', NULL, NULL, '', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'ayudwicahyani8@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(229, NULL, 'Winarko Hidayat', '', 'muhammad.heco@yahoo.com', '', '', '2023-01-12', '1972 03 03 2010 07 0488', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, 'muhammad.heco@yahoo.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(230, NULL, 'Maslichatin, S.Th.I', '', 'micha.fulla@gmail.com', '', '', '2023-01-13', '1979 11 04 2011 07 0504', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'micha.fulla@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(231, NULL, 'Fullatul Aini', '', 'fillatul.aini.baru@gmail.com', '', '', '2023-01-12', '1976 06 30 2011 07 0346', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'fillatul.aini.baru@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(232, NULL, 'Kuncahyo Arif S.', '', 'kuncahyo28@gmail.com', '', '', '2023-01-13', '1987 12 28 2011 07 0501', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, 'kuncahyo28@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(233, NULL, 'Rukmaningsih', '', 'ashari.r.ar@gmail.com', '', '', '2023-01-13', '1981 03 08 2010 07 0489', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'ashari.r.ar@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(234, NULL, 'Ani Rosidah', '', 'ani.alwafa111@gmail.com', '', '', '2023-01-13', '1981 11 15 2012 07 0453', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'ani.alwafa111@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(235, NULL, 'Maria Ulfa', '', 'mariaulfa0605@gmail.com', '', '', '2023-01-13', '1985 05 06 2012 07 0455', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'mariaulfa0605@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(236, NULL, 'Taufiq Hidayat', '', 'taufiqht1969@gmail.com', '', '', '2023-01-12', '1969 04 19 2012 07 0514', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, 'taufiqht1969@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(237, NULL, 'Nurul Faujiyah', '', 'nurfa-chayank@yahoo.co.id', '', '', '2023-01-13', '1990 03 17 2012 07 0513', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'nurfa-chayank@yahoo.co.id', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(238, NULL, 'Anik Yuni Rahayu', '', 'mbakyuni48@gmail.com', '', '', '2023-01-13', '1983 06 25 2013 07 0516', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'mbakyuni48@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(239, NULL, 'Kurnia Tsalisatin', '', 'kurnia_tsalitsatin@yahoo.co.id', '', '', '2023-01-13', '1981 11 11 2014 07 0429', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'kurnia_tsalitsatin@yahoo.co.id', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(240, NULL, 'Reni Zumzumi', '', 'rzumzumy@gmail.com', '', '', '2023-01-13', '1985 11 14 2014 07 0522', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'rzumzumy@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(241, NULL, 'Subairi Khalil', '', 'subairikhalil@gmail.com', '', '', '2023-01-13', '1987 09 19  2014 07 0523', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, 'subairikhalil@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(242, NULL, 'Fitrah Insani, SE', '', 'fitrahinsani0201@gmail.com', '', '', '2023-01-13', '1988 01 02 2016 07 0560', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'fitrahinsani0201@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(243, NULL, 'Ayu Laily Qomariyah', '', 'ayu.laely10@gmail.com', '', '', '2023-01-13', '1993 10 10 2016 07 0563', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'ayu.laely10@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(244, NULL, 'Nurfia Lely Chomariya', '', 'nurfialely17@gmail.com', '', '', '2023-01-13', '1995 03 17 2017 07 0570', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'nurfialely17@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(245, NULL, 'Amalia Sofianti', '', 'calvinmelia2@gmail.com', '', '', '2023-01-12', '1979 10 19 2017 07 0569', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'calvinmelia2@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(246, NULL, 'Yanarto Teguh P.', '', 'yanarto@gmail.com', '', '', '2023-01-12', '1977 01 04 2017 07 0571', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, 'yanarto@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(247, NULL, 'Prihatiana P. N.', '', 'tiananidyawati@gmail.com', '', '', '2023-01-13', '1985 04 28 2017 07 0572', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'tiananidyawati@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(248, NULL, 'Nur Ardiana Sholehati', '', 'sh.ardiana@yahoo.co.id', '', '', '2023-01-13', '1992 08 20 2017 07 0573', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'sh.ardiana@yahoo.co.id', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(249, NULL, 'Chalimatus S.', '', 'chalimatussholikhah@yahoo.com', '', '', '2023-01-13', '1993 04 22 2018 07 0608', '', NULL, NULL, 'islam', 'Female', '', NULL, NULL, NULL, '2022', NULL, 'chalimatussholikhah@yahoo.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(250, NULL, 'Muhamimin', '', 'muhaimin0678@gmail.com', '', '', '2023-01-12', '1978 10 06 2018 07 0606', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, 'muhaimin0678@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(251, NULL, 'M. Rifai Abdzar Gifari', '', 'rifaiabdzar@gmail.com', '', '', '2023-01-13', '1997 01 08 2019 07 0582', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2022', NULL, 'rifaiabdzar@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(252, NULL, 'ARIF ZAINURI RACHMAN', '', 'ARIF@GMAIL.COM', '', '', '2023-01-16', '196906211992070223', '', NULL, NULL, 'islam', 'Male', '', NULL, NULL, NULL, '2023', NULL, 'ARIF@GMAIL.COM', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(253, NULL, 'Dra. Hj. Muntafi&#039;ah Djauhari', 'Sidotopo Wetan Baru IV A', 'tafiksmk@gmail.com', '81332025574', '81332025574', '1970-01-01', '1963 12 14 1989 03 2006', '', NULL, NULL, '', '', '', NULL, NULL, NULL, '2023', NULL, 'tafiksmk@gmail.com', '123456', NULL, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(254, NULL, 'anindita', 'surabaya', 'anindita@gmail.com', '085970248011', NULL, NULL, '102310', NULL, NULL, NULL, NULL, 'Wanita', NULL, NULL, NULL, 6, NULL, NULL, 'anindita', 'asdf123', 1, 1, 4, 2, 2, NULL, NULL, NULL, NULL, NULL, NULL),
-	(255, NULL, 'bila', 'surabaya', 'fitria@gmail.com', NULL, NULL, NULL, '102323', '11313411', NULL, NULL, NULL, 'Wanita', NULL, NULL, NULL, 5, NULL, NULL, 'bila', 'asdf123', 1, 1, 3, 1, 1, 2, 4, 2, NULL, NULL, NULL),
-	(256, NULL, 'difa', 'surabaya', 'fitria@gmail.com', NULL, NULL, NULL, '102327', '11313411', NULL, NULL, NULL, 'Wanita', NULL, NULL, NULL, 5, NULL, NULL, 'nadifa', 'asdf123', 1, 1, 5, 1, 1, 2, 4, 2, NULL, NULL, NULL),
-	(257, NULL, 'adam', 'surabaya', 'adam@gmail.com', NULL, NULL, NULL, '1023271', '11313411', NULL, NULL, NULL, 'Pria', NULL, NULL, NULL, 12, NULL, NULL, 'ADAM', 'asdf123', 1, 1, 1, 3, NULL, NULL, 0, 0, NULL, 26, 26),
-	(258, NULL, 'midas', 'surabaya', 'midas@gmail.com', NULL, NULL, NULL, '1023272', '11313411', NULL, NULL, NULL, 'Wanita', NULL, NULL, NULL, 6, NULL, NULL, 'midas', 'asdf123', 1, 1, 1, 2, 0, 0, 0, 2, NULL, 0, 26),
-	(259, NULL, 'mira', 'surabaya', 'mira@gmail.com', NULL, NULL, NULL, '10232712', '11313411', NULL, NULL, NULL, 'Wanita', NULL, NULL, NULL, 6, NULL, NULL, 'mira', 'asdf123', 1, 1, 2, 2, NULL, NULL, 4, 2, NULL, NULL, NULL),
-	(260, NULL, 'Lita', 'surabaya', 'fitria@gmail.com', NULL, NULL, NULL, '1023232', '11313411', NULL, NULL, NULL, 'Wanita', NULL, NULL, NULL, 6, NULL, NULL, 'Lita', 'asdf123', 1, 1, 3, 2, 1, 2, 4, 2, NULL, NULL, NULL),
-	(261, NULL, 'arlida', 'surabaya', 'fitria@gmail.com', NULL, NULL, NULL, '1023231', '11313411', NULL, NULL, NULL, 'Wanita', NULL, NULL, NULL, 6, NULL, NULL, 'Arlida', 'asdf123', 1, 1, 5, 2, 1, 2, 4, 2, NULL, NULL, NULL),
-	(262, NULL, 'septi', 'surabaya', 'kebab@gmail.com', NULL, NULL, NULL, '1023212', NULL, NULL, NULL, NULL, 'Wanita', NULL, NULL, NULL, 11, NULL, NULL, 'septi', 'asdf123', 1, 1, 3, 3, 2, NULL, NULL, NULL, NULL, NULL, NULL),
-	(263, NULL, 'shilla', 'surabaya', 'kebab@gmail.com', NULL, NULL, NULL, '10232122', NULL, NULL, NULL, NULL, 'Wanita', NULL, NULL, NULL, 11, NULL, NULL, 'shila', 'asdf123', 1, 1, 5, 3, 2, NULL, NULL, NULL, NULL, NULL, NULL),
-	(264, NULL, 'ellenia', 'surabaya', 'kebab@gmail.com', NULL, NULL, NULL, '10232124', NULL, NULL, NULL, NULL, 'Wanita', NULL, NULL, NULL, 11, NULL, NULL, 'ellenia', 'asdf123', 1, 1, 2, 3, 2, NULL, NULL, NULL, NULL, NULL, NULL),
-	(265, NULL, 'supri', 'surabaya', 'kebab@gmail.com', NULL, NULL, NULL, '1023214', NULL, NULL, NULL, NULL, 'Wanita', NULL, NULL, NULL, 11, NULL, NULL, 'supri', 'asdf123', 1, 1, 1, 3, NULL, NULL, NULL, NULL, NULL, 26, 26),
-	(266, NULL, 'SULICHA,S.Pd', 'Tambak Deres III/3', '197007042014070531', '081217527863', '081217527863', '2023-01-31', '197007042014070531', '0758301132', NULL, NULL, NULL, 'Wanita', 'GTY', NULL, NULL, 11, '2014', NULL, '197007042014070531', '123456', 1, 1, 1, 3, NULL, NULL, NULL, NULL, NULL, 26, NULL),
-	(267, NULL, 'Ani wahyu Kurniati,S.Pd', 'Jl. Mohammad Noer 140 C', '198312042002070354', '085732233838', '085732233838', '2023-01-26', '198312042002070354', '0758076397', NULL, NULL, 'islam', 'Wanita', 'PTT', NULL, NULL, 7, '2002', NULL, '198312042002070354', '123456', 1, 1, 1, 2, NULL, NULL, NULL, 2, NULL, 0, 26),
-	(268, NULL, 'SANULIS', 'Jl. Mohammad Noer 140 C', '198107172014070548', '08563685557', '08563685557', '2023-01-31', '198107172014070548', '1239997506', NULL, NULL, NULL, 'Pria', 'PTT', NULL, NULL, 12, '2014', NULL, '198107172014070548', '123456', 1, 1, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, 26),
-	(269, NULL, 'Emilya Kartika Sari,S.Pd', 'Gembong 4/47A', '199007232015070541', '085732766067', '085732766067', '2023-01-26', '19900723', '0758301154', NULL, NULL, NULL, 'Wanita', 'GTY', NULL, NULL, 151, '2015', NULL, '19900723', '123456', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(270, NULL, 'Ratna Oktavia Ismanisih,S.Pd', 'bulak Banteng Lor  1/127', '199206112015070538', '082331584200', '082331584200', '2023-01-26', '199206112015070538', '0758076400', NULL, NULL, NULL, 'Wanita', 'GTY', NULL, NULL, 13, '2015', NULL, '199206112015070538', '123456', 1, 1, 1, 1, 2, NULL, NULL, NULL, NULL, 48, NULL),
-	(271, NULL, 'YULI WIDJAJATI,S.Pd', 'Sidomulyo IB/20', '196907012015070538 ', '081703512251', '081703512251', '2023-01-31', '196907012015070538', '0758076400', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 13, '2015', NULL, '196907012015070538 ', '123456', 1, 1, 1, 1, 1, NULL, NULL, NULL, NULL, 48, NULL),
-	(272, NULL, 'MUTAFARRIQOH,M.Psi', 'Petukangan I/16', '198112132016070555', '089678707416', '089678707416', '2023-01-31', '19811213201607067', '0758076422', NULL, NULL, NULL, 'Wanita', 'GTY', NULL, NULL, 13, '2016', NULL, '19811213201607067', '123456', 1, 1, 1, 1, 1, NULL, NULL, NULL, NULL, 48, NULL),
-	(273, NULL, 'Dra. NINING PARANTIANINGSIH', 'Jl. Kedinding Lor Raflesia 1 No. 3', 'nparantianingsih@gmail.com', '081336449249', '081336449249', '2023-01-16', '196512051993070226', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'nparantianingsih@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(274, NULL, 'KUNCAHYANING FITRIA SANTOSO, M.Pd.', 'Jl. Pacar Keling 2/77', 'zaicha.ria22@gmail.com', '083831106386', '083831106386', '2023-01-18', '199202222015070546', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'zaicha.ria22@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(275, NULL, 'AINUL YAQIN, S.Si.', 'Jl. Bulak Banteng Baru Gg Mawar No. 15 Surabaya', 'ainulyaqinpwh1@gmail.com', '085655815700', '085655815700', '2023-01-18', '198008252004070404', '', NULL, NULL, 'islam', 'Pria', 'GTY', NULL, NULL, 5, '2023', NULL, 'ainulyaqinpwh1@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(276, NULL, 'TAUFIQ HIDAYAT, S.Si.', 'Jl. Kapas Baru 2/106', 'taufiqkur29@gmail.com', '085648029960', '085648029960', '2023-01-16', '198306292008070448', '', NULL, NULL, 'islam', 'Pria', 'GTY', NULL, NULL, 5, '2023', NULL, 'taufiqkur29@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(277, NULL, 'CATTRI SIGIT WIDYASTUTI, S.Pd.', 'JL. Margodadi VI/15', 'cattrisigwh@yahoo.com', '082140909027', '082140909027', '2023-01-18', '198011212007070433', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'cattrisigwh@yahoo.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(278, NULL, 'H. ABDUL HADI, S.Pd.I', 'JL. Sidorukun 1 no. 123', 'abdhadipwh1@gmail.com', '081332938304', '081332938304', '2023-01-16', '195508061997070291', '', NULL, NULL, 'islam', 'Pria', 'GTY', NULL, NULL, 5, '2023', NULL, 'abdhadipwh1@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(279, NULL, 'H. ACHMAD FADLAN, S.Ag.', 'Jl. Sidesermo Dalam no. 16', 'ahmadfadlan271@gmail.com', '085855581945', '085855581945', '2023-01-18', '196402131995070258', '', NULL, NULL, 'islam', 'Pria', 'GTY', NULL, NULL, 5, '2023', NULL, 'ahmadfadlan271@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(280, NULL, 'AKHMAD FAUZI, S.Pd.I.', 'JL. Platuk Baru IA/71A', 'caica7915@gmail.com', '089520164531', '089520164531', '2023-01-18', '197905112010070338', '', NULL, NULL, 'islam', 'Pria', 'GTY', NULL, NULL, 5, '2023', NULL, 'caica7915@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(281, NULL, 'AHMAD SUWAIFIE, S.H.', 'Jl. Ngelom II/15 Taman', 'ifie81@yahoo.com', '085648910344', '085648910344', '2023-01-18', '198111252006070423', '', NULL, NULL, 'islam', 'Pria', 'GTT', NULL, NULL, 5, '2023', NULL, 'ifie81@yahoo.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(282, NULL, 'ALIP NURFAIZAH, S.Pd.', 'PERUM GRAHA MUTIARA INDAH A11/05', 'aliefnurfaizah@gmail.com', '081330455277', '081330455277', '2023-01-18', '198402172007070436', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'aliefnurfaizah@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(283, NULL, 'ANNA LATIFAH, S.Pd.', 'JL. Randu Agung III/55', 'annalatifah45@gmail.com', '081235747783', '081235747783', '2023-01-18', '197503091998070251', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'annalatifah45@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(284, NULL, 'AULIA ZULFIKAR, S.Pd.', 'Jl. Wonorejo I/1D', 'auliazulfikar1004@gmail.com', '089531900475', '089531900475', '2023-01-18', '198304102006070420', '', NULL, NULL, 'islam', 'Pria', 'GTY', NULL, NULL, 5, '2023', NULL, 'auliazulfikar1004@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(285, NULL, 'CHOIRIYAH, S.Pd.', 'Jl. Bulak Rukem 3C/4', 'choiriyahspd3@gmail.com', '082131841556', '082131841556', '2023-01-16', '197002261998070248', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'choiriyahspd3@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(286, NULL, 'CHOIRUR ROBIAH, S.Psi.', 'JL. SIDOMULYO 2-E /10- B', 'choirurrobiah989@gmail.com', '085806500168', '085806500168', '2023-01-18', '198411252010070486', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'choirurrobiah989@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(287, NULL, 'DWI ISTRIANA SUWITARINI, S.Psi.', 'Jl. Tenggumung Karya Lor 83', 'dwiistriana11@gmail.com', '08813584344', '08813584344', '2023-01-18', '197404241999070326', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'dwiistriana11@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(288, NULL, 'GANDUNG SUPRI HARTOYO, S.Pd.', 'Jl. Gading 1/23', 'gandungwachidhasyim@gmail.com', '083856926004', '083856926004', '2023-01-16', '196709081999070325', '', NULL, NULL, 'islam', 'Pria', 'GTY', NULL, NULL, 5, '2023', NULL, 'gandungwachidhasyim@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(289, NULL, 'GATOT SUGIANTO, S.Pd.', 'Jl. Rangkah VII/70-b', 'smpwachidhasyim@yahoo.com', '083830754144', '083830754144', '2023-01-18', '197612261997070286', '', NULL, NULL, 'islam', 'Pria', 'GTY', NULL, NULL, 5, '2023', NULL, 'smpwachidhasyim@yahoo.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(290, NULL, 'HUSNUL KHOTIMAH, S.Or.', 'Jl. Bumiarjo 5/56B', 'chusnulkhotimwh@yahoo.com', '85732149029', '85732149029', '2023-01-18', '199201062014070526', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'chusnulkhotimwh@yahoo.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(291, NULL, 'SITTY CHOLIFAH', 'DUKUH SETRO RAWASAN 5/12', 'ifasitty@gmail.com', '087856644482', '087856644482', '1989-03-05', '198903052016070583', '', NULL, NULL, 'islam', 'Wanita', 'PTY', NULL, NULL, 5, '2023', NULL, 'ifasitty@gmail.com', '123456', 1, 1, 3, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(292, NULL, 'Drs. KUNTO BUDI WARSONO', 'Jl. Tenggumung Wetan Gang Salak No 5', 'KUNTOBW@GMAIL.COM', '081515022918', '081515022918', '2023-01-16', '196208291986070105', '', NULL, NULL, 'islam', 'Pria', 'GTY', NULL, NULL, 5, '2023', NULL, 'KUNTOBW@GMAIL.COM', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(293, NULL, 'WIWIN SUSILOWATI', 'JATIPURWO 7/25', 'wiwiensusilowati732@gmail.com', '085852270773', '085852270773', '1974-03-30', '197403301995070267', '', NULL, NULL, 'islam', 'Wanita', 'PTY', NULL, NULL, 5, '2023', NULL, 'wiwiensusilowati732@gmail.com', '123456', 1, 1, 3, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(294, NULL, 'LUTFIYAH KUSUMA', 'PANDEGILING 4/11', 'lutfiyahk7@gmail.com', '085808238501', '085808238501', '2023-01-13', '198202262006070479', '', NULL, NULL, 'islam', 'Wanita', 'PTY', NULL, NULL, 5, '2023', NULL, 'lutfiyahk7@gmail.com', '123456', 1, 1, 3, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(295, NULL, 'IVA VITYANA', 'DUKUH BULAK BANTENG SUROPATI III NO. 4 SURABAYA', 'ivavityana12@gmail.com', '081282976805', '081282976805', '1972-02-08', '197202081991070203', '', NULL, NULL, 'islam', 'Wanita', 'PTY', NULL, NULL, 5, '2023', NULL, 'ivavityana12@gmail.com', '123456', 1, 1, 3, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(296, NULL, 'NURUL CHOLIDAH', 'PLEMAHAN 6/11', 'rulbams@gmail.com', '087779998470', '087779998470', '1975-12-21', '197512211995070268', '', NULL, NULL, 'islam', 'Wanita', 'PTY', NULL, NULL, 5, '2023', NULL, 'rulbams@gmail.com', '123456', 1, 1, 3, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(297, NULL, 'Dra. Hj. KUSTANTRI NURWATI', 'JL. Jogoloyo Besar A No 32', 'kustantrinurwati12@gmail.com', '083130037637', '083130037637', '2023-01-16', '196512271993070227', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'kustantrinurwati12@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(298, NULL, 'MOCH ZAINUL ARIFIN, SE.', 'JL. Margodadi III No 41', 'zaimazing@gmail.com', '085755809448', '085755809448', '2023-01-18', '197803282006070271', '', NULL, NULL, 'islam', 'Pria', 'GTY', NULL, NULL, 5, '2023', NULL, 'zaimazing@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(299, NULL, 'NUR HAYATI, S.Ag.', 'Jl. Rungkut Tengah III No 3', 'qcctc@sby.oas.co.id', '081938226575', '081938226575', '2023-01-18', '197501302000070339', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'qcctc@sby.oas.co.id', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(300, NULL, 'NUR SUCI INDAH UTAMI, S.SI.', 'JL. BULAK BANTENG LOR BHINEKA 8/49', 'nsuci13@gmail.com', '85732821511', '85732821511', '2023-01-18', '198610132011070497', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'nsuci13@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(301, NULL, 'NURIL FARAHANI, S.Si.', 'JL. Sidokapasan V/18', 'nurilfarahani@yahoo.co.id', '082141287748', '082141287748', '2023-01-18', '198104162007070343', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'nurilfarahani@yahoo.co.id', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(302, NULL, 'NURUL HIDAYAT, S.Pd.I.', 'JL. Rangkah Buntu 2/16', 'nurulhidayatwh@yahoo.com', '085850087567', '085850087567', '2023-01-16', '196705282012070509', '', NULL, NULL, 'islam', 'Pria', 'GTY', NULL, NULL, 5, '2023', NULL, 'nurulhidayatwh@yahoo.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(303, NULL, 'NURULITA, S.Si.', 'JL. Tempurejo V/7', 'nurulitanurulita7@gmail.com', '081249805734', '081249805734', '2023-01-18', '197608042004070398', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'nurulitanurulita7@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(304, NULL, 'PAMUJI, S.Pd.', 'JL. Kedinding Lor Kemuning I/35', 'pamudjipwh@yahoo.com', '081703413112', '081703413112', '2023-01-16', '196606072001070132', '', NULL, NULL, 'islam', 'Pria', 'GTY', NULL, NULL, 5, '2023', NULL, 'pamudjipwh@yahoo.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(305, NULL, 'QURROTU AINY, S.Psi.', 'JL. Peneleh IX/40-42', 'qainy.starsnake@gmail.com', '082190971280', '082190971280', '2023-01-18', '197710262008070465', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'qainy.starsnake@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(306, NULL, 'RINA SULFIANA, S.Si.', 'Jl. Bulak Setro Indah II Blok B-37', 'rsulfiananjatmiko@gmail.com', '081803124887', '081803124887', '2023-01-18', '198101232006070421', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'rsulfiananjatmiko@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(307, NULL, 'SELI MARDIANA, S.Pd.I', 'JL. Kedinding Lor Gang Rafflesia 2 No. 6', 'selimardiana33@gmail.com', '081250139886', '081250139886', '2023-01-18', '198607102012070507', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'selimardiana33@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(308, NULL, 'SITI RAHMAH, S.Pd.', 'Jl. Kedinding Lor Teratai No. 154', 'rahmahsiti673@gmail.com', '081332158575', '081332158575', '2023-01-16', '197101091996070265', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'rahmahsiti673@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(309, NULL, 'SRI UTARI, S.Pd.', 'JL. Sidotopo Wetan Baru IVA No. 62', 'sriut8418@gmail.com', '081313164771', '081313164771', '2023-01-18', '197208221999070316', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'sriut8418@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(310, NULL, 'YAYUK MURTINI, S.Pd.', 'JL. Sidotopo Wetan V No. 56', 'yayukmurwh@yahoo.com', '081325279450', '081325279450', '2023-01-16', '196801071994070195', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'yayukmurwh@yahoo.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(311, NULL, 'SUMIYATI, S.Pd.', 'JL. Gembong Kinco 9A', 'Mrdandre09@gmail.com', '081232711729', '081232711729', '2023-01-16', '196912161999070314', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'Mrdandre09@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(312, NULL, 'YULIA RACHMA, S.Pd.', 'JL. KALILOM LOR INDAH GG DUKU NO.4', 'yulia290875@gmail.com', '082132261145', '082132261145', '2023-01-18', '197508291999070317', '', NULL, NULL, 'islam', 'Wanita', 'PTT', NULL, NULL, 5, '2023', NULL, 'yulia290875@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(313, NULL, 'Z. HASANAH MS, S.Pd.', 'JL. BULAK BANTENG BARU KENANGA II/81', 'hazasahsmpwh@yahoo.com', '081807983580', '081807983580', '2023-01-18', '197606202001070361', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'hazasahsmpwh@yahoo.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(314, NULL, 'AGUSTINAH TANJUNG, S.Pd.', 'JL. TAMBAK SEGARAN WETAN 1/90', 'tinatanjung.tt@gmail.com', '085607772658', '085607772658', '2023-01-18', '198008292014070532', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'tinatanjung.tt@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(315, NULL, 'YUKA YUANANDA WICAKSONO, S.Pd.', 'PERUM JAYA ABADII - 11', 'yukayuanandawicaksono@gmail.com', '085806330558', '085806330558', '2023-01-18', '199610182021110863', '', NULL, NULL, 'islam', 'Pria', 'GTT', NULL, NULL, 5, '2023', NULL, 'yukayuanandawicaksono@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(316, NULL, 'ARDESTI DEBY ARINDA, S.Pd.', 'JL. TAMBAK WEDI BARU GG.18-D UTARA NO.9', 'ardestidebyarinda@gmail.com', '0895803046840', '0895803046840', '2023-01-18', '199803202022010866', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'ardestidebyarinda@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(317, NULL, 'INDAH JAUHAROH, S.Pd.', 'JL. WONOAYU. 81', 'indahjauharoh5@gmail.com', '089620069488', '089620069488', '2023-01-18', '199607072021110864', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'indahjauharoh5@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(318, NULL, 'ROBBIYATUL MU&#039;AMALAH, S.Pd.', '', 'bellarobbiyatul@gmail.com', '085899913732', '085899913732', '2023-01-18', '199806152021110865', '', NULL, NULL, 'islam', 'Wanita', 'GTY', NULL, NULL, 5, '2023', NULL, 'bellarobbiyatul@gmail.com', '123456', 1, 1, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(319, NULL, 'SADIKIN', '', '3578171005780011@gmail.com', '', '', '1970-01-01', '3578171005780011', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578171005780011@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(320, NULL, 'WILUDJENG', '', '3578164404680002@gmail.com', '', '', '1970-01-01', '3578164404680002', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578164404680002@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(321, NULL, 'AKHMAD SUHARDIANTO', '', '3578152104890001@gmail.com', '', '', '1970-01-01', '3578152104890001', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578152104890001@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(322, NULL, 'MOCHAMMAD RIZQI WACHID SETYAWAN', '', '3578081005990004@gmail.com', '', '', '1970-01-01', '3578081005990004', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578081005990004@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(323, NULL, 'ZULAIKHAH', '', '3578174905600001@gmail.com', '', '', '1970-01-01', '3578174905600001', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578174905600001@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(324, NULL, 'AINUR MAULUD FINA', '', '3578166610880002@gmail.com', '', '', '1970-01-01', '3578166610880002', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578166610880002@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(325, NULL, 'CHRISTINA HANJAR SESANTI', '', '3578104406840008@gmail.com', '', '', '1970-01-01', '3578104406840008', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578104406840008@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(326, NULL, 'KUSTINI', '', '3578107103570001@gmail.com', '', '', '1970-01-01', '3578107103570001', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578107103570001@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(327, NULL, 'SHOBAHUL HOIR', '', '3578172009850003@gmail.com', '', '', '1970-01-01', '3578172009850003', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578172009850003@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(328, NULL, 'FITRI FAJRIYAH', '', '3578176908920001@gmail.com', '', '', '1970-01-01', '3578176908920001', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578176908920001@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(329, NULL, 'MOCH. ANSOR', '', '3578290802610001@gmail.com', '', '', '1970-01-01', '3578290802610001', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578290802610001@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(330, NULL, 'TITIM YUDHA SETYAWATI', '', '3507125312760003@gmail.com', '', '', '1970-01-01', '3507125312760003', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3507125312760003@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(331, NULL, 'NOFI RIDONINGSIH', '', '3578177110750002@gmail.com', '', '', '1970-01-01', '3578177110750002', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578177110750002@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(332, NULL, 'RIYATI', '', '3578106707700007@gmail.com', '', '', '1970-01-01', '3578106707700007', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578106707700007@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(333, NULL, 'ZAENAL AHMAD', '', '3318021307950001@gmail.com', '', '', '1970-01-01', '3318021307950001', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3318021307950001@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(334, NULL, 'ENI KUSRINI', '', '3578174103730002@gmail.com', '', '', '1970-01-01', '3578174103730002', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578174103730002@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(335, NULL, 'SOEBAGIJO', '', '3578172801700001@gmail.com', '', '', '1970-01-01', '3578172801700001', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578172801700001@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(336, NULL, 'ANI ROSIDAH', '', '3578115511810005@gmail.com', '', '', '1970-01-01', '3578115511810005', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578115511810005@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(337, NULL, 'KUSNINTYASTUTIK', '', '3578174806780006@gmail.com', '', '', '1970-01-01', '3578174806780006', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578174806780006@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(338, NULL, 'SANCOKO', '', '3578100107750004@gmail.com', '', '', '1970-01-01', '3578100107750004', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578100107750004@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(339, NULL, 'NUNUN LUSYATI', '', '3578175908760001@gmail.com', '', '', '1970-01-01', '3578175908760001', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578175908760001@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(340, NULL, 'DITA ROFIQA DAMAYANTI', '', '3578196903960001@gmail.com', '', '', '1970-01-01', '3578196903960001', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578196903960001@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(341, NULL, 'RUKMANINGSIH', '', '3578174803810011@gmail.com', '', '', '1970-01-01', '3578174803810011', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578174803810011@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(342, NULL, 'USWATUN HASANAH', '', '3578105009820004@gmail.com', '', '', '1970-01-01', '3578105009820004', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578105009820004@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(343, NULL, 'AMALIYA MUFIDAH', '', '3524136904780002@gmail.com', '', '', '1970-01-01', '3524136904780002', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3524136904780002@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(344, NULL, 'FULLATUL AINI', '', '3578167006760220@gmail.com', '', '', '1970-01-01', '3578167006760220', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578167006760220@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(345, NULL, 'LUQMAN AFFANDI', '', '3578171412910002@gmail.com', '', '', '1970-01-01', '3578171412910002', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578171412910002@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(346, NULL, 'QURROTUN AQYUN', '', '3527034411894028@gmail.com', '', '', '1970-01-01', '3527034411894028', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3527034411894028@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(347, NULL, 'ABDUL HARIS', '', '3578102204820010@gmail.com', '', '', '1970-01-01', '3578102204820010', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578102204820010@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(348, NULL, 'ABDUL MUJIB HAMBALI', '', '3578171409590002@gmail.com', '', '', '1970-01-01', '3578171409590002', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578171409590002@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(349, NULL, 'AHMAD RAHMATULLAH', '', '3578161009930005@gmail.com', '', '', '1970-01-01', '3578161009930005', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578161009930005@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(350, NULL, 'ANIS SOFIYAH', '', '3578045203920004@gmail.com', '', '', '1970-01-01', '3578045203920004', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578045203920004@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(351, NULL, 'MISBAKHUL MUNIR', '', '3578282504960001@gmail.com', '', '', '1970-01-01', '3578282504960001', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578282504960001@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(352, NULL, 'RAHMAT SUDANI', '', '3578271302990004@gmail.com', '', '', '1970-01-01', '3578271302990004', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578271302990004@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(353, NULL, 'DANI CANTONA', '', '3578102704970005@gmail.com', '', '', '1970-01-01', '3578102704970005', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578102704970005@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(354, NULL, 'HARIJANTO', '', '3578062406600003@gmail.com', '', '', '1970-01-01', '3578062406600003', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578062406600003@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(355, NULL, 'RISKY MAULANA', '', '3578110303980002@gmail.com', '', '', '1970-01-01', '3578110303980002', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578110303980002@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(356, NULL, 'RR. NURUL QOMARIYAH', '', '3578164305700006@gmail.com', '', '', '1970-01-01', '3578164305700006', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578164305700006@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(357, NULL, 'KURNIA TSALITSATIN ROBANIYAH', '', '3578055111810009@gmail.com', '', '', '1970-01-01', '3578055111810009', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578055111810009@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(358, NULL, 'NUR HOLIFAH', '', '3578176910940002@gmail.com', '', '', '1970-01-01', '3578176910940002', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578176910940002@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(359, NULL, 'SRI RAHAYU', '', '3578164112650003@gmail.com', '', '', '1970-01-01', '3578164112650003', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578164112650003@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(360, NULL, 'AHMAD BAIDHOWI', '', '3513212603970001@gmail.com', '', '', '1970-01-01', '3513212603970001', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3513212603970001@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(361, NULL, 'IKA SAFITRI', '', '3514126808820003@gmail.com', '', '', '1970-01-01', '3514126808820003', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3514126808820003@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(362, NULL, 'MUTIARA HANY HAMDIYAH', '', '3525124312940002@gmail.com', '', '', '1970-01-01', '3525124312940002', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3525124312940002@gmail.com', '123456', 1, 1, 4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(363, NULL, 'GATOT SUGIANTO', '', '3578102612760004@gmail.com', '', '', '1970-01-01', '3578102612760004', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578102612760004@gmail.com', '123456', 1, 1, 4, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(364, NULL, 'SITI ROHMI', '', '3578102612761114@gmail.com', '', '', '1970-01-01', '3578102612761114', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578102612761114@gmail.com', '123456', 1, 1, 4, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(365, NULL, 'SITI MUSAWAROH', '', '3578165507710006@gmail.com', '', '', '1970-01-01', '3578165507710006', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578165507710006@gmail.com', '123456', 1, 1, 4, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(366, NULL, 'ACHMAD ZAINI', '', '3578165507711006@gmail.com', '', '', '1970-01-01', '3578165507711006', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578165507711006@gmail.com', '123456', 1, 1, 4, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(367, NULL, 'SOEDJOKO', '', '3578161404690001@gmail.com', '', '', '1970-01-01', '3578161404690001', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578161404690001@gmail.com', '123456', 1, 1, 4, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(368, NULL, 'KUN WARIATI', '', '3578295412710002@gmail.com', '', '', '1970-01-01', '3578295412710002', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578295412710002@gmail.com', '123456', 1, 1, 4, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(369, NULL, 'ACHMAD RIZKI', '', '3578161506970003@gmail.com', '', '', '1970-01-01', '3578161506970003', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578161506970003@gmail.com', '123456', 1, 1, 4, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(370, NULL, 'MOCHAMAD THORIQ NURDIN', '', '3578051311890004@gmail.com', '', '', '1970-01-01', '3578051311890004', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578051311890004@gmail.com', '123456', 1, 1, 4, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(371, NULL, 'ABDUL AZIES', '', '3578172010790002@gmail.com', '', '', '1970-01-01', '3578172010790002', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578172010790002@gmail.com', '123456', 1, 1, 4, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(372, NULL, 'BUDIMAN W.', '', '3578170707550002@gmail.com', '', '', '1970-01-01', '3578170707550002', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578170707550002@gmail.com', '123456', 1, 1, 4, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(373, NULL, 'ILYAS NOERSOLIM', '', '3578081505630004@gmail.com', '', '', '1970-01-01', '3578081505630004', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578081505630004@gmail.com', '123456', 1, 1, 4, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(374, NULL, 'SUPRIJANTO', '', '3578081505630005@gmail.com', '', '', '1970-01-01', '3578081505630005', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578081505630005@gmail.com', '123456', 1, 1, 4, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(375, NULL, 'FAHMI BIN SALEH A.', '', '3578161406900005@gmail.com', '', '', '1970-01-01', '3578161406900005', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3578161406900005@gmail.com', '123456', 1, 1, 4, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(376, NULL, 'WISNU PRADINATA', '', '3528040303970001@gmail.com', '', '', '1970-01-01', '3528040303970001', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2023', NULL, '3528040303970001@gmail.com', '123456', 1, 1, 4, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(377, NULL, 'Aulia Zulfikar, S.Pd', '', 'malika110719@gmail.com', '', '', '2023-01-13', '198304102006070420', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 60, '2022', NULL, 'malika110719@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(378, NULL, 'Djumadi, S.Pd', '', 'djumadi_hilmy@yahoo.co.id', '', '', '2023-01-13', '196905271996070283', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 5, '2022', NULL, 'djumadi_hilmy@yahoo.co.id', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(379, NULL, 'Rokayah', '', 'rukayahwh@gmail.com', '', '', '2023-01-13', '198811182011070498', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 62, '2022', NULL, 'rukayahwh@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(380, NULL, 'Achmad Junaidi, S.Kom', '', 'junales@gmail.com', '', '', '2023-01-13', '198408252010070492', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 61, '2022', NULL, 'junales@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(381, NULL, 'Soe eniek', '', 'latapameidindaanissa@gmail.com', '', '', '2023-01-12', '197004061996070319', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 5, '2022', NULL, 'latapameidindaanissa@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(382, NULL, 'H. Abd. Ro&#039;uf', '', 'abdulrouf@gmail.com', '', '', '2023-01-12', '196701121998070311', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 5, '2022', NULL, 'abdulrouf@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(383, NULL, 'Sri Rahayu', '', 'srirahayum567@gmail.com', '', '', '2023-01-12', '196512011999070327', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'srirahayum567@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(384, NULL, 'Soebagijo', '', 'soebagijo1970@gmail.com', '', '', '2023-01-12', '197001282000070310', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 5, '2022', NULL, 'soebagijo1970@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(385, NULL, 'Nunik Haryani', '', 'hanna3aulia@gmail.com', '', '', '2023-01-12', '197604052003070393', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'hanna3aulia@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(386, NULL, 'Wiwik Winarti', '', 'wiwiknarendra@yahoo.com', '', '', '2023-01-12', '197606042004070397', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'wiwiknarendra@yahoo.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(387, NULL, 'Ahsanuddin, S.Ag', '', 'ahsanuddin7642@gmail.com', '', '', '2023-01-13', '197604012004070401', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 5, '2022', NULL, 'ahsanuddin7642@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(388, NULL, 'Siswati', '', 'busiswati2016@gmail.com', '', '', '2023-01-12', '197704092004070403', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'busiswati2016@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(389, NULL, 'M. Syafiuddin Zamzam', '', 'iukz@email.com', '', '', '2023-01-13', '198110032004070399', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 64, '2022', NULL, 'iukz@email.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(390, NULL, 'Suliha Kamil', '', 'sulihakamil@gmail.com', '', '', '2023-01-13', '198008302008070456', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'sulihakamil@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(391, NULL, 'Deddy Purwanto', '', 'y1nxt5@erapor-smk.net', '', '', '2023-01-13', '198012172005070411', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 5, '2022', NULL, 'y1nxt5@erapor-smk.net', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(392, NULL, 'Febriani Setyawati', '', 'poseidoncake605@gmail.com', '', '', '2023-01-13', '198202072008070458', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'poseidoncake605@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(393, NULL, 'Catur Budi Darmawan', '', 'arekkentir666@yahoo.com', '', '', '2023-01-12', '197404132008070462', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 5, '2022', NULL, 'arekkentir666@yahoo.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(394, NULL, 'Hekmah Amala', '', 'hekmahamala84@gmail.com', '', '', '2023-01-13', '198411102008070461', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'hekmahamala84@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(395, NULL, 'M. Setiyawan', '', 'awanisti@gmail.com', '', '', '2023-01-13', '198404222008070464', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 5, '2022', NULL, 'awanisti@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(396, NULL, 'Aisyah Noormawati', '', 'noormawatiaisyah@yahoo.com', '', '', '2023-01-12', '197503172009070477', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'noormawatiaisyah@yahoo.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(397, NULL, 'Elok Tri Cahyani', '', 'eloktricahyani29@gmail.com', '', '', '2023-01-13', '198109292009070468', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'eloktricahyani29@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(398, NULL, 'Roni Fauzi', '', 'roni.fauzi@gmail.com', '', '', '2023-01-13', '198703102010070491', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 5, '2022', NULL, 'roni.fauzi@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(399, NULL, 'Sriyani', '', 'cuteziendah46@gmail.com', '', '', '2023-01-13', '198406222010070490', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'cuteziendah46@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(400, NULL, 'Ayu Dwi Cahyani', '', 'ayudwicahyani8@gmail.com', '', '', '2023-01-13', '198005032010070499', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'ayudwicahyani8@gmail.com', '123456', 1, 1, 5, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(401, NULL, 'Winarko Hidayat', '', 'muhammad.heco@yahoo.com', '', '', '2023-01-12', '197203032010070488', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 5, '2022', NULL, 'muhammad.heco@yahoo.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(402, NULL, 'Maslichatin, S.Th.I', '', 'micha.fulla@gmail.com', '', '', '2023-01-13', '197911042011070504', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'micha.fulla@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(403, NULL, 'Fullatul Aini', '', 'fillatul.aini.baru@gmail.com', '', '', '2023-01-12', '197606302011070346', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'fillatul.aini.baru@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(404, NULL, 'Kuncahyo Arif S.', '', 'kuncahyo28@gmail.com', '', '', '2023-01-13', '198712282011070501', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 5, '2022', NULL, 'kuncahyo28@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(405, NULL, 'Rukmaningsih', '', 'ashari.r.ar@gmail.com', '', '', '2023-01-13', '198103082010070489', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'ashari.r.ar@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(406, NULL, 'Ani Rosidah', '', 'ani.alwafa111@gmail.com', '', '', '2023-01-13', '198111152012070453', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'ani.alwafa111@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(407, NULL, 'Maria Ulfa', '', 'mariaulfa0605@gmail.com', '', '', '2023-01-13', '198505062012070455', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'mariaulfa0605@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(408, NULL, 'Taufiq Hidayat', '', 'taufiqht1969@gmail.com', '', '', '2023-01-12', '196904192012070514', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 5, '2022', NULL, 'taufiqht1969@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(409, NULL, 'Nurul Faujiyah', '', 'nurfa-chayank@yahoo.co.id', '', '', '2023-01-13', '199003172012070513', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'nurfa-chayank@yahoo.co.id', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(410, NULL, 'Anik Yuni Rahayu', '', 'mbakyuni48@gmail.com', '', '', '2023-01-13', '198306252013070516', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'mbakyuni48@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(411, NULL, 'Kurnia Tsalisatin', '', 'kurnia_tsalitsatin@yahoo.co.id', '', '', '2023-01-13', '198111112014070429', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'kurnia_tsalitsatin@yahoo.co.id', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(412, NULL, 'Reni Zumzumi', '', 'rzumzumy@gmail.com', '', '', '2023-01-13', '198511142014070522', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 101, '2022', NULL, 'rzumzumy@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(413, NULL, 'Subairi Khalil', '', 'subairikhalil@gmail.com', '', '', '2023-01-13', '198709192014070523', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 5, '2022', NULL, 'subairikhalil@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(414, NULL, 'Fitrah Insani, SE', '', 'fitrahinsani0201@gmail.com', '', '', '2023-01-13', '198801022016070560', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'fitrahinsani0201@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(415, NULL, 'Ayu Laily Qomariyah', '', 'ayu.laely10@gmail.com', '', '', '2023-01-13', '199310102016070563', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'ayu.laely10@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(416, NULL, 'Nurfia Lely Chomariya', '', 'nurfialely17@gmail.com', '', '', '2023-01-13', '199503172017070570', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'nurfialely17@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(417, NULL, 'Amalia Sofianti', '', 'calvinmelia2@gmail.com', '', '', '2023-01-12', '197910192017070569', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'calvinmelia2@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(418, NULL, 'Yanarto Teguh P.', '', 'yanarto@gmail.com', '', '', '2023-01-12', '197701042017070571', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 5, '2022', NULL, 'yanarto@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(419, NULL, 'Prihatiana P. N.', '', 'tiananidyawati@gmail.com', '', '', '2023-01-13', '198504282017070572', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'tiananidyawati@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(420, NULL, 'Nur Ardiana Sholehati', '', 'sh.ardiana@yahoo.co.id', '', '', '2023-01-13', '199208202017070573', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'sh.ardiana@yahoo.co.id', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(421, NULL, 'Chalimatus S.', '', 'chalimatussholikhah@yahoo.com', '', '', '2023-01-13', '199304222018070608', '', NULL, NULL, 'islam', 'Wanita', '', NULL, NULL, 5, '2022', NULL, 'chalimatussholikhah@yahoo.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(422, NULL, 'Muhamimin', '', 'muhaimin0678@gmail.com', '', '', '2023-01-12', '197810062018070606', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 5, '2022', NULL, 'muhaimin0678@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(423, NULL, 'M. Rifai Abdzar Gifari', '', 'rifaiabdzar@gmail.com', '', '', '2023-01-13', '199701082019070582', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 40, '2022', NULL, 'rifaiabdzar@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(424, NULL, 'ARIF ZAINURI RACHMAN', '', 'ARIF@GMAIL.COM', '', '', '2023-01-16', '196906211992070223', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 69, '2023', NULL, 'ARIF@GMAIL.COM', '123456', 1, 1, 5, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(425, NULL, 'Dra. Hj. Muntafi&#039;ah Djauhari', 'Sidotopo Wetan Baru IV A', 'tafiksmk@gmail.com', '81332025574', '81332025574', '1970-01-01', '196312141989032006', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '1970', NULL, 'tafiksmk@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(426, NULL, 'Siti Rokaya', NULL, NULL, NULL, NULL, NULL, '102327123', NULL, NULL, NULL, 'ISLAM', 'Wanita', NULL, NULL, NULL, 151, NULL, NULL, 'siti_rokaya', '123456', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(427, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '11314237', NULL, NULL, NULL, NULL, 'Wanita', NULL, NULL, NULL, 151, NULL, NULL, 'siti_rokaya', '123456', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+	(44, NULL, 'Panitia PPDB', 'Sidotopo Wetan Baru No.37 Surabaya', 'ppdb', '', '', '2022-11-08', '', '', NULL, NULL, 'islam', 'Others', '', NULL, NULL, NULL, '2022', NULL, 'ppdb', '123456', NULL, 1, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- Dumping structure for table sigap2.peg_dokumen
 CREATE TABLE IF NOT EXISTS `peg_dokumen` (
@@ -4043,7 +3656,7 @@ CREATE TABLE IF NOT EXISTS `penyesuaian` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.penyesuaian: ~18 rows (approximately)
+-- Dumping data for table sigap2.penyesuaian: ~20 rows (approximately)
 INSERT INTO `penyesuaian` (`id`, `m_id`, `datetime`, `nip`, `jenjang_id`, `absen`, `izin`, `sakit`, `terlambat`, `pulang_cepat`, `piket`, `inval`, `lembur`, `total`, `total2`, `voucher`, `absen_jam`, `izin_jam`, `sakit_jam`) VALUES
 	(6, 6, '2023-02-14 04:02:59', 10230, 4, 1, 1, 2, NULL, NULL, 1, 2, 3, 114500, 171000, 30000, NULL, NULL, NULL),
 	(7, 6, '2023-02-14 04:02:59', 10235, 4, 2, 3, 5, 1, 1, NULL, NULL, NULL, 256250, 0, 40000, NULL, NULL, NULL),
@@ -4146,7 +3759,7 @@ CREATE TABLE IF NOT EXISTS `potongan_sma` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.potongan_sma: ~17 rows (approximately)
+-- Dumping data for table sigap2.potongan_sma: ~20 rows (approximately)
 INSERT INTO `potongan_sma` (`id`, `datetime`, `month`, `nama`, `jenjang_id`, `jabatan_id`, `terlambat`, `value_terlambat`, `izin`, `value_izin`, `u_by`, `sakit`, `value_sakit`, `totalpotongan`, `tidakhadir`, `value_tidakhadir`, `pulcep`, `value_pulcep`, `tidakhadirjam`, `tidakhadirjamvalue`, `sakitperjam`, `sakitperjamvalue`, `izinperjam`, `izinperjamvalue`, `sertif`, `tahun`, `bulan`, `pid`) VALUES
 	(97, NULL, NULL, '10235', 4, 9, 2, 50000, 2, NULL, NULL, 2, NULL, NULL, 2, NULL, 2, NULL, 3, NULL, 1, NULL, NULL, NULL, 2, NULL, NULL, NULL),
 	(98, '2023-01-18 07:28:55', NULL, '10235', 4, 9, 4, 16500, 3, NULL, NULL, NULL, NULL, 66000, NULL, NULL, NULL, 16500, NULL, 16500, NULL, 8250, NULL, 16500, 2, NULL, NULL, NULL),
@@ -4202,7 +3815,7 @@ CREATE TABLE IF NOT EXISTS `potongan_smk` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.potongan_smk: ~9 rows (approximately)
+-- Dumping data for table sigap2.potongan_smk: ~10 rows (approximately)
 INSERT INTO `potongan_smk` (`id`, `u_by`, `datetime`, `month`, `nama`, `jenjang_id`, `jabatan_id`, `terlambat`, `value_terlambat`, `izin`, `value_izin`, `sakit`, `value_sakit`, `totalpotongan`, `tidakhadir`, `value_tidakhadir`, `pulcep`, `value_pulcep`, `tidakhadirjam`, `tidakhadirjamvalue`, `sakitperjam`, `sakitperjamvalue`, `izinperjam`, `izinperjamvalue`, `sertif`, `tahun`, `bulan`, `pid`) VALUES
 	(59, -1, '2022-12-16 04:03:38', NULL, '110123', 1, 1, 2, 15000, 2, 40000, NULL, 23000, 168000, NULL, 40000, 2, 20000, 2, 9000, NULL, 4000, NULL, 9000, NULL, NULL, NULL, NULL),
 	(61, -1, '2022-12-16 04:09:21', NULL, '110124', 1, 2, 2, 30000, 2, 30000, NULL, 27000, 164000, NULL, 30000, 2, 18000, 2, 4000, NULL, 7000, NULL, 4000, NULL, NULL, NULL, NULL),
@@ -4700,7 +4313,7 @@ CREATE TABLE IF NOT EXISTS `tunjangan_tambahan` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.tunjangan_tambahan: ~11 rows (approximately)
+-- Dumping data for table sigap2.tunjangan_tambahan: ~13 rows (approximately)
 INSERT INTO `tunjangan_tambahan` (`id`, `jenjang`, `kualifikasi`, `value`) VALUES
 	(5, 4, 3, 100000),
 	(6, 4, 5, 100000),
@@ -4749,7 +4362,7 @@ CREATE TABLE IF NOT EXISTS `userlevelpermissions` (
   PRIMARY KEY (`userlevelid`,`tablename`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.userlevelpermissions: ~1,437 rows (approximately)
+-- Dumping data for table sigap2.userlevelpermissions: ~1,884 rows (approximately)
 INSERT INTO `userlevelpermissions` (`userlevelid`, `tablename`, `permission`) VALUES
 	(-2, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen', 0),
 	(-2, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen_detil', 0),
@@ -6643,7 +6256,7 @@ CREATE TABLE IF NOT EXISTS `userlevels` (
   PRIMARY KEY (`userlevelid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.userlevels: ~13 rows (approximately)
+-- Dumping data for table sigap2.userlevels: ~15 rows (approximately)
 INSERT INTO `userlevels` (`userlevelid`, `userlevelname`) VALUES
 	(-2, 'Anonymous'),
 	(-1, 'Administrator'),
