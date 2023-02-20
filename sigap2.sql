@@ -16,8 +16,8 @@
 
 
 -- Dumping database structure for sigap2
-CREATE DATABASE IF NOT EXISTS `sigap2` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `sigap2`;
+CREATE DATABASE IF NOT EXISTS `sigap_pph21` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `sigap_pph21`;
 
 -- Dumping structure for table sigap2.absen
 CREATE TABLE IF NOT EXISTS `absen` (
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `agama` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.agama: ~6 rows (approximately)
 INSERT INTO `agama` (`id`, `name`) VALUES
@@ -247,7 +247,7 @@ INSERT INTO `barang` (`Kode_Barang`, `Nama_Barang`) VALUES
 CREATE TABLE IF NOT EXISTS `barangnew` (
   `kode_barang` char(50) DEFAULT NULL,
   `nama_barang` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.barangnew: ~0 rows (approximately)
 
@@ -273,7 +273,7 @@ CREATE TABLE IF NOT EXISTS `bulan` (
   `bulan` varchar(50) DEFAULT NULL,
   `nourut` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.bulan: ~12 rows (approximately)
 INSERT INTO `bulan` (`id`, `bulan`, `nourut`) VALUES
@@ -331,7 +331,7 @@ CREATE TABLE IF NOT EXISTS `dinasluar` (
 -- Dumping structure for table sigap2.gaji
 CREATE TABLE IF NOT EXISTS `gaji` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `datetime` datetime DEFAULT NULL,
   `month` date DEFAULT NULL,
   `lembur` int DEFAULT NULL,
@@ -360,13 +360,13 @@ CREATE TABLE IF NOT EXISTS `gaji` (
   `tunjangan_periode` bigint DEFAULT NULL,
   `total_gapok` bigint DEFAULT NULL,
   `lama_kerja` int DEFAULT NULL,
-  `status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `tahun` int DEFAULT NULL,
   `bulan` int DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
   `voucher` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1434277 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=1434277 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji: ~31 rows (approximately)
 INSERT INTO `gaji` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `tahun`, `bulan`, `potongan_bendahara`, `voucher`) VALUES
@@ -410,7 +410,7 @@ CREATE TABLE IF NOT EXISTS `gajisd` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gajisd: ~1 rows (approximately)
 INSERT INTO `gajisd` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
@@ -437,7 +437,7 @@ CREATE TABLE IF NOT EXISTS `gajisd_detil` (
   `jumlahterima` int DEFAULT NULL,
   `jp` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gajisd_detil: ~0 rows (approximately)
 
@@ -449,7 +449,7 @@ CREATE TABLE IF NOT EXISTS `gajisma` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gajisma: ~0 rows (approximately)
 
@@ -474,7 +474,7 @@ CREATE TABLE IF NOT EXISTS `gajisma_detil` (
   `jumlahterima` int DEFAULT NULL,
   `jp` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gajisma_detil: ~0 rows (approximately)
 
@@ -486,7 +486,7 @@ CREATE TABLE IF NOT EXISTS `gajismk` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gajismk: ~0 rows (approximately)
 
@@ -511,7 +511,7 @@ CREATE TABLE IF NOT EXISTS `gajismk_detil` (
   `jumlahterima` int DEFAULT NULL,
   `jp` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gajismk_detil: ~0 rows (approximately)
 
@@ -523,7 +523,7 @@ CREATE TABLE IF NOT EXISTS `gajismp` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gajismp: ~0 rows (approximately)
 
@@ -548,7 +548,7 @@ CREATE TABLE IF NOT EXISTS `gajismp_detil` (
   `jumlahterima` int DEFAULT NULL,
   `jp` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gajismp_detil: ~0 rows (approximately)
 
@@ -560,7 +560,7 @@ CREATE TABLE IF NOT EXISTS `gajitk` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.gajitk: ~0 rows (approximately)
 
@@ -586,7 +586,7 @@ CREATE TABLE IF NOT EXISTS `gajitk_detil` (
   `jumlahterima` int DEFAULT NULL,
   `jp` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.gajitk_detil: ~0 rows (approximately)
 
@@ -605,7 +605,7 @@ CREATE TABLE IF NOT EXISTS `gajitunjangan` (
   `tunjangan_khusus` bigint DEFAULT NULL,
   `ekstrakuri` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gajitunjangan: ~11 rows (approximately)
 INSERT INTO `gajitunjangan` (`id`, `pidjabatan`, `value_kehadiran`, `gapok`, `tunjangan_jabatan`, `reward`, `lembur`, `piket`, `inval`, `jam_lebih`, `tunjangan_khusus`, `ekstrakuri`) VALUES
@@ -624,7 +624,7 @@ INSERT INTO `gajitunjangan` (`id`, `pidjabatan`, `value_kehadiran`, `gapok`, `tu
 -- Dumping structure for table sigap2.gaji_karyawan_sd
 CREATE TABLE IF NOT EXISTS `gaji_karyawan_sd` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `jabatan_id` int DEFAULT NULL,
   `jenjang_id` int DEFAULT NULL,
   `gapok` bigint DEFAULT NULL,
@@ -643,7 +643,7 @@ CREATE TABLE IF NOT EXISTS `gaji_karyawan_sd` (
   `voucher` bigint DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_karyawan_sd: ~3 rows (approximately)
 INSERT INTO `gaji_karyawan_sd` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`, `voucher`, `potongan_bendahara`) VALUES
@@ -654,7 +654,7 @@ INSERT INTO `gaji_karyawan_sd` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `ga
 -- Dumping structure for table sigap2.gaji_karyawan_sma
 CREATE TABLE IF NOT EXISTS `gaji_karyawan_sma` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `jabatan_id` int DEFAULT NULL,
   `jenjang_id` int DEFAULT NULL,
   `gapok` bigint DEFAULT NULL,
@@ -673,7 +673,7 @@ CREATE TABLE IF NOT EXISTS `gaji_karyawan_sma` (
   `voucher` bigint DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=429 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=429 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_karyawan_sma: ~56 rows (approximately)
 INSERT INTO `gaji_karyawan_sma` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`, `voucher`, `potongan_bendahara`) VALUES
@@ -737,7 +737,7 @@ INSERT INTO `gaji_karyawan_sma` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `g
 -- Dumping structure for table sigap2.gaji_karyawan_smk
 CREATE TABLE IF NOT EXISTS `gaji_karyawan_smk` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `jabatan_id` int DEFAULT NULL,
   `jenjang_id` int DEFAULT NULL,
   `gapok` bigint DEFAULT NULL,
@@ -756,7 +756,7 @@ CREATE TABLE IF NOT EXISTS `gaji_karyawan_smk` (
   `voucher` bigint DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_karyawan_smk: ~9 rows (approximately)
 INSERT INTO `gaji_karyawan_smk` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`, `voucher`, `potongan_bendahara`) VALUES
@@ -773,7 +773,7 @@ INSERT INTO `gaji_karyawan_smk` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `g
 -- Dumping structure for table sigap2.gaji_karyawan_smp
 CREATE TABLE IF NOT EXISTS `gaji_karyawan_smp` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `jabatan_id` int DEFAULT NULL,
   `jenjang_id` int DEFAULT NULL,
   `gapok` bigint DEFAULT NULL,
@@ -792,7 +792,7 @@ CREATE TABLE IF NOT EXISTS `gaji_karyawan_smp` (
   `voucher` int DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_karyawan_smp: ~6 rows (approximately)
 INSERT INTO `gaji_karyawan_smp` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`, `voucher`, `potongan_bendahara`) VALUES
@@ -806,7 +806,7 @@ INSERT INTO `gaji_karyawan_smp` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `g
 -- Dumping structure for table sigap2.gaji_karyawan_tk
 CREATE TABLE IF NOT EXISTS `gaji_karyawan_tk` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `jabatan_id` int DEFAULT NULL,
   `jenjang_id` int DEFAULT NULL,
   `gapok` bigint DEFAULT NULL,
@@ -825,7 +825,7 @@ CREATE TABLE IF NOT EXISTS `gaji_karyawan_tk` (
   `voucher` int DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=434 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=434 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_karyawan_tk: ~5 rows (approximately)
 INSERT INTO `gaji_karyawan_tk` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`, `voucher`, `potongan_bendahara`) VALUES
@@ -842,7 +842,7 @@ CREATE TABLE IF NOT EXISTS `gaji_pokok` (
   `lama_kerja` int DEFAULT NULL,
   `value` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=420 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=420 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.gaji_pokok: ~247 rows (approximately)
 INSERT INTO `gaji_pokok` (`id`, `jenjang_id`, `lama_kerja`, `value`) VALUES
@@ -1101,7 +1101,7 @@ CREATE TABLE IF NOT EXISTS `gaji_pokok_kayawan` (
   `value` bigint DEFAULT NULL,
   `jabatan_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_pokok_kayawan: ~15 rows (approximately)
 INSERT INTO `gaji_pokok_kayawan` (`id`, `jenjang_id`, `value`, `jabatan_id`) VALUES
@@ -1129,7 +1129,7 @@ CREATE TABLE IF NOT EXISTS `gaji_pokok_tu` (
   `ijazah` int DEFAULT NULL,
   `lama_kerja` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=527 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=527 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_pokok_tu: ~433 rows (approximately)
 INSERT INTO `gaji_pokok_tu` (`id`, `jenjang_id`, `value`, `ijazah`, `lama_kerja`) VALUES
@@ -1570,7 +1570,7 @@ INSERT INTO `gaji_pokok_tu` (`id`, `jenjang_id`, `value`, `ijazah`, `lama_kerja`
 -- Dumping structure for table sigap2.gaji_sma
 CREATE TABLE IF NOT EXISTS `gaji_sma` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `datetime` datetime DEFAULT NULL,
   `month` date DEFAULT NULL,
   `lembur` int DEFAULT NULL,
@@ -1605,7 +1605,7 @@ CREATE TABLE IF NOT EXISTS `gaji_sma` (
   `potongan_bendahara` bigint DEFAULT NULL,
   `voucher` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3896 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=3896 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_sma: ~184 rows (approximately)
 INSERT INTO `gaji_sma` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `tahun`, `bulan`, `potongan_bendahara`, `voucher`) VALUES
@@ -1797,7 +1797,7 @@ INSERT INTO `gaji_sma` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_l
 -- Dumping structure for table sigap2.gaji_smk
 CREATE TABLE IF NOT EXISTS `gaji_smk` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `datetime` datetime DEFAULT NULL,
   `month` date DEFAULT NULL,
   `lembur` int DEFAULT NULL,
@@ -1832,7 +1832,7 @@ CREATE TABLE IF NOT EXISTS `gaji_smk` (
   `potongan_bendahara` bigint DEFAULT NULL,
   `voucher` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=364 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=364 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_smk: ~144 rows (approximately)
 INSERT INTO `gaji_smk` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `tahun`, `bulan`, `potongan_bendahara`, `voucher`) VALUES
@@ -1984,7 +1984,7 @@ INSERT INTO `gaji_smk` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_l
 -- Dumping structure for table sigap2.gaji_smp
 CREATE TABLE IF NOT EXISTS `gaji_smp` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `datetime` datetime DEFAULT NULL,
   `month` date DEFAULT NULL,
   `lembur` int DEFAULT NULL,
@@ -2019,7 +2019,7 @@ CREATE TABLE IF NOT EXISTS `gaji_smp` (
   `potongan_bendahara` bigint DEFAULT NULL,
   `voucher` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=380 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=380 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_smp: ~86 rows (approximately)
 INSERT INTO `gaji_smp` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `tahun`, `bulan`, `potongan_bendahara`, `voucher`) VALUES
@@ -2113,7 +2113,7 @@ INSERT INTO `gaji_smp` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_l
 -- Dumping structure for table sigap2.gaji_tk
 CREATE TABLE IF NOT EXISTS `gaji_tk` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `datetime` datetime DEFAULT NULL,
   `month` date DEFAULT NULL,
   `lembur` int DEFAULT NULL,
@@ -2148,7 +2148,7 @@ CREATE TABLE IF NOT EXISTS `gaji_tk` (
   `potongan_bendahara` bigint DEFAULT NULL,
   `voucher` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_tk: ~9 rows (approximately)
 INSERT INTO `gaji_tk` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `bulan`, `tahun`, `potongan_bendahara`, `voucher`) VALUES
@@ -2166,7 +2166,7 @@ INSERT INTO `gaji_tk` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_le
 CREATE TABLE IF NOT EXISTS `gaji_tu_sd` (
   `id` int NOT NULL AUTO_INCREMENT,
   `datetime` datetime DEFAULT NULL,
-  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `jenjang_id` int DEFAULT NULL,
   `jabatan_id` int DEFAULT NULL,
   `month` date DEFAULT NULL,
@@ -2198,7 +2198,7 @@ CREATE TABLE IF NOT EXISTS `gaji_tu_sd` (
   `status` int DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_tu_sd: ~2 rows (approximately)
 INSERT INTO `gaji_tu_sd` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `tunjangan2`, `tambahan`, `type_jabatan`, `ijasah`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`) VALUES
@@ -2209,7 +2209,7 @@ INSERT INTO `gaji_tu_sd` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id
 CREATE TABLE IF NOT EXISTS `gaji_tu_sma` (
   `id` int NOT NULL AUTO_INCREMENT,
   `datetime` datetime DEFAULT NULL,
-  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `jenjang_id` int DEFAULT NULL,
   `jabatan_id` int DEFAULT NULL,
   `month` date DEFAULT NULL,
@@ -2241,7 +2241,7 @@ CREATE TABLE IF NOT EXISTS `gaji_tu_sma` (
   `status` int DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=343 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=343 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_tu_sma: ~12 rows (approximately)
 INSERT INTO `gaji_tu_sma` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `tunjangan2`, `tambahan`, `type_jabatan`, `ijasah`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`) VALUES
@@ -2262,7 +2262,7 @@ INSERT INTO `gaji_tu_sma` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_i
 CREATE TABLE IF NOT EXISTS `gaji_tu_smk` (
   `id` int NOT NULL AUTO_INCREMENT,
   `datetime` datetime DEFAULT NULL,
-  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `jenjang_id` int DEFAULT NULL,
   `jabatan_id` int DEFAULT NULL,
   `month` date DEFAULT NULL,
@@ -2294,7 +2294,7 @@ CREATE TABLE IF NOT EXISTS `gaji_tu_smk` (
   `status` int DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_tu_smk: ~2 rows (approximately)
 INSERT INTO `gaji_tu_smk` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `ijasah`, `tunjangan2`, `tambahan`, `type_jabatan`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`) VALUES
@@ -2305,7 +2305,7 @@ INSERT INTO `gaji_tu_smk` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_i
 CREATE TABLE IF NOT EXISTS `gaji_tu_smp` (
   `id` int NOT NULL AUTO_INCREMENT,
   `datetime` datetime DEFAULT NULL,
-  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `jenjang_id` int DEFAULT NULL,
   `jabatan_id` int DEFAULT NULL,
   `month` date DEFAULT NULL,
@@ -2337,7 +2337,7 @@ CREATE TABLE IF NOT EXISTS `gaji_tu_smp` (
   `status` int DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_tu_smp: ~2 rows (approximately)
 INSERT INTO `gaji_tu_smp` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `tunjangan2`, `tambahan`, `type_jabatan`, `ijasah`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`) VALUES
@@ -2348,7 +2348,7 @@ INSERT INTO `gaji_tu_smp` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_i
 CREATE TABLE IF NOT EXISTS `gaji_tu_tk` (
   `id` int NOT NULL AUTO_INCREMENT,
   `datetime` datetime DEFAULT NULL,
-  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pegawai` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `jenjang_id` int DEFAULT NULL,
   `jabatan_id` int DEFAULT NULL,
   `month` date DEFAULT NULL,
@@ -2380,7 +2380,7 @@ CREATE TABLE IF NOT EXISTS `gaji_tu_tk` (
   `status` int DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_tu_tk: ~3 rows (approximately)
 INSERT INTO `gaji_tu_tk` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `tunjangan2`, `tambahan`, `type_jabatan`, `ijasah`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`) VALUES
@@ -2393,7 +2393,7 @@ CREATE TABLE IF NOT EXISTS `gender` (
   `id` int NOT NULL AUTO_INCREMENT,
   `gen` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.gender: ~2 rows (approximately)
 INSERT INTO `gender` (`id`, `gen`) VALUES
@@ -2406,7 +2406,7 @@ CREATE TABLE IF NOT EXISTS `generate_perbulan` (
   `tahun` int DEFAULT NULL,
   `bulan` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.generate_perbulan: ~12 rows (approximately)
 INSERT INTO `generate_perbulan` (`id`, `tahun`, `bulan`) VALUES
@@ -2431,7 +2431,7 @@ CREATE TABLE IF NOT EXISTS `generate_pertahun` (
   `profesi` int DEFAULT NULL,
   `bulan2` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=478 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=478 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.generate_pertahun: ~5 rows (approximately)
 INSERT INTO `generate_pertahun` (`id`, `tahun`, `bulan`, `profesi`, `bulan2`) VALUES
@@ -2445,11 +2445,11 @@ INSERT INTO `generate_pertahun` (`id`, `tahun`, `bulan`, `profesi`, `bulan2`) VA
 CREATE TABLE IF NOT EXISTS `generate_pertahun_sd` (
   `id` int NOT NULL AUTO_INCREMENT,
   `tahun` int DEFAULT NULL,
-  `bulan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bulan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `profesi` int DEFAULT NULL,
   `bulan2` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=274 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=274 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.generate_pertahun_sd: ~3 rows (approximately)
 INSERT INTO `generate_pertahun_sd` (`id`, `tahun`, `bulan`, `profesi`, `bulan2`) VALUES
@@ -2461,11 +2461,11 @@ INSERT INTO `generate_pertahun_sd` (`id`, `tahun`, `bulan`, `profesi`, `bulan2`)
 CREATE TABLE IF NOT EXISTS `generate_pertahun_smk` (
   `id` int NOT NULL AUTO_INCREMENT,
   `tahun` int DEFAULT NULL,
-  `bulan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bulan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `profesi` int DEFAULT NULL,
   `bulan2` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=181 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=181 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.generate_pertahun_smk: ~7 rows (approximately)
 INSERT INTO `generate_pertahun_smk` (`id`, `tahun`, `bulan`, `profesi`, `bulan2`) VALUES
@@ -2481,11 +2481,11 @@ INSERT INTO `generate_pertahun_smk` (`id`, `tahun`, `bulan`, `profesi`, `bulan2`
 CREATE TABLE IF NOT EXISTS `generate_pertahun_smp` (
   `id` int NOT NULL AUTO_INCREMENT,
   `tahun` int DEFAULT NULL,
-  `bulan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bulan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `profesi` int DEFAULT NULL,
   `bulan2` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=209 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=209 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.generate_pertahun_smp: ~4 rows (approximately)
 INSERT INTO `generate_pertahun_smp` (`id`, `tahun`, `bulan`, `profesi`, `bulan2`) VALUES
@@ -2498,11 +2498,11 @@ INSERT INTO `generate_pertahun_smp` (`id`, `tahun`, `bulan`, `profesi`, `bulan2`
 CREATE TABLE IF NOT EXISTS `generate_pertahun_tk` (
   `id` int NOT NULL AUTO_INCREMENT,
   `tahun` int DEFAULT NULL,
-  `bulan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bulan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `profesi` int DEFAULT NULL,
   `bulan2` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=381 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=381 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.generate_pertahun_tk: ~4 rows (approximately)
 INSERT INTO `generate_pertahun_tk` (`id`, `tahun`, `bulan`, `profesi`, `bulan2`) VALUES
@@ -2531,7 +2531,7 @@ CREATE TABLE IF NOT EXISTS `hapus_barangnew` (
   `nama_barang` varchar(50) DEFAULT NULL,
   `keterangan` text,
   PRIMARY KEY (`id_hapus`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.hapus_barangnew: ~0 rows (approximately)
 
@@ -2540,7 +2540,7 @@ CREATE TABLE IF NOT EXISTS `ijazah` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.ijazah: ~2 rows (approximately)
 INSERT INTO `ijazah` (`id`, `name`) VALUES
@@ -2794,7 +2794,7 @@ CREATE TABLE IF NOT EXISTS `jenis_jabatan` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.jenis_jabatan: ~3 rows (approximately)
 INSERT INTO `jenis_jabatan` (`id`, `name`) VALUES
@@ -2851,7 +2851,7 @@ CREATE TABLE IF NOT EXISTS `mpendidikan` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.mpendidikan: ~10 rows (approximately)
 INSERT INTO `mpendidikan` (`id`, `name`) VALUES
@@ -2873,7 +2873,7 @@ CREATE TABLE IF NOT EXISTS `m_bpjs` (
   `value` bigint DEFAULT NULL,
   `jenjang` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.m_bpjs: ~15 rows (approximately)
 INSERT INTO `m_bpjs` (`id`, `golongan`, `value`, `jenjang`) VALUES
@@ -2900,7 +2900,7 @@ CREATE TABLE IF NOT EXISTS `m_inval` (
   `jabatan_id` int DEFAULT NULL,
   `value` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.m_inval: ~15 rows (approximately)
 INSERT INTO `m_inval` (`id`, `jenjang_id`, `jabatan_id`, `value`) VALUES
@@ -2941,7 +2941,7 @@ CREATE TABLE IF NOT EXISTS `m_karyawan_sd` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.m_karyawan_sd: ~5 rows (approximately)
 INSERT INTO `m_karyawan_sd` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
@@ -2959,7 +2959,7 @@ CREATE TABLE IF NOT EXISTS `m_karyawan_sma` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.m_karyawan_sma: ~5 rows (approximately)
 INSERT INTO `m_karyawan_sma` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
@@ -2977,7 +2977,7 @@ CREATE TABLE IF NOT EXISTS `m_karyawan_smk` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.m_karyawan_smk: ~3 rows (approximately)
 INSERT INTO `m_karyawan_smk` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
@@ -2993,7 +2993,7 @@ CREATE TABLE IF NOT EXISTS `m_karyawan_smp` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.m_karyawan_smp: ~2 rows (approximately)
 INSERT INTO `m_karyawan_smp` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
@@ -3008,7 +3008,7 @@ CREATE TABLE IF NOT EXISTS `m_karyawan_tk` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.m_karyawan_tk: ~6 rows (approximately)
 INSERT INTO `m_karyawan_tk` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
@@ -3028,7 +3028,7 @@ CREATE TABLE IF NOT EXISTS `m_kehadiran` (
   `value` bigint DEFAULT NULL,
   `jabatan` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.m_kehadiran: ~32 rows (approximately)
 INSERT INTO `m_kehadiran` (`id`, `jenjang`, `jenis_jabatan`, `sertif`, `value`, `jabatan`) VALUES
@@ -3072,7 +3072,7 @@ CREATE TABLE IF NOT EXISTS `m_lembur` (
   `jabatan_id` int DEFAULT NULL,
   `value_perjam` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.m_lembur: ~5 rows (approximately)
 INSERT INTO `m_lembur` (`id`, `jenjang_id`, `jabatan_id`, `value_perjam`) VALUES
@@ -3091,7 +3091,7 @@ CREATE TABLE IF NOT EXISTS `m_penyesuaian` (
   `datetime` datetime DEFAULT NULL,
   `import_file` text,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.m_penyesuaian: ~10 rows (approximately)
 INSERT INTO `m_penyesuaian` (`id`, `bulan`, `tahun`, `c_by`, `datetime`, `import_file`) VALUES
@@ -3103,8 +3103,8 @@ INSERT INTO `m_penyesuaian` (`id`, `bulan`, `tahun`, `c_by`, `datetime`, `import
 	(28, 10, 2023, 31, '2023-02-14 07:11:55', 'Template Penyesuaian (2).xlsx'),
 	(29, 4, 2023, 31, '2023-02-14 07:14:01', 'Template Penyesuaian (9).xlsx'),
 	(35, 6, 2023, 31, '2023-02-14 07:19:00', 'Template Penyesuaian (2).xlsx'),
-	(36, 9, 2023, 31, '2023-02-14 07:25:40', 'Template Penyesuaian (11).xlsx'),
-	(37, 12, 2023, 31, '2023-02-14 07:28:33', 'Template Penyesuaian (12).xlsx');
+	(37, 12, 2023, 31, '2023-02-14 07:28:33', 'Template Penyesuaian (12).xlsx'),
+	(40, 9, 2023, NULL, '2023-02-17 04:19:01', 'penyesuaian TK(2).xlsx');
 
 -- Dumping structure for table sigap2.m_piket
 CREATE TABLE IF NOT EXISTS `m_piket` (
@@ -3114,7 +3114,7 @@ CREATE TABLE IF NOT EXISTS `m_piket` (
   `jenis_sertif` int DEFAULT NULL,
   `value` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.m_piket: ~16 rows (approximately)
 INSERT INTO `m_piket` (`id`, `jenjang`, `type_jabatan`, `jenis_sertif`, `value`) VALUES
@@ -3144,7 +3144,7 @@ CREATE TABLE IF NOT EXISTS `m_potongan` (
   `datetime` datetime DEFAULT NULL,
   `import_file` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.m_potongan: ~0 rows (approximately)
 
@@ -3157,7 +3157,7 @@ CREATE TABLE IF NOT EXISTS `m_potongan_sd` (
   `datetime` datetime DEFAULT NULL,
   `import_file` text,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.m_potongan_sd: ~2 rows (approximately)
 INSERT INTO `m_potongan_sd` (`id`, `bulan`, `tahun`, `c_by`, `datetime`, `import_file`) VALUES
@@ -3173,7 +3173,7 @@ CREATE TABLE IF NOT EXISTS `m_potongan_sma` (
   `datetime` datetime DEFAULT NULL,
   `import_file` text,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.m_potongan_sma: ~4 rows (approximately)
 INSERT INTO `m_potongan_sma` (`id`, `bulan`, `tahun`, `c_by`, `datetime`, `import_file`) VALUES
@@ -3191,7 +3191,7 @@ CREATE TABLE IF NOT EXISTS `m_potongan_smk` (
   `datetime` datetime DEFAULT NULL,
   `import_file` text,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.m_potongan_smk: ~3 rows (approximately)
 INSERT INTO `m_potongan_smk` (`id`, `bulan`, `tahun`, `c_by`, `datetime`, `import_file`) VALUES
@@ -3208,7 +3208,7 @@ CREATE TABLE IF NOT EXISTS `m_potongan_smp` (
   `datetime` datetime DEFAULT NULL,
   `import_file` text,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.m_potongan_smp: ~0 rows (approximately)
 
@@ -3220,7 +3220,7 @@ CREATE TABLE IF NOT EXISTS `m_pulangcepat` (
   `perjam` bigint DEFAULT NULL,
   `perhari` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.m_pulangcepat: ~2 rows (approximately)
 INSERT INTO `m_pulangcepat` (`id`, `jenjang_id`, `jabatan_id`, `perjam`, `perhari`) VALUES
@@ -3235,7 +3235,7 @@ CREATE TABLE IF NOT EXISTS `m_reward` (
   `min_jmlh_masuk` int DEFAULT NULL,
   `value` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.m_reward: ~5 rows (approximately)
 INSERT INTO `m_reward` (`id`, `jenjang`, `jabatan`, `min_jmlh_masuk`, `value`) VALUES
@@ -3255,7 +3255,7 @@ CREATE TABLE IF NOT EXISTS `m_sakit` (
   `sertif` int DEFAULT NULL,
   `type` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.m_sakit: ~7 rows (approximately)
 INSERT INTO `m_sakit` (`id`, `jenjang_id`, `jabatan`, `perhari`, `perjam`, `sertif`, `type`) VALUES
@@ -3275,7 +3275,7 @@ CREATE TABLE IF NOT EXISTS `m_sd` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=249 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=249 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.m_sd: ~2 rows (approximately)
 INSERT INTO `m_sd` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
@@ -3289,7 +3289,7 @@ CREATE TABLE IF NOT EXISTS `m_semeter` (
   `bulan` int DEFAULT NULL,
   `detil_smtr` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.m_semeter: ~12 rows (approximately)
 INSERT INTO `m_semeter` (`id`, `smtr`, `bulan`, `detil_smtr`) VALUES
@@ -3314,7 +3314,7 @@ CREATE TABLE IF NOT EXISTS `m_sma` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=562 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=562 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.m_sma: ~4 rows (approximately)
 INSERT INTO `m_sma` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
@@ -3331,7 +3331,7 @@ CREATE TABLE IF NOT EXISTS `m_smk` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.m_smk: ~3 rows (approximately)
 INSERT INTO `m_smk` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
@@ -3347,7 +3347,7 @@ CREATE TABLE IF NOT EXISTS `m_smp` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.m_smp: ~2 rows (approximately)
 INSERT INTO `m_smp` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
@@ -3359,7 +3359,7 @@ CREATE TABLE IF NOT EXISTS `m_tahun` (
   `id` int DEFAULT NULL,
   `tahun` int DEFAULT NULL,
   `no_urut` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.m_tahun: ~0 rows (approximately)
 
@@ -3373,7 +3373,7 @@ CREATE TABLE IF NOT EXISTS `m_tidakhadir` (
   `sertif` int DEFAULT NULL,
   `type` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.m_tidakhadir: ~8 rows (approximately)
 INSERT INTO `m_tidakhadir` (`id`, `value`, `perjam_value`, `jabatan_id`, `jenjang_id`, `sertif`, `type`) VALUES
@@ -3394,7 +3394,7 @@ CREATE TABLE IF NOT EXISTS `m_tk` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.m_tk: ~4 rows (approximately)
 INSERT INTO `m_tk` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
@@ -3411,7 +3411,7 @@ CREATE TABLE IF NOT EXISTS `m_tu_sd` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.m_tu_sd: ~2 rows (approximately)
 INSERT INTO `m_tu_sd` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
@@ -3426,7 +3426,7 @@ CREATE TABLE IF NOT EXISTS `m_tu_sma` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=253 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=253 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.m_tu_sma: ~3 rows (approximately)
 INSERT INTO `m_tu_sma` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
@@ -3442,7 +3442,7 @@ CREATE TABLE IF NOT EXISTS `m_tu_smk` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.m_tu_smk: ~2 rows (approximately)
 INSERT INTO `m_tu_smk` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
@@ -3457,7 +3457,7 @@ CREATE TABLE IF NOT EXISTS `m_tu_smp` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.m_tu_smp: ~3 rows (approximately)
 INSERT INTO `m_tu_smp` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
@@ -3473,7 +3473,7 @@ CREATE TABLE IF NOT EXISTS `m_tu_tk` (
   `datetime` datetime DEFAULT NULL,
   `createby` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.m_tu_tk: ~4 rows (approximately)
 INSERT INTO `m_tu_tk` (`id`, `tahun`, `bulan`, `datetime`, `createby`) VALUES
@@ -3490,7 +3490,7 @@ CREATE TABLE IF NOT EXISTS `m_yayasan` (
   `datetime` datetime DEFAULT NULL,
   `import_file` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.m_yayasan: ~4 rows (approximately)
 INSERT INTO `m_yayasan` (`id`, `bulan`, `tahun`, `datetime`, `import_file`) VALUES
@@ -3890,7 +3890,8 @@ INSERT INTO `pegawai` (`id`, `pid`, `nama`, `alamat`, `email`, `wa`, `hp`, `tgll
 	(424, NULL, 'ARIF ZAINURI RACHMAN', '', 'ARIF@GMAIL.COM', '', '', '2023-01-16', '196906211992070223', '', NULL, NULL, 'islam', 'Pria', '', NULL, NULL, 69, '2023', NULL, 'ARIF@GMAIL.COM', '123456', 1, 1, 5, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(425, NULL, 'Dra. Hj. Muntafi&#039;ah Djauhari', 'Sidotopo Wetan Baru IV A', 'tafiksmk@gmail.com', '81332025574', '81332025574', '1970-01-01', '196312141989032006', '', NULL, NULL, '', 'Wanita', '', NULL, NULL, 5, '1970', NULL, 'tafiksmk@gmail.com', '123456', 1, 1, 5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(426, NULL, 'Siti Rokaya', NULL, NULL, NULL, NULL, NULL, '102327123', NULL, NULL, NULL, 'ISLAM', 'Wanita', NULL, NULL, NULL, 151, NULL, NULL, 'siti_rokaya', '123456', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(427, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '11314237', NULL, NULL, NULL, NULL, 'Wanita', NULL, NULL, NULL, 151, NULL, NULL, 'siti_rokaya', '123456', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+	(427, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '11314237', NULL, NULL, NULL, NULL, 'Wanita', NULL, NULL, NULL, 151, NULL, NULL, 'siti_rokaya', '123456', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(428, NULL, 'Unit SMA', NULL, NULL, NULL, NULL, NULL, 'tk', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'tk', '123456', 8, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- Dumping structure for table sigap2.peg_dokumen
 CREATE TABLE IF NOT EXISTS `peg_dokumen` (
@@ -3990,7 +3991,7 @@ CREATE TABLE IF NOT EXISTS `penyesuaian` (
   `izin_jam` int DEFAULT NULL,
   `sakit_jam` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.penyesuaian: ~20 rows (approximately)
 INSERT INTO `penyesuaian` (`id`, `m_id`, `datetime`, `nip`, `jenjang_id`, `absen`, `izin`, `sakit`, `terlambat`, `pulang_cepat`, `piket`, `inval`, `lembur`, `total`, `total2`, `voucher`, `absen_jam`, `izin_jam`, `sakit_jam`) VALUES
@@ -4010,8 +4011,6 @@ INSERT INTO `penyesuaian` (`id`, `m_id`, `datetime`, `nip`, `jenjang_id`, `absen
 	(21, 29, '2023-02-14 07:14:01', 10235, 4, 2, 3, 5, 1, 1, NULL, NULL, NULL, 134000, 0, 40000, NULL, NULL, NULL),
 	(22, 35, '2023-02-14 07:19:00', 10230, 4, 1, 1, 2, NULL, NULL, 1, 2, 3, 60000, 178000, NULL, NULL, NULL, NULL),
 	(23, 35, '2023-02-14 07:19:00', 10235, 4, 2, 3, 5, 1, 1, NULL, NULL, NULL, 134000, 0, NULL, NULL, NULL, NULL),
-	(24, 36, '2023-02-14 07:25:40', 10230, 4, 1, 1, NULL, NULL, NULL, 1, 2, 3, 28000, 178000, 30000, NULL, NULL, NULL),
-	(25, 36, '2023-02-14 07:25:40', 10235, 4, 2, 3, 5, 1, 1, NULL, NULL, NULL, 156750, 0, 40000, NULL, NULL, NULL),
 	(26, 37, '2023-02-14 07:28:33', 10230, 4, 1, 1, NULL, NULL, NULL, 1, 2, 3, 28000, 178000, 30000, NULL, NULL, NULL),
 	(27, 37, '2023-02-14 07:28:33', 10235, 4, 2, 3, 5, 1, 1, NULL, NULL, NULL, 156750, 0, 40000, NULL, NULL, NULL);
 
@@ -4046,7 +4045,7 @@ CREATE TABLE IF NOT EXISTS `potongan_sd` (
   `bulan` int DEFAULT NULL,
   `pid` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.potongan_sd: ~11 rows (approximately)
 INSERT INTO `potongan_sd` (`id`, `nama`, `terlambat`, `value_terlambat`, `izin`, `value_izin`, `jabatan_id`, `sakit`, `value_sakit`, `totalpotongan`, `tidakhadir`, `value_tidakhadir`, `month`, `datetime`, `u_by`, `pulcep`, `value_pulcep`, `tidakhadirjam`, `tidakhadirjamvalue`, `sakitperjam`, `sakitperjamvalue`, `jenjang_id`, `izinperjam`, `izinperjamvalue`, `sertif`, `tahun`, `bulan`, `pid`) VALUES
@@ -4067,7 +4066,7 @@ CREATE TABLE IF NOT EXISTS `potongan_sma` (
   `id` int NOT NULL AUTO_INCREMENT,
   `datetime` datetime DEFAULT NULL,
   `month` date DEFAULT NULL,
-  `nama` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `jenjang_id` int DEFAULT NULL,
   `jabatan_id` int DEFAULT NULL,
   `terlambat` int DEFAULT NULL,
@@ -4093,7 +4092,7 @@ CREATE TABLE IF NOT EXISTS `potongan_sma` (
   `bulan` int DEFAULT NULL,
   `pid` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.potongan_sma: ~20 rows (approximately)
 INSERT INTO `potongan_sma` (`id`, `datetime`, `month`, `nama`, `jenjang_id`, `jabatan_id`, `terlambat`, `value_terlambat`, `izin`, `value_izin`, `u_by`, `sakit`, `value_sakit`, `totalpotongan`, `tidakhadir`, `value_tidakhadir`, `pulcep`, `value_pulcep`, `tidakhadirjam`, `tidakhadirjamvalue`, `sakitperjam`, `sakitperjamvalue`, `izinperjam`, `izinperjamvalue`, `sertif`, `tahun`, `bulan`, `pid`) VALUES
@@ -4124,7 +4123,7 @@ CREATE TABLE IF NOT EXISTS `potongan_smk` (
   `u_by` int DEFAULT NULL,
   `datetime` datetime DEFAULT NULL,
   `month` date DEFAULT NULL,
-  `nama` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `jenjang_id` int DEFAULT NULL,
   `jabatan_id` int DEFAULT NULL,
   `terlambat` int DEFAULT NULL,
@@ -4149,7 +4148,7 @@ CREATE TABLE IF NOT EXISTS `potongan_smk` (
   `bulan` int DEFAULT NULL,
   `pid` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.potongan_smk: ~10 rows (approximately)
 INSERT INTO `potongan_smk` (`id`, `u_by`, `datetime`, `month`, `nama`, `jenjang_id`, `jabatan_id`, `terlambat`, `value_terlambat`, `izin`, `value_izin`, `sakit`, `value_sakit`, `totalpotongan`, `tidakhadir`, `value_tidakhadir`, `pulcep`, `value_pulcep`, `tidakhadirjam`, `tidakhadirjamvalue`, `sakitperjam`, `sakitperjamvalue`, `izinperjam`, `izinperjamvalue`, `sertif`, `tahun`, `bulan`, `pid`) VALUES
@@ -4170,7 +4169,7 @@ CREATE TABLE IF NOT EXISTS `potongan_smp` (
   `u_by` int DEFAULT NULL,
   `datetime` datetime DEFAULT NULL,
   `month` date DEFAULT NULL,
-  `nama` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `jenjang_id` int DEFAULT NULL,
   `jabatan_id` int DEFAULT NULL,
   `terlambat` int DEFAULT NULL,
@@ -4195,7 +4194,7 @@ CREATE TABLE IF NOT EXISTS `potongan_smp` (
   `bulan` int DEFAULT NULL,
   `pid` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.potongan_smp: ~9 rows (approximately)
 INSERT INTO `potongan_smp` (`id`, `u_by`, `datetime`, `month`, `nama`, `jenjang_id`, `jabatan_id`, `terlambat`, `value_terlambat`, `izin`, `value_izin`, `sakit`, `value_sakit`, `totalpotongan`, `tidakhadir`, `value_tidakhadir`, `pulcep`, `value_pulcep`, `tidakhadirjam`, `tidakhadirjamvalue`, `sakitperjam`, `sakitperjamvalue`, `izinperjam`, `izinperjamvalue`, `sertif`, `tahun`, `bulan`, `pid`) VALUES
@@ -4215,7 +4214,7 @@ CREATE TABLE IF NOT EXISTS `potongan_tk` (
   `u_by` int DEFAULT NULL,
   `datetime` datetime DEFAULT NULL,
   `month` date DEFAULT NULL,
-  `nama` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `jenjang_id` int DEFAULT NULL,
   `jabatan_id` int DEFAULT NULL,
   `terlambat` int DEFAULT NULL,
@@ -4240,7 +4239,7 @@ CREATE TABLE IF NOT EXISTS `potongan_tk` (
   `bulan` int DEFAULT NULL,
   `pid` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.potongan_tk: ~9 rows (approximately)
 INSERT INTO `potongan_tk` (`id`, `u_by`, `datetime`, `month`, `nama`, `jenjang_id`, `jabatan_id`, `terlambat`, `value_terlambat`, `izin`, `value_izin`, `sakit`, `value_sakit`, `totalpotongan`, `tidakhadir`, `value_tidakhadir`, `pulcep`, `value_pulcep`, `tidakhadirjam`, `tidakhadirjamvalue`, `sakitperjam`, `sakitperjamvalue`, `izinperjam`, `izinperjamvalue`, `sertif`, `tahun`, `bulan`, `pid`) VALUES
@@ -4301,7 +4300,7 @@ CREATE TABLE IF NOT EXISTS `semester` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nama` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.semester: ~2 rows (approximately)
 INSERT INTO `semester` (`id`, `nama`) VALUES
@@ -4313,7 +4312,7 @@ CREATE TABLE IF NOT EXISTS `sertif` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.sertif: ~2 rows (approximately)
 INSERT INTO `sertif` (`id`, `name`) VALUES
@@ -4325,7 +4324,7 @@ CREATE TABLE IF NOT EXISTS `setuju` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.setuju: ~2 rows (approximately)
 INSERT INTO `setuju` (`id`, `name`) VALUES
@@ -4357,7 +4356,7 @@ CREATE TABLE `slip_gaji_yayasan` (
 CREATE TABLE IF NOT EXISTS `status_kepeg` (
   `id` int DEFAULT NULL,
   `name` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.status_kepeg: ~4 rows (approximately)
 INSERT INTO `status_kepeg` (`id`, `name`) VALUES
@@ -4371,7 +4370,7 @@ CREATE TABLE IF NOT EXISTS `tambahan_tugas` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.tambahan_tugas: ~6 rows (approximately)
 INSERT INTO `tambahan_tugas` (`id`, `name`) VALUES
@@ -4391,7 +4390,7 @@ CREATE TABLE IF NOT EXISTS `terlambat` (
   `jabatan_id` int DEFAULT NULL,
   `jenis_jabatan` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.terlambat: ~2 rows (approximately)
 INSERT INTO `terlambat` (`id`, `value`, `valuejam`, `jenjang_id`, `jabatan_id`, `jenis_jabatan`) VALUES
@@ -4417,7 +4416,7 @@ CREATE TABLE IF NOT EXISTS `testtable` (
   `nota` varchar(50) DEFAULT NULL,
   `invoice` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.testtable: ~6 rows (approximately)
 INSERT INTO `testtable` (`id`, `date`, `nojob`, `stuffingdate`, `shipper`, `stuffingloc`, `party`, `typeparty`, `jumlahparty`, `shipping`, `bookingnumer`, `shippingline`, `port`, `surjal`, `nota`, `invoice`) VALUES
@@ -4439,7 +4438,7 @@ CREATE TABLE IF NOT EXISTS `totalgaji` (
   `Column 7` int DEFAULT NULL,
   `Column 8` int DEFAULT NULL,
   `Column 9` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.totalgaji: ~0 rows (approximately)
 
@@ -4449,7 +4448,7 @@ CREATE TABLE IF NOT EXISTS `tpendidikan` (
   `name` varchar(50) DEFAULT NULL,
   `nourut` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.tpendidikan: ~5 rows (approximately)
 INSERT INTO `tpendidikan` (`id`, `name`, `nourut`) VALUES
@@ -4467,7 +4466,7 @@ CREATE TABLE IF NOT EXISTS `tunjangan_berkala` (
   `lama` int DEFAULT NULL,
   `value` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.tunjangan_berkala: ~120 rows (approximately)
 INSERT INTO `tunjangan_berkala` (`id`, `jenjang`, `kualifikasi`, `lama`, `value`) VALUES
@@ -4599,7 +4598,7 @@ CREATE TABLE IF NOT EXISTS `tunjangan_jabatan` (
   `jabatan` int DEFAULT NULL,
   `value` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.tunjangan_jabatan: ~19 rows (approximately)
 INSERT INTO `tunjangan_jabatan` (`id`, `unit`, `jabatan`, `value`) VALUES
@@ -4630,7 +4629,7 @@ CREATE TABLE IF NOT EXISTS `tunjangan_khusus` (
   `jabatan` int DEFAULT NULL,
   `value` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.tunjangan_khusus: ~5 rows (approximately)
 INSERT INTO `tunjangan_khusus` (`id`, `unit`, `jabatan`, `value`) VALUES
@@ -4647,7 +4646,7 @@ CREATE TABLE IF NOT EXISTS `tunjangan_tambahan` (
   `kualifikasi` int DEFAULT NULL,
   `value` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.tunjangan_tambahan: ~13 rows (approximately)
 INSERT INTO `tunjangan_tambahan` (`id`, `jenjang`, `kualifikasi`, `value`) VALUES
@@ -4698,7 +4697,7 @@ CREATE TABLE IF NOT EXISTS `userlevelpermissions` (
   PRIMARY KEY (`userlevelid`,`tablename`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.userlevelpermissions: ~1,884 rows (approximately)
+-- Dumping data for table sigap2.userlevelpermissions: ~1,894 rows (approximately)
 INSERT INTO `userlevelpermissions` (`userlevelid`, `tablename`, `permission`) VALUES
 	(-2, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen', 0),
 	(-2, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen_detil', 0),
@@ -6625,7 +6624,7 @@ INSERT INTO `userlevels` (`userlevelid`, `userlevelname`) VALUES
 CREATE TABLE `vgaji_guru_sd` (
 	`id` INT(10) NOT NULL,
 	`pid` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`jenjang_id` INT(10) NULL,
 	`jabatan_id` INT(10) NULL,
 	`lama_kerja` INT(10) NULL,
@@ -6662,7 +6661,7 @@ CREATE TABLE `vgaji_guru_sd` (
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `vgaji_guru_sma` (
 	`id` INT(10) NOT NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`jenjang_id` INT(10) NULL,
 	`jabatan_id` INT(10) NULL,
 	`lama_kerja` INT(10) NULL,
@@ -6700,7 +6699,7 @@ CREATE TABLE `vgaji_guru_sma` (
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `vgaji_guru_smk` (
 	`id` INT(10) NOT NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`jenjang_id` INT(10) NULL,
 	`jabatan_id` INT(10) NULL,
 	`lama_kerja` INT(10) NULL,
@@ -6738,7 +6737,7 @@ CREATE TABLE `vgaji_guru_smk` (
 CREATE TABLE `vgaji_guru_smp` (
 	`id` INT(10) NOT NULL,
 	`pid` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`jenjang_id` INT(10) NULL,
 	`jabatan_id` INT(10) NULL,
 	`lama_kerja` INT(10) NULL,
@@ -6776,7 +6775,7 @@ CREATE TABLE `vgaji_guru_smp` (
 CREATE TABLE `vgaji_guru_tk` (
 	`id` INT(10) NOT NULL,
 	`pid` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`jenjang_id` INT(10) NULL,
 	`jabatan_id` INT(10) NULL,
 	`type` INT(10) NULL,
@@ -6815,7 +6814,7 @@ CREATE TABLE `vgaji_karyawan_sd` (
 	`id` INT(10) NOT NULL,
 	`tahun` SMALLINT(5) NULL,
 	`bulan` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`jenjang_id` INT(10) NULL,
 	`jabatan_id` INT(10) NULL,
 	`kehadiran` INT(10) NULL,
@@ -6837,7 +6836,7 @@ CREATE TABLE `vgaji_karyawan_sd` (
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `vgaji_karyawan_sma` (
 	`id` INT(10) NOT NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`jenjang_id` INT(10) NULL,
 	`jabatan_id` INT(10) NULL,
 	`kehadiran` INT(10) NULL,
@@ -6864,7 +6863,7 @@ CREATE TABLE `vgaji_karyawan_smk` (
 	`id` INT(10) NOT NULL,
 	`tahun` SMALLINT(5) NULL,
 	`bulan` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`jenjang_id` INT(10) NULL,
 	`jabatan_id` INT(10) NULL,
 	`kehadiran` INT(10) NULL,
@@ -6887,7 +6886,7 @@ CREATE TABLE `vgaji_karyawan_smp` (
 	`id` INT(10) NOT NULL,
 	`tahun` SMALLINT(5) NULL,
 	`bulan` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`jenjang_id` INT(10) NULL,
 	`jabatan_id` INT(10) NULL,
 	`kehadiran` INT(10) NULL,
@@ -6912,7 +6911,7 @@ CREATE TABLE `vgaji_karyawan_tk` (
 	`bulan` INT(10) NULL,
 	`id` INT(10) NOT NULL,
 	`jenjang_id` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`jabatan_id` INT(10) NULL,
 	`kehadiran` INT(10) NULL,
 	`gapok` BIGINT(19) NULL,
@@ -6934,7 +6933,7 @@ CREATE TABLE `vgaji_karyawan_tk` (
 CREATE TABLE `vgaji_tu_sd` (
 	`id` INT(10) NOT NULL,
 	`pid` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`jenjang_id` INT(10) NULL,
 	`jabatan_id` INT(10) NULL,
 	`type_jabatan` INT(10) NULL,
@@ -6972,7 +6971,7 @@ CREATE TABLE `vgaji_tu_sma` (
 	`id` INT(10) NOT NULL,
 	`datetime` DATETIME NULL,
 	`pid` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`jenjang_id` INT(10) NULL,
 	`jabatan_id` INT(10) NULL,
 	`type_jabatan` INT(10) NULL,
@@ -7008,7 +7007,7 @@ CREATE TABLE `vgaji_tu_sma` (
 CREATE TABLE `vgaji_tu_smk` (
 	`id` INT(10) NOT NULL,
 	`pid` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`jenjang_id` INT(10) NULL,
 	`jabatan_id` INT(10) NULL,
 	`type_jabatan` INT(10) NULL,
@@ -7044,7 +7043,7 @@ CREATE TABLE `vgaji_tu_smk` (
 CREATE TABLE `vgaji_tu_smp` (
 	`id` INT(10) NOT NULL,
 	`pid` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`jenjang_id` INT(10) NULL,
 	`jabatan_id` INT(10) NULL,
 	`lama_kerja` INT(10) NULL,
@@ -7080,7 +7079,7 @@ CREATE TABLE `vgaji_tu_smp` (
 CREATE TABLE `vgaji_tu_tk` (
 	`id` INT(10) NOT NULL,
 	`pid` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`jenjang_id` INT(10) NULL,
 	`jabatan_id` INT(10) NULL,
 	`ijasah` INT(10) NULL,
@@ -7114,7 +7113,7 @@ CREATE TABLE `vgaji_tu_tk` (
 -- Dumping structure for view sigap2.v_gajisd
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `v_gajisd` (
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
 	`total` BIGINT(19) NULL,
 	`potongan` BIGINT(19) NULL,
@@ -7124,7 +7123,7 @@ CREATE TABLE `v_gajisd` (
 -- Dumping structure for view sigap2.v_gajisma
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `v_gajisma` (
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
 	`total` BIGINT(19) NULL,
 	`potongan` BIGINT(19) NULL,
@@ -7134,7 +7133,7 @@ CREATE TABLE `v_gajisma` (
 -- Dumping structure for view sigap2.v_gaji_guru_smk
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `v_gaji_guru_smk` (
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
 	`total` BIGINT(19) NULL,
 	`potongan` BIGINT(19) NULL,
@@ -7144,7 +7143,7 @@ CREATE TABLE `v_gaji_guru_smk` (
 -- Dumping structure for view sigap2.v_gaji_karyawan_sd
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `v_gaji_karyawan_sd` (
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
 	`total` BIGINT(19) NULL,
 	`potongan` BIGINT(19) NULL,
@@ -7154,7 +7153,7 @@ CREATE TABLE `v_gaji_karyawan_sd` (
 -- Dumping structure for view sigap2.v_gaji_karyawan_sma
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `v_gaji_karyawan_sma` (
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
 	`total` BIGINT(19) NULL,
 	`potongan` BIGINT(19) NULL,
@@ -7164,7 +7163,7 @@ CREATE TABLE `v_gaji_karyawan_sma` (
 -- Dumping structure for view sigap2.v_gaji_karyawan_smk
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `v_gaji_karyawan_smk` (
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
 	`total` BIGINT(19) NULL,
 	`potongan` BIGINT(19) NULL,
@@ -7174,7 +7173,7 @@ CREATE TABLE `v_gaji_karyawan_smk` (
 -- Dumping structure for view sigap2.v_gaji_karyawan_smp
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `v_gaji_karyawan_smp` (
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
 	`total` BIGINT(19) NULL,
 	`potongan` BIGINT(19) NULL,
@@ -7184,7 +7183,7 @@ CREATE TABLE `v_gaji_karyawan_smp` (
 -- Dumping structure for view sigap2.v_gaji_karyawan_tk
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `v_gaji_karyawan_tk` (
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
 	`total` BIGINT(19) NULL,
 	`potongan` BIGINT(19) NULL,
@@ -7194,7 +7193,7 @@ CREATE TABLE `v_gaji_karyawan_tk` (
 -- Dumping structure for view sigap2.v_gaji_smp
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `v_gaji_smp` (
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
 	`total` BIGINT(19) NULL,
 	`potongan` BIGINT(19) NULL,
@@ -7204,7 +7203,7 @@ CREATE TABLE `v_gaji_smp` (
 -- Dumping structure for view sigap2.v_gaji_tk
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `v_gaji_tk` (
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
 	`total` BIGINT(19) NULL,
 	`potongan` BIGINT(19) NULL,
@@ -7214,7 +7213,7 @@ CREATE TABLE `v_gaji_tk` (
 -- Dumping structure for view sigap2.v_gaji_tu_sd
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `v_gaji_tu_sd` (
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
 	`total` BIGINT(19) NULL,
 	`potongan` BIGINT(19) NULL,
@@ -7224,7 +7223,7 @@ CREATE TABLE `v_gaji_tu_sd` (
 -- Dumping structure for view sigap2.v_gaji_tu_sma
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `v_gaji_tu_sma` (
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`total` BIGINT(19) NULL,
 	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
 	`potongan` BIGINT(19) NULL,
@@ -7234,7 +7233,7 @@ CREATE TABLE `v_gaji_tu_sma` (
 -- Dumping structure for view sigap2.v_gaji_tu_smk
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `v_gaji_tu_smk` (
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
 	`total` BIGINT(19) NULL,
 	`potongan` BIGINT(19) NULL,
@@ -7248,13 +7247,13 @@ CREATE TABLE `v_gaji_tu_smp` (
 	`total` BIGINT(19) NULL,
 	`potongan` BIGINT(19) NULL,
 	`pid` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci'
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci'
 ) ENGINE=MyISAM;
 
 -- Dumping structure for view sigap2.v_gaji_tu_tk
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `v_gaji_tu_tk` (
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`rekbank` VARCHAR(255) NULL COLLATE 'latin1_swedish_ci',
 	`total` BIGINT(19) NULL,
 	`potongan` BIGINT(19) NULL,
@@ -7595,10 +7594,10 @@ CREATE TABLE `v_totalgaji` (
 	`tahun` YEAR NULL,
 	`bulan` INT(10) NULL,
 	`datetime` DATETIME NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`total` BIGINT(19) NULL,
 	`id1` INT(10) NOT NULL,
-	`status` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci'
+	`status` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci'
 ) ENGINE=MyISAM;
 
 -- Dumping structure for view sigap2.v_totalgajikaryawan
@@ -7606,7 +7605,7 @@ CREATE TABLE `v_totalgaji` (
 CREATE TABLE `v_totalgajikaryawan` (
 	`id1` INT(10) NOT NULL,
 	`datetime` DATETIME NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`total` BIGINT(19) NULL,
 	`tahun` SMALLINT(5) NULL,
 	`bulan` INT(10) NULL,
@@ -7620,7 +7619,7 @@ CREATE TABLE `v_totalgajikaryawansma` (
 	`id` INT(10) NOT NULL,
 	`tahun` SMALLINT(5) NULL,
 	`bulan` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`total` BIGINT(19) NULL,
 	`datetime` DATETIME NULL
 ) ENGINE=MyISAM;
@@ -7632,7 +7631,7 @@ CREATE TABLE `v_totalgajikaryawansmk` (
 	`tahun` SMALLINT(5) NULL,
 	`bulan` INT(10) NULL,
 	`datetime` DATETIME NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`total` BIGINT(19) NULL,
 	`id` INT(10) NOT NULL,
 	`status` INT(10) NULL
@@ -7645,7 +7644,7 @@ CREATE TABLE `v_totalgajikaryawansmp` (
 	`datetime` DATETIME NULL,
 	`tahun` SMALLINT(5) NULL,
 	`bulan` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`total` BIGINT(19) NULL,
 	`id1` INT(10) NOT NULL,
 	`status` INT(10) NULL
@@ -7658,7 +7657,7 @@ CREATE TABLE `v_totalgajikaryawantk` (
 	`datetime` DATETIME NULL,
 	`tahun` SMALLINT(5) NULL,
 	`bulan` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`total` BIGINT(19) NULL,
 	`id1` INT(10) NOT NULL,
 	`status` INT(10) NULL
@@ -7670,7 +7669,7 @@ CREATE TABLE `v_totalgajisma` (
 	`id` INT(10) NOT NULL,
 	`tahun` INT(10) NULL,
 	`bulan` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`total` BIGINT(19) NULL,
 	`id1` INT(10) NOT NULL,
 	`status` INT(10) NULL
@@ -7683,7 +7682,7 @@ CREATE TABLE `v_totalgajismk` (
 	`tahun` YEAR NULL,
 	`bulan` INT(10) NULL,
 	`datetime` DATETIME NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`total` BIGINT(19) NULL,
 	`id1` INT(10) NOT NULL,
 	`status` INT(10) NULL
@@ -7696,7 +7695,7 @@ CREATE TABLE `v_totalgajismp` (
 	`datetime` DATETIME NULL,
 	`tahun` YEAR NULL,
 	`bulan` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`total` BIGINT(19) NULL,
 	`id1` INT(10) NOT NULL,
 	`status` INT(10) NULL
@@ -7709,7 +7708,7 @@ CREATE TABLE `v_totalgajitk` (
 	`tahun` YEAR NULL,
 	`bulan` INT(10) NULL,
 	`datetime` DATETIME NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`total` BIGINT(19) NULL,
 	`id1` INT(10) NOT NULL,
 	`status` INT(10) NULL
@@ -7722,7 +7721,7 @@ CREATE TABLE `v_totalgajitu` (
 	`tahun` YEAR NULL,
 	`bulan` INT(10) NULL,
 	`datetime` DATETIME NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`total` BIGINT(19) NULL,
 	`id` INT(10) NOT NULL,
 	`status` INT(10) NULL
@@ -7735,7 +7734,7 @@ CREATE TABLE `v_totalgajitusma` (
 	`datetime` DATETIME NULL,
 	`tahun` YEAR NULL,
 	`bulan` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`total` BIGINT(19) NULL,
 	`id1` INT(10) NOT NULL,
 	`status` INT(10) NULL
@@ -7748,7 +7747,7 @@ CREATE TABLE `v_totalgajitusmk` (
 	`tahun` YEAR NULL,
 	`bulan` INT(10) NULL,
 	`datetime` DATETIME NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`total` BIGINT(19) NULL,
 	`id1` INT(10) NOT NULL,
 	`status` INT(10) NULL
@@ -7760,7 +7759,7 @@ CREATE TABLE `v_totalgajitusmp` (
 	`id` INT(10) NOT NULL,
 	`tahun` YEAR NULL,
 	`bulan` INT(10) NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`total` BIGINT(19) NULL,
 	`datetime` DATETIME NULL,
 	`status` INT(10) NULL,
@@ -7774,7 +7773,7 @@ CREATE TABLE `v_totalgajitutk` (
 	`tahun` YEAR NULL,
 	`bulan` INT(10) NULL,
 	`datetime` DATETIME NULL,
-	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_general_ci',
+	`pegawai` VARCHAR(50) NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`total` BIGINT(19) NULL,
 	`id1` INT(10) NOT NULL,
 	`status` INT(10) NULL
@@ -7856,7 +7855,7 @@ CREATE TABLE IF NOT EXISTS `yayasan` (
   `tahun` int DEFAULT NULL,
   `bulan` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table sigap2.yayasan: ~2 rows (approximately)
 INSERT INTO `yayasan` (`id`, `m_id`, `id_pegawai`, `datetime`, `gaji_pokok`, `potongan`, `total`, `tahun`, `bulan`) VALUES

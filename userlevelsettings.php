@@ -419,7 +419,9 @@ $USER_LEVEL_PRIVS = [["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen","-2","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}slip_gaji_yayasan","-2","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}slip_gaji_yayasan","0","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}backup_restore.php","-2","0"],
-	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}backup_restore.php","0","0"]];
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}backup_restore.php","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_gaji_all.php","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_gaji_all.php","0","0"]];
 
 // User level table info
 $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
@@ -626,4 +628,5 @@ $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3
 	["v_pegawai_sma","v_pegawai_sma","Pegawai SMA",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["v_pegawai_smk","v_pegawai_smk","Pegawai SMK",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["slip_gaji_yayasan","slip_gaji_yayasan","Slip Gaji Yayasan",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
-	["backup_restore.php","backup_restore","Back UP Restore DataBase",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];
+	["backup_restore.php","backup_restore","Back UP Restore DataBase",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["laporan_gaji_all.php","laporan_gaji_all","Laporan Gaji",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];

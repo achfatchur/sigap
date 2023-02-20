@@ -571,6 +571,8 @@ class index
 			$this->terminate("slip_gaji_yayasanlist.php");
 		if ($Security->allowList(CurrentProjectID() . 'backup_restore.php'))
 			$this->terminate("backup_restore.php");
+		if ($Security->allowList(CurrentProjectID() . 'laporan_gaji_all.php'))
+			$this->terminate("laporan_gaji_all.php");
 		if ($Security->isLoggedIn()) {
 			$this->setFailureMessage(DeniedMessage() . "<br><br><a href=\"logout.php\">" . $Language->phrase("BackToLogin") . "</a>");
 		} else {

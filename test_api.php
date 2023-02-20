@@ -164,10 +164,10 @@ Page_Rendering();
 			$status_peg = 'NULL';
 		}else{
 		}
-		$jenis_ptk = ExecuteScalar("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
-		if(empty($jenis_ptk)){
+		if(empty($data->jenis_ptk)){
 			$jenis_ptk = 'NULL';
 		}else{
+			$jenis_ptk = ("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
 		}
 		$jabatan = ExecuteScalar("SELECT id FROM jenis_jabatan WHERE name LIKE '%".$data->jabatan."%'");
 		if(empty($jabatan)){
@@ -208,10 +208,10 @@ Page_Rendering();
 			$status_peg = 'NULL';
 		}else{
 		}
-		$jenis_ptk = ExecuteScalar("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
-		if(empty($jenis_ptk)){
+		if(empty($data->jenis_ptk)){
 			$jenis_ptk = 'NULL';
 		}else{
+			$jenis_ptk = ("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
 		}
 		$jabatan = ExecuteScalar("SELECT id FROM jenis_jabatan WHERE name LIKE '%".$data->jabatan."%'");
 		if(empty($jabatan)){
@@ -252,10 +252,10 @@ Page_Rendering();
 			$status_peg = 'NULL';
 		}else{
 		}
-		$jenis_ptk = ExecuteScalar("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
-		if(empty($jenis_ptk)){
+		if(empty($data->jenis_ptk)){
 			$jenis_ptk = 'NULL';
 		}else{
+			$jenis_ptk = ("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
 		}
 		$jabatan = ExecuteScalar("SELECT id FROM jenis_jabatan WHERE name LIKE '%".$data->jabatan."%'");
 		if(empty($jabatan)){
@@ -296,10 +296,10 @@ Page_Rendering();
 			$status_peg = 'NULL';
 		}else{
 		}
-		$jenis_ptk = ExecuteScalar("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
-		if(empty($jenis_ptk)){
+		if(empty($data->jenis_ptk)){
 			$jenis_ptk = 'NULL';
 		}else{
+			$jenis_ptk = ("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
 		}
 		$jabatan = ExecuteScalar("SELECT id FROM jenis_jabatan WHERE name LIKE '%".$data->jabatan."%'");
 		if(empty($jabatan)){
@@ -340,10 +340,10 @@ Page_Rendering();
 			$status_peg = 'NULL';
 		}else{
 		}
-		$jenis_ptk = ExecuteScalar("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
-		if(empty($jenis_ptk)){
+		if(empty($data->jenis_ptk)){
 			$jenis_ptk = 'NULL';
 		}else{
+			$jenis_ptk = ("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
 		}
 		$jabatan = ExecuteScalar("SELECT id FROM jenis_jabatan WHERE name LIKE '%".$data->jabatan."%'");
 		if(empty($jabatan)){

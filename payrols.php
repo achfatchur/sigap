@@ -266,8 +266,8 @@ Page_Rendering();
 				<th>NIP</th>
 				<th>Nama</th>
 				<th>No Rekening</th>
-				<th>Gaji</th>
-				<th>Potongan</th>
+				<th>Sub Total Gaji</th>
+				<th>Jumlah Potongan</th>
 				<th>Total Gaji</th>
 				<th>Aksi</th>
 			</tr>
@@ -477,8 +477,8 @@ Page_Rendering();
 				<th>NIP</th>
 				<th>Nama</th>
 				<th>No Rekening</th>
-				<th>Gaji</th>
-				<th>Potongan</th>
+				<th>Sub Total Gaji</th>
+				<th>Jumlah Potongan</th>
 				<th>Total Gaji</th>
 				<th>Aksi</th>
 			</tr>
