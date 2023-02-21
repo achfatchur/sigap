@@ -582,7 +582,7 @@ class index
 		if ($Security->isLoggedIn()) {
 			$this->setFailureMessage(DeniedMessage() . "<br><br><a href=\"logout.php\">" . $Language->phrase("BackToLogin") . "</a>");
 		} else {
-			$this->terminate("login.php"); // Exit and go to login page
+			$this->terminate("login_pegawai.php"); // Exit and go to login page
 		}
 	}
 
