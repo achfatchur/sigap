@@ -912,12 +912,12 @@ class set_password extends DbTable
 
 		// Enter your code here
 
-	/*		if(CurrentUserLevel() != '-1'){
-			$nip = CurrentUserInfo("nip");
+			if(CurrentUserLevel() != '-1'){
+			$nip = CurrentUserInfo("id");
 			if($nip != '' OR $nip != FALSE) {
-				AddFilter($filter, "nip = $nip");
+				AddFilter($filter, "id = $nip");
 			}
-			}*/
+			}
 	}
 	// Recordset Selected event
 	function Recordset_Selected(&$rs) {
