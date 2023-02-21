@@ -573,6 +573,12 @@ class index
 			$this->terminate("backup_restore.php");
 		if ($Security->allowList(CurrentProjectID() . 'laporan_gaji_all.php'))
 			$this->terminate("laporan_gaji_all.php");
+		if ($Security->allowList(CurrentProjectID() . 'export_file_sma.php'))
+			$this->terminate("export_file_sma.php");
+		if ($Security->allowList(CurrentProjectID() . 'export_tu_sma.php'))
+			$this->terminate("export_tu_sma.php");
+		if ($Security->allowList(CurrentProjectID() . 'export_excel.php'))
+			$this->terminate("export_excel.php");
 		if ($Security->isLoggedIn()) {
 			$this->setFailureMessage(DeniedMessage() . "<br><br><a href=\"logout.php\">" . $Language->phrase("BackToLogin") . "</a>");
 		} else {

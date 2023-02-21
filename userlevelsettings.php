@@ -421,7 +421,13 @@ $USER_LEVEL_PRIVS = [["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen","-2","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}backup_restore.php","-2","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}backup_restore.php","0","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_gaji_all.php","-2","0"],
-	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_gaji_all.php","0","0"]];
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_gaji_all.php","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}export_file_sma.php","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}export_file_sma.php","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}export_tu_sma.php","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}export_tu_sma.php","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}export_excel.php","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}export_excel.php","0","0"]];
 
 // User level table info
 $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
@@ -629,4 +635,7 @@ $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3
 	["v_pegawai_smk","v_pegawai_smk","Pegawai SMK",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["slip_gaji_yayasan","slip_gaji_yayasan","Slip Gaji Yayasan",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["backup_restore.php","backup_restore","Back UP Restore DataBase",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
-	["laporan_gaji_all.php","laporan_gaji_all","Laporan Gaji",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];
+	["laporan_gaji_all.php","laporan_gaji_all","Laporan Gaji",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["export_file_sma.php","export_file_sma","export file sma",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["export_tu_sma.php","export_tu_sma","Export TU SMA",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["export_excel.php","export_excel","export excel",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];

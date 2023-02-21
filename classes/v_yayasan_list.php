@@ -821,8 +821,8 @@ class v_yayasan_list extends v_yayasan
 		$this->tahun->setVisibility();
 		$this->id_pegawai->setVisibility();
 		$this->rekbank->setVisibility();
-		$this->gaji_pokok->setVisibility();
-		$this->potongan->setVisibility();
+		$this->gaji_pokok->Visible = FALSE;
+		$this->potongan->Visible = FALSE;
 		$this->total->setVisibility();
 		$this->hideFieldsForAddEdit();
 
@@ -1553,8 +1553,6 @@ class v_yayasan_list extends v_yayasan
 			$this->updateSort($this->tahun); // tahun
 			$this->updateSort($this->id_pegawai); // id_pegawai
 			$this->updateSort($this->rekbank); // rekbank
-			$this->updateSort($this->gaji_pokok); // gaji_pokok
-			$this->updateSort($this->potongan); // potongan
 			$this->updateSort($this->total); // total
 			$this->setStartRecordNumber(1); // Reset start position
 		}
@@ -1595,8 +1593,6 @@ class v_yayasan_list extends v_yayasan
 				$this->tahun->setSort("");
 				$this->id_pegawai->setSort("");
 				$this->rekbank->setSort("");
-				$this->gaji_pokok->setSort("");
-				$this->potongan->setSort("");
 				$this->total->setSort("");
 			}
 
@@ -2189,16 +2185,6 @@ class v_yayasan_list extends v_yayasan
 			$this->rekbank->HrefValue = "";
 			$this->rekbank->TooltipValue = "";
 
-			// gaji_pokok
-			$this->gaji_pokok->LinkCustomAttributes = "";
-			$this->gaji_pokok->HrefValue = "";
-			$this->gaji_pokok->TooltipValue = "";
-
-			// potongan
-			$this->potongan->LinkCustomAttributes = "";
-			$this->potongan->HrefValue = "";
-			$this->potongan->TooltipValue = "";
-
 			// total
 			$this->total->LinkCustomAttributes = "";
 			$this->total->HrefValue = "";
@@ -2248,18 +2234,6 @@ class v_yayasan_list extends v_yayasan
 				$this->rekbank->AdvancedSearch->SearchValue = HtmlDecode($this->rekbank->AdvancedSearch->SearchValue);
 			$this->rekbank->EditValue = HtmlEncode($this->rekbank->AdvancedSearch->SearchValue);
 			$this->rekbank->PlaceHolder = RemoveHtml($this->rekbank->caption());
-
-			// gaji_pokok
-			$this->gaji_pokok->EditAttrs["class"] = "form-control";
-			$this->gaji_pokok->EditCustomAttributes = "";
-			$this->gaji_pokok->EditValue = HtmlEncode($this->gaji_pokok->AdvancedSearch->SearchValue);
-			$this->gaji_pokok->PlaceHolder = RemoveHtml($this->gaji_pokok->caption());
-
-			// potongan
-			$this->potongan->EditAttrs["class"] = "form-control";
-			$this->potongan->EditCustomAttributes = "";
-			$this->potongan->EditValue = HtmlEncode($this->potongan->AdvancedSearch->SearchValue);
-			$this->potongan->PlaceHolder = RemoveHtml($this->potongan->caption());
 
 			// total
 			$this->total->EditAttrs["class"] = "form-control";
@@ -2757,8 +2731,12 @@ class v_yayasan_list extends v_yayasan
 
 		//$this->ExportDoc->Text = "my header"; // Export header
 		//return FALSE; // Return FALSE to skip default export and use Row_Export event
+		//return TRUE; // Return TRUE to use default export and skip Row_Export event
 
-		return TRUE; // Return TRUE to use default export and skip Row_Export event
+		global $ExportFileName;
+		$date = date("F Y");
+		$ExportFileName = "Gaji Pengurus Yayasan $date";
+		return true;
 	}
 
 	// Row Export event

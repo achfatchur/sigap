@@ -2378,10 +2378,6 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
-			// id
-			$this->id->ViewValue = $this->id->CurrentValue;
-			$this->id->ViewCustomAttributes = "";
-
 			// tahun
 			$this->tahun->ViewValue = $this->tahun->CurrentValue;
 			$this->tahun->ViewCustomAttributes = "";
@@ -2546,11 +2542,6 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 			$this->voucher->ViewValue = $this->voucher->CurrentValue;
 			$this->voucher->ViewValue = FormatNumber($this->voucher->ViewValue, 0, -2, -2, -2);
 			$this->voucher->ViewCustomAttributes = "";
-
-			// status
-			$this->status->ViewValue = $this->status->CurrentValue;
-			$this->status->ViewValue = FormatNumber($this->status->ViewValue, 0, -2, -2, -2);
-			$this->status->ViewCustomAttributes = "";
 
 			// tahun
 			$this->tahun->LinkCustomAttributes = "";
@@ -3300,7 +3291,10 @@ class vgaji_karyawan_sd_list extends vgaji_karyawan_sd
 		//$this->ExportDoc->Text = "my header"; // Export header
 		//return FALSE; // Return FALSE to skip default export and use Row_Export event
 
-		return TRUE; // Return TRUE to use default export and skip Row_Export event
+		global $ExportFileName;
+		$date = date("F Y");
+		$ExportFileName = "Gaji Karyawan SD $date";
+		return true;
 	}
 
 	// Row Export event

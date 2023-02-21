@@ -2376,10 +2376,6 @@ class vgaji_karyawan_smp_list extends vgaji_karyawan_smp
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
-			// id
-			$this->id->ViewValue = $this->id->CurrentValue;
-			$this->id->ViewCustomAttributes = "";
-
 			// tahun
 			$this->tahun->ViewValue = $this->tahun->CurrentValue;
 			$this->tahun->ViewCustomAttributes = "";
@@ -3292,7 +3288,10 @@ class vgaji_karyawan_smp_list extends vgaji_karyawan_smp
 		//$this->ExportDoc->Text = "my header"; // Export header
 		//return FALSE; // Return FALSE to skip default export and use Row_Export event
 
-		return TRUE; // Return TRUE to use default export and skip Row_Export event
+		global $ExportFileName;
+		$date = date("F Y");
+		$ExportFileName = "Gaji Karyawan SMP $date";
+		return true;
 	}
 
 	// Row Export event

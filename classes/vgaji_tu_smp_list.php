@@ -2717,15 +2717,6 @@ class vgaji_tu_smp_list extends vgaji_tu_smp
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
-			// id
-			$this->id->ViewValue = $this->id->CurrentValue;
-			$this->id->ViewCustomAttributes = "";
-
-			// pid
-			$this->pid->ViewValue = $this->pid->CurrentValue;
-			$this->pid->ViewValue = FormatNumber($this->pid->ViewValue, 0, -2, -2, -2);
-			$this->pid->ViewCustomAttributes = "";
-
 			// tahun
 			$this->tahun->ViewValue = $this->tahun->CurrentValue;
 			$this->tahun->ViewCustomAttributes = "";
@@ -3909,7 +3900,10 @@ class vgaji_tu_smp_list extends vgaji_tu_smp
 		//$this->ExportDoc->Text = "my header"; // Export header
 		//return FALSE; // Return FALSE to skip default export and use Row_Export event
 
-		return TRUE; // Return TRUE to use default export and skip Row_Export event
+		global $ExportFileName;
+		$date = date("F Y");
+		$ExportFileName = "Gaji TU SMP $date";
+		return true;
 	}
 
 	// Row Export event

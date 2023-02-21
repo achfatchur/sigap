@@ -65,8 +65,8 @@ class vgaji_karyawan_sd extends DbTable
 		$this->ExportPageBreakCount = 0; // Page break per every n record (PDF only)
 		$this->ExportPageOrientation = "portrait"; // Page orientation (PDF only)
 		$this->ExportPageSize = "a4"; // Page size (PDF only)
-		$this->ExportExcelPageOrientation = ""; // Page orientation (PhpSpreadsheet only)
-		$this->ExportExcelPageSize = ""; // Page size (PhpSpreadsheet only)
+		$this->ExportExcelPageOrientation = \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_DEFAULT; // Page orientation (PhpSpreadsheet only)
+		$this->ExportExcelPageSize = \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_A4; // Page size (PhpSpreadsheet only)
 		$this->ExportWordPageOrientation = "portrait"; // Page orientation (PHPWord only)
 		$this->ExportWordColumnWidth = NULL; // Cell width (PHPWord only)
 		$this->DetailAdd = FALSE; // Allow detail add
@@ -301,7 +301,7 @@ class vgaji_karyawan_sd extends DbTable
 	}
 	public function getSqlOrderBy() // Order By
 	{
-		return ($this->SqlOrderBy != "") ? $this->SqlOrderBy : "";
+		return ($this->SqlOrderBy != "") ? $this->SqlOrderBy : "`id` DESC";
 	}
 	public function sqlOrderBy() // For backward compatibility
 	{
@@ -1295,25 +1295,11 @@ class vgaji_karyawan_sd extends DbTable
 					$doc->exportCaption($this->voucher);
 					$doc->exportCaption($this->status);
 				} else {
-					$doc->exportCaption($this->id);
 					$doc->exportCaption($this->tahun);
 					$doc->exportCaption($this->bulan);
 					$doc->exportCaption($this->pegawai);
 					$doc->exportCaption($this->rekbank);
-					$doc->exportCaption($this->jenjang_id);
-					$doc->exportCaption($this->jabatan_id);
-					$doc->exportCaption($this->kehadiran);
-					$doc->exportCaption($this->value_kehadiran);
-					$doc->exportCaption($this->gapok);
-					$doc->exportCaption($this->value_reward);
-					$doc->exportCaption($this->value_inval);
-					$doc->exportCaption($this->sub_total);
-					$doc->exportCaption($this->potongan);
-					$doc->exportCaption($this->penyesuaian);
-					$doc->exportCaption($this->potongan_bendahara);
 					$doc->exportCaption($this->total);
-					$doc->exportCaption($this->voucher);
-					$doc->exportCaption($this->status);
 				}
 				$doc->endExportRow();
 			}
@@ -1365,25 +1351,11 @@ class vgaji_karyawan_sd extends DbTable
 						$doc->exportField($this->voucher);
 						$doc->exportField($this->status);
 					} else {
-						$doc->exportField($this->id);
 						$doc->exportField($this->tahun);
 						$doc->exportField($this->bulan);
 						$doc->exportField($this->pegawai);
 						$doc->exportField($this->rekbank);
-						$doc->exportField($this->jenjang_id);
-						$doc->exportField($this->jabatan_id);
-						$doc->exportField($this->kehadiran);
-						$doc->exportField($this->value_kehadiran);
-						$doc->exportField($this->gapok);
-						$doc->exportField($this->value_reward);
-						$doc->exportField($this->value_inval);
-						$doc->exportField($this->sub_total);
-						$doc->exportField($this->potongan);
-						$doc->exportField($this->penyesuaian);
-						$doc->exportField($this->potongan_bendahara);
 						$doc->exportField($this->total);
-						$doc->exportField($this->voucher);
-						$doc->exportField($this->status);
 					}
 					$doc->endExportRow($rowCnt);
 				}
@@ -1412,6 +1384,12 @@ class vgaji_karyawan_sd extends DbTable
 	function Recordset_Selecting(&$filter) {
 
 		// Enter your code here
+	if(CurrentUserLevel() != '-1'){
+	$nip = CurrentUserInfo("jenjang_id");
+	if($nip != '' OR $nip != FALSE) {
+	AddFilter($filter, "jenjang_id = $nip");
+			}
+		}	
 	}
 
 	// Recordset Selected event

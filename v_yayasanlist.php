@@ -305,24 +305,6 @@ $v_yayasan_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
-<?php if ($v_yayasan_list->gaji_pokok->Visible) { // gaji_pokok ?>
-	<?php if ($v_yayasan_list->SortUrl($v_yayasan_list->gaji_pokok) == "") { ?>
-		<th data-name="gaji_pokok" class="<?php echo $v_yayasan_list->gaji_pokok->headerCellClass() ?>"><div id="elh_v_yayasan_gaji_pokok" class="v_yayasan_gaji_pokok"><div class="ew-table-header-caption"><?php echo $v_yayasan_list->gaji_pokok->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="gaji_pokok" class="<?php echo $v_yayasan_list->gaji_pokok->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_yayasan_list->SortUrl($v_yayasan_list->gaji_pokok) ?>', 1);"><div id="elh_v_yayasan_gaji_pokok" class="v_yayasan_gaji_pokok">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_yayasan_list->gaji_pokok->caption() ?></span><span class="ew-table-header-sort"><?php if ($v_yayasan_list->gaji_pokok->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_yayasan_list->gaji_pokok->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
-<?php if ($v_yayasan_list->potongan->Visible) { // potongan ?>
-	<?php if ($v_yayasan_list->SortUrl($v_yayasan_list->potongan) == "") { ?>
-		<th data-name="potongan" class="<?php echo $v_yayasan_list->potongan->headerCellClass() ?>"><div id="elh_v_yayasan_potongan" class="v_yayasan_potongan"><div class="ew-table-header-caption"><?php echo $v_yayasan_list->potongan->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="potongan" class="<?php echo $v_yayasan_list->potongan->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_yayasan_list->SortUrl($v_yayasan_list->potongan) ?>', 1);"><div id="elh_v_yayasan_potongan" class="v_yayasan_potongan">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_yayasan_list->potongan->caption() ?></span><span class="ew-table-header-sort"><?php if ($v_yayasan_list->potongan->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_yayasan_list->potongan->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
 <?php if ($v_yayasan_list->total->Visible) { // total ?>
 	<?php if ($v_yayasan_list->SortUrl($v_yayasan_list->total) == "") { ?>
 		<th data-name="total" class="<?php echo $v_yayasan_list->total->headerCellClass() ?>"><div id="elh_v_yayasan_total" class="v_yayasan_total"><div class="ew-table-header-caption"><?php echo $v_yayasan_list->total->caption() ?></div></div></th>
@@ -422,20 +404,6 @@ $v_yayasan_list->ListOptions->render("body", "left", $v_yayasan_list->RowCount);
 		<td data-name="rekbank" <?php echo $v_yayasan_list->rekbank->cellAttributes() ?>>
 <span id="el<?php echo $v_yayasan_list->RowCount ?>_v_yayasan_rekbank">
 <span<?php echo $v_yayasan_list->rekbank->viewAttributes() ?>><?php echo $v_yayasan_list->rekbank->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($v_yayasan_list->gaji_pokok->Visible) { // gaji_pokok ?>
-		<td data-name="gaji_pokok" <?php echo $v_yayasan_list->gaji_pokok->cellAttributes() ?>>
-<span id="el<?php echo $v_yayasan_list->RowCount ?>_v_yayasan_gaji_pokok">
-<span<?php echo $v_yayasan_list->gaji_pokok->viewAttributes() ?>><?php echo $v_yayasan_list->gaji_pokok->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
-	<?php if ($v_yayasan_list->potongan->Visible) { // potongan ?>
-		<td data-name="potongan" <?php echo $v_yayasan_list->potongan->cellAttributes() ?>>
-<span id="el<?php echo $v_yayasan_list->RowCount ?>_v_yayasan_potongan">
-<span<?php echo $v_yayasan_list->potongan->viewAttributes() ?>><?php echo $v_yayasan_list->potongan->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

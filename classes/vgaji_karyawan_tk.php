@@ -65,8 +65,8 @@ class vgaji_karyawan_tk extends DbTable
 		$this->ExportPageBreakCount = 0; // Page break per every n record (PDF only)
 		$this->ExportPageOrientation = "portrait"; // Page orientation (PDF only)
 		$this->ExportPageSize = "a4"; // Page size (PDF only)
-		$this->ExportExcelPageOrientation = ""; // Page orientation (PhpSpreadsheet only)
-		$this->ExportExcelPageSize = ""; // Page size (PhpSpreadsheet only)
+		$this->ExportExcelPageOrientation = \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_DEFAULT; // Page orientation (PhpSpreadsheet only)
+		$this->ExportExcelPageSize = \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_A4; // Page size (PhpSpreadsheet only)
 		$this->ExportWordPageOrientation = "portrait"; // Page orientation (PHPWord only)
 		$this->ExportWordColumnWidth = NULL; // Cell width (PHPWord only)
 		$this->DetailAdd = FALSE; // Allow detail add
@@ -301,7 +301,7 @@ class vgaji_karyawan_tk extends DbTable
 	}
 	public function getSqlOrderBy() // Order By
 	{
-		return ($this->SqlOrderBy != "") ? $this->SqlOrderBy : "";
+		return ($this->SqlOrderBy != "") ? $this->SqlOrderBy : "`id` DESC";
 	}
 	public function sqlOrderBy() // For backward compatibility
 	{
@@ -1412,6 +1412,12 @@ class vgaji_karyawan_tk extends DbTable
 	function Recordset_Selecting(&$filter) {
 
 		// Enter your code here
+	if(CurrentUserLevel() != '-1'){
+	$nip = CurrentUserInfo("jenjang_id");
+	if($nip != '' OR $nip != FALSE) {
+	AddFilter($filter, "jenjang_id = $nip");
+			}
+		}	
 	}
 
 	// Recordset Selected event

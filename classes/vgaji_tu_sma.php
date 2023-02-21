@@ -78,8 +78,8 @@ class vgaji_tu_sma extends DbTable
 		$this->ExportPageBreakCount = 0; // Page break per every n record (PDF only)
 		$this->ExportPageOrientation = "portrait"; // Page orientation (PDF only)
 		$this->ExportPageSize = "a4"; // Page size (PDF only)
-		$this->ExportExcelPageOrientation = ""; // Page orientation (PhpSpreadsheet only)
-		$this->ExportExcelPageSize = ""; // Page size (PhpSpreadsheet only)
+		$this->ExportExcelPageOrientation = \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_DEFAULT; // Page orientation (PhpSpreadsheet only)
+		$this->ExportExcelPageSize = \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_A4; // Page size (PhpSpreadsheet only)
 		$this->ExportWordPageOrientation = "portrait"; // Page orientation (PHPWord only)
 		$this->ExportWordColumnWidth = NULL; // Cell width (PHPWord only)
 		$this->DetailAdd = FALSE; // Allow detail add
@@ -394,7 +394,7 @@ class vgaji_tu_sma extends DbTable
 	}
 	public function getSqlOrderBy() // Order By
 	{
-		return ($this->SqlOrderBy != "") ? $this->SqlOrderBy : "";
+		return ($this->SqlOrderBy != "") ? $this->SqlOrderBy : "`id` DESC";
 	}
 	public function sqlOrderBy() // For backward compatibility
 	{
@@ -1720,35 +1720,11 @@ class vgaji_tu_sma extends DbTable
 					$doc->exportCaption($this->total);
 					$doc->exportCaption($this->voucher);
 				} else {
-					$doc->exportCaption($this->id);
-					$doc->exportCaption($this->datetime);
-					$doc->exportCaption($this->pid);
 					$doc->exportCaption($this->tahun);
 					$doc->exportCaption($this->bulan);
 					$doc->exportCaption($this->pegawai);
 					$doc->exportCaption($this->rekbank);
-					$doc->exportCaption($this->jenjang_id);
-					$doc->exportCaption($this->jabatan_id);
-					$doc->exportCaption($this->type_jabatan);
-					$doc->exportCaption($this->tambahan);
-					$doc->exportCaption($this->ijasah);
-					$doc->exportCaption($this->sertif);
-					$doc->exportCaption($this->lama_kerja);
-					$doc->exportCaption($this->gapok);
-					$doc->exportCaption($this->kehadiran);
-					$doc->exportCaption($this->value_kehadiran);
-					$doc->exportCaption($this->lembur);
-					$doc->exportCaption($this->value_lembur);
-					$doc->exportCaption($this->value_reward);
-					$doc->exportCaption($this->piket_count);
-					$doc->exportCaption($this->value_piket);
-					$doc->exportCaption($this->tugastambahan);
-					$doc->exportCaption($this->potongan);
-					$doc->exportCaption($this->sub_total);
-					$doc->exportCaption($this->penyesuaian);
-					$doc->exportCaption($this->potongan_bendahara);
 					$doc->exportCaption($this->total);
-					$doc->exportCaption($this->voucher);
 				}
 				$doc->endExportRow();
 			}
@@ -1812,35 +1788,11 @@ class vgaji_tu_sma extends DbTable
 						$doc->exportField($this->total);
 						$doc->exportField($this->voucher);
 					} else {
-						$doc->exportField($this->id);
-						$doc->exportField($this->datetime);
-						$doc->exportField($this->pid);
 						$doc->exportField($this->tahun);
 						$doc->exportField($this->bulan);
 						$doc->exportField($this->pegawai);
 						$doc->exportField($this->rekbank);
-						$doc->exportField($this->jenjang_id);
-						$doc->exportField($this->jabatan_id);
-						$doc->exportField($this->type_jabatan);
-						$doc->exportField($this->tambahan);
-						$doc->exportField($this->ijasah);
-						$doc->exportField($this->sertif);
-						$doc->exportField($this->lama_kerja);
-						$doc->exportField($this->gapok);
-						$doc->exportField($this->kehadiran);
-						$doc->exportField($this->value_kehadiran);
-						$doc->exportField($this->lembur);
-						$doc->exportField($this->value_lembur);
-						$doc->exportField($this->value_reward);
-						$doc->exportField($this->piket_count);
-						$doc->exportField($this->value_piket);
-						$doc->exportField($this->tugastambahan);
-						$doc->exportField($this->potongan);
-						$doc->exportField($this->sub_total);
-						$doc->exportField($this->penyesuaian);
-						$doc->exportField($this->potongan_bendahara);
 						$doc->exportField($this->total);
-						$doc->exportField($this->voucher);
 					}
 					$doc->endExportRow($rowCnt);
 				}

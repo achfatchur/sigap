@@ -2747,10 +2747,6 @@ class vgaji_guru_smk_list extends vgaji_guru_smk
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
-			// id
-			$this->id->ViewValue = $this->id->CurrentValue;
-			$this->id->ViewCustomAttributes = "";
-
 			// tahun
 			$this->tahun->ViewValue = $this->tahun->CurrentValue;
 			$this->tahun->ViewCustomAttributes = "";
@@ -3967,7 +3963,10 @@ class vgaji_guru_smk_list extends vgaji_guru_smk
 		//$this->ExportDoc->Text = "my header"; // Export header
 		//return FALSE; // Return FALSE to skip default export and use Row_Export event
 
-		return TRUE; // Return TRUE to use default export and skip Row_Export event
+		global $ExportFileName;
+		$date = date("F Y");
+		$ExportFileName = "Gaji Guru SMK $date";
+		return true;
 	}
 
 	// Row Export event

@@ -161,7 +161,7 @@ $CONFIG = [
 
 	// General
 	"UNFORMAT_YEAR" => 50, // Unformat year
-	"RANDOM_KEY" => 'MD3O17QG17ojEfos', // Random key for encryption
+	"RANDOM_KEY" => 'rtjkl697TIjNC4d3', // Random key for encryption
 	"ENCRYPTION_KEY" => '', // Encryption key for data protection
 	"PROJECT_STYLESHEET_FILENAME" => "css/sigap.css", // Project stylesheet file name
 	"PROJECT_CHARSET" => "utf-8", // Project charset
@@ -485,7 +485,7 @@ $CONFIG = [
 	"EXPORT_ALL_TIME_LIMIT" => 120, // Export all records time limit
 	"XML_ENCODING" => "utf-8", // Encoding for Export to XML
 	"EXPORT_ORIGINAL_VALUE" => FALSE,
-	"EXPORT_FIELD_CAPTION" => FALSE, // TRUE to export field caption
+	"EXPORT_FIELD_CAPTION" => TRUE, // TRUE to export field caption
 	"EXPORT_FIELD_IMAGE" => TRUE, // TRUE to export field image
 	"EXPORT_CSS_STYLES" => TRUE, // TRUE to export CSS styles
 	"EXPORT_MASTER_RECORD" => TRUE, // TRUE to export master record
@@ -1233,4 +1233,7 @@ $CONFIG["PDF_TIME_LIMIT"] = 120; // Time limit
 $CONFIG["PDF_MAX_IMAGE_WIDTH"] = 650; // Portrait
 $CONFIG["PDF_MAX_IMAGE_HEIGHT"] = 900; // Portrait
 $CONFIG["PDF_IMAGE_SCALE_FACTOR"] = 1.53; // Scale factor
+?>
+<?php
+$CONFIG["USE_PHPEXCEL"] = TRUE;
 ?>

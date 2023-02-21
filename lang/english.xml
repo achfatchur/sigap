@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ew-language date="2023/2/20" version="16.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
+<ew-language date="2023/2/21" version="16.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
   <!--
 	*** Important Notes:
 	1. Language ID should follow: https://developers.google.com/recaptcha/docs/language,
@@ -856,6 +856,15 @@
   <project>
     <phrase id="bodytitle" value="SIGAP YWH" />
     <phrase id="footertext" value="&amp;copy;2022 PT PrimaVisi." />
+    <menu id="1625">
+      <phrase id="menutext" value="export file sma" />
+    </menu>
+    <menu id="1626">
+      <phrase id="menutext" value="Export TU SMA" />
+    </menu>
+    <menu id="1627">
+      <phrase id="menutext" value="export excel" />
+    </menu>
     <menu id="1160">
       <phrase id="menutext" value="Login Pegawai" />
     </menu>
@@ -8746,6 +8755,15 @@
     </table>
     <table id="laporan_gaji_all">
       <phrase id="tblcaption" value="Laporan Gaji" />
+    </table>
+    <table id="export_file_sma">
+      <phrase id="tblcaption" value="export file sma" />
+    </table>
+    <table id="export_tu_sma">
+      <phrase id="tblcaption" value="Export TU SMA" />
+    </table>
+    <table id="export_excel">
+      <phrase id="tblcaption" value="export excel" />
     </table>
   </project>
 </ew-language>

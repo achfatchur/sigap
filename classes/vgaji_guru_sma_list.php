@@ -2773,10 +2773,6 @@ class vgaji_guru_sma_list extends vgaji_guru_sma
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
-			// id
-			$this->id->ViewValue = $this->id->CurrentValue;
-			$this->id->ViewCustomAttributes = "";
-
 			// tahun
 			$this->tahun->ViewValue = $this->tahun->CurrentValue;
 			$this->tahun->ViewCustomAttributes = "";
@@ -3065,11 +3061,6 @@ class vgaji_guru_sma_list extends vgaji_guru_sma
 			$this->voucher->ViewValue = $this->voucher->CurrentValue;
 			$this->voucher->ViewValue = FormatNumber($this->voucher->ViewValue, 0, -2, -2, -2);
 			$this->voucher->ViewCustomAttributes = "";
-
-			// pid
-			$this->pid->ViewValue = $this->pid->CurrentValue;
-			$this->pid->ViewValue = FormatNumber($this->pid->ViewValue, 0, -2, -2, -2);
-			$this->pid->ViewCustomAttributes = "";
 
 			// tahun
 			$this->tahun->LinkCustomAttributes = "";
@@ -3894,6 +3885,8 @@ class vgaji_guru_sma_list extends vgaji_guru_sma
 	function Page_Load() {
 
 		//echo "Page Load";
+	//$GLOBALS["gsExportFile"] = $rsnew['pegawai'].ew_CurrentDateTime();
+
 	}
 
 	// Page Unload event
@@ -3931,7 +3924,12 @@ class vgaji_guru_sma_list extends vgaji_guru_sma
 	// Page Render event
 	function Page_Render() {
 
-		//echo "Page Render";
+		//echo "Page Render";$this->OtherOptions["addedit"]->UseDropDownButton = FALSE; // jangan gunakan style DropDownButton
+	//$my_options = &$this->OtherOptions; // pastikan menggunakan area OtherOptions
+	//$my_option = $my_options["addedit"]; // dekat tombol addedit
+	//$my_item = &$my_option->Add("mynewbutton"); // tambahkan tombol baru
+	//$my_item->Body = "<a class=\"ewAddEdit ewAdd\" title=\"export file\" data-caption=\"Your Caption\" href=\"test_api.php\" target=\"_self\">synchronize Siakad</a>";	
+
 	}
 
 	// Page Data Rendering event
@@ -3999,7 +3997,9 @@ class vgaji_guru_sma_list extends vgaji_guru_sma
 		//$this->ExportDoc->Text = "my header"; // Export header
 		//return FALSE; // Return FALSE to skip default export and use Row_Export event
 
-		return TRUE; // Return TRUE to use default export and skip Row_Export event
+	global $ExportFileName;
+	$ExportFileName = "Laporan Gaji Guru SMA";
+	return true;
 	}
 
 	// Row Export event

@@ -38,6 +38,8 @@
 			<div class="img-holder">
 				<div class="bg"></div>
 				<div class="info-holder">
+					<h3>SIGAP WACHID HAYSIM</h3>
+					<p>Sistem Informasi Gaji Pegawai.</p>
 					<img src="login/images/graphic5.svg" alt="">
 				</div>
 			</div>
@@ -49,6 +51,7 @@
 						</div>
 						<div class="website-logo-inside">
 							<center>
+								<h3 id="demo" style="color: white; font-weight: bold;">LOGIN PEGAWAI SIGAP WACHID HAYSIM</h3>
 								<br>
 								<img src="login/download.png" style="width: 150px;">
 							</center>
