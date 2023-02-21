@@ -51,7 +51,7 @@
 						</div>
 						<div class="website-logo-inside">
 							<center>
-								<h3 id="demo" style="color: white; font-weight: bold;">LOGIN UNIT & BENDAHARA SIGAP WACHID HAYSIM </h3>
+								<h3 id="demo" style="color: white; font-weight: bold;">LOGIN UNIT & BENDAHARA SIGAP WACHID HAYSIM</h3>
 								<br>
 								<img src="login/download.png" style="width: 150px;">
 							</center>
