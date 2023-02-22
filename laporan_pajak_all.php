@@ -303,7 +303,7 @@ Page_Rendering();
 				<td><?=$pegawai['nama']?> - <?=$jabatan['name']?></td>
 				<td>Rp. <?= number_format($data['jaminan_hari_tua'],0,',','.');?></td>
 				<td>Rp. <?= number_format($data['jaminan_pensiun'],0,',','.');?></td>
-				<td>Rp. <?= number_format($data['total_pph21'],0,',','.');?></td>
+				<td>Rp. <?= number_format($data2['total_pph21'],0,',','.');?></td>
 			</tr>
 				<?php
 					} 

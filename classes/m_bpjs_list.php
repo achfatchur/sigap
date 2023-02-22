@@ -822,6 +822,7 @@ class m_bpjs_list extends m_bpjs
 		$this->jenjang->setVisibility();
 		$this->golongan->setVisibility();
 		$this->value->setVisibility();
+		$this->golongan_id->setVisibility();
 		$this->hideFieldsForAddEdit();
 
 		// Global Page Loading event (in userfn*.php)
@@ -1127,6 +1128,7 @@ class m_bpjs_list extends m_bpjs
 		$filterList = Concat($filterList, $this->jenjang->AdvancedSearch->toJson(), ","); // Field jenjang
 		$filterList = Concat($filterList, $this->golongan->AdvancedSearch->toJson(), ","); // Field golongan
 		$filterList = Concat($filterList, $this->value->AdvancedSearch->toJson(), ","); // Field value
+		$filterList = Concat($filterList, $this->golongan_id->AdvancedSearch->toJson(), ","); // Field golongan_id
 		if ($this->BasicSearch->Keyword != "") {
 			$wrk = "\"" . Config("TABLE_BASIC_SEARCH") . "\":\"" . JsEncode($this->BasicSearch->Keyword) . "\",\"" . Config("TABLE_BASIC_SEARCH_TYPE") . "\":\"" . JsEncode($this->BasicSearch->Type) . "\"";
 			$filterList = Concat($filterList, $wrk, ",");
@@ -1196,6 +1198,14 @@ class m_bpjs_list extends m_bpjs
 		$this->value->AdvancedSearch->SearchValue2 = @$filter["y_value"];
 		$this->value->AdvancedSearch->SearchOperator2 = @$filter["w_value"];
 		$this->value->AdvancedSearch->save();
+
+		// Field golongan_id
+		$this->golongan_id->AdvancedSearch->SearchValue = @$filter["x_golongan_id"];
+		$this->golongan_id->AdvancedSearch->SearchOperator = @$filter["z_golongan_id"];
+		$this->golongan_id->AdvancedSearch->SearchCondition = @$filter["v_golongan_id"];
+		$this->golongan_id->AdvancedSearch->SearchValue2 = @$filter["y_golongan_id"];
+		$this->golongan_id->AdvancedSearch->SearchOperator2 = @$filter["w_golongan_id"];
+		$this->golongan_id->AdvancedSearch->save();
 		$this->BasicSearch->setKeyword(@$filter[Config("TABLE_BASIC_SEARCH")]);
 		$this->BasicSearch->setType(@$filter[Config("TABLE_BASIC_SEARCH_TYPE")]);
 	}
@@ -1366,6 +1376,7 @@ class m_bpjs_list extends m_bpjs
 			$this->updateSort($this->jenjang); // jenjang
 			$this->updateSort($this->golongan); // golongan
 			$this->updateSort($this->value); // value
+			$this->updateSort($this->golongan_id); // golongan_id
 			$this->setStartRecordNumber(1); // Reset start position
 		}
 	}
@@ -1404,6 +1415,7 @@ class m_bpjs_list extends m_bpjs
 				$this->jenjang->setSort("");
 				$this->golongan->setSort("");
 				$this->value->setSort("");
+				$this->golongan_id->setSort("");
 			}
 
 			// Reset start position
@@ -1816,6 +1828,7 @@ class m_bpjs_list extends m_bpjs
 		$this->jenjang->setDbValue($row['jenjang']);
 		$this->golongan->setDbValue($row['golongan']);
 		$this->value->setDbValue($row['value']);
+		$this->golongan_id->setDbValue($row['golongan_id']);
 	}
 
 	// Return a row with default values
@@ -1826,6 +1839,7 @@ class m_bpjs_list extends m_bpjs
 		$row['jenjang'] = NULL;
 		$row['golongan'] = NULL;
 		$row['value'] = NULL;
+		$row['golongan_id'] = NULL;
 		return $row;
 	}
 
@@ -1873,6 +1887,7 @@ class m_bpjs_list extends m_bpjs
 		// jenjang
 		// golongan
 		// value
+		// golongan_id
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
@@ -1912,6 +1927,11 @@ class m_bpjs_list extends m_bpjs
 			$this->value->ViewValue = FormatNumber($this->value->ViewValue, 0, -2, -2, -2);
 			$this->value->ViewCustomAttributes = "";
 
+			// golongan_id
+			$this->golongan_id->ViewValue = $this->golongan_id->CurrentValue;
+			$this->golongan_id->ViewValue = FormatNumber($this->golongan_id->ViewValue, 0, -2, -2, -2);
+			$this->golongan_id->ViewCustomAttributes = "";
+
 			// jenjang
 			$this->jenjang->LinkCustomAttributes = "";
 			$this->jenjang->HrefValue = "";
@@ -1926,6 +1946,11 @@ class m_bpjs_list extends m_bpjs
 			$this->value->LinkCustomAttributes = "";
 			$this->value->HrefValue = "";
 			$this->value->TooltipValue = "";
+
+			// golongan_id
+			$this->golongan_id->LinkCustomAttributes = "";
+			$this->golongan_id->HrefValue = "";
+			$this->golongan_id->TooltipValue = "";
 		}
 
 		// Call Row Rendered event

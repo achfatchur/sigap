@@ -205,6 +205,15 @@ $m_bpjs_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($m_bpjs_list->golongan_id->Visible) { // golongan_id ?>
+	<?php if ($m_bpjs_list->SortUrl($m_bpjs_list->golongan_id) == "") { ?>
+		<th data-name="golongan_id" class="<?php echo $m_bpjs_list->golongan_id->headerCellClass() ?>"><div id="elh_m_bpjs_golongan_id" class="m_bpjs_golongan_id"><div class="ew-table-header-caption"><?php echo $m_bpjs_list->golongan_id->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="golongan_id" class="<?php echo $m_bpjs_list->golongan_id->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $m_bpjs_list->SortUrl($m_bpjs_list->golongan_id) ?>', 1);"><div id="elh_m_bpjs_golongan_id" class="m_bpjs_golongan_id">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $m_bpjs_list->golongan_id->caption() ?></span><span class="ew-table-header-sort"><?php if ($m_bpjs_list->golongan_id->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($m_bpjs_list->golongan_id->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php
 
 // Render list options (header, right)
@@ -288,6 +297,13 @@ $m_bpjs_list->ListOptions->render("body", "left", $m_bpjs_list->RowCount);
 		<td data-name="value" <?php echo $m_bpjs_list->value->cellAttributes() ?>>
 <span id="el<?php echo $m_bpjs_list->RowCount ?>_m_bpjs_value">
 <span<?php echo $m_bpjs_list->value->viewAttributes() ?>><?php echo $m_bpjs_list->value->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($m_bpjs_list->golongan_id->Visible) { // golongan_id ?>
+		<td data-name="golongan_id" <?php echo $m_bpjs_list->golongan_id->cellAttributes() ?>>
+<span id="el<?php echo $m_bpjs_list->RowCount ?>_m_bpjs_golongan_id">
+<span<?php echo $m_bpjs_list->golongan_id->viewAttributes() ?>><?php echo $m_bpjs_list->golongan_id->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

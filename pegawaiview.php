@@ -421,6 +421,16 @@ $pegawai_view->showMessage();
 </td>
 	</tr>
 <?php } ?>
+<?php if ($pegawai_view->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+	<tr id="r_bpjs_kesehatan">
+		<td class="<?php echo $pegawai_view->TableLeftColumnClass ?>"><span id="elh_pegawai_bpjs_kesehatan"><?php echo $pegawai_view->bpjs_kesehatan->caption() ?></span></td>
+		<td data-name="bpjs_kesehatan" <?php echo $pegawai_view->bpjs_kesehatan->cellAttributes() ?>>
+<span id="el_pegawai_bpjs_kesehatan">
+<span<?php echo $pegawai_view->bpjs_kesehatan->viewAttributes() ?>><?php echo $pegawai_view->bpjs_kesehatan->getViewValue() ?></span>
+</span>
+</td>
+	</tr>
+<?php } ?>
 </table>
 </form>
 <?php

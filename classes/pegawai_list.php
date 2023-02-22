@@ -846,6 +846,7 @@ class pegawai_list extends pegawai
 		$this->kehadiran->setVisibility();
 		$this->status_pekerjaan->setVisibility();
 		$this->status_npwp->setVisibility();
+		$this->bpjs_kesehatan->setVisibility();
 		$this->hideFieldsForAddEdit();
 
 		// Global Page Loading event (in userfn*.php)
@@ -891,6 +892,7 @@ class pegawai_list extends pegawai
 		$this->setupLookupOptions($this->level);
 		$this->setupLookupOptions($this->status_pekerjaan);
 		$this->setupLookupOptions($this->status_npwp);
+		$this->setupLookupOptions($this->bpjs_kesehatan);
 
 		// Search filters
 		$srchAdvanced = ""; // Advanced search filter
@@ -1197,6 +1199,7 @@ class pegawai_list extends pegawai
 		$filterList = Concat($filterList, $this->kehadiran->AdvancedSearch->toJson(), ","); // Field kehadiran
 		$filterList = Concat($filterList, $this->status_pekerjaan->AdvancedSearch->toJson(), ","); // Field status_pekerjaan
 		$filterList = Concat($filterList, $this->status_npwp->AdvancedSearch->toJson(), ","); // Field status_npwp
+		$filterList = Concat($filterList, $this->bpjs_kesehatan->AdvancedSearch->toJson(), ","); // Field bpjs_kesehatan
 		if ($this->BasicSearch->Keyword != "") {
 			$wrk = "\"" . Config("TABLE_BASIC_SEARCH") . "\":\"" . JsEncode($this->BasicSearch->Keyword) . "\",\"" . Config("TABLE_BASIC_SEARCH_TYPE") . "\":\"" . JsEncode($this->BasicSearch->Type) . "\"";
 			$filterList = Concat($filterList, $wrk, ",");
@@ -1514,6 +1517,14 @@ class pegawai_list extends pegawai
 		$this->status_npwp->AdvancedSearch->SearchValue2 = @$filter["y_status_npwp"];
 		$this->status_npwp->AdvancedSearch->SearchOperator2 = @$filter["w_status_npwp"];
 		$this->status_npwp->AdvancedSearch->save();
+
+		// Field bpjs_kesehatan
+		$this->bpjs_kesehatan->AdvancedSearch->SearchValue = @$filter["x_bpjs_kesehatan"];
+		$this->bpjs_kesehatan->AdvancedSearch->SearchOperator = @$filter["z_bpjs_kesehatan"];
+		$this->bpjs_kesehatan->AdvancedSearch->SearchCondition = @$filter["v_bpjs_kesehatan"];
+		$this->bpjs_kesehatan->AdvancedSearch->SearchValue2 = @$filter["y_bpjs_kesehatan"];
+		$this->bpjs_kesehatan->AdvancedSearch->SearchOperator2 = @$filter["w_bpjs_kesehatan"];
+		$this->bpjs_kesehatan->AdvancedSearch->save();
 		$this->BasicSearch->setKeyword(@$filter[Config("TABLE_BASIC_SEARCH")]);
 		$this->BasicSearch->setType(@$filter[Config("TABLE_BASIC_SEARCH_TYPE")]);
 	}
@@ -1560,6 +1571,7 @@ class pegawai_list extends pegawai
 		$this->buildSearchSql($where, $this->kehadiran, $default, FALSE); // kehadiran
 		$this->buildSearchSql($where, $this->status_pekerjaan, $default, FALSE); // status_pekerjaan
 		$this->buildSearchSql($where, $this->status_npwp, $default, FALSE); // status_npwp
+		$this->buildSearchSql($where, $this->bpjs_kesehatan, $default, FALSE); // bpjs_kesehatan
 
 		// Set up search parm
 		if (!$default && $where != "" && in_array($this->Command, ["", "reset", "resetall"])) {
@@ -1601,6 +1613,7 @@ class pegawai_list extends pegawai
 			$this->kehadiran->AdvancedSearch->save(); // kehadiran
 			$this->status_pekerjaan->AdvancedSearch->save(); // status_pekerjaan
 			$this->status_npwp->AdvancedSearch->save(); // status_npwp
+			$this->bpjs_kesehatan->AdvancedSearch->save(); // bpjs_kesehatan
 		}
 		return $where;
 	}
@@ -1862,6 +1875,8 @@ class pegawai_list extends pegawai
 			return TRUE;
 		if ($this->status_npwp->AdvancedSearch->issetSession())
 			return TRUE;
+		if ($this->bpjs_kesehatan->AdvancedSearch->issetSession())
+			return TRUE;
 		return FALSE;
 	}
 
@@ -1930,6 +1945,7 @@ class pegawai_list extends pegawai
 		$this->kehadiran->AdvancedSearch->unsetSession();
 		$this->status_pekerjaan->AdvancedSearch->unsetSession();
 		$this->status_npwp->AdvancedSearch->unsetSession();
+		$this->bpjs_kesehatan->AdvancedSearch->unsetSession();
 	}
 
 	// Restore all search parameters
@@ -1976,6 +1992,7 @@ class pegawai_list extends pegawai
 		$this->kehadiran->AdvancedSearch->load();
 		$this->status_pekerjaan->AdvancedSearch->load();
 		$this->status_npwp->AdvancedSearch->load();
+		$this->bpjs_kesehatan->AdvancedSearch->load();
 	}
 
 	// Set up sort parameters
@@ -2019,6 +2036,7 @@ class pegawai_list extends pegawai
 			$this->updateSort($this->kehadiran); // kehadiran
 			$this->updateSort($this->status_pekerjaan); // status_pekerjaan
 			$this->updateSort($this->status_npwp); // status_npwp
+			$this->updateSort($this->bpjs_kesehatan); // bpjs_kesehatan
 			$this->setStartRecordNumber(1); // Reset start position
 		}
 	}
@@ -2087,6 +2105,7 @@ class pegawai_list extends pegawai
 				$this->kehadiran->setSort("");
 				$this->status_pekerjaan->setSort("");
 				$this->status_npwp->setSort("");
+				$this->bpjs_kesehatan->setSort("");
 			}
 
 			// Reset start position
@@ -2697,6 +2716,13 @@ class pegawai_list extends pegawai
 			if (($this->status_npwp->AdvancedSearch->SearchValue != "" || $this->status_npwp->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
 				$this->Command = "search";
 		}
+
+		// bpjs_kesehatan
+		if (!$this->isAddOrEdit() && $this->bpjs_kesehatan->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->bpjs_kesehatan->AdvancedSearch->SearchValue != "" || $this->bpjs_kesehatan->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
 		return $got;
 	}
 
@@ -2799,6 +2825,7 @@ class pegawai_list extends pegawai
 		$this->kehadiran->setDbValue($row['kehadiran']);
 		$this->status_pekerjaan->setDbValue($row['status_pekerjaan']);
 		$this->status_npwp->setDbValue($row['status_npwp']);
+		$this->bpjs_kesehatan->setDbValue($row['bpjs_kesehatan']);
 	}
 
 	// Return a row with default values
@@ -2840,6 +2867,7 @@ class pegawai_list extends pegawai
 		$row['kehadiran'] = NULL;
 		$row['status_pekerjaan'] = NULL;
 		$row['status_npwp'] = NULL;
+		$row['bpjs_kesehatan'] = NULL;
 		return $row;
 	}
 
@@ -2918,6 +2946,7 @@ class pegawai_list extends pegawai
 		// kehadiran
 		// status_pekerjaan
 		// status_npwp
+		// bpjs_kesehatan
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
@@ -3297,6 +3326,28 @@ class pegawai_list extends pegawai
 			}
 			$this->status_npwp->ViewCustomAttributes = "";
 
+			// bpjs_kesehatan
+			$curVal = strval($this->bpjs_kesehatan->CurrentValue);
+			if ($curVal != "") {
+				$this->bpjs_kesehatan->ViewValue = $this->bpjs_kesehatan->lookupCacheOption($curVal);
+				if ($this->bpjs_kesehatan->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->bpjs_kesehatan->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->bpjs_kesehatan->ViewValue = $this->bpjs_kesehatan->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->bpjs_kesehatan->ViewValue = $this->bpjs_kesehatan->CurrentValue;
+					}
+				}
+			} else {
+				$this->bpjs_kesehatan->ViewValue = NULL;
+			}
+			$this->bpjs_kesehatan->ViewCustomAttributes = "";
+
 			// nip
 			$this->nip->LinkCustomAttributes = "";
 			$this->nip->HrefValue = "";
@@ -3463,6 +3514,11 @@ class pegawai_list extends pegawai
 			$this->status_npwp->LinkCustomAttributes = "";
 			$this->status_npwp->HrefValue = "";
 			$this->status_npwp->TooltipValue = "";
+
+			// bpjs_kesehatan
+			$this->bpjs_kesehatan->LinkCustomAttributes = "";
+			$this->bpjs_kesehatan->HrefValue = "";
+			$this->bpjs_kesehatan->TooltipValue = "";
 		} elseif ($this->RowType == ROWTYPE_SEARCH) { // Search row
 
 			// nip
@@ -3699,6 +3755,10 @@ class pegawai_list extends pegawai
 			// status_npwp
 			$this->status_npwp->EditAttrs["class"] = "form-control";
 			$this->status_npwp->EditCustomAttributes = "";
+
+			// bpjs_kesehatan
+			$this->bpjs_kesehatan->EditAttrs["class"] = "form-control";
+			$this->bpjs_kesehatan->EditCustomAttributes = "";
 		}
 		if ($this->RowType == ROWTYPE_ADD || $this->RowType == ROWTYPE_EDIT || $this->RowType == ROWTYPE_SEARCH) // Add/Edit/Search row
 			$this->setupFieldTitles();
@@ -3770,6 +3830,7 @@ class pegawai_list extends pegawai
 		$this->kehadiran->AdvancedSearch->load();
 		$this->status_pekerjaan->AdvancedSearch->load();
 		$this->status_npwp->AdvancedSearch->load();
+		$this->bpjs_kesehatan->AdvancedSearch->load();
 	}
 
 	// Get export HTML tag
@@ -4052,6 +4113,8 @@ class pegawai_list extends pegawai
 					break;
 				case "x_status_npwp":
 					break;
+				case "x_bpjs_kesehatan":
+					break;
 				default:
 					$lookupFilter = "";
 					break;
@@ -4095,6 +4158,8 @@ class pegawai_list extends pegawai
 						case "x_status_pekerjaan":
 							break;
 						case "x_status_npwp":
+							break;
+						case "x_bpjs_kesehatan":
 							break;
 					}
 					$ar[strval($row[0])] = $row;

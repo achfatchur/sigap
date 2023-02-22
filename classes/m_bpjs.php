@@ -29,6 +29,7 @@ class m_bpjs extends DbTable
 	public $jenjang;
 	public $golongan;
 	public $value;
+	public $golongan_id;
 
 	// Constructor
 	public function __construct()
@@ -50,8 +51,8 @@ class m_bpjs extends DbTable
 		$this->ExportPageBreakCount = 0; // Page break per every n record (PDF only)
 		$this->ExportPageOrientation = "portrait"; // Page orientation (PDF only)
 		$this->ExportPageSize = "a4"; // Page size (PDF only)
-		$this->ExportExcelPageOrientation = ""; // Page orientation (PhpSpreadsheet only)
-		$this->ExportExcelPageSize = ""; // Page size (PhpSpreadsheet only)
+		$this->ExportExcelPageOrientation = \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_DEFAULT; // Page orientation (PhpSpreadsheet only)
+		$this->ExportExcelPageSize = \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_A4; // Page size (PhpSpreadsheet only)
 		$this->ExportWordPageOrientation = "portrait"; // Page orientation (PHPWord only)
 		$this->ExportWordColumnWidth = NULL; // Cell width (PHPWord only)
 		$this->DetailAdd = FALSE; // Allow detail add
@@ -64,7 +65,7 @@ class m_bpjs extends DbTable
 		$this->BasicSearch = new BasicSearch($this->TableVar);
 
 		// id
-		$this->id = new DbField('m_bpjs', 'm_bpjs', 'x_id', 'id', '`id`', '`id`', 3, 10, -1, FALSE, '`id`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'NO');
+		$this->id = new DbField('m_bpjs', 'm_bpjs', 'x_id', 'id', '`id`', '`id`', 3, 11, -1, FALSE, '`id`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'NO');
 		$this->id->IsAutoIncrement = TRUE; // Autoincrement field
 		$this->id->IsPrimaryKey = TRUE; // Primary key field
 		$this->id->Sortable = TRUE; // Allow sort
@@ -90,6 +91,12 @@ class m_bpjs extends DbTable
 		$this->value->Sortable = TRUE; // Allow sort
 		$this->value->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['value'] = &$this->value;
+
+		// golongan_id
+		$this->golongan_id = new DbField('m_bpjs', 'm_bpjs', 'x_golongan_id', 'golongan_id', '`golongan_id`', '`golongan_id`', 3, 11, -1, FALSE, '`golongan_id`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->golongan_id->Sortable = TRUE; // Allow sort
+		$this->golongan_id->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['golongan_id'] = &$this->golongan_id;
 	}
 
 	// Field Visibility
@@ -449,6 +456,7 @@ class m_bpjs extends DbTable
 		$this->jenjang->DbValue = $row['jenjang'];
 		$this->golongan->DbValue = $row['golongan'];
 		$this->value->DbValue = $row['value'];
+		$this->golongan_id->DbValue = $row['golongan_id'];
 	}
 
 	// Delete uploaded files
@@ -683,6 +691,7 @@ class m_bpjs extends DbTable
 		$this->jenjang->setDbValue($rs->fields('jenjang'));
 		$this->golongan->setDbValue($rs->fields('golongan'));
 		$this->value->setDbValue($rs->fields('value'));
+		$this->golongan_id->setDbValue($rs->fields('golongan_id'));
 	}
 
 	// Render list row values
@@ -698,6 +707,7 @@ class m_bpjs extends DbTable
 		// jenjang
 		// golongan
 		// value
+		// golongan_id
 		// id
 
 		$this->id->ViewValue = $this->id->CurrentValue;
@@ -735,6 +745,11 @@ class m_bpjs extends DbTable
 		$this->value->ViewValue = FormatNumber($this->value->ViewValue, 0, -2, -2, -2);
 		$this->value->ViewCustomAttributes = "";
 
+		// golongan_id
+		$this->golongan_id->ViewValue = $this->golongan_id->CurrentValue;
+		$this->golongan_id->ViewValue = FormatNumber($this->golongan_id->ViewValue, 0, -2, -2, -2);
+		$this->golongan_id->ViewCustomAttributes = "";
+
 		// id
 		$this->id->LinkCustomAttributes = "";
 		$this->id->HrefValue = "";
@@ -754,6 +769,11 @@ class m_bpjs extends DbTable
 		$this->value->LinkCustomAttributes = "";
 		$this->value->HrefValue = "";
 		$this->value->TooltipValue = "";
+
+		// golongan_id
+		$this->golongan_id->LinkCustomAttributes = "";
+		$this->golongan_id->HrefValue = "";
+		$this->golongan_id->TooltipValue = "";
 
 		// Call Row Rendered event
 		$this->Row_Rendered();
@@ -795,6 +815,12 @@ class m_bpjs extends DbTable
 		$this->value->EditValue = $this->value->CurrentValue;
 		$this->value->PlaceHolder = RemoveHtml($this->value->caption());
 
+		// golongan_id
+		$this->golongan_id->EditAttrs["class"] = "form-control";
+		$this->golongan_id->EditCustomAttributes = "";
+		$this->golongan_id->EditValue = $this->golongan_id->CurrentValue;
+		$this->golongan_id->PlaceHolder = RemoveHtml($this->golongan_id->caption());
+
 		// Call Row Rendered event
 		$this->Row_Rendered();
 	}
@@ -828,11 +854,13 @@ class m_bpjs extends DbTable
 					$doc->exportCaption($this->jenjang);
 					$doc->exportCaption($this->golongan);
 					$doc->exportCaption($this->value);
+					$doc->exportCaption($this->golongan_id);
 				} else {
 					$doc->exportCaption($this->id);
 					$doc->exportCaption($this->jenjang);
 					$doc->exportCaption($this->golongan);
 					$doc->exportCaption($this->value);
+					$doc->exportCaption($this->golongan_id);
 				}
 				$doc->endExportRow();
 			}
@@ -868,11 +896,13 @@ class m_bpjs extends DbTable
 						$doc->exportField($this->jenjang);
 						$doc->exportField($this->golongan);
 						$doc->exportField($this->value);
+						$doc->exportField($this->golongan_id);
 					} else {
 						$doc->exportField($this->id);
 						$doc->exportField($this->jenjang);
 						$doc->exportField($this->golongan);
 						$doc->exportField($this->value);
+						$doc->exportField($this->golongan_id);
 					}
 					$doc->endExportRow($rowCnt);
 				}

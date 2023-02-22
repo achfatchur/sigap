@@ -733,6 +733,7 @@ class m_bpjs_view extends m_bpjs
 		$this->jenjang->setVisibility();
 		$this->golongan->setVisibility();
 		$this->value->setVisibility();
+		$this->golongan_id->setVisibility();
 		$this->hideFieldsForAddEdit();
 
 		// Do not use lookup cache
@@ -927,6 +928,7 @@ class m_bpjs_view extends m_bpjs
 		$this->jenjang->setDbValue($row['jenjang']);
 		$this->golongan->setDbValue($row['golongan']);
 		$this->value->setDbValue($row['value']);
+		$this->golongan_id->setDbValue($row['golongan_id']);
 	}
 
 	// Return a row with default values
@@ -937,6 +939,7 @@ class m_bpjs_view extends m_bpjs
 		$row['jenjang'] = NULL;
 		$row['golongan'] = NULL;
 		$row['value'] = NULL;
+		$row['golongan_id'] = NULL;
 		return $row;
 	}
 
@@ -961,6 +964,7 @@ class m_bpjs_view extends m_bpjs
 		// jenjang
 		// golongan
 		// value
+		// golongan_id
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
@@ -1000,6 +1004,11 @@ class m_bpjs_view extends m_bpjs
 			$this->value->ViewValue = FormatNumber($this->value->ViewValue, 0, -2, -2, -2);
 			$this->value->ViewCustomAttributes = "";
 
+			// golongan_id
+			$this->golongan_id->ViewValue = $this->golongan_id->CurrentValue;
+			$this->golongan_id->ViewValue = FormatNumber($this->golongan_id->ViewValue, 0, -2, -2, -2);
+			$this->golongan_id->ViewCustomAttributes = "";
+
 			// id
 			$this->id->LinkCustomAttributes = "";
 			$this->id->HrefValue = "";
@@ -1019,6 +1028,11 @@ class m_bpjs_view extends m_bpjs
 			$this->value->LinkCustomAttributes = "";
 			$this->value->HrefValue = "";
 			$this->value->TooltipValue = "";
+
+			// golongan_id
+			$this->golongan_id->LinkCustomAttributes = "";
+			$this->golongan_id->HrefValue = "";
+			$this->golongan_id->TooltipValue = "";
 		}
 
 		// Call Row Rendered event

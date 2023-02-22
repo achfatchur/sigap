@@ -247,6 +247,11 @@ loadjs.ready("head", function() {
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
 					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $pegawai_edit->status_npwp->caption(), $pegawai_edit->status_npwp->RequiredErrorMessage)) ?>");
 			<?php } ?>
+			<?php if ($pegawai_edit->bpjs_kesehatan->Required) { ?>
+				elm = this.getElements("x" + infix + "_bpjs_kesehatan");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $pegawai_edit->bpjs_kesehatan->caption(), $pegawai_edit->bpjs_kesehatan->RequiredErrorMessage)) ?>");
+			<?php } ?>
 
 				// Call Form_CustomValidate event
 				if (!this.Form_CustomValidate(fobj))
@@ -300,6 +305,8 @@ loadjs.ready("head", function() {
 	fpegawaiedit.lists["x_status_pekerjaan"].options = <?php echo JsonEncode($pegawai_edit->status_pekerjaan->lookupOptions()) ?>;
 	fpegawaiedit.lists["x_status_npwp"] = <?php echo $pegawai_edit->status_npwp->Lookup->toClientList($pegawai_edit) ?>;
 	fpegawaiedit.lists["x_status_npwp"].options = <?php echo JsonEncode($pegawai_edit->status_npwp->lookupOptions()) ?>;
+	fpegawaiedit.lists["x_bpjs_kesehatan"] = <?php echo $pegawai_edit->bpjs_kesehatan->Lookup->toClientList($pegawai_edit) ?>;
+	fpegawaiedit.lists["x_bpjs_kesehatan"].options = <?php echo JsonEncode($pegawai_edit->bpjs_kesehatan->lookupOptions()) ?>;
 	loadjs.done("fpegawaiedit");
 });
 </script>
@@ -771,6 +778,21 @@ loadjs.ready(["fpegawaiedit", "datetimepicker"], function() {
 <?php echo $pegawai_edit->status_npwp->Lookup->getParamTag($pegawai_edit, "p_x_status_npwp") ?>
 </span>
 <?php echo $pegawai_edit->status_npwp->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
+<?php if ($pegawai_edit->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+	<div id="r_bpjs_kesehatan" class="form-group row">
+		<label id="elh_pegawai_bpjs_kesehatan" for="x_bpjs_kesehatan" class="<?php echo $pegawai_edit->LeftColumnClass ?>"><?php echo $pegawai_edit->bpjs_kesehatan->caption() ?><?php echo $pegawai_edit->bpjs_kesehatan->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
+		<div class="<?php echo $pegawai_edit->RightColumnClass ?>"><div <?php echo $pegawai_edit->bpjs_kesehatan->cellAttributes() ?>>
+<span id="el_pegawai_bpjs_kesehatan">
+<div class="input-group">
+	<select class="custom-select ew-custom-select" data-table="pegawai" data-field="x_bpjs_kesehatan" data-value-separator="<?php echo $pegawai_edit->bpjs_kesehatan->displayValueSeparatorAttribute() ?>" id="x_bpjs_kesehatan" name="x_bpjs_kesehatan"<?php echo $pegawai_edit->bpjs_kesehatan->editAttributes() ?>>
+			<?php echo $pegawai_edit->bpjs_kesehatan->selectOptionListHtml("x_bpjs_kesehatan") ?>
+		</select>
+</div>
+<?php echo $pegawai_edit->bpjs_kesehatan->Lookup->getParamTag($pegawai_edit, "p_x_bpjs_kesehatan") ?>
+</span>
+<?php echo $pegawai_edit->bpjs_kesehatan->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
 </div><!-- /page* -->

@@ -74,6 +74,14 @@ loadjs.ready("head", function() {
 				elm = this.getElements("x" + infix + "_value");
 				if (elm && !ew.checkInteger(elm.value))
 					return this.onError(elm, "<?php echo JsEncode($m_bpjs_add->value->errorMessage()) ?>");
+			<?php if ($m_bpjs_add->golongan_id->Required) { ?>
+				elm = this.getElements("x" + infix + "_golongan_id");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $m_bpjs_add->golongan_id->caption(), $m_bpjs_add->golongan_id->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_golongan_id");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($m_bpjs_add->golongan_id->errorMessage()) ?>");
 
 				// Call Form_CustomValidate event
 				if (!this.Form_CustomValidate(fobj))
@@ -162,6 +170,16 @@ $m_bpjs_add->showMessage();
 <input type="text" data-table="m_bpjs" data-field="x_value" name="x_value" id="x_value" size="30" maxlength="20" placeholder="<?php echo HtmlEncode($m_bpjs_add->value->getPlaceHolder()) ?>" value="<?php echo $m_bpjs_add->value->EditValue ?>"<?php echo $m_bpjs_add->value->editAttributes() ?>>
 </span>
 <?php echo $m_bpjs_add->value->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
+<?php if ($m_bpjs_add->golongan_id->Visible) { // golongan_id ?>
+	<div id="r_golongan_id" class="form-group row">
+		<label id="elh_m_bpjs_golongan_id" for="x_golongan_id" class="<?php echo $m_bpjs_add->LeftColumnClass ?>"><?php echo $m_bpjs_add->golongan_id->caption() ?><?php echo $m_bpjs_add->golongan_id->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
+		<div class="<?php echo $m_bpjs_add->RightColumnClass ?>"><div <?php echo $m_bpjs_add->golongan_id->cellAttributes() ?>>
+<span id="el_m_bpjs_golongan_id">
+<input type="text" data-table="m_bpjs" data-field="x_golongan_id" name="x_golongan_id" id="x_golongan_id" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($m_bpjs_add->golongan_id->getPlaceHolder()) ?>" value="<?php echo $m_bpjs_add->golongan_id->EditValue ?>"<?php echo $m_bpjs_add->golongan_id->editAttributes() ?>>
+</span>
+<?php echo $m_bpjs_add->golongan_id->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
 </div><!-- /page* -->

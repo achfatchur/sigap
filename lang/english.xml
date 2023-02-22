@@ -1039,6 +1039,9 @@
     <menu id="1633">
       <phrase id="menutext" value="Laporan Pajak" />
     </menu>
+    <menu id="1634">
+      <phrase id="menutext" value="Laporan BPJS" />
+    </menu>
     <menu id="163">
       <phrase id="menutext" value="Detail Gaji Lengkap(TK)" />
     </menu>
@@ -3988,6 +3991,9 @@
       <field id="value">
         <phrase id="fldcaption" value="Value" />
       </field>
+      <field id="golongan_id">
+        <phrase id="fldcaption" value="golongan id" />
+      </field>
     </table>
     <table id="m_inval">
       <phrase id="tblcaption" value="Master Inval" />
@@ -4740,6 +4746,9 @@
       </field>
       <field id="status_npwp">
         <phrase id="fldcaption" value="Status NPWP" />
+      </field>
+      <field id="bpjs_kesehatan">
+        <phrase id="fldcaption" value="bpjs kesehatan" />
       </field>
     </table>
     <table id="penempatan">
@@ -8881,6 +8890,9 @@
     </table>
     <table id="laporan_pajak_all">
       <phrase id="tblcaption" value="Laporan Pajak" />
+    </table>
+    <table id="laporan_bpjs_all">
+      <phrase id="tblcaption" value="Laporan BPJS" />
     </table>
   </project>
 </ew-language>

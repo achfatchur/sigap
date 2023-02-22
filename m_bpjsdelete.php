@@ -79,6 +79,9 @@ $m_bpjs_delete->showMessage();
 <?php if ($m_bpjs_delete->value->Visible) { // value ?>
 		<th class="<?php echo $m_bpjs_delete->value->headerCellClass() ?>"><span id="elh_m_bpjs_value" class="m_bpjs_value"><?php echo $m_bpjs_delete->value->caption() ?></span></th>
 <?php } ?>
+<?php if ($m_bpjs_delete->golongan_id->Visible) { // golongan_id ?>
+		<th class="<?php echo $m_bpjs_delete->golongan_id->headerCellClass() ?>"><span id="elh_m_bpjs_golongan_id" class="m_bpjs_golongan_id"><?php echo $m_bpjs_delete->golongan_id->caption() ?></span></th>
+<?php } ?>
 	</tr>
 	</thead>
 	<tbody>
@@ -118,6 +121,13 @@ while (!$m_bpjs_delete->Recordset->EOF) {
 		<td <?php echo $m_bpjs_delete->value->cellAttributes() ?>>
 <span id="el<?php echo $m_bpjs_delete->RowCount ?>_m_bpjs_value" class="m_bpjs_value">
 <span<?php echo $m_bpjs_delete->value->viewAttributes() ?>><?php echo $m_bpjs_delete->value->getViewValue() ?></span>
+</span>
+</td>
+<?php } ?>
+<?php if ($m_bpjs_delete->golongan_id->Visible) { // golongan_id ?>
+		<td <?php echo $m_bpjs_delete->golongan_id->cellAttributes() ?>>
+<span id="el<?php echo $m_bpjs_delete->RowCount ?>_m_bpjs_golongan_id" class="m_bpjs_golongan_id">
+<span<?php echo $m_bpjs_delete->golongan_id->viewAttributes() ?>><?php echo $m_bpjs_delete->golongan_id->getViewValue() ?></span>
 </span>
 </td>
 <?php } ?>

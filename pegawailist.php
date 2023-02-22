@@ -541,6 +541,15 @@ $pegawai_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($pegawai_list->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+	<?php if ($pegawai_list->SortUrl($pegawai_list->bpjs_kesehatan) == "") { ?>
+		<th data-name="bpjs_kesehatan" class="<?php echo $pegawai_list->bpjs_kesehatan->headerCellClass() ?>"><div id="elh_pegawai_bpjs_kesehatan" class="pegawai_bpjs_kesehatan"><div class="ew-table-header-caption"><?php echo $pegawai_list->bpjs_kesehatan->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="bpjs_kesehatan" class="<?php echo $pegawai_list->bpjs_kesehatan->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $pegawai_list->SortUrl($pegawai_list->bpjs_kesehatan) ?>', 1);"><div id="elh_pegawai_bpjs_kesehatan" class="pegawai_bpjs_kesehatan">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $pegawai_list->bpjs_kesehatan->caption() ?></span><span class="ew-table-header-sort"><?php if ($pegawai_list->bpjs_kesehatan->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($pegawai_list->bpjs_kesehatan->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php
 
 // Render list options (header, right)
@@ -834,6 +843,13 @@ $pegawai_list->ListOptions->render("body", "left", $pegawai_list->RowCount);
 		<td data-name="status_npwp" <?php echo $pegawai_list->status_npwp->cellAttributes() ?>>
 <span id="el<?php echo $pegawai_list->RowCount ?>_pegawai_status_npwp">
 <span<?php echo $pegawai_list->status_npwp->viewAttributes() ?>><?php echo $pegawai_list->status_npwp->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($pegawai_list->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+		<td data-name="bpjs_kesehatan" <?php echo $pegawai_list->bpjs_kesehatan->cellAttributes() ?>>
+<span id="el<?php echo $pegawai_list->RowCount ?>_pegawai_bpjs_kesehatan">
+<span<?php echo $pegawai_list->bpjs_kesehatan->viewAttributes() ?>><?php echo $pegawai_list->bpjs_kesehatan->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

@@ -678,6 +678,7 @@ class m_bpjs_add extends m_bpjs
 		$this->jenjang->setVisibility();
 		$this->golongan->setVisibility();
 		$this->value->setVisibility();
+		$this->golongan_id->setVisibility();
 		$this->hideFieldsForAddEdit();
 
 		// Do not use lookup cache
@@ -825,6 +826,8 @@ class m_bpjs_add extends m_bpjs
 		$this->golongan->OldValue = $this->golongan->CurrentValue;
 		$this->value->CurrentValue = NULL;
 		$this->value->OldValue = $this->value->CurrentValue;
+		$this->golongan_id->CurrentValue = NULL;
+		$this->golongan_id->OldValue = $this->golongan_id->CurrentValue;
 	}
 
 	// Load form values
@@ -861,6 +864,15 @@ class m_bpjs_add extends m_bpjs
 				$this->value->setFormValue($val);
 		}
 
+		// Check field name 'golongan_id' first before field var 'x_golongan_id'
+		$val = $CurrentForm->hasValue("golongan_id") ? $CurrentForm->getValue("golongan_id") : $CurrentForm->getValue("x_golongan_id");
+		if (!$this->golongan_id->IsDetailKey) {
+			if (IsApi() && $val == NULL)
+				$this->golongan_id->Visible = FALSE; // Disable update for API request
+			else
+				$this->golongan_id->setFormValue($val);
+		}
+
 		// Check field name 'id' first before field var 'x_id'
 		$val = $CurrentForm->hasValue("id") ? $CurrentForm->getValue("id") : $CurrentForm->getValue("x_id");
 	}
@@ -872,6 +884,7 @@ class m_bpjs_add extends m_bpjs
 		$this->jenjang->CurrentValue = $this->jenjang->FormValue;
 		$this->golongan->CurrentValue = $this->golongan->FormValue;
 		$this->value->CurrentValue = $this->value->FormValue;
+		$this->golongan_id->CurrentValue = $this->golongan_id->FormValue;
 	}
 
 	// Load row based on key values
@@ -913,6 +926,7 @@ class m_bpjs_add extends m_bpjs
 		$this->jenjang->setDbValue($row['jenjang']);
 		$this->golongan->setDbValue($row['golongan']);
 		$this->value->setDbValue($row['value']);
+		$this->golongan_id->setDbValue($row['golongan_id']);
 	}
 
 	// Return a row with default values
@@ -924,6 +938,7 @@ class m_bpjs_add extends m_bpjs
 		$row['jenjang'] = $this->jenjang->CurrentValue;
 		$row['golongan'] = $this->golongan->CurrentValue;
 		$row['value'] = $this->value->CurrentValue;
+		$row['golongan_id'] = $this->golongan_id->CurrentValue;
 		return $row;
 	}
 
@@ -965,6 +980,7 @@ class m_bpjs_add extends m_bpjs
 		// jenjang
 		// golongan
 		// value
+		// golongan_id
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
@@ -1004,6 +1020,11 @@ class m_bpjs_add extends m_bpjs
 			$this->value->ViewValue = FormatNumber($this->value->ViewValue, 0, -2, -2, -2);
 			$this->value->ViewCustomAttributes = "";
 
+			// golongan_id
+			$this->golongan_id->ViewValue = $this->golongan_id->CurrentValue;
+			$this->golongan_id->ViewValue = FormatNumber($this->golongan_id->ViewValue, 0, -2, -2, -2);
+			$this->golongan_id->ViewCustomAttributes = "";
+
 			// jenjang
 			$this->jenjang->LinkCustomAttributes = "";
 			$this->jenjang->HrefValue = "";
@@ -1018,6 +1039,11 @@ class m_bpjs_add extends m_bpjs
 			$this->value->LinkCustomAttributes = "";
 			$this->value->HrefValue = "";
 			$this->value->TooltipValue = "";
+
+			// golongan_id
+			$this->golongan_id->LinkCustomAttributes = "";
+			$this->golongan_id->HrefValue = "";
+			$this->golongan_id->TooltipValue = "";
 		} elseif ($this->RowType == ROWTYPE_ADD) { // Add row
 
 			// jenjang
@@ -1066,6 +1092,12 @@ class m_bpjs_add extends m_bpjs
 			$this->value->EditValue = HtmlEncode($this->value->CurrentValue);
 			$this->value->PlaceHolder = RemoveHtml($this->value->caption());
 
+			// golongan_id
+			$this->golongan_id->EditAttrs["class"] = "form-control";
+			$this->golongan_id->EditCustomAttributes = "";
+			$this->golongan_id->EditValue = HtmlEncode($this->golongan_id->CurrentValue);
+			$this->golongan_id->PlaceHolder = RemoveHtml($this->golongan_id->caption());
+
 			// Add refer script
 			// jenjang
 
@@ -1079,6 +1111,10 @@ class m_bpjs_add extends m_bpjs
 			// value
 			$this->value->LinkCustomAttributes = "";
 			$this->value->HrefValue = "";
+
+			// golongan_id
+			$this->golongan_id->LinkCustomAttributes = "";
+			$this->golongan_id->HrefValue = "";
 		}
 		if ($this->RowType == ROWTYPE_ADD || $this->RowType == ROWTYPE_EDIT || $this->RowType == ROWTYPE_SEARCH) // Add/Edit/Search row
 			$this->setupFieldTitles();
@@ -1117,6 +1153,14 @@ class m_bpjs_add extends m_bpjs
 		if (!CheckInteger($this->value->FormValue)) {
 			AddMessage($FormError, $this->value->errorMessage());
 		}
+		if ($this->golongan_id->Required) {
+			if (!$this->golongan_id->IsDetailKey && $this->golongan_id->FormValue != NULL && $this->golongan_id->FormValue == "") {
+				AddMessage($FormError, str_replace("%s", $this->golongan_id->caption(), $this->golongan_id->RequiredErrorMessage));
+			}
+		}
+		if (!CheckInteger($this->golongan_id->FormValue)) {
+			AddMessage($FormError, $this->golongan_id->errorMessage());
+		}
 
 		// Return validate result
 		$validateForm = ($FormError == "");
@@ -1150,6 +1194,9 @@ class m_bpjs_add extends m_bpjs
 
 		// value
 		$this->value->setDbValueDef($rsnew, $this->value->CurrentValue, NULL, FALSE);
+
+		// golongan_id
+		$this->golongan_id->setDbValueDef($rsnew, $this->golongan_id->CurrentValue, NULL, FALSE);
 
 		// Call Row Inserting event
 		$rs = ($rsold) ? $rsold->fields : NULL;

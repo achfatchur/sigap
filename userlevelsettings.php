@@ -439,7 +439,9 @@ $USER_LEVEL_PRIVS = [["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen","-2","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}m_pph21","-2","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}m_pph21","0","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_pajak_all.php","-2","0"],
-	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_pajak_all.php","0","0"]];
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_pajak_all.php","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_bpjs_all.php","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_bpjs_all.php","0","0"]];
 
 // User level table info
 $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
@@ -656,4 +658,5 @@ $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3
 	["m_jaminan_pensiun","m_jaminan_pensiun","M Jaminan Pensiun",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["status_pekerjaan","status_pekerjaan","Status Pekerjaan",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["m_pph21","m_pph21","M PPH21",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
-	["laporan_pajak_all.php","laporan_pajak_all","Laporan Pajak",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];
+	["laporan_pajak_all.php","laporan_pajak_all","Laporan Pajak",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["laporan_bpjs_all.php","laporan_bpjs_all","Laporan BPJS",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];

@@ -111,6 +111,16 @@ $m_bpjs_view->showMessage();
 </td>
 	</tr>
 <?php } ?>
+<?php if ($m_bpjs_view->golongan_id->Visible) { // golongan_id ?>
+	<tr id="r_golongan_id">
+		<td class="<?php echo $m_bpjs_view->TableLeftColumnClass ?>"><span id="elh_m_bpjs_golongan_id"><?php echo $m_bpjs_view->golongan_id->caption() ?></span></td>
+		<td data-name="golongan_id" <?php echo $m_bpjs_view->golongan_id->cellAttributes() ?>>
+<span id="el_m_bpjs_golongan_id">
+<span<?php echo $m_bpjs_view->golongan_id->viewAttributes() ?>><?php echo $m_bpjs_view->golongan_id->getViewValue() ?></span>
+</span>
+</td>
+	</tr>
+<?php } ?>
 </table>
 </form>
 <?php

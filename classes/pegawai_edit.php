@@ -701,6 +701,7 @@ class pegawai_edit extends pegawai
 		$this->kehadiran->setVisibility();
 		$this->status_pekerjaan->setVisibility();
 		$this->status_npwp->setVisibility();
+		$this->bpjs_kesehatan->setVisibility();
 		$this->hideFieldsForAddEdit();
 
 		// Do not use lookup cache
@@ -734,6 +735,7 @@ class pegawai_edit extends pegawai
 		$this->setupLookupOptions($this->level);
 		$this->setupLookupOptions($this->status_pekerjaan);
 		$this->setupLookupOptions($this->status_npwp);
+		$this->setupLookupOptions($this->bpjs_kesehatan);
 
 		// Check permission
 		if (!$Security->canEdit()) {
@@ -1177,6 +1179,15 @@ class pegawai_edit extends pegawai
 				$this->status_npwp->setFormValue($val);
 		}
 
+		// Check field name 'bpjs_kesehatan' first before field var 'x_bpjs_kesehatan'
+		$val = $CurrentForm->hasValue("bpjs_kesehatan") ? $CurrentForm->getValue("bpjs_kesehatan") : $CurrentForm->getValue("x_bpjs_kesehatan");
+		if (!$this->bpjs_kesehatan->IsDetailKey) {
+			if (IsApi() && $val == NULL)
+				$this->bpjs_kesehatan->Visible = FALSE; // Disable update for API request
+			else
+				$this->bpjs_kesehatan->setFormValue($val);
+		}
+
 		// Check field name 'id' first before field var 'x_id'
 		$val = $CurrentForm->hasValue("id") ? $CurrentForm->getValue("id") : $CurrentForm->getValue("x_id");
 		if (!$this->id->IsDetailKey)
@@ -1220,6 +1231,7 @@ class pegawai_edit extends pegawai
 		$this->kehadiran->CurrentValue = $this->kehadiran->FormValue;
 		$this->status_pekerjaan->CurrentValue = $this->status_pekerjaan->FormValue;
 		$this->status_npwp->CurrentValue = $this->status_npwp->FormValue;
+		$this->bpjs_kesehatan->CurrentValue = $this->bpjs_kesehatan->FormValue;
 	}
 
 	// Load row based on key values
@@ -1294,6 +1306,7 @@ class pegawai_edit extends pegawai
 		$this->kehadiran->setDbValue($row['kehadiran']);
 		$this->status_pekerjaan->setDbValue($row['status_pekerjaan']);
 		$this->status_npwp->setDbValue($row['status_npwp']);
+		$this->bpjs_kesehatan->setDbValue($row['bpjs_kesehatan']);
 	}
 
 	// Return a row with default values
@@ -1335,6 +1348,7 @@ class pegawai_edit extends pegawai
 		$row['kehadiran'] = NULL;
 		$row['status_pekerjaan'] = NULL;
 		$row['status_npwp'] = NULL;
+		$row['bpjs_kesehatan'] = NULL;
 		return $row;
 	}
 
@@ -1407,6 +1421,7 @@ class pegawai_edit extends pegawai
 		// kehadiran
 		// status_pekerjaan
 		// status_npwp
+		// bpjs_kesehatan
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
@@ -1786,6 +1801,28 @@ class pegawai_edit extends pegawai
 			}
 			$this->status_npwp->ViewCustomAttributes = "";
 
+			// bpjs_kesehatan
+			$curVal = strval($this->bpjs_kesehatan->CurrentValue);
+			if ($curVal != "") {
+				$this->bpjs_kesehatan->ViewValue = $this->bpjs_kesehatan->lookupCacheOption($curVal);
+				if ($this->bpjs_kesehatan->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->bpjs_kesehatan->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->bpjs_kesehatan->ViewValue = $this->bpjs_kesehatan->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->bpjs_kesehatan->ViewValue = $this->bpjs_kesehatan->CurrentValue;
+					}
+				}
+			} else {
+				$this->bpjs_kesehatan->ViewValue = NULL;
+			}
+			$this->bpjs_kesehatan->ViewCustomAttributes = "";
+
 			// nip
 			$this->nip->LinkCustomAttributes = "";
 			$this->nip->HrefValue = "";
@@ -1952,6 +1989,11 @@ class pegawai_edit extends pegawai
 			$this->status_npwp->LinkCustomAttributes = "";
 			$this->status_npwp->HrefValue = "";
 			$this->status_npwp->TooltipValue = "";
+
+			// bpjs_kesehatan
+			$this->bpjs_kesehatan->LinkCustomAttributes = "";
+			$this->bpjs_kesehatan->HrefValue = "";
+			$this->bpjs_kesehatan->TooltipValue = "";
 		} elseif ($this->RowType == ROWTYPE_EDIT) { // Edit row
 
 			// nip
@@ -2458,6 +2500,30 @@ class pegawai_edit extends pegawai
 				$this->status_npwp->EditValue = $arwrk;
 			}
 
+			// bpjs_kesehatan
+			$this->bpjs_kesehatan->EditAttrs["class"] = "form-control";
+			$this->bpjs_kesehatan->EditCustomAttributes = "";
+			$curVal = trim(strval($this->bpjs_kesehatan->CurrentValue));
+			if ($curVal != "")
+				$this->bpjs_kesehatan->ViewValue = $this->bpjs_kesehatan->lookupCacheOption($curVal);
+			else
+				$this->bpjs_kesehatan->ViewValue = $this->bpjs_kesehatan->Lookup !== NULL && is_array($this->bpjs_kesehatan->Lookup->Options) ? $curVal : NULL;
+			if ($this->bpjs_kesehatan->ViewValue !== NULL) { // Load from cache
+				$this->bpjs_kesehatan->EditValue = array_values($this->bpjs_kesehatan->Lookup->Options);
+			} else { // Lookup from database
+				if ($curVal == "") {
+					$filterWrk = "0=1";
+				} else {
+					$filterWrk = "`id`" . SearchString("=", $this->bpjs_kesehatan->CurrentValue, DATATYPE_NUMBER, "");
+				}
+				$sqlWrk = $this->bpjs_kesehatan->Lookup->getSql(TRUE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				$arwrk = $rswrk ? $rswrk->getRows() : [];
+				if ($rswrk)
+					$rswrk->close();
+				$this->bpjs_kesehatan->EditValue = $arwrk;
+			}
+
 			// Edit refer script
 			// nip
 
@@ -2593,6 +2659,10 @@ class pegawai_edit extends pegawai
 			// status_npwp
 			$this->status_npwp->LinkCustomAttributes = "";
 			$this->status_npwp->HrefValue = "";
+
+			// bpjs_kesehatan
+			$this->bpjs_kesehatan->LinkCustomAttributes = "";
+			$this->bpjs_kesehatan->HrefValue = "";
 		}
 		if ($this->RowType == ROWTYPE_ADD || $this->RowType == ROWTYPE_EDIT || $this->RowType == ROWTYPE_SEARCH) // Add/Edit/Search row
 			$this->setupFieldTitles();
@@ -2802,6 +2872,11 @@ class pegawai_edit extends pegawai
 				AddMessage($FormError, str_replace("%s", $this->status_npwp->caption(), $this->status_npwp->RequiredErrorMessage));
 			}
 		}
+		if ($this->bpjs_kesehatan->Required) {
+			if (!$this->bpjs_kesehatan->IsDetailKey && $this->bpjs_kesehatan->FormValue != NULL && $this->bpjs_kesehatan->FormValue == "") {
+				AddMessage($FormError, str_replace("%s", $this->bpjs_kesehatan->caption(), $this->bpjs_kesehatan->RequiredErrorMessage));
+			}
+		}
 
 		// Return validate result
 		$validateForm = ($FormError == "");
@@ -2957,6 +3032,9 @@ class pegawai_edit extends pegawai
 
 			// status_npwp
 			$this->status_npwp->setDbValueDef($rsnew, $this->status_npwp->CurrentValue, NULL, $this->status_npwp->ReadOnly);
+
+			// bpjs_kesehatan
+			$this->bpjs_kesehatan->setDbValueDef($rsnew, $this->bpjs_kesehatan->CurrentValue, NULL, $this->bpjs_kesehatan->ReadOnly);
 			if ($this->foto->Visible && !$this->foto->Upload->KeepFile) {
 				$oldFiles = EmptyValue($this->foto->Upload->DbValue) ? [] : [$this->foto->htmlDecode($this->foto->Upload->DbValue)];
 				if (!EmptyValue($this->foto->Upload->FileName)) {
@@ -3205,6 +3283,8 @@ class pegawai_edit extends pegawai
 					break;
 				case "x_status_npwp":
 					break;
+				case "x_bpjs_kesehatan":
+					break;
 				default:
 					$lookupFilter = "";
 					break;
@@ -3248,6 +3328,8 @@ class pegawai_edit extends pegawai
 						case "x_status_pekerjaan":
 							break;
 						case "x_status_npwp":
+							break;
+						case "x_bpjs_kesehatan":
 							break;
 					}
 					$ar[strval($row[0])] = $row;

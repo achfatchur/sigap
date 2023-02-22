@@ -607,6 +607,7 @@ class pegawai_delete extends pegawai
 		$this->kehadiran->setVisibility();
 		$this->status_pekerjaan->setVisibility();
 		$this->status_npwp->setVisibility();
+		$this->bpjs_kesehatan->setVisibility();
 		$this->hideFieldsForAddEdit();
 
 		// Do not use lookup cache
@@ -640,6 +641,7 @@ class pegawai_delete extends pegawai
 		$this->setupLookupOptions($this->level);
 		$this->setupLookupOptions($this->status_pekerjaan);
 		$this->setupLookupOptions($this->status_npwp);
+		$this->setupLookupOptions($this->bpjs_kesehatan);
 
 		// Check permission
 		if (!$Security->canDelete()) {
@@ -801,6 +803,7 @@ class pegawai_delete extends pegawai
 		$this->kehadiran->setDbValue($row['kehadiran']);
 		$this->status_pekerjaan->setDbValue($row['status_pekerjaan']);
 		$this->status_npwp->setDbValue($row['status_npwp']);
+		$this->bpjs_kesehatan->setDbValue($row['bpjs_kesehatan']);
 	}
 
 	// Return a row with default values
@@ -842,6 +845,7 @@ class pegawai_delete extends pegawai
 		$row['kehadiran'] = NULL;
 		$row['status_pekerjaan'] = NULL;
 		$row['status_npwp'] = NULL;
+		$row['bpjs_kesehatan'] = NULL;
 		return $row;
 	}
 
@@ -891,6 +895,7 @@ class pegawai_delete extends pegawai
 		// kehadiran
 		// status_pekerjaan
 		// status_npwp
+		// bpjs_kesehatan
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
@@ -1270,6 +1275,28 @@ class pegawai_delete extends pegawai
 			}
 			$this->status_npwp->ViewCustomAttributes = "";
 
+			// bpjs_kesehatan
+			$curVal = strval($this->bpjs_kesehatan->CurrentValue);
+			if ($curVal != "") {
+				$this->bpjs_kesehatan->ViewValue = $this->bpjs_kesehatan->lookupCacheOption($curVal);
+				if ($this->bpjs_kesehatan->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->bpjs_kesehatan->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->bpjs_kesehatan->ViewValue = $this->bpjs_kesehatan->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->bpjs_kesehatan->ViewValue = $this->bpjs_kesehatan->CurrentValue;
+					}
+				}
+			} else {
+				$this->bpjs_kesehatan->ViewValue = NULL;
+			}
+			$this->bpjs_kesehatan->ViewCustomAttributes = "";
+
 			// nip
 			$this->nip->LinkCustomAttributes = "";
 			$this->nip->HrefValue = "";
@@ -1436,6 +1463,11 @@ class pegawai_delete extends pegawai
 			$this->status_npwp->LinkCustomAttributes = "";
 			$this->status_npwp->HrefValue = "";
 			$this->status_npwp->TooltipValue = "";
+
+			// bpjs_kesehatan
+			$this->bpjs_kesehatan->LinkCustomAttributes = "";
+			$this->bpjs_kesehatan->HrefValue = "";
+			$this->bpjs_kesehatan->TooltipValue = "";
 		}
 
 		// Call Row Rendered event
@@ -1582,6 +1614,8 @@ class pegawai_delete extends pegawai
 					break;
 				case "x_status_npwp":
 					break;
+				case "x_bpjs_kesehatan":
+					break;
 				default:
 					$lookupFilter = "";
 					break;
@@ -1625,6 +1659,8 @@ class pegawai_delete extends pegawai
 						case "x_status_pekerjaan":
 							break;
 						case "x_status_npwp":
+							break;
+						case "x_bpjs_kesehatan":
 							break;
 					}
 					$ar[strval($row[0])] = $row;

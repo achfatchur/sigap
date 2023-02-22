@@ -60,6 +60,7 @@ class pegawai extends DbTable
 	public $kehadiran;
 	public $status_pekerjaan;
 	public $status_npwp;
+	public $bpjs_kesehatan;
 
 	// Constructor
 	public function __construct()
@@ -150,7 +151,7 @@ class pegawai extends DbTable
 		$this->fields['periode_jabatan'] = &$this->periode_jabatan;
 
 		// jjm
-		$this->jjm = new DbField('pegawai', 'pegawai', 'x_jjm', 'jjm', '`jjm`', '`jjm`', 3, 10, -1, FALSE, '`jjm`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->jjm = new DbField('pegawai', 'pegawai', 'x_jjm', 'jjm', '`jjm`', '`jjm`', 3, 11, -1, FALSE, '`jjm`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->jjm->Sortable = TRUE; // Allow sort
 		$this->jjm->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['jjm'] = &$this->jjm;
@@ -322,6 +323,15 @@ class pegawai extends DbTable
 		$this->status_npwp->Lookup = new Lookup('status_npwp', 'status_npwp', FALSE, 'id', ["name","","",""], [], [], [], [], [], [], '', '');
 		$this->status_npwp->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['status_npwp'] = &$this->status_npwp;
+
+		// bpjs_kesehatan
+		$this->bpjs_kesehatan = new DbField('pegawai', 'pegawai', 'x_bpjs_kesehatan', 'bpjs_kesehatan', '`bpjs_kesehatan`', '`bpjs_kesehatan`', 3, 11, -1, FALSE, '`bpjs_kesehatan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->bpjs_kesehatan->Sortable = TRUE; // Allow sort
+		$this->bpjs_kesehatan->UsePleaseSelect = TRUE; // Use PleaseSelect by default
+		$this->bpjs_kesehatan->PleaseSelectText = $Language->phrase("PleaseSelect"); // "PleaseSelect" text
+		$this->bpjs_kesehatan->Lookup = new Lookup('bpjs_kesehatan', 'm_bpjs', FALSE, 'id', ["golongan","","",""], [], [], [], [], [], [], '', '');
+		$this->bpjs_kesehatan->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['bpjs_kesehatan'] = &$this->bpjs_kesehatan;
 	}
 
 	// Field Visibility
@@ -719,6 +729,7 @@ class pegawai extends DbTable
 		$this->kehadiran->DbValue = $row['kehadiran'];
 		$this->status_pekerjaan->DbValue = $row['status_pekerjaan'];
 		$this->status_npwp->DbValue = $row['status_npwp'];
+		$this->bpjs_kesehatan->DbValue = $row['bpjs_kesehatan'];
 	}
 
 	// Delete uploaded files
@@ -994,6 +1005,7 @@ class pegawai extends DbTable
 		$this->kehadiran->setDbValue($rs->fields('kehadiran'));
 		$this->status_pekerjaan->setDbValue($rs->fields('status_pekerjaan'));
 		$this->status_npwp->setDbValue($rs->fields('status_npwp'));
+		$this->bpjs_kesehatan->setDbValue($rs->fields('bpjs_kesehatan'));
 	}
 
 	// Render list row values
@@ -1040,6 +1052,7 @@ class pegawai extends DbTable
 		// kehadiran
 		// status_pekerjaan
 		// status_npwp
+		// bpjs_kesehatan
 		// id
 
 		$this->id->ViewValue = $this->id->CurrentValue;
@@ -1417,6 +1430,28 @@ class pegawai extends DbTable
 		}
 		$this->status_npwp->ViewCustomAttributes = "";
 
+		// bpjs_kesehatan
+		$curVal = strval($this->bpjs_kesehatan->CurrentValue);
+		if ($curVal != "") {
+			$this->bpjs_kesehatan->ViewValue = $this->bpjs_kesehatan->lookupCacheOption($curVal);
+			if ($this->bpjs_kesehatan->ViewValue === NULL) { // Lookup from database
+				$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+				$sqlWrk = $this->bpjs_kesehatan->Lookup->getSql(FALSE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				if ($rswrk && !$rswrk->EOF) { // Lookup values found
+					$arwrk = [];
+					$arwrk[1] = $rswrk->fields('df');
+					$this->bpjs_kesehatan->ViewValue = $this->bpjs_kesehatan->displayValue($arwrk);
+					$rswrk->Close();
+				} else {
+					$this->bpjs_kesehatan->ViewValue = $this->bpjs_kesehatan->CurrentValue;
+				}
+			}
+		} else {
+			$this->bpjs_kesehatan->ViewValue = NULL;
+		}
+		$this->bpjs_kesehatan->ViewCustomAttributes = "";
+
 		// id
 		$this->id->LinkCustomAttributes = "";
 		$this->id->HrefValue = "";
@@ -1593,6 +1628,11 @@ class pegawai extends DbTable
 		$this->status_npwp->LinkCustomAttributes = "";
 		$this->status_npwp->HrefValue = "";
 		$this->status_npwp->TooltipValue = "";
+
+		// bpjs_kesehatan
+		$this->bpjs_kesehatan->LinkCustomAttributes = "";
+		$this->bpjs_kesehatan->HrefValue = "";
+		$this->bpjs_kesehatan->TooltipValue = "";
 
 		// Call Row Rendered event
 		$this->Row_Rendered();
@@ -1834,6 +1874,10 @@ class pegawai extends DbTable
 		$this->status_npwp->EditAttrs["class"] = "form-control";
 		$this->status_npwp->EditCustomAttributes = "";
 
+		// bpjs_kesehatan
+		$this->bpjs_kesehatan->EditAttrs["class"] = "form-control";
+		$this->bpjs_kesehatan->EditCustomAttributes = "";
+
 		// Call Row Rendered event
 		$this->Row_Rendered();
 	}
@@ -1898,6 +1942,7 @@ class pegawai extends DbTable
 					$doc->exportCaption($this->kehadiran);
 					$doc->exportCaption($this->status_pekerjaan);
 					$doc->exportCaption($this->status_npwp);
+					$doc->exportCaption($this->bpjs_kesehatan);
 				} else {
 					$doc->exportCaption($this->id);
 					$doc->exportCaption($this->pid);
@@ -1934,6 +1979,7 @@ class pegawai extends DbTable
 					$doc->exportCaption($this->kehadiran);
 					$doc->exportCaption($this->status_pekerjaan);
 					$doc->exportCaption($this->status_npwp);
+					$doc->exportCaption($this->bpjs_kesehatan);
 				}
 				$doc->endExportRow();
 			}
@@ -2000,6 +2046,7 @@ class pegawai extends DbTable
 						$doc->exportField($this->kehadiran);
 						$doc->exportField($this->status_pekerjaan);
 						$doc->exportField($this->status_npwp);
+						$doc->exportField($this->bpjs_kesehatan);
 					} else {
 						$doc->exportField($this->id);
 						$doc->exportField($this->pid);
@@ -2036,6 +2083,7 @@ class pegawai extends DbTable
 						$doc->exportField($this->kehadiran);
 						$doc->exportField($this->status_pekerjaan);
 						$doc->exportField($this->status_npwp);
+						$doc->exportField($this->bpjs_kesehatan);
 					}
 					$doc->endExportRow($rowCnt);
 				}
@@ -2163,11 +2211,9 @@ class pegawai extends DbTable
 	function Recordset_Selecting(&$filter) {
 
 		// Enter your code here
-				if(CurrentUserLevel() != '-1' && CurrentUserLevel() != '3'){
-				$nip = CurrentUserInfo("jenjang_id");
-				if($nip != '' OR $nip != FALSE) {
-					AddFilter($filter, "jenjang_id = $nip");
-				}
+			$nip = CurrentUserInfo("jenjang_id");
+			if ($fld->Name == "bpjs_kesehatan") { //custom field table_x lookup table_y
+				AddFilter ($filter, "jenjang = '$nip'");
 				}
 	}
 
@@ -2300,6 +2346,16 @@ class pegawai extends DbTable
 		//var_dump($fld->Name, $fld->Lookup, $filter); // Uncomment to view the filter
 		// Enter your code here
 
+	   if(CurrentUserLevel() != '-1'){
+				$nip = CurrentUserInfo("jenjang_id");
+				if ($fld->Name == "bpjs_kesehatan") { //custom field table_x lookup table_y
+					AddFilter ($filter, "jenjang = '$nip'");
+			  }
+				  $nip = CurrentUserInfo("jenjang_id");
+				if ($fld->Name == "jabatan") { //custom field table_x lookup table_y
+					AddFilter ($filter, "jenjang = '$nip'");
+			}     
+		   }
 	}
 
 	// Row Rendering event

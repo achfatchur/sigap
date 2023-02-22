@@ -1138,7 +1138,11 @@ class generate_pertahun extends DbTable
 				}
 				//print_r($fase1);
 				//die;
-				$penyesuaian =$value_pensiun + $value_hari_tua + $pph21 +($absen_tidak * $absen["absen"]) + ($absen_tidak * $absen["izin"]) + ($sakit * $absen["sakit"]) + ($telambat * $absen["terlambat"]) + ($pulang_cepat * $absen['pulang_cepat']);
+				$bpjs = ExecuteScalar("select value from m_bpjs where id='".$query["bpjs_kesehatan"]."'");
+				//print_r($bpjs);
+				//die;
+				$solve_bpjs = 1 * $bpjs;
+				$penyesuaian = $solve_bpjs + $value_pensiun + $value_hari_tua + $pph21 +($absen_tidak * $absen["absen"]) + ($absen_tidak * $absen["izin"]) + ($sakit * $absen["sakit"]) + ($telambat * $absen["terlambat"]) + ($pulang_cepat * $absen['pulang_cepat']);
 				$tambahan = ($piket["value"] * $absen["piket"]) +  ($lembur * $absen["lembur"]);
 				$inval2 = ($inval * $absen["inval"]) ;
 				$sub_total = $tunjangan_jabatan['value'] + ($gaji_pokok["value"] * $query["jjm"]) + ($kehadiran["value"]* $query["jjm"]) + $tunjangan_berkala["value"] + $tunjanagan_tambahan["value"] + ($absen["lembur"] * $lembur) + ($absen["piket"] * $piket["value"]) + $inval2 + $reward;
@@ -1152,6 +1156,7 @@ class generate_pertahun extends DbTable
 					$tgs_tmbhn = 1 * $query["tambahan"];
 					$solve_periode = 1 * $query["periode_jabatan"];
 					$solve_value_per = 1 * $tunjangan_berkala["value"];
+					
 
 				//	print_r($tunjangan_berkala);
 				//	die;
@@ -1165,10 +1170,11 @@ class generate_pertahun extends DbTable
 					$v_kehadiran = 1 * $kehadiran["value"];
 					$solved_npwp = 1* $query["status_npwp"];
 
+
 					//print_r($solved);
 					//die;
 
-					//$myquery = "INSERT INTO gaji_sma VALUES (NULL,'".$query["nip"]."','".date('Y-m-d H:i:s')."','".date('Y-m-d')."','".$c_lembur."','".$v_lembur."','".$query["jabatan"]."','".$gaji_pokok["value"]."','".$total."','".$reward."','".$inval2."','".$piket_new."','".$v_piket."','".$solved."','".$tj_jbtn."','".$v_jjm."','".$sub_total."','".$penyesuaian."','".$query["jenjang_id"]."','".$tambahan."','".$pid."','".$v_jjm."','".$query["type"]."','".$sertif."','".$tgs_tmbhn."','".$v_kehadiran."','".$solve_periode."','".$solve_value_per."','".$komponen_gapok."','".$lm_kerja."', NULL, '".$tahun."','".$bulan."', NULL,'".$v_voucher."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solved_npwp."')";
+					$myquery = "INSERT INTO gaji_sma VALUES (NULL,'".$query["nip"]."','".date('Y-m-d H:i:s')."','".date('Y-m-d')."','".$c_lembur."','".$v_lembur."','".$query["jabatan"]."','".$gaji_pokok["value"]."','".$total."','".$reward."','".$inval2."','".$piket_new."','".$v_piket."','".$solved."','".$tj_jbtn."','".$v_jjm."','".$sub_total."','".$penyesuaian."','".$query["jenjang_id"]."','".$tambahan."','".$pid."','".$v_jjm."','".$query["type"]."','".$sertif."','".$tgs_tmbhn."','".$v_kehadiran."','".$solve_periode."','".$solve_value_per."','".$komponen_gapok."','".$lm_kerja."', NULL, '".$tahun."','".$bulan."', NULL,'".$v_voucher."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solved_npwp."','".$solve_bpjs."')";
 
 				//print_r($myquery);
 				//die;
@@ -1176,7 +1182,7 @@ class generate_pertahun extends DbTable
 				//print_r($myquery);
 				//die;
 
-				//$myResult = Execute($myquery);
+				$myResult = Execute($myquery);
 				}
 
 			//}elseif($this->profesi->CurrentValue == '2'){
@@ -1242,7 +1248,15 @@ class generate_pertahun extends DbTable
 					//$fase2 = $fase1 ;
 					$pph21 = $fase1 * $komponen_pph21["value3"];
 				}
-				$penyesuaian = $value_hari_tua + $value_pensiun + $pph21 + ($absen_tidak * $absen["absen"]) + ($absen_tidak * $absen["izin"]) + ($sakit * $absen["sakit"]) + ($terlambat * $absen["terlambat"]) + ($pulang_cepat * $absen['pulang_cepat']);
+
+				//bpjs kesehatan 
+
+				$bpjs = ExecuteScalar("select value from m_bpjs where id='".$query["bpjs_kesehatan"]."'");
+				//print_r($bpjs);
+				//die;
+				$solve_bpjs = 1 * $bpjs;
+
+				$penyesuaian = $solve_bpjs + $value_hari_tua + $value_pensiun + $pph21 + ($absen_tidak * $absen["absen"]) + ($absen_tidak * $absen["izin"]) + ($sakit * $absen["sakit"]) + ($terlambat * $absen["terlambat"]) + ($pulang_cepat * $absen['pulang_cepat']);
 				$tambahan_value = ($piket["value"] * $absen["piket"]) +  ($lembur * $absen["lembur"]);
 
 				$hadir =1*$query["kehadiran"];
@@ -1266,7 +1280,7 @@ class generate_pertahun extends DbTable
 				//die;	
 
 				
-				$myquery2 = "INSERT INTO gaji_tu_sma VALUES (NULL,NULL,'".$query["nip"]."','".$query["jenjang_id"]."','".$query["jabatan"]."',NULL,'".$komponen_gapok."','".$hadir	."','".$c_lembur."','".$lembur."','".$reward."','".$inval2."','".$c_piket."','".$piket["value"]."','".$solved."','".$tj_jbtn."','".$penyesuaian."','".$sub_total."','".$tambahan_value."','".$total."','".$pid."','".$khusus."','".$tambahan."','2','".$pendidikan."','".$lm_kerja."','".$sertif."','".$kehadiran["value"]."','".$tahun."','".$bulan."','".$v_voucher."',NULL,NULL,'".$value_pensiun."','".$value_hari_tua."','".$pph21."')";
+				$myquery2 = "INSERT INTO gaji_tu_sma VALUES (NULL,NULL,'".$query["nip"]."','".$query["jenjang_id"]."','".$query["jabatan"]."',NULL,'".$komponen_gapok."','".$hadir	."','".$c_lembur."','".$lembur."','".$reward."','".$inval2."','".$c_piket."','".$piket["value"]."','".$solved."','".$tj_jbtn."','".$penyesuaian."','".$sub_total."','".$tambahan_value."','".$total."','".$pid."','".$khusus."','".$tambahan."','2','".$pendidikan."','".$lm_kerja."','".$sertif."','".$kehadiran["value"]."','".$tahun."','".$bulan."','".$v_voucher."',NULL,NULL,'".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_bpjs."')";
 
 					//print_r($myquery2);
 					//die;
@@ -1322,7 +1336,12 @@ class generate_pertahun extends DbTable
 					//$fase2 = $fase1 ;
 					$pph21 = $fase1 * $komponen_pph21["value3"];
 				}
-				$penyesuaian = $pph21 + $value_hari_tua + $value_pensiun + ($absen_tidak * $absen["absen"]) + ($absen_tidak * $absen["izin"]) + ($sakit * $absen["sakit"]) + ($terlambat * $absen["terlambat"]) + ($pulang_cepat * $absen['pulang_cepat']);
+				//komponen bpjs
+				$bpjs = ExecuteScalar("select value from m_bpjs where id='".$query["bpjs_kesehatan"]."'");
+				//print_r($bpjs);
+				//die;
+				$solve_bpjs = 1 * $bpjs;
+				$penyesuaian = $solve_bpjs + $pph21 + $value_hari_tua + $value_pensiun + ($absen_tidak * $absen["absen"]) + ($absen_tidak * $absen["izin"]) + ($sakit * $absen["sakit"]) + ($terlambat * $absen["terlambat"]) + ($pulang_cepat * $absen['pulang_cepat']);
 				$tambahan	= ($piket["value"] * $absen["piket"]) + ($lembur * $absen["lembur"]);
 
 				$v_gapok = 1 * $gaji_pokok["value"];
@@ -1338,7 +1357,7 @@ class generate_pertahun extends DbTable
 				//print_r($v_kehadiran);
 				//die;
 
-				$myquery2 = "INSERT INTO gaji_karyawan_sma VALUES (NULL, '".$query["nip"]."','".$query["jabatan"]."','4','".$komponen_gapok."',NULL,'".$inval2."','".$c_jjm."','".$sub_total."','".$penyesuaian."','".$tambahan."','".$total."','".$pid."','".$v_kehadiran."',NULL,'".$tahun."', '".$bulan."','".$v_voucher."',NULL,'".$value_pensiun."','".$value_hari_tua."','".$pph21."')";
+				$myquery2 = "INSERT INTO gaji_karyawan_sma VALUES (NULL, '".$query["nip"]."','".$query["jabatan"]."','4','".$komponen_gapok."',NULL,'".$inval2."','".$c_jjm."','".$sub_total."','".$penyesuaian."','".$tambahan."','".$total."','".$pid."','".$v_kehadiran."',NULL,'".$tahun."', '".$bulan."','".$v_voucher."',NULL,'".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_bpjs."')";
 
 				//print_r($myquery2);
 				//die;

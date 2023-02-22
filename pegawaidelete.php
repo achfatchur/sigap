@@ -169,6 +169,9 @@ $pegawai_delete->showMessage();
 <?php if ($pegawai_delete->status_npwp->Visible) { // status_npwp ?>
 		<th class="<?php echo $pegawai_delete->status_npwp->headerCellClass() ?>"><span id="elh_pegawai_status_npwp" class="pegawai_status_npwp"><?php echo $pegawai_delete->status_npwp->caption() ?></span></th>
 <?php } ?>
+<?php if ($pegawai_delete->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+		<th class="<?php echo $pegawai_delete->bpjs_kesehatan->headerCellClass() ?>"><span id="elh_pegawai_bpjs_kesehatan" class="pegawai_bpjs_kesehatan"><?php echo $pegawai_delete->bpjs_kesehatan->caption() ?></span></th>
+<?php } ?>
 	</tr>
 	</thead>
 	<tbody>
@@ -418,6 +421,13 @@ while (!$pegawai_delete->Recordset->EOF) {
 		<td <?php echo $pegawai_delete->status_npwp->cellAttributes() ?>>
 <span id="el<?php echo $pegawai_delete->RowCount ?>_pegawai_status_npwp" class="pegawai_status_npwp">
 <span<?php echo $pegawai_delete->status_npwp->viewAttributes() ?>><?php echo $pegawai_delete->status_npwp->getViewValue() ?></span>
+</span>
+</td>
+<?php } ?>
+<?php if ($pegawai_delete->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+		<td <?php echo $pegawai_delete->bpjs_kesehatan->cellAttributes() ?>>
+<span id="el<?php echo $pegawai_delete->RowCount ?>_pegawai_bpjs_kesehatan" class="pegawai_bpjs_kesehatan">
+<span<?php echo $pegawai_delete->bpjs_kesehatan->viewAttributes() ?>><?php echo $pegawai_delete->bpjs_kesehatan->getViewValue() ?></span>
 </span>
 </td>
 <?php } ?>
