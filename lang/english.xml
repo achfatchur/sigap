@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ew-language date="2023/2/21" version="16.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
+<ew-language date="2023/2/22" version="16.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
   <!--
 	*** Important Notes:
 	1. Language ID should follow: https://developers.google.com/recaptcha/docs/language,
@@ -1036,6 +1036,9 @@
     <menu id="1624">
       <phrase id="menutext" value="Laporan Gaji" />
     </menu>
+    <menu id="1633">
+      <phrase id="menutext" value="Laporan Pajak" />
+    </menu>
     <menu id="163">
       <phrase id="menutext" value="Detail Gaji Lengkap(TK)" />
     </menu>
@@ -1513,11 +1516,26 @@
     <menu id="1129">
       <phrase id="menutext" value="Semester" />
     </menu>
+    <menu id="1629">
+      <phrase id="menutext" value="M Iuran Hari Tua" />
+    </menu>
     <menu id="1128">
       <phrase id="menutext" value="Table Semeter" />
     </menu>
+    <menu id="1628">
+      <phrase id="menutext" value="Status NPWP" />
+    </menu>
     <menu id="282">
       <phrase id="menutext" value="Master BPJS" />
+    </menu>
+    <menu id="1632">
+      <phrase id="menutext" value="M PPH21" />
+    </menu>
+    <menu id="1630">
+      <phrase id="menutext" value="M Jaminan Pensiun" />
+    </menu>
+    <menu id="1631">
+      <phrase id="menutext" value="Status Pekerjaan" />
     </menu>
     <menu id="119">
       <phrase id="menutext" value="Keperluan Pegawai" />
@@ -2043,6 +2061,15 @@
       <field id="sub_total">
         <phrase id="fldcaption" value="Sub Total" />
       </field>
+      <field id="jaminan_pensiun">
+        <phrase id="fldcaption" value="Jaminan Pensiun" />
+      </field>
+      <field id="jaminan_hari_tua">
+        <phrase id="fldcaption" value="Jaminan Hari Tua" />
+      </field>
+      <field id="total_pph21">
+        <phrase id="fldcaption" value="Total PPH21" />
+      </field>
       <field id="potongan">
         <phrase id="fldcaption" value="Potongan" />
       </field>
@@ -2379,23 +2406,35 @@
       <field id="sub_total">
         <phrase id="fldcaption" value="Sub Total" />
       </field>
-      <field id="potongan">
-        <phrase id="fldcaption" value="Potongan" />
-      </field>
       <field id="penyesuaian">
         <phrase id="fldcaption" value="Penyesuaian" />
       </field>
       <field id="potongan_bendahara">
         <phrase id="fldcaption" value="Potongan Bendahara" />
       </field>
+      <field id="jaminan_pensiun">
+        <phrase id="fldcaption" value="Jaminan Pensiun" />
+      </field>
+      <field id="jaminan_hari_tua">
+        <phrase id="fldcaption" value="Jaminan Hari Tua" />
+      </field>
+      <field id="total_pph21">
+        <phrase id="fldcaption" value="Total PPH 21" />
+      </field>
+      <field id="potongan">
+        <phrase id="fldcaption" value="Potongan" />
+      </field>
       <field id="total">
-        <phrase id="fldcaption" value="Total" />
+        <phrase id="fldcaption" value="Total Penghasilan" />
       </field>
       <field id="voucher">
         <phrase id="fldcaption" value="Voucher" />
       </field>
       <field id="status">
         <phrase id="fldcaption" value="Status" />
+      </field>
+      <field id="status_npwp">
+        <phrase id="fldcaption" value="status npwp" />
       </field>
     </table>
     <table id="gaji_smk">
@@ -2906,6 +2945,15 @@
       </field>
       <field id="sub_total">
         <phrase id="fldcaption" value="Sub Total" />
+      </field>
+      <field id="jaminan_pensiun">
+        <phrase id="fldcaption" value="Jaminan Pensiun" />
+      </field>
+      <field id="jaminan_hari_tua">
+        <phrase id="fldcaption" value="Jaminan Hari Tua" />
+      </field>
+      <field id="total_pph21">
+        <phrase id="fldcaption" value="Total PPH21" />
       </field>
       <field id="potongan">
         <phrase id="fldcaption" value="Potongan" />
@@ -4686,6 +4734,12 @@
       </field>
       <field id="kehadiran">
         <phrase id="fldcaption" value="kehadiran" />
+      </field>
+      <field id="status_pekerjaan">
+        <phrase id="fldcaption" value="Status Pekerjaan" />
+      </field>
+      <field id="status_npwp">
+        <phrase id="fldcaption" value="Status NPWP" />
       </field>
     </table>
     <table id="penempatan">
@@ -8764,6 +8818,69 @@
     </table>
     <table id="export_excel">
       <phrase id="tblcaption" value="export excel" />
+    </table>
+    <table id="status_npwp">
+      <phrase id="tblcaption" value="Status NPWP" />
+      <field id="id">
+        <phrase id="fldcaption" value="id" />
+      </field>
+      <field id="name">
+        <phrase id="fldcaption" value="Name" />
+      </field>
+    </table>
+    <table id="m_iuran_hari_tua">
+      <phrase id="tblcaption" value="M Iuran Hari Tua" />
+      <field id="id">
+        <phrase id="fldcaption" value="id" />
+      </field>
+      <field id="unit">
+        <phrase id="fldcaption" value="Unit" />
+      </field>
+      <field id="value">
+        <phrase id="fldcaption" value="Value" />
+      </field>
+    </table>
+    <table id="m_jaminan_pensiun">
+      <phrase id="tblcaption" value="M Jaminan Pensiun" />
+      <field id="id">
+        <phrase id="fldcaption" value="id" />
+      </field>
+      <field id="unit">
+        <phrase id="fldcaption" value="Unit" />
+      </field>
+      <field id="value">
+        <phrase id="fldcaption" value="Value" />
+      </field>
+    </table>
+    <table id="status_pekerjaan">
+      <phrase id="tblcaption" value="Status Pekerjaan" />
+      <field id="id">
+        <phrase id="fldcaption" value="id" />
+      </field>
+      <field id="name">
+        <phrase id="fldcaption" value="Name" />
+      </field>
+    </table>
+    <table id="m_pph21">
+      <phrase id="tblcaption" value="M PPH21" />
+      <field id="id">
+        <phrase id="fldcaption" value="id" />
+      </field>
+      <field id="unit">
+        <phrase id="fldcaption" value="Unit" />
+      </field>
+      <field id="value1">
+        <phrase id="fldcaption" value="Value 1" />
+      </field>
+      <field id="value2">
+        <phrase id="fldcaption" value="Value 2" />
+      </field>
+      <field id="value3">
+        <phrase id="fldcaption" value="Value 3" />
+      </field>
+    </table>
+    <table id="laporan_pajak_all">
+      <phrase id="tblcaption" value="Laporan Pajak" />
     </table>
   </project>
 </ew-language>

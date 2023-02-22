@@ -821,7 +821,7 @@ class set_password_list extends set_password
 		$this->id->Visible = FALSE;
 		$this->nip->setVisibility();
 		$this->nama->setVisibility();
-		$this->username->setVisibility();
+		$this->username->Visible = FALSE;
 		$this->password->setVisibility();
 		$this->hideFieldsForAddEdit();
 
@@ -1274,8 +1274,6 @@ class set_password_list extends set_password
 			return FALSE;
 		if ($CurrentForm->hasValue("x_nama") && $CurrentForm->hasValue("o_nama") && $this->nama->CurrentValue != $this->nama->OldValue)
 			return FALSE;
-		if ($CurrentForm->hasValue("x_username") && $CurrentForm->hasValue("o_username") && $this->username->CurrentValue != $this->username->OldValue)
-			return FALSE;
 		if ($CurrentForm->hasValue("x_password") && $CurrentForm->hasValue("o_password") && $this->password->CurrentValue != $this->password->OldValue)
 			return FALSE;
 		return TRUE;
@@ -1452,7 +1450,6 @@ class set_password_list extends set_password
 		$where = "";
 		$this->buildBasicSearchSql($where, $this->nip, $arKeywords, $type);
 		$this->buildBasicSearchSql($where, $this->nama, $arKeywords, $type);
-		$this->buildBasicSearchSql($where, $this->username, $arKeywords, $type);
 		$this->buildBasicSearchSql($where, $this->password, $arKeywords, $type);
 		return $where;
 	}
@@ -1614,7 +1611,6 @@ class set_password_list extends set_password
 			$this->CurrentOrderType = Get("ordertype", "");
 			$this->updateSort($this->nip); // nip
 			$this->updateSort($this->nama); // nama
-			$this->updateSort($this->username); // username
 			$this->updateSort($this->password); // password
 			$this->setStartRecordNumber(1); // Reset start position
 		}
@@ -1653,7 +1649,6 @@ class set_password_list extends set_password
 				$this->setSessionOrderBy($orderBy);
 				$this->nip->setSort("");
 				$this->nama->setSort("");
-				$this->username->setSort("");
 				$this->password->setSort("");
 			}
 
@@ -2069,15 +2064,6 @@ class set_password_list extends set_password
 				$this->nama->setFormValue($val);
 		}
 
-		// Check field name 'username' first before field var 'x_username'
-		$val = $CurrentForm->hasValue("username") ? $CurrentForm->getValue("username") : $CurrentForm->getValue("x_username");
-		if (!$this->username->IsDetailKey) {
-			if (IsApi() && $val == NULL)
-				$this->username->Visible = FALSE; // Disable update for API request
-			else
-				$this->username->setFormValue($val);
-		}
-
 		// Check field name 'password' first before field var 'x_password'
 		$val = $CurrentForm->hasValue("password") ? $CurrentForm->getValue("password") : $CurrentForm->getValue("x_password");
 		if (!$this->password->IsDetailKey) {
@@ -2101,7 +2087,6 @@ class set_password_list extends set_password
 			$this->id->CurrentValue = $this->id->FormValue;
 		$this->nip->CurrentValue = $this->nip->FormValue;
 		$this->nama->CurrentValue = $this->nama->FormValue;
-		$this->username->CurrentValue = $this->username->FormValue;
 		$this->password->CurrentValue = $this->password->FormValue;
 	}
 
@@ -2233,8 +2218,10 @@ class set_password_list extends set_password
 		// nip
 		// nama
 		// username
-		// password
 
+		$this->username->CellCssStyle = "white-space: nowrap;";
+
+		// password
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
 			// id
@@ -2249,10 +2236,6 @@ class set_password_list extends set_password
 			$this->nama->ViewValue = $this->nama->CurrentValue;
 			$this->nama->ViewCustomAttributes = "";
 
-			// username
-			$this->username->ViewValue = $this->username->CurrentValue;
-			$this->username->ViewCustomAttributes = "";
-
 			// password
 			$this->password->ViewValue = $this->password->CurrentValue;
 			$this->password->ViewCustomAttributes = "";
@@ -2266,11 +2249,6 @@ class set_password_list extends set_password
 			$this->nama->LinkCustomAttributes = "";
 			$this->nama->HrefValue = "";
 			$this->nama->TooltipValue = "";
-
-			// username
-			$this->username->LinkCustomAttributes = "";
-			$this->username->HrefValue = "";
-			$this->username->TooltipValue = "";
 
 			// password
 			$this->password->LinkCustomAttributes = "";
@@ -2294,14 +2272,6 @@ class set_password_list extends set_password
 			$this->nama->EditValue = HtmlEncode($this->nama->CurrentValue);
 			$this->nama->PlaceHolder = RemoveHtml($this->nama->caption());
 
-			// username
-			$this->username->EditAttrs["class"] = "form-control";
-			$this->username->EditCustomAttributes = "";
-			if (!$this->username->Raw)
-				$this->username->CurrentValue = HtmlDecode($this->username->CurrentValue);
-			$this->username->EditValue = HtmlEncode($this->username->CurrentValue);
-			$this->username->PlaceHolder = RemoveHtml($this->username->caption());
-
 			// password
 			$this->password->EditAttrs["class"] = "form-control";
 			$this->password->EditCustomAttributes = "";
@@ -2319,10 +2289,6 @@ class set_password_list extends set_password
 			// nama
 			$this->nama->LinkCustomAttributes = "";
 			$this->nama->HrefValue = "";
-
-			// username
-			$this->username->LinkCustomAttributes = "";
-			$this->username->HrefValue = "";
 
 			// password
 			$this->password->LinkCustomAttributes = "";
@@ -2345,14 +2311,6 @@ class set_password_list extends set_password
 			$this->nama->EditValue = HtmlEncode($this->nama->CurrentValue);
 			$this->nama->PlaceHolder = RemoveHtml($this->nama->caption());
 
-			// username
-			$this->username->EditAttrs["class"] = "form-control";
-			$this->username->EditCustomAttributes = "";
-			if (!$this->username->Raw)
-				$this->username->CurrentValue = HtmlDecode($this->username->CurrentValue);
-			$this->username->EditValue = HtmlEncode($this->username->CurrentValue);
-			$this->username->PlaceHolder = RemoveHtml($this->username->caption());
-
 			// password
 			$this->password->EditAttrs["class"] = "form-control";
 			$this->password->EditCustomAttributes = "";
@@ -2370,10 +2328,6 @@ class set_password_list extends set_password
 			// nama
 			$this->nama->LinkCustomAttributes = "";
 			$this->nama->HrefValue = "";
-
-			// username
-			$this->username->LinkCustomAttributes = "";
-			$this->username->HrefValue = "";
 
 			// password
 			$this->password->LinkCustomAttributes = "";
@@ -2406,11 +2360,6 @@ class set_password_list extends set_password
 		if ($this->nama->Required) {
 			if (!$this->nama->IsDetailKey && $this->nama->FormValue != NULL && $this->nama->FormValue == "") {
 				AddMessage($FormError, str_replace("%s", $this->nama->caption(), $this->nama->RequiredErrorMessage));
-			}
-		}
-		if ($this->username->Required) {
-			if (!$this->username->IsDetailKey && $this->username->FormValue != NULL && $this->username->FormValue == "") {
-				AddMessage($FormError, str_replace("%s", $this->username->caption(), $this->username->RequiredErrorMessage));
 			}
 		}
 		if ($this->password->Required) {
@@ -2545,9 +2494,6 @@ class set_password_list extends set_password
 			// nama
 			$this->nama->setDbValueDef($rsnew, $this->nama->CurrentValue, NULL, $this->nama->ReadOnly);
 
-			// username
-			$this->username->setDbValueDef($rsnew, $this->username->CurrentValue, NULL, $this->username->ReadOnly);
-
 			// password
 			$this->password->setDbValueDef($rsnew, $this->password->CurrentValue, NULL, $this->password->ReadOnly);
 
@@ -2629,7 +2575,6 @@ class set_password_list extends set_password
 		$hash = "";
 		$hash .= GetFieldHash($rs->fields('nip')); // nip
 		$hash .= GetFieldHash($rs->fields('nama')); // nama
-		$hash .= GetFieldHash($rs->fields('username')); // username
 		$hash .= GetFieldHash($rs->fields('password')); // password
 		return md5($hash);
 	}
@@ -2651,9 +2596,6 @@ class set_password_list extends set_password
 
 		// nama
 		$this->nama->setDbValueDef($rsnew, $this->nama->CurrentValue, NULL, FALSE);
-
-		// username
-		$this->username->setDbValueDef($rsnew, $this->username->CurrentValue, NULL, FALSE);
 
 		// password
 		$this->password->setDbValueDef($rsnew, $this->password->CurrentValue, NULL, FALSE);

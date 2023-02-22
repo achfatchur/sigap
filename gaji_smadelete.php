@@ -76,11 +76,11 @@ $gaji_sma_delete->showMessage();
 <?php if ($gaji_sma_delete->sub_total->Visible) { // sub_total ?>
 		<th class="<?php echo $gaji_sma_delete->sub_total->headerCellClass() ?>"><span id="elh_gaji_sma_sub_total" class="gaji_sma_sub_total"><?php echo $gaji_sma_delete->sub_total->caption() ?></span></th>
 <?php } ?>
-<?php if ($gaji_sma_delete->potongan->Visible) { // potongan ?>
-		<th class="<?php echo $gaji_sma_delete->potongan->headerCellClass() ?>"><span id="elh_gaji_sma_potongan" class="gaji_sma_potongan"><?php echo $gaji_sma_delete->potongan->caption() ?></span></th>
-<?php } ?>
 <?php if ($gaji_sma_delete->penyesuaian->Visible) { // penyesuaian ?>
 		<th class="<?php echo $gaji_sma_delete->penyesuaian->headerCellClass() ?>"><span id="elh_gaji_sma_penyesuaian" class="gaji_sma_penyesuaian"><?php echo $gaji_sma_delete->penyesuaian->caption() ?></span></th>
+<?php } ?>
+<?php if ($gaji_sma_delete->potongan->Visible) { // potongan ?>
+		<th class="<?php echo $gaji_sma_delete->potongan->headerCellClass() ?>"><span id="elh_gaji_sma_potongan" class="gaji_sma_potongan"><?php echo $gaji_sma_delete->potongan->caption() ?></span></th>
 <?php } ?>
 <?php if ($gaji_sma_delete->total->Visible) { // total ?>
 		<th class="<?php echo $gaji_sma_delete->total->headerCellClass() ?>"><span id="elh_gaji_sma_total" class="gaji_sma_total"><?php echo $gaji_sma_delete->total->caption() ?></span></th>
@@ -123,17 +123,17 @@ while (!$gaji_sma_delete->Recordset->EOF) {
 </span>
 </td>
 <?php } ?>
-<?php if ($gaji_sma_delete->potongan->Visible) { // potongan ?>
-		<td <?php echo $gaji_sma_delete->potongan->cellAttributes() ?>>
-<span id="el<?php echo $gaji_sma_delete->RowCount ?>_gaji_sma_potongan" class="gaji_sma_potongan">
-<span<?php echo $gaji_sma_delete->potongan->viewAttributes() ?>><?php echo $gaji_sma_delete->potongan->getViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
 <?php if ($gaji_sma_delete->penyesuaian->Visible) { // penyesuaian ?>
 		<td <?php echo $gaji_sma_delete->penyesuaian->cellAttributes() ?>>
 <span id="el<?php echo $gaji_sma_delete->RowCount ?>_gaji_sma_penyesuaian" class="gaji_sma_penyesuaian">
 <span<?php echo $gaji_sma_delete->penyesuaian->viewAttributes() ?>><?php echo $gaji_sma_delete->penyesuaian->getViewValue() ?></span>
+</span>
+</td>
+<?php } ?>
+<?php if ($gaji_sma_delete->potongan->Visible) { // potongan ?>
+		<td <?php echo $gaji_sma_delete->potongan->cellAttributes() ?>>
+<span id="el<?php echo $gaji_sma_delete->RowCount ?>_gaji_sma_potongan" class="gaji_sma_potongan">
+<span<?php echo $gaji_sma_delete->potongan->viewAttributes() ?>><?php echo $gaji_sma_delete->potongan->getViewValue() ?></span>
 </span>
 </td>
 <?php } ?>

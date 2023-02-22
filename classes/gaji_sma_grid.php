@@ -749,12 +749,16 @@ class gaji_sma_grid extends gaji_sma
 		$this->tugastambahan->Visible = FALSE;
 		$this->tj_jabatan->Visible = FALSE;
 		$this->sub_total->setVisibility();
-		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
 		$this->potongan_bendahara->Visible = FALSE;
+		$this->jaminan_pensiun->Visible = FALSE;
+		$this->jaminan_hari_tua->Visible = FALSE;
+		$this->total_pph21->Visible = FALSE;
+		$this->potongan->setVisibility();
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
 		$this->status->Visible = FALSE;
+		$this->status_npwp->Visible = FALSE;
 		$this->hideFieldsForAddEdit();
 
 		// Global Page Loading event (in userfn*.php)
@@ -786,6 +790,7 @@ class gaji_sma_grid extends gaji_sma
 		$this->setupLookupOptions($this->type);
 		$this->setupLookupOptions($this->jenis_guru);
 		$this->setupLookupOptions($this->tambahan);
+		$this->setupLookupOptions($this->status_npwp);
 
 		// Search filters
 		$srchAdvanced = ""; // Advanced search filter
@@ -1199,9 +1204,9 @@ class gaji_sma_grid extends gaji_sma
 			return FALSE;
 		if ($CurrentForm->hasValue("x_sub_total") && $CurrentForm->hasValue("o_sub_total") && $this->sub_total->CurrentValue != $this->sub_total->OldValue)
 			return FALSE;
-		if ($CurrentForm->hasValue("x_potongan") && $CurrentForm->hasValue("o_potongan") && $this->potongan->CurrentValue != $this->potongan->OldValue)
-			return FALSE;
 		if ($CurrentForm->hasValue("x_penyesuaian") && $CurrentForm->hasValue("o_penyesuaian") && $this->penyesuaian->CurrentValue != $this->penyesuaian->OldValue)
+			return FALSE;
+		if ($CurrentForm->hasValue("x_potongan") && $CurrentForm->hasValue("o_potongan") && $this->potongan->CurrentValue != $this->potongan->OldValue)
 			return FALSE;
 		if ($CurrentForm->hasValue("x_total") && $CurrentForm->hasValue("o_total") && $this->total->CurrentValue != $this->total->OldValue)
 			return FALSE;
@@ -1581,18 +1586,26 @@ class gaji_sma_grid extends gaji_sma
 		$this->tj_jabatan->OldValue = $this->tj_jabatan->CurrentValue;
 		$this->sub_total->CurrentValue = NULL;
 		$this->sub_total->OldValue = $this->sub_total->CurrentValue;
-		$this->potongan->CurrentValue = NULL;
-		$this->potongan->OldValue = $this->potongan->CurrentValue;
 		$this->penyesuaian->CurrentValue = NULL;
 		$this->penyesuaian->OldValue = $this->penyesuaian->CurrentValue;
 		$this->potongan_bendahara->CurrentValue = NULL;
 		$this->potongan_bendahara->OldValue = $this->potongan_bendahara->CurrentValue;
+		$this->jaminan_pensiun->CurrentValue = NULL;
+		$this->jaminan_pensiun->OldValue = $this->jaminan_pensiun->CurrentValue;
+		$this->jaminan_hari_tua->CurrentValue = NULL;
+		$this->jaminan_hari_tua->OldValue = $this->jaminan_hari_tua->CurrentValue;
+		$this->total_pph21->CurrentValue = NULL;
+		$this->total_pph21->OldValue = $this->total_pph21->CurrentValue;
+		$this->potongan->CurrentValue = NULL;
+		$this->potongan->OldValue = $this->potongan->CurrentValue;
 		$this->total->CurrentValue = NULL;
 		$this->total->OldValue = $this->total->CurrentValue;
 		$this->voucher->CurrentValue = NULL;
 		$this->voucher->OldValue = $this->voucher->CurrentValue;
 		$this->status->CurrentValue = NULL;
 		$this->status->OldValue = $this->status->CurrentValue;
+		$this->status_npwp->CurrentValue = NULL;
+		$this->status_npwp->OldValue = $this->status_npwp->CurrentValue;
 	}
 
 	// Load form values
@@ -1625,17 +1638,6 @@ class gaji_sma_grid extends gaji_sma
 		if ($CurrentForm->hasValue("o_sub_total"))
 			$this->sub_total->setOldValue($CurrentForm->getValue("o_sub_total"));
 
-		// Check field name 'potongan' first before field var 'x_potongan'
-		$val = $CurrentForm->hasValue("potongan") ? $CurrentForm->getValue("potongan") : $CurrentForm->getValue("x_potongan");
-		if (!$this->potongan->IsDetailKey) {
-			if (IsApi() && $val == NULL)
-				$this->potongan->Visible = FALSE; // Disable update for API request
-			else
-				$this->potongan->setFormValue($val);
-		}
-		if ($CurrentForm->hasValue("o_potongan"))
-			$this->potongan->setOldValue($CurrentForm->getValue("o_potongan"));
-
 		// Check field name 'penyesuaian' first before field var 'x_penyesuaian'
 		$val = $CurrentForm->hasValue("penyesuaian") ? $CurrentForm->getValue("penyesuaian") : $CurrentForm->getValue("x_penyesuaian");
 		if (!$this->penyesuaian->IsDetailKey) {
@@ -1646,6 +1648,17 @@ class gaji_sma_grid extends gaji_sma
 		}
 		if ($CurrentForm->hasValue("o_penyesuaian"))
 			$this->penyesuaian->setOldValue($CurrentForm->getValue("o_penyesuaian"));
+
+		// Check field name 'potongan' first before field var 'x_potongan'
+		$val = $CurrentForm->hasValue("potongan") ? $CurrentForm->getValue("potongan") : $CurrentForm->getValue("x_potongan");
+		if (!$this->potongan->IsDetailKey) {
+			if (IsApi() && $val == NULL)
+				$this->potongan->Visible = FALSE; // Disable update for API request
+			else
+				$this->potongan->setFormValue($val);
+		}
+		if ($CurrentForm->hasValue("o_potongan"))
+			$this->potongan->setOldValue($CurrentForm->getValue("o_potongan"));
 
 		// Check field name 'total' first before field var 'x_total'
 		$val = $CurrentForm->hasValue("total") ? $CurrentForm->getValue("total") : $CurrentForm->getValue("x_total");
@@ -1683,8 +1696,8 @@ class gaji_sma_grid extends gaji_sma
 			$this->id->CurrentValue = $this->id->FormValue;
 		$this->pegawai->CurrentValue = $this->pegawai->FormValue;
 		$this->sub_total->CurrentValue = $this->sub_total->FormValue;
-		$this->potongan->CurrentValue = $this->potongan->FormValue;
 		$this->penyesuaian->CurrentValue = $this->penyesuaian->FormValue;
+		$this->potongan->CurrentValue = $this->potongan->FormValue;
 		$this->total->CurrentValue = $this->total->FormValue;
 		$this->voucher->CurrentValue = $this->voucher->FormValue;
 	}
@@ -1780,12 +1793,16 @@ class gaji_sma_grid extends gaji_sma
 		$this->tugastambahan->setDbValue($row['tugastambahan']);
 		$this->tj_jabatan->setDbValue($row['tj_jabatan']);
 		$this->sub_total->setDbValue($row['sub_total']);
-		$this->potongan->setDbValue($row['potongan']);
 		$this->penyesuaian->setDbValue($row['penyesuaian']);
 		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
+		$this->jaminan_pensiun->setDbValue($row['jaminan_pensiun']);
+		$this->jaminan_hari_tua->setDbValue($row['jaminan_hari_tua']);
+		$this->total_pph21->setDbValue($row['total_pph21']);
+		$this->potongan->setDbValue($row['potongan']);
 		$this->total->setDbValue($row['total']);
 		$this->voucher->setDbValue($row['voucher']);
 		$this->status->setDbValue($row['status']);
+		$this->status_npwp->setDbValue($row['status_npwp']);
 	}
 
 	// Return a row with default values
@@ -1822,12 +1839,16 @@ class gaji_sma_grid extends gaji_sma
 		$row['tugastambahan'] = $this->tugastambahan->CurrentValue;
 		$row['tj_jabatan'] = $this->tj_jabatan->CurrentValue;
 		$row['sub_total'] = $this->sub_total->CurrentValue;
-		$row['potongan'] = $this->potongan->CurrentValue;
 		$row['penyesuaian'] = $this->penyesuaian->CurrentValue;
 		$row['potongan_bendahara'] = $this->potongan_bendahara->CurrentValue;
+		$row['jaminan_pensiun'] = $this->jaminan_pensiun->CurrentValue;
+		$row['jaminan_hari_tua'] = $this->jaminan_hari_tua->CurrentValue;
+		$row['total_pph21'] = $this->total_pph21->CurrentValue;
+		$row['potongan'] = $this->potongan->CurrentValue;
 		$row['total'] = $this->total->CurrentValue;
 		$row['voucher'] = $this->voucher->CurrentValue;
 		$row['status'] = $this->status->CurrentValue;
+		$row['status_npwp'] = $this->status_npwp->CurrentValue;
 		return $row;
 	}
 
@@ -1904,12 +1925,16 @@ class gaji_sma_grid extends gaji_sma
 		// tugastambahan
 		// tj_jabatan
 		// sub_total
-		// potongan
 		// penyesuaian
 		// potongan_bendahara
+		// jaminan_pensiun
+		// jaminan_hari_tua
+		// total_pph21
+		// potongan
 		// total
 		// voucher
 		// status
+		// status_npwp
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
@@ -2181,15 +2206,30 @@ class gaji_sma_grid extends gaji_sma
 			$this->sub_total->ViewValue = FormatNumber($this->sub_total->ViewValue, 0, -2, -2, -2);
 			$this->sub_total->ViewCustomAttributes = "";
 
-			// potongan
-			$this->potongan->ViewValue = $this->potongan->CurrentValue;
-			$this->potongan->ViewValue = FormatNumber($this->potongan->ViewValue, 0, -2, -2, -2);
-			$this->potongan->ViewCustomAttributes = "";
-
 			// penyesuaian
 			$this->penyesuaian->ViewValue = $this->penyesuaian->CurrentValue;
 			$this->penyesuaian->ViewValue = FormatNumber($this->penyesuaian->ViewValue, 0, -2, -2, -2);
 			$this->penyesuaian->ViewCustomAttributes = "";
+
+			// jaminan_pensiun
+			$this->jaminan_pensiun->ViewValue = $this->jaminan_pensiun->CurrentValue;
+			$this->jaminan_pensiun->ViewValue = FormatNumber($this->jaminan_pensiun->ViewValue, 0, -2, -2, -2);
+			$this->jaminan_pensiun->ViewCustomAttributes = "";
+
+			// jaminan_hari_tua
+			$this->jaminan_hari_tua->ViewValue = $this->jaminan_hari_tua->CurrentValue;
+			$this->jaminan_hari_tua->ViewValue = FormatNumber($this->jaminan_hari_tua->ViewValue, 0, -2, -2, -2);
+			$this->jaminan_hari_tua->ViewCustomAttributes = "";
+
+			// total_pph21
+			$this->total_pph21->ViewValue = $this->total_pph21->CurrentValue;
+			$this->total_pph21->ViewValue = FormatNumber($this->total_pph21->ViewValue, 0, -2, -2, -2);
+			$this->total_pph21->ViewCustomAttributes = "";
+
+			// potongan
+			$this->potongan->ViewValue = $this->potongan->CurrentValue;
+			$this->potongan->ViewValue = FormatNumber($this->potongan->ViewValue, 0, -2, -2, -2);
+			$this->potongan->ViewCustomAttributes = "";
 
 			// total
 			$this->total->ViewValue = $this->total->CurrentValue;
@@ -2206,6 +2246,29 @@ class gaji_sma_grid extends gaji_sma
 			$this->status->ViewValue = FormatNumber($this->status->ViewValue, 0, -2, -2, -2);
 			$this->status->ViewCustomAttributes = "";
 
+			// status_npwp
+			$this->status_npwp->ViewValue = $this->status_npwp->CurrentValue;
+			$curVal = strval($this->status_npwp->CurrentValue);
+			if ($curVal != "") {
+				$this->status_npwp->ViewValue = $this->status_npwp->lookupCacheOption($curVal);
+				if ($this->status_npwp->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->status_npwp->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->status_npwp->ViewValue = $this->status_npwp->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->status_npwp->ViewValue = $this->status_npwp->CurrentValue;
+					}
+				}
+			} else {
+				$this->status_npwp->ViewValue = NULL;
+			}
+			$this->status_npwp->ViewCustomAttributes = "";
+
 			// pegawai
 			$this->pegawai->LinkCustomAttributes = "";
 			$this->pegawai->HrefValue = "";
@@ -2216,15 +2279,15 @@ class gaji_sma_grid extends gaji_sma
 			$this->sub_total->HrefValue = "";
 			$this->sub_total->TooltipValue = "";
 
-			// potongan
-			$this->potongan->LinkCustomAttributes = "";
-			$this->potongan->HrefValue = "";
-			$this->potongan->TooltipValue = "";
-
 			// penyesuaian
 			$this->penyesuaian->LinkCustomAttributes = "";
 			$this->penyesuaian->HrefValue = "";
 			$this->penyesuaian->TooltipValue = "";
+
+			// potongan
+			$this->potongan->LinkCustomAttributes = "";
+			$this->potongan->HrefValue = "";
+			$this->potongan->TooltipValue = "";
 
 			// total
 			$this->total->LinkCustomAttributes = "";
@@ -2275,17 +2338,17 @@ class gaji_sma_grid extends gaji_sma
 			$this->sub_total->EditValue = HtmlEncode($this->sub_total->CurrentValue);
 			$this->sub_total->PlaceHolder = RemoveHtml($this->sub_total->caption());
 
-			// potongan
-			$this->potongan->EditAttrs["class"] = "form-control";
-			$this->potongan->EditCustomAttributes = "";
-			$this->potongan->EditValue = HtmlEncode($this->potongan->CurrentValue);
-			$this->potongan->PlaceHolder = RemoveHtml($this->potongan->caption());
-
 			// penyesuaian
 			$this->penyesuaian->EditAttrs["class"] = "form-control";
 			$this->penyesuaian->EditCustomAttributes = "";
 			$this->penyesuaian->EditValue = HtmlEncode($this->penyesuaian->CurrentValue);
 			$this->penyesuaian->PlaceHolder = RemoveHtml($this->penyesuaian->caption());
+
+			// potongan
+			$this->potongan->EditAttrs["class"] = "form-control";
+			$this->potongan->EditCustomAttributes = "";
+			$this->potongan->EditValue = HtmlEncode($this->potongan->CurrentValue);
+			$this->potongan->PlaceHolder = RemoveHtml($this->potongan->caption());
 
 			// total
 			$this->total->EditAttrs["class"] = "form-control";
@@ -2309,13 +2372,13 @@ class gaji_sma_grid extends gaji_sma
 			$this->sub_total->LinkCustomAttributes = "";
 			$this->sub_total->HrefValue = "";
 
-			// potongan
-			$this->potongan->LinkCustomAttributes = "";
-			$this->potongan->HrefValue = "";
-
 			// penyesuaian
 			$this->penyesuaian->LinkCustomAttributes = "";
 			$this->penyesuaian->HrefValue = "";
+
+			// potongan
+			$this->potongan->LinkCustomAttributes = "";
+			$this->potongan->HrefValue = "";
 
 			// total
 			$this->total->LinkCustomAttributes = "";
@@ -2364,17 +2427,17 @@ class gaji_sma_grid extends gaji_sma
 			$this->sub_total->EditValue = HtmlEncode($this->sub_total->CurrentValue);
 			$this->sub_total->PlaceHolder = RemoveHtml($this->sub_total->caption());
 
-			// potongan
-			$this->potongan->EditAttrs["class"] = "form-control";
-			$this->potongan->EditCustomAttributes = "";
-			$this->potongan->EditValue = HtmlEncode($this->potongan->CurrentValue);
-			$this->potongan->PlaceHolder = RemoveHtml($this->potongan->caption());
-
 			// penyesuaian
 			$this->penyesuaian->EditAttrs["class"] = "form-control";
 			$this->penyesuaian->EditCustomAttributes = "";
 			$this->penyesuaian->EditValue = HtmlEncode($this->penyesuaian->CurrentValue);
 			$this->penyesuaian->PlaceHolder = RemoveHtml($this->penyesuaian->caption());
+
+			// potongan
+			$this->potongan->EditAttrs["class"] = "form-control";
+			$this->potongan->EditCustomAttributes = "";
+			$this->potongan->EditValue = HtmlEncode($this->potongan->CurrentValue);
+			$this->potongan->PlaceHolder = RemoveHtml($this->potongan->caption());
 
 			// total
 			$this->total->EditAttrs["class"] = "form-control";
@@ -2398,13 +2461,13 @@ class gaji_sma_grid extends gaji_sma
 			$this->sub_total->LinkCustomAttributes = "";
 			$this->sub_total->HrefValue = "";
 
-			// potongan
-			$this->potongan->LinkCustomAttributes = "";
-			$this->potongan->HrefValue = "";
-
 			// penyesuaian
 			$this->penyesuaian->LinkCustomAttributes = "";
 			$this->penyesuaian->HrefValue = "";
+
+			// potongan
+			$this->potongan->LinkCustomAttributes = "";
+			$this->potongan->HrefValue = "";
 
 			// total
 			$this->total->LinkCustomAttributes = "";
@@ -2443,14 +2506,6 @@ class gaji_sma_grid extends gaji_sma
 		if (!CheckInteger($this->sub_total->FormValue)) {
 			AddMessage($FormError, $this->sub_total->errorMessage());
 		}
-		if ($this->potongan->Required) {
-			if (!$this->potongan->IsDetailKey && $this->potongan->FormValue != NULL && $this->potongan->FormValue == "") {
-				AddMessage($FormError, str_replace("%s", $this->potongan->caption(), $this->potongan->RequiredErrorMessage));
-			}
-		}
-		if (!CheckInteger($this->potongan->FormValue)) {
-			AddMessage($FormError, $this->potongan->errorMessage());
-		}
 		if ($this->penyesuaian->Required) {
 			if (!$this->penyesuaian->IsDetailKey && $this->penyesuaian->FormValue != NULL && $this->penyesuaian->FormValue == "") {
 				AddMessage($FormError, str_replace("%s", $this->penyesuaian->caption(), $this->penyesuaian->RequiredErrorMessage));
@@ -2458,6 +2513,14 @@ class gaji_sma_grid extends gaji_sma
 		}
 		if (!CheckInteger($this->penyesuaian->FormValue)) {
 			AddMessage($FormError, $this->penyesuaian->errorMessage());
+		}
+		if ($this->potongan->Required) {
+			if (!$this->potongan->IsDetailKey && $this->potongan->FormValue != NULL && $this->potongan->FormValue == "") {
+				AddMessage($FormError, str_replace("%s", $this->potongan->caption(), $this->potongan->RequiredErrorMessage));
+			}
+		}
+		if (!CheckInteger($this->potongan->FormValue)) {
+			AddMessage($FormError, $this->potongan->errorMessage());
 		}
 		if ($this->total->Required) {
 			if (!$this->total->IsDetailKey && $this->total->FormValue != NULL && $this->total->FormValue == "") {
@@ -2602,11 +2665,11 @@ class gaji_sma_grid extends gaji_sma
 			// sub_total
 			$this->sub_total->setDbValueDef($rsnew, $this->sub_total->CurrentValue, NULL, $this->sub_total->ReadOnly);
 
-			// potongan
-			$this->potongan->setDbValueDef($rsnew, $this->potongan->CurrentValue, NULL, $this->potongan->ReadOnly);
-
 			// penyesuaian
 			$this->penyesuaian->setDbValueDef($rsnew, $this->penyesuaian->CurrentValue, NULL, $this->penyesuaian->ReadOnly);
+
+			// potongan
+			$this->potongan->setDbValueDef($rsnew, $this->potongan->CurrentValue, NULL, $this->potongan->ReadOnly);
 
 			// total
 			$this->total->setDbValueDef($rsnew, $this->total->CurrentValue, NULL, $this->total->ReadOnly);
@@ -2761,11 +2824,11 @@ class gaji_sma_grid extends gaji_sma
 		// sub_total
 		$this->sub_total->setDbValueDef($rsnew, $this->sub_total->CurrentValue, NULL, FALSE);
 
-		// potongan
-		$this->potongan->setDbValueDef($rsnew, $this->potongan->CurrentValue, NULL, FALSE);
-
 		// penyesuaian
 		$this->penyesuaian->setDbValueDef($rsnew, $this->penyesuaian->CurrentValue, NULL, FALSE);
+
+		// potongan
+		$this->potongan->setDbValueDef($rsnew, $this->potongan->CurrentValue, NULL, FALSE);
 
 		// total
 		$this->total->setDbValueDef($rsnew, $this->total->CurrentValue, NULL, FALSE);
@@ -2877,6 +2940,8 @@ class gaji_sma_grid extends gaji_sma
 					break;
 				case "x_tambahan":
 					break;
+				case "x_status_npwp":
+					break;
 				default:
 					$lookupFilter = "";
 					break;
@@ -2910,6 +2975,8 @@ class gaji_sma_grid extends gaji_sma
 						case "x_jenis_guru":
 							break;
 						case "x_tambahan":
+							break;
+						case "x_status_npwp":
 							break;
 					}
 					$ar[strval($row[0])] = $row;

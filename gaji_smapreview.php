@@ -65,21 +65,21 @@ $gaji_sma_preview->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
-<?php if ($gaji_sma_preview->potongan->Visible) { // potongan ?>
-	<?php if ($gaji_sma->SortUrl($gaji_sma_preview->potongan) == "") { ?>
-		<th class="<?php echo $gaji_sma_preview->potongan->headerCellClass() ?>"><?php echo $gaji_sma_preview->potongan->caption() ?></th>
-	<?php } else { ?>
-		<th class="<?php echo $gaji_sma_preview->potongan->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_sma_preview->potongan->Name) ?>" data-sort-order="<?php echo $gaji_sma_preview->SortField == $gaji_sma_preview->potongan->Name && $gaji_sma_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_sma_preview->potongan->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_sma_preview->SortField == $gaji_sma_preview->potongan->Name) { ?><?php if ($gaji_sma_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_sma_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
 <?php if ($gaji_sma_preview->penyesuaian->Visible) { // penyesuaian ?>
 	<?php if ($gaji_sma->SortUrl($gaji_sma_preview->penyesuaian) == "") { ?>
 		<th class="<?php echo $gaji_sma_preview->penyesuaian->headerCellClass() ?>"><?php echo $gaji_sma_preview->penyesuaian->caption() ?></th>
 	<?php } else { ?>
 		<th class="<?php echo $gaji_sma_preview->penyesuaian->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_sma_preview->penyesuaian->Name) ?>" data-sort-order="<?php echo $gaji_sma_preview->SortField == $gaji_sma_preview->penyesuaian->Name && $gaji_sma_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_sma_preview->penyesuaian->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_sma_preview->SortField == $gaji_sma_preview->penyesuaian->Name) { ?><?php if ($gaji_sma_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_sma_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_sma_preview->potongan->Visible) { // potongan ?>
+	<?php if ($gaji_sma->SortUrl($gaji_sma_preview->potongan) == "") { ?>
+		<th class="<?php echo $gaji_sma_preview->potongan->headerCellClass() ?>"><?php echo $gaji_sma_preview->potongan->caption() ?></th>
+	<?php } else { ?>
+		<th class="<?php echo $gaji_sma_preview->potongan->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_sma_preview->potongan->Name) ?>" data-sort-order="<?php echo $gaji_sma_preview->SortField == $gaji_sma_preview->potongan->Name && $gaji_sma_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_sma_preview->potongan->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_sma_preview->SortField == $gaji_sma_preview->potongan->Name) { ?><?php if ($gaji_sma_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_sma_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -146,16 +146,16 @@ $gaji_sma_preview->ListOptions->render("body", "left", $gaji_sma_preview->RowCou
 <span<?php echo $gaji_sma_preview->sub_total->viewAttributes() ?>><?php echo $gaji_sma_preview->sub_total->getViewValue() ?></span>
 </td>
 <?php } ?>
-<?php if ($gaji_sma_preview->potongan->Visible) { // potongan ?>
-		<!-- potongan -->
-		<td<?php echo $gaji_sma_preview->potongan->cellAttributes() ?>>
-<span<?php echo $gaji_sma_preview->potongan->viewAttributes() ?>><?php echo $gaji_sma_preview->potongan->getViewValue() ?></span>
-</td>
-<?php } ?>
 <?php if ($gaji_sma_preview->penyesuaian->Visible) { // penyesuaian ?>
 		<!-- penyesuaian -->
 		<td<?php echo $gaji_sma_preview->penyesuaian->cellAttributes() ?>>
 <span<?php echo $gaji_sma_preview->penyesuaian->viewAttributes() ?>><?php echo $gaji_sma_preview->penyesuaian->getViewValue() ?></span>
+</td>
+<?php } ?>
+<?php if ($gaji_sma_preview->potongan->Visible) { // potongan ?>
+		<!-- potongan -->
+		<td<?php echo $gaji_sma_preview->potongan->cellAttributes() ?>>
+<span<?php echo $gaji_sma_preview->potongan->viewAttributes() ?>><?php echo $gaji_sma_preview->potongan->getViewValue() ?></span>
 </td>
 <?php } ?>
 <?php if ($gaji_sma_preview->total->Visible) { // total ?>

@@ -427,7 +427,19 @@ $USER_LEVEL_PRIVS = [["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen","-2","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}export_tu_sma.php","-2","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}export_tu_sma.php","0","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}export_excel.php","-2","0"],
-	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}export_excel.php","0","0"]];
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}export_excel.php","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}status_npwp","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}status_npwp","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}m_iuran_hari_tua","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}m_iuran_hari_tua","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}m_jaminan_pensiun","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}m_jaminan_pensiun","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}status_pekerjaan","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}status_pekerjaan","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}m_pph21","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}m_pph21","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_pajak_all.php","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_pajak_all.php","0","0"]];
 
 // User level table info
 $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
@@ -638,4 +650,10 @@ $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3
 	["laporan_gaji_all.php","laporan_gaji_all","Laporan Gaji",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["export_file_sma.php","export_file_sma","export file sma",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["export_tu_sma.php","export_tu_sma","Export TU SMA",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
-	["export_excel.php","export_excel","export excel",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];
+	["export_excel.php","export_excel","export excel",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["status_npwp","status_npwp","Status NPWP",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["m_iuran_hari_tua","m_iuran_hari_tua","M Iuran Hari Tua",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["m_jaminan_pensiun","m_jaminan_pensiun","M Jaminan Pensiun",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["status_pekerjaan","status_pekerjaan","Status Pekerjaan",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["m_pph21","m_pph21","M PPH21",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["laporan_pajak_all.php","laporan_pajak_all","Laporan Pajak",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];

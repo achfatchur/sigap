@@ -331,6 +331,36 @@ $gaji_tu_sma_view->showMessage();
 </td>
 	</tr>
 <?php } ?>
+<?php if ($gaji_tu_sma_view->jaminan_pensiun->Visible) { // jaminan_pensiun ?>
+	<tr id="r_jaminan_pensiun">
+		<td class="<?php echo $gaji_tu_sma_view->TableLeftColumnClass ?>"><span id="elh_gaji_tu_sma_jaminan_pensiun"><?php echo $gaji_tu_sma_view->jaminan_pensiun->caption() ?></span></td>
+		<td data-name="jaminan_pensiun" <?php echo $gaji_tu_sma_view->jaminan_pensiun->cellAttributes() ?>>
+<span id="el_gaji_tu_sma_jaminan_pensiun">
+<span<?php echo $gaji_tu_sma_view->jaminan_pensiun->viewAttributes() ?>><?php echo $gaji_tu_sma_view->jaminan_pensiun->getViewValue() ?></span>
+</span>
+</td>
+	</tr>
+<?php } ?>
+<?php if ($gaji_tu_sma_view->jaminan_hari_tua->Visible) { // jaminan_hari_tua ?>
+	<tr id="r_jaminan_hari_tua">
+		<td class="<?php echo $gaji_tu_sma_view->TableLeftColumnClass ?>"><span id="elh_gaji_tu_sma_jaminan_hari_tua"><?php echo $gaji_tu_sma_view->jaminan_hari_tua->caption() ?></span></td>
+		<td data-name="jaminan_hari_tua" <?php echo $gaji_tu_sma_view->jaminan_hari_tua->cellAttributes() ?>>
+<span id="el_gaji_tu_sma_jaminan_hari_tua">
+<span<?php echo $gaji_tu_sma_view->jaminan_hari_tua->viewAttributes() ?>><?php echo $gaji_tu_sma_view->jaminan_hari_tua->getViewValue() ?></span>
+</span>
+</td>
+	</tr>
+<?php } ?>
+<?php if ($gaji_tu_sma_view->total_pph21->Visible) { // total_pph21 ?>
+	<tr id="r_total_pph21">
+		<td class="<?php echo $gaji_tu_sma_view->TableLeftColumnClass ?>"><span id="elh_gaji_tu_sma_total_pph21"><?php echo $gaji_tu_sma_view->total_pph21->caption() ?></span></td>
+		<td data-name="total_pph21" <?php echo $gaji_tu_sma_view->total_pph21->cellAttributes() ?>>
+<span id="el_gaji_tu_sma_total_pph21">
+<span<?php echo $gaji_tu_sma_view->total_pph21->viewAttributes() ?>><?php echo $gaji_tu_sma_view->total_pph21->getViewValue() ?></span>
+</span>
+</td>
+	</tr>
+<?php } ?>
 <?php if ($gaji_tu_sma_view->potongan->Visible) { // potongan ?>
 	<tr id="r_potongan">
 		<td class="<?php echo $gaji_tu_sma_view->TableLeftColumnClass ?>"><span id="elh_gaji_tu_sma_potongan"><?php echo $gaji_tu_sma_view->potongan->caption() ?></span></td>

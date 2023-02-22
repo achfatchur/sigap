@@ -823,7 +823,7 @@ class gaji_karyawan_sma_list extends gaji_karyawan_sma
 		$this->pid->Visible = FALSE;
 		$this->tahun->Visible = FALSE;
 		$this->bulan->Visible = FALSE;
-		$this->pegawai->setVisibility();
+		$this->pegawai->Visible = FALSE;
 		$this->jenjang_id->Visible = FALSE;
 		$this->jabatan_id->Visible = FALSE;
 		$this->kehadiran->Visible = FALSE;
@@ -832,6 +832,9 @@ class gaji_karyawan_sma_list extends gaji_karyawan_sma
 		$this->value_reward->Visible = FALSE;
 		$this->value_inval->Visible = FALSE;
 		$this->sub_total->setVisibility();
+		$this->jaminan_pensiun->Visible = FALSE;
+		$this->jaminan_hari_tua->Visible = FALSE;
+		$this->total_pph21->Visible = FALSE;
 		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
 		$this->potongan_bendahara->setVisibility();
@@ -924,29 +927,8 @@ class gaji_karyawan_sma_list extends gaji_karyawan_sma
 			if ($this->isExport())
 				$this->OtherOptions->hideAllOptions();
 
-			// Get default search criteria
-			AddFilter($this->DefaultSearchWhere, $this->basicSearchWhere(TRUE));
-
-			// Get basic search values
-			$this->loadBasicSearchValues();
-
-			// Process filter list
-			if ($this->processFilterList())
-				$this->terminate();
-
-			// Restore search parms from Session if not searching / reset / export
-			if (($this->isExport() || $this->Command != "search" && $this->Command != "reset" && $this->Command != "resetall") && $this->Command != "json" && $this->checkSearchParms())
-				$this->restoreSearchParms();
-
-			// Call Recordset SearchValidated event
-			$this->Recordset_SearchValidated();
-
 			// Set up sorting order
 			$this->setupSortOrder();
-
-			// Get basic search criteria
-			if ($SearchError == "")
-				$srchBasic = $this->basicSearchWhere();
 		}
 
 		// Restore display records
@@ -960,31 +942,6 @@ class gaji_karyawan_sma_list extends gaji_karyawan_sma
 		// Load Sorting Order
 		if ($this->Command != "json")
 			$this->loadSortOrder();
-
-		// Load search default if no existing search criteria
-		if (!$this->checkSearchParms()) {
-
-			// Load basic search from default
-			$this->BasicSearch->loadDefault();
-			if ($this->BasicSearch->Keyword != "")
-				$srchBasic = $this->basicSearchWhere();
-		}
-
-		// Build search criteria
-		AddFilter($this->SearchWhere, $srchAdvanced);
-		AddFilter($this->SearchWhere, $srchBasic);
-
-		// Call Recordset_Searching event
-		$this->Recordset_Searching($this->SearchWhere);
-
-		// Save search criteria
-		if ($this->Command == "search" && !$this->RestoreSearch) {
-			$this->setSearchWhere($this->SearchWhere); // Save to Session
-			$this->StartRecord = 1; // Reset start record counter
-			$this->setStartRecordNumber($this->StartRecord);
-		} elseif ($this->Command != "json") {
-			$this->SearchWhere = $this->getSearchWhere();
-		}
 
 		// Build filter
 		$filter = "";
@@ -1142,381 +1099,6 @@ class gaji_karyawan_sma_list extends gaji_karyawan_sma
 		return TRUE;
 	}
 
-	// Get list of filters
-	public function getFilterList()
-	{
-		global $UserProfile;
-
-		// Initialize
-		$filterList = "";
-		$savedFilterList = "";
-		$filterList = Concat($filterList, $this->id->AdvancedSearch->toJson(), ","); // Field id
-		$filterList = Concat($filterList, $this->pid->AdvancedSearch->toJson(), ","); // Field pid
-		$filterList = Concat($filterList, $this->tahun->AdvancedSearch->toJson(), ","); // Field tahun
-		$filterList = Concat($filterList, $this->bulan->AdvancedSearch->toJson(), ","); // Field bulan
-		$filterList = Concat($filterList, $this->pegawai->AdvancedSearch->toJson(), ","); // Field pegawai
-		$filterList = Concat($filterList, $this->jenjang_id->AdvancedSearch->toJson(), ","); // Field jenjang_id
-		$filterList = Concat($filterList, $this->jabatan_id->AdvancedSearch->toJson(), ","); // Field jabatan_id
-		$filterList = Concat($filterList, $this->kehadiran->AdvancedSearch->toJson(), ","); // Field kehadiran
-		$filterList = Concat($filterList, $this->gapok->AdvancedSearch->toJson(), ","); // Field gapok
-		$filterList = Concat($filterList, $this->value_kehadiran->AdvancedSearch->toJson(), ","); // Field value_kehadiran
-		$filterList = Concat($filterList, $this->value_reward->AdvancedSearch->toJson(), ","); // Field value_reward
-		$filterList = Concat($filterList, $this->value_inval->AdvancedSearch->toJson(), ","); // Field value_inval
-		$filterList = Concat($filterList, $this->sub_total->AdvancedSearch->toJson(), ","); // Field sub_total
-		$filterList = Concat($filterList, $this->potongan->AdvancedSearch->toJson(), ","); // Field potongan
-		$filterList = Concat($filterList, $this->penyesuaian->AdvancedSearch->toJson(), ","); // Field penyesuaian
-		$filterList = Concat($filterList, $this->potongan_bendahara->AdvancedSearch->toJson(), ","); // Field potongan_bendahara
-		$filterList = Concat($filterList, $this->total->AdvancedSearch->toJson(), ","); // Field total
-		$filterList = Concat($filterList, $this->status->AdvancedSearch->toJson(), ","); // Field status
-		$filterList = Concat($filterList, $this->voucher->AdvancedSearch->toJson(), ","); // Field voucher
-		if ($this->BasicSearch->Keyword != "") {
-			$wrk = "\"" . Config("TABLE_BASIC_SEARCH") . "\":\"" . JsEncode($this->BasicSearch->Keyword) . "\",\"" . Config("TABLE_BASIC_SEARCH_TYPE") . "\":\"" . JsEncode($this->BasicSearch->Type) . "\"";
-			$filterList = Concat($filterList, $wrk, ",");
-		}
-
-		// Return filter list in JSON
-		if ($filterList != "")
-			$filterList = "\"data\":{" . $filterList . "}";
-		if ($savedFilterList != "")
-			$filterList = Concat($filterList, "\"filters\":" . $savedFilterList, ",");
-		return ($filterList != "") ? "{" . $filterList . "}" : "null";
-	}
-
-	// Process filter list
-	protected function processFilterList()
-	{
-		global $UserProfile;
-		if (Post("ajax") == "savefilters") { // Save filter request (Ajax)
-			$filters = Post("filters");
-			$UserProfile->setSearchFilters(CurrentUserName(), "fgaji_karyawan_smalistsrch", $filters);
-			WriteJson([["success" => TRUE]]); // Success
-			return TRUE;
-		} elseif (Post("cmd") == "resetfilter") {
-			$this->restoreFilterList();
-		}
-		return FALSE;
-	}
-
-	// Restore list of filters
-	protected function restoreFilterList()
-	{
-
-		// Return if not reset filter
-		if (Post("cmd") !== "resetfilter")
-			return FALSE;
-		$filter = json_decode(Post("filter"), TRUE);
-		$this->Command = "search";
-
-		// Field id
-		$this->id->AdvancedSearch->SearchValue = @$filter["x_id"];
-		$this->id->AdvancedSearch->SearchOperator = @$filter["z_id"];
-		$this->id->AdvancedSearch->SearchCondition = @$filter["v_id"];
-		$this->id->AdvancedSearch->SearchValue2 = @$filter["y_id"];
-		$this->id->AdvancedSearch->SearchOperator2 = @$filter["w_id"];
-		$this->id->AdvancedSearch->save();
-
-		// Field pid
-		$this->pid->AdvancedSearch->SearchValue = @$filter["x_pid"];
-		$this->pid->AdvancedSearch->SearchOperator = @$filter["z_pid"];
-		$this->pid->AdvancedSearch->SearchCondition = @$filter["v_pid"];
-		$this->pid->AdvancedSearch->SearchValue2 = @$filter["y_pid"];
-		$this->pid->AdvancedSearch->SearchOperator2 = @$filter["w_pid"];
-		$this->pid->AdvancedSearch->save();
-
-		// Field tahun
-		$this->tahun->AdvancedSearch->SearchValue = @$filter["x_tahun"];
-		$this->tahun->AdvancedSearch->SearchOperator = @$filter["z_tahun"];
-		$this->tahun->AdvancedSearch->SearchCondition = @$filter["v_tahun"];
-		$this->tahun->AdvancedSearch->SearchValue2 = @$filter["y_tahun"];
-		$this->tahun->AdvancedSearch->SearchOperator2 = @$filter["w_tahun"];
-		$this->tahun->AdvancedSearch->save();
-
-		// Field bulan
-		$this->bulan->AdvancedSearch->SearchValue = @$filter["x_bulan"];
-		$this->bulan->AdvancedSearch->SearchOperator = @$filter["z_bulan"];
-		$this->bulan->AdvancedSearch->SearchCondition = @$filter["v_bulan"];
-		$this->bulan->AdvancedSearch->SearchValue2 = @$filter["y_bulan"];
-		$this->bulan->AdvancedSearch->SearchOperator2 = @$filter["w_bulan"];
-		$this->bulan->AdvancedSearch->save();
-
-		// Field pegawai
-		$this->pegawai->AdvancedSearch->SearchValue = @$filter["x_pegawai"];
-		$this->pegawai->AdvancedSearch->SearchOperator = @$filter["z_pegawai"];
-		$this->pegawai->AdvancedSearch->SearchCondition = @$filter["v_pegawai"];
-		$this->pegawai->AdvancedSearch->SearchValue2 = @$filter["y_pegawai"];
-		$this->pegawai->AdvancedSearch->SearchOperator2 = @$filter["w_pegawai"];
-		$this->pegawai->AdvancedSearch->save();
-
-		// Field jenjang_id
-		$this->jenjang_id->AdvancedSearch->SearchValue = @$filter["x_jenjang_id"];
-		$this->jenjang_id->AdvancedSearch->SearchOperator = @$filter["z_jenjang_id"];
-		$this->jenjang_id->AdvancedSearch->SearchCondition = @$filter["v_jenjang_id"];
-		$this->jenjang_id->AdvancedSearch->SearchValue2 = @$filter["y_jenjang_id"];
-		$this->jenjang_id->AdvancedSearch->SearchOperator2 = @$filter["w_jenjang_id"];
-		$this->jenjang_id->AdvancedSearch->save();
-
-		// Field jabatan_id
-		$this->jabatan_id->AdvancedSearch->SearchValue = @$filter["x_jabatan_id"];
-		$this->jabatan_id->AdvancedSearch->SearchOperator = @$filter["z_jabatan_id"];
-		$this->jabatan_id->AdvancedSearch->SearchCondition = @$filter["v_jabatan_id"];
-		$this->jabatan_id->AdvancedSearch->SearchValue2 = @$filter["y_jabatan_id"];
-		$this->jabatan_id->AdvancedSearch->SearchOperator2 = @$filter["w_jabatan_id"];
-		$this->jabatan_id->AdvancedSearch->save();
-
-		// Field kehadiran
-		$this->kehadiran->AdvancedSearch->SearchValue = @$filter["x_kehadiran"];
-		$this->kehadiran->AdvancedSearch->SearchOperator = @$filter["z_kehadiran"];
-		$this->kehadiran->AdvancedSearch->SearchCondition = @$filter["v_kehadiran"];
-		$this->kehadiran->AdvancedSearch->SearchValue2 = @$filter["y_kehadiran"];
-		$this->kehadiran->AdvancedSearch->SearchOperator2 = @$filter["w_kehadiran"];
-		$this->kehadiran->AdvancedSearch->save();
-
-		// Field gapok
-		$this->gapok->AdvancedSearch->SearchValue = @$filter["x_gapok"];
-		$this->gapok->AdvancedSearch->SearchOperator = @$filter["z_gapok"];
-		$this->gapok->AdvancedSearch->SearchCondition = @$filter["v_gapok"];
-		$this->gapok->AdvancedSearch->SearchValue2 = @$filter["y_gapok"];
-		$this->gapok->AdvancedSearch->SearchOperator2 = @$filter["w_gapok"];
-		$this->gapok->AdvancedSearch->save();
-
-		// Field value_kehadiran
-		$this->value_kehadiran->AdvancedSearch->SearchValue = @$filter["x_value_kehadiran"];
-		$this->value_kehadiran->AdvancedSearch->SearchOperator = @$filter["z_value_kehadiran"];
-		$this->value_kehadiran->AdvancedSearch->SearchCondition = @$filter["v_value_kehadiran"];
-		$this->value_kehadiran->AdvancedSearch->SearchValue2 = @$filter["y_value_kehadiran"];
-		$this->value_kehadiran->AdvancedSearch->SearchOperator2 = @$filter["w_value_kehadiran"];
-		$this->value_kehadiran->AdvancedSearch->save();
-
-		// Field value_reward
-		$this->value_reward->AdvancedSearch->SearchValue = @$filter["x_value_reward"];
-		$this->value_reward->AdvancedSearch->SearchOperator = @$filter["z_value_reward"];
-		$this->value_reward->AdvancedSearch->SearchCondition = @$filter["v_value_reward"];
-		$this->value_reward->AdvancedSearch->SearchValue2 = @$filter["y_value_reward"];
-		$this->value_reward->AdvancedSearch->SearchOperator2 = @$filter["w_value_reward"];
-		$this->value_reward->AdvancedSearch->save();
-
-		// Field value_inval
-		$this->value_inval->AdvancedSearch->SearchValue = @$filter["x_value_inval"];
-		$this->value_inval->AdvancedSearch->SearchOperator = @$filter["z_value_inval"];
-		$this->value_inval->AdvancedSearch->SearchCondition = @$filter["v_value_inval"];
-		$this->value_inval->AdvancedSearch->SearchValue2 = @$filter["y_value_inval"];
-		$this->value_inval->AdvancedSearch->SearchOperator2 = @$filter["w_value_inval"];
-		$this->value_inval->AdvancedSearch->save();
-
-		// Field sub_total
-		$this->sub_total->AdvancedSearch->SearchValue = @$filter["x_sub_total"];
-		$this->sub_total->AdvancedSearch->SearchOperator = @$filter["z_sub_total"];
-		$this->sub_total->AdvancedSearch->SearchCondition = @$filter["v_sub_total"];
-		$this->sub_total->AdvancedSearch->SearchValue2 = @$filter["y_sub_total"];
-		$this->sub_total->AdvancedSearch->SearchOperator2 = @$filter["w_sub_total"];
-		$this->sub_total->AdvancedSearch->save();
-
-		// Field potongan
-		$this->potongan->AdvancedSearch->SearchValue = @$filter["x_potongan"];
-		$this->potongan->AdvancedSearch->SearchOperator = @$filter["z_potongan"];
-		$this->potongan->AdvancedSearch->SearchCondition = @$filter["v_potongan"];
-		$this->potongan->AdvancedSearch->SearchValue2 = @$filter["y_potongan"];
-		$this->potongan->AdvancedSearch->SearchOperator2 = @$filter["w_potongan"];
-		$this->potongan->AdvancedSearch->save();
-
-		// Field penyesuaian
-		$this->penyesuaian->AdvancedSearch->SearchValue = @$filter["x_penyesuaian"];
-		$this->penyesuaian->AdvancedSearch->SearchOperator = @$filter["z_penyesuaian"];
-		$this->penyesuaian->AdvancedSearch->SearchCondition = @$filter["v_penyesuaian"];
-		$this->penyesuaian->AdvancedSearch->SearchValue2 = @$filter["y_penyesuaian"];
-		$this->penyesuaian->AdvancedSearch->SearchOperator2 = @$filter["w_penyesuaian"];
-		$this->penyesuaian->AdvancedSearch->save();
-
-		// Field potongan_bendahara
-		$this->potongan_bendahara->AdvancedSearch->SearchValue = @$filter["x_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->SearchOperator = @$filter["z_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->SearchCondition = @$filter["v_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->SearchValue2 = @$filter["y_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->SearchOperator2 = @$filter["w_potongan_bendahara"];
-		$this->potongan_bendahara->AdvancedSearch->save();
-
-		// Field total
-		$this->total->AdvancedSearch->SearchValue = @$filter["x_total"];
-		$this->total->AdvancedSearch->SearchOperator = @$filter["z_total"];
-		$this->total->AdvancedSearch->SearchCondition = @$filter["v_total"];
-		$this->total->AdvancedSearch->SearchValue2 = @$filter["y_total"];
-		$this->total->AdvancedSearch->SearchOperator2 = @$filter["w_total"];
-		$this->total->AdvancedSearch->save();
-
-		// Field status
-		$this->status->AdvancedSearch->SearchValue = @$filter["x_status"];
-		$this->status->AdvancedSearch->SearchOperator = @$filter["z_status"];
-		$this->status->AdvancedSearch->SearchCondition = @$filter["v_status"];
-		$this->status->AdvancedSearch->SearchValue2 = @$filter["y_status"];
-		$this->status->AdvancedSearch->SearchOperator2 = @$filter["w_status"];
-		$this->status->AdvancedSearch->save();
-
-		// Field voucher
-		$this->voucher->AdvancedSearch->SearchValue = @$filter["x_voucher"];
-		$this->voucher->AdvancedSearch->SearchOperator = @$filter["z_voucher"];
-		$this->voucher->AdvancedSearch->SearchCondition = @$filter["v_voucher"];
-		$this->voucher->AdvancedSearch->SearchValue2 = @$filter["y_voucher"];
-		$this->voucher->AdvancedSearch->SearchOperator2 = @$filter["w_voucher"];
-		$this->voucher->AdvancedSearch->save();
-		$this->BasicSearch->setKeyword(@$filter[Config("TABLE_BASIC_SEARCH")]);
-		$this->BasicSearch->setType(@$filter[Config("TABLE_BASIC_SEARCH_TYPE")]);
-	}
-
-	// Return basic search SQL
-	protected function basicSearchSql($arKeywords, $type)
-	{
-		$where = "";
-		$this->buildBasicSearchSql($where, $this->pegawai, $arKeywords, $type);
-		return $where;
-	}
-
-	// Build basic search SQL
-	protected function buildBasicSearchSql(&$where, &$fld, $arKeywords, $type)
-	{
-		$defCond = ($type == "OR") ? "OR" : "AND";
-		$arSql = []; // Array for SQL parts
-		$arCond = []; // Array for search conditions
-		$cnt = count($arKeywords);
-		$j = 0; // Number of SQL parts
-		for ($i = 0; $i < $cnt; $i++) {
-			$keyword = $arKeywords[$i];
-			$keyword = trim($keyword);
-			if (Config("BASIC_SEARCH_IGNORE_PATTERN") != "") {
-				$keyword = preg_replace(Config("BASIC_SEARCH_IGNORE_PATTERN"), "\\", $keyword);
-				$ar = explode("\\", $keyword);
-			} else {
-				$ar = [$keyword];
-			}
-			foreach ($ar as $keyword) {
-				if ($keyword != "") {
-					$wrk = "";
-					if ($keyword == "OR" && $type == "") {
-						if ($j > 0)
-							$arCond[$j - 1] = "OR";
-					} elseif ($keyword == Config("NULL_VALUE")) {
-						$wrk = $fld->Expression . " IS NULL";
-					} elseif ($keyword == Config("NOT_NULL_VALUE")) {
-						$wrk = $fld->Expression . " IS NOT NULL";
-					} elseif ($fld->IsVirtual) {
-						$wrk = $fld->VirtualExpression . Like(QuotedValue("%" . $keyword . "%", DATATYPE_STRING, $this->Dbid), $this->Dbid);
-					} elseif ($fld->DataType != DATATYPE_NUMBER || is_numeric($keyword)) {
-						$wrk = $fld->BasicSearchExpression . Like(QuotedValue("%" . $keyword . "%", DATATYPE_STRING, $this->Dbid), $this->Dbid);
-					}
-					if ($wrk != "") {
-						$arSql[$j] = $wrk;
-						$arCond[$j] = $defCond;
-						$j += 1;
-					}
-				}
-			}
-		}
-		$cnt = count($arSql);
-		$quoted = FALSE;
-		$sql = "";
-		if ($cnt > 0) {
-			for ($i = 0; $i < $cnt - 1; $i++) {
-				if ($arCond[$i] == "OR") {
-					if (!$quoted)
-						$sql .= "(";
-					$quoted = TRUE;
-				}
-				$sql .= $arSql[$i];
-				if ($quoted && $arCond[$i] != "OR") {
-					$sql .= ")";
-					$quoted = FALSE;
-				}
-				$sql .= " " . $arCond[$i] . " ";
-			}
-			$sql .= $arSql[$cnt - 1];
-			if ($quoted)
-				$sql .= ")";
-		}
-		if ($sql != "") {
-			if ($where != "")
-				$where .= " OR ";
-			$where .= "(" . $sql . ")";
-		}
-	}
-
-	// Return basic search WHERE clause based on search keyword and type
-	protected function basicSearchWhere($default = FALSE)
-	{
-		global $Security;
-		$searchStr = "";
-		if (!$Security->canSearch())
-			return "";
-		$searchKeyword = ($default) ? $this->BasicSearch->KeywordDefault : $this->BasicSearch->Keyword;
-		$searchType = ($default) ? $this->BasicSearch->TypeDefault : $this->BasicSearch->Type;
-
-		// Get search SQL
-		if ($searchKeyword != "") {
-			$ar = $this->BasicSearch->keywordList($default);
-
-			// Search keyword in any fields
-			if (($searchType == "OR" || $searchType == "AND") && $this->BasicSearch->BasicSearchAnyFields) {
-				foreach ($ar as $keyword) {
-					if ($keyword != "") {
-						if ($searchStr != "")
-							$searchStr .= " " . $searchType . " ";
-						$searchStr .= "(" . $this->basicSearchSql([$keyword], $searchType) . ")";
-					}
-				}
-			} else {
-				$searchStr = $this->basicSearchSql($ar, $searchType);
-			}
-			if (!$default && in_array($this->Command, ["", "reset", "resetall"]))
-				$this->Command = "search";
-		}
-		if (!$default && $this->Command == "search") {
-			$this->BasicSearch->setKeyword($searchKeyword);
-			$this->BasicSearch->setType($searchType);
-		}
-		return $searchStr;
-	}
-
-	// Check if search parm exists
-	protected function checkSearchParms()
-	{
-
-		// Check basic search
-		if ($this->BasicSearch->issetSession())
-			return TRUE;
-		return FALSE;
-	}
-
-	// Clear all search parameters
-	protected function resetSearchParms()
-	{
-
-		// Clear search WHERE clause
-		$this->SearchWhere = "";
-		$this->setSearchWhere($this->SearchWhere);
-
-		// Clear basic search parameters
-		$this->resetBasicSearchParms();
-	}
-
-	// Load advanced search default values
-	protected function loadAdvancedSearchDefault()
-	{
-		return FALSE;
-	}
-
-	// Clear all basic search parameters
-	protected function resetBasicSearchParms()
-	{
-		$this->BasicSearch->unsetSession();
-	}
-
-	// Restore all search parameters
-	protected function restoreSearchParms()
-	{
-		$this->RestoreSearch = TRUE;
-
-		// Restore basic search values
-		$this->BasicSearch->load();
-	}
-
 	// Set up sort parameters
 	protected function setupSortOrder()
 	{
@@ -1525,7 +1107,6 @@ class gaji_karyawan_sma_list extends gaji_karyawan_sma
 		if (Get("order") !== NULL) {
 			$this->CurrentOrder = Get("order");
 			$this->CurrentOrderType = Get("ordertype", "");
-			$this->updateSort($this->pegawai); // pegawai
 			$this->updateSort($this->sub_total); // sub_total
 			$this->updateSort($this->potongan); // potongan
 			$this->updateSort($this->penyesuaian); // penyesuaian
@@ -1559,10 +1140,6 @@ class gaji_karyawan_sma_list extends gaji_karyawan_sma
 		// Check if reset command
 		if (StartsString("reset", $this->Command)) {
 
-			// Reset search criteria
-			if ($this->Command == "reset" || $this->Command == "resetall")
-				$this->resetSearchParms();
-
 			// Reset master/detail keys
 			if ($this->Command == "resetall") {
 				$this->setCurrentMasterTable(""); // Clear master table
@@ -1577,7 +1154,6 @@ class gaji_karyawan_sma_list extends gaji_karyawan_sma
 			if ($this->Command == "resetsort") {
 				$orderBy = "";
 				$this->setSessionOrderBy($orderBy);
-				$this->pegawai->setSort("");
 				$this->sub_total->setSort("");
 				$this->potongan->setSort("");
 				$this->penyesuaian->setSort("");
@@ -1731,10 +1307,10 @@ class gaji_karyawan_sma_list extends gaji_karyawan_sma
 		// Filter button
 		$item = &$this->FilterOptions->add("savecurrentfilter");
 		$item->Body = "<a class=\"ew-save-filter\" data-form=\"fgaji_karyawan_smalistsrch\" href=\"#\" onclick=\"return false;\">" . $Language->phrase("SaveCurrentFilter") . "</a>";
-		$item->Visible = TRUE;
+		$item->Visible = FALSE;
 		$item = &$this->FilterOptions->add("deletefilter");
 		$item->Body = "<a class=\"ew-delete-filter\" data-form=\"fgaji_karyawan_smalistsrch\" href=\"#\" onclick=\"return false;\">" . $Language->phrase("DeleteFilter") . "</a>";
-		$item->Visible = TRUE;
+		$item->Visible = FALSE;
 		$this->FilterOptions->UseDropDownButton = TRUE;
 		$this->FilterOptions->UseButtonGroup = !$this->FilterOptions->UseDropDownButton;
 		$this->FilterOptions->DropDownButtonPhrase = $Language->phrase("Filters");
@@ -1869,15 +1445,6 @@ class gaji_karyawan_sma_list extends gaji_karyawan_sma
 		global $Security, $Language;
 	}
 
-	// Load basic search values
-	protected function loadBasicSearchValues()
-	{
-		$this->BasicSearch->setKeyword(Get(Config("TABLE_BASIC_SEARCH"), ""), FALSE);
-		if ($this->BasicSearch->Keyword != "" && $this->Command == "")
-			$this->Command = "search";
-		$this->BasicSearch->setType(Get(Config("TABLE_BASIC_SEARCH_TYPE"), ""), FALSE);
-	}
-
 	// Load recordset
 	public function loadRecordset($offset = -1, $rowcnt = -1)
 	{
@@ -1953,6 +1520,9 @@ class gaji_karyawan_sma_list extends gaji_karyawan_sma
 		$this->value_reward->setDbValue($row['value_reward']);
 		$this->value_inval->setDbValue($row['value_inval']);
 		$this->sub_total->setDbValue($row['sub_total']);
+		$this->jaminan_pensiun->setDbValue($row['jaminan_pensiun']);
+		$this->jaminan_hari_tua->setDbValue($row['jaminan_hari_tua']);
+		$this->total_pph21->setDbValue($row['total_pph21']);
 		$this->potongan->setDbValue($row['potongan']);
 		$this->penyesuaian->setDbValue($row['penyesuaian']);
 		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
@@ -1978,6 +1548,9 @@ class gaji_karyawan_sma_list extends gaji_karyawan_sma
 		$row['value_reward'] = NULL;
 		$row['value_inval'] = NULL;
 		$row['sub_total'] = NULL;
+		$row['jaminan_pensiun'] = NULL;
+		$row['jaminan_hari_tua'] = NULL;
+		$row['total_pph21'] = NULL;
 		$row['potongan'] = NULL;
 		$row['penyesuaian'] = NULL;
 		$row['potongan_bendahara'] = NULL;
@@ -2040,6 +1613,9 @@ class gaji_karyawan_sma_list extends gaji_karyawan_sma
 		// value_reward
 		// value_inval
 		// sub_total
+		// jaminan_pensiun
+		// jaminan_hari_tua
+		// total_pph21
 		// potongan
 		// penyesuaian
 		// potongan_bendahara
@@ -2183,6 +1759,21 @@ class gaji_karyawan_sma_list extends gaji_karyawan_sma
 			$this->sub_total->ViewValue = FormatNumber($this->sub_total->ViewValue, 0, -2, -2, -2);
 			$this->sub_total->ViewCustomAttributes = "";
 
+			// jaminan_pensiun
+			$this->jaminan_pensiun->ViewValue = $this->jaminan_pensiun->CurrentValue;
+			$this->jaminan_pensiun->ViewValue = FormatNumber($this->jaminan_pensiun->ViewValue, 0, -2, -2, -2);
+			$this->jaminan_pensiun->ViewCustomAttributes = "";
+
+			// jaminan_hari_tua
+			$this->jaminan_hari_tua->ViewValue = $this->jaminan_hari_tua->CurrentValue;
+			$this->jaminan_hari_tua->ViewValue = FormatNumber($this->jaminan_hari_tua->ViewValue, 0, -2, -2, -2);
+			$this->jaminan_hari_tua->ViewCustomAttributes = "";
+
+			// total_pph21
+			$this->total_pph21->ViewValue = $this->total_pph21->CurrentValue;
+			$this->total_pph21->ViewValue = FormatNumber($this->total_pph21->ViewValue, 0, -2, -2, -2);
+			$this->total_pph21->ViewCustomAttributes = "";
+
 			// potongan
 			$this->potongan->ViewValue = $this->potongan->CurrentValue;
 			$this->potongan->ViewValue = FormatNumber($this->potongan->ViewValue, 0, -2, -2, -2);
@@ -2212,11 +1803,6 @@ class gaji_karyawan_sma_list extends gaji_karyawan_sma
 			$this->voucher->ViewValue = $this->voucher->CurrentValue;
 			$this->voucher->ViewValue = FormatNumber($this->voucher->ViewValue, 0, -2, -2, -2);
 			$this->voucher->ViewCustomAttributes = "";
-
-			// pegawai
-			$this->pegawai->LinkCustomAttributes = "";
-			$this->pegawai->HrefValue = "";
-			$this->pegawai->TooltipValue = "";
 
 			// sub_total
 			$this->sub_total->LinkCustomAttributes = "";
@@ -2351,17 +1937,6 @@ class gaji_karyawan_sma_list extends gaji_karyawan_sma
 		global $Language;
 		$this->SearchOptions = new ListOptions("div");
 		$this->SearchOptions->TagClassName = "ew-search-option";
-
-		// Search button
-		$item = &$this->SearchOptions->add("searchtoggle");
-		$searchToggleClass = ($this->SearchWhere != "") ? " active" : " active";
-		$item->Body = "<a class=\"btn btn-default ew-search-toggle" . $searchToggleClass . "\" href=\"#\" role=\"button\" title=\"" . $Language->phrase("SearchPanel") . "\" data-caption=\"" . $Language->phrase("SearchPanel") . "\" data-toggle=\"button\" data-form=\"fgaji_karyawan_smalistsrch\" aria-pressed=\"" . ($searchToggleClass == " active" ? "true" : "false") . "\">" . $Language->phrase("SearchLink") . "</a>";
-		$item->Visible = TRUE;
-
-		// Show all button
-		$item = &$this->SearchOptions->add("showall");
-		$item->Body = "<a class=\"btn btn-default ew-show-all\" title=\"" . $Language->phrase("ShowAll") . "\" data-caption=\"" . $Language->phrase("ShowAll") . "\" href=\"" . $this->pageUrl() . "cmd=reset\">" . $Language->phrase("ShowAllBtn") . "</a>";
-		$item->Visible = ($this->SearchWhere != $this->DefaultSearchWhere && $this->SearchWhere != "0=101");
 
 		// Button group for search
 		$this->SearchOptions->UseDropDownButton = FALSE;

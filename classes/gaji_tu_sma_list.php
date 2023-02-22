@@ -848,6 +848,9 @@ class gaji_tu_sma_list extends gaji_tu_sma
 		$this->tj_jabatan->Visible = FALSE;
 		$this->tunjangan2->Visible = FALSE;
 		$this->sub_total->setVisibility();
+		$this->jaminan_pensiun->Visible = FALSE;
+		$this->jaminan_hari_tua->Visible = FALSE;
+		$this->total_pph21->Visible = FALSE;
 		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
 		$this->potongan_bendahara->setVisibility();
@@ -1197,6 +1200,9 @@ class gaji_tu_sma_list extends gaji_tu_sma
 		$filterList = Concat($filterList, $this->tj_jabatan->AdvancedSearch->toJson(), ","); // Field tj_jabatan
 		$filterList = Concat($filterList, $this->tunjangan2->AdvancedSearch->toJson(), ","); // Field tunjangan2
 		$filterList = Concat($filterList, $this->sub_total->AdvancedSearch->toJson(), ","); // Field sub_total
+		$filterList = Concat($filterList, $this->jaminan_pensiun->AdvancedSearch->toJson(), ","); // Field jaminan_pensiun
+		$filterList = Concat($filterList, $this->jaminan_hari_tua->AdvancedSearch->toJson(), ","); // Field jaminan_hari_tua
+		$filterList = Concat($filterList, $this->total_pph21->AdvancedSearch->toJson(), ","); // Field total_pph21
 		$filterList = Concat($filterList, $this->potongan->AdvancedSearch->toJson(), ","); // Field potongan
 		$filterList = Concat($filterList, $this->penyesuaian->AdvancedSearch->toJson(), ","); // Field penyesuaian
 		$filterList = Concat($filterList, $this->potongan_bendahara->AdvancedSearch->toJson(), ","); // Field potongan_bendahara
@@ -1456,6 +1462,30 @@ class gaji_tu_sma_list extends gaji_tu_sma
 		$this->sub_total->AdvancedSearch->SearchValue2 = @$filter["y_sub_total"];
 		$this->sub_total->AdvancedSearch->SearchOperator2 = @$filter["w_sub_total"];
 		$this->sub_total->AdvancedSearch->save();
+
+		// Field jaminan_pensiun
+		$this->jaminan_pensiun->AdvancedSearch->SearchValue = @$filter["x_jaminan_pensiun"];
+		$this->jaminan_pensiun->AdvancedSearch->SearchOperator = @$filter["z_jaminan_pensiun"];
+		$this->jaminan_pensiun->AdvancedSearch->SearchCondition = @$filter["v_jaminan_pensiun"];
+		$this->jaminan_pensiun->AdvancedSearch->SearchValue2 = @$filter["y_jaminan_pensiun"];
+		$this->jaminan_pensiun->AdvancedSearch->SearchOperator2 = @$filter["w_jaminan_pensiun"];
+		$this->jaminan_pensiun->AdvancedSearch->save();
+
+		// Field jaminan_hari_tua
+		$this->jaminan_hari_tua->AdvancedSearch->SearchValue = @$filter["x_jaminan_hari_tua"];
+		$this->jaminan_hari_tua->AdvancedSearch->SearchOperator = @$filter["z_jaminan_hari_tua"];
+		$this->jaminan_hari_tua->AdvancedSearch->SearchCondition = @$filter["v_jaminan_hari_tua"];
+		$this->jaminan_hari_tua->AdvancedSearch->SearchValue2 = @$filter["y_jaminan_hari_tua"];
+		$this->jaminan_hari_tua->AdvancedSearch->SearchOperator2 = @$filter["w_jaminan_hari_tua"];
+		$this->jaminan_hari_tua->AdvancedSearch->save();
+
+		// Field total_pph21
+		$this->total_pph21->AdvancedSearch->SearchValue = @$filter["x_total_pph21"];
+		$this->total_pph21->AdvancedSearch->SearchOperator = @$filter["z_total_pph21"];
+		$this->total_pph21->AdvancedSearch->SearchCondition = @$filter["v_total_pph21"];
+		$this->total_pph21->AdvancedSearch->SearchValue2 = @$filter["y_total_pph21"];
+		$this->total_pph21->AdvancedSearch->SearchOperator2 = @$filter["w_total_pph21"];
+		$this->total_pph21->AdvancedSearch->save();
 
 		// Field potongan
 		$this->potongan->AdvancedSearch->SearchValue = @$filter["x_potongan"];
@@ -2132,6 +2162,9 @@ class gaji_tu_sma_list extends gaji_tu_sma
 		$this->tj_jabatan->setDbValue($row['tj_jabatan']);
 		$this->tunjangan2->setDbValue($row['tunjangan2']);
 		$this->sub_total->setDbValue($row['sub_total']);
+		$this->jaminan_pensiun->setDbValue($row['jaminan_pensiun']);
+		$this->jaminan_hari_tua->setDbValue($row['jaminan_hari_tua']);
+		$this->total_pph21->setDbValue($row['total_pph21']);
 		$this->potongan->setDbValue($row['potongan']);
 		$this->penyesuaian->setDbValue($row['penyesuaian']);
 		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
@@ -2171,6 +2204,9 @@ class gaji_tu_sma_list extends gaji_tu_sma
 		$row['tj_jabatan'] = NULL;
 		$row['tunjangan2'] = NULL;
 		$row['sub_total'] = NULL;
+		$row['jaminan_pensiun'] = NULL;
+		$row['jaminan_hari_tua'] = NULL;
+		$row['total_pph21'] = NULL;
 		$row['potongan'] = NULL;
 		$row['penyesuaian'] = NULL;
 		$row['potongan_bendahara'] = NULL;
@@ -2247,6 +2283,9 @@ class gaji_tu_sma_list extends gaji_tu_sma
 		// tj_jabatan
 		// tunjangan2
 		// sub_total
+		// jaminan_pensiun
+		// jaminan_hari_tua
+		// total_pph21
 		// potongan
 		// penyesuaian
 		// potongan_bendahara
@@ -2517,6 +2556,21 @@ class gaji_tu_sma_list extends gaji_tu_sma
 			$this->sub_total->ViewValue = $this->sub_total->CurrentValue;
 			$this->sub_total->ViewValue = FormatNumber($this->sub_total->ViewValue, 0, -2, -2, -2);
 			$this->sub_total->ViewCustomAttributes = "";
+
+			// jaminan_pensiun
+			$this->jaminan_pensiun->ViewValue = $this->jaminan_pensiun->CurrentValue;
+			$this->jaminan_pensiun->ViewValue = FormatNumber($this->jaminan_pensiun->ViewValue, 0, -2, -2, -2);
+			$this->jaminan_pensiun->ViewCustomAttributes = "";
+
+			// jaminan_hari_tua
+			$this->jaminan_hari_tua->ViewValue = $this->jaminan_hari_tua->CurrentValue;
+			$this->jaminan_hari_tua->ViewValue = FormatNumber($this->jaminan_hari_tua->ViewValue, 0, -2, -2, -2);
+			$this->jaminan_hari_tua->ViewCustomAttributes = "";
+
+			// total_pph21
+			$this->total_pph21->ViewValue = $this->total_pph21->CurrentValue;
+			$this->total_pph21->ViewValue = FormatNumber($this->total_pph21->ViewValue, 0, -2, -2, -2);
+			$this->total_pph21->ViewCustomAttributes = "";
 
 			// potongan
 			$this->potongan->ViewValue = $this->potongan->CurrentValue;

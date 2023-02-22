@@ -61,14 +61,6 @@ loadjs.ready("head", function() {
 				elm = this.getElements("x" + infix + "_sub_total");
 				if (elm && !ew.checkInteger(elm.value))
 					return this.onError(elm, "<?php echo JsEncode($gaji_sma_grid->sub_total->errorMessage()) ?>");
-			<?php if ($gaji_sma_grid->potongan->Required) { ?>
-				elm = this.getElements("x" + infix + "_potongan");
-				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
-					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_sma_grid->potongan->caption(), $gaji_sma_grid->potongan->RequiredErrorMessage)) ?>");
-			<?php } ?>
-				elm = this.getElements("x" + infix + "_potongan");
-				if (elm && !ew.checkInteger(elm.value))
-					return this.onError(elm, "<?php echo JsEncode($gaji_sma_grid->potongan->errorMessage()) ?>");
 			<?php if ($gaji_sma_grid->penyesuaian->Required) { ?>
 				elm = this.getElements("x" + infix + "_penyesuaian");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -77,6 +69,14 @@ loadjs.ready("head", function() {
 				elm = this.getElements("x" + infix + "_penyesuaian");
 				if (elm && !ew.checkInteger(elm.value))
 					return this.onError(elm, "<?php echo JsEncode($gaji_sma_grid->penyesuaian->errorMessage()) ?>");
+			<?php if ($gaji_sma_grid->potongan->Required) { ?>
+				elm = this.getElements("x" + infix + "_potongan");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_sma_grid->potongan->caption(), $gaji_sma_grid->potongan->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_potongan");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($gaji_sma_grid->potongan->errorMessage()) ?>");
 			<?php if ($gaji_sma_grid->total->Required) { ?>
 				elm = this.getElements("x" + infix + "_total");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -107,8 +107,8 @@ loadjs.ready("head", function() {
 		var fobj = this._form;
 		if (ew.valueChanged(fobj, infix, "pegawai", false)) return false;
 		if (ew.valueChanged(fobj, infix, "sub_total", false)) return false;
-		if (ew.valueChanged(fobj, infix, "potongan", false)) return false;
 		if (ew.valueChanged(fobj, infix, "penyesuaian", false)) return false;
+		if (ew.valueChanged(fobj, infix, "potongan", false)) return false;
 		if (ew.valueChanged(fobj, infix, "total", false)) return false;
 		if (ew.valueChanged(fobj, infix, "voucher", false)) return false;
 		return true;
@@ -176,21 +176,21 @@ $gaji_sma_grid->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
-<?php if ($gaji_sma_grid->potongan->Visible) { // potongan ?>
-	<?php if ($gaji_sma_grid->SortUrl($gaji_sma_grid->potongan) == "") { ?>
-		<th data-name="potongan" class="<?php echo $gaji_sma_grid->potongan->headerCellClass() ?>"><div id="elh_gaji_sma_potongan" class="gaji_sma_potongan"><div class="ew-table-header-caption"><?php echo $gaji_sma_grid->potongan->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="potongan" class="<?php echo $gaji_sma_grid->potongan->headerCellClass() ?>"><div><div id="elh_gaji_sma_potongan" class="gaji_sma_potongan">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_sma_grid->potongan->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_sma_grid->potongan->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_sma_grid->potongan->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
 <?php if ($gaji_sma_grid->penyesuaian->Visible) { // penyesuaian ?>
 	<?php if ($gaji_sma_grid->SortUrl($gaji_sma_grid->penyesuaian) == "") { ?>
 		<th data-name="penyesuaian" class="<?php echo $gaji_sma_grid->penyesuaian->headerCellClass() ?>"><div id="elh_gaji_sma_penyesuaian" class="gaji_sma_penyesuaian"><div class="ew-table-header-caption"><?php echo $gaji_sma_grid->penyesuaian->caption() ?></div></div></th>
 	<?php } else { ?>
 		<th data-name="penyesuaian" class="<?php echo $gaji_sma_grid->penyesuaian->headerCellClass() ?>"><div><div id="elh_gaji_sma_penyesuaian" class="gaji_sma_penyesuaian">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_sma_grid->penyesuaian->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_sma_grid->penyesuaian->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_sma_grid->penyesuaian->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_sma_grid->potongan->Visible) { // potongan ?>
+	<?php if ($gaji_sma_grid->SortUrl($gaji_sma_grid->potongan) == "") { ?>
+		<th data-name="potongan" class="<?php echo $gaji_sma_grid->potongan->headerCellClass() ?>"><div id="elh_gaji_sma_potongan" class="gaji_sma_potongan"><div class="ew-table-header-caption"><?php echo $gaji_sma_grid->potongan->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="potongan" class="<?php echo $gaji_sma_grid->potongan->headerCellClass() ?>"><div><div id="elh_gaji_sma_potongan" class="gaji_sma_potongan">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_sma_grid->potongan->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_sma_grid->potongan->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_sma_grid->potongan->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -395,33 +395,6 @@ $gaji_sma_grid->ListOptions->render("body", "left", $gaji_sma_grid->RowCount);
 <?php } ?>
 </td>
 	<?php } ?>
-	<?php if ($gaji_sma_grid->potongan->Visible) { // potongan ?>
-		<td data-name="potongan" <?php echo $gaji_sma_grid->potongan->cellAttributes() ?>>
-<?php if ($gaji_sma->RowType == ROWTYPE_ADD) { // Add record ?>
-<span id="el<?php echo $gaji_sma_grid->RowCount ?>_gaji_sma_potongan" class="form-group">
-<input type="text" data-table="gaji_sma" data-field="x_potongan" name="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_sma_grid->potongan->getPlaceHolder()) ?>" value="<?php echo $gaji_sma_grid->potongan->EditValue ?>"<?php echo $gaji_sma_grid->potongan->editAttributes() ?>>
-</span>
-<input type="hidden" data-table="gaji_sma" data-field="x_potongan" name="o<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="o<?php echo $gaji_sma_grid->RowIndex ?>_potongan" value="<?php echo HtmlEncode($gaji_sma_grid->potongan->OldValue) ?>">
-<?php } ?>
-<?php if ($gaji_sma->RowType == ROWTYPE_EDIT) { // Edit record ?>
-<span id="el<?php echo $gaji_sma_grid->RowCount ?>_gaji_sma_potongan" class="form-group">
-<input type="text" data-table="gaji_sma" data-field="x_potongan" name="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_sma_grid->potongan->getPlaceHolder()) ?>" value="<?php echo $gaji_sma_grid->potongan->EditValue ?>"<?php echo $gaji_sma_grid->potongan->editAttributes() ?>>
-</span>
-<?php } ?>
-<?php if ($gaji_sma->RowType == ROWTYPE_VIEW) { // View record ?>
-<span id="el<?php echo $gaji_sma_grid->RowCount ?>_gaji_sma_potongan">
-<span<?php echo $gaji_sma_grid->potongan->viewAttributes() ?>><?php echo $gaji_sma_grid->potongan->getViewValue() ?></span>
-</span>
-<?php if (!$gaji_sma->isConfirm()) { ?>
-<input type="hidden" data-table="gaji_sma" data-field="x_potongan" name="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" value="<?php echo HtmlEncode($gaji_sma_grid->potongan->FormValue) ?>">
-<input type="hidden" data-table="gaji_sma" data-field="x_potongan" name="o<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="o<?php echo $gaji_sma_grid->RowIndex ?>_potongan" value="<?php echo HtmlEncode($gaji_sma_grid->potongan->OldValue) ?>">
-<?php } else { ?>
-<input type="hidden" data-table="gaji_sma" data-field="x_potongan" name="fgaji_smagrid$x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="fgaji_smagrid$x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" value="<?php echo HtmlEncode($gaji_sma_grid->potongan->FormValue) ?>">
-<input type="hidden" data-table="gaji_sma" data-field="x_potongan" name="fgaji_smagrid$o<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="fgaji_smagrid$o<?php echo $gaji_sma_grid->RowIndex ?>_potongan" value="<?php echo HtmlEncode($gaji_sma_grid->potongan->OldValue) ?>">
-<?php } ?>
-<?php } ?>
-</td>
-	<?php } ?>
 	<?php if ($gaji_sma_grid->penyesuaian->Visible) { // penyesuaian ?>
 		<td data-name="penyesuaian" <?php echo $gaji_sma_grid->penyesuaian->cellAttributes() ?>>
 <?php if ($gaji_sma->RowType == ROWTYPE_ADD) { // Add record ?>
@@ -445,6 +418,33 @@ $gaji_sma_grid->ListOptions->render("body", "left", $gaji_sma_grid->RowCount);
 <?php } else { ?>
 <input type="hidden" data-table="gaji_sma" data-field="x_penyesuaian" name="fgaji_smagrid$x<?php echo $gaji_sma_grid->RowIndex ?>_penyesuaian" id="fgaji_smagrid$x<?php echo $gaji_sma_grid->RowIndex ?>_penyesuaian" value="<?php echo HtmlEncode($gaji_sma_grid->penyesuaian->FormValue) ?>">
 <input type="hidden" data-table="gaji_sma" data-field="x_penyesuaian" name="fgaji_smagrid$o<?php echo $gaji_sma_grid->RowIndex ?>_penyesuaian" id="fgaji_smagrid$o<?php echo $gaji_sma_grid->RowIndex ?>_penyesuaian" value="<?php echo HtmlEncode($gaji_sma_grid->penyesuaian->OldValue) ?>">
+<?php } ?>
+<?php } ?>
+</td>
+	<?php } ?>
+	<?php if ($gaji_sma_grid->potongan->Visible) { // potongan ?>
+		<td data-name="potongan" <?php echo $gaji_sma_grid->potongan->cellAttributes() ?>>
+<?php if ($gaji_sma->RowType == ROWTYPE_ADD) { // Add record ?>
+<span id="el<?php echo $gaji_sma_grid->RowCount ?>_gaji_sma_potongan" class="form-group">
+<input type="text" data-table="gaji_sma" data-field="x_potongan" name="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_sma_grid->potongan->getPlaceHolder()) ?>" value="<?php echo $gaji_sma_grid->potongan->EditValue ?>"<?php echo $gaji_sma_grid->potongan->editAttributes() ?>>
+</span>
+<input type="hidden" data-table="gaji_sma" data-field="x_potongan" name="o<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="o<?php echo $gaji_sma_grid->RowIndex ?>_potongan" value="<?php echo HtmlEncode($gaji_sma_grid->potongan->OldValue) ?>">
+<?php } ?>
+<?php if ($gaji_sma->RowType == ROWTYPE_EDIT) { // Edit record ?>
+<span id="el<?php echo $gaji_sma_grid->RowCount ?>_gaji_sma_potongan" class="form-group">
+<input type="text" data-table="gaji_sma" data-field="x_potongan" name="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_sma_grid->potongan->getPlaceHolder()) ?>" value="<?php echo $gaji_sma_grid->potongan->EditValue ?>"<?php echo $gaji_sma_grid->potongan->editAttributes() ?>>
+</span>
+<?php } ?>
+<?php if ($gaji_sma->RowType == ROWTYPE_VIEW) { // View record ?>
+<span id="el<?php echo $gaji_sma_grid->RowCount ?>_gaji_sma_potongan">
+<span<?php echo $gaji_sma_grid->potongan->viewAttributes() ?>><?php echo $gaji_sma_grid->potongan->getViewValue() ?></span>
+</span>
+<?php if (!$gaji_sma->isConfirm()) { ?>
+<input type="hidden" data-table="gaji_sma" data-field="x_potongan" name="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" value="<?php echo HtmlEncode($gaji_sma_grid->potongan->FormValue) ?>">
+<input type="hidden" data-table="gaji_sma" data-field="x_potongan" name="o<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="o<?php echo $gaji_sma_grid->RowIndex ?>_potongan" value="<?php echo HtmlEncode($gaji_sma_grid->potongan->OldValue) ?>">
+<?php } else { ?>
+<input type="hidden" data-table="gaji_sma" data-field="x_potongan" name="fgaji_smagrid$x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="fgaji_smagrid$x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" value="<?php echo HtmlEncode($gaji_sma_grid->potongan->FormValue) ?>">
+<input type="hidden" data-table="gaji_sma" data-field="x_potongan" name="fgaji_smagrid$o<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="fgaji_smagrid$o<?php echo $gaji_sma_grid->RowIndex ?>_potongan" value="<?php echo HtmlEncode($gaji_sma_grid->potongan->OldValue) ?>">
 <?php } ?>
 <?php } ?>
 </td>
@@ -585,21 +585,6 @@ $gaji_sma_grid->ListOptions->render("body", "left", $gaji_sma_grid->RowIndex);
 <input type="hidden" data-table="gaji_sma" data-field="x_sub_total" name="o<?php echo $gaji_sma_grid->RowIndex ?>_sub_total" id="o<?php echo $gaji_sma_grid->RowIndex ?>_sub_total" value="<?php echo HtmlEncode($gaji_sma_grid->sub_total->OldValue) ?>">
 </td>
 	<?php } ?>
-	<?php if ($gaji_sma_grid->potongan->Visible) { // potongan ?>
-		<td data-name="potongan">
-<?php if (!$gaji_sma->isConfirm()) { ?>
-<span id="el$rowindex$_gaji_sma_potongan" class="form-group gaji_sma_potongan">
-<input type="text" data-table="gaji_sma" data-field="x_potongan" name="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_sma_grid->potongan->getPlaceHolder()) ?>" value="<?php echo $gaji_sma_grid->potongan->EditValue ?>"<?php echo $gaji_sma_grid->potongan->editAttributes() ?>>
-</span>
-<?php } else { ?>
-<span id="el$rowindex$_gaji_sma_potongan" class="form-group gaji_sma_potongan">
-<span<?php echo $gaji_sma_grid->potongan->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($gaji_sma_grid->potongan->ViewValue)) ?>"></span>
-</span>
-<input type="hidden" data-table="gaji_sma" data-field="x_potongan" name="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" value="<?php echo HtmlEncode($gaji_sma_grid->potongan->FormValue) ?>">
-<?php } ?>
-<input type="hidden" data-table="gaji_sma" data-field="x_potongan" name="o<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="o<?php echo $gaji_sma_grid->RowIndex ?>_potongan" value="<?php echo HtmlEncode($gaji_sma_grid->potongan->OldValue) ?>">
-</td>
-	<?php } ?>
 	<?php if ($gaji_sma_grid->penyesuaian->Visible) { // penyesuaian ?>
 		<td data-name="penyesuaian">
 <?php if (!$gaji_sma->isConfirm()) { ?>
@@ -613,6 +598,21 @@ $gaji_sma_grid->ListOptions->render("body", "left", $gaji_sma_grid->RowIndex);
 <input type="hidden" data-table="gaji_sma" data-field="x_penyesuaian" name="x<?php echo $gaji_sma_grid->RowIndex ?>_penyesuaian" id="x<?php echo $gaji_sma_grid->RowIndex ?>_penyesuaian" value="<?php echo HtmlEncode($gaji_sma_grid->penyesuaian->FormValue) ?>">
 <?php } ?>
 <input type="hidden" data-table="gaji_sma" data-field="x_penyesuaian" name="o<?php echo $gaji_sma_grid->RowIndex ?>_penyesuaian" id="o<?php echo $gaji_sma_grid->RowIndex ?>_penyesuaian" value="<?php echo HtmlEncode($gaji_sma_grid->penyesuaian->OldValue) ?>">
+</td>
+	<?php } ?>
+	<?php if ($gaji_sma_grid->potongan->Visible) { // potongan ?>
+		<td data-name="potongan">
+<?php if (!$gaji_sma->isConfirm()) { ?>
+<span id="el$rowindex$_gaji_sma_potongan" class="form-group gaji_sma_potongan">
+<input type="text" data-table="gaji_sma" data-field="x_potongan" name="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_sma_grid->potongan->getPlaceHolder()) ?>" value="<?php echo $gaji_sma_grid->potongan->EditValue ?>"<?php echo $gaji_sma_grid->potongan->editAttributes() ?>>
+</span>
+<?php } else { ?>
+<span id="el$rowindex$_gaji_sma_potongan" class="form-group gaji_sma_potongan">
+<span<?php echo $gaji_sma_grid->potongan->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($gaji_sma_grid->potongan->ViewValue)) ?>"></span>
+</span>
+<input type="hidden" data-table="gaji_sma" data-field="x_potongan" name="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="x<?php echo $gaji_sma_grid->RowIndex ?>_potongan" value="<?php echo HtmlEncode($gaji_sma_grid->potongan->FormValue) ?>">
+<?php } ?>
+<input type="hidden" data-table="gaji_sma" data-field="x_potongan" name="o<?php echo $gaji_sma_grid->RowIndex ?>_potongan" id="o<?php echo $gaji_sma_grid->RowIndex ?>_potongan" value="<?php echo HtmlEncode($gaji_sma_grid->potongan->OldValue) ?>">
 </td>
 	<?php } ?>
 	<?php if ($gaji_sma_grid->total->Visible) { // total ?>

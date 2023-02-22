@@ -163,6 +163,12 @@ $pegawai_delete->showMessage();
 <?php if ($pegawai_delete->kehadiran->Visible) { // kehadiran ?>
 		<th class="<?php echo $pegawai_delete->kehadiran->headerCellClass() ?>"><span id="elh_pegawai_kehadiran" class="pegawai_kehadiran"><?php echo $pegawai_delete->kehadiran->caption() ?></span></th>
 <?php } ?>
+<?php if ($pegawai_delete->status_pekerjaan->Visible) { // status_pekerjaan ?>
+		<th class="<?php echo $pegawai_delete->status_pekerjaan->headerCellClass() ?>"><span id="elh_pegawai_status_pekerjaan" class="pegawai_status_pekerjaan"><?php echo $pegawai_delete->status_pekerjaan->caption() ?></span></th>
+<?php } ?>
+<?php if ($pegawai_delete->status_npwp->Visible) { // status_npwp ?>
+		<th class="<?php echo $pegawai_delete->status_npwp->headerCellClass() ?>"><span id="elh_pegawai_status_npwp" class="pegawai_status_npwp"><?php echo $pegawai_delete->status_npwp->caption() ?></span></th>
+<?php } ?>
 	</tr>
 	</thead>
 	<tbody>
@@ -398,6 +404,20 @@ while (!$pegawai_delete->Recordset->EOF) {
 		<td <?php echo $pegawai_delete->kehadiran->cellAttributes() ?>>
 <span id="el<?php echo $pegawai_delete->RowCount ?>_pegawai_kehadiran" class="pegawai_kehadiran">
 <span<?php echo $pegawai_delete->kehadiran->viewAttributes() ?>><?php echo $pegawai_delete->kehadiran->getViewValue() ?></span>
+</span>
+</td>
+<?php } ?>
+<?php if ($pegawai_delete->status_pekerjaan->Visible) { // status_pekerjaan ?>
+		<td <?php echo $pegawai_delete->status_pekerjaan->cellAttributes() ?>>
+<span id="el<?php echo $pegawai_delete->RowCount ?>_pegawai_status_pekerjaan" class="pegawai_status_pekerjaan">
+<span<?php echo $pegawai_delete->status_pekerjaan->viewAttributes() ?>><?php echo $pegawai_delete->status_pekerjaan->getViewValue() ?></span>
+</span>
+</td>
+<?php } ?>
+<?php if ($pegawai_delete->status_npwp->Visible) { // status_npwp ?>
+		<td <?php echo $pegawai_delete->status_npwp->cellAttributes() ?>>
+<span id="el<?php echo $pegawai_delete->RowCount ?>_pegawai_status_npwp" class="pegawai_status_npwp">
+<span<?php echo $pegawai_delete->status_npwp->viewAttributes() ?>><?php echo $pegawai_delete->status_npwp->getViewValue() ?></span>
 </span>
 </td>
 <?php } ?>

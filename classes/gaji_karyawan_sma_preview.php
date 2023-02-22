@@ -593,7 +593,7 @@ class gaji_karyawan_sma_preview extends gaji_karyawan_sma
 		$this->pid->Visible = FALSE;
 		$this->tahun->Visible = FALSE;
 		$this->bulan->Visible = FALSE;
-		$this->pegawai->setVisibility();
+		$this->pegawai->Visible = FALSE;
 		$this->jenjang_id->Visible = FALSE;
 		$this->jabatan_id->Visible = FALSE;
 		$this->kehadiran->Visible = FALSE;
@@ -602,6 +602,9 @@ class gaji_karyawan_sma_preview extends gaji_karyawan_sma
 		$this->value_reward->Visible = FALSE;
 		$this->value_inval->Visible = FALSE;
 		$this->sub_total->setVisibility();
+		$this->jaminan_pensiun->Visible = FALSE;
+		$this->jaminan_hari_tua->Visible = FALSE;
+		$this->total_pph21->Visible = FALSE;
 		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
 		$this->potongan_bendahara->setVisibility();

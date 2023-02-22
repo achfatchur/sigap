@@ -211,21 +211,21 @@ $gaji_sma_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
-<?php if ($gaji_sma_list->potongan->Visible) { // potongan ?>
-	<?php if ($gaji_sma_list->SortUrl($gaji_sma_list->potongan) == "") { ?>
-		<th data-name="potongan" class="<?php echo $gaji_sma_list->potongan->headerCellClass() ?>"><div id="elh_gaji_sma_potongan" class="gaji_sma_potongan"><div class="ew-table-header-caption"><?php echo $gaji_sma_list->potongan->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="potongan" class="<?php echo $gaji_sma_list->potongan->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $gaji_sma_list->SortUrl($gaji_sma_list->potongan) ?>', 1);"><div id="elh_gaji_sma_potongan" class="gaji_sma_potongan">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_sma_list->potongan->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_sma_list->potongan->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_sma_list->potongan->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
 <?php if ($gaji_sma_list->penyesuaian->Visible) { // penyesuaian ?>
 	<?php if ($gaji_sma_list->SortUrl($gaji_sma_list->penyesuaian) == "") { ?>
 		<th data-name="penyesuaian" class="<?php echo $gaji_sma_list->penyesuaian->headerCellClass() ?>"><div id="elh_gaji_sma_penyesuaian" class="gaji_sma_penyesuaian"><div class="ew-table-header-caption"><?php echo $gaji_sma_list->penyesuaian->caption() ?></div></div></th>
 	<?php } else { ?>
 		<th data-name="penyesuaian" class="<?php echo $gaji_sma_list->penyesuaian->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $gaji_sma_list->SortUrl($gaji_sma_list->penyesuaian) ?>', 1);"><div id="elh_gaji_sma_penyesuaian" class="gaji_sma_penyesuaian">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_sma_list->penyesuaian->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_sma_list->penyesuaian->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_sma_list->penyesuaian->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_sma_list->potongan->Visible) { // potongan ?>
+	<?php if ($gaji_sma_list->SortUrl($gaji_sma_list->potongan) == "") { ?>
+		<th data-name="potongan" class="<?php echo $gaji_sma_list->potongan->headerCellClass() ?>"><div id="elh_gaji_sma_potongan" class="gaji_sma_potongan"><div class="ew-table-header-caption"><?php echo $gaji_sma_list->potongan->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="potongan" class="<?php echo $gaji_sma_list->potongan->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $gaji_sma_list->SortUrl($gaji_sma_list->potongan) ?>', 1);"><div id="elh_gaji_sma_potongan" class="gaji_sma_potongan">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_sma_list->potongan->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_sma_list->potongan->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_sma_list->potongan->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -326,17 +326,17 @@ $gaji_sma_list->ListOptions->render("body", "left", $gaji_sma_list->RowCount);
 </span>
 </td>
 	<?php } ?>
-	<?php if ($gaji_sma_list->potongan->Visible) { // potongan ?>
-		<td data-name="potongan" <?php echo $gaji_sma_list->potongan->cellAttributes() ?>>
-<span id="el<?php echo $gaji_sma_list->RowCount ?>_gaji_sma_potongan">
-<span<?php echo $gaji_sma_list->potongan->viewAttributes() ?>><?php echo $gaji_sma_list->potongan->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
 	<?php if ($gaji_sma_list->penyesuaian->Visible) { // penyesuaian ?>
 		<td data-name="penyesuaian" <?php echo $gaji_sma_list->penyesuaian->cellAttributes() ?>>
 <span id="el<?php echo $gaji_sma_list->RowCount ?>_gaji_sma_penyesuaian">
 <span<?php echo $gaji_sma_list->penyesuaian->viewAttributes() ?>><?php echo $gaji_sma_list->penyesuaian->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($gaji_sma_list->potongan->Visible) { // potongan ?>
+		<td data-name="potongan" <?php echo $gaji_sma_list->potongan->cellAttributes() ?>>
+<span id="el<?php echo $gaji_sma_list->RowCount ?>_gaji_sma_potongan">
+<span<?php echo $gaji_sma_list->potongan->viewAttributes() ?>><?php echo $gaji_sma_list->potongan->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

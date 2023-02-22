@@ -699,6 +699,8 @@ class pegawai_edit extends pegawai
 		$this->level->setVisibility();
 		$this->aktif->setVisibility();
 		$this->kehadiran->setVisibility();
+		$this->status_pekerjaan->setVisibility();
+		$this->status_npwp->setVisibility();
 		$this->hideFieldsForAddEdit();
 
 		// Do not use lookup cache
@@ -730,6 +732,8 @@ class pegawai_edit extends pegawai
 		$this->setupLookupOptions($this->agama);
 		$this->setupLookupOptions($this->jenkel);
 		$this->setupLookupOptions($this->level);
+		$this->setupLookupOptions($this->status_pekerjaan);
+		$this->setupLookupOptions($this->status_npwp);
 
 		// Check permission
 		if (!$Security->canEdit()) {
@@ -1155,6 +1159,24 @@ class pegawai_edit extends pegawai
 				$this->kehadiran->setFormValue($val);
 		}
 
+		// Check field name 'status_pekerjaan' first before field var 'x_status_pekerjaan'
+		$val = $CurrentForm->hasValue("status_pekerjaan") ? $CurrentForm->getValue("status_pekerjaan") : $CurrentForm->getValue("x_status_pekerjaan");
+		if (!$this->status_pekerjaan->IsDetailKey) {
+			if (IsApi() && $val == NULL)
+				$this->status_pekerjaan->Visible = FALSE; // Disable update for API request
+			else
+				$this->status_pekerjaan->setFormValue($val);
+		}
+
+		// Check field name 'status_npwp' first before field var 'x_status_npwp'
+		$val = $CurrentForm->hasValue("status_npwp") ? $CurrentForm->getValue("status_npwp") : $CurrentForm->getValue("x_status_npwp");
+		if (!$this->status_npwp->IsDetailKey) {
+			if (IsApi() && $val == NULL)
+				$this->status_npwp->Visible = FALSE; // Disable update for API request
+			else
+				$this->status_npwp->setFormValue($val);
+		}
+
 		// Check field name 'id' first before field var 'x_id'
 		$val = $CurrentForm->hasValue("id") ? $CurrentForm->getValue("id") : $CurrentForm->getValue("x_id");
 		if (!$this->id->IsDetailKey)
@@ -1196,6 +1218,8 @@ class pegawai_edit extends pegawai
 		$this->level->CurrentValue = $this->level->FormValue;
 		$this->aktif->CurrentValue = $this->aktif->FormValue;
 		$this->kehadiran->CurrentValue = $this->kehadiran->FormValue;
+		$this->status_pekerjaan->CurrentValue = $this->status_pekerjaan->FormValue;
+		$this->status_npwp->CurrentValue = $this->status_npwp->FormValue;
 	}
 
 	// Load row based on key values
@@ -1268,6 +1292,8 @@ class pegawai_edit extends pegawai
 		$this->level->setDbValue($row['level']);
 		$this->aktif->setDbValue($row['aktif']);
 		$this->kehadiran->setDbValue($row['kehadiran']);
+		$this->status_pekerjaan->setDbValue($row['status_pekerjaan']);
+		$this->status_npwp->setDbValue($row['status_npwp']);
 	}
 
 	// Return a row with default values
@@ -1307,6 +1333,8 @@ class pegawai_edit extends pegawai
 		$row['level'] = NULL;
 		$row['aktif'] = NULL;
 		$row['kehadiran'] = NULL;
+		$row['status_pekerjaan'] = NULL;
+		$row['status_npwp'] = NULL;
 		return $row;
 	}
 
@@ -1377,6 +1405,8 @@ class pegawai_edit extends pegawai
 		// level
 		// aktif
 		// kehadiran
+		// status_pekerjaan
+		// status_npwp
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
@@ -1712,6 +1742,50 @@ class pegawai_edit extends pegawai
 			$this->kehadiran->ViewValue = FormatNumber($this->kehadiran->ViewValue, 0, -2, -2, -2);
 			$this->kehadiran->ViewCustomAttributes = "";
 
+			// status_pekerjaan
+			$curVal = strval($this->status_pekerjaan->CurrentValue);
+			if ($curVal != "") {
+				$this->status_pekerjaan->ViewValue = $this->status_pekerjaan->lookupCacheOption($curVal);
+				if ($this->status_pekerjaan->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->status_pekerjaan->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->status_pekerjaan->ViewValue = $this->status_pekerjaan->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->status_pekerjaan->ViewValue = $this->status_pekerjaan->CurrentValue;
+					}
+				}
+			} else {
+				$this->status_pekerjaan->ViewValue = NULL;
+			}
+			$this->status_pekerjaan->ViewCustomAttributes = "";
+
+			// status_npwp
+			$curVal = strval($this->status_npwp->CurrentValue);
+			if ($curVal != "") {
+				$this->status_npwp->ViewValue = $this->status_npwp->lookupCacheOption($curVal);
+				if ($this->status_npwp->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->status_npwp->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->status_npwp->ViewValue = $this->status_npwp->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->status_npwp->ViewValue = $this->status_npwp->CurrentValue;
+					}
+				}
+			} else {
+				$this->status_npwp->ViewValue = NULL;
+			}
+			$this->status_npwp->ViewCustomAttributes = "";
+
 			// nip
 			$this->nip->LinkCustomAttributes = "";
 			$this->nip->HrefValue = "";
@@ -1868,6 +1942,16 @@ class pegawai_edit extends pegawai
 			$this->kehadiran->LinkCustomAttributes = "";
 			$this->kehadiran->HrefValue = "";
 			$this->kehadiran->TooltipValue = "";
+
+			// status_pekerjaan
+			$this->status_pekerjaan->LinkCustomAttributes = "";
+			$this->status_pekerjaan->HrefValue = "";
+			$this->status_pekerjaan->TooltipValue = "";
+
+			// status_npwp
+			$this->status_npwp->LinkCustomAttributes = "";
+			$this->status_npwp->HrefValue = "";
+			$this->status_npwp->TooltipValue = "";
 		} elseif ($this->RowType == ROWTYPE_EDIT) { // Edit row
 
 			// nip
@@ -2326,6 +2410,54 @@ class pegawai_edit extends pegawai
 			$this->kehadiran->EditValue = HtmlEncode($this->kehadiran->CurrentValue);
 			$this->kehadiran->PlaceHolder = RemoveHtml($this->kehadiran->caption());
 
+			// status_pekerjaan
+			$this->status_pekerjaan->EditAttrs["class"] = "form-control";
+			$this->status_pekerjaan->EditCustomAttributes = "";
+			$curVal = trim(strval($this->status_pekerjaan->CurrentValue));
+			if ($curVal != "")
+				$this->status_pekerjaan->ViewValue = $this->status_pekerjaan->lookupCacheOption($curVal);
+			else
+				$this->status_pekerjaan->ViewValue = $this->status_pekerjaan->Lookup !== NULL && is_array($this->status_pekerjaan->Lookup->Options) ? $curVal : NULL;
+			if ($this->status_pekerjaan->ViewValue !== NULL) { // Load from cache
+				$this->status_pekerjaan->EditValue = array_values($this->status_pekerjaan->Lookup->Options);
+			} else { // Lookup from database
+				if ($curVal == "") {
+					$filterWrk = "0=1";
+				} else {
+					$filterWrk = "`id`" . SearchString("=", $this->status_pekerjaan->CurrentValue, DATATYPE_NUMBER, "");
+				}
+				$sqlWrk = $this->status_pekerjaan->Lookup->getSql(TRUE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				$arwrk = $rswrk ? $rswrk->getRows() : [];
+				if ($rswrk)
+					$rswrk->close();
+				$this->status_pekerjaan->EditValue = $arwrk;
+			}
+
+			// status_npwp
+			$this->status_npwp->EditAttrs["class"] = "form-control";
+			$this->status_npwp->EditCustomAttributes = "";
+			$curVal = trim(strval($this->status_npwp->CurrentValue));
+			if ($curVal != "")
+				$this->status_npwp->ViewValue = $this->status_npwp->lookupCacheOption($curVal);
+			else
+				$this->status_npwp->ViewValue = $this->status_npwp->Lookup !== NULL && is_array($this->status_npwp->Lookup->Options) ? $curVal : NULL;
+			if ($this->status_npwp->ViewValue !== NULL) { // Load from cache
+				$this->status_npwp->EditValue = array_values($this->status_npwp->Lookup->Options);
+			} else { // Lookup from database
+				if ($curVal == "") {
+					$filterWrk = "0=1";
+				} else {
+					$filterWrk = "`id`" . SearchString("=", $this->status_npwp->CurrentValue, DATATYPE_NUMBER, "");
+				}
+				$sqlWrk = $this->status_npwp->Lookup->getSql(TRUE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				$arwrk = $rswrk ? $rswrk->getRows() : [];
+				if ($rswrk)
+					$rswrk->close();
+				$this->status_npwp->EditValue = $arwrk;
+			}
+
 			// Edit refer script
 			// nip
 
@@ -2453,6 +2585,14 @@ class pegawai_edit extends pegawai
 			// kehadiran
 			$this->kehadiran->LinkCustomAttributes = "";
 			$this->kehadiran->HrefValue = "";
+
+			// status_pekerjaan
+			$this->status_pekerjaan->LinkCustomAttributes = "";
+			$this->status_pekerjaan->HrefValue = "";
+
+			// status_npwp
+			$this->status_npwp->LinkCustomAttributes = "";
+			$this->status_npwp->HrefValue = "";
 		}
 		if ($this->RowType == ROWTYPE_ADD || $this->RowType == ROWTYPE_EDIT || $this->RowType == ROWTYPE_SEARCH) // Add/Edit/Search row
 			$this->setupFieldTitles();
@@ -2652,6 +2792,16 @@ class pegawai_edit extends pegawai
 		if (!CheckInteger($this->kehadiran->FormValue)) {
 			AddMessage($FormError, $this->kehadiran->errorMessage());
 		}
+		if ($this->status_pekerjaan->Required) {
+			if (!$this->status_pekerjaan->IsDetailKey && $this->status_pekerjaan->FormValue != NULL && $this->status_pekerjaan->FormValue == "") {
+				AddMessage($FormError, str_replace("%s", $this->status_pekerjaan->caption(), $this->status_pekerjaan->RequiredErrorMessage));
+			}
+		}
+		if ($this->status_npwp->Required) {
+			if (!$this->status_npwp->IsDetailKey && $this->status_npwp->FormValue != NULL && $this->status_npwp->FormValue == "") {
+				AddMessage($FormError, str_replace("%s", $this->status_npwp->caption(), $this->status_npwp->RequiredErrorMessage));
+			}
+		}
 
 		// Return validate result
 		$validateForm = ($FormError == "");
@@ -2801,6 +2951,12 @@ class pegawai_edit extends pegawai
 
 			// kehadiran
 			$this->kehadiran->setDbValueDef($rsnew, $this->kehadiran->CurrentValue, NULL, $this->kehadiran->ReadOnly);
+
+			// status_pekerjaan
+			$this->status_pekerjaan->setDbValueDef($rsnew, $this->status_pekerjaan->CurrentValue, NULL, $this->status_pekerjaan->ReadOnly);
+
+			// status_npwp
+			$this->status_npwp->setDbValueDef($rsnew, $this->status_npwp->CurrentValue, NULL, $this->status_npwp->ReadOnly);
 			if ($this->foto->Visible && !$this->foto->Upload->KeepFile) {
 				$oldFiles = EmptyValue($this->foto->Upload->DbValue) ? [] : [$this->foto->htmlDecode($this->foto->Upload->DbValue)];
 				if (!EmptyValue($this->foto->Upload->FileName)) {
@@ -3045,6 +3201,10 @@ class pegawai_edit extends pegawai
 					break;
 				case "x_level":
 					break;
+				case "x_status_pekerjaan":
+					break;
+				case "x_status_npwp":
+					break;
 				default:
 					$lookupFilter = "";
 					break;
@@ -3084,6 +3244,10 @@ class pegawai_edit extends pegawai
 						case "x_jenkel":
 							break;
 						case "x_level":
+							break;
+						case "x_status_pekerjaan":
+							break;
+						case "x_status_npwp":
 							break;
 					}
 					$ar[strval($row[0])] = $row;

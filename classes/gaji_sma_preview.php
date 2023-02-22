@@ -618,12 +618,16 @@ class gaji_sma_preview extends gaji_sma
 		$this->tugastambahan->Visible = FALSE;
 		$this->tj_jabatan->Visible = FALSE;
 		$this->sub_total->setVisibility();
-		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
 		$this->potongan_bendahara->Visible = FALSE;
+		$this->jaminan_pensiun->Visible = FALSE;
+		$this->jaminan_hari_tua->Visible = FALSE;
+		$this->total_pph21->Visible = FALSE;
+		$this->potongan->setVisibility();
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
 		$this->status->Visible = FALSE;
+		$this->status_npwp->Visible = FALSE;
 		$this->hideFieldsForAddEdit();
 
 		// Do not use lookup cache
@@ -655,6 +659,7 @@ class gaji_sma_preview extends gaji_sma
 		$this->setupLookupOptions($this->type);
 		$this->setupLookupOptions($this->jenis_guru);
 		$this->setupLookupOptions($this->tambahan);
+		$this->setupLookupOptions($this->status_npwp);
 
 		// Load filter
 		$filter = Get("f", "");
@@ -882,6 +887,8 @@ class gaji_sma_preview extends gaji_sma
 					break;
 				case "x_tambahan":
 					break;
+				case "x_status_npwp":
+					break;
 				default:
 					$lookupFilter = "";
 					break;
@@ -915,6 +922,8 @@ class gaji_sma_preview extends gaji_sma
 						case "x_jenis_guru":
 							break;
 						case "x_tambahan":
+							break;
+						case "x_status_npwp":
 							break;
 					}
 					$ar[strval($row[0])] = $row;

@@ -51,8 +51,8 @@ class set_password extends DbTable
 		$this->ExportPageBreakCount = 0; // Page break per every n record (PDF only)
 		$this->ExportPageOrientation = "portrait"; // Page orientation (PDF only)
 		$this->ExportPageSize = "a4"; // Page size (PDF only)
-		$this->ExportExcelPageOrientation = ""; // Page orientation (PhpSpreadsheet only)
-		$this->ExportExcelPageSize = ""; // Page size (PhpSpreadsheet only)
+		$this->ExportExcelPageOrientation = \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_DEFAULT; // Page orientation (PhpSpreadsheet only)
+		$this->ExportExcelPageSize = \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_A4; // Page size (PhpSpreadsheet only)
 		$this->ExportWordPageOrientation = "portrait"; // Page orientation (PHPWord only)
 		$this->ExportWordColumnWidth = NULL; // Cell width (PHPWord only)
 		$this->DetailAdd = FALSE; // Allow detail add
@@ -84,7 +84,7 @@ class set_password extends DbTable
 
 		// username
 		$this->username = new DbField('set_password', 'set_password', 'x_username', 'username', '`username`', '`username`', 200, 255, -1, FALSE, '`username`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->username->Sortable = TRUE; // Allow sort
+		$this->username->Sortable = FALSE; // Allow sort
 		$this->fields['username'] = &$this->username;
 
 		// password
@@ -701,6 +701,9 @@ class set_password extends DbTable
 		// nip
 		// nama
 		// username
+
+		$this->username->CellCssStyle = "white-space: nowrap;";
+
 		// password
 		// id
 
@@ -833,13 +836,11 @@ class set_password extends DbTable
 					$doc->exportCaption($this->id);
 					$doc->exportCaption($this->nip);
 					$doc->exportCaption($this->nama);
-					$doc->exportCaption($this->username);
 					$doc->exportCaption($this->password);
 				} else {
 					$doc->exportCaption($this->id);
 					$doc->exportCaption($this->nip);
 					$doc->exportCaption($this->nama);
-					$doc->exportCaption($this->username);
 					$doc->exportCaption($this->password);
 				}
 				$doc->endExportRow();
@@ -875,13 +876,11 @@ class set_password extends DbTable
 						$doc->exportField($this->id);
 						$doc->exportField($this->nip);
 						$doc->exportField($this->nama);
-						$doc->exportField($this->username);
 						$doc->exportField($this->password);
 					} else {
 						$doc->exportField($this->id);
 						$doc->exportField($this->nip);
 						$doc->exportField($this->nama);
-						$doc->exportField($this->username);
 						$doc->exportField($this->password);
 					}
 					$doc->endExportRow($rowCnt);
@@ -911,112 +910,162 @@ class set_password extends DbTable
 	function Recordset_Selecting(&$filter) {
 
 		// Enter your code here
-
-			if(CurrentUserLevel() != '-1'){
-			$nip = CurrentUserInfo("id");
-			if($nip != '' OR $nip != FALSE) {
-				AddFilter($filter, "id = $nip");
-			}
-			}
+				if(CurrentUserLevel() != '-1'){
+				$nip = CurrentUserInfo("id");
+				if($nip != '' OR $nip != FALSE) {
+					AddFilter($filter, "id = $nip");
+				}
+				}
 	}
+
 	// Recordset Selected event
 	function Recordset_Selected(&$rs) {
+
 		//echo "Recordset Selected";
 	}
+
 	// Recordset Search Validated event
 	function Recordset_SearchValidated() {
+
 		// Example:
 		//$this->MyField1->AdvancedSearch->SearchValue = "your search criteria"; // Search value
+
 	}
+
 	// Recordset Searching event
 	function Recordset_Searching(&$filter) {
+
 		// Enter your code here
 	}
+
 	// Row_Selecting event
 	function Row_Selecting(&$filter) {
+
 		// Enter your code here
 	}
+
 	// Row Selected event
 	function Row_Selected(&$rs) {
+
 		//echo "Row Selected";
 	}
+
 	// Row Inserting event
 	function Row_Inserting($rsold, &$rsnew) {
+
 		// Enter your code here
 		// To cancel, set return value to FALSE
+
 		return TRUE;
 	}
+
 	// Row Inserted event
 	function Row_Inserted($rsold, &$rsnew) {
+
 		//echo "Row Inserted"
 	}
+
 	// Row Updating event
 	function Row_Updating($rsold, &$rsnew) {
+
 		// Enter your code here
 		// To cancel, set return value to FALSE
+
 		return TRUE;
 	}
+
 	// Row Updated event
 	function Row_Updated($rsold, &$rsnew) {
+
 		//echo "Row Updated";
 	}
+
 	// Row Update Conflict event
 	function Row_UpdateConflict($rsold, &$rsnew) {
+
 		// Enter your code here
 		// To ignore conflict, set return value to FALSE
+
 		return TRUE;
 	}
+
 	// Grid Inserting event
 	function Grid_Inserting() {
+
 		// Enter your code here
 		// To reject grid insert, set return value to FALSE
+
 		return TRUE;
 	}
+
 	// Grid Inserted event
 	function Grid_Inserted($rsnew) {
+
 		//echo "Grid Inserted";
 	}
+
 	// Grid Updating event
 	function Grid_Updating($rsold) {
+
 		// Enter your code here
 		// To reject grid update, set return value to FALSE
+
 		return TRUE;
 	}
+
 	// Grid Updated event
 	function Grid_Updated($rsold, $rsnew) {
+
 		//echo "Grid Updated";
 	}
+
 	// Row Deleting event
 	function Row_Deleting(&$rs) {
+
 		// Enter your code here
 		// To cancel, set return value to False
+
 		return TRUE;
 	}
+
 	// Row Deleted event
 	function Row_Deleted(&$rs) {
+
 		//echo "Row Deleted";
 	}
+
 	// Email Sending event
 	function Email_Sending($email, &$args) {
+
 		//var_dump($email); var_dump($args); exit();
 		return TRUE;
 	}
+
 	// Lookup Selecting event
 	function Lookup_Selecting($fld, &$filter) {
+
 		//var_dump($fld->Name, $fld->Lookup, $filter); // Uncomment to view the filter
 		// Enter your code here
+
 	}
+
 	// Row Rendering event
 	function Row_Rendering() {
+
 		// Enter your code here
 	}
+
 	// Row Rendered event
 	function Row_Rendered() {
+
 		// To view properties of field class, use:
 		//var_dump($this-><FieldName>);
+
 	}
+
 	// User ID Filtering event
 	function UserID_Filtering(&$filter) {
+
 		// Enter your code here
 	}
 }

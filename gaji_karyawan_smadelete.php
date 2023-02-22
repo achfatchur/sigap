@@ -70,9 +70,6 @@ $gaji_karyawan_sma_delete->showMessage();
 <table class="table ew-table">
 	<thead>
 	<tr class="ew-table-header">
-<?php if ($gaji_karyawan_sma_delete->pegawai->Visible) { // pegawai ?>
-		<th class="<?php echo $gaji_karyawan_sma_delete->pegawai->headerCellClass() ?>"><span id="elh_gaji_karyawan_sma_pegawai" class="gaji_karyawan_sma_pegawai"><?php echo $gaji_karyawan_sma_delete->pegawai->caption() ?></span></th>
-<?php } ?>
 <?php if ($gaji_karyawan_sma_delete->sub_total->Visible) { // sub_total ?>
 		<th class="<?php echo $gaji_karyawan_sma_delete->sub_total->headerCellClass() ?>"><span id="elh_gaji_karyawan_sma_sub_total" class="gaji_karyawan_sma_sub_total"><?php echo $gaji_karyawan_sma_delete->sub_total->caption() ?></span></th>
 <?php } ?>
@@ -112,13 +109,6 @@ while (!$gaji_karyawan_sma_delete->Recordset->EOF) {
 	$gaji_karyawan_sma_delete->renderRow();
 ?>
 	<tr <?php echo $gaji_karyawan_sma->rowAttributes() ?>>
-<?php if ($gaji_karyawan_sma_delete->pegawai->Visible) { // pegawai ?>
-		<td <?php echo $gaji_karyawan_sma_delete->pegawai->cellAttributes() ?>>
-<span id="el<?php echo $gaji_karyawan_sma_delete->RowCount ?>_gaji_karyawan_sma_pegawai" class="gaji_karyawan_sma_pegawai">
-<span<?php echo $gaji_karyawan_sma_delete->pegawai->viewAttributes() ?>><?php echo $gaji_karyawan_sma_delete->pegawai->getViewValue() ?></span>
-</span>
-</td>
-<?php } ?>
 <?php if ($gaji_karyawan_sma_delete->sub_total->Visible) { // sub_total ?>
 		<td <?php echo $gaji_karyawan_sma_delete->sub_total->cellAttributes() ?>>
 <span id="el<?php echo $gaji_karyawan_sma_delete->RowCount ?>_gaji_karyawan_sma_sub_total" class="gaji_karyawan_sma_sub_total">

@@ -584,7 +584,7 @@ class gaji_karyawan_sma_delete extends gaji_karyawan_sma
 		$this->pid->Visible = FALSE;
 		$this->tahun->Visible = FALSE;
 		$this->bulan->Visible = FALSE;
-		$this->pegawai->setVisibility();
+		$this->pegawai->Visible = FALSE;
 		$this->jenjang_id->Visible = FALSE;
 		$this->jabatan_id->Visible = FALSE;
 		$this->kehadiran->Visible = FALSE;
@@ -593,6 +593,9 @@ class gaji_karyawan_sma_delete extends gaji_karyawan_sma
 		$this->value_reward->Visible = FALSE;
 		$this->value_inval->Visible = FALSE;
 		$this->sub_total->setVisibility();
+		$this->jaminan_pensiun->Visible = FALSE;
+		$this->jaminan_hari_tua->Visible = FALSE;
+		$this->total_pph21->Visible = FALSE;
 		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
 		$this->potongan_bendahara->setVisibility();
@@ -764,6 +767,9 @@ class gaji_karyawan_sma_delete extends gaji_karyawan_sma
 		$this->value_reward->setDbValue($row['value_reward']);
 		$this->value_inval->setDbValue($row['value_inval']);
 		$this->sub_total->setDbValue($row['sub_total']);
+		$this->jaminan_pensiun->setDbValue($row['jaminan_pensiun']);
+		$this->jaminan_hari_tua->setDbValue($row['jaminan_hari_tua']);
+		$this->total_pph21->setDbValue($row['total_pph21']);
 		$this->potongan->setDbValue($row['potongan']);
 		$this->penyesuaian->setDbValue($row['penyesuaian']);
 		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
@@ -789,6 +795,9 @@ class gaji_karyawan_sma_delete extends gaji_karyawan_sma
 		$row['value_reward'] = NULL;
 		$row['value_inval'] = NULL;
 		$row['sub_total'] = NULL;
+		$row['jaminan_pensiun'] = NULL;
+		$row['jaminan_hari_tua'] = NULL;
+		$row['total_pph21'] = NULL;
 		$row['potongan'] = NULL;
 		$row['penyesuaian'] = NULL;
 		$row['potongan_bendahara'] = NULL;
@@ -822,6 +831,9 @@ class gaji_karyawan_sma_delete extends gaji_karyawan_sma
 		// value_reward
 		// value_inval
 		// sub_total
+		// jaminan_pensiun
+		// jaminan_hari_tua
+		// total_pph21
 		// potongan
 		// penyesuaian
 		// potongan_bendahara
@@ -965,6 +977,21 @@ class gaji_karyawan_sma_delete extends gaji_karyawan_sma
 			$this->sub_total->ViewValue = FormatNumber($this->sub_total->ViewValue, 0, -2, -2, -2);
 			$this->sub_total->ViewCustomAttributes = "";
 
+			// jaminan_pensiun
+			$this->jaminan_pensiun->ViewValue = $this->jaminan_pensiun->CurrentValue;
+			$this->jaminan_pensiun->ViewValue = FormatNumber($this->jaminan_pensiun->ViewValue, 0, -2, -2, -2);
+			$this->jaminan_pensiun->ViewCustomAttributes = "";
+
+			// jaminan_hari_tua
+			$this->jaminan_hari_tua->ViewValue = $this->jaminan_hari_tua->CurrentValue;
+			$this->jaminan_hari_tua->ViewValue = FormatNumber($this->jaminan_hari_tua->ViewValue, 0, -2, -2, -2);
+			$this->jaminan_hari_tua->ViewCustomAttributes = "";
+
+			// total_pph21
+			$this->total_pph21->ViewValue = $this->total_pph21->CurrentValue;
+			$this->total_pph21->ViewValue = FormatNumber($this->total_pph21->ViewValue, 0, -2, -2, -2);
+			$this->total_pph21->ViewCustomAttributes = "";
+
 			// potongan
 			$this->potongan->ViewValue = $this->potongan->CurrentValue;
 			$this->potongan->ViewValue = FormatNumber($this->potongan->ViewValue, 0, -2, -2, -2);
@@ -994,11 +1021,6 @@ class gaji_karyawan_sma_delete extends gaji_karyawan_sma
 			$this->voucher->ViewValue = $this->voucher->CurrentValue;
 			$this->voucher->ViewValue = FormatNumber($this->voucher->ViewValue, 0, -2, -2, -2);
 			$this->voucher->ViewCustomAttributes = "";
-
-			// pegawai
-			$this->pegawai->LinkCustomAttributes = "";
-			$this->pegawai->HrefValue = "";
-			$this->pegawai->TooltipValue = "";
 
 			// sub_total
 			$this->sub_total->LinkCustomAttributes = "";

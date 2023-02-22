@@ -68,11 +68,6 @@ loadjs.ready("head", function() {
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
 					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $set_password_list->nama->caption(), $set_password_list->nama->RequiredErrorMessage)) ?>");
 			<?php } ?>
-			<?php if ($set_password_list->username->Required) { ?>
-				elm = this.getElements("x" + infix + "_username");
-				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
-					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $set_password_list->username->caption(), $set_password_list->username->RequiredErrorMessage)) ?>");
-			<?php } ?>
 			<?php if ($set_password_list->password->Required) { ?>
 				elm = this.getElements("x" + infix + "_password");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -251,15 +246,6 @@ $set_password_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
-<?php if ($set_password_list->username->Visible) { // username ?>
-	<?php if ($set_password_list->SortUrl($set_password_list->username) == "") { ?>
-		<th data-name="username" class="<?php echo $set_password_list->username->headerCellClass() ?>"><div id="elh_set_password_username" class="set_password_username"><div class="ew-table-header-caption"><?php echo $set_password_list->username->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="username" class="<?php echo $set_password_list->username->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $set_password_list->SortUrl($set_password_list->username) ?>', 1);"><div id="elh_set_password_username" class="set_password_username">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $set_password_list->username->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($set_password_list->username->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($set_password_list->username->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
 <?php if ($set_password_list->password->Visible) { // password ?>
 	<?php if ($set_password_list->SortUrl($set_password_list->password) == "") { ?>
 		<th data-name="password" class="<?php echo $set_password_list->password->headerCellClass() ?>"><div id="elh_set_password_password" class="set_password_password"><div class="ew-table-header-caption"><?php echo $set_password_list->password->caption() ?></div></div></th>
@@ -418,26 +404,6 @@ $set_password_list->ListOptions->render("body", "left", $set_password_list->RowC
 <?php } ?>
 </td>
 	<?php } ?>
-	<?php if ($set_password_list->username->Visible) { // username ?>
-		<td data-name="username" <?php echo $set_password_list->username->cellAttributes() ?>>
-<?php if ($set_password->RowType == ROWTYPE_ADD) { // Add record ?>
-<span id="el<?php echo $set_password_list->RowCount ?>_set_password_username" class="form-group">
-<input type="text" data-table="set_password" data-field="x_username" name="x<?php echo $set_password_list->RowIndex ?>_username" id="x<?php echo $set_password_list->RowIndex ?>_username" size="30" maxlength="255" placeholder="<?php echo HtmlEncode($set_password_list->username->getPlaceHolder()) ?>" value="<?php echo $set_password_list->username->EditValue ?>"<?php echo $set_password_list->username->editAttributes() ?>>
-</span>
-<input type="hidden" data-table="set_password" data-field="x_username" name="o<?php echo $set_password_list->RowIndex ?>_username" id="o<?php echo $set_password_list->RowIndex ?>_username" value="<?php echo HtmlEncode($set_password_list->username->OldValue) ?>">
-<?php } ?>
-<?php if ($set_password->RowType == ROWTYPE_EDIT) { // Edit record ?>
-<span id="el<?php echo $set_password_list->RowCount ?>_set_password_username" class="form-group">
-<input type="text" data-table="set_password" data-field="x_username" name="x<?php echo $set_password_list->RowIndex ?>_username" id="x<?php echo $set_password_list->RowIndex ?>_username" size="30" maxlength="255" placeholder="<?php echo HtmlEncode($set_password_list->username->getPlaceHolder()) ?>" value="<?php echo $set_password_list->username->EditValue ?>"<?php echo $set_password_list->username->editAttributes() ?>>
-</span>
-<?php } ?>
-<?php if ($set_password->RowType == ROWTYPE_VIEW) { // View record ?>
-<span id="el<?php echo $set_password_list->RowCount ?>_set_password_username">
-<span<?php echo $set_password_list->username->viewAttributes() ?>><?php echo $set_password_list->username->getViewValue() ?></span>
-</span>
-<?php } ?>
-</td>
-	<?php } ?>
 	<?php if ($set_password_list->password->Visible) { // password ?>
 		<td data-name="password" <?php echo $set_password_list->password->cellAttributes() ?>>
 <?php if ($set_password->RowType == ROWTYPE_ADD) { // Add record ?>
@@ -517,14 +483,6 @@ $set_password_list->ListOptions->render("body", "left", $set_password_list->RowI
 <input type="text" data-table="set_password" data-field="x_nama" name="x<?php echo $set_password_list->RowIndex ?>_nama" id="x<?php echo $set_password_list->RowIndex ?>_nama" size="30" maxlength="255" placeholder="<?php echo HtmlEncode($set_password_list->nama->getPlaceHolder()) ?>" value="<?php echo $set_password_list->nama->EditValue ?>"<?php echo $set_password_list->nama->editAttributes() ?>>
 </span>
 <input type="hidden" data-table="set_password" data-field="x_nama" name="o<?php echo $set_password_list->RowIndex ?>_nama" id="o<?php echo $set_password_list->RowIndex ?>_nama" value="<?php echo HtmlEncode($set_password_list->nama->OldValue) ?>">
-</td>
-	<?php } ?>
-	<?php if ($set_password_list->username->Visible) { // username ?>
-		<td data-name="username">
-<span id="el$rowindex$_set_password_username" class="form-group set_password_username">
-<input type="text" data-table="set_password" data-field="x_username" name="x<?php echo $set_password_list->RowIndex ?>_username" id="x<?php echo $set_password_list->RowIndex ?>_username" size="30" maxlength="255" placeholder="<?php echo HtmlEncode($set_password_list->username->getPlaceHolder()) ?>" value="<?php echo $set_password_list->username->EditValue ?>"<?php echo $set_password_list->username->editAttributes() ?>>
-</span>
-<input type="hidden" data-table="set_password" data-field="x_username" name="o<?php echo $set_password_list->RowIndex ?>_username" id="o<?php echo $set_password_list->RowIndex ?>_username" value="<?php echo HtmlEncode($set_password_list->username->OldValue) ?>">
 </td>
 	<?php } ?>
 	<?php if ($set_password_list->password->Visible) { // password ?>

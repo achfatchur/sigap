@@ -237,6 +237,16 @@ loadjs.ready("head", function() {
 				elm = this.getElements("x" + infix + "_kehadiran");
 				if (elm && !ew.checkInteger(elm.value))
 					return this.onError(elm, "<?php echo JsEncode($pegawai_edit->kehadiran->errorMessage()) ?>");
+			<?php if ($pegawai_edit->status_pekerjaan->Required) { ?>
+				elm = this.getElements("x" + infix + "_status_pekerjaan");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $pegawai_edit->status_pekerjaan->caption(), $pegawai_edit->status_pekerjaan->RequiredErrorMessage)) ?>");
+			<?php } ?>
+			<?php if ($pegawai_edit->status_npwp->Required) { ?>
+				elm = this.getElements("x" + infix + "_status_npwp");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $pegawai_edit->status_npwp->caption(), $pegawai_edit->status_npwp->RequiredErrorMessage)) ?>");
+			<?php } ?>
 
 				// Call Form_CustomValidate event
 				if (!this.Form_CustomValidate(fobj))
@@ -286,6 +296,10 @@ loadjs.ready("head", function() {
 	fpegawaiedit.lists["x_jenkel"].options = <?php echo JsonEncode($pegawai_edit->jenkel->lookupOptions()) ?>;
 	fpegawaiedit.lists["x_level"] = <?php echo $pegawai_edit->level->Lookup->toClientList($pegawai_edit) ?>;
 	fpegawaiedit.lists["x_level"].options = <?php echo JsonEncode($pegawai_edit->level->lookupOptions()) ?>;
+	fpegawaiedit.lists["x_status_pekerjaan"] = <?php echo $pegawai_edit->status_pekerjaan->Lookup->toClientList($pegawai_edit) ?>;
+	fpegawaiedit.lists["x_status_pekerjaan"].options = <?php echo JsonEncode($pegawai_edit->status_pekerjaan->lookupOptions()) ?>;
+	fpegawaiedit.lists["x_status_npwp"] = <?php echo $pegawai_edit->status_npwp->Lookup->toClientList($pegawai_edit) ?>;
+	fpegawaiedit.lists["x_status_npwp"].options = <?php echo JsonEncode($pegawai_edit->status_npwp->lookupOptions()) ?>;
 	loadjs.done("fpegawaiedit");
 });
 </script>
@@ -727,6 +741,36 @@ loadjs.ready(["fpegawaiedit", "datetimepicker"], function() {
 <input type="text" data-table="pegawai" data-field="x_kehadiran" name="x_kehadiran" id="x_kehadiran" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($pegawai_edit->kehadiran->getPlaceHolder()) ?>" value="<?php echo $pegawai_edit->kehadiran->EditValue ?>"<?php echo $pegawai_edit->kehadiran->editAttributes() ?>>
 </span>
 <?php echo $pegawai_edit->kehadiran->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
+<?php if ($pegawai_edit->status_pekerjaan->Visible) { // status_pekerjaan ?>
+	<div id="r_status_pekerjaan" class="form-group row">
+		<label id="elh_pegawai_status_pekerjaan" for="x_status_pekerjaan" class="<?php echo $pegawai_edit->LeftColumnClass ?>"><?php echo $pegawai_edit->status_pekerjaan->caption() ?><?php echo $pegawai_edit->status_pekerjaan->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
+		<div class="<?php echo $pegawai_edit->RightColumnClass ?>"><div <?php echo $pegawai_edit->status_pekerjaan->cellAttributes() ?>>
+<span id="el_pegawai_status_pekerjaan">
+<div class="input-group">
+	<select class="custom-select ew-custom-select" data-table="pegawai" data-field="x_status_pekerjaan" data-value-separator="<?php echo $pegawai_edit->status_pekerjaan->displayValueSeparatorAttribute() ?>" id="x_status_pekerjaan" name="x_status_pekerjaan"<?php echo $pegawai_edit->status_pekerjaan->editAttributes() ?>>
+			<?php echo $pegawai_edit->status_pekerjaan->selectOptionListHtml("x_status_pekerjaan") ?>
+		</select>
+</div>
+<?php echo $pegawai_edit->status_pekerjaan->Lookup->getParamTag($pegawai_edit, "p_x_status_pekerjaan") ?>
+</span>
+<?php echo $pegawai_edit->status_pekerjaan->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
+<?php if ($pegawai_edit->status_npwp->Visible) { // status_npwp ?>
+	<div id="r_status_npwp" class="form-group row">
+		<label id="elh_pegawai_status_npwp" for="x_status_npwp" class="<?php echo $pegawai_edit->LeftColumnClass ?>"><?php echo $pegawai_edit->status_npwp->caption() ?><?php echo $pegawai_edit->status_npwp->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
+		<div class="<?php echo $pegawai_edit->RightColumnClass ?>"><div <?php echo $pegawai_edit->status_npwp->cellAttributes() ?>>
+<span id="el_pegawai_status_npwp">
+<div class="input-group">
+	<select class="custom-select ew-custom-select" data-table="pegawai" data-field="x_status_npwp" data-value-separator="<?php echo $pegawai_edit->status_npwp->displayValueSeparatorAttribute() ?>" id="x_status_npwp" name="x_status_npwp"<?php echo $pegawai_edit->status_npwp->editAttributes() ?>>
+			<?php echo $pegawai_edit->status_npwp->selectOptionListHtml("x_status_npwp") ?>
+		</select>
+</div>
+<?php echo $pegawai_edit->status_npwp->Lookup->getParamTag($pegawai_edit, "p_x_status_npwp") ?>
+</span>
+<?php echo $pegawai_edit->status_npwp->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
 </div><!-- /page* -->

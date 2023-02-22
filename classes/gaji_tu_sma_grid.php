@@ -747,6 +747,9 @@ class gaji_tu_sma_grid extends gaji_tu_sma
 		$this->tj_jabatan->Visible = FALSE;
 		$this->tunjangan2->Visible = FALSE;
 		$this->sub_total->setVisibility();
+		$this->jaminan_pensiun->Visible = FALSE;
+		$this->jaminan_hari_tua->Visible = FALSE;
+		$this->total_pph21->Visible = FALSE;
 		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
 		$this->potongan_bendahara->setVisibility();
@@ -1597,6 +1600,12 @@ class gaji_tu_sma_grid extends gaji_tu_sma
 		$this->tunjangan2->OldValue = $this->tunjangan2->CurrentValue;
 		$this->sub_total->CurrentValue = NULL;
 		$this->sub_total->OldValue = $this->sub_total->CurrentValue;
+		$this->jaminan_pensiun->CurrentValue = NULL;
+		$this->jaminan_pensiun->OldValue = $this->jaminan_pensiun->CurrentValue;
+		$this->jaminan_hari_tua->CurrentValue = NULL;
+		$this->jaminan_hari_tua->OldValue = $this->jaminan_hari_tua->CurrentValue;
+		$this->total_pph21->CurrentValue = NULL;
+		$this->total_pph21->OldValue = $this->total_pph21->CurrentValue;
 		$this->potongan->CurrentValue = NULL;
 		$this->potongan->OldValue = $this->potongan->CurrentValue;
 		$this->penyesuaian->CurrentValue = NULL;
@@ -1830,6 +1839,9 @@ class gaji_tu_sma_grid extends gaji_tu_sma
 		$this->tj_jabatan->setDbValue($row['tj_jabatan']);
 		$this->tunjangan2->setDbValue($row['tunjangan2']);
 		$this->sub_total->setDbValue($row['sub_total']);
+		$this->jaminan_pensiun->setDbValue($row['jaminan_pensiun']);
+		$this->jaminan_hari_tua->setDbValue($row['jaminan_hari_tua']);
+		$this->total_pph21->setDbValue($row['total_pph21']);
 		$this->potongan->setDbValue($row['potongan']);
 		$this->penyesuaian->setDbValue($row['penyesuaian']);
 		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
@@ -1870,6 +1882,9 @@ class gaji_tu_sma_grid extends gaji_tu_sma
 		$row['tj_jabatan'] = $this->tj_jabatan->CurrentValue;
 		$row['tunjangan2'] = $this->tunjangan2->CurrentValue;
 		$row['sub_total'] = $this->sub_total->CurrentValue;
+		$row['jaminan_pensiun'] = $this->jaminan_pensiun->CurrentValue;
+		$row['jaminan_hari_tua'] = $this->jaminan_hari_tua->CurrentValue;
+		$row['total_pph21'] = $this->total_pph21->CurrentValue;
 		$row['potongan'] = $this->potongan->CurrentValue;
 		$row['penyesuaian'] = $this->penyesuaian->CurrentValue;
 		$row['potongan_bendahara'] = $this->potongan_bendahara->CurrentValue;
@@ -1950,6 +1965,9 @@ class gaji_tu_sma_grid extends gaji_tu_sma
 		// tj_jabatan
 		// tunjangan2
 		// sub_total
+		// jaminan_pensiun
+		// jaminan_hari_tua
+		// total_pph21
 		// potongan
 		// penyesuaian
 		// potongan_bendahara
@@ -2220,6 +2238,21 @@ class gaji_tu_sma_grid extends gaji_tu_sma
 			$this->sub_total->ViewValue = $this->sub_total->CurrentValue;
 			$this->sub_total->ViewValue = FormatNumber($this->sub_total->ViewValue, 0, -2, -2, -2);
 			$this->sub_total->ViewCustomAttributes = "";
+
+			// jaminan_pensiun
+			$this->jaminan_pensiun->ViewValue = $this->jaminan_pensiun->CurrentValue;
+			$this->jaminan_pensiun->ViewValue = FormatNumber($this->jaminan_pensiun->ViewValue, 0, -2, -2, -2);
+			$this->jaminan_pensiun->ViewCustomAttributes = "";
+
+			// jaminan_hari_tua
+			$this->jaminan_hari_tua->ViewValue = $this->jaminan_hari_tua->CurrentValue;
+			$this->jaminan_hari_tua->ViewValue = FormatNumber($this->jaminan_hari_tua->ViewValue, 0, -2, -2, -2);
+			$this->jaminan_hari_tua->ViewCustomAttributes = "";
+
+			// total_pph21
+			$this->total_pph21->ViewValue = $this->total_pph21->CurrentValue;
+			$this->total_pph21->ViewValue = FormatNumber($this->total_pph21->ViewValue, 0, -2, -2, -2);
+			$this->total_pph21->ViewCustomAttributes = "";
 
 			// potongan
 			$this->potongan->ViewValue = $this->potongan->CurrentValue;

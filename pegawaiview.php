@@ -401,6 +401,26 @@ $pegawai_view->showMessage();
 </td>
 	</tr>
 <?php } ?>
+<?php if ($pegawai_view->status_pekerjaan->Visible) { // status_pekerjaan ?>
+	<tr id="r_status_pekerjaan">
+		<td class="<?php echo $pegawai_view->TableLeftColumnClass ?>"><span id="elh_pegawai_status_pekerjaan"><?php echo $pegawai_view->status_pekerjaan->caption() ?></span></td>
+		<td data-name="status_pekerjaan" <?php echo $pegawai_view->status_pekerjaan->cellAttributes() ?>>
+<span id="el_pegawai_status_pekerjaan">
+<span<?php echo $pegawai_view->status_pekerjaan->viewAttributes() ?>><?php echo $pegawai_view->status_pekerjaan->getViewValue() ?></span>
+</span>
+</td>
+	</tr>
+<?php } ?>
+<?php if ($pegawai_view->status_npwp->Visible) { // status_npwp ?>
+	<tr id="r_status_npwp">
+		<td class="<?php echo $pegawai_view->TableLeftColumnClass ?>"><span id="elh_pegawai_status_npwp"><?php echo $pegawai_view->status_npwp->caption() ?></span></td>
+		<td data-name="status_npwp" <?php echo $pegawai_view->status_npwp->cellAttributes() ?>>
+<span id="el_pegawai_status_npwp">
+<span<?php echo $pegawai_view->status_npwp->viewAttributes() ?>><?php echo $pegawai_view->status_npwp->getViewValue() ?></span>
+</span>
+</td>
+	</tr>
+<?php } ?>
 </table>
 </form>
 <?php

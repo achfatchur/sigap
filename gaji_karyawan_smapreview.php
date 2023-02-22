@@ -47,15 +47,6 @@ $gaji_karyawan_sma_preview->renderListOptions();
 // Render list options (header, left)
 $gaji_karyawan_sma_preview->ListOptions->render("header", "left");
 ?>
-<?php if ($gaji_karyawan_sma_preview->pegawai->Visible) { // pegawai ?>
-	<?php if ($gaji_karyawan_sma->SortUrl($gaji_karyawan_sma_preview->pegawai) == "") { ?>
-		<th class="<?php echo $gaji_karyawan_sma_preview->pegawai->headerCellClass() ?>"><?php echo $gaji_karyawan_sma_preview->pegawai->caption() ?></th>
-	<?php } else { ?>
-		<th class="<?php echo $gaji_karyawan_sma_preview->pegawai->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_karyawan_sma_preview->pegawai->Name) ?>" data-sort-order="<?php echo $gaji_karyawan_sma_preview->SortField == $gaji_karyawan_sma_preview->pegawai->Name && $gaji_karyawan_sma_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_sma_preview->pegawai->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_sma_preview->SortField == $gaji_karyawan_sma_preview->pegawai->Name) { ?><?php if ($gaji_karyawan_sma_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_sma_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
 <?php if ($gaji_karyawan_sma_preview->sub_total->Visible) { // sub_total ?>
 	<?php if ($gaji_karyawan_sma->SortUrl($gaji_karyawan_sma_preview->sub_total) == "") { ?>
 		<th class="<?php echo $gaji_karyawan_sma_preview->sub_total->headerCellClass() ?>"><?php echo $gaji_karyawan_sma_preview->sub_total->caption() ?></th>
@@ -143,12 +134,6 @@ while ($gaji_karyawan_sma_preview->Recordset && !$gaji_karyawan_sma_preview->Rec
 // Render list options (body, left)
 $gaji_karyawan_sma_preview->ListOptions->render("body", "left", $gaji_karyawan_sma_preview->RowCount);
 ?>
-<?php if ($gaji_karyawan_sma_preview->pegawai->Visible) { // pegawai ?>
-		<!-- pegawai -->
-		<td<?php echo $gaji_karyawan_sma_preview->pegawai->cellAttributes() ?>>
-<span<?php echo $gaji_karyawan_sma_preview->pegawai->viewAttributes() ?>><?php echo $gaji_karyawan_sma_preview->pegawai->getViewValue() ?></span>
-</td>
-<?php } ?>
 <?php if ($gaji_karyawan_sma_preview->sub_total->Visible) { // sub_total ?>
 		<!-- sub_total -->
 		<td<?php echo $gaji_karyawan_sma_preview->sub_total->cellAttributes() ?>>

@@ -52,6 +52,9 @@ class gaji_tu_sma extends DbTable
 	public $tj_jabatan;
 	public $tunjangan2;
 	public $sub_total;
+	public $jaminan_pensiun;
+	public $jaminan_hari_tua;
+	public $total_pph21;
 	public $potongan;
 	public $penyesuaian;
 	public $potongan_bendahara;
@@ -79,8 +82,8 @@ class gaji_tu_sma extends DbTable
 		$this->ExportPageBreakCount = 0; // Page break per every n record (PDF only)
 		$this->ExportPageOrientation = "portrait"; // Page orientation (PDF only)
 		$this->ExportPageSize = "a4"; // Page size (PDF only)
-		$this->ExportExcelPageOrientation = ""; // Page orientation (PhpSpreadsheet only)
-		$this->ExportExcelPageSize = ""; // Page size (PhpSpreadsheet only)
+		$this->ExportExcelPageOrientation = \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_DEFAULT; // Page orientation (PhpSpreadsheet only)
+		$this->ExportExcelPageSize = \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_A4; // Page size (PhpSpreadsheet only)
 		$this->ExportWordPageOrientation = "portrait"; // Page orientation (PHPWord only)
 		$this->ExportWordColumnWidth = NULL; // Cell width (PHPWord only)
 		$this->DetailAdd = FALSE; // Allow detail add
@@ -265,6 +268,24 @@ class gaji_tu_sma extends DbTable
 		$this->sub_total->Sortable = TRUE; // Allow sort
 		$this->sub_total->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['sub_total'] = &$this->sub_total;
+
+		// jaminan_pensiun
+		$this->jaminan_pensiun = new DbField('gaji_tu_sma', 'gaji_tu_sma', 'x_jaminan_pensiun', 'jaminan_pensiun', '`jaminan_pensiun`', '`jaminan_pensiun`', 20, 19, -1, FALSE, '`jaminan_pensiun`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->jaminan_pensiun->Sortable = TRUE; // Allow sort
+		$this->jaminan_pensiun->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['jaminan_pensiun'] = &$this->jaminan_pensiun;
+
+		// jaminan_hari_tua
+		$this->jaminan_hari_tua = new DbField('gaji_tu_sma', 'gaji_tu_sma', 'x_jaminan_hari_tua', 'jaminan_hari_tua', '`jaminan_hari_tua`', '`jaminan_hari_tua`', 20, 19, -1, FALSE, '`jaminan_hari_tua`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->jaminan_hari_tua->Sortable = TRUE; // Allow sort
+		$this->jaminan_hari_tua->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['jaminan_hari_tua'] = &$this->jaminan_hari_tua;
+
+		// total_pph21
+		$this->total_pph21 = new DbField('gaji_tu_sma', 'gaji_tu_sma', 'x_total_pph21', 'total_pph21', '`total_pph21`', '`total_pph21`', 20, 19, -1, FALSE, '`total_pph21`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->total_pph21->Sortable = TRUE; // Allow sort
+		$this->total_pph21->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['total_pph21'] = &$this->total_pph21;
 
 		// potongan
 		$this->potongan = new DbField('gaji_tu_sma', 'gaji_tu_sma', 'x_potongan', 'potongan', '`potongan`', '`potongan`', 20, 19, -1, FALSE, '`potongan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
@@ -751,6 +772,9 @@ class gaji_tu_sma extends DbTable
 		$this->tj_jabatan->DbValue = $row['tj_jabatan'];
 		$this->tunjangan2->DbValue = $row['tunjangan2'];
 		$this->sub_total->DbValue = $row['sub_total'];
+		$this->jaminan_pensiun->DbValue = $row['jaminan_pensiun'];
+		$this->jaminan_hari_tua->DbValue = $row['jaminan_hari_tua'];
+		$this->total_pph21->DbValue = $row['total_pph21'];
 		$this->potongan->DbValue = $row['potongan'];
 		$this->penyesuaian->DbValue = $row['penyesuaian'];
 		$this->potongan_bendahara->DbValue = $row['potongan_bendahara'];
@@ -1020,6 +1044,9 @@ class gaji_tu_sma extends DbTable
 		$this->tj_jabatan->setDbValue($rs->fields('tj_jabatan'));
 		$this->tunjangan2->setDbValue($rs->fields('tunjangan2'));
 		$this->sub_total->setDbValue($rs->fields('sub_total'));
+		$this->jaminan_pensiun->setDbValue($rs->fields('jaminan_pensiun'));
+		$this->jaminan_hari_tua->setDbValue($rs->fields('jaminan_hari_tua'));
+		$this->total_pph21->setDbValue($rs->fields('total_pph21'));
 		$this->potongan->setDbValue($rs->fields('potongan'));
 		$this->penyesuaian->setDbValue($rs->fields('penyesuaian'));
 		$this->potongan_bendahara->setDbValue($rs->fields('potongan_bendahara'));
@@ -1064,6 +1091,9 @@ class gaji_tu_sma extends DbTable
 		// tj_jabatan
 		// tunjangan2
 		// sub_total
+		// jaminan_pensiun
+		// jaminan_hari_tua
+		// total_pph21
 		// potongan
 		// penyesuaian
 		// potongan_bendahara
@@ -1348,6 +1378,21 @@ class gaji_tu_sma extends DbTable
 		$this->sub_total->ViewValue = FormatNumber($this->sub_total->ViewValue, 0, -2, -2, -2);
 		$this->sub_total->ViewCustomAttributes = "";
 
+		// jaminan_pensiun
+		$this->jaminan_pensiun->ViewValue = $this->jaminan_pensiun->CurrentValue;
+		$this->jaminan_pensiun->ViewValue = FormatNumber($this->jaminan_pensiun->ViewValue, 0, -2, -2, -2);
+		$this->jaminan_pensiun->ViewCustomAttributes = "";
+
+		// jaminan_hari_tua
+		$this->jaminan_hari_tua->ViewValue = $this->jaminan_hari_tua->CurrentValue;
+		$this->jaminan_hari_tua->ViewValue = FormatNumber($this->jaminan_hari_tua->ViewValue, 0, -2, -2, -2);
+		$this->jaminan_hari_tua->ViewCustomAttributes = "";
+
+		// total_pph21
+		$this->total_pph21->ViewValue = $this->total_pph21->CurrentValue;
+		$this->total_pph21->ViewValue = FormatNumber($this->total_pph21->ViewValue, 0, -2, -2, -2);
+		$this->total_pph21->ViewCustomAttributes = "";
+
 		// potongan
 		$this->potongan->ViewValue = $this->potongan->CurrentValue;
 		$this->potongan->ViewValue = FormatNumber($this->potongan->ViewValue, 0, -2, -2, -2);
@@ -1512,6 +1557,21 @@ class gaji_tu_sma extends DbTable
 		$this->sub_total->LinkCustomAttributes = "";
 		$this->sub_total->HrefValue = "";
 		$this->sub_total->TooltipValue = "";
+
+		// jaminan_pensiun
+		$this->jaminan_pensiun->LinkCustomAttributes = "";
+		$this->jaminan_pensiun->HrefValue = "";
+		$this->jaminan_pensiun->TooltipValue = "";
+
+		// jaminan_hari_tua
+		$this->jaminan_hari_tua->LinkCustomAttributes = "";
+		$this->jaminan_hari_tua->HrefValue = "";
+		$this->jaminan_hari_tua->TooltipValue = "";
+
+		// total_pph21
+		$this->total_pph21->LinkCustomAttributes = "";
+		$this->total_pph21->HrefValue = "";
+		$this->total_pph21->TooltipValue = "";
 
 		// potongan
 		$this->potongan->LinkCustomAttributes = "";
@@ -1756,6 +1816,24 @@ class gaji_tu_sma extends DbTable
 		$this->sub_total->EditValue = $this->sub_total->CurrentValue;
 		$this->sub_total->PlaceHolder = RemoveHtml($this->sub_total->caption());
 
+		// jaminan_pensiun
+		$this->jaminan_pensiun->EditAttrs["class"] = "form-control";
+		$this->jaminan_pensiun->EditCustomAttributes = "";
+		$this->jaminan_pensiun->EditValue = $this->jaminan_pensiun->CurrentValue;
+		$this->jaminan_pensiun->PlaceHolder = RemoveHtml($this->jaminan_pensiun->caption());
+
+		// jaminan_hari_tua
+		$this->jaminan_hari_tua->EditAttrs["class"] = "form-control";
+		$this->jaminan_hari_tua->EditCustomAttributes = "";
+		$this->jaminan_hari_tua->EditValue = $this->jaminan_hari_tua->CurrentValue;
+		$this->jaminan_hari_tua->PlaceHolder = RemoveHtml($this->jaminan_hari_tua->caption());
+
+		// total_pph21
+		$this->total_pph21->EditAttrs["class"] = "form-control";
+		$this->total_pph21->EditCustomAttributes = "";
+		$this->total_pph21->EditValue = $this->total_pph21->CurrentValue;
+		$this->total_pph21->PlaceHolder = RemoveHtml($this->total_pph21->caption());
+
 		// potongan
 		$this->potongan->EditAttrs["class"] = "form-control";
 		$this->potongan->EditCustomAttributes = "";
@@ -1847,6 +1925,9 @@ class gaji_tu_sma extends DbTable
 					$doc->exportCaption($this->tj_jabatan);
 					$doc->exportCaption($this->tunjangan2);
 					$doc->exportCaption($this->sub_total);
+					$doc->exportCaption($this->jaminan_pensiun);
+					$doc->exportCaption($this->jaminan_hari_tua);
+					$doc->exportCaption($this->total_pph21);
 					$doc->exportCaption($this->potongan);
 					$doc->exportCaption($this->penyesuaian);
 					$doc->exportCaption($this->potongan_bendahara);
@@ -1878,6 +1959,9 @@ class gaji_tu_sma extends DbTable
 					$doc->exportCaption($this->value_piket);
 					$doc->exportCaption($this->tugastambahan);
 					$doc->exportCaption($this->sub_total);
+					$doc->exportCaption($this->jaminan_pensiun);
+					$doc->exportCaption($this->jaminan_hari_tua);
+					$doc->exportCaption($this->total_pph21);
 					$doc->exportCaption($this->potongan);
 					$doc->exportCaption($this->penyesuaian);
 					$doc->exportCaption($this->potongan_bendahara);
@@ -1941,6 +2025,9 @@ class gaji_tu_sma extends DbTable
 						$doc->exportField($this->tj_jabatan);
 						$doc->exportField($this->tunjangan2);
 						$doc->exportField($this->sub_total);
+						$doc->exportField($this->jaminan_pensiun);
+						$doc->exportField($this->jaminan_hari_tua);
+						$doc->exportField($this->total_pph21);
 						$doc->exportField($this->potongan);
 						$doc->exportField($this->penyesuaian);
 						$doc->exportField($this->potongan_bendahara);
@@ -1972,6 +2059,9 @@ class gaji_tu_sma extends DbTable
 						$doc->exportField($this->value_piket);
 						$doc->exportField($this->tugastambahan);
 						$doc->exportField($this->sub_total);
+						$doc->exportField($this->jaminan_pensiun);
+						$doc->exportField($this->jaminan_hari_tua);
+						$doc->exportField($this->total_pph21);
 						$doc->exportField($this->potongan);
 						$doc->exportField($this->penyesuaian);
 						$doc->exportField($this->potongan_bendahara);

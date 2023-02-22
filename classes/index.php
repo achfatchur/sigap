@@ -579,6 +579,18 @@ class index
 			$this->terminate("export_tu_sma.php");
 		if ($Security->allowList(CurrentProjectID() . 'export_excel.php'))
 			$this->terminate("export_excel.php");
+		if ($Security->allowList(CurrentProjectID() . 'status_npwp'))
+			$this->terminate("status_npwplist.php");
+		if ($Security->allowList(CurrentProjectID() . 'm_iuran_hari_tua'))
+			$this->terminate("m_iuran_hari_tualist.php");
+		if ($Security->allowList(CurrentProjectID() . 'm_jaminan_pensiun'))
+			$this->terminate("m_jaminan_pensiunlist.php");
+		if ($Security->allowList(CurrentProjectID() . 'status_pekerjaan'))
+			$this->terminate("status_pekerjaanlist.php");
+		if ($Security->allowList(CurrentProjectID() . 'm_pph21'))
+			$this->terminate("m_pph21list.php");
+		if ($Security->allowList(CurrentProjectID() . 'laporan_pajak_all.php'))
+			$this->terminate("laporan_pajak_all.php");
 		if ($Security->isLoggedIn()) {
 			$this->setFailureMessage(DeniedMessage() . "<br><br><a href=\"logout.php\">" . $Language->phrase("BackToLogin") . "</a>");
 		} else {

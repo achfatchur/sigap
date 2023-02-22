@@ -844,6 +844,8 @@ class pegawai_list extends pegawai
 		$this->level->setVisibility();
 		$this->aktif->setVisibility();
 		$this->kehadiran->setVisibility();
+		$this->status_pekerjaan->setVisibility();
+		$this->status_npwp->setVisibility();
 		$this->hideFieldsForAddEdit();
 
 		// Global Page Loading event (in userfn*.php)
@@ -887,6 +889,8 @@ class pegawai_list extends pegawai
 		$this->setupLookupOptions($this->agama);
 		$this->setupLookupOptions($this->jenkel);
 		$this->setupLookupOptions($this->level);
+		$this->setupLookupOptions($this->status_pekerjaan);
+		$this->setupLookupOptions($this->status_npwp);
 
 		// Search filters
 		$srchAdvanced = ""; // Advanced search filter
@@ -1191,6 +1195,8 @@ class pegawai_list extends pegawai
 		$filterList = Concat($filterList, $this->level->AdvancedSearch->toJson(), ","); // Field level
 		$filterList = Concat($filterList, $this->aktif->AdvancedSearch->toJson(), ","); // Field aktif
 		$filterList = Concat($filterList, $this->kehadiran->AdvancedSearch->toJson(), ","); // Field kehadiran
+		$filterList = Concat($filterList, $this->status_pekerjaan->AdvancedSearch->toJson(), ","); // Field status_pekerjaan
+		$filterList = Concat($filterList, $this->status_npwp->AdvancedSearch->toJson(), ","); // Field status_npwp
 		if ($this->BasicSearch->Keyword != "") {
 			$wrk = "\"" . Config("TABLE_BASIC_SEARCH") . "\":\"" . JsEncode($this->BasicSearch->Keyword) . "\",\"" . Config("TABLE_BASIC_SEARCH_TYPE") . "\":\"" . JsEncode($this->BasicSearch->Type) . "\"";
 			$filterList = Concat($filterList, $wrk, ",");
@@ -1492,6 +1498,22 @@ class pegawai_list extends pegawai
 		$this->kehadiran->AdvancedSearch->SearchValue2 = @$filter["y_kehadiran"];
 		$this->kehadiran->AdvancedSearch->SearchOperator2 = @$filter["w_kehadiran"];
 		$this->kehadiran->AdvancedSearch->save();
+
+		// Field status_pekerjaan
+		$this->status_pekerjaan->AdvancedSearch->SearchValue = @$filter["x_status_pekerjaan"];
+		$this->status_pekerjaan->AdvancedSearch->SearchOperator = @$filter["z_status_pekerjaan"];
+		$this->status_pekerjaan->AdvancedSearch->SearchCondition = @$filter["v_status_pekerjaan"];
+		$this->status_pekerjaan->AdvancedSearch->SearchValue2 = @$filter["y_status_pekerjaan"];
+		$this->status_pekerjaan->AdvancedSearch->SearchOperator2 = @$filter["w_status_pekerjaan"];
+		$this->status_pekerjaan->AdvancedSearch->save();
+
+		// Field status_npwp
+		$this->status_npwp->AdvancedSearch->SearchValue = @$filter["x_status_npwp"];
+		$this->status_npwp->AdvancedSearch->SearchOperator = @$filter["z_status_npwp"];
+		$this->status_npwp->AdvancedSearch->SearchCondition = @$filter["v_status_npwp"];
+		$this->status_npwp->AdvancedSearch->SearchValue2 = @$filter["y_status_npwp"];
+		$this->status_npwp->AdvancedSearch->SearchOperator2 = @$filter["w_status_npwp"];
+		$this->status_npwp->AdvancedSearch->save();
 		$this->BasicSearch->setKeyword(@$filter[Config("TABLE_BASIC_SEARCH")]);
 		$this->BasicSearch->setType(@$filter[Config("TABLE_BASIC_SEARCH_TYPE")]);
 	}
@@ -1536,6 +1558,8 @@ class pegawai_list extends pegawai
 		$this->buildSearchSql($where, $this->level, $default, FALSE); // level
 		$this->buildSearchSql($where, $this->aktif, $default, FALSE); // aktif
 		$this->buildSearchSql($where, $this->kehadiran, $default, FALSE); // kehadiran
+		$this->buildSearchSql($where, $this->status_pekerjaan, $default, FALSE); // status_pekerjaan
+		$this->buildSearchSql($where, $this->status_npwp, $default, FALSE); // status_npwp
 
 		// Set up search parm
 		if (!$default && $where != "" && in_array($this->Command, ["", "reset", "resetall"])) {
@@ -1575,6 +1599,8 @@ class pegawai_list extends pegawai
 			$this->level->AdvancedSearch->save(); // level
 			$this->aktif->AdvancedSearch->save(); // aktif
 			$this->kehadiran->AdvancedSearch->save(); // kehadiran
+			$this->status_pekerjaan->AdvancedSearch->save(); // status_pekerjaan
+			$this->status_npwp->AdvancedSearch->save(); // status_npwp
 		}
 		return $where;
 	}
@@ -1832,6 +1858,10 @@ class pegawai_list extends pegawai
 			return TRUE;
 		if ($this->kehadiran->AdvancedSearch->issetSession())
 			return TRUE;
+		if ($this->status_pekerjaan->AdvancedSearch->issetSession())
+			return TRUE;
+		if ($this->status_npwp->AdvancedSearch->issetSession())
+			return TRUE;
 		return FALSE;
 	}
 
@@ -1898,6 +1928,8 @@ class pegawai_list extends pegawai
 		$this->level->AdvancedSearch->unsetSession();
 		$this->aktif->AdvancedSearch->unsetSession();
 		$this->kehadiran->AdvancedSearch->unsetSession();
+		$this->status_pekerjaan->AdvancedSearch->unsetSession();
+		$this->status_npwp->AdvancedSearch->unsetSession();
 	}
 
 	// Restore all search parameters
@@ -1942,6 +1974,8 @@ class pegawai_list extends pegawai
 		$this->level->AdvancedSearch->load();
 		$this->aktif->AdvancedSearch->load();
 		$this->kehadiran->AdvancedSearch->load();
+		$this->status_pekerjaan->AdvancedSearch->load();
+		$this->status_npwp->AdvancedSearch->load();
 	}
 
 	// Set up sort parameters
@@ -1983,6 +2017,8 @@ class pegawai_list extends pegawai
 			$this->updateSort($this->level); // level
 			$this->updateSort($this->aktif); // aktif
 			$this->updateSort($this->kehadiran); // kehadiran
+			$this->updateSort($this->status_pekerjaan); // status_pekerjaan
+			$this->updateSort($this->status_npwp); // status_npwp
 			$this->setStartRecordNumber(1); // Reset start position
 		}
 	}
@@ -2049,6 +2085,8 @@ class pegawai_list extends pegawai
 				$this->level->setSort("");
 				$this->aktif->setSort("");
 				$this->kehadiran->setSort("");
+				$this->status_pekerjaan->setSort("");
+				$this->status_npwp->setSort("");
 			}
 
 			// Reset start position
@@ -2645,6 +2683,20 @@ class pegawai_list extends pegawai
 			if (($this->kehadiran->AdvancedSearch->SearchValue != "" || $this->kehadiran->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
 				$this->Command = "search";
 		}
+
+		// status_pekerjaan
+		if (!$this->isAddOrEdit() && $this->status_pekerjaan->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->status_pekerjaan->AdvancedSearch->SearchValue != "" || $this->status_pekerjaan->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
+
+		// status_npwp
+		if (!$this->isAddOrEdit() && $this->status_npwp->AdvancedSearch->get()) {
+			$got = TRUE;
+			if (($this->status_npwp->AdvancedSearch->SearchValue != "" || $this->status_npwp->AdvancedSearch->SearchValue2 != "") && $this->Command == "")
+				$this->Command = "search";
+		}
 		return $got;
 	}
 
@@ -2745,6 +2797,8 @@ class pegawai_list extends pegawai
 		$this->level->setDbValue($row['level']);
 		$this->aktif->setDbValue($row['aktif']);
 		$this->kehadiran->setDbValue($row['kehadiran']);
+		$this->status_pekerjaan->setDbValue($row['status_pekerjaan']);
+		$this->status_npwp->setDbValue($row['status_npwp']);
 	}
 
 	// Return a row with default values
@@ -2784,6 +2838,8 @@ class pegawai_list extends pegawai
 		$row['level'] = NULL;
 		$row['aktif'] = NULL;
 		$row['kehadiran'] = NULL;
+		$row['status_pekerjaan'] = NULL;
+		$row['status_npwp'] = NULL;
 		return $row;
 	}
 
@@ -2860,6 +2916,8 @@ class pegawai_list extends pegawai
 		// level
 		// aktif
 		// kehadiran
+		// status_pekerjaan
+		// status_npwp
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
@@ -3195,6 +3253,50 @@ class pegawai_list extends pegawai
 			$this->kehadiran->ViewValue = FormatNumber($this->kehadiran->ViewValue, 0, -2, -2, -2);
 			$this->kehadiran->ViewCustomAttributes = "";
 
+			// status_pekerjaan
+			$curVal = strval($this->status_pekerjaan->CurrentValue);
+			if ($curVal != "") {
+				$this->status_pekerjaan->ViewValue = $this->status_pekerjaan->lookupCacheOption($curVal);
+				if ($this->status_pekerjaan->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->status_pekerjaan->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->status_pekerjaan->ViewValue = $this->status_pekerjaan->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->status_pekerjaan->ViewValue = $this->status_pekerjaan->CurrentValue;
+					}
+				}
+			} else {
+				$this->status_pekerjaan->ViewValue = NULL;
+			}
+			$this->status_pekerjaan->ViewCustomAttributes = "";
+
+			// status_npwp
+			$curVal = strval($this->status_npwp->CurrentValue);
+			if ($curVal != "") {
+				$this->status_npwp->ViewValue = $this->status_npwp->lookupCacheOption($curVal);
+				if ($this->status_npwp->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->status_npwp->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->status_npwp->ViewValue = $this->status_npwp->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->status_npwp->ViewValue = $this->status_npwp->CurrentValue;
+					}
+				}
+			} else {
+				$this->status_npwp->ViewValue = NULL;
+			}
+			$this->status_npwp->ViewCustomAttributes = "";
+
 			// nip
 			$this->nip->LinkCustomAttributes = "";
 			$this->nip->HrefValue = "";
@@ -3351,6 +3453,16 @@ class pegawai_list extends pegawai
 			$this->kehadiran->LinkCustomAttributes = "";
 			$this->kehadiran->HrefValue = "";
 			$this->kehadiran->TooltipValue = "";
+
+			// status_pekerjaan
+			$this->status_pekerjaan->LinkCustomAttributes = "";
+			$this->status_pekerjaan->HrefValue = "";
+			$this->status_pekerjaan->TooltipValue = "";
+
+			// status_npwp
+			$this->status_npwp->LinkCustomAttributes = "";
+			$this->status_npwp->HrefValue = "";
+			$this->status_npwp->TooltipValue = "";
 		} elseif ($this->RowType == ROWTYPE_SEARCH) { // Search row
 
 			// nip
@@ -3579,6 +3691,14 @@ class pegawai_list extends pegawai
 			$this->kehadiran->EditCustomAttributes = "";
 			$this->kehadiran->EditValue = HtmlEncode($this->kehadiran->AdvancedSearch->SearchValue);
 			$this->kehadiran->PlaceHolder = RemoveHtml($this->kehadiran->caption());
+
+			// status_pekerjaan
+			$this->status_pekerjaan->EditAttrs["class"] = "form-control";
+			$this->status_pekerjaan->EditCustomAttributes = "";
+
+			// status_npwp
+			$this->status_npwp->EditAttrs["class"] = "form-control";
+			$this->status_npwp->EditCustomAttributes = "";
 		}
 		if ($this->RowType == ROWTYPE_ADD || $this->RowType == ROWTYPE_EDIT || $this->RowType == ROWTYPE_SEARCH) // Add/Edit/Search row
 			$this->setupFieldTitles();
@@ -3648,6 +3768,8 @@ class pegawai_list extends pegawai
 		$this->level->AdvancedSearch->load();
 		$this->aktif->AdvancedSearch->load();
 		$this->kehadiran->AdvancedSearch->load();
+		$this->status_pekerjaan->AdvancedSearch->load();
+		$this->status_npwp->AdvancedSearch->load();
 	}
 
 	// Get export HTML tag
@@ -3926,6 +4048,10 @@ class pegawai_list extends pegawai
 					break;
 				case "x_level":
 					break;
+				case "x_status_pekerjaan":
+					break;
+				case "x_status_npwp":
+					break;
 				default:
 					$lookupFilter = "";
 					break;
@@ -3965,6 +4091,10 @@ class pegawai_list extends pegawai
 						case "x_jenkel":
 							break;
 						case "x_level":
+							break;
+						case "x_status_pekerjaan":
+							break;
+						case "x_status_npwp":
 							break;
 					}
 					$ar[strval($row[0])] = $row;

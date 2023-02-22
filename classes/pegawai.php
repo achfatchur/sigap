@@ -58,6 +58,8 @@ class pegawai extends DbTable
 	public $level;
 	public $aktif;
 	public $kehadiran;
+	public $status_pekerjaan;
+	public $status_npwp;
 
 	// Constructor
 	public function __construct()
@@ -79,8 +81,8 @@ class pegawai extends DbTable
 		$this->ExportPageBreakCount = 0; // Page break per every n record (PDF only)
 		$this->ExportPageOrientation = "portrait"; // Page orientation (PDF only)
 		$this->ExportPageSize = "a4"; // Page size (PDF only)
-		$this->ExportExcelPageOrientation = ""; // Page orientation (PhpSpreadsheet only)
-		$this->ExportExcelPageSize = ""; // Page size (PhpSpreadsheet only)
+		$this->ExportExcelPageOrientation = \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_DEFAULT; // Page orientation (PhpSpreadsheet only)
+		$this->ExportExcelPageSize = \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_A4; // Page size (PhpSpreadsheet only)
 		$this->ExportWordPageOrientation = "portrait"; // Page orientation (PHPWord only)
 		$this->ExportWordColumnWidth = NULL; // Cell width (PHPWord only)
 		$this->DetailAdd = TRUE; // Allow detail add
@@ -302,6 +304,24 @@ class pegawai extends DbTable
 		$this->kehadiran->Sortable = TRUE; // Allow sort
 		$this->kehadiran->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['kehadiran'] = &$this->kehadiran;
+
+		// status_pekerjaan
+		$this->status_pekerjaan = new DbField('pegawai', 'pegawai', 'x_status_pekerjaan', 'status_pekerjaan', '`status_pekerjaan`', '`status_pekerjaan`', 3, 11, -1, FALSE, '`status_pekerjaan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->status_pekerjaan->Sortable = TRUE; // Allow sort
+		$this->status_pekerjaan->UsePleaseSelect = TRUE; // Use PleaseSelect by default
+		$this->status_pekerjaan->PleaseSelectText = $Language->phrase("PleaseSelect"); // "PleaseSelect" text
+		$this->status_pekerjaan->Lookup = new Lookup('status_pekerjaan', 'status_pekerjaan', FALSE, 'id', ["name","","",""], [], [], [], [], [], [], '', '');
+		$this->status_pekerjaan->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['status_pekerjaan'] = &$this->status_pekerjaan;
+
+		// status_npwp
+		$this->status_npwp = new DbField('pegawai', 'pegawai', 'x_status_npwp', 'status_npwp', '`status_npwp`', '`status_npwp`', 3, 11, -1, FALSE, '`status_npwp`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->status_npwp->Sortable = TRUE; // Allow sort
+		$this->status_npwp->UsePleaseSelect = TRUE; // Use PleaseSelect by default
+		$this->status_npwp->PleaseSelectText = $Language->phrase("PleaseSelect"); // "PleaseSelect" text
+		$this->status_npwp->Lookup = new Lookup('status_npwp', 'status_npwp', FALSE, 'id', ["name","","",""], [], [], [], [], [], [], '', '');
+		$this->status_npwp->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['status_npwp'] = &$this->status_npwp;
 	}
 
 	// Field Visibility
@@ -697,6 +717,8 @@ class pegawai extends DbTable
 		$this->level->DbValue = $row['level'];
 		$this->aktif->DbValue = $row['aktif'];
 		$this->kehadiran->DbValue = $row['kehadiran'];
+		$this->status_pekerjaan->DbValue = $row['status_pekerjaan'];
+		$this->status_npwp->DbValue = $row['status_npwp'];
 	}
 
 	// Delete uploaded files
@@ -970,6 +992,8 @@ class pegawai extends DbTable
 		$this->level->setDbValue($rs->fields('level'));
 		$this->aktif->setDbValue($rs->fields('aktif'));
 		$this->kehadiran->setDbValue($rs->fields('kehadiran'));
+		$this->status_pekerjaan->setDbValue($rs->fields('status_pekerjaan'));
+		$this->status_npwp->setDbValue($rs->fields('status_npwp'));
 	}
 
 	// Render list row values
@@ -1014,6 +1038,8 @@ class pegawai extends DbTable
 		// level
 		// aktif
 		// kehadiran
+		// status_pekerjaan
+		// status_npwp
 		// id
 
 		$this->id->ViewValue = $this->id->CurrentValue;
@@ -1347,6 +1373,50 @@ class pegawai extends DbTable
 		$this->kehadiran->ViewValue = FormatNumber($this->kehadiran->ViewValue, 0, -2, -2, -2);
 		$this->kehadiran->ViewCustomAttributes = "";
 
+		// status_pekerjaan
+		$curVal = strval($this->status_pekerjaan->CurrentValue);
+		if ($curVal != "") {
+			$this->status_pekerjaan->ViewValue = $this->status_pekerjaan->lookupCacheOption($curVal);
+			if ($this->status_pekerjaan->ViewValue === NULL) { // Lookup from database
+				$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+				$sqlWrk = $this->status_pekerjaan->Lookup->getSql(FALSE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				if ($rswrk && !$rswrk->EOF) { // Lookup values found
+					$arwrk = [];
+					$arwrk[1] = $rswrk->fields('df');
+					$this->status_pekerjaan->ViewValue = $this->status_pekerjaan->displayValue($arwrk);
+					$rswrk->Close();
+				} else {
+					$this->status_pekerjaan->ViewValue = $this->status_pekerjaan->CurrentValue;
+				}
+			}
+		} else {
+			$this->status_pekerjaan->ViewValue = NULL;
+		}
+		$this->status_pekerjaan->ViewCustomAttributes = "";
+
+		// status_npwp
+		$curVal = strval($this->status_npwp->CurrentValue);
+		if ($curVal != "") {
+			$this->status_npwp->ViewValue = $this->status_npwp->lookupCacheOption($curVal);
+			if ($this->status_npwp->ViewValue === NULL) { // Lookup from database
+				$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+				$sqlWrk = $this->status_npwp->Lookup->getSql(FALSE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				if ($rswrk && !$rswrk->EOF) { // Lookup values found
+					$arwrk = [];
+					$arwrk[1] = $rswrk->fields('df');
+					$this->status_npwp->ViewValue = $this->status_npwp->displayValue($arwrk);
+					$rswrk->Close();
+				} else {
+					$this->status_npwp->ViewValue = $this->status_npwp->CurrentValue;
+				}
+			}
+		} else {
+			$this->status_npwp->ViewValue = NULL;
+		}
+		$this->status_npwp->ViewCustomAttributes = "";
+
 		// id
 		$this->id->LinkCustomAttributes = "";
 		$this->id->HrefValue = "";
@@ -1513,6 +1583,16 @@ class pegawai extends DbTable
 		$this->kehadiran->LinkCustomAttributes = "";
 		$this->kehadiran->HrefValue = "";
 		$this->kehadiran->TooltipValue = "";
+
+		// status_pekerjaan
+		$this->status_pekerjaan->LinkCustomAttributes = "";
+		$this->status_pekerjaan->HrefValue = "";
+		$this->status_pekerjaan->TooltipValue = "";
+
+		// status_npwp
+		$this->status_npwp->LinkCustomAttributes = "";
+		$this->status_npwp->HrefValue = "";
+		$this->status_npwp->TooltipValue = "";
 
 		// Call Row Rendered event
 		$this->Row_Rendered();
@@ -1746,6 +1826,14 @@ class pegawai extends DbTable
 		$this->kehadiran->EditValue = $this->kehadiran->CurrentValue;
 		$this->kehadiran->PlaceHolder = RemoveHtml($this->kehadiran->caption());
 
+		// status_pekerjaan
+		$this->status_pekerjaan->EditAttrs["class"] = "form-control";
+		$this->status_pekerjaan->EditCustomAttributes = "";
+
+		// status_npwp
+		$this->status_npwp->EditAttrs["class"] = "form-control";
+		$this->status_npwp->EditCustomAttributes = "";
+
 		// Call Row Rendered event
 		$this->Row_Rendered();
 	}
@@ -1808,6 +1896,8 @@ class pegawai extends DbTable
 					$doc->exportCaption($this->level);
 					$doc->exportCaption($this->aktif);
 					$doc->exportCaption($this->kehadiran);
+					$doc->exportCaption($this->status_pekerjaan);
+					$doc->exportCaption($this->status_npwp);
 				} else {
 					$doc->exportCaption($this->id);
 					$doc->exportCaption($this->pid);
@@ -1842,6 +1932,8 @@ class pegawai extends DbTable
 					$doc->exportCaption($this->level);
 					$doc->exportCaption($this->aktif);
 					$doc->exportCaption($this->kehadiran);
+					$doc->exportCaption($this->status_pekerjaan);
+					$doc->exportCaption($this->status_npwp);
 				}
 				$doc->endExportRow();
 			}
@@ -1906,6 +1998,8 @@ class pegawai extends DbTable
 						$doc->exportField($this->level);
 						$doc->exportField($this->aktif);
 						$doc->exportField($this->kehadiran);
+						$doc->exportField($this->status_pekerjaan);
+						$doc->exportField($this->status_npwp);
 					} else {
 						$doc->exportField($this->id);
 						$doc->exportField($this->pid);
@@ -1940,6 +2034,8 @@ class pegawai extends DbTable
 						$doc->exportField($this->level);
 						$doc->exportField($this->aktif);
 						$doc->exportField($this->kehadiran);
+						$doc->exportField($this->status_pekerjaan);
+						$doc->exportField($this->status_npwp);
 					}
 					$doc->endExportRow($rowCnt);
 				}

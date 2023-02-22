@@ -48,11 +48,6 @@ loadjs.ready("head", function() {
 			var checkrow = (gridinsert) ? !this.emptyRow(infix) : true;
 			if (checkrow) {
 				addcnt++;
-			<?php if ($gaji_karyawan_sma_grid->pegawai->Required) { ?>
-				elm = this.getElements("x" + infix + "_pegawai");
-				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
-					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_karyawan_sma_grid->pegawai->caption(), $gaji_karyawan_sma_grid->pegawai->RequiredErrorMessage)) ?>");
-			<?php } ?>
 			<?php if ($gaji_karyawan_sma_grid->sub_total->Required) { ?>
 				elm = this.getElements("x" + infix + "_sub_total");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -113,7 +108,6 @@ loadjs.ready("head", function() {
 	// Check empty row
 	fgaji_karyawan_smagrid.emptyRow = function(infix) {
 		var fobj = this._form;
-		if (ew.valueChanged(fobj, infix, "pegawai", false)) return false;
 		if (ew.valueChanged(fobj, infix, "sub_total", false)) return false;
 		if (ew.valueChanged(fobj, infix, "potongan", false)) return false;
 		if (ew.valueChanged(fobj, infix, "penyesuaian", false)) return false;
@@ -134,8 +128,6 @@ loadjs.ready("head", function() {
 	fgaji_karyawan_smagrid.validateRequired = <?php echo Config("CLIENT_VALIDATE") ? "true" : "false" ?>;
 
 	// Dynamic selection lists
-	fgaji_karyawan_smagrid.lists["x_pegawai"] = <?php echo $gaji_karyawan_sma_grid->pegawai->Lookup->toClientList($gaji_karyawan_sma_grid) ?>;
-	fgaji_karyawan_smagrid.lists["x_pegawai"].options = <?php echo JsonEncode($gaji_karyawan_sma_grid->pegawai->lookupOptions()) ?>;
 	loadjs.done("fgaji_karyawan_smagrid");
 });
 </script>
@@ -167,15 +159,6 @@ $gaji_karyawan_sma_grid->renderListOptions();
 // Render list options (header, left)
 $gaji_karyawan_sma_grid->ListOptions->render("header", "left");
 ?>
-<?php if ($gaji_karyawan_sma_grid->pegawai->Visible) { // pegawai ?>
-	<?php if ($gaji_karyawan_sma_grid->SortUrl($gaji_karyawan_sma_grid->pegawai) == "") { ?>
-		<th data-name="pegawai" class="<?php echo $gaji_karyawan_sma_grid->pegawai->headerCellClass() ?>"><div id="elh_gaji_karyawan_sma_pegawai" class="gaji_karyawan_sma_pegawai"><div class="ew-table-header-caption"><?php echo $gaji_karyawan_sma_grid->pegawai->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="pegawai" class="<?php echo $gaji_karyawan_sma_grid->pegawai->headerCellClass() ?>"><div><div id="elh_gaji_karyawan_sma_pegawai" class="gaji_karyawan_sma_pegawai">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_sma_grid->pegawai->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_sma_grid->pegawai->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_sma_grid->pegawai->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
 <?php if ($gaji_karyawan_sma_grid->sub_total->Visible) { // sub_total ?>
 	<?php if ($gaji_karyawan_sma_grid->SortUrl($gaji_karyawan_sma_grid->sub_total) == "") { ?>
 		<th data-name="sub_total" class="<?php echo $gaji_karyawan_sma_grid->sub_total->headerCellClass() ?>"><div id="elh_gaji_karyawan_sma_sub_total" class="gaji_karyawan_sma_sub_total"><div class="ew-table-header-caption"><?php echo $gaji_karyawan_sma_grid->sub_total->caption() ?></div></div></th>
@@ -338,54 +321,6 @@ while ($gaji_karyawan_sma_grid->RecordCount < $gaji_karyawan_sma_grid->StopRecor
 // Render list options (body, left)
 $gaji_karyawan_sma_grid->ListOptions->render("body", "left", $gaji_karyawan_sma_grid->RowCount);
 ?>
-	<?php if ($gaji_karyawan_sma_grid->pegawai->Visible) { // pegawai ?>
-		<td data-name="pegawai" <?php echo $gaji_karyawan_sma_grid->pegawai->cellAttributes() ?>>
-<?php if ($gaji_karyawan_sma->RowType == ROWTYPE_ADD) { // Add record ?>
-<span id="el<?php echo $gaji_karyawan_sma_grid->RowCount ?>_gaji_karyawan_sma_pegawai" class="form-group">
-<div class="input-group ew-lookup-list">
-	<div class="form-control ew-lookup-text" tabindex="-1" id="lu_x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai"><?php echo EmptyValue(strval($gaji_karyawan_sma_grid->pegawai->ViewValue)) ? $Language->phrase("PleaseSelect") : $gaji_karyawan_sma_grid->pegawai->ViewValue ?></div>
-	<div class="input-group-append">
-		<button type="button" title="<?php echo HtmlEncode(str_replace("%s", RemoveHtml($gaji_karyawan_sma_grid->pegawai->caption()), $Language->phrase("LookupLink", TRUE))) ?>" class="ew-lookup-btn btn btn-default"<?php echo ($gaji_karyawan_sma_grid->pegawai->ReadOnly || $gaji_karyawan_sma_grid->pegawai->Disabled) ? " disabled" : "" ?> onclick="ew.modalLookupShow({lnk:this,el:'x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai',m:0,n:10});"><i class="fas fa-search ew-icon"></i></button>
-	</div>
-</div>
-<?php echo $gaji_karyawan_sma_grid->pegawai->Lookup->getParamTag($gaji_karyawan_sma_grid, "p_x" . $gaji_karyawan_sma_grid->RowIndex . "_pegawai") ?>
-<input type="hidden" data-table="gaji_karyawan_sma" data-field="x_pegawai" data-multiple="0" data-lookup="1" data-value-separator="<?php echo $gaji_karyawan_sma_grid->pegawai->displayValueSeparatorAttribute() ?>" name="x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" id="x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" value="<?php echo $gaji_karyawan_sma_grid->pegawai->CurrentValue ?>"<?php echo $gaji_karyawan_sma_grid->pegawai->editAttributes() ?>>
-</span>
-<input type="hidden" data-table="gaji_karyawan_sma" data-field="x_pegawai" name="o<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" id="o<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" value="<?php echo HtmlEncode($gaji_karyawan_sma_grid->pegawai->OldValue) ?>">
-<?php } ?>
-<?php if ($gaji_karyawan_sma->RowType == ROWTYPE_EDIT) { // Edit record ?>
-<span id="el<?php echo $gaji_karyawan_sma_grid->RowCount ?>_gaji_karyawan_sma_pegawai" class="form-group">
-<div class="input-group ew-lookup-list">
-	<div class="form-control ew-lookup-text" tabindex="-1" id="lu_x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai"><?php echo EmptyValue(strval($gaji_karyawan_sma_grid->pegawai->ViewValue)) ? $Language->phrase("PleaseSelect") : $gaji_karyawan_sma_grid->pegawai->ViewValue ?></div>
-	<div class="input-group-append">
-		<button type="button" title="<?php echo HtmlEncode(str_replace("%s", RemoveHtml($gaji_karyawan_sma_grid->pegawai->caption()), $Language->phrase("LookupLink", TRUE))) ?>" class="ew-lookup-btn btn btn-default"<?php echo ($gaji_karyawan_sma_grid->pegawai->ReadOnly || $gaji_karyawan_sma_grid->pegawai->Disabled) ? " disabled" : "" ?> onclick="ew.modalLookupShow({lnk:this,el:'x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai',m:0,n:10});"><i class="fas fa-search ew-icon"></i></button>
-	</div>
-</div>
-<?php echo $gaji_karyawan_sma_grid->pegawai->Lookup->getParamTag($gaji_karyawan_sma_grid, "p_x" . $gaji_karyawan_sma_grid->RowIndex . "_pegawai") ?>
-<input type="hidden" data-table="gaji_karyawan_sma" data-field="x_pegawai" data-multiple="0" data-lookup="1" data-value-separator="<?php echo $gaji_karyawan_sma_grid->pegawai->displayValueSeparatorAttribute() ?>" name="x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" id="x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" value="<?php echo $gaji_karyawan_sma_grid->pegawai->CurrentValue ?>"<?php echo $gaji_karyawan_sma_grid->pegawai->editAttributes() ?>>
-</span>
-<?php } ?>
-<?php if ($gaji_karyawan_sma->RowType == ROWTYPE_VIEW) { // View record ?>
-<span id="el<?php echo $gaji_karyawan_sma_grid->RowCount ?>_gaji_karyawan_sma_pegawai">
-<span<?php echo $gaji_karyawan_sma_grid->pegawai->viewAttributes() ?>><?php echo $gaji_karyawan_sma_grid->pegawai->getViewValue() ?></span>
-</span>
-<?php if (!$gaji_karyawan_sma->isConfirm()) { ?>
-<input type="hidden" data-table="gaji_karyawan_sma" data-field="x_pegawai" name="x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" id="x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" value="<?php echo HtmlEncode($gaji_karyawan_sma_grid->pegawai->FormValue) ?>">
-<input type="hidden" data-table="gaji_karyawan_sma" data-field="x_pegawai" name="o<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" id="o<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" value="<?php echo HtmlEncode($gaji_karyawan_sma_grid->pegawai->OldValue) ?>">
-<?php } else { ?>
-<input type="hidden" data-table="gaji_karyawan_sma" data-field="x_pegawai" name="fgaji_karyawan_smagrid$x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" id="fgaji_karyawan_smagrid$x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" value="<?php echo HtmlEncode($gaji_karyawan_sma_grid->pegawai->FormValue) ?>">
-<input type="hidden" data-table="gaji_karyawan_sma" data-field="x_pegawai" name="fgaji_karyawan_smagrid$o<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" id="fgaji_karyawan_smagrid$o<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" value="<?php echo HtmlEncode($gaji_karyawan_sma_grid->pegawai->OldValue) ?>">
-<?php } ?>
-<?php } ?>
-</td>
-	<?php } ?>
-<?php if ($gaji_karyawan_sma->RowType == ROWTYPE_ADD) { // Add record ?>
-<input type="hidden" data-table="gaji_karyawan_sma" data-field="x_id" name="x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_id" id="x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_id" value="<?php echo HtmlEncode($gaji_karyawan_sma_grid->id->CurrentValue) ?>">
-<input type="hidden" data-table="gaji_karyawan_sma" data-field="x_id" name="o<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_id" id="o<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_id" value="<?php echo HtmlEncode($gaji_karyawan_sma_grid->id->OldValue) ?>">
-<?php } ?>
-<?php if ($gaji_karyawan_sma->RowType == ROWTYPE_EDIT || $gaji_karyawan_sma->CurrentMode == "edit") { ?>
-<input type="hidden" data-table="gaji_karyawan_sma" data-field="x_id" name="x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_id" id="x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_id" value="<?php echo HtmlEncode($gaji_karyawan_sma_grid->id->CurrentValue) ?>">
-<?php } ?>
 	<?php if ($gaji_karyawan_sma_grid->sub_total->Visible) { // sub_total ?>
 		<td data-name="sub_total" <?php echo $gaji_karyawan_sma_grid->sub_total->cellAttributes() ?>>
 <?php if ($gaji_karyawan_sma->RowType == ROWTYPE_ADD) { // Add record ?>
@@ -413,6 +348,13 @@ $gaji_karyawan_sma_grid->ListOptions->render("body", "left", $gaji_karyawan_sma_
 <?php } ?>
 </td>
 	<?php } ?>
+<?php if ($gaji_karyawan_sma->RowType == ROWTYPE_ADD) { // Add record ?>
+<input type="hidden" data-table="gaji_karyawan_sma" data-field="x_id" name="x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_id" id="x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_id" value="<?php echo HtmlEncode($gaji_karyawan_sma_grid->id->CurrentValue) ?>">
+<input type="hidden" data-table="gaji_karyawan_sma" data-field="x_id" name="o<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_id" id="o<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_id" value="<?php echo HtmlEncode($gaji_karyawan_sma_grid->id->OldValue) ?>">
+<?php } ?>
+<?php if ($gaji_karyawan_sma->RowType == ROWTYPE_EDIT || $gaji_karyawan_sma->CurrentMode == "edit") { ?>
+<input type="hidden" data-table="gaji_karyawan_sma" data-field="x_id" name="x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_id" id="x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_id" value="<?php echo HtmlEncode($gaji_karyawan_sma_grid->id->CurrentValue) ?>">
+<?php } ?>
 	<?php if ($gaji_karyawan_sma_grid->potongan->Visible) { // potongan ?>
 		<td data-name="potongan" <?php echo $gaji_karyawan_sma_grid->potongan->cellAttributes() ?>>
 <?php if ($gaji_karyawan_sma->RowType == ROWTYPE_ADD) { // Add record ?>
@@ -593,28 +535,6 @@ loadjs.ready(["fgaji_karyawan_smagrid", "load"], function() {
 // Render list options (body, left)
 $gaji_karyawan_sma_grid->ListOptions->render("body", "left", $gaji_karyawan_sma_grid->RowIndex);
 ?>
-	<?php if ($gaji_karyawan_sma_grid->pegawai->Visible) { // pegawai ?>
-		<td data-name="pegawai">
-<?php if (!$gaji_karyawan_sma->isConfirm()) { ?>
-<span id="el$rowindex$_gaji_karyawan_sma_pegawai" class="form-group gaji_karyawan_sma_pegawai">
-<div class="input-group ew-lookup-list">
-	<div class="form-control ew-lookup-text" tabindex="-1" id="lu_x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai"><?php echo EmptyValue(strval($gaji_karyawan_sma_grid->pegawai->ViewValue)) ? $Language->phrase("PleaseSelect") : $gaji_karyawan_sma_grid->pegawai->ViewValue ?></div>
-	<div class="input-group-append">
-		<button type="button" title="<?php echo HtmlEncode(str_replace("%s", RemoveHtml($gaji_karyawan_sma_grid->pegawai->caption()), $Language->phrase("LookupLink", TRUE))) ?>" class="ew-lookup-btn btn btn-default"<?php echo ($gaji_karyawan_sma_grid->pegawai->ReadOnly || $gaji_karyawan_sma_grid->pegawai->Disabled) ? " disabled" : "" ?> onclick="ew.modalLookupShow({lnk:this,el:'x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai',m:0,n:10});"><i class="fas fa-search ew-icon"></i></button>
-	</div>
-</div>
-<?php echo $gaji_karyawan_sma_grid->pegawai->Lookup->getParamTag($gaji_karyawan_sma_grid, "p_x" . $gaji_karyawan_sma_grid->RowIndex . "_pegawai") ?>
-<input type="hidden" data-table="gaji_karyawan_sma" data-field="x_pegawai" data-multiple="0" data-lookup="1" data-value-separator="<?php echo $gaji_karyawan_sma_grid->pegawai->displayValueSeparatorAttribute() ?>" name="x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" id="x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" value="<?php echo $gaji_karyawan_sma_grid->pegawai->CurrentValue ?>"<?php echo $gaji_karyawan_sma_grid->pegawai->editAttributes() ?>>
-</span>
-<?php } else { ?>
-<span id="el$rowindex$_gaji_karyawan_sma_pegawai" class="form-group gaji_karyawan_sma_pegawai">
-<span<?php echo $gaji_karyawan_sma_grid->pegawai->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($gaji_karyawan_sma_grid->pegawai->ViewValue)) ?>"></span>
-</span>
-<input type="hidden" data-table="gaji_karyawan_sma" data-field="x_pegawai" name="x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" id="x<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" value="<?php echo HtmlEncode($gaji_karyawan_sma_grid->pegawai->FormValue) ?>">
-<?php } ?>
-<input type="hidden" data-table="gaji_karyawan_sma" data-field="x_pegawai" name="o<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" id="o<?php echo $gaji_karyawan_sma_grid->RowIndex ?>_pegawai" value="<?php echo HtmlEncode($gaji_karyawan_sma_grid->pegawai->OldValue) ?>">
-</td>
-	<?php } ?>
 	<?php if ($gaji_karyawan_sma_grid->sub_total->Visible) { // sub_total ?>
 		<td data-name="sub_total">
 <?php if (!$gaji_karyawan_sma->isConfirm()) { ?>

@@ -66,11 +66,6 @@ loadjs.ready("head", function() {
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
 					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $set_password_edit->nama->caption(), $set_password_edit->nama->RequiredErrorMessage)) ?>");
 			<?php } ?>
-			<?php if ($set_password_edit->username->Required) { ?>
-				elm = this.getElements("x" + infix + "_username");
-				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
-					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $set_password_edit->username->caption(), $set_password_edit->username->RequiredErrorMessage)) ?>");
-			<?php } ?>
 			<?php if ($set_password_edit->password->Required) { ?>
 				elm = this.getElements("x" + infix + "_password");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -145,16 +140,6 @@ $set_password_edit->showMessage();
 <input type="text" data-table="set_password" data-field="x_nama" name="x_nama" id="x_nama" size="30" maxlength="255" placeholder="<?php echo HtmlEncode($set_password_edit->nama->getPlaceHolder()) ?>" value="<?php echo $set_password_edit->nama->EditValue ?>"<?php echo $set_password_edit->nama->editAttributes() ?>>
 </span>
 <?php echo $set_password_edit->nama->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($set_password_edit->username->Visible) { // username ?>
-	<div id="r_username" class="form-group row">
-		<label id="elh_set_password_username" for="x_username" class="<?php echo $set_password_edit->LeftColumnClass ?>"><?php echo $set_password_edit->username->caption() ?><?php echo $set_password_edit->username->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
-		<div class="<?php echo $set_password_edit->RightColumnClass ?>"><div <?php echo $set_password_edit->username->cellAttributes() ?>>
-<span id="el_set_password_username">
-<input type="text" data-table="set_password" data-field="x_username" name="x_username" id="x_username" size="30" maxlength="255" placeholder="<?php echo HtmlEncode($set_password_edit->username->getPlaceHolder()) ?>" value="<?php echo $set_password_edit->username->EditValue ?>"<?php echo $set_password_edit->username->editAttributes() ?>>
-</span>
-<?php echo $set_password_edit->username->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
 <?php if ($set_password_edit->password->Visible) { // password ?>

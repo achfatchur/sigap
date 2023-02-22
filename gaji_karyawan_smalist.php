@@ -44,18 +44,6 @@ loadjs.ready("head", function() {
 	fgaji_karyawan_smalist.formKeyCountName = '<?php echo $gaji_karyawan_sma_list->FormKeyCountName ?>';
 	loadjs.done("fgaji_karyawan_smalist");
 });
-var fgaji_karyawan_smalistsrch;
-loadjs.ready("head", function() {
-
-	// Form object for search
-	fgaji_karyawan_smalistsrch = currentSearchForm = new ew.Form("fgaji_karyawan_smalistsrch");
-
-	// Dynamic selection lists
-	// Filters
-
-	fgaji_karyawan_smalistsrch.filterList = <?php echo $gaji_karyawan_sma_list->getFilterList() ?>;
-	loadjs.done("fgaji_karyawan_smalistsrch");
-});
 </script>
 <style type="text/css">
 .ew-table-preview-row { /* main table preview row color */
@@ -98,12 +86,6 @@ loadjs.ready("head", function() {
 <?php if ($gaji_karyawan_sma_list->ImportOptions->visible()) { ?>
 <?php $gaji_karyawan_sma_list->ImportOptions->render("body") ?>
 <?php } ?>
-<?php if ($gaji_karyawan_sma_list->SearchOptions->visible()) { ?>
-<?php $gaji_karyawan_sma_list->SearchOptions->render("body") ?>
-<?php } ?>
-<?php if ($gaji_karyawan_sma_list->FilterOptions->visible()) { ?>
-<?php $gaji_karyawan_sma_list->FilterOptions->render("body") ?>
-<?php } ?>
 <div class="clearfix"></div>
 </div>
 <?php } ?>
@@ -119,34 +101,6 @@ if ($gaji_karyawan_sma_list->DbMasterFilter != "" && $gaji_karyawan_sma->getCurr
 <?php
 $gaji_karyawan_sma_list->renderOtherOptions();
 ?>
-<?php if ($Security->CanSearch()) { ?>
-<?php if (!$gaji_karyawan_sma_list->isExport() && !$gaji_karyawan_sma->CurrentAction) { ?>
-<form name="fgaji_karyawan_smalistsrch" id="fgaji_karyawan_smalistsrch" class="form-inline ew-form ew-ext-search-form" action="<?php echo CurrentPageName() ?>">
-<div id="fgaji_karyawan_smalistsrch-search-panel" class="<?php echo $gaji_karyawan_sma_list->SearchPanelClass ?>">
-<input type="hidden" name="cmd" value="search">
-<input type="hidden" name="t" value="gaji_karyawan_sma">
-	<div class="ew-extended-search">
-<div id="xsr_<?php echo $gaji_karyawan_sma_list->SearchRowCount + 1 ?>" class="ew-row d-sm-flex">
-	<div class="ew-quick-search input-group">
-		<input type="text" name="<?php echo Config("TABLE_BASIC_SEARCH") ?>" id="<?php echo Config("TABLE_BASIC_SEARCH") ?>" class="form-control" value="<?php echo HtmlEncode($gaji_karyawan_sma_list->BasicSearch->getKeyword()) ?>" placeholder="<?php echo HtmlEncode($Language->phrase("Search")) ?>">
-		<input type="hidden" name="<?php echo Config("TABLE_BASIC_SEARCH_TYPE") ?>" id="<?php echo Config("TABLE_BASIC_SEARCH_TYPE") ?>" value="<?php echo HtmlEncode($gaji_karyawan_sma_list->BasicSearch->getType()) ?>">
-		<div class="input-group-append">
-			<button class="btn btn-primary" name="btn-submit" id="btn-submit" type="submit"><?php echo $Language->phrase("SearchBtn") ?></button>
-			<button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle dropdown-toggle-split" aria-haspopup="true" aria-expanded="false"><span id="searchtype"><?php echo $gaji_karyawan_sma_list->BasicSearch->getTypeNameShort() ?></span></button>
-			<div class="dropdown-menu dropdown-menu-right">
-				<a class="dropdown-item<?php if ($gaji_karyawan_sma_list->BasicSearch->getType() == "") { ?> active<?php } ?>" href="#" onclick="return ew.setSearchType(this);"><?php echo $Language->phrase("QuickSearchAuto") ?></a>
-				<a class="dropdown-item<?php if ($gaji_karyawan_sma_list->BasicSearch->getType() == "=") { ?> active<?php } ?>" href="#" onclick="return ew.setSearchType(this, '=');"><?php echo $Language->phrase("QuickSearchExact") ?></a>
-				<a class="dropdown-item<?php if ($gaji_karyawan_sma_list->BasicSearch->getType() == "AND") { ?> active<?php } ?>" href="#" onclick="return ew.setSearchType(this, 'AND');"><?php echo $Language->phrase("QuickSearchAll") ?></a>
-				<a class="dropdown-item<?php if ($gaji_karyawan_sma_list->BasicSearch->getType() == "OR") { ?> active<?php } ?>" href="#" onclick="return ew.setSearchType(this, 'OR');"><?php echo $Language->phrase("QuickSearchAny") ?></a>
-			</div>
-		</div>
-	</div>
-</div>
-	</div><!-- /.ew-extended-search -->
-</div><!-- /.ew-search-panel -->
-</form>
-<?php } ?>
-<?php } ?>
 <?php $gaji_karyawan_sma_list->showPageHeader(); ?>
 <?php
 $gaji_karyawan_sma_list->showMessage();
@@ -193,15 +147,6 @@ $gaji_karyawan_sma_list->renderListOptions();
 // Render list options (header, left)
 $gaji_karyawan_sma_list->ListOptions->render("header", "left");
 ?>
-<?php if ($gaji_karyawan_sma_list->pegawai->Visible) { // pegawai ?>
-	<?php if ($gaji_karyawan_sma_list->SortUrl($gaji_karyawan_sma_list->pegawai) == "") { ?>
-		<th data-name="pegawai" class="<?php echo $gaji_karyawan_sma_list->pegawai->headerCellClass() ?>"><div id="elh_gaji_karyawan_sma_pegawai" class="gaji_karyawan_sma_pegawai"><div class="ew-table-header-caption"><?php echo $gaji_karyawan_sma_list->pegawai->caption() ?></div></div></th>
-	<?php } else { ?>
-		<th data-name="pegawai" class="<?php echo $gaji_karyawan_sma_list->pegawai->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $gaji_karyawan_sma_list->SortUrl($gaji_karyawan_sma_list->pegawai) ?>', 1);"><div id="elh_gaji_karyawan_sma_pegawai" class="gaji_karyawan_sma_pegawai">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_sma_list->pegawai->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_sma_list->pegawai->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_sma_list->pegawai->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
-		</div></div></th>
-	<?php } ?>
-<?php } ?>
 <?php if ($gaji_karyawan_sma_list->sub_total->Visible) { // sub_total ?>
 	<?php if ($gaji_karyawan_sma_list->SortUrl($gaji_karyawan_sma_list->sub_total) == "") { ?>
 		<th data-name="sub_total" class="<?php echo $gaji_karyawan_sma_list->sub_total->headerCellClass() ?>"><div id="elh_gaji_karyawan_sma_sub_total" class="gaji_karyawan_sma_sub_total"><div class="ew-table-header-caption"><?php echo $gaji_karyawan_sma_list->sub_total->caption() ?></div></div></th>
@@ -321,13 +266,6 @@ while ($gaji_karyawan_sma_list->RecordCount < $gaji_karyawan_sma_list->StopRecor
 // Render list options (body, left)
 $gaji_karyawan_sma_list->ListOptions->render("body", "left", $gaji_karyawan_sma_list->RowCount);
 ?>
-	<?php if ($gaji_karyawan_sma_list->pegawai->Visible) { // pegawai ?>
-		<td data-name="pegawai" <?php echo $gaji_karyawan_sma_list->pegawai->cellAttributes() ?>>
-<span id="el<?php echo $gaji_karyawan_sma_list->RowCount ?>_gaji_karyawan_sma_pegawai">
-<span<?php echo $gaji_karyawan_sma_list->pegawai->viewAttributes() ?>><?php echo $gaji_karyawan_sma_list->pegawai->getViewValue() ?></span>
-</span>
-</td>
-	<?php } ?>
 	<?php if ($gaji_karyawan_sma_list->sub_total->Visible) { // sub_total ?>
 		<td data-name="sub_total" <?php echo $gaji_karyawan_sma_list->sub_total->cellAttributes() ?>>
 <span id="el<?php echo $gaji_karyawan_sma_list->RowCount ?>_gaji_karyawan_sma_sub_total">

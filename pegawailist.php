@@ -523,6 +523,24 @@ $pegawai_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($pegawai_list->status_pekerjaan->Visible) { // status_pekerjaan ?>
+	<?php if ($pegawai_list->SortUrl($pegawai_list->status_pekerjaan) == "") { ?>
+		<th data-name="status_pekerjaan" class="<?php echo $pegawai_list->status_pekerjaan->headerCellClass() ?>"><div id="elh_pegawai_status_pekerjaan" class="pegawai_status_pekerjaan"><div class="ew-table-header-caption"><?php echo $pegawai_list->status_pekerjaan->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="status_pekerjaan" class="<?php echo $pegawai_list->status_pekerjaan->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $pegawai_list->SortUrl($pegawai_list->status_pekerjaan) ?>', 1);"><div id="elh_pegawai_status_pekerjaan" class="pegawai_status_pekerjaan">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $pegawai_list->status_pekerjaan->caption() ?></span><span class="ew-table-header-sort"><?php if ($pegawai_list->status_pekerjaan->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($pegawai_list->status_pekerjaan->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($pegawai_list->status_npwp->Visible) { // status_npwp ?>
+	<?php if ($pegawai_list->SortUrl($pegawai_list->status_npwp) == "") { ?>
+		<th data-name="status_npwp" class="<?php echo $pegawai_list->status_npwp->headerCellClass() ?>"><div id="elh_pegawai_status_npwp" class="pegawai_status_npwp"><div class="ew-table-header-caption"><?php echo $pegawai_list->status_npwp->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="status_npwp" class="<?php echo $pegawai_list->status_npwp->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $pegawai_list->SortUrl($pegawai_list->status_npwp) ?>', 1);"><div id="elh_pegawai_status_npwp" class="pegawai_status_npwp">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $pegawai_list->status_npwp->caption() ?></span><span class="ew-table-header-sort"><?php if ($pegawai_list->status_npwp->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($pegawai_list->status_npwp->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php
 
 // Render list options (header, right)
@@ -802,6 +820,20 @@ $pegawai_list->ListOptions->render("body", "left", $pegawai_list->RowCount);
 		<td data-name="kehadiran" <?php echo $pegawai_list->kehadiran->cellAttributes() ?>>
 <span id="el<?php echo $pegawai_list->RowCount ?>_pegawai_kehadiran">
 <span<?php echo $pegawai_list->kehadiran->viewAttributes() ?>><?php echo $pegawai_list->kehadiran->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($pegawai_list->status_pekerjaan->Visible) { // status_pekerjaan ?>
+		<td data-name="status_pekerjaan" <?php echo $pegawai_list->status_pekerjaan->cellAttributes() ?>>
+<span id="el<?php echo $pegawai_list->RowCount ?>_pegawai_status_pekerjaan">
+<span<?php echo $pegawai_list->status_pekerjaan->viewAttributes() ?>><?php echo $pegawai_list->status_pekerjaan->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($pegawai_list->status_npwp->Visible) { // status_npwp ?>
+		<td data-name="status_npwp" <?php echo $pegawai_list->status_npwp->cellAttributes() ?>>
+<span id="el<?php echo $pegawai_list->RowCount ?>_pegawai_status_npwp">
+<span<?php echo $pegawai_list->status_npwp->viewAttributes() ?>><?php echo $pegawai_list->status_npwp->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>
