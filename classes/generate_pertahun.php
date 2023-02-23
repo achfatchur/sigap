@@ -1174,7 +1174,7 @@ class generate_pertahun extends DbTable
 					//print_r($solved);
 					//die;
 
-					$myquery = "INSERT INTO gaji_sma VALUES (NULL,'".$query["nip"]."','".date('Y-m-d H:i:s')."','".date('Y-m-d')."','".$c_lembur."','".$v_lembur."','".$query["jabatan"]."','".$gaji_pokok["value"]."','".$total."','".$reward."','".$inval2."','".$piket_new."','".$v_piket."','".$solved."','".$tj_jbtn."','".$v_jjm."','".$sub_total."','".$penyesuaian."','".$query["jenjang_id"]."','".$tambahan."','".$pid."','".$v_jjm."','".$query["type"]."','".$sertif."','".$tgs_tmbhn."','".$v_kehadiran."','".$solve_periode."','".$solve_value_per."','".$komponen_gapok."','".$lm_kerja."', NULL, '".$tahun."','".$bulan."', NULL,'".$v_voucher."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solved_npwp."','".$solve_bpjs."')";
+				$myquery = "INSERT INTO gaji_sma VALUES (NULL,'".$query["nip"]."','".date('Y-m-d H:i:s')."','".date('Y-m-d')."','".$c_lembur."','".$v_lembur."','".$query["jabatan"]."','".$gaji_pokok["value"]."','".$total."','".$reward."','".$inval2."','".$piket_new."','".$v_piket."','".$solved."','".$tj_jbtn."','".$v_jjm."','".$sub_total."','".$penyesuaian."','".$query["jenjang_id"]."','".$tambahan."','".$pid."','".$v_jjm."','".$query["type"]."','".$sertif."','".$tgs_tmbhn."','".$v_kehadiran."','".$solve_periode."','".$solve_value_per."','".$komponen_gapok."','".$lm_kerja."', NULL, '".$tahun."','".$bulan."', NULL,'".$v_voucher."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solved_npwp."','".$solve_bpjs."')";
 
 				//print_r($myquery);
 				//die;

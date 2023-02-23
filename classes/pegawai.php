@@ -2211,10 +2211,16 @@ class pegawai extends DbTable
 	function Recordset_Selecting(&$filter) {
 
 		// Enter your code here
+		if(CurrentUserLevel() != '-1'){
 			$nip = CurrentUserInfo("jenjang_id");
 			if ($fld->Name == "bpjs_kesehatan") { //custom field table_x lookup table_y
 				AddFilter ($filter, "jenjang = '$nip'");
-				}
+		  }
+			  $nip = CurrentUserInfo("jenjang_id");
+			if ($fld->Name == "jabatan") { //custom field table_x lookup table_y
+				AddFilter ($filter, "jenjang = '$nip'");
+		}     
+	   }
 	}
 
 	// Recordset Selected event
