@@ -262,8 +262,8 @@ Page_Rendering();
 			<th>Unit</th>
 				<th>NIP</th>
 				<th>Nama</th>
-				<th>Golongan BPJS</th>
-				<th>Iuran BPJS Kesehatan</th>
+				<th>BPJS Kesehatan</th>
+				<th>Jumlah Iuran</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -350,8 +350,8 @@ Page_Rendering();
 				<th>Unit</th>
 				<th>NIP</th>
 				<th>Nama</th>
-				<th>Golongan BPJS</th>
-				<th>Iuran BPJS Kesehatan</th>
+				<th>BPJS Kesehatan</th>
+				<th>Jumlah Iuran</th>
 			</tr>
 		</tfoot>
 	</table>

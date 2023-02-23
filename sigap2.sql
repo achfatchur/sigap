@@ -679,7 +679,7 @@ CREATE TABLE IF NOT EXISTS `gaji_karyawan_sma` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=611 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_karyawan_sma: ~84 rows (approximately)
+-- Dumping data for table sigap2.gaji_karyawan_sma: ~70 rows (approximately)
 INSERT INTO `gaji_karyawan_sma` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`, `voucher`, `potongan_bendahara`, `jaminan_pensiun`, `jaminan_hari_tua`, `total_pph21`, `bpjs__kesehatan`) VALUES
 	(387, '102321', 11, 4, 300000, NULL, 0, 26, 1860000, 0, 0, 1860000, 66, 60000, NULL, 2023, 1, 0, NULL, NULL, NULL, NULL, NULL),
 	(388, '3578102612760004', 5, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 66, 0, NULL, 2023, 1, 0, NULL, NULL, NULL, NULL, NULL),
@@ -1644,7 +1644,7 @@ CREATE TABLE IF NOT EXISTS `gaji_sma` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4180 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_sma: ~140 rows (approximately)
+-- Dumping data for table sigap2.gaji_sma: ~94 rows (approximately)
 INSERT INTO `gaji_sma` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `tahun`, `bulan`, `potongan_bendahara`, `voucher`, `jaminan_pensiun`, `jaminan_hari_tua`, `total_pph21`, `status_npwp`, `bpjs_kesehatan`) VALUES
 	(3758, '10230', '2023-02-13 03:45:37', '2023-02-13', 3, 13000, 5, 2500, 3932500, 50000, 132000, 1, 7000, 125000, 450000, 48, 4061000, 174500, 4, 46000, 559, 48, 1, 1, 2, 56000, 4, 450000, 120000, 2, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
 	(3759, '10235', '2023-02-13 03:45:38', '2023-02-13', 0, 13000, 9, 1500, 3290000, 50000, 0, 0, 8250, 0, 0, 48, 3290000, 0, 4, 0, 559, 48, 1, 2, 0, 66000, 0, 0, 72000, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
@@ -2882,21 +2882,21 @@ CREATE TABLE IF NOT EXISTS `m_bpjs` (
 
 -- Dumping data for table sigap2.m_bpjs: ~15 rows (approximately)
 INSERT INTO `m_bpjs` (`id`, `golongan`, `golongan_id`, `value`, `jenjang`) VALUES
-	(1, 'I', 1, 150000, 1),
-	(2, 'II', 2, 100000, 1),
-	(3, 'III', 3, 35000, 1),
-	(4, 'I', 1, 150000, 2),
-	(5, 'II', 2, 100000, 2),
-	(6, 'III', 3, 35000, 2),
-	(7, 'I', 1, 150000, 3),
-	(8, 'II', 2, 100000, 3),
-	(9, 'III', 3, 35000, 3),
-	(10, 'I', 1, 150000, 4),
-	(11, 'II', 2, 100000, 4),
-	(12, 'III', 3, 35000, 4),
-	(13, 'I', 1, 150000, 5),
-	(14, 'II', 2, 100000, 5),
-	(15, 'III', 3, 35000, 5);
+	(1, 'Golongan I', 1, 150000, 1),
+	(2, 'Golongan II', 2, 100000, 1),
+	(3, 'Golongan III', 3, 35000, 1),
+	(4, 'Golongan I', 1, 150000, 2),
+	(5, 'Golongan II', 2, 100000, 2),
+	(6, 'Golongan III', 3, 35000, 2),
+	(7, 'Golongan I', 1, 150000, 3),
+	(8, 'Golongan II', 2, 100000, 3),
+	(9, 'Golongan III', 3, 35000, 3),
+	(10, 'Golongan I', 1, 150000, 4),
+	(11, 'Golongan II', 2, 100000, 4),
+	(12, 'Golongan III', 3, 35000, 4),
+	(13, 'Golongan I', 1, 150000, 5),
+	(14, 'Golongan II', 2, 100000, 5),
+	(15, 'Golongan III', 3, 35000, 5);
 
 -- Dumping structure for table sigap2.m_inval
 CREATE TABLE IF NOT EXISTS `m_inval` (
