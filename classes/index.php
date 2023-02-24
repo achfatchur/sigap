@@ -593,6 +593,12 @@ class index
 			$this->terminate("laporan_pajak_all.php");
 		if ($Security->allowList(CurrentProjectID() . 'laporan_bpjs_all.php'))
 			$this->terminate("laporan_bpjs_all.php");
+		if ($Security->allowList(CurrentProjectID() . 'laporan_gaji_unit.php'))
+			$this->terminate("laporan_gaji_unit.php");
+		if ($Security->allowList(CurrentProjectID() . 'laporan_pajak_unit.php'))
+			$this->terminate("laporan_pajak_unit.php");
+		if ($Security->allowList(CurrentProjectID() . 'laporan_bpjs_unit.php'))
+			$this->terminate("laporan_bpjs_unit.php");
 		if ($Security->isLoggedIn()) {
 			$this->setFailureMessage(DeniedMessage() . "<br><br><a href=\"logout.php\">" . $Language->phrase("BackToLogin") . "</a>");
 		} else {

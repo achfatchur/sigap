@@ -441,7 +441,13 @@ $USER_LEVEL_PRIVS = [["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen","-2","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_pajak_all.php","-2","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_pajak_all.php","0","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_bpjs_all.php","-2","0"],
-	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_bpjs_all.php","0","0"]];
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_bpjs_all.php","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_gaji_unit.php","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_gaji_unit.php","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_pajak_unit.php","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_pajak_unit.php","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_bpjs_unit.php","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_bpjs_unit.php","0","0"]];
 
 // User level table info
 $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
@@ -659,4 +665,7 @@ $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3
 	["status_pekerjaan","status_pekerjaan","Status Pekerjaan",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["m_pph21","m_pph21","M PPH21",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["laporan_pajak_all.php","laporan_pajak_all","Laporan Pajak",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
-	["laporan_bpjs_all.php","laporan_bpjs_all","Laporan BPJS",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];
+	["laporan_bpjs_all.php","laporan_bpjs_all","Laporan BPJS",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["laporan_gaji_unit.php","laporan_gaji_unit","Laporan Gaji Unit",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["laporan_pajak_unit.php","laporan_pajak_unit","Laporan Pajak Unit",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["laporan_bpjs_unit.php","laporan_bpjs_unit","Laporan BPJS Unit",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];

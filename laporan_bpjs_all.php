@@ -235,10 +235,6 @@ Page_Rendering();
 			<input type="hidden" name="tahun_s" value="<?=$tahun?>">
 			<input type="hidden" name="bulan_s" value="<?=$bulan?>">
 			<input type="hidden" name="jenjang_s" value="<?=$jenjang?>">
-			<div class="form-row align-items-center">
-				<div class="col-auto">
-					<input type="submit" class="btn btn-success mb-2" name="update_status" value="Konfirmasi Payroll">
-				</div>
 			</div>
 		</form>
 	<?php }else{ ?>

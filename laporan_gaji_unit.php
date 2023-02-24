@@ -17,10 +17,10 @@ ob_start();
 WriteHeader(FALSE);
 
 // Create page object
-$laporan_pajak_all = new laporan_pajak_all();
+$laporan_gaji_unit = new laporan_gaji_unit();
 
 // Run the page
-$laporan_pajak_all->run();
+$laporan_gaji_unit->run();
 
 // Setup login status
 SetupLoginStatus();
@@ -51,138 +51,36 @@ Page_Rendering();
 	if (isset($_GET['submit'])) {
 		$tahun = $_GET['tahun'];
 		$bulan = $_GET['bulan'];
-		$jenjang = $_GET['jenjang'];
 	}else{
 		$tahun = date('Y');
 		$bulan = date('m');
-		$jenjang = '1';
-	}
-
-	if (isset($_POST['update_potongan'])) {
-		$id_edit = $_POST['id_edit'];
-		$tabel = $_POST['tabel'];
-		$tahun = $_POST['tahun'];
-		$bulan = $_POST['bulan'];
-		$jenjang = $_POST['jenjang'];
-
-		if ($jenjang == 'TK') { 
-			$jenjang = '1';
-		} elseif ($jenjang == 'SD') { 
-			$jenjang = '2';
-		} elseif ($jenjang == 'SMP') { 
-			$jenjang = '3';
-		} elseif ($jenjang == 'SMA') { 
-			$jenjang = '4';
-		} elseif ($jenjang == 'SMK') { 
-			$jenjang = '5';
-		}
-		
-		$potongan_bendahara = $_POST['potongan_bendahara'];
-		$querypotong=ExecuteRow("select * from ".$tabel." WHERE id='$id_edit'");
-		$calculasi = $querypotong['total']-$potongan_bendahara;
-		$myquery = "UPDATE ".$tabel." SET potongan_bendahara='$potongan_bendahara',total='$calculasi' WHERE id='$id_edit'";
-		$myResult = Execute($myquery);
-		header("location:payrols.php?tahun=".$tahun."&bulan=".$bulan."&jenjang=".$jenjang."&submit=Cari");
-	}
-
-	if (isset($_GET['update_status'])) {
-		$tahun_s = $_GET['tahun_s'];
-		$bulan_s = $_GET['bulan_s'];
-		$jenjang_s = $_GET['jenjang_s'];
-
-		if ($jenjang_s == '1') { 
-			$tabel = 'gaji_tk';
-			$tabel1 = 'gaji_tu_tk';
-			$tabel2 = 'gaji_karyawan_tk';
-		} elseif ($jenjang_s == '2') { 
-			$tabel = 'gaji';
-			$tabel1 = 'gaji_tu_sd';
-			$tabel2 = 'gaji_karyawan_sd';
-		} elseif ($jenjang_s == '3') { 
-			$tabel = 'gaji_smp';
-			$tabel1 = 'gaji_tu_smp';
-			$tabel2 = 'gaji_karyawan_smp';
-		} elseif ($jenjang_s == '4') { 
-			$tabel = 'gaji_sma';
-			$tabel1 = 'gaji_tu_sma';
-			$tabel2 = 'gaji_karyawan_sma';
-		} elseif ($jenjang_s == '5') { 
-			$tabel = 'gaji_smk';
-			$tabel1 = 'gaji_tu_smk';
-			$tabel2 = 'gaji_karyawan_smk';
-		}
-
-		$tabel = Execute("UPDATE ".$tabel." SET status='1' WHERE bulan='$bulan_s' AND tahun='$tahun_s'");
-		$tabel1 = Execute("UPDATE ".$tabel1." SET status='1' WHERE bulan='$bulan_s' AND tahun='$tahun_s'");
-		$tabel2 = Execute("UPDATE ".$tabel2." SET status='1' WHERE bulan='$bulan_s' AND tahun='$tahun_s'");
-		header("location:payrols.php?tahun=".$tahun_s."&bulan=".$bulan_s."&jenjang=".$jenjang_s."&submit=Cari");
-		if ($tabel && $tabel2 && $tabel2) { 
-		}
-		else{
-			echo "ERROR, Proses data gagal";
-			die;
-		}
-	}
-
-	if (isset($_POST['update_status_belum_selesai'])) {
-		$tahun_s = $_POST['tahun_s'];
-		$bulan_s = $_POST['bulan_s'];
-		$jenjang_s = $_POST['jenjang_s'];
-
-		if ($jenjang_s == '1') { 
-			$tabel = 'gaji_tk';
-			$tabel1 = 'gaji_tu_tk';
-			$tabel2 = 'gaji_karyawan_tk';
-		} elseif ($jenjang_s == '2') { 
-			$tabel = 'gaji';
-			$tabel1 = 'gaji_tu_sd';
-			$tabel2 = 'gaji_karyawan_sd';
-		} elseif ($jenjang_s == '3') { 
-			$tabel = 'gaji_smp';
-			$tabel1 = 'gaji_tu_smp';
-			$tabel2 = 'gaji_karyawan_smp';
-		} elseif ($jenjang_s == '4') { 
-			$tabel = 'gaji_sma';
-			$tabel1 = 'gaji_tu_sma';
-			$tabel2 = 'gaji_karyawan_sma';
-		} elseif ($jenjang_s == '5') { 
-			$tabel = 'gaji_smk';
-			$tabel1 = 'gaji_tu_smk';
-			$tabel2 = 'gaji_karyawan_smk';
-		}
-
-		$tabel = Execute("UPDATE ".$tabel." SET status='0' WHERE bulan='$bulan_s' AND tahun='$tahun_s'");
-		$tabel1 = Execute("UPDATE ".$tabel1." SET status='0' WHERE bulan='$bulan_s' AND tahun='$tahun_s'");
-		$tabel2 = Execute("UPDATE ".$tabel2." SET status='0' WHERE bulan='$bulan_s' AND tahun='$tahun_s'");
-		header("location:payrols.php?tahun=".$tahun_s."&bulan=".$bulan_s."&jenjang=".$jenjang_s."&submit=Cari");
-		if ($tabel && $tabel2 && $tabel2) { 
-		}
-		else{
-			echo "ERROR, Proses data gagal";
-			die;
-		}
 	}
 	
-	if ($jenjang == '1') { 
+	if(CurrentUserLevel() == '8'){ 
 		$tabel = 'gaji_tk';
 		$tabel1 = 'gaji_tu_tk';
 		$tabel2 = 'gaji_karyawan_tk';
-	} elseif ($jenjang == '2') { 
+		$jenjang ='1';
+	} elseif (CurrentUserLevel() == '9') { 
 		$tabel = 'gaji';
 		$tabel1 = 'gaji_tu_sd';
 		$tabel2 = 'gaji_karyawan_sd';
-	} elseif ($jenjang == '3') { 
+		$jenjang ='2';
+	} elseif (CurrentUserLevel() == '10') { 
 		$tabel = 'gaji_smp';
 		$tabel1 = 'gaji_tu_smp';
 		$tabel2 = 'gaji_karyawan_smp';
-	} elseif ($jenjang == '4') { 
+		$jenjang ='3';
+	} elseif (CurrentUserLevel() == '11') { 
 		$tabel = 'gaji_sma';
 		$tabel1 = 'gaji_tu_sma';
 		$tabel2 = 'gaji_karyawan_sma';
-	} elseif ($jenjang == '5') { 
+		$jenjang ='4';
+	} elseif (CurrentUserLevel() == '12') { 
 		$tabel = 'gaji_smk';
 		$tabel1 = 'gaji_tu_smk';
 		$tabel2 = 'gaji_karyawan_smk';
+		$jenjang ='5';
 	}
 ?>	
 	<form method="get" action="">
@@ -207,16 +105,6 @@ Page_Rendering();
 				<option value="11" <?= ($bulan == 11) ? 'selected' : '' ?>>November</option>
 				<option value="12" <?= ($bulan == 12) ? 'selected' : '' ?>>Desember</option>
 			</select>
-			</div>
-			<div class="col-auto">
-				<label class="sr-only" for="inlineFormInputGroup">Jenjang</label>
-				<select class="custom-select form-control mb-2" id="inlineFormCustomSelect" name="jenjang">
-					<option value="1" <?= ($jenjang == 1) ? 'selected' : '' ?>>TK</option>
-					<option value="2" <?= ($jenjang == 2) ? 'selected' : '' ?>>SD</option>
-					<option value="3" <?= ($jenjang == 3) ? 'selected' : '' ?>>SMP</option>
-					<option value="4" <?= ($jenjang == 4) ? 'selected' : '' ?>>SMA</option>
-					<option value="5" <?= ($jenjang == 5) ? 'selected' : '' ?>>SMK</option>
-				</select>
 			</div>
 			<div class="col-auto">
 			<input type="submit" class="btn btn-primary mb-2" name="submit" value="Cari">
@@ -258,9 +146,8 @@ Page_Rendering();
 				<th>Unit</th>
 				<th>NIP</th>
 				<th>Nama</th>
-				<th>Iuran Hari Tua</th>
-				<th>Jaminan Pensiun</th>
-				<th>PPH21</th>
+				<th>No Rekening</th>
+				<th>Total Gaji</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -297,9 +184,8 @@ Page_Rendering();
 				<td><?=$jenjang?></td>
 				<td><?=$pegawai['nip']?></td>
 				<td><?=$pegawai['nama']?> - <?=$jabatan['name']?></td>
-				<td>Rp. <?= number_format($data['jaminan_hari_tua'],0,',','.');?></td>
-				<td>Rp. <?= number_format($data['jaminan_pensiun'],0,',','.');?></td>
-				<td>Rp. <?= number_format($data['total_pph21'],0,',','.');?></td>
+				<td><?=$pegawai['rekbank']?></td>
+				<td>Rp. <?= number_format($data['total'],0,',','.');?></td>
 			</tr>
 				<?php
 					} 
@@ -315,9 +201,8 @@ Page_Rendering();
 				<td><?=$jenjang?></td>
 				<td><?=$pegawai1['nip']?></td>
 				<td><?=$pegawai1['nama']?> - <?=$jabatan1['name']?></td>
-				<td>Rp. <?= number_format($data1['jaminan_hari_tua'],0,',','.');?></td>
-				<td>Rp. <?= number_format($data1['jaminan_pensiun'],0,',','.');?></td>
-				<td>Rp. <?= number_format($data1['total_pph21'],0,',','.');?></td>
+				<td><?=$pegawai1['rekbank']?></td>
+				<td>Rp. <?= number_format($data1['total'],0,',','.');?></td>
 			</tr>
 				<?php	
 					}
@@ -333,9 +218,8 @@ Page_Rendering();
 				<td><?=$jenjang?></td>
 				<td><?=$pegawai2['nip']?></td>
 				<td><?=$pegawai2['nama']?> - <?=$jabatan2['name']?></td>
-				<td>Rp. <?= number_format($data2['jaminan_hari_tua'],0,',','.');?></td>
-				<td>Rp. <?= number_format($data2['jaminan_pensiun'],0,',','.');?></td>
-				<td>Rp. <?= number_format($data2['total_pph21'],0,',','.');?></td>
+				<td><?=$pegawai2['rekbank']?></td>
+				<td>Rp. <?= number_format($data2['total'],0,',','.');?></td>
 			</tr>
 				<?php	
 					}
@@ -347,9 +231,8 @@ Page_Rendering();
 				<th>Unit</th>
 				<th>NIP</th>
 				<th>Nama</th>
-				<th>Iuran Hari Tua</th>
-				<th>Jaminan Pensiun</th>
-				<th>PPH21</th>
+				<th>No Rekening</th>
+				<th>Total Gaji</th>
 			</tr>
 		</tfoot>
 	</table>
@@ -368,5 +251,5 @@ $(document).ready(function () {
 <?php if (Config("DEBUG")) echo GetDebugMessage(); ?>
 <?php include_once "footer.php"; ?>
 <?php
-$laporan_pajak_all->terminate();
+$laporan_gaji_unit->terminate();
 ?>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ew-language date="2023/2/22" version="16.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
+<ew-language date="2023/2/24" version="16.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
   <!--
 	*** Important Notes:
 	1. Language ID should follow: https://developers.google.com/recaptcha/docs/language,
@@ -1372,6 +1372,15 @@
     <menu id="313">
       <phrase id="menutext" value="Gaji Final Karyawan SMK" />
     </menu>
+    <menu id="1635">
+      <phrase id="menutext" value="Laporan Gaji Unit" />
+    </menu>
+    <menu id="1636">
+      <phrase id="menutext" value="Laporan Pajak Unit" />
+    </menu>
+    <menu id="1637">
+      <phrase id="menutext" value="Laporan BPJS Unit" />
+    </menu>
     <menu id="1386">
       <phrase id="menutext" value="Yayasan" />
     </menu>
@@ -2091,6 +2100,9 @@
       <field id="voucher">
         <phrase id="fldcaption" value="voucher" />
       </field>
+      <field id="bpjs__kesehatan">
+        <phrase id="fldcaption" value="bpjs kesehatan" />
+      </field>
     </table>
     <table id="gaji_karyawan_smk">
       <phrase id="tblcaption" value="Gaji Karyawan SMK" />
@@ -2438,6 +2450,9 @@
       </field>
       <field id="status_npwp">
         <phrase id="fldcaption" value="status npwp" />
+      </field>
+      <field id="bpjs_kesehatan">
+        <phrase id="fldcaption" value="bpjs kesehatan" />
       </field>
     </table>
     <table id="gaji_smk">
@@ -2975,6 +2990,9 @@
       </field>
       <field id="status">
         <phrase id="fldcaption" value="status" />
+      </field>
+      <field id="bpjs_kesehatan">
+        <phrase id="fldcaption" value="bpjs kesehatan" />
       </field>
     </table>
     <table id="gaji_tu_smk">
@@ -8893,6 +8911,15 @@
     </table>
     <table id="laporan_bpjs_all">
       <phrase id="tblcaption" value="Laporan BPJS" />
+    </table>
+    <table id="laporan_gaji_unit">
+      <phrase id="tblcaption" value="Laporan Gaji Unit" />
+    </table>
+    <table id="laporan_pajak_unit">
+      <phrase id="tblcaption" value="Laporan Pajak Unit" />
+    </table>
+    <table id="laporan_bpjs_unit">
+      <phrase id="tblcaption" value="Laporan BPJS Unit" />
     </table>
   </project>
 </ew-language>
