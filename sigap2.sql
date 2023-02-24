@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `absen` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.absen: ~6 rows (approximately)
+-- Dumping data for table sigap2.absen: ~7 rows (approximately)
 INSERT INTO `absen` (`id`, `bulan`, `tahun`, `jumlah_hari_kerja`, `datetime`, `createuser`) VALUES
 	(1, 4, 2023, NULL, '2023-01-24 04:15:02', -1),
 	(2, 5, 2024, 29, '2023-01-18 09:38:24', -1),
@@ -365,42 +365,47 @@ CREATE TABLE IF NOT EXISTS `gaji` (
   `bulan` int DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
   `voucher` bigint DEFAULT NULL,
+  `jaminan_pensiun` bigint DEFAULT NULL,
+  `jaminan_hari_tua` bigint DEFAULT NULL,
+  `total_pph21` bigint DEFAULT NULL,
+  `bpjs_kesehatan` bigint DEFAULT NULL,
+  `status_npwp` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1434277 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji: ~31 rows (approximately)
-INSERT INTO `gaji` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `tahun`, `bulan`, `potongan_bendahara`, `voucher`) VALUES
-	(1434200, '10230', '2023-01-24 08:13:01', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 123, NULL, 1, 1, NULL, NULL, 4, NULL, NULL, 2, '0', 2023, 2, NULL, NULL),
-	(1434201, '10230', '2023-01-24 08:14:45', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 124, NULL, 1, NULL, NULL, NULL, 4, NULL, NULL, NULL, '0', 2023, 2, NULL, NULL),
-	(1434204, '10230', '2023-01-24 08:25:47', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 127, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 2023, 2, NULL, NULL),
-	(1434205, '10230', '2023-01-24 08:26:55', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 128, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2023, 8, NULL, NULL),
-	(1434210, '10230', '2023-01-24 08:34:34', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 132, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, 2, '0', 2023, 2, NULL, NULL),
-	(1434212, '10230', '2023-01-24 08:37:12', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 135, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 2023, 2, NULL, NULL),
-	(1434213, '10235', '2023-01-24 08:37:12', '2023-01-24', NULL, NULL, 9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 135, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 2023, 2, NULL, NULL),
-	(1434216, '10230', '2023-01-24 08:52:28', '2023-01-24', NULL, NULL, 5, NULL, 164000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 14000, 4, 178000, 138, NULL, 1, NULL, NULL, NULL, 4, NULL, NULL, 2, NULL, 2023, 4, NULL, 30000),
-	(1434217, '10230', '2023-01-24 08:54:33', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 139, NULL, 1, 1, NULL, NULL, 4, NULL, NULL, 2, '0', 2023, 2, NULL, NULL),
-	(1434220, '10230', '2023-01-24 09:43:18', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 144, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 2023, 2, NULL, NULL),
-	(1434221, '10235', '2023-01-24 09:43:18', '2023-01-24', NULL, NULL, 9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 144, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 2023, 2, NULL, NULL),
-	(1434223, '10230', '2023-01-24 09:50:34', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 150, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, 2, '0', 2023, 2, NULL, NULL),
-	(1434226, '10230', '2023-01-24 09:52:36', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 153, NULL, 1, 1, 2, NULL, 4, NULL, NULL, 2, NULL, 2023, 4, NULL, NULL),
-	(1434228, '10230', '2023-01-24 14:15:34', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 76, NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2023, 4, NULL, NULL),
-	(1434229, '10235', '2023-01-24 14:15:34', '2023-01-24', NULL, NULL, 9, NULL, -156750, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 156750, 4, 0, 76, NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2023, 4, NULL, 40000),
-	(1434231, '10230', '2023-01-24 15:02:02', '2023-01-24', NULL, NULL, 5, 2500, NULL, 50000, 25000, 2, 7000, 125000, NULL, 2, NULL, 56000, 4, NULL, 173, NULL, 1, 1, 2, 56000, 4, 450000, NULL, 2, NULL, 2023, 4, NULL, NULL),
-	(1434232, '10230', '2023-01-24 16:38:43', '2023-01-24', NULL, NULL, 5, 2500, 836000, 50000, 25000, 2, 7000, 125000, NULL, 2, 836000, 56000, 4, NULL, 192, NULL, 1, 1, 2, 56000, 4, 450000, NULL, 2, NULL, 2023, 4, NULL, NULL),
-	(1434233, '10230', '2023-01-24 16:41:45', '2023-01-24', NULL, NULL, 5, 2500, 780000, 50000, 25000, 2, 7000, 125000, NULL, 2, 836000, 56000, 4, NULL, 193, NULL, 1, 1, 2, 56000, 4, 450000, NULL, 2, NULL, 2023, 4, NULL, NULL),
-	(1434234, '10230', '2023-01-24 16:43:25', '2023-01-24', 2, 30000, 5, 2500, 780000, 50000, 25000, 2, 7000, 125000, NULL, 2, 836000, 56000, 4, NULL, 194, NULL, 1, 1, 2, 56000, 4, 450000, NULL, 2, NULL, 2023, 4, NULL, NULL),
-	(1434235, '10230', '2023-01-25 03:54:26', '2023-01-25', 2, 30000, 5, 2500, 808000, 50000, 25000, 2, 7000, 125000, NULL, 2, 836000, 28000, 4, NULL, 195, NULL, 1, 1, 2, 56000, 4, 450000, NULL, 2, NULL, 2023, 4, NULL, NULL),
-	(1434236, '10230', '2023-01-25 04:47:09', '2023-01-25', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 77, NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, '0', 2023, 2, NULL, NULL),
-	(1434237, '10235', '2023-01-25 04:47:09', '2023-01-25', NULL, NULL, 9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 77, NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, '0', 2023, 2, NULL, NULL),
-	(1434238, '102327', '2023-01-25 06:56:24', '2023-01-25', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 21, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2023, 4, NULL, NULL),
-	(1434239, '102327', '2023-01-25 06:56:32', '2023-01-25', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 22, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2023, 4, NULL, NULL),
-	(1434240, '102327', '2023-01-25 06:57:41', '2023-01-25', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 24, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2023, 4, NULL, NULL),
-	(1434241, '1023271', '2023-01-25 07:21:23', '2023-01-25', NULL, 30000, 5, 2500, 625000, 50000, 25000, NULL, 7000, 100000, NULL, NULL, 625000, NULL, 2, NULL, 205, NULL, 1, 1, 2, 56000, 4, 450000, NULL, 2, NULL, 2023, 4, NULL, NULL),
-	(1434255, '10237', '2023-01-26 01:01:58', '2023-01-26', NULL, NULL, 5, NULL, 610000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 610000, 0, 2, 0, 218, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2023, 12, NULL, NULL),
-	(1434258, '10237', '2023-02-02 04:10:20', '2023-02-02', 13000, 13000, 5, 1000, 585000, NULL, 66000, 0, 8250, 100000, 0, 0, 585000, 0, 2, 0, 459, 0, 1, 2, 2, 66000, 2, 435000, 0, 2, NULL, 2023, 12, NULL, 0),
-	(1434261, '10237', '2023-02-02 04:23:56', '2023-02-02', 13000, 13000, 5, 1000, 585000, NULL, 66000, 0, 8250, 100000, 0, 0, 585000, 0, 2, 0, 233, 0, 1, 2, 2, 66000, 2, 435000, 0, 2, NULL, 2024, 11, NULL, 0),
-	(1434275, '10237', '2023-02-08 08:51:50', '2023-02-08', 0, 13000, 5, 1000, 585000, 50000, 0, 0, 8250, 100000, 0, 0, 585000, 0, 2, 0, 247, 0, 1, 2, 2, 66000, 2, 435000, 0, 2, NULL, 2023, 1, NULL, 0),
-	(1434276, '10237', '2023-02-13 04:00:15', '2023-02-13', 0, 13000, 5, 1000, 585000, 50000, 0, 0, 8250, 100000, 0, 0, 585000, 0, 2, 0, 248, 0, 1, 2, 2, 66000, 2, 435000, 0, 2, NULL, 2023, 11, NULL, 0);
+INSERT INTO `gaji` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `tahun`, `bulan`, `potongan_bendahara`, `voucher`, `jaminan_pensiun`, `jaminan_hari_tua`, `total_pph21`, `bpjs_kesehatan`, `status_npwp`) VALUES
+	(1434200, '10230', '2023-01-24 08:13:01', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 123, NULL, 1, 1, NULL, NULL, 4, NULL, NULL, 2, '0', 2023, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434201, '10230', '2023-01-24 08:14:45', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 124, NULL, 1, NULL, NULL, NULL, 4, NULL, NULL, NULL, '0', 2023, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434204, '10230', '2023-01-24 08:25:47', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 127, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 2023, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434205, '10230', '2023-01-24 08:26:55', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 128, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2023, 8, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434210, '10230', '2023-01-24 08:34:34', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 132, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, 2, '0', 2023, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434212, '10230', '2023-01-24 08:37:12', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 135, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 2023, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434213, '10235', '2023-01-24 08:37:12', '2023-01-24', NULL, NULL, 9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 135, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 2023, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434216, '10230', '2023-01-24 08:52:28', '2023-01-24', NULL, NULL, 5, NULL, 164000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 14000, 4, 178000, 138, NULL, 1, NULL, NULL, NULL, 4, NULL, NULL, 2, NULL, 2023, 4, NULL, 30000, NULL, NULL, NULL, NULL, NULL),
+	(1434217, '10230', '2023-01-24 08:54:33', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 139, NULL, 1, 1, NULL, NULL, 4, NULL, NULL, 2, '0', 2023, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434220, '10230', '2023-01-24 09:43:18', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 144, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 2023, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434221, '10235', '2023-01-24 09:43:18', '2023-01-24', NULL, NULL, 9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 144, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 2023, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434223, '10230', '2023-01-24 09:50:34', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 150, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, 2, '0', 2023, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434226, '10230', '2023-01-24 09:52:36', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 153, NULL, 1, 1, 2, NULL, 4, NULL, NULL, 2, NULL, 2023, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434228, '10230', '2023-01-24 14:15:34', '2023-01-24', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 76, NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2023, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434229, '10235', '2023-01-24 14:15:34', '2023-01-24', NULL, NULL, 9, NULL, -156750, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 156750, 4, 0, 76, NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2023, 4, NULL, 40000, NULL, NULL, NULL, NULL, NULL),
+	(1434231, '10230', '2023-01-24 15:02:02', '2023-01-24', NULL, NULL, 5, 2500, NULL, 50000, 25000, 2, 7000, 125000, NULL, 2, NULL, 56000, 4, NULL, 173, NULL, 1, 1, 2, 56000, 4, 450000, NULL, 2, NULL, 2023, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434232, '10230', '2023-01-24 16:38:43', '2023-01-24', NULL, NULL, 5, 2500, 836000, 50000, 25000, 2, 7000, 125000, NULL, 2, 836000, 56000, 4, NULL, 192, NULL, 1, 1, 2, 56000, 4, 450000, NULL, 2, NULL, 2023, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434233, '10230', '2023-01-24 16:41:45', '2023-01-24', NULL, NULL, 5, 2500, 780000, 50000, 25000, 2, 7000, 125000, NULL, 2, 836000, 56000, 4, NULL, 193, NULL, 1, 1, 2, 56000, 4, 450000, NULL, 2, NULL, 2023, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434234, '10230', '2023-01-24 16:43:25', '2023-01-24', 2, 30000, 5, 2500, 780000, 50000, 25000, 2, 7000, 125000, NULL, 2, 836000, 56000, 4, NULL, 194, NULL, 1, 1, 2, 56000, 4, 450000, NULL, 2, NULL, 2023, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434235, '10230', '2023-01-25 03:54:26', '2023-01-25', 2, 30000, 5, 2500, 808000, 50000, 25000, 2, 7000, 125000, NULL, 2, 836000, 28000, 4, NULL, 195, NULL, 1, 1, 2, 56000, 4, 450000, NULL, 2, NULL, 2023, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434236, '10230', '2023-01-25 04:47:09', '2023-01-25', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 77, NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, '0', 2023, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434237, '10235', '2023-01-25 04:47:09', '2023-01-25', NULL, NULL, 9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 77, NULL, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, '0', 2023, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434238, '102327', '2023-01-25 06:56:24', '2023-01-25', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 21, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2023, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434239, '102327', '2023-01-25 06:56:32', '2023-01-25', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 22, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2023, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434240, '102327', '2023-01-25 06:57:41', '2023-01-25', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, 24, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2023, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434241, '1023271', '2023-01-25 07:21:23', '2023-01-25', NULL, 30000, 5, 2500, 625000, 50000, 25000, NULL, 7000, 100000, NULL, NULL, 625000, NULL, 2, NULL, 205, NULL, 1, 1, 2, 56000, 4, 450000, NULL, 2, NULL, 2023, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434255, '10237', '2023-01-26 01:01:58', '2023-01-26', NULL, NULL, 5, NULL, 610000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 610000, 0, 2, 0, 218, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2023, 12, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(1434258, '10237', '2023-02-02 04:10:20', '2023-02-02', 13000, 13000, 5, 1000, 585000, NULL, 66000, 0, 8250, 100000, 0, 0, 585000, 0, 2, 0, 459, 0, 1, 2, 2, 66000, 2, 435000, 0, 2, NULL, 2023, 12, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(1434261, '10237', '2023-02-02 04:23:56', '2023-02-02', 13000, 13000, 5, 1000, 585000, NULL, 66000, 0, 8250, 100000, 0, 0, 585000, 0, 2, 0, 233, 0, 1, 2, 2, 66000, 2, 435000, 0, 2, NULL, 2024, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(1434275, '10237', '2023-02-08 08:51:50', '2023-02-08', 0, 13000, 5, 1000, 585000, 50000, 0, 0, 8250, 100000, 0, 0, 585000, 0, 2, 0, 247, 0, 1, 2, 2, 66000, 2, 435000, 0, 2, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(1434276, '10237', '2023-02-13 04:00:15', '2023-02-13', 0, 13000, 5, 1000, 585000, 50000, 0, 0, 8250, 100000, 0, 0, 585000, 0, 2, 0, 248, 0, 1, 2, 2, 66000, 2, 435000, 0, 2, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL);
 
 -- Dumping structure for table sigap2.gajisd
 CREATE TABLE IF NOT EXISTS `gajisd` (
@@ -642,14 +647,19 @@ CREATE TABLE IF NOT EXISTS `gaji_karyawan_sd` (
   `bulan` int DEFAULT NULL,
   `voucher` bigint DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
+  `jaminan_pensiun` bigint DEFAULT NULL,
+  `jaminan_hari_tua` bigint DEFAULT NULL,
+  `bpjs_kesehatan` bigint DEFAULT NULL,
+  `status_npwp` int DEFAULT NULL,
+  `total_pph21` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_karyawan_sd: ~3 rows (approximately)
-INSERT INTO `gaji_karyawan_sd` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`, `voucher`, `potongan_bendahara`) VALUES
-	(74, '10232124', 11, 4, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 6, 60000, NULL, 2023, 12, 0, NULL),
-	(75, '10232124', 11, 4, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 7, 60000, NULL, 2024, 1, 0, NULL),
-	(77, '10232124', 11, 4, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 9, 60000, NULL, 2023, 11, 0, NULL);
+INSERT INTO `gaji_karyawan_sd` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`, `voucher`, `potongan_bendahara`, `jaminan_pensiun`, `jaminan_hari_tua`, `bpjs_kesehatan`, `status_npwp`, `total_pph21`) VALUES
+	(74, '10232124', 11, 4, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 6, 60000, NULL, 2023, 12, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(75, '10232124', 11, 4, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 7, 60000, NULL, 2024, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(77, '10232124', 11, 4, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 9, 60000, NULL, 2023, 11, 0, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- Dumping structure for table sigap2.gaji_karyawan_sma
 CREATE TABLE IF NOT EXISTS `gaji_karyawan_sma` (
@@ -679,7 +689,7 @@ CREATE TABLE IF NOT EXISTS `gaji_karyawan_sma` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=611 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_karyawan_sma: ~70 rows (approximately)
+-- Dumping data for table sigap2.gaji_karyawan_sma: ~84 rows (approximately)
 INSERT INTO `gaji_karyawan_sma` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`, `voucher`, `potongan_bendahara`, `jaminan_pensiun`, `jaminan_hari_tua`, `total_pph21`, `bpjs__kesehatan`) VALUES
 	(387, '102321', 11, 4, 300000, NULL, 0, 26, 1860000, 0, 0, 1860000, 66, 60000, NULL, 2023, 1, 0, NULL, NULL, NULL, NULL, NULL),
 	(388, '3578102612760004', 5, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 66, 0, NULL, 2023, 1, 0, NULL, NULL, NULL, NULL, NULL),
@@ -787,20 +797,25 @@ CREATE TABLE IF NOT EXISTS `gaji_karyawan_smk` (
   `bulan` int DEFAULT NULL,
   `voucher` bigint DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
+  `jaminan_pensiun` bigint DEFAULT NULL,
+  `jaminan_hari_tua` bigint DEFAULT NULL,
+  `total_pph21` bigint DEFAULT NULL,
+  `bpjs_kesehatan` bigint DEFAULT NULL,
+  `status_npwp` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_karyawan_smk: ~9 rows (approximately)
-INSERT INTO `gaji_karyawan_smk` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`, `voucher`, `potongan_bendahara`) VALUES
-	(83, '10232122', 11, 4, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 8, 60000, NULL, 2023, 12, 0, NULL),
-	(84, '198005032010070499', 5, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 8, 0, NULL, 2023, 12, 0, NULL),
-	(85, '196906211992070223', 69, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 8, 0, NULL, 2023, 12, 0, NULL),
-	(86, '10232122', 11, 4, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 9, 60000, NULL, 2023, 1, 0, NULL),
-	(87, '198005032010070499', 5, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 9, 0, NULL, 2023, 1, 0, NULL),
-	(88, '196906211992070223', 69, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 9, 0, NULL, 2023, 1, 0, NULL),
-	(89, '10232122', 11, 4, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 10, 60000, NULL, 2023, 11, 0, NULL),
-	(90, '198005032010070499', 5, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 10, 0, NULL, 2023, 11, 0, NULL),
-	(91, '196906211992070223', 69, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 10, 0, NULL, 2023, 11, 0, NULL);
+INSERT INTO `gaji_karyawan_smk` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`, `voucher`, `potongan_bendahara`, `jaminan_pensiun`, `jaminan_hari_tua`, `total_pph21`, `bpjs_kesehatan`, `status_npwp`) VALUES
+	(83, '10232122', 11, 4, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 8, 60000, NULL, 2023, 12, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(84, '198005032010070499', 5, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 8, 0, NULL, 2023, 12, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(85, '196906211992070223', 69, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 8, 0, NULL, 2023, 12, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(86, '10232122', 11, 4, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 9, 60000, NULL, 2023, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(87, '198005032010070499', 5, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 9, 0, NULL, 2023, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(88, '196906211992070223', 69, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 9, 0, NULL, 2023, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(89, '10232122', 11, 4, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 10, 60000, NULL, 2023, 11, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(90, '198005032010070499', 5, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 10, 0, NULL, 2023, 11, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(91, '196906211992070223', 69, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 10, 0, NULL, 2023, 11, 0, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- Dumping structure for table sigap2.gaji_karyawan_smp
 CREATE TABLE IF NOT EXISTS `gaji_karyawan_smp` (
@@ -823,17 +838,22 @@ CREATE TABLE IF NOT EXISTS `gaji_karyawan_smp` (
   `bulan` int DEFAULT NULL,
   `voucher` int DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
+  `jaminan_pensiun` bigint DEFAULT NULL,
+  `jaminan_hari_tua` bigint DEFAULT NULL,
+  `total_pph21` bigint DEFAULT NULL,
+  `bpjs_kesehatan` bigint DEFAULT NULL,
+  `status_npwp` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_karyawan_smp: ~6 rows (approximately)
-INSERT INTO `gaji_karyawan_smp` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`, `voucher`, `potongan_bendahara`) VALUES
-	(121, '1023212', 11, 4, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 13, 60000, NULL, 2023, 11, 0, NULL),
-	(122, '198903052016070583', 5, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 13, 0, NULL, 2023, 11, 0, NULL),
-	(123, '197403301995070267', 5, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 13, 0, NULL, 2023, 11, 0, NULL),
-	(124, '198202262006070479', 5, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 13, 0, NULL, 2023, 11, 0, NULL),
-	(125, '197202081991070203', 5, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 13, 0, NULL, 2023, 11, 0, NULL),
-	(126, '197512211995070268', 5, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 13, 0, NULL, 2023, 11, 0, NULL);
+INSERT INTO `gaji_karyawan_smp` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`, `voucher`, `potongan_bendahara`, `jaminan_pensiun`, `jaminan_hari_tua`, `total_pph21`, `bpjs_kesehatan`, `status_npwp`) VALUES
+	(121, '1023212', 11, 4, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 13, 60000, NULL, 2023, 11, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(122, '198903052016070583', 5, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 13, 0, NULL, 2023, 11, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(123, '197403301995070267', 5, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 13, 0, NULL, 2023, 11, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(124, '198202262006070479', 5, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 13, 0, NULL, 2023, 11, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(125, '197202081991070203', 5, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 13, 0, NULL, 2023, 11, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(126, '197512211995070268', 5, 4, 0, NULL, 0, 0, 0, 0, 0, 0, 13, 0, NULL, 2023, 11, 0, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- Dumping structure for table sigap2.gaji_karyawan_tk
 CREATE TABLE IF NOT EXISTS `gaji_karyawan_tk` (
@@ -856,16 +876,21 @@ CREATE TABLE IF NOT EXISTS `gaji_karyawan_tk` (
   `bulan` int DEFAULT NULL,
   `voucher` int DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
+  `jaminan_pensiun` bigint DEFAULT NULL,
+  `jaminan_hari_tua` bigint DEFAULT NULL,
+  `total_pph21` bigint DEFAULT NULL,
+  `bpjs_kesehatan` bigint DEFAULT NULL,
+  `status_npwp` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=434 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_karyawan_tk: ~5 rows (approximately)
-INSERT INTO `gaji_karyawan_tk` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`, `voucher`, `potongan_bendahara`) VALUES
-	(429, '10236', 11, 1, 300000, NULL, 0, 26, 1860000, 0, 0, 1860000, 70, 60000, NULL, 2023, 6, 0, NULL),
-	(430, '1023271', 12, 1, 450000, NULL, 0, 26, 2400000, 0, 0, 2400000, 70, 75000, NULL, 2023, 6, 0, NULL),
-	(431, '1023214', 11, 1, 300000, NULL, 0, 26, 1860000, 0, 0, 1860000, 70, 60000, NULL, 2023, 6, 0, NULL),
-	(432, '197007042014070531', 11, 1, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 70, 60000, NULL, 2023, 6, 0, NULL),
-	(433, '198107172014070548', 12, 1, 450000, NULL, 0, 26, 2400000, 0, 0, 2400000, 70, 75000, NULL, 2023, 6, 0, NULL);
+INSERT INTO `gaji_karyawan_tk` (`id`, `pegawai`, `jabatan_id`, `jenjang_id`, `gapok`, `value_reward`, `value_inval`, `kehadiran`, `sub_total`, `potongan`, `penyesuaian`, `total`, `pid`, `value_kehadiran`, `status`, `tahun`, `bulan`, `voucher`, `potongan_bendahara`, `jaminan_pensiun`, `jaminan_hari_tua`, `total_pph21`, `bpjs_kesehatan`, `status_npwp`) VALUES
+	(429, '10236', 11, 1, 300000, NULL, 0, 26, 1860000, 0, 0, 1860000, 70, 60000, NULL, 2023, 6, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(430, '1023271', 12, 1, 450000, NULL, 0, 26, 2400000, 0, 0, 2400000, 70, 75000, NULL, 2023, 6, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(431, '1023214', 11, 1, 300000, NULL, 0, 26, 1860000, 0, 0, 1860000, 70, 60000, NULL, 2023, 6, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(432, '197007042014070531', 11, 1, 300000, NULL, 0, 0, 300000, 0, 0, 300000, 70, 60000, NULL, 2023, 6, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(433, '198107172014070548', 12, 1, 450000, NULL, 0, 26, 2400000, 0, 0, 2400000, 70, 75000, NULL, 2023, 6, 0, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- Dumping structure for table sigap2.gaji_pokok
 CREATE TABLE IF NOT EXISTS `gaji_pokok` (
@@ -1644,7 +1669,7 @@ CREATE TABLE IF NOT EXISTS `gaji_sma` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4180 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.gaji_sma: ~94 rows (approximately)
+-- Dumping data for table sigap2.gaji_sma: ~140 rows (approximately)
 INSERT INTO `gaji_sma` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `tahun`, `bulan`, `potongan_bendahara`, `voucher`, `jaminan_pensiun`, `jaminan_hari_tua`, `total_pph21`, `status_npwp`, `bpjs_kesehatan`) VALUES
 	(3758, '10230', '2023-02-13 03:45:37', '2023-02-13', 3, 13000, 5, 2500, 3932500, 50000, 132000, 1, 7000, 125000, 450000, 48, 4061000, 174500, 4, 46000, 559, 48, 1, 1, 2, 56000, 4, 450000, 120000, 2, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
 	(3759, '10235', '2023-02-13 03:45:38', '2023-02-13', 0, 13000, 9, 1500, 3290000, 50000, 0, 0, 8250, 0, 0, 48, 3290000, 0, 4, 0, 559, 48, 1, 2, 0, 66000, 0, 0, 72000, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
@@ -1824,155 +1849,160 @@ CREATE TABLE IF NOT EXISTS `gaji_smk` (
   `bulan` int DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
   `voucher` bigint DEFAULT NULL,
+  `jaminan_pensiun` bigint DEFAULT NULL,
+  `jaminan_hari_tua` bigint DEFAULT NULL,
+  `total_pph21` bigint DEFAULT NULL,
+  `status_npwp` int DEFAULT NULL,
+  `bpjs_kesehatan` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=364 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_smk: ~144 rows (approximately)
-INSERT INTO `gaji_smk` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `tahun`, `bulan`, `potongan_bendahara`, `voucher`) VALUES
-	(220, '102327', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 2500, 1175000, 50000, 0, 0, 7000, 100000, 575000, 0, 1175000, 0, 5, 0, 46, 0, 1, 1, 2, 56000, 4, 450000, 0, 2, NULL, 2023, 2, NULL, 0),
-	(221, '198304102006070420', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 60, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(222, '196905271996070283', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(223, '198811182011070498', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 62, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(224, '198408252010070492', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 61, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(225, '197004061996070319', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(226, '196701121998070311', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(227, '196512011999070327', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(228, '197001282000070310', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(229, '197604052003070393', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(230, '197606042004070397', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(231, '197604012004070401', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(232, '197704092004070403', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(233, '198110032004070399', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 64, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(234, '198008302008070456', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(235, '198012172005070411', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(236, '198202072008070458', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(237, '197404132008070462', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(238, '198411102008070461', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(239, '198404222008070464', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(240, '197503172009070477', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(241, '198109292009070468', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(242, '198703102010070491', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(243, '198406222010070490', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(244, '197203032010070488', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(245, '197911042011070504', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(246, '197606302011070346', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(247, '198712282011070501', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(248, '198103082010070489', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(249, '198111152012070453', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(250, '198505062012070455', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(251, '196904192012070514', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(252, '199003172012070513', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(253, '198306252013070516', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(254, '198111112014070429', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(255, '198511142014070522', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 101, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(256, '198709192014070523', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(257, '198801022016070560', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(258, '199310102016070563', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(259, '199503172017070570', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(260, '197910192017070569', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(261, '197701042017070571', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(262, '198504282017070572', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(263, '199208202017070573', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(264, '199304222018070608', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(265, '197810062018070606', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(266, '199701082019070582', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 40, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(267, '196312141989032006', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0),
-	(268, '102327', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 2500, 1175000, 50000, 0, 0, 7000, 100000, 575000, 0, 1175000, 0, 5, 0, 47, 0, 1, 1, 2, 56000, 4, 450000, 0, 2, NULL, 2023, 1, NULL, 0),
-	(269, '198304102006070420', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 60, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(270, '196905271996070283', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(271, '198811182011070498', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 62, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(272, '198408252010070492', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 61, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(273, '197004061996070319', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(274, '196701121998070311', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(275, '196512011999070327', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(276, '197001282000070310', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(277, '197604052003070393', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(278, '197606042004070397', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(279, '197604012004070401', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(280, '197704092004070403', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(281, '198110032004070399', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 64, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(282, '198008302008070456', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(283, '198012172005070411', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(284, '198202072008070458', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(285, '197404132008070462', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(286, '198411102008070461', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(287, '198404222008070464', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(288, '197503172009070477', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(289, '198109292009070468', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(290, '198703102010070491', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(291, '198406222010070490', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(292, '197203032010070488', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(293, '197911042011070504', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(294, '197606302011070346', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(295, '198712282011070501', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(296, '198103082010070489', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(297, '198111152012070453', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(298, '198505062012070455', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(299, '196904192012070514', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(300, '199003172012070513', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(301, '198306252013070516', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(302, '198111112014070429', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(303, '198511142014070522', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 101, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(304, '198709192014070523', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(305, '198801022016070560', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(306, '199310102016070563', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(307, '199503172017070570', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(308, '197910192017070569', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(309, '197701042017070571', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(310, '198504282017070572', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(311, '199208202017070573', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(312, '199304222018070608', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(313, '197810062018070606', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(314, '199701082019070582', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 40, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(315, '196312141989032006', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(316, '102327', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 2500, 1175000, 50000, 0, 0, 7000, 100000, 575000, 0, 1175000, 0, 5, 0, 48, 0, 1, 1, 2, 56000, 4, 450000, 0, 2, NULL, 2023, 11, NULL, 0),
-	(317, '198304102006070420', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 60, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(318, '196905271996070283', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(319, '198811182011070498', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 62, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(320, '198408252010070492', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 61, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(321, '197004061996070319', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(322, '196701121998070311', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(323, '196512011999070327', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(324, '197001282000070310', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(325, '197604052003070393', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(326, '197606042004070397', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(327, '197604012004070401', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(328, '197704092004070403', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(329, '198110032004070399', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 64, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(330, '198008302008070456', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(331, '198012172005070411', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(332, '198202072008070458', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(333, '197404132008070462', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(334, '198411102008070461', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(335, '198404222008070464', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(336, '197503172009070477', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(337, '198109292009070468', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(338, '198703102010070491', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(339, '198406222010070490', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(340, '197203032010070488', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(341, '197911042011070504', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(342, '197606302011070346', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(343, '198712282011070501', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(344, '198103082010070489', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(345, '198111152012070453', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(346, '198505062012070455', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(347, '196904192012070514', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(348, '199003172012070513', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(349, '198306252013070516', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(350, '198111112014070429', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(351, '198511142014070522', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 101, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(352, '198709192014070523', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(353, '198801022016070560', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(354, '199310102016070563', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(355, '199503172017070570', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(356, '197910192017070569', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(357, '197701042017070571', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(358, '198504282017070572', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(359, '199208202017070573', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(360, '199304222018070608', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(361, '197810062018070606', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(362, '199701082019070582', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 40, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(363, '196312141989032006', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0);
+INSERT INTO `gaji_smk` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `tahun`, `bulan`, `potongan_bendahara`, `voucher`, `jaminan_pensiun`, `jaminan_hari_tua`, `total_pph21`, `status_npwp`, `bpjs_kesehatan`) VALUES
+	(220, '102327', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 2500, 1175000, 50000, 0, 0, 7000, 100000, 575000, 0, 1175000, 0, 5, 0, 46, 0, 1, 1, 2, 56000, 4, 450000, 0, 2, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(221, '198304102006070420', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 60, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(222, '196905271996070283', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(223, '198811182011070498', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 62, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(224, '198408252010070492', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 61, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(225, '197004061996070319', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(226, '196701121998070311', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(227, '196512011999070327', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(228, '197001282000070310', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(229, '197604052003070393', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(230, '197606042004070397', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(231, '197604012004070401', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(232, '197704092004070403', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(233, '198110032004070399', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 64, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(234, '198008302008070456', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(235, '198012172005070411', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(236, '198202072008070458', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(237, '197404132008070462', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(238, '198411102008070461', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(239, '198404222008070464', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(240, '197503172009070477', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(241, '198109292009070468', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(242, '198703102010070491', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(243, '198406222010070490', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(244, '197203032010070488', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(245, '197911042011070504', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(246, '197606302011070346', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(247, '198712282011070501', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(248, '198103082010070489', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(249, '198111152012070453', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(250, '198505062012070455', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(251, '196904192012070514', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(252, '199003172012070513', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(253, '198306252013070516', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(254, '198111112014070429', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(255, '198511142014070522', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 101, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(256, '198709192014070523', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(257, '198801022016070560', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(258, '199310102016070563', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(259, '199503172017070570', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(260, '197910192017070569', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(261, '197701042017070571', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(262, '198504282017070572', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(263, '199208202017070573', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(264, '199304222018070608', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(265, '197810062018070606', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(266, '199701082019070582', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 40, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(267, '196312141989032006', '2023-02-08 07:49:49', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 46, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 2, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(268, '102327', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 2500, 1175000, 50000, 0, 0, 7000, 100000, 575000, 0, 1175000, 0, 5, 0, 47, 0, 1, 1, 2, 56000, 4, 450000, 0, 2, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(269, '198304102006070420', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 60, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(270, '196905271996070283', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(271, '198811182011070498', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 62, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(272, '198408252010070492', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 61, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(273, '197004061996070319', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(274, '196701121998070311', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(275, '196512011999070327', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(276, '197001282000070310', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(277, '197604052003070393', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(278, '197606042004070397', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(279, '197604012004070401', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(280, '197704092004070403', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(281, '198110032004070399', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 64, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(282, '198008302008070456', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(283, '198012172005070411', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(284, '198202072008070458', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(285, '197404132008070462', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(286, '198411102008070461', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(287, '198404222008070464', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(288, '197503172009070477', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(289, '198109292009070468', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(290, '198703102010070491', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(291, '198406222010070490', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(292, '197203032010070488', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(293, '197911042011070504', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(294, '197606302011070346', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(295, '198712282011070501', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(296, '198103082010070489', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(297, '198111152012070453', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(298, '198505062012070455', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(299, '196904192012070514', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(300, '199003172012070513', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(301, '198306252013070516', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(302, '198111112014070429', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(303, '198511142014070522', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 101, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(304, '198709192014070523', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(305, '198801022016070560', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(306, '199310102016070563', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(307, '199503172017070570', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(308, '197910192017070569', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(309, '197701042017070571', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(310, '198504282017070572', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(311, '199208202017070573', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(312, '199304222018070608', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(313, '197810062018070606', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(314, '199701082019070582', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 40, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(315, '196312141989032006', '2023-02-08 08:55:51', '2023-02-08', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 47, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(316, '102327', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 2500, 1175000, 50000, 0, 0, 7000, 100000, 575000, 0, 1175000, 0, 5, 0, 48, 0, 1, 1, 2, 56000, 4, 450000, 0, 2, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(317, '198304102006070420', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 60, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(318, '196905271996070283', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(319, '198811182011070498', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 62, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(320, '198408252010070492', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 61, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(321, '197004061996070319', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(322, '196701121998070311', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(323, '196512011999070327', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(324, '197001282000070310', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(325, '197604052003070393', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(326, '197606042004070397', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(327, '197604012004070401', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(328, '197704092004070403', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(329, '198110032004070399', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 64, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(330, '198008302008070456', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(331, '198012172005070411', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(332, '198202072008070458', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(333, '197404132008070462', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(334, '198411102008070461', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(335, '198404222008070464', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(336, '197503172009070477', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(337, '198109292009070468', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(338, '198703102010070491', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(339, '198406222010070490', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(340, '197203032010070488', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(341, '197911042011070504', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(342, '197606302011070346', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(343, '198712282011070501', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(344, '198103082010070489', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(345, '198111152012070453', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(346, '198505062012070455', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(347, '196904192012070514', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(348, '199003172012070513', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(349, '198306252013070516', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(350, '198111112014070429', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(351, '198511142014070522', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 101, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(352, '198709192014070523', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(353, '198801022016070560', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(354, '199310102016070563', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(355, '199503172017070570', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(356, '197910192017070569', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(357, '197701042017070571', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(358, '198504282017070572', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(359, '199208202017070573', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(360, '199304222018070608', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(361, '197810062018070606', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(362, '199701082019070582', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 40, 1500, 50000, 50000, 0, 0, 0, 0, 0, 0, 50000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(363, '196312141989032006', '2023-02-13 04:04:12', '2023-02-13', 0, 13000, 5, 1500, 625000, 50000, 0, 0, 0, 0, 575000, 0, 625000, 0, 5, 0, 48, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL);
 
 -- Dumping structure for table sigap2.gaji_smp
 CREATE TABLE IF NOT EXISTS `gaji_smp` (
@@ -2011,97 +2041,102 @@ CREATE TABLE IF NOT EXISTS `gaji_smp` (
   `bulan` int DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
   `voucher` bigint DEFAULT NULL,
+  `jaminan_pensiun` bigint DEFAULT NULL,
+  `jaminan_hari_tua` bigint DEFAULT NULL,
+  `total_pph21` bigint DEFAULT NULL,
+  `bpjs_kesehatan` bigint DEFAULT NULL,
+  `status_npwp` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=423 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_smp: ~86 rows (approximately)
-INSERT INTO `gaji_smp` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `tahun`, `bulan`, `potongan_bendahara`, `voucher`) VALUES
-	(251, '10238', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 8250, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 2, 0, 66000, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(252, '102323', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 2500, 1050000, 50000, 0, 0, 7000, 100000, 450000, 0, 1050000, 0, 3, 0, 21, 0, 1, 1, 2, 56000, 4, 450000, 0, 2, NULL, 2023, 1, NULL, 0),
-	(253, '196512051993070226', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(254, '199202222015070546', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(255, '198008252004070404', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(256, '198306292008070448', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(257, '198011212007070433', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(258, '195508061997070291', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(259, '196402131995070258', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(260, '197905112010070338', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(261, '198111252006070423', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(262, '198402172007070436', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(263, '197503091998070251', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(264, '198304102006070420', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(265, '197002261998070248', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(266, '198411252010070486', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(267, '197404241999070326', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(268, '196709081999070325', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(269, '197612261997070286', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(270, '199201062014070526', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(271, '196208291986070105', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(272, '196512271993070227', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(273, '197803282006070271', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(274, '197501302000070339', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(275, '198610132011070497', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(276, '198104162007070343', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(277, '196705282012070509', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(278, '197608042004070398', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(279, '196606072001070132', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(280, '197710262008070465', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(281, '198101232006070421', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(282, '198607102012070507', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(283, '197101091996070265', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(284, '197208221999070316', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(285, '196801071994070195', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(286, '196912161999070314', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(287, '197508291999070317', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(288, '197606202001070361', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(289, '198008292014070532', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(290, '199610182021110863', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(291, '199803202022010866', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(292, '199607072021110864', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(293, '199806152021110865', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0),
-	(380, '10238', '2023-02-20 06:33:25', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 8250, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 2, 0, 66000, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(381, '102323', '2023-02-20 06:33:25', '2023-02-20', 0, 13000, 5, 2500, 1050000, 50000, 0, 0, 7000, 100000, 450000, 0, 1050000, 0, 3, 0, 24, 0, 1, 1, 2, 56000, 4, 450000, 0, 2, NULL, 2023, 11, NULL, 0),
-	(382, '196512051993070226', '2023-02-20 06:33:25', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(383, '199202222015070546', '2023-02-20 06:33:25', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(384, '198008252004070404', '2023-02-20 06:33:25', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(385, '198306292008070448', '2023-02-20 06:33:25', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(386, '198011212007070433', '2023-02-20 06:33:25', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(387, '195508061997070291', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(388, '196402131995070258', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(389, '197905112010070338', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(390, '198111252006070423', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(391, '198402172007070436', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(392, '197503091998070251', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(393, '198304102006070420', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(394, '197002261998070248', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(395, '198411252010070486', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(396, '197404241999070326', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(397, '196709081999070325', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(398, '197612261997070286', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(399, '199201062014070526', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(400, '196208291986070105', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(401, '196512271993070227', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(402, '197803282006070271', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(403, '197501302000070339', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(404, '198610132011070497', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(405, '198104162007070343', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(406, '196705282012070509', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(407, '197608042004070398', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(408, '196606072001070132', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(409, '197710262008070465', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(410, '198101232006070421', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(411, '198607102012070507', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(412, '197101091996070265', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(413, '197208221999070316', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(414, '196801071994070195', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(415, '196912161999070314', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(416, '197508291999070317', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(417, '197606202001070361', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(418, '198008292014070532', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(419, '199610182021110863', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(420, '199803202022010866', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(421, '199607072021110864', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0),
-	(422, '199806152021110865', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0);
+INSERT INTO `gaji_smp` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `tahun`, `bulan`, `potongan_bendahara`, `voucher`, `jaminan_pensiun`, `jaminan_hari_tua`, `total_pph21`, `bpjs_kesehatan`, `status_npwp`) VALUES
+	(251, '10238', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 8250, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 2, 0, 66000, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(252, '102323', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 2500, 1050000, 50000, 0, 0, 7000, 100000, 450000, 0, 1050000, 0, 3, 0, 21, 0, 1, 1, 2, 56000, 4, 450000, 0, 2, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(253, '196512051993070226', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(254, '199202222015070546', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(255, '198008252004070404', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(256, '198306292008070448', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(257, '198011212007070433', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(258, '195508061997070291', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(259, '196402131995070258', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(260, '197905112010070338', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(261, '198111252006070423', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(262, '198402172007070436', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(263, '197503091998070251', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(264, '198304102006070420', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(265, '197002261998070248', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(266, '198411252010070486', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(267, '197404241999070326', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(268, '196709081999070325', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(269, '197612261997070286', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(270, '199201062014070526', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(271, '196208291986070105', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(272, '196512271993070227', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(273, '197803282006070271', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(274, '197501302000070339', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(275, '198610132011070497', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(276, '198104162007070343', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(277, '196705282012070509', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(278, '197608042004070398', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(279, '196606072001070132', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(280, '197710262008070465', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(281, '198101232006070421', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(282, '198607102012070507', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(283, '197101091996070265', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(284, '197208221999070316', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(285, '196801071994070195', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(286, '196912161999070314', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(287, '197508291999070317', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(288, '197606202001070361', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(289, '198008292014070532', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(290, '199610182021110863', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(291, '199803202022010866', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(292, '199607072021110864', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(293, '199806152021110865', '2023-02-10 03:55:35', '2023-02-10', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 21, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(380, '10238', '2023-02-20 06:33:25', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 8250, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 2, 0, 66000, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(381, '102323', '2023-02-20 06:33:25', '2023-02-20', 0, 13000, 5, 2500, 1050000, 50000, 0, 0, 7000, 100000, 450000, 0, 1050000, 0, 3, 0, 24, 0, 1, 1, 2, 56000, 4, 450000, 0, 2, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(382, '196512051993070226', '2023-02-20 06:33:25', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(383, '199202222015070546', '2023-02-20 06:33:25', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(384, '198008252004070404', '2023-02-20 06:33:25', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(385, '198306292008070448', '2023-02-20 06:33:25', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(386, '198011212007070433', '2023-02-20 06:33:25', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(387, '195508061997070291', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(388, '196402131995070258', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(389, '197905112010070338', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(390, '198111252006070423', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(391, '198402172007070436', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(392, '197503091998070251', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(393, '198304102006070420', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(394, '197002261998070248', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(395, '198411252010070486', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(396, '197404241999070326', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(397, '196709081999070325', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(398, '197612261997070286', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(399, '199201062014070526', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(400, '196208291986070105', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(401, '196512271993070227', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(402, '197803282006070271', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(403, '197501302000070339', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(404, '198610132011070497', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(405, '198104162007070343', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(406, '196705282012070509', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(407, '197608042004070398', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(408, '196606072001070132', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(409, '197710262008070465', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(410, '198101232006070421', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(411, '198607102012070507', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(412, '197101091996070265', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(413, '197208221999070316', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(414, '196801071994070195', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(415, '196912161999070314', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(416, '197508291999070317', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(417, '197606202001070361', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(418, '198008292014070532', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(419, '199610182021110863', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(420, '199803202022010866', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(421, '199607072021110864', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(422, '199806152021110865', '2023-02-20 06:33:26', '2023-02-20', 0, 13000, 5, 1500, 500000, 50000, 0, 0, 0, 0, 450000, 0, 500000, 0, 3, 0, 24, 0, 1, 0, 0, 0, 0, 0, 0, 0, NULL, 2023, 11, NULL, 0, NULL, NULL, NULL, NULL, NULL);
 
 -- Dumping structure for table sigap2.gaji_tk
 CREATE TABLE IF NOT EXISTS `gaji_tk` (
@@ -2140,20 +2175,25 @@ CREATE TABLE IF NOT EXISTS `gaji_tk` (
   `tahun` int DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
   `voucher` bigint DEFAULT NULL,
+  `jaminan_pensiun` bigint DEFAULT NULL,
+  `jaminan_hari_tua` bigint DEFAULT NULL,
+  `total_pph21` bigint DEFAULT NULL,
+  `bpjs_kesehatan` bigint DEFAULT NULL,
+  `status_npwp` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_tk: ~9 rows (approximately)
-INSERT INTO `gaji_tk` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `bulan`, `tahun`, `potongan_bendahara`, `voucher`) VALUES
-	(232, '199206112015070538', '2023-02-16 03:12:53', '2023-02-16', 0, 13000, 13, 1500, 3290000, 50000, 0, 0, 8250, 0, 0, 48, 3290000, 0, 1, 0, 70, 48, 1, 2, 0, 66000, 0, 0, 72000, 0, NULL, 1, 2023, NULL, 0),
-	(233, '196907012015070538', '2023-02-16 03:12:53', '2023-02-16', 0, 13000, 13, 1500, 2810000, 50000, 0, 0, 7000, 0, 0, 48, 2810000, 0, 1, 0, 70, 48, 1, 1, 0, 56000, 0, 0, 72000, 0, NULL, 1, 2023, NULL, 0),
-	(234, '198112132016070555', '2023-02-16 03:12:53', '2023-02-16', 0, 13000, 13, 1500, 2810000, 50000, 0, 0, 7000, 0, 0, 48, 2810000, 0, 1, 0, 70, 48, 1, 1, 0, 56000, 0, 0, 72000, 0, NULL, 1, 2023, NULL, 0),
-	(235, '199206112015070538', '2023-02-16 03:31:42', '2023-02-16', 0, 13000, 13, 1500, 3150000, 50000, 0, 0, 8250, 0, 0, 48, 3290000, 0, 1, 0, 71, 48, 1, 2, 0, 66000, 0, 0, 72000, 0, NULL, 2, 2023, 90000, 0),
-	(236, '196907012015070538', '2023-02-16 03:31:42', '2023-02-16', 0, 13000, 13, 1500, 2810000, 50000, 0, 0, 7000, 0, 0, 48, 2810000, 0, 1, 0, 71, 48, 1, 1, 0, 56000, 0, 0, 72000, 0, NULL, 2, 2023, NULL, 0),
-	(237, '198112132016070555', '2023-02-16 03:31:42', '2023-02-16', 0, 13000, 13, 1500, 2810000, 50000, 0, 0, 7000, 0, 0, 48, 2810000, 0, 1, 0, 71, 48, 1, 1, 0, 56000, 0, 0, 72000, 0, NULL, 2, 2023, NULL, 0),
-	(244, '199206112015070538', '2023-02-16 04:14:29', '2023-02-16', 0, 13000, 13, 1500, 3290000, 50000, 0, 0, 8250, 0, 0, 48, 3290000, 0, 1, 0, 74, 48, 1, 2, 0, 66000, 0, 0, 72000, 0, NULL, 6, 2023, NULL, 0),
-	(245, '196907012015070538', '2023-02-16 04:14:29', '2023-02-16', 0, 13000, 13, 1500, 2810000, 50000, 0, 0, 7000, 0, 0, 48, 2810000, 0, 1, 0, 74, 48, 1, 1, 0, 56000, 0, 0, 72000, 0, NULL, 6, 2023, NULL, 0),
-	(246, '19811213201607067', '2023-02-16 04:14:29', '2023-02-16', 0, 13000, 13, 1500, 2810000, 50000, 0, 0, 7000, 0, 0, 48, 2810000, 0, 1, 0, 74, 48, 1, 1, 0, 56000, 0, 0, 72000, 0, NULL, 6, 2023, NULL, 0);
+INSERT INTO `gaji_tk` (`id`, `pegawai`, `datetime`, `month`, `lembur`, `value_lembur`, `jabatan_id`, `gapok`, `total`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `kehadiran`, `sub_total`, `potongan`, `jenjang_id`, `penyesuaian`, `pid`, `jp`, `type`, `jenis_guru`, `tambahan`, `value_kehadiran`, `periode`, `tunjangan_periode`, `total_gapok`, `lama_kerja`, `status`, `bulan`, `tahun`, `potongan_bendahara`, `voucher`, `jaminan_pensiun`, `jaminan_hari_tua`, `total_pph21`, `bpjs_kesehatan`, `status_npwp`) VALUES
+	(232, '199206112015070538', '2023-02-16 03:12:53', '2023-02-16', 0, 13000, 13, 1500, 3290000, 50000, 0, 0, 8250, 0, 0, 48, 3290000, 0, 1, 0, 70, 48, 1, 2, 0, 66000, 0, 0, 72000, 0, NULL, 1, 2023, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(233, '196907012015070538', '2023-02-16 03:12:53', '2023-02-16', 0, 13000, 13, 1500, 2810000, 50000, 0, 0, 7000, 0, 0, 48, 2810000, 0, 1, 0, 70, 48, 1, 1, 0, 56000, 0, 0, 72000, 0, NULL, 1, 2023, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(234, '198112132016070555', '2023-02-16 03:12:53', '2023-02-16', 0, 13000, 13, 1500, 2810000, 50000, 0, 0, 7000, 0, 0, 48, 2810000, 0, 1, 0, 70, 48, 1, 1, 0, 56000, 0, 0, 72000, 0, NULL, 1, 2023, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(235, '199206112015070538', '2023-02-16 03:31:42', '2023-02-16', 0, 13000, 13, 1500, 3150000, 50000, 0, 0, 8250, 0, 0, 48, 3290000, 0, 1, 0, 71, 48, 1, 2, 0, 66000, 0, 0, 72000, 0, NULL, 2, 2023, 90000, 0, NULL, NULL, NULL, NULL, NULL),
+	(236, '196907012015070538', '2023-02-16 03:31:42', '2023-02-16', 0, 13000, 13, 1500, 2810000, 50000, 0, 0, 7000, 0, 0, 48, 2810000, 0, 1, 0, 71, 48, 1, 1, 0, 56000, 0, 0, 72000, 0, NULL, 2, 2023, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(237, '198112132016070555', '2023-02-16 03:31:42', '2023-02-16', 0, 13000, 13, 1500, 2810000, 50000, 0, 0, 7000, 0, 0, 48, 2810000, 0, 1, 0, 71, 48, 1, 1, 0, 56000, 0, 0, 72000, 0, NULL, 2, 2023, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(244, '199206112015070538', '2023-02-16 04:14:29', '2023-02-16', 0, 13000, 13, 1500, 3290000, 50000, 0, 0, 8250, 0, 0, 48, 3290000, 0, 1, 0, 74, 48, 1, 2, 0, 66000, 0, 0, 72000, 0, NULL, 6, 2023, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(245, '196907012015070538', '2023-02-16 04:14:29', '2023-02-16', 0, 13000, 13, 1500, 2810000, 50000, 0, 0, 7000, 0, 0, 48, 2810000, 0, 1, 0, 74, 48, 1, 1, 0, 56000, 0, 0, 72000, 0, NULL, 6, 2023, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+	(246, '19811213201607067', '2023-02-16 04:14:29', '2023-02-16', 0, 13000, 13, 1500, 2810000, 50000, 0, 0, 7000, 0, 0, 48, 2810000, 0, 1, 0, 74, 48, 1, 1, 0, 56000, 0, 0, 72000, 0, NULL, 6, 2023, NULL, 0, NULL, NULL, NULL, NULL, NULL);
 
 -- Dumping structure for table sigap2.gaji_tu_sd
 CREATE TABLE IF NOT EXISTS `gaji_tu_sd` (
@@ -2190,13 +2230,18 @@ CREATE TABLE IF NOT EXISTS `gaji_tu_sd` (
   `voucher` bigint DEFAULT NULL,
   `status` int DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
+  `jaminan_pensiun` bigint DEFAULT NULL,
+  `jaminan_hari_tua` bigint DEFAULT NULL,
+  `total_pph21` bigint DEFAULT NULL,
+  `bpjs_kesehatan` bigint DEFAULT NULL,
+  `status_npwp` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_tu_sd: ~2 rows (approximately)
-INSERT INTO `gaji_tu_sd` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `tunjangan2`, `tambahan`, `type_jabatan`, `ijasah`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`) VALUES
-	(83, NULL, '10232712', 2, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 0, 0, 0, 50000, 0, 50000, 20, 0, 0, 2, 0, 2, 0, 54000, 2023, 1, 0, NULL, NULL),
-	(84, NULL, '10232712', 2, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 0, 0, 0, 50000, 0, 50000, 21, 0, 0, 2, 0, 2, 0, 54000, 2023, 11, 0, NULL, NULL);
+INSERT INTO `gaji_tu_sd` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `tunjangan2`, `tambahan`, `type_jabatan`, `ijasah`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`, `jaminan_pensiun`, `jaminan_hari_tua`, `total_pph21`, `bpjs_kesehatan`, `status_npwp`) VALUES
+	(83, NULL, '10232712', 2, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 0, 0, 0, 50000, 0, 50000, 20, 0, 0, 2, 0, 2, 0, 54000, 2023, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(84, NULL, '10232712', 2, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 0, 0, 0, 50000, 0, 50000, 21, 0, 0, 2, 0, 2, 0, 54000, 2023, 11, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- Dumping structure for table sigap2.gaji_tu_sma
 CREATE TABLE IF NOT EXISTS `gaji_tu_sma` (
@@ -2294,13 +2339,18 @@ CREATE TABLE IF NOT EXISTS `gaji_tu_smk` (
   `voucher` bigint DEFAULT NULL,
   `status` int DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
+  `jaminan_pensiun` bigint DEFAULT NULL,
+  `jaminan_hari_tua` bigint DEFAULT NULL,
+  `total_pph21` bigint DEFAULT NULL,
+  `bpjs_kesehatan` bigint DEFAULT NULL,
+  `status_npwp` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_tu_smk: ~2 rows (approximately)
-INSERT INTO `gaji_tu_smk` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `ijasah`, `tunjangan2`, `tambahan`, `type_jabatan`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`) VALUES
-	(80, NULL, '1023231', 5, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 100000, 0, 0, 220000, 0, 220000, 24, 0, 70000, 2, 2, 2, 1, 54000, 2023, 1, 0, NULL, NULL),
-	(81, NULL, '1023231', 5, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 100000, 0, 0, 220000, 0, 220000, 25, 0, 70000, 2, 2, 2, 1, 54000, 2023, 11, 0, NULL, NULL);
+INSERT INTO `gaji_tu_smk` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `ijasah`, `tunjangan2`, `tambahan`, `type_jabatan`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`, `jaminan_pensiun`, `jaminan_hari_tua`, `total_pph21`, `bpjs_kesehatan`, `status_npwp`) VALUES
+	(80, NULL, '1023231', 5, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 100000, 0, 0, 220000, 0, 220000, 24, 0, 70000, 2, 2, 2, 1, 54000, 2023, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(81, NULL, '1023231', 5, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 100000, 0, 0, 220000, 0, 220000, 25, 0, 70000, 2, 2, 2, 1, 54000, 2023, 11, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- Dumping structure for table sigap2.gaji_tu_smp
 CREATE TABLE IF NOT EXISTS `gaji_tu_smp` (
@@ -2337,13 +2387,19 @@ CREATE TABLE IF NOT EXISTS `gaji_tu_smp` (
   `voucher` bigint DEFAULT NULL,
   `status` int DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
+  `Column 34` bigint DEFAULT NULL,
+  `jaminan_pensiun` bigint DEFAULT NULL,
+  `jaminan_hari_tua` bigint DEFAULT NULL,
+  `total_pph21` bigint DEFAULT NULL,
+  `bpjs_kesehatan` bigint DEFAULT NULL,
+  `status_npwp` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_tu_smp: ~2 rows (approximately)
-INSERT INTO `gaji_tu_smp` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `tunjangan2`, `tambahan`, `type_jabatan`, `ijasah`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`) VALUES
-	(80, NULL, '1023232', 3, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 100000, 70000, 0, 220000, 0, 220000, 14, 0, 2, 2, 0, 2, 1, 54000, 2023, 1, 0, NULL, NULL),
-	(83, NULL, '1023232', 3, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 100000, 70000, 0, 220000, 0, 220000, 17, 0, 2, 2, 0, 2, 1, 54000, 2023, 11, 0, NULL, NULL);
+INSERT INTO `gaji_tu_smp` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `tunjangan2`, `tambahan`, `type_jabatan`, `ijasah`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`, `Column 34`, `jaminan_pensiun`, `jaminan_hari_tua`, `total_pph21`, `bpjs_kesehatan`, `status_npwp`) VALUES
+	(80, NULL, '1023232', 3, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 100000, 70000, 0, 220000, 0, 220000, 14, 0, 2, 2, 0, 2, 1, 54000, 2023, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(83, NULL, '1023232', 3, 6, NULL, 0, 0, 0, 13000, 50000, 0, 0, 8250, 100000, 70000, 0, 220000, 0, 220000, 17, 0, 2, 2, 0, 2, 1, 54000, 2023, 11, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- Dumping structure for table sigap2.gaji_tu_tk
 CREATE TABLE IF NOT EXISTS `gaji_tu_tk` (
@@ -2380,14 +2436,18 @@ CREATE TABLE IF NOT EXISTS `gaji_tu_tk` (
   `voucher` bigint DEFAULT NULL,
   `status` int DEFAULT NULL,
   `potongan_bendahara` bigint DEFAULT NULL,
+  `jaminan_pensiun` bigint DEFAULT NULL,
+  `jaminan_hari_tua` bigint DEFAULT NULL,
+  `total_pph21` bigint DEFAULT NULL,
+  `status_npwp` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table sigap2.gaji_tu_tk: ~3 rows (approximately)
-INSERT INTO `gaji_tu_tk` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `tunjangan2`, `tambahan`, `type_jabatan`, `ijasah`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`) VALUES
-	(145, NULL, 'panitiaPPDB', 1, 6, NULL, 0, 26, 0, 13000, 50000, 0, 0, 8250, 0, 70000, 0, 1524000, 0, 1524000, 38, 0, 0, 2, 0, 1, 0, 54000, 2023, 6, 0, NULL, NULL),
-	(146, NULL, '1023272', 1, 6, NULL, 0, 26, 0, 13000, 50000, 0, 0, 8250, 0, 70000, 0, 1524000, 0, 1524000, 38, 0, 0, 2, 0, 2, 0, 54000, 2023, 6, 0, NULL, NULL),
-	(147, NULL, '198312042002070354', 1, 7, NULL, 0, 26, 0, 13000, 50000, 0, 0, 8250, 0, 150000, 0, 1604000, 0, 1604000, 38, 0, 0, 2, 0, 2, 0, 54000, 2023, 6, 0, NULL, NULL);
+INSERT INTO `gaji_tu_tk` (`id`, `datetime`, `pegawai`, `jenjang_id`, `jabatan_id`, `month`, `gapok`, `kehadiran`, `lembur`, `value_lembur`, `value_reward`, `value_inval`, `piket_count`, `value_piket`, `tugastambahan`, `tj_jabatan`, `potongan`, `sub_total`, `penyesuaian`, `total`, `pid`, `tunjangan2`, `tambahan`, `type_jabatan`, `ijasah`, `lama_kerja`, `sertif`, `value_kehadiran`, `tahun`, `bulan`, `voucher`, `status`, `potongan_bendahara`, `jaminan_pensiun`, `jaminan_hari_tua`, `total_pph21`, `status_npwp`) VALUES
+	(145, NULL, 'panitiaPPDB', 1, 6, NULL, 0, 26, 0, 13000, 50000, 0, 0, 8250, 0, 70000, 0, 1524000, 0, 1524000, 38, 0, 0, 2, 0, 1, 0, 54000, 2023, 6, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(146, NULL, '1023272', 1, 6, NULL, 0, 26, 0, 13000, 50000, 0, 0, 8250, 0, 70000, 0, 1524000, 0, 1524000, 38, 0, 0, 2, 0, 2, 0, 54000, 2023, 6, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(147, NULL, '198312042002070354', 1, 7, NULL, 0, 26, 0, 13000, 50000, 0, 0, 8250, 0, 150000, 0, 1604000, 0, 1604000, 38, 0, 0, 2, 0, 2, 0, 54000, 2023, 6, 0, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- Dumping structure for table sigap2.gender
 CREATE TABLE IF NOT EXISTS `gender` (
@@ -4442,7 +4502,7 @@ CREATE TABLE IF NOT EXISTS `status_pekerjaan` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.status_pekerjaan: ~0 rows (approximately)
+-- Dumping data for table sigap2.status_pekerjaan: ~2 rows (approximately)
 INSERT INTO `status_pekerjaan` (`id`, `name`) VALUES
 	(1, 'Tetap'),
 	(2, 'Tidak Tetap');
@@ -4454,7 +4514,7 @@ CREATE TABLE IF NOT EXISTS `tambahan_tugas` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.tambahan_tugas: ~0 rows (approximately)
+-- Dumping data for table sigap2.tambahan_tugas: ~6 rows (approximately)
 INSERT INTO `tambahan_tugas` (`id`, `name`) VALUES
 	(1, 'K3'),
 	(2, 'Wali Kelas'),
@@ -4474,7 +4534,7 @@ CREATE TABLE IF NOT EXISTS `terlambat` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.terlambat: ~0 rows (approximately)
+-- Dumping data for table sigap2.terlambat: ~2 rows (approximately)
 INSERT INTO `terlambat` (`id`, `value`, `valuejam`, `jenjang_id`, `jabatan_id`, `jenis_jabatan`) VALUES
 	(1, 15000, NULL, 1, 1, NULL),
 	(2, 30000, NULL, 1, 2, NULL);
@@ -4500,7 +4560,7 @@ CREATE TABLE IF NOT EXISTS `testtable` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.testtable: ~0 rows (approximately)
+-- Dumping data for table sigap2.testtable: ~6 rows (approximately)
 INSERT INTO `testtable` (`id`, `date`, `nojob`, `stuffingdate`, `shipper`, `stuffingloc`, `party`, `typeparty`, `jumlahparty`, `shipping`, `bookingnumer`, `shippingline`, `port`, `surjal`, `nota`, `invoice`) VALUES
 	(1, '2022-12-08 00:00:00', '220180', '2022-12-08 00:00:00', 'SUNPAPER', 'SUB', 'asd', NULL, NULL, NULL, NULL, NULL, NULL, 'ok', 'ok', 'ok'),
 	(2, '2022-12-08 00:00:00', '220180', '2022-12-08 00:00:00', 'SUNPAPER', 'SUB', 'as', NULL, NULL, NULL, NULL, NULL, NULL, 'ok1', 'ok', NULL),
@@ -4532,7 +4592,7 @@ CREATE TABLE IF NOT EXISTS `tpendidikan` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.tpendidikan: ~0 rows (approximately)
+-- Dumping data for table sigap2.tpendidikan: ~5 rows (approximately)
 INSERT INTO `tpendidikan` (`id`, `name`, `nourut`) VALUES
 	(1, 'SD', 2),
 	(2, 'SMP', 3),
@@ -4550,7 +4610,7 @@ CREATE TABLE IF NOT EXISTS `tunjangan_berkala` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.tunjangan_berkala: ~0 rows (approximately)
+-- Dumping data for table sigap2.tunjangan_berkala: ~120 rows (approximately)
 INSERT INTO `tunjangan_berkala` (`id`, `jenjang`, `kualifikasi`, `lama`, `value`) VALUES
 	(21, 3, 5, 1, 382500),
 	(22, 3, 15, 1, 330000),
@@ -4682,7 +4742,7 @@ CREATE TABLE IF NOT EXISTS `tunjangan_jabatan` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.tunjangan_jabatan: ~0 rows (approximately)
+-- Dumping data for table sigap2.tunjangan_jabatan: ~19 rows (approximately)
 INSERT INTO `tunjangan_jabatan` (`id`, `unit`, `jabatan`, `value`) VALUES
 	(1, 4, 5, 450000),
 	(2, 4, 15, 250000),
@@ -4713,7 +4773,7 @@ CREATE TABLE IF NOT EXISTS `tunjangan_khusus` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.tunjangan_khusus: ~0 rows (approximately)
+-- Dumping data for table sigap2.tunjangan_khusus: ~5 rows (approximately)
 INSERT INTO `tunjangan_khusus` (`id`, `unit`, `jabatan`, `value`) VALUES
 	(1, 4, 2, 70000),
 	(2, 2, 2, 70000),
@@ -4730,7 +4790,7 @@ CREATE TABLE IF NOT EXISTS `tunjangan_tambahan` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.tunjangan_tambahan: ~0 rows (approximately)
+-- Dumping data for table sigap2.tunjangan_tambahan: ~13 rows (approximately)
 INSERT INTO `tunjangan_tambahan` (`id`, `jenjang`, `kualifikasi`, `value`) VALUES
 	(5, 4, 3, 100000),
 	(6, 4, 5, 100000),
@@ -4779,7 +4839,7 @@ CREATE TABLE IF NOT EXISTS `userlevelpermissions` (
   PRIMARY KEY (`userlevelid`,`tablename`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.userlevelpermissions: ~0 rows (approximately)
+-- Dumping data for table sigap2.userlevelpermissions: ~1,924 rows (approximately)
 INSERT INTO `userlevelpermissions` (`userlevelid`, `tablename`, `permission`) VALUES
 	(-2, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen', 0),
 	(-2, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen_detil', 0),
@@ -5349,6 +5409,12 @@ INSERT INTO `userlevelpermissions` (`userlevelid`, `tablename`, `permission`) VA
 	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}jenis_jabatan', 256),
 	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}jenis_lembur', 256),
 	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}komentar', 256),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_bpjs_all.php', 0),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_bpjs_unit.php', 495),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_gaji_all.php', 0),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_gaji_unit.php', 0),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_pajak_all.php', 0),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_pajak_unit.php', 495),
 	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}lembur', 256),
 	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}mpendidikan', 256),
 	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}m_bpjs', 256),
@@ -5412,21 +5478,21 @@ INSERT INTO `userlevelpermissions` (`userlevelid`, `tablename`, `permission`) VA
 	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}uangmuka', 256),
 	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}userlevelpermissions', 256),
 	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}userlevels', 256),
-	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_guru_sd', 495),
-	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_guru_sma', 495),
-	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_guru_smk', 495),
-	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_guru_smp', 495),
-	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_guru_tk', 495),
-	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_karyawan_sd', 495),
-	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_karyawan_sma', 495),
-	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_karyawan_smk', 495),
-	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_karyawan_smp', 495),
-	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_karyawan_tk', 495),
-	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_tu_sd', 495),
-	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_tu_sma', 495),
-	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_tu_smk', 495),
-	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_tu_smp', 495),
-	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_tu_tk', 495),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_guru_sd', 487),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_guru_sma', 487),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_guru_smk', 487),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_guru_smp', 487),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_guru_tk', 487),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_karyawan_sd', 487),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_karyawan_sma', 487),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_karyawan_smk', 487),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_karyawan_smp', 487),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_karyawan_tk', 487),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_tu_sd', 487),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_tu_sma', 487),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_tu_smk', 487),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_tu_smp', 487),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}vgaji_tu_tk', 487),
 	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_gajisd', 256),
 	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_gajisma', 256),
 	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_gaji_guru_smk', 256),
@@ -5472,7 +5538,7 @@ INSERT INTO `userlevelpermissions` (`userlevelid`, `tablename`, `permission`) VA
 	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_tu_smk', 256),
 	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_tu_smp', 256),
 	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_tu_tk', 256),
-	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_yayasan', 495),
+	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}v_yayasan', 487),
 	(3, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}yayasan', 495),
 	(4, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen', 495),
 	(4, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen_detil', 495),
@@ -6002,8 +6068,12 @@ INSERT INTO `userlevelpermissions` (`userlevelid`, `tablename`, `permission`) VA
 	(8, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}jenis_jabatan', 495),
 	(8, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}jenis_lembur', 495),
 	(8, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}komentar', 495),
+	(8, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_bpjs_all.php', 0),
+	(8, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_bpjs_unit.php', 495),
 	(8, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_gaji_all.php', 256),
-	(8, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_pajak_all.php', 256),
+	(8, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_gaji_unit.php', 495),
+	(8, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_pajak_all.php', 0),
+	(8, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_pajak_unit.php', 495),
 	(8, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}lembur', 495),
 	(8, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}login_bendahara.php', 256),
 	(8, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}login_pegawai.php', 256),
@@ -6527,8 +6597,12 @@ INSERT INTO `userlevelpermissions` (`userlevelid`, `tablename`, `permission`) VA
 	(11, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}jenis_jabatan', 367),
 	(11, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}jenis_lembur', 367),
 	(11, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}komentar', 367),
+	(11, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_bpjs_all.php', 0),
+	(11, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_bpjs_unit.php', 495),
 	(11, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_gaji_all.php', 256),
+	(11, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_gaji_unit.php', 495),
 	(11, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_pajak_all.php', 256),
+	(11, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_pajak_unit.php', 495),
 	(11, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}lembur', 367),
 	(11, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}login_bendahara.php', 256),
 	(11, '{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}login_pegawai.php', 256),
@@ -6808,7 +6882,7 @@ CREATE TABLE IF NOT EXISTS `userlevels` (
   PRIMARY KEY (`userlevelid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sigap2.userlevels: ~0 rows (approximately)
+-- Dumping data for table sigap2.userlevels: ~15 rows (approximately)
 INSERT INTO `userlevels` (`userlevelid`, `userlevelname`) VALUES
 	(-2, 'Anonymous'),
 	(-1, 'Administrator'),
@@ -8064,7 +8138,7 @@ CREATE TABLE IF NOT EXISTS `yayasan` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table sigap2.yayasan: ~0 rows (approximately)
+-- Dumping data for table sigap2.yayasan: ~2 rows (approximately)
 INSERT INTO `yayasan` (`id`, `m_id`, `id_pegawai`, `datetime`, `gaji_pokok`, `potongan`, `total`, `tahun`, `bulan`) VALUES
 	(15, 10, 269, '2023-02-13 03:30:07', 7000000, 350000, 6650000, 2023, 4),
 	(16, 10, 49, '2023-02-13 03:30:07', 900000, 1000, 899000, 2023, 4);

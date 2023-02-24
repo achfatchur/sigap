@@ -2213,14 +2213,10 @@ class pegawai extends DbTable
 		// Enter your code here
 		if(CurrentUserLevel() != '-1'){
 			$nip = CurrentUserInfo("jenjang_id");
-			if ($fld->Name == "bpjs_kesehatan") { //custom field table_x lookup table_y
-				AddFilter ($filter, "jenjang = '$nip'");
-		  }
-			  $nip = CurrentUserInfo("jenjang_id");
-			if ($fld->Name == "jabatan") { //custom field table_x lookup table_y
-				AddFilter ($filter, "jenjang = '$nip'");
-		}     
-	   }
+			if($nip != '' OR $nip != FALSE) {
+				AddFilter($filter, "jenjang_id = $nip");
+			}
+			}
 	}
 
 	// Recordset Selected event
