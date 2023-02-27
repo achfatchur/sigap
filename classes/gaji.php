@@ -54,12 +54,17 @@ class gaji extends DbTable
 	public $tugastambahan;
 	public $tj_jabatan;
 	public $sub_total;
+	public $jaminan_pensiun;
+	public $jaminan_hari_tua;
+	public $bpjs_kesehatan;
+	public $total_pph21;
 	public $potongan;
 	public $penyesuaian;
 	public $potongan_bendahara;
 	public $total;
 	public $status;
 	public $voucher;
+	public $status_npwp;
 
 	// Constructor
 	public function __construct()
@@ -81,8 +86,8 @@ class gaji extends DbTable
 		$this->ExportPageBreakCount = 0; // Page break per every n record (PDF only)
 		$this->ExportPageOrientation = "portrait"; // Page orientation (PDF only)
 		$this->ExportPageSize = "a4"; // Page size (PDF only)
-		$this->ExportExcelPageOrientation = ""; // Page orientation (PhpSpreadsheet only)
-		$this->ExportExcelPageSize = ""; // Page size (PhpSpreadsheet only)
+		$this->ExportExcelPageOrientation = \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_DEFAULT; // Page orientation (PhpSpreadsheet only)
+		$this->ExportExcelPageSize = \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_A4; // Page size (PhpSpreadsheet only)
 		$this->ExportWordPageOrientation = "portrait"; // Page orientation (PHPWord only)
 		$this->ExportWordColumnWidth = NULL; // Cell width (PHPWord only)
 		$this->DetailAdd = FALSE; // Allow detail add
@@ -95,7 +100,7 @@ class gaji extends DbTable
 		$this->BasicSearch = new BasicSearch($this->TableVar);
 
 		// id
-		$this->id = new DbField('gaji', 'gaji', 'x_id', 'id', '`id`', '`id`', 3, 10, -1, FALSE, '`id`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'NO');
+		$this->id = new DbField('gaji', 'gaji', 'x_id', 'id', '`id`', '`id`', 3, 11, -1, FALSE, '`id`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'NO');
 		$this->id->IsAutoIncrement = TRUE; // Autoincrement field
 		$this->id->IsPrimaryKey = TRUE; // Primary key field
 		$this->id->Sortable = TRUE; // Allow sort
@@ -103,21 +108,21 @@ class gaji extends DbTable
 		$this->fields['id'] = &$this->id;
 
 		// pid
-		$this->pid = new DbField('gaji', 'gaji', 'x_pid', 'pid', '`pid`', '`pid`', 3, 10, -1, FALSE, '`pid`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->pid = new DbField('gaji', 'gaji', 'x_pid', 'pid', '`pid`', '`pid`', 3, 11, -1, FALSE, '`pid`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->pid->IsForeignKey = TRUE; // Foreign key field
 		$this->pid->Sortable = TRUE; // Allow sort
 		$this->pid->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['pid'] = &$this->pid;
 
 		// tahun
-		$this->tahun = new DbField('gaji', 'gaji', 'x_tahun', 'tahun', '`tahun`', '`tahun`', 3, 10, -1, FALSE, '`tahun`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->tahun = new DbField('gaji', 'gaji', 'x_tahun', 'tahun', '`tahun`', '`tahun`', 3, 11, -1, FALSE, '`tahun`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->tahun->IsForeignKey = TRUE; // Foreign key field
 		$this->tahun->Sortable = TRUE; // Allow sort
 		$this->tahun->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['tahun'] = &$this->tahun;
 
 		// bulan
-		$this->bulan = new DbField('gaji', 'gaji', 'x_bulan', 'bulan', '`bulan`', '`bulan`', 3, 10, -1, FALSE, '`bulan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->bulan = new DbField('gaji', 'gaji', 'x_bulan', 'bulan', '`bulan`', '`bulan`', 3, 11, -1, FALSE, '`bulan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->bulan->IsForeignKey = TRUE; // Foreign key field
 		$this->bulan->Sortable = TRUE; // Allow sort
 		$this->bulan->Lookup = new Lookup('bulan', 'bulan', FALSE, 'id', ["bulan","","",""], [], [], [], [], [], [], '', '');
@@ -139,14 +144,14 @@ class gaji extends DbTable
 		$this->fields['pegawai'] = &$this->pegawai;
 
 		// jenjang_id
-		$this->jenjang_id = new DbField('gaji', 'gaji', 'x_jenjang_id', 'jenjang_id', '`jenjang_id`', '`jenjang_id`', 3, 10, -1, FALSE, '`jenjang_id`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->jenjang_id = new DbField('gaji', 'gaji', 'x_jenjang_id', 'jenjang_id', '`jenjang_id`', '`jenjang_id`', 3, 11, -1, FALSE, '`jenjang_id`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->jenjang_id->Sortable = TRUE; // Allow sort
 		$this->jenjang_id->Lookup = new Lookup('jenjang_id', 'tpendidikan', FALSE, 'nourut', ["name","","",""], [], [], [], [], [], [], '', '');
 		$this->jenjang_id->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['jenjang_id'] = &$this->jenjang_id;
 
 		// jabatan_id
-		$this->jabatan_id = new DbField('gaji', 'gaji', 'x_jabatan_id', 'jabatan_id', '`jabatan_id`', '`jabatan_id`', 3, 10, -1, FALSE, '`jabatan_id`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->jabatan_id = new DbField('gaji', 'gaji', 'x_jabatan_id', 'jabatan_id', '`jabatan_id`', '`jabatan_id`', 3, 11, -1, FALSE, '`jabatan_id`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->jabatan_id->Sortable = TRUE; // Allow sort
 		$this->jabatan_id->Lookup = new Lookup('jabatan_id', 'jabatan', FALSE, 'id', ["nama_jabatan","","",""], [], [], [], [], [], [], '', '');
 		$this->fields['jabatan_id'] = &$this->jabatan_id;
@@ -158,136 +163,160 @@ class gaji extends DbTable
 		$this->fields['month'] = &$this->month;
 
 		// lama_kerja
-		$this->lama_kerja = new DbField('gaji', 'gaji', 'x_lama_kerja', 'lama_kerja', '`lama_kerja`', '`lama_kerja`', 3, 10, -1, FALSE, '`lama_kerja`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->lama_kerja = new DbField('gaji', 'gaji', 'x_lama_kerja', 'lama_kerja', '`lama_kerja`', '`lama_kerja`', 3, 11, -1, FALSE, '`lama_kerja`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->lama_kerja->Sortable = TRUE; // Allow sort
 		$this->lama_kerja->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['lama_kerja'] = &$this->lama_kerja;
 
 		// type
-		$this->type = new DbField('gaji', 'gaji', 'x_type', 'type', '`type`', '`type`', 3, 10, -1, FALSE, '`type`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->type = new DbField('gaji', 'gaji', 'x_type', 'type', '`type`', '`type`', 3, 11, -1, FALSE, '`type`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->type->Sortable = TRUE; // Allow sort
 		$this->type->Lookup = new Lookup('type', 'jenis_jabatan', FALSE, 'id', ["name","","",""], [], [], [], [], [], [], '', '');
 		$this->type->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['type'] = &$this->type;
 
 		// jenis_guru
-		$this->jenis_guru = new DbField('gaji', 'gaji', 'x_jenis_guru', 'jenis_guru', '`jenis_guru`', '`jenis_guru`', 3, 10, -1, FALSE, '`jenis_guru`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->jenis_guru = new DbField('gaji', 'gaji', 'x_jenis_guru', 'jenis_guru', '`jenis_guru`', '`jenis_guru`', 3, 11, -1, FALSE, '`jenis_guru`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->jenis_guru->Sortable = TRUE; // Allow sort
 		$this->jenis_guru->Lookup = new Lookup('jenis_guru', 'sertif', FALSE, 'id', ["name","","",""], [], [], [], [], [], [], '', '');
 		$this->jenis_guru->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['jenis_guru'] = &$this->jenis_guru;
 
 		// tambahan
-		$this->tambahan = new DbField('gaji', 'gaji', 'x_tambahan', 'tambahan', '`tambahan`', '`tambahan`', 3, 10, -1, FALSE, '`tambahan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->tambahan = new DbField('gaji', 'gaji', 'x_tambahan', 'tambahan', '`tambahan`', '`tambahan`', 3, 11, -1, FALSE, '`tambahan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->tambahan->Sortable = TRUE; // Allow sort
 		$this->tambahan->Lookup = new Lookup('tambahan', 'tambahan_tugas', FALSE, 'id', ["name","","",""], [], [], [], [], [], [], '', '');
 		$this->tambahan->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['tambahan'] = &$this->tambahan;
 
 		// periode
-		$this->periode = new DbField('gaji', 'gaji', 'x_periode', 'periode', '`periode`', '`periode`', 3, 10, -1, FALSE, '`periode`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->periode = new DbField('gaji', 'gaji', 'x_periode', 'periode', '`periode`', '`periode`', 3, 11, -1, FALSE, '`periode`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->periode->Sortable = TRUE; // Allow sort
 		$this->periode->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['periode'] = &$this->periode;
 
 		// tunjangan_periode
-		$this->tunjangan_periode = new DbField('gaji', 'gaji', 'x_tunjangan_periode', 'tunjangan_periode', '`tunjangan_periode`', '`tunjangan_periode`', 20, 19, -1, FALSE, '`tunjangan_periode`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->tunjangan_periode = new DbField('gaji', 'gaji', 'x_tunjangan_periode', 'tunjangan_periode', '`tunjangan_periode`', '`tunjangan_periode`', 20, 20, -1, FALSE, '`tunjangan_periode`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->tunjangan_periode->Sortable = TRUE; // Allow sort
 		$this->tunjangan_periode->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['tunjangan_periode'] = &$this->tunjangan_periode;
 
 		// kehadiran
-		$this->kehadiran = new DbField('gaji', 'gaji', 'x_kehadiran', 'kehadiran', '`kehadiran`', '`kehadiran`', 3, 10, -1, FALSE, '`kehadiran`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->kehadiran = new DbField('gaji', 'gaji', 'x_kehadiran', 'kehadiran', '`kehadiran`', '`kehadiran`', 3, 11, -1, FALSE, '`kehadiran`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->kehadiran->Sortable = TRUE; // Allow sort
 		$this->kehadiran->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['kehadiran'] = &$this->kehadiran;
 
 		// value_kehadiran
-		$this->value_kehadiran = new DbField('gaji', 'gaji', 'x_value_kehadiran', 'value_kehadiran', '`value_kehadiran`', '`value_kehadiran`', 20, 19, -1, FALSE, '`value_kehadiran`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->value_kehadiran = new DbField('gaji', 'gaji', 'x_value_kehadiran', 'value_kehadiran', '`value_kehadiran`', '`value_kehadiran`', 20, 20, -1, FALSE, '`value_kehadiran`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->value_kehadiran->Sortable = TRUE; // Allow sort
 		$this->value_kehadiran->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['value_kehadiran'] = &$this->value_kehadiran;
 
 		// jp
-		$this->jp = new DbField('gaji', 'gaji', 'x_jp', 'jp', '`jp`', '`jp`', 3, 10, -1, FALSE, '`jp`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->jp = new DbField('gaji', 'gaji', 'x_jp', 'jp', '`jp`', '`jp`', 3, 11, -1, FALSE, '`jp`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->jp->Sortable = TRUE; // Allow sort
 		$this->jp->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['jp'] = &$this->jp;
 
 		// gapok
-		$this->gapok = new DbField('gaji', 'gaji', 'x_gapok', 'gapok', '`gapok`', '`gapok`', 20, 19, -1, FALSE, '`gapok`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->gapok = new DbField('gaji', 'gaji', 'x_gapok', 'gapok', '`gapok`', '`gapok`', 20, 20, -1, FALSE, '`gapok`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->gapok->Sortable = TRUE; // Allow sort
 		$this->gapok->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['gapok'] = &$this->gapok;
 
 		// total_gapok
-		$this->total_gapok = new DbField('gaji', 'gaji', 'x_total_gapok', 'total_gapok', '`total_gapok`', '`total_gapok`', 20, 19, -1, FALSE, '`total_gapok`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->total_gapok = new DbField('gaji', 'gaji', 'x_total_gapok', 'total_gapok', '`total_gapok`', '`total_gapok`', 20, 20, -1, FALSE, '`total_gapok`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->total_gapok->Sortable = TRUE; // Allow sort
 		$this->total_gapok->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['total_gapok'] = &$this->total_gapok;
 
 		// lembur
-		$this->lembur = new DbField('gaji', 'gaji', 'x_lembur', 'lembur', '`lembur`', '`lembur`', 3, 10, -1, FALSE, '`lembur`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->lembur = new DbField('gaji', 'gaji', 'x_lembur', 'lembur', '`lembur`', '`lembur`', 3, 11, -1, FALSE, '`lembur`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->lembur->Sortable = TRUE; // Allow sort
 		$this->lembur->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['lembur'] = &$this->lembur;
 
 		// value_lembur
-		$this->value_lembur = new DbField('gaji', 'gaji', 'x_value_lembur', 'value_lembur', '`value_lembur`', '`value_lembur`', 20, 19, -1, FALSE, '`value_lembur`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->value_lembur = new DbField('gaji', 'gaji', 'x_value_lembur', 'value_lembur', '`value_lembur`', '`value_lembur`', 20, 20, -1, FALSE, '`value_lembur`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->value_lembur->Sortable = TRUE; // Allow sort
 		$this->value_lembur->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['value_lembur'] = &$this->value_lembur;
 
 		// value_reward
-		$this->value_reward = new DbField('gaji', 'gaji', 'x_value_reward', 'value_reward', '`value_reward`', '`value_reward`', 20, 19, -1, FALSE, '`value_reward`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->value_reward = new DbField('gaji', 'gaji', 'x_value_reward', 'value_reward', '`value_reward`', '`value_reward`', 20, 20, -1, FALSE, '`value_reward`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->value_reward->Sortable = TRUE; // Allow sort
 		$this->value_reward->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['value_reward'] = &$this->value_reward;
 
 		// value_inval
-		$this->value_inval = new DbField('gaji', 'gaji', 'x_value_inval', 'value_inval', '`value_inval`', '`value_inval`', 20, 19, -1, FALSE, '`value_inval`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->value_inval = new DbField('gaji', 'gaji', 'x_value_inval', 'value_inval', '`value_inval`', '`value_inval`', 20, 20, -1, FALSE, '`value_inval`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->value_inval->Sortable = TRUE; // Allow sort
 		$this->value_inval->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['value_inval'] = &$this->value_inval;
 
 		// piket_count
-		$this->piket_count = new DbField('gaji', 'gaji', 'x_piket_count', 'piket_count', '`piket_count`', '`piket_count`', 3, 10, -1, FALSE, '`piket_count`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->piket_count = new DbField('gaji', 'gaji', 'x_piket_count', 'piket_count', '`piket_count`', '`piket_count`', 3, 11, -1, FALSE, '`piket_count`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->piket_count->Sortable = TRUE; // Allow sort
 		$this->piket_count->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['piket_count'] = &$this->piket_count;
 
 		// value_piket
-		$this->value_piket = new DbField('gaji', 'gaji', 'x_value_piket', 'value_piket', '`value_piket`', '`value_piket`', 20, 19, -1, FALSE, '`value_piket`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->value_piket = new DbField('gaji', 'gaji', 'x_value_piket', 'value_piket', '`value_piket`', '`value_piket`', 20, 20, -1, FALSE, '`value_piket`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->value_piket->Sortable = TRUE; // Allow sort
 		$this->value_piket->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['value_piket'] = &$this->value_piket;
 
 		// tugastambahan
-		$this->tugastambahan = new DbField('gaji', 'gaji', 'x_tugastambahan', 'tugastambahan', '`tugastambahan`', '`tugastambahan`', 20, 19, -1, FALSE, '`tugastambahan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->tugastambahan = new DbField('gaji', 'gaji', 'x_tugastambahan', 'tugastambahan', '`tugastambahan`', '`tugastambahan`', 20, 20, -1, FALSE, '`tugastambahan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->tugastambahan->Sortable = TRUE; // Allow sort
 		$this->tugastambahan->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['tugastambahan'] = &$this->tugastambahan;
 
 		// tj_jabatan
-		$this->tj_jabatan = new DbField('gaji', 'gaji', 'x_tj_jabatan', 'tj_jabatan', '`tj_jabatan`', '`tj_jabatan`', 20, 19, -1, FALSE, '`tj_jabatan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->tj_jabatan = new DbField('gaji', 'gaji', 'x_tj_jabatan', 'tj_jabatan', '`tj_jabatan`', '`tj_jabatan`', 20, 20, -1, FALSE, '`tj_jabatan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->tj_jabatan->Sortable = TRUE; // Allow sort
 		$this->tj_jabatan->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['tj_jabatan'] = &$this->tj_jabatan;
 
 		// sub_total
-		$this->sub_total = new DbField('gaji', 'gaji', 'x_sub_total', 'sub_total', '`sub_total`', '`sub_total`', 20, 19, -1, FALSE, '`sub_total`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->sub_total = new DbField('gaji', 'gaji', 'x_sub_total', 'sub_total', '`sub_total`', '`sub_total`', 20, 20, -1, FALSE, '`sub_total`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->sub_total->Sortable = TRUE; // Allow sort
 		$this->sub_total->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['sub_total'] = &$this->sub_total;
 
+		// jaminan_pensiun
+		$this->jaminan_pensiun = new DbField('gaji', 'gaji', 'x_jaminan_pensiun', 'jaminan_pensiun', '`jaminan_pensiun`', '`jaminan_pensiun`', 20, 19, -1, FALSE, '`jaminan_pensiun`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->jaminan_pensiun->Sortable = TRUE; // Allow sort
+		$this->jaminan_pensiun->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['jaminan_pensiun'] = &$this->jaminan_pensiun;
+
+		// jaminan_hari_tua
+		$this->jaminan_hari_tua = new DbField('gaji', 'gaji', 'x_jaminan_hari_tua', 'jaminan_hari_tua', '`jaminan_hari_tua`', '`jaminan_hari_tua`', 20, 19, -1, FALSE, '`jaminan_hari_tua`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->jaminan_hari_tua->Sortable = TRUE; // Allow sort
+		$this->jaminan_hari_tua->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['jaminan_hari_tua'] = &$this->jaminan_hari_tua;
+
+		// bpjs_kesehatan
+		$this->bpjs_kesehatan = new DbField('gaji', 'gaji', 'x_bpjs_kesehatan', 'bpjs_kesehatan', '`bpjs_kesehatan`', '`bpjs_kesehatan`', 20, 19, -1, FALSE, '`bpjs_kesehatan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->bpjs_kesehatan->Sortable = TRUE; // Allow sort
+		$this->bpjs_kesehatan->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['bpjs_kesehatan'] = &$this->bpjs_kesehatan;
+
+		// total_pph21
+		$this->total_pph21 = new DbField('gaji', 'gaji', 'x_total_pph21', 'total_pph21', '`total_pph21`', '`total_pph21`', 20, 19, -1, FALSE, '`total_pph21`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->total_pph21->Sortable = TRUE; // Allow sort
+		$this->total_pph21->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['total_pph21'] = &$this->total_pph21;
+
 		// potongan
-		$this->potongan = new DbField('gaji', 'gaji', 'x_potongan', 'potongan', '`potongan`', '`potongan`', 20, 19, -1, FALSE, '`potongan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->potongan = new DbField('gaji', 'gaji', 'x_potongan', 'potongan', '`potongan`', '`potongan`', 20, 20, -1, FALSE, '`potongan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->potongan->Sortable = TRUE; // Allow sort
 		$this->potongan->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['potongan'] = &$this->potongan;
 
 		// penyesuaian
-		$this->penyesuaian = new DbField('gaji', 'gaji', 'x_penyesuaian', 'penyesuaian', '`penyesuaian`', '`penyesuaian`', 20, 19, -1, FALSE, '`penyesuaian`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->penyesuaian = new DbField('gaji', 'gaji', 'x_penyesuaian', 'penyesuaian', '`penyesuaian`', '`penyesuaian`', 20, 20, -1, FALSE, '`penyesuaian`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->penyesuaian->Sortable = TRUE; // Allow sort
 		$this->penyesuaian->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['penyesuaian'] = &$this->penyesuaian;
@@ -299,7 +328,7 @@ class gaji extends DbTable
 		$this->fields['potongan_bendahara'] = &$this->potongan_bendahara;
 
 		// total
-		$this->total = new DbField('gaji', 'gaji', 'x_total', 'total', '`total`', '`total`', 20, 19, -1, FALSE, '`total`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->total = new DbField('gaji', 'gaji', 'x_total', 'total', '`total`', '`total`', 20, 20, -1, FALSE, '`total`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->total->Sortable = TRUE; // Allow sort
 		$this->total->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['total'] = &$this->total;
@@ -318,6 +347,13 @@ class gaji extends DbTable
 		$this->voucher->Sortable = TRUE; // Allow sort
 		$this->voucher->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['voucher'] = &$this->voucher;
+
+		// status_npwp
+		$this->status_npwp = new DbField('gaji', 'gaji', 'x_status_npwp', 'status_npwp', '`status_npwp`', '`status_npwp`', 3, 11, -1, FALSE, '`status_npwp`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->status_npwp->Sortable = TRUE; // Allow sort
+		$this->status_npwp->Lookup = new Lookup('status_npwp', 'status_npwp', FALSE, 'id', ["name","","",""], [], [], [], [], [], [], '', '');
+		$this->status_npwp->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['status_npwp'] = &$this->status_npwp;
 	}
 
 	// Field Visibility
@@ -770,12 +806,17 @@ class gaji extends DbTable
 		$this->tugastambahan->DbValue = $row['tugastambahan'];
 		$this->tj_jabatan->DbValue = $row['tj_jabatan'];
 		$this->sub_total->DbValue = $row['sub_total'];
+		$this->jaminan_pensiun->DbValue = $row['jaminan_pensiun'];
+		$this->jaminan_hari_tua->DbValue = $row['jaminan_hari_tua'];
+		$this->bpjs_kesehatan->DbValue = $row['bpjs_kesehatan'];
+		$this->total_pph21->DbValue = $row['total_pph21'];
 		$this->potongan->DbValue = $row['potongan'];
 		$this->penyesuaian->DbValue = $row['penyesuaian'];
 		$this->potongan_bendahara->DbValue = $row['potongan_bendahara'];
 		$this->total->DbValue = $row['total'];
 		$this->status->DbValue = $row['status'];
 		$this->voucher->DbValue = $row['voucher'];
+		$this->status_npwp->DbValue = $row['status_npwp'];
 	}
 
 	// Delete uploaded files
@@ -1041,12 +1082,17 @@ class gaji extends DbTable
 		$this->tugastambahan->setDbValue($rs->fields('tugastambahan'));
 		$this->tj_jabatan->setDbValue($rs->fields('tj_jabatan'));
 		$this->sub_total->setDbValue($rs->fields('sub_total'));
+		$this->jaminan_pensiun->setDbValue($rs->fields('jaminan_pensiun'));
+		$this->jaminan_hari_tua->setDbValue($rs->fields('jaminan_hari_tua'));
+		$this->bpjs_kesehatan->setDbValue($rs->fields('bpjs_kesehatan'));
+		$this->total_pph21->setDbValue($rs->fields('total_pph21'));
 		$this->potongan->setDbValue($rs->fields('potongan'));
 		$this->penyesuaian->setDbValue($rs->fields('penyesuaian'));
 		$this->potongan_bendahara->setDbValue($rs->fields('potongan_bendahara'));
 		$this->total->setDbValue($rs->fields('total'));
 		$this->status->setDbValue($rs->fields('status'));
 		$this->voucher->setDbValue($rs->fields('voucher'));
+		$this->status_npwp->setDbValue($rs->fields('status_npwp'));
 	}
 
 	// Render list row values
@@ -1087,12 +1133,17 @@ class gaji extends DbTable
 		// tugastambahan
 		// tj_jabatan
 		// sub_total
+		// jaminan_pensiun
+		// jaminan_hari_tua
+		// bpjs_kesehatan
+		// total_pph21
 		// potongan
 		// penyesuaian
 		// potongan_bendahara
 		// total
 		// status
 		// voucher
+		// status_npwp
 		// id
 
 		$this->id->ViewValue = $this->id->CurrentValue;
@@ -1362,6 +1413,26 @@ class gaji extends DbTable
 		$this->sub_total->ViewValue = FormatNumber($this->sub_total->ViewValue, 0, -2, -2, -2);
 		$this->sub_total->ViewCustomAttributes = "";
 
+		// jaminan_pensiun
+		$this->jaminan_pensiun->ViewValue = $this->jaminan_pensiun->CurrentValue;
+		$this->jaminan_pensiun->ViewValue = FormatNumber($this->jaminan_pensiun->ViewValue, 0, -2, -2, -2);
+		$this->jaminan_pensiun->ViewCustomAttributes = "";
+
+		// jaminan_hari_tua
+		$this->jaminan_hari_tua->ViewValue = $this->jaminan_hari_tua->CurrentValue;
+		$this->jaminan_hari_tua->ViewValue = FormatNumber($this->jaminan_hari_tua->ViewValue, 0, -2, -2, -2);
+		$this->jaminan_hari_tua->ViewCustomAttributes = "";
+
+		// bpjs_kesehatan
+		$this->bpjs_kesehatan->ViewValue = $this->bpjs_kesehatan->CurrentValue;
+		$this->bpjs_kesehatan->ViewValue = FormatNumber($this->bpjs_kesehatan->ViewValue, 0, -2, -2, -2);
+		$this->bpjs_kesehatan->ViewCustomAttributes = "";
+
+		// total_pph21
+		$this->total_pph21->ViewValue = $this->total_pph21->CurrentValue;
+		$this->total_pph21->ViewValue = FormatNumber($this->total_pph21->ViewValue, 0, -2, -2, -2);
+		$this->total_pph21->ViewCustomAttributes = "";
+
 		// potongan
 		$this->potongan->ViewValue = $this->potongan->CurrentValue;
 		$this->potongan->ViewValue = FormatNumber($this->potongan->ViewValue, 0, -2, -2, -2);
@@ -1394,6 +1465,29 @@ class gaji extends DbTable
 		$this->voucher->ViewValue = $this->voucher->CurrentValue;
 		$this->voucher->ViewValue = FormatNumber($this->voucher->ViewValue, 0, -2, -2, -2);
 		$this->voucher->ViewCustomAttributes = "";
+
+		// status_npwp
+		$this->status_npwp->ViewValue = $this->status_npwp->CurrentValue;
+		$curVal = strval($this->status_npwp->CurrentValue);
+		if ($curVal != "") {
+			$this->status_npwp->ViewValue = $this->status_npwp->lookupCacheOption($curVal);
+			if ($this->status_npwp->ViewValue === NULL) { // Lookup from database
+				$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+				$sqlWrk = $this->status_npwp->Lookup->getSql(FALSE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				if ($rswrk && !$rswrk->EOF) { // Lookup values found
+					$arwrk = [];
+					$arwrk[1] = $rswrk->fields('df');
+					$this->status_npwp->ViewValue = $this->status_npwp->displayValue($arwrk);
+					$rswrk->Close();
+				} else {
+					$this->status_npwp->ViewValue = $this->status_npwp->CurrentValue;
+				}
+			}
+		} else {
+			$this->status_npwp->ViewValue = NULL;
+		}
+		$this->status_npwp->ViewCustomAttributes = "";
 
 		// id
 		$this->id->LinkCustomAttributes = "";
@@ -1540,6 +1634,26 @@ class gaji extends DbTable
 		$this->sub_total->HrefValue = "";
 		$this->sub_total->TooltipValue = "";
 
+		// jaminan_pensiun
+		$this->jaminan_pensiun->LinkCustomAttributes = "";
+		$this->jaminan_pensiun->HrefValue = "";
+		$this->jaminan_pensiun->TooltipValue = "";
+
+		// jaminan_hari_tua
+		$this->jaminan_hari_tua->LinkCustomAttributes = "";
+		$this->jaminan_hari_tua->HrefValue = "";
+		$this->jaminan_hari_tua->TooltipValue = "";
+
+		// bpjs_kesehatan
+		$this->bpjs_kesehatan->LinkCustomAttributes = "";
+		$this->bpjs_kesehatan->HrefValue = "";
+		$this->bpjs_kesehatan->TooltipValue = "";
+
+		// total_pph21
+		$this->total_pph21->LinkCustomAttributes = "";
+		$this->total_pph21->HrefValue = "";
+		$this->total_pph21->TooltipValue = "";
+
 		// potongan
 		$this->potongan->LinkCustomAttributes = "";
 		$this->potongan->HrefValue = "";
@@ -1569,6 +1683,11 @@ class gaji extends DbTable
 		$this->voucher->LinkCustomAttributes = "";
 		$this->voucher->HrefValue = "";
 		$this->voucher->TooltipValue = "";
+
+		// status_npwp
+		$this->status_npwp->LinkCustomAttributes = "";
+		$this->status_npwp->HrefValue = "";
+		$this->status_npwp->TooltipValue = "";
 
 		// Call Row Rendered event
 		$this->Row_Rendered();
@@ -1829,6 +1948,30 @@ class gaji extends DbTable
 		$this->sub_total->EditValue = $this->sub_total->CurrentValue;
 		$this->sub_total->PlaceHolder = RemoveHtml($this->sub_total->caption());
 
+		// jaminan_pensiun
+		$this->jaminan_pensiun->EditAttrs["class"] = "form-control";
+		$this->jaminan_pensiun->EditCustomAttributes = "";
+		$this->jaminan_pensiun->EditValue = $this->jaminan_pensiun->CurrentValue;
+		$this->jaminan_pensiun->PlaceHolder = RemoveHtml($this->jaminan_pensiun->caption());
+
+		// jaminan_hari_tua
+		$this->jaminan_hari_tua->EditAttrs["class"] = "form-control";
+		$this->jaminan_hari_tua->EditCustomAttributes = "";
+		$this->jaminan_hari_tua->EditValue = $this->jaminan_hari_tua->CurrentValue;
+		$this->jaminan_hari_tua->PlaceHolder = RemoveHtml($this->jaminan_hari_tua->caption());
+
+		// bpjs_kesehatan
+		$this->bpjs_kesehatan->EditAttrs["class"] = "form-control";
+		$this->bpjs_kesehatan->EditCustomAttributes = "";
+		$this->bpjs_kesehatan->EditValue = $this->bpjs_kesehatan->CurrentValue;
+		$this->bpjs_kesehatan->PlaceHolder = RemoveHtml($this->bpjs_kesehatan->caption());
+
+		// total_pph21
+		$this->total_pph21->EditAttrs["class"] = "form-control";
+		$this->total_pph21->EditCustomAttributes = "";
+		$this->total_pph21->EditValue = $this->total_pph21->CurrentValue;
+		$this->total_pph21->PlaceHolder = RemoveHtml($this->total_pph21->caption());
+
 		// potongan
 		$this->potongan->EditAttrs["class"] = "form-control";
 		$this->potongan->EditCustomAttributes = "";
@@ -1863,6 +2006,12 @@ class gaji extends DbTable
 		$this->voucher->EditCustomAttributes = "";
 		$this->voucher->EditValue = $this->voucher->CurrentValue;
 		$this->voucher->PlaceHolder = RemoveHtml($this->voucher->caption());
+
+		// status_npwp
+		$this->status_npwp->EditAttrs["class"] = "form-control";
+		$this->status_npwp->EditCustomAttributes = "";
+		$this->status_npwp->EditValue = $this->status_npwp->CurrentValue;
+		$this->status_npwp->PlaceHolder = RemoveHtml($this->status_npwp->caption());
 
 		// Call Row Rendered event
 		$this->Row_Rendered();
@@ -1922,12 +2071,17 @@ class gaji extends DbTable
 					$doc->exportCaption($this->tugastambahan);
 					$doc->exportCaption($this->tj_jabatan);
 					$doc->exportCaption($this->sub_total);
+					$doc->exportCaption($this->jaminan_pensiun);
+					$doc->exportCaption($this->jaminan_hari_tua);
+					$doc->exportCaption($this->bpjs_kesehatan);
+					$doc->exportCaption($this->total_pph21);
 					$doc->exportCaption($this->potongan);
 					$doc->exportCaption($this->penyesuaian);
 					$doc->exportCaption($this->potongan_bendahara);
 					$doc->exportCaption($this->total);
 					$doc->exportCaption($this->status);
 					$doc->exportCaption($this->voucher);
+					$doc->exportCaption($this->status_npwp);
 				} else {
 					$doc->exportCaption($this->id);
 					$doc->exportCaption($this->pid);
@@ -1958,12 +2112,17 @@ class gaji extends DbTable
 					$doc->exportCaption($this->tugastambahan);
 					$doc->exportCaption($this->tj_jabatan);
 					$doc->exportCaption($this->sub_total);
+					$doc->exportCaption($this->jaminan_pensiun);
+					$doc->exportCaption($this->jaminan_hari_tua);
+					$doc->exportCaption($this->bpjs_kesehatan);
+					$doc->exportCaption($this->total_pph21);
 					$doc->exportCaption($this->potongan);
 					$doc->exportCaption($this->penyesuaian);
 					$doc->exportCaption($this->potongan_bendahara);
 					$doc->exportCaption($this->total);
 					$doc->exportCaption($this->status);
 					$doc->exportCaption($this->voucher);
+					$doc->exportCaption($this->status_npwp);
 				}
 				$doc->endExportRow();
 			}
@@ -2024,12 +2183,17 @@ class gaji extends DbTable
 						$doc->exportField($this->tugastambahan);
 						$doc->exportField($this->tj_jabatan);
 						$doc->exportField($this->sub_total);
+						$doc->exportField($this->jaminan_pensiun);
+						$doc->exportField($this->jaminan_hari_tua);
+						$doc->exportField($this->bpjs_kesehatan);
+						$doc->exportField($this->total_pph21);
 						$doc->exportField($this->potongan);
 						$doc->exportField($this->penyesuaian);
 						$doc->exportField($this->potongan_bendahara);
 						$doc->exportField($this->total);
 						$doc->exportField($this->status);
 						$doc->exportField($this->voucher);
+						$doc->exportField($this->status_npwp);
 					} else {
 						$doc->exportField($this->id);
 						$doc->exportField($this->pid);
@@ -2060,12 +2224,17 @@ class gaji extends DbTable
 						$doc->exportField($this->tugastambahan);
 						$doc->exportField($this->tj_jabatan);
 						$doc->exportField($this->sub_total);
+						$doc->exportField($this->jaminan_pensiun);
+						$doc->exportField($this->jaminan_hari_tua);
+						$doc->exportField($this->bpjs_kesehatan);
+						$doc->exportField($this->total_pph21);
 						$doc->exportField($this->potongan);
 						$doc->exportField($this->penyesuaian);
 						$doc->exportField($this->potongan_bendahara);
 						$doc->exportField($this->total);
 						$doc->exportField($this->status);
 						$doc->exportField($this->voucher);
+						$doc->exportField($this->status_npwp);
 					}
 					$doc->endExportRow($rowCnt);
 				}
@@ -2094,12 +2263,6 @@ class gaji extends DbTable
 	function Recordset_Selecting(&$filter) {
 
 		// Enter your code here
-			if(CurrentUserLevel() != '-1'){
-			$nip = CurrentUserInfo("jenjang_id");
-			if($nip != '' OR $nip != FALSE) {
-			AddFilter($filter, "jenjang_id = $nip");
-			}
-			}
 	}
 
 	// Recordset Selected event

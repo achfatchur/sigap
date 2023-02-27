@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ew-language date="2023/2/24" version="16.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
+<ew-language date="2023/2/27" version="16.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
   <!--
 	*** Important Notes:
 	1. Language ID should follow: https://developers.google.com/recaptcha/docs/language,
@@ -1951,6 +1951,18 @@
       <field id="sub_total">
         <phrase id="fldcaption" value="Sub Total" />
       </field>
+      <field id="jaminan_pensiun">
+        <phrase id="fldcaption" value="Jaminan Pensiun" />
+      </field>
+      <field id="jaminan_hari_tua">
+        <phrase id="fldcaption" value="Jaminan Hari Tua" />
+      </field>
+      <field id="bpjs_kesehatan">
+        <phrase id="fldcaption" value="BPJS Kesehatan" />
+      </field>
+      <field id="total_pph21">
+        <phrase id="fldcaption" value="Total PPH 21" />
+      </field>
       <field id="potongan">
         <phrase id="fldcaption" value="Potongan" />
       </field>
@@ -1970,6 +1982,9 @@
       </field>
       <field id="voucher">
         <phrase id="fldcaption" value="Voucher" />
+      </field>
+      <field id="status_npwp">
+        <phrase id="fldcaption" value="Status NPWP" />
       </field>
     </table>
     <table id="gaji_karyawan_sd">
@@ -2013,6 +2028,18 @@
       <field id="sub_total">
         <phrase id="fldcaption" value="Sub Total" />
       </field>
+      <field id="jaminan_pensiun">
+        <phrase id="fldcaption" value="Jaminan Pensiun" />
+      </field>
+      <field id="jaminan_hari_tua">
+        <phrase id="fldcaption" value="Jaminan Hari Tua" />
+      </field>
+      <field id="bpjs_kesehatan">
+        <phrase id="fldcaption" value="BPJS Kesehatan" />
+      </field>
+      <field id="total_pph21">
+        <phrase id="fldcaption" value="Total PPH21" />
+      </field>
       <field id="potongan">
         <phrase id="fldcaption" value="Potongan" />
       </field>
@@ -2030,6 +2057,9 @@
       </field>
       <field id="status">
         <phrase id="fldcaption" value="Unit" />
+      </field>
+      <field id="status_npwp">
+        <phrase id="fldcaption" value="Status NPWP" />
       </field>
     </table>
     <table id="gaji_karyawan_sma">
@@ -2145,6 +2175,18 @@
       <field id="sub_total">
         <phrase id="fldcaption" value="Sub Total" />
       </field>
+      <field id="jaminan_pensiun">
+        <phrase id="fldcaption" value="Jaminan Pensiun" />
+      </field>
+      <field id="jaminan_hari_tua">
+        <phrase id="fldcaption" value="Jaminan Hari Tua" />
+      </field>
+      <field id="bpjs_kesehatan">
+        <phrase id="fldcaption" value="BPJS Kesehatan" />
+      </field>
+      <field id="total_pph21">
+        <phrase id="fldcaption" value="Total PPH21" />
+      </field>
       <field id="potongan">
         <phrase id="fldcaption" value="Potongan" />
       </field>
@@ -2161,7 +2203,10 @@
         <phrase id="fldcaption" value="Voucher" />
       </field>
       <field id="status">
-        <phrase id="fldcaption" value="Unit" />
+        <phrase id="fldcaption" value="Status" />
+      </field>
+      <field id="status_npwp">
+        <phrase id="fldcaption" value="Status NPWP" />
       </field>
     </table>
     <table id="gaji_karyawan_smp">
@@ -2202,6 +2247,18 @@
       <field id="sub_total">
         <phrase id="fldcaption" value="Sub Total" />
       </field>
+      <field id="jaminan_pensiun">
+        <phrase id="fldcaption" value="Jaminan Pensiun" />
+      </field>
+      <field id="jaminan_hari_tua">
+        <phrase id="fldcaption" value="Jaminan Hari Tua" />
+      </field>
+      <field id="total_pph21">
+        <phrase id="fldcaption" value="Total PPH 21" />
+      </field>
+      <field id="bpjs_kesehatan">
+        <phrase id="fldcaption" value="BPJS Kesehatan" />
+      </field>
       <field id="potongan">
         <phrase id="fldcaption" value="Potongan" />
       </field>
@@ -2222,6 +2279,9 @@
       </field>
       <field id="status">
         <phrase id="fldcaption" value="Unit" />
+      </field>
+      <field id="status_npwp">
+        <phrase id="fldcaption" value="Status NPWP" />
       </field>
     </table>
     <table id="gaji_karyawan_tk">
@@ -2282,6 +2342,21 @@
       </field>
       <field id="status">
         <phrase id="fldcaption" value="Unit" />
+      </field>
+      <field id="jaminan_pensiun">
+        <phrase id="fldcaption" value="jaminan pensiun" />
+      </field>
+      <field id="jaminan_hari_tua">
+        <phrase id="fldcaption" value="jaminan hari tua" />
+      </field>
+      <field id="total_pph21">
+        <phrase id="fldcaption" value="total pph 21" />
+      </field>
+      <field id="bpjs_kesehatan">
+        <phrase id="fldcaption" value="bpjs kesehatan" />
+      </field>
+      <field id="status_npwp">
+        <phrase id="fldcaption" value="status npwp" />
       </field>
     </table>
     <table id="gaji_pokok">
@@ -2452,7 +2527,7 @@
         <phrase id="fldcaption" value="status npwp" />
       </field>
       <field id="bpjs_kesehatan">
-        <phrase id="fldcaption" value="bpjs kesehatan" />
+        <phrase id="fldcaption" value="BPJS Kesehatan" />
       </field>
     </table>
     <table id="gaji_smk">
@@ -2544,6 +2619,18 @@
       <field id="sub_total">
         <phrase id="fldcaption" value="Sub Total" />
       </field>
+      <field id="jaminan_pensiun">
+        <phrase id="fldcaption" value="Jaminan Pensiun" />
+      </field>
+      <field id="jaminan_hari_tua">
+        <phrase id="fldcaption" value="Jaminan Hari Tua" />
+      </field>
+      <field id="total_pph21">
+        <phrase id="fldcaption" value="Total PPH 21" />
+      </field>
+      <field id="bpjs_kesehatan">
+        <phrase id="fldcaption" value="BPJS Kesehatan" />
+      </field>
       <field id="potongan">
         <phrase id="fldcaption" value="Potongan" />
       </field>
@@ -2561,6 +2648,9 @@
       </field>
       <field id="status">
         <phrase id="fldcaption" value="Status" />
+      </field>
+      <field id="status_npwp">
+        <phrase id="fldcaption" value="Status NPWP" />
       </field>
     </table>
     <table id="gaji_smp">
@@ -2652,6 +2742,18 @@
       <field id="sub_total">
         <phrase id="fldcaption" value="Sub Total" />
       </field>
+      <field id="jaminan_pensiun">
+        <phrase id="fldcaption" value="Jaminan Pensiun" />
+      </field>
+      <field id="jaminan_hari_tua">
+        <phrase id="fldcaption" value="Jaminan Hari Tua" />
+      </field>
+      <field id="total_pph21">
+        <phrase id="fldcaption" value="Total PPH 21" />
+      </field>
+      <field id="bpjs_kesehatan">
+        <phrase id="fldcaption" value="BPJS Kesehatan" />
+      </field>
       <field id="potongan">
         <phrase id="fldcaption" value="Potongan" />
       </field>
@@ -2669,6 +2771,9 @@
       </field>
       <field id="status">
         <phrase id="fldcaption" value="Status" />
+      </field>
+      <field id="status_npwp">
+        <phrase id="fldcaption" value="Status NPWP" />
       </field>
     </table>
     <table id="gaji_tk">
@@ -2760,6 +2865,18 @@
       <field id="sub_total">
         <phrase id="fldcaption" value="Sub Total" />
       </field>
+      <field id="jaminan_pensiun">
+        <phrase id="fldcaption" value="Jaminan Pensiun" />
+      </field>
+      <field id="jaminan_hari_tua">
+        <phrase id="fldcaption" value="Jaminan Hari Tua" />
+      </field>
+      <field id="total_pph21">
+        <phrase id="fldcaption" value="Total PPH 21" />
+      </field>
+      <field id="bpjs_kesehatan">
+        <phrase id="fldcaption" value="BPJS Kesehatan" />
+      </field>
       <field id="potongan">
         <phrase id="fldcaption" value="Potongan" />
       </field>
@@ -2777,6 +2894,9 @@
       </field>
       <field id="status">
         <phrase id="fldcaption" value="status" />
+      </field>
+      <field id="status_npwp">
+        <phrase id="fldcaption" value="Status NPWP" />
       </field>
     </table>
     <table id="gaji_tu_sd">
@@ -2859,6 +2979,18 @@
       <field id="tunjangan2">
         <phrase id="fldcaption" value="tunjangan 2" />
       </field>
+      <field id="jaminan_pensiun">
+        <phrase id="fldcaption" value="Jaminan Pensiun" />
+      </field>
+      <field id="jaminan_hari_tua">
+        <phrase id="fldcaption" value="Jaminan Hari Tua" />
+      </field>
+      <field id="total_pph21">
+        <phrase id="fldcaption" value="Total PPH 21" />
+      </field>
+      <field id="bpjs_kesehatan">
+        <phrase id="fldcaption" value="BPJS Kesehatan" />
+      </field>
       <field id="potongan">
         <phrase id="fldcaption" value="Potongan" />
       </field>
@@ -2879,6 +3011,9 @@
       </field>
       <field id="status">
         <phrase id="fldcaption" value="Status" />
+      </field>
+      <field id="status_npwp">
+        <phrase id="fldcaption" value="Status NPWP" />
       </field>
     </table>
     <table id="gaji_tu_sma">
@@ -3075,6 +3210,18 @@
       <field id="sub_total">
         <phrase id="fldcaption" value="Sub Total" />
       </field>
+      <field id="jaminan_pensiun">
+        <phrase id="fldcaption" value="Jaminan Pensiun" />
+      </field>
+      <field id="jaminan_hari_tua">
+        <phrase id="fldcaption" value="Jaminan Hari Tua" />
+      </field>
+      <field id="total_pph21">
+        <phrase id="fldcaption" value="Total PPH 21" />
+      </field>
+      <field id="bpjs_kesehatan">
+        <phrase id="fldcaption" value="BPJS Kesehatan" />
+      </field>
       <field id="potongan">
         <phrase id="fldcaption" value="Potongan" />
       </field>
@@ -3095,6 +3242,9 @@
       </field>
       <field id="status">
         <phrase id="fldcaption" value="status" />
+      </field>
+      <field id="status_npwp">
+        <phrase id="fldcaption" value="Status NPWP" />
       </field>
     </table>
     <table id="gaji_tu_smp">
@@ -3180,6 +3330,18 @@
       <field id="sub_total">
         <phrase id="fldcaption" value="Sub Total" />
       </field>
+      <field id="jaminan_pensiun">
+        <phrase id="fldcaption" value="Jaminan Pensiun" />
+      </field>
+      <field id="jaminan_hari_tua">
+        <phrase id="fldcaption" value="Jaminan Hari Tua" />
+      </field>
+      <field id="total_pph21">
+        <phrase id="fldcaption" value="Total PPH 21" />
+      </field>
+      <field id="bpjs_kesehatan">
+        <phrase id="fldcaption" value="BPJS Kesehatan" />
+      </field>
       <field id="potongan">
         <phrase id="fldcaption" value="Potongan" />
       </field>
@@ -3197,6 +3359,9 @@
       </field>
       <field id="status">
         <phrase id="fldcaption" value="status" />
+      </field>
+      <field id="status_npwp">
+        <phrase id="fldcaption" value="Status NPWP" />
       </field>
     </table>
     <table id="gaji_tu_tk">
@@ -3279,6 +3444,18 @@
       <field id="tunjangan2">
         <phrase id="fldcaption" value="Tunjangan Khusus" />
       </field>
+      <field id="jaminan_pensiun">
+        <phrase id="fldcaption" value="Jaminan Pensiun" />
+      </field>
+      <field id="jaminan_hari_tua">
+        <phrase id="fldcaption" value="Jaminan Hari Tua" />
+      </field>
+      <field id="total_pph21">
+        <phrase id="fldcaption" value="Total PPH 21" />
+      </field>
+      <field id="bpjs_kesehatan">
+        <phrase id="fldcaption" value="BPJS Kesehatan" />
+      </field>
       <field id="potongan">
         <phrase id="fldcaption" value="Potongan" />
       </field>
@@ -3299,6 +3476,9 @@
       </field>
       <field id="status">
         <phrase id="fldcaption" value="status" />
+      </field>
+      <field id="status_npwp">
+        <phrase id="fldcaption" value="Status NPWP" />
       </field>
     </table>
     <table id="gajisd">

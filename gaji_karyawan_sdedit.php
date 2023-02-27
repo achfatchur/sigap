@@ -141,6 +141,38 @@ loadjs.ready("head", function() {
 				elm = this.getElements("x" + infix + "_sub_total");
 				if (elm && !ew.checkInteger(elm.value))
 					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_sd_edit->sub_total->errorMessage()) ?>");
+			<?php if ($gaji_karyawan_sd_edit->jaminan_pensiun->Required) { ?>
+				elm = this.getElements("x" + infix + "_jaminan_pensiun");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_karyawan_sd_edit->jaminan_pensiun->caption(), $gaji_karyawan_sd_edit->jaminan_pensiun->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_jaminan_pensiun");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_sd_edit->jaminan_pensiun->errorMessage()) ?>");
+			<?php if ($gaji_karyawan_sd_edit->jaminan_hari_tua->Required) { ?>
+				elm = this.getElements("x" + infix + "_jaminan_hari_tua");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_karyawan_sd_edit->jaminan_hari_tua->caption(), $gaji_karyawan_sd_edit->jaminan_hari_tua->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_jaminan_hari_tua");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_sd_edit->jaminan_hari_tua->errorMessage()) ?>");
+			<?php if ($gaji_karyawan_sd_edit->bpjs_kesehatan->Required) { ?>
+				elm = this.getElements("x" + infix + "_bpjs_kesehatan");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_karyawan_sd_edit->bpjs_kesehatan->caption(), $gaji_karyawan_sd_edit->bpjs_kesehatan->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_bpjs_kesehatan");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_sd_edit->bpjs_kesehatan->errorMessage()) ?>");
+			<?php if ($gaji_karyawan_sd_edit->total_pph21->Required) { ?>
+				elm = this.getElements("x" + infix + "_total_pph21");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_karyawan_sd_edit->total_pph21->caption(), $gaji_karyawan_sd_edit->total_pph21->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_total_pph21");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_sd_edit->total_pph21->errorMessage()) ?>");
 			<?php if ($gaji_karyawan_sd_edit->potongan->Required) { ?>
 				elm = this.getElements("x" + infix + "_potongan");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -189,6 +221,14 @@ loadjs.ready("head", function() {
 				elm = this.getElements("x" + infix + "_status");
 				if (elm && !ew.checkInteger(elm.value))
 					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_sd_edit->status->errorMessage()) ?>");
+			<?php if ($gaji_karyawan_sd_edit->status_npwp->Required) { ?>
+				elm = this.getElements("x" + infix + "_status_npwp");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_karyawan_sd_edit->status_npwp->caption(), $gaji_karyawan_sd_edit->status_npwp->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_status_npwp");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_sd_edit->status_npwp->errorMessage()) ?>");
 
 				// Call Form_CustomValidate event
 				if (!this.Form_CustomValidate(fobj))
@@ -225,6 +265,9 @@ loadjs.ready("head", function() {
 	fgaji_karyawan_sdedit.lists["x_jabatan_id"] = <?php echo $gaji_karyawan_sd_edit->jabatan_id->Lookup->toClientList($gaji_karyawan_sd_edit) ?>;
 	fgaji_karyawan_sdedit.lists["x_jabatan_id"].options = <?php echo JsonEncode($gaji_karyawan_sd_edit->jabatan_id->lookupOptions()) ?>;
 	fgaji_karyawan_sdedit.autoSuggests["x_jabatan_id"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
+	fgaji_karyawan_sdedit.lists["x_status_npwp"] = <?php echo $gaji_karyawan_sd_edit->status_npwp->Lookup->toClientList($gaji_karyawan_sd_edit) ?>;
+	fgaji_karyawan_sdedit.lists["x_status_npwp"].options = <?php echo JsonEncode($gaji_karyawan_sd_edit->status_npwp->lookupOptions()) ?>;
+	fgaji_karyawan_sdedit.autoSuggests["x_status_npwp"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
 	loadjs.done("fgaji_karyawan_sdedit");
 });
 </script>
@@ -414,6 +457,46 @@ loadjs.ready(["fgaji_karyawan_sdedit"], function() {
 <?php echo $gaji_karyawan_sd_edit->sub_total->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
+<?php if ($gaji_karyawan_sd_edit->jaminan_pensiun->Visible) { // jaminan_pensiun ?>
+	<div id="r_jaminan_pensiun" class="form-group row">
+		<label id="elh_gaji_karyawan_sd_jaminan_pensiun" for="x_jaminan_pensiun" class="<?php echo $gaji_karyawan_sd_edit->LeftColumnClass ?>"><?php echo $gaji_karyawan_sd_edit->jaminan_pensiun->caption() ?><?php echo $gaji_karyawan_sd_edit->jaminan_pensiun->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
+		<div class="<?php echo $gaji_karyawan_sd_edit->RightColumnClass ?>"><div <?php echo $gaji_karyawan_sd_edit->jaminan_pensiun->cellAttributes() ?>>
+<span id="el_gaji_karyawan_sd_jaminan_pensiun">
+<input type="text" data-table="gaji_karyawan_sd" data-field="x_jaminan_pensiun" name="x_jaminan_pensiun" id="x_jaminan_pensiun" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_karyawan_sd_edit->jaminan_pensiun->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_sd_edit->jaminan_pensiun->EditValue ?>"<?php echo $gaji_karyawan_sd_edit->jaminan_pensiun->editAttributes() ?>>
+</span>
+<?php echo $gaji_karyawan_sd_edit->jaminan_pensiun->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
+<?php if ($gaji_karyawan_sd_edit->jaminan_hari_tua->Visible) { // jaminan_hari_tua ?>
+	<div id="r_jaminan_hari_tua" class="form-group row">
+		<label id="elh_gaji_karyawan_sd_jaminan_hari_tua" for="x_jaminan_hari_tua" class="<?php echo $gaji_karyawan_sd_edit->LeftColumnClass ?>"><?php echo $gaji_karyawan_sd_edit->jaminan_hari_tua->caption() ?><?php echo $gaji_karyawan_sd_edit->jaminan_hari_tua->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
+		<div class="<?php echo $gaji_karyawan_sd_edit->RightColumnClass ?>"><div <?php echo $gaji_karyawan_sd_edit->jaminan_hari_tua->cellAttributes() ?>>
+<span id="el_gaji_karyawan_sd_jaminan_hari_tua">
+<input type="text" data-table="gaji_karyawan_sd" data-field="x_jaminan_hari_tua" name="x_jaminan_hari_tua" id="x_jaminan_hari_tua" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_karyawan_sd_edit->jaminan_hari_tua->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_sd_edit->jaminan_hari_tua->EditValue ?>"<?php echo $gaji_karyawan_sd_edit->jaminan_hari_tua->editAttributes() ?>>
+</span>
+<?php echo $gaji_karyawan_sd_edit->jaminan_hari_tua->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
+<?php if ($gaji_karyawan_sd_edit->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+	<div id="r_bpjs_kesehatan" class="form-group row">
+		<label id="elh_gaji_karyawan_sd_bpjs_kesehatan" for="x_bpjs_kesehatan" class="<?php echo $gaji_karyawan_sd_edit->LeftColumnClass ?>"><?php echo $gaji_karyawan_sd_edit->bpjs_kesehatan->caption() ?><?php echo $gaji_karyawan_sd_edit->bpjs_kesehatan->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
+		<div class="<?php echo $gaji_karyawan_sd_edit->RightColumnClass ?>"><div <?php echo $gaji_karyawan_sd_edit->bpjs_kesehatan->cellAttributes() ?>>
+<span id="el_gaji_karyawan_sd_bpjs_kesehatan">
+<input type="text" data-table="gaji_karyawan_sd" data-field="x_bpjs_kesehatan" name="x_bpjs_kesehatan" id="x_bpjs_kesehatan" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_karyawan_sd_edit->bpjs_kesehatan->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_sd_edit->bpjs_kesehatan->EditValue ?>"<?php echo $gaji_karyawan_sd_edit->bpjs_kesehatan->editAttributes() ?>>
+</span>
+<?php echo $gaji_karyawan_sd_edit->bpjs_kesehatan->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
+<?php if ($gaji_karyawan_sd_edit->total_pph21->Visible) { // total_pph21 ?>
+	<div id="r_total_pph21" class="form-group row">
+		<label id="elh_gaji_karyawan_sd_total_pph21" for="x_total_pph21" class="<?php echo $gaji_karyawan_sd_edit->LeftColumnClass ?>"><?php echo $gaji_karyawan_sd_edit->total_pph21->caption() ?><?php echo $gaji_karyawan_sd_edit->total_pph21->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
+		<div class="<?php echo $gaji_karyawan_sd_edit->RightColumnClass ?>"><div <?php echo $gaji_karyawan_sd_edit->total_pph21->cellAttributes() ?>>
+<span id="el_gaji_karyawan_sd_total_pph21">
+<input type="text" data-table="gaji_karyawan_sd" data-field="x_total_pph21" name="x_total_pph21" id="x_total_pph21" size="30" maxlength="20" placeholder="<?php echo HtmlEncode($gaji_karyawan_sd_edit->total_pph21->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_sd_edit->total_pph21->EditValue ?>"<?php echo $gaji_karyawan_sd_edit->total_pph21->editAttributes() ?>>
+</span>
+<?php echo $gaji_karyawan_sd_edit->total_pph21->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
 <?php if ($gaji_karyawan_sd_edit->potongan->Visible) { // potongan ?>
 	<div id="r_potongan" class="form-group row">
 		<label id="elh_gaji_karyawan_sd_potongan" for="x_potongan" class="<?php echo $gaji_karyawan_sd_edit->LeftColumnClass ?>"><?php echo $gaji_karyawan_sd_edit->potongan->caption() ?><?php echo $gaji_karyawan_sd_edit->potongan->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
@@ -472,6 +555,30 @@ loadjs.ready(["fgaji_karyawan_sdedit"], function() {
 <input type="text" data-table="gaji_karyawan_sd" data-field="x_status" name="x_status" id="x_status" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($gaji_karyawan_sd_edit->status->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_sd_edit->status->EditValue ?>"<?php echo $gaji_karyawan_sd_edit->status->editAttributes() ?>>
 </span>
 <?php echo $gaji_karyawan_sd_edit->status->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
+<?php if ($gaji_karyawan_sd_edit->status_npwp->Visible) { // status_npwp ?>
+	<div id="r_status_npwp" class="form-group row">
+		<label id="elh_gaji_karyawan_sd_status_npwp" class="<?php echo $gaji_karyawan_sd_edit->LeftColumnClass ?>"><?php echo $gaji_karyawan_sd_edit->status_npwp->caption() ?><?php echo $gaji_karyawan_sd_edit->status_npwp->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
+		<div class="<?php echo $gaji_karyawan_sd_edit->RightColumnClass ?>"><div <?php echo $gaji_karyawan_sd_edit->status_npwp->cellAttributes() ?>>
+<span id="el_gaji_karyawan_sd_status_npwp">
+<?php
+$onchange = $gaji_karyawan_sd_edit->status_npwp->EditAttrs->prepend("onchange", "");
+$onchange = ($onchange) ? ' onchange="' . JsEncode($onchange) . '"' : '';
+$gaji_karyawan_sd_edit->status_npwp->EditAttrs["onchange"] = "";
+?>
+<span id="as_x_status_npwp">
+	<input type="text" class="form-control" name="sv_x_status_npwp" id="sv_x_status_npwp" value="<?php echo RemoveHtml($gaji_karyawan_sd_edit->status_npwp->EditValue) ?>" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($gaji_karyawan_sd_edit->status_npwp->getPlaceHolder()) ?>" data-placeholder="<?php echo HtmlEncode($gaji_karyawan_sd_edit->status_npwp->getPlaceHolder()) ?>"<?php echo $gaji_karyawan_sd_edit->status_npwp->editAttributes() ?>>
+</span>
+<input type="hidden" data-table="gaji_karyawan_sd" data-field="x_status_npwp" data-value-separator="<?php echo $gaji_karyawan_sd_edit->status_npwp->displayValueSeparatorAttribute() ?>" name="x_status_npwp" id="x_status_npwp" value="<?php echo HtmlEncode($gaji_karyawan_sd_edit->status_npwp->CurrentValue) ?>"<?php echo $onchange ?>>
+<script>
+loadjs.ready(["fgaji_karyawan_sdedit"], function() {
+	fgaji_karyawan_sdedit.createAutoSuggest({"id":"x_status_npwp","forceSelect":false});
+});
+</script>
+<?php echo $gaji_karyawan_sd_edit->status_npwp->Lookup->getParamTag($gaji_karyawan_sd_edit, "p_x_status_npwp") ?>
+</span>
+<?php echo $gaji_karyawan_sd_edit->status_npwp->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
 </div><!-- /page* -->

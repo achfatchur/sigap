@@ -616,12 +616,17 @@ class gaji_tu_smp_preview extends gaji_tu_smp
 		$this->tj_jabatan->Visible = FALSE;
 		$this->tunjangan2->Visible = FALSE;
 		$this->sub_total->setVisibility();
+		$this->jaminan_pensiun->Visible = FALSE;
+		$this->jaminan_hari_tua->Visible = FALSE;
+		$this->total_pph21->Visible = FALSE;
+		$this->bpjs_kesehatan->Visible = FALSE;
 		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
 		$this->potongan_bendahara->setVisibility();
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
 		$this->status->Visible = FALSE;
+		$this->status_npwp->Visible = FALSE;
 		$this->hideFieldsForAddEdit();
 
 		// Do not use lookup cache
@@ -653,6 +658,7 @@ class gaji_tu_smp_preview extends gaji_tu_smp
 		$this->setupLookupOptions($this->type_jabatan);
 		$this->setupLookupOptions($this->tambahan);
 		$this->setupLookupOptions($this->sertif);
+		$this->setupLookupOptions($this->status_npwp);
 
 		// Load filter
 		$filter = Get("f", "");
@@ -880,6 +886,8 @@ class gaji_tu_smp_preview extends gaji_tu_smp
 					break;
 				case "x_sertif":
 					break;
+				case "x_status_npwp":
+					break;
 				default:
 					$lookupFilter = "";
 					break;
@@ -913,6 +921,8 @@ class gaji_tu_smp_preview extends gaji_tu_smp
 						case "x_tambahan":
 							break;
 						case "x_sertif":
+							break;
+						case "x_status_npwp":
 							break;
 					}
 					$ar[strval($row[0])] = $row;

@@ -85,6 +85,38 @@ loadjs.ready("head", function() {
 				elm = this.getElements("x" + infix + "_sub_total");
 				if (elm && !ew.checkInteger(elm.value))
 					return this.onError(elm, "<?php echo JsEncode($gaji_tu_smk_grid->sub_total->errorMessage()) ?>");
+			<?php if ($gaji_tu_smk_grid->jaminan_pensiun->Required) { ?>
+				elm = this.getElements("x" + infix + "_jaminan_pensiun");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_tu_smk_grid->jaminan_pensiun->caption(), $gaji_tu_smk_grid->jaminan_pensiun->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_jaminan_pensiun");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($gaji_tu_smk_grid->jaminan_pensiun->errorMessage()) ?>");
+			<?php if ($gaji_tu_smk_grid->jaminan_hari_tua->Required) { ?>
+				elm = this.getElements("x" + infix + "_jaminan_hari_tua");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_tu_smk_grid->jaminan_hari_tua->caption(), $gaji_tu_smk_grid->jaminan_hari_tua->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_jaminan_hari_tua");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($gaji_tu_smk_grid->jaminan_hari_tua->errorMessage()) ?>");
+			<?php if ($gaji_tu_smk_grid->total_pph21->Required) { ?>
+				elm = this.getElements("x" + infix + "_total_pph21");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_tu_smk_grid->total_pph21->caption(), $gaji_tu_smk_grid->total_pph21->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_total_pph21");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($gaji_tu_smk_grid->total_pph21->errorMessage()) ?>");
+			<?php if ($gaji_tu_smk_grid->bpjs_kesehatan->Required) { ?>
+				elm = this.getElements("x" + infix + "_bpjs_kesehatan");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_tu_smk_grid->bpjs_kesehatan->caption(), $gaji_tu_smk_grid->bpjs_kesehatan->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_bpjs_kesehatan");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($gaji_tu_smk_grid->bpjs_kesehatan->errorMessage()) ?>");
 			<?php if ($gaji_tu_smk_grid->potongan->Required) { ?>
 				elm = this.getElements("x" + infix + "_potongan");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -142,6 +174,10 @@ loadjs.ready("head", function() {
 		if (ew.valueChanged(fobj, infix, "pegawai", false)) return false;
 		if (ew.valueChanged(fobj, infix, "jenjang_id", false)) return false;
 		if (ew.valueChanged(fobj, infix, "sub_total", false)) return false;
+		if (ew.valueChanged(fobj, infix, "jaminan_pensiun", false)) return false;
+		if (ew.valueChanged(fobj, infix, "jaminan_hari_tua", false)) return false;
+		if (ew.valueChanged(fobj, infix, "total_pph21", false)) return false;
+		if (ew.valueChanged(fobj, infix, "bpjs_kesehatan", false)) return false;
 		if (ew.valueChanged(fobj, infix, "potongan", false)) return false;
 		if (ew.valueChanged(fobj, infix, "penyesuaian", false)) return false;
 		if (ew.valueChanged(fobj, infix, "potongan_bendahara", false)) return false;
@@ -242,6 +278,42 @@ $gaji_tu_smk_grid->ListOptions->render("header", "left");
 	<?php } else { ?>
 		<th data-name="sub_total" class="<?php echo $gaji_tu_smk_grid->sub_total->headerCellClass() ?>"><div><div id="elh_gaji_tu_smk_sub_total" class="gaji_tu_smk_sub_total">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_grid->sub_total->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_grid->sub_total->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_grid->sub_total->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_tu_smk_grid->jaminan_pensiun->Visible) { // jaminan_pensiun ?>
+	<?php if ($gaji_tu_smk_grid->SortUrl($gaji_tu_smk_grid->jaminan_pensiun) == "") { ?>
+		<th data-name="jaminan_pensiun" class="<?php echo $gaji_tu_smk_grid->jaminan_pensiun->headerCellClass() ?>"><div id="elh_gaji_tu_smk_jaminan_pensiun" class="gaji_tu_smk_jaminan_pensiun"><div class="ew-table-header-caption"><?php echo $gaji_tu_smk_grid->jaminan_pensiun->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="jaminan_pensiun" class="<?php echo $gaji_tu_smk_grid->jaminan_pensiun->headerCellClass() ?>"><div><div id="elh_gaji_tu_smk_jaminan_pensiun" class="gaji_tu_smk_jaminan_pensiun">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_grid->jaminan_pensiun->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_grid->jaminan_pensiun->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_grid->jaminan_pensiun->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_tu_smk_grid->jaminan_hari_tua->Visible) { // jaminan_hari_tua ?>
+	<?php if ($gaji_tu_smk_grid->SortUrl($gaji_tu_smk_grid->jaminan_hari_tua) == "") { ?>
+		<th data-name="jaminan_hari_tua" class="<?php echo $gaji_tu_smk_grid->jaminan_hari_tua->headerCellClass() ?>"><div id="elh_gaji_tu_smk_jaminan_hari_tua" class="gaji_tu_smk_jaminan_hari_tua"><div class="ew-table-header-caption"><?php echo $gaji_tu_smk_grid->jaminan_hari_tua->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="jaminan_hari_tua" class="<?php echo $gaji_tu_smk_grid->jaminan_hari_tua->headerCellClass() ?>"><div><div id="elh_gaji_tu_smk_jaminan_hari_tua" class="gaji_tu_smk_jaminan_hari_tua">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_grid->jaminan_hari_tua->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_grid->jaminan_hari_tua->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_grid->jaminan_hari_tua->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_tu_smk_grid->total_pph21->Visible) { // total_pph21 ?>
+	<?php if ($gaji_tu_smk_grid->SortUrl($gaji_tu_smk_grid->total_pph21) == "") { ?>
+		<th data-name="total_pph21" class="<?php echo $gaji_tu_smk_grid->total_pph21->headerCellClass() ?>"><div id="elh_gaji_tu_smk_total_pph21" class="gaji_tu_smk_total_pph21"><div class="ew-table-header-caption"><?php echo $gaji_tu_smk_grid->total_pph21->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="total_pph21" class="<?php echo $gaji_tu_smk_grid->total_pph21->headerCellClass() ?>"><div><div id="elh_gaji_tu_smk_total_pph21" class="gaji_tu_smk_total_pph21">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_grid->total_pph21->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_grid->total_pph21->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_grid->total_pph21->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_tu_smk_grid->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+	<?php if ($gaji_tu_smk_grid->SortUrl($gaji_tu_smk_grid->bpjs_kesehatan) == "") { ?>
+		<th data-name="bpjs_kesehatan" class="<?php echo $gaji_tu_smk_grid->bpjs_kesehatan->headerCellClass() ?>"><div id="elh_gaji_tu_smk_bpjs_kesehatan" class="gaji_tu_smk_bpjs_kesehatan"><div class="ew-table-header-caption"><?php echo $gaji_tu_smk_grid->bpjs_kesehatan->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="bpjs_kesehatan" class="<?php echo $gaji_tu_smk_grid->bpjs_kesehatan->headerCellClass() ?>"><div><div id="elh_gaji_tu_smk_bpjs_kesehatan" class="gaji_tu_smk_bpjs_kesehatan">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_grid->bpjs_kesehatan->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_grid->bpjs_kesehatan->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_grid->bpjs_kesehatan->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -640,6 +712,114 @@ loadjs.ready(["fgaji_tu_smkgrid"], function() {
 <?php } ?>
 </td>
 	<?php } ?>
+	<?php if ($gaji_tu_smk_grid->jaminan_pensiun->Visible) { // jaminan_pensiun ?>
+		<td data-name="jaminan_pensiun" <?php echo $gaji_tu_smk_grid->jaminan_pensiun->cellAttributes() ?>>
+<?php if ($gaji_tu_smk->RowType == ROWTYPE_ADD) { // Add record ?>
+<span id="el<?php echo $gaji_tu_smk_grid->RowCount ?>_gaji_tu_smk_jaminan_pensiun" class="form-group">
+<input type="text" data-table="gaji_tu_smk" data-field="x_jaminan_pensiun" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_pensiun->getPlaceHolder()) ?>" value="<?php echo $gaji_tu_smk_grid->jaminan_pensiun->EditValue ?>"<?php echo $gaji_tu_smk_grid->jaminan_pensiun->editAttributes() ?>>
+</span>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_jaminan_pensiun" name="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" id="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" value="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_pensiun->OldValue) ?>">
+<?php } ?>
+<?php if ($gaji_tu_smk->RowType == ROWTYPE_EDIT) { // Edit record ?>
+<span id="el<?php echo $gaji_tu_smk_grid->RowCount ?>_gaji_tu_smk_jaminan_pensiun" class="form-group">
+<input type="text" data-table="gaji_tu_smk" data-field="x_jaminan_pensiun" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_pensiun->getPlaceHolder()) ?>" value="<?php echo $gaji_tu_smk_grid->jaminan_pensiun->EditValue ?>"<?php echo $gaji_tu_smk_grid->jaminan_pensiun->editAttributes() ?>>
+</span>
+<?php } ?>
+<?php if ($gaji_tu_smk->RowType == ROWTYPE_VIEW) { // View record ?>
+<span id="el<?php echo $gaji_tu_smk_grid->RowCount ?>_gaji_tu_smk_jaminan_pensiun">
+<span<?php echo $gaji_tu_smk_grid->jaminan_pensiun->viewAttributes() ?>><?php echo $gaji_tu_smk_grid->jaminan_pensiun->getViewValue() ?></span>
+</span>
+<?php if (!$gaji_tu_smk->isConfirm()) { ?>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_jaminan_pensiun" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" value="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_pensiun->FormValue) ?>">
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_jaminan_pensiun" name="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" id="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" value="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_pensiun->OldValue) ?>">
+<?php } else { ?>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_jaminan_pensiun" name="fgaji_tu_smkgrid$x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" id="fgaji_tu_smkgrid$x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" value="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_pensiun->FormValue) ?>">
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_jaminan_pensiun" name="fgaji_tu_smkgrid$o<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" id="fgaji_tu_smkgrid$o<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" value="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_pensiun->OldValue) ?>">
+<?php } ?>
+<?php } ?>
+</td>
+	<?php } ?>
+	<?php if ($gaji_tu_smk_grid->jaminan_hari_tua->Visible) { // jaminan_hari_tua ?>
+		<td data-name="jaminan_hari_tua" <?php echo $gaji_tu_smk_grid->jaminan_hari_tua->cellAttributes() ?>>
+<?php if ($gaji_tu_smk->RowType == ROWTYPE_ADD) { // Add record ?>
+<span id="el<?php echo $gaji_tu_smk_grid->RowCount ?>_gaji_tu_smk_jaminan_hari_tua" class="form-group">
+<input type="text" data-table="gaji_tu_smk" data-field="x_jaminan_hari_tua" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_hari_tua->getPlaceHolder()) ?>" value="<?php echo $gaji_tu_smk_grid->jaminan_hari_tua->EditValue ?>"<?php echo $gaji_tu_smk_grid->jaminan_hari_tua->editAttributes() ?>>
+</span>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_jaminan_hari_tua" name="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" id="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" value="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_hari_tua->OldValue) ?>">
+<?php } ?>
+<?php if ($gaji_tu_smk->RowType == ROWTYPE_EDIT) { // Edit record ?>
+<span id="el<?php echo $gaji_tu_smk_grid->RowCount ?>_gaji_tu_smk_jaminan_hari_tua" class="form-group">
+<input type="text" data-table="gaji_tu_smk" data-field="x_jaminan_hari_tua" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_hari_tua->getPlaceHolder()) ?>" value="<?php echo $gaji_tu_smk_grid->jaminan_hari_tua->EditValue ?>"<?php echo $gaji_tu_smk_grid->jaminan_hari_tua->editAttributes() ?>>
+</span>
+<?php } ?>
+<?php if ($gaji_tu_smk->RowType == ROWTYPE_VIEW) { // View record ?>
+<span id="el<?php echo $gaji_tu_smk_grid->RowCount ?>_gaji_tu_smk_jaminan_hari_tua">
+<span<?php echo $gaji_tu_smk_grid->jaminan_hari_tua->viewAttributes() ?>><?php echo $gaji_tu_smk_grid->jaminan_hari_tua->getViewValue() ?></span>
+</span>
+<?php if (!$gaji_tu_smk->isConfirm()) { ?>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_jaminan_hari_tua" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" value="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_hari_tua->FormValue) ?>">
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_jaminan_hari_tua" name="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" id="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" value="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_hari_tua->OldValue) ?>">
+<?php } else { ?>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_jaminan_hari_tua" name="fgaji_tu_smkgrid$x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" id="fgaji_tu_smkgrid$x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" value="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_hari_tua->FormValue) ?>">
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_jaminan_hari_tua" name="fgaji_tu_smkgrid$o<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" id="fgaji_tu_smkgrid$o<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" value="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_hari_tua->OldValue) ?>">
+<?php } ?>
+<?php } ?>
+</td>
+	<?php } ?>
+	<?php if ($gaji_tu_smk_grid->total_pph21->Visible) { // total_pph21 ?>
+		<td data-name="total_pph21" <?php echo $gaji_tu_smk_grid->total_pph21->cellAttributes() ?>>
+<?php if ($gaji_tu_smk->RowType == ROWTYPE_ADD) { // Add record ?>
+<span id="el<?php echo $gaji_tu_smk_grid->RowCount ?>_gaji_tu_smk_total_pph21" class="form-group">
+<input type="text" data-table="gaji_tu_smk" data-field="x_total_pph21" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_tu_smk_grid->total_pph21->getPlaceHolder()) ?>" value="<?php echo $gaji_tu_smk_grid->total_pph21->EditValue ?>"<?php echo $gaji_tu_smk_grid->total_pph21->editAttributes() ?>>
+</span>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_total_pph21" name="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" id="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" value="<?php echo HtmlEncode($gaji_tu_smk_grid->total_pph21->OldValue) ?>">
+<?php } ?>
+<?php if ($gaji_tu_smk->RowType == ROWTYPE_EDIT) { // Edit record ?>
+<span id="el<?php echo $gaji_tu_smk_grid->RowCount ?>_gaji_tu_smk_total_pph21" class="form-group">
+<input type="text" data-table="gaji_tu_smk" data-field="x_total_pph21" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_tu_smk_grid->total_pph21->getPlaceHolder()) ?>" value="<?php echo $gaji_tu_smk_grid->total_pph21->EditValue ?>"<?php echo $gaji_tu_smk_grid->total_pph21->editAttributes() ?>>
+</span>
+<?php } ?>
+<?php if ($gaji_tu_smk->RowType == ROWTYPE_VIEW) { // View record ?>
+<span id="el<?php echo $gaji_tu_smk_grid->RowCount ?>_gaji_tu_smk_total_pph21">
+<span<?php echo $gaji_tu_smk_grid->total_pph21->viewAttributes() ?>><?php echo $gaji_tu_smk_grid->total_pph21->getViewValue() ?></span>
+</span>
+<?php if (!$gaji_tu_smk->isConfirm()) { ?>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_total_pph21" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" value="<?php echo HtmlEncode($gaji_tu_smk_grid->total_pph21->FormValue) ?>">
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_total_pph21" name="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" id="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" value="<?php echo HtmlEncode($gaji_tu_smk_grid->total_pph21->OldValue) ?>">
+<?php } else { ?>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_total_pph21" name="fgaji_tu_smkgrid$x<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" id="fgaji_tu_smkgrid$x<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" value="<?php echo HtmlEncode($gaji_tu_smk_grid->total_pph21->FormValue) ?>">
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_total_pph21" name="fgaji_tu_smkgrid$o<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" id="fgaji_tu_smkgrid$o<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" value="<?php echo HtmlEncode($gaji_tu_smk_grid->total_pph21->OldValue) ?>">
+<?php } ?>
+<?php } ?>
+</td>
+	<?php } ?>
+	<?php if ($gaji_tu_smk_grid->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+		<td data-name="bpjs_kesehatan" <?php echo $gaji_tu_smk_grid->bpjs_kesehatan->cellAttributes() ?>>
+<?php if ($gaji_tu_smk->RowType == ROWTYPE_ADD) { // Add record ?>
+<span id="el<?php echo $gaji_tu_smk_grid->RowCount ?>_gaji_tu_smk_bpjs_kesehatan" class="form-group">
+<input type="text" data-table="gaji_tu_smk" data-field="x_bpjs_kesehatan" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_tu_smk_grid->bpjs_kesehatan->getPlaceHolder()) ?>" value="<?php echo $gaji_tu_smk_grid->bpjs_kesehatan->EditValue ?>"<?php echo $gaji_tu_smk_grid->bpjs_kesehatan->editAttributes() ?>>
+</span>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_bpjs_kesehatan" name="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" id="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" value="<?php echo HtmlEncode($gaji_tu_smk_grid->bpjs_kesehatan->OldValue) ?>">
+<?php } ?>
+<?php if ($gaji_tu_smk->RowType == ROWTYPE_EDIT) { // Edit record ?>
+<span id="el<?php echo $gaji_tu_smk_grid->RowCount ?>_gaji_tu_smk_bpjs_kesehatan" class="form-group">
+<input type="text" data-table="gaji_tu_smk" data-field="x_bpjs_kesehatan" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_tu_smk_grid->bpjs_kesehatan->getPlaceHolder()) ?>" value="<?php echo $gaji_tu_smk_grid->bpjs_kesehatan->EditValue ?>"<?php echo $gaji_tu_smk_grid->bpjs_kesehatan->editAttributes() ?>>
+</span>
+<?php } ?>
+<?php if ($gaji_tu_smk->RowType == ROWTYPE_VIEW) { // View record ?>
+<span id="el<?php echo $gaji_tu_smk_grid->RowCount ?>_gaji_tu_smk_bpjs_kesehatan">
+<span<?php echo $gaji_tu_smk_grid->bpjs_kesehatan->viewAttributes() ?>><?php echo $gaji_tu_smk_grid->bpjs_kesehatan->getViewValue() ?></span>
+</span>
+<?php if (!$gaji_tu_smk->isConfirm()) { ?>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_bpjs_kesehatan" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" value="<?php echo HtmlEncode($gaji_tu_smk_grid->bpjs_kesehatan->FormValue) ?>">
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_bpjs_kesehatan" name="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" id="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" value="<?php echo HtmlEncode($gaji_tu_smk_grid->bpjs_kesehatan->OldValue) ?>">
+<?php } else { ?>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_bpjs_kesehatan" name="fgaji_tu_smkgrid$x<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" id="fgaji_tu_smkgrid$x<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" value="<?php echo HtmlEncode($gaji_tu_smk_grid->bpjs_kesehatan->FormValue) ?>">
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_bpjs_kesehatan" name="fgaji_tu_smkgrid$o<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" id="fgaji_tu_smkgrid$o<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" value="<?php echo HtmlEncode($gaji_tu_smk_grid->bpjs_kesehatan->OldValue) ?>">
+<?php } ?>
+<?php } ?>
+</td>
+	<?php } ?>
 	<?php if ($gaji_tu_smk_grid->potongan->Visible) { // potongan ?>
 		<td data-name="potongan" <?php echo $gaji_tu_smk_grid->potongan->cellAttributes() ?>>
 <?php if ($gaji_tu_smk->RowType == ROWTYPE_ADD) { // Add record ?>
@@ -943,6 +1123,66 @@ loadjs.ready(["fgaji_tu_smkgrid"], function() {
 <input type="hidden" data-table="gaji_tu_smk" data-field="x_sub_total" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_sub_total" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_sub_total" value="<?php echo HtmlEncode($gaji_tu_smk_grid->sub_total->FormValue) ?>">
 <?php } ?>
 <input type="hidden" data-table="gaji_tu_smk" data-field="x_sub_total" name="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_sub_total" id="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_sub_total" value="<?php echo HtmlEncode($gaji_tu_smk_grid->sub_total->OldValue) ?>">
+</td>
+	<?php } ?>
+	<?php if ($gaji_tu_smk_grid->jaminan_pensiun->Visible) { // jaminan_pensiun ?>
+		<td data-name="jaminan_pensiun">
+<?php if (!$gaji_tu_smk->isConfirm()) { ?>
+<span id="el$rowindex$_gaji_tu_smk_jaminan_pensiun" class="form-group gaji_tu_smk_jaminan_pensiun">
+<input type="text" data-table="gaji_tu_smk" data-field="x_jaminan_pensiun" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_pensiun->getPlaceHolder()) ?>" value="<?php echo $gaji_tu_smk_grid->jaminan_pensiun->EditValue ?>"<?php echo $gaji_tu_smk_grid->jaminan_pensiun->editAttributes() ?>>
+</span>
+<?php } else { ?>
+<span id="el$rowindex$_gaji_tu_smk_jaminan_pensiun" class="form-group gaji_tu_smk_jaminan_pensiun">
+<span<?php echo $gaji_tu_smk_grid->jaminan_pensiun->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($gaji_tu_smk_grid->jaminan_pensiun->ViewValue)) ?>"></span>
+</span>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_jaminan_pensiun" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" value="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_pensiun->FormValue) ?>">
+<?php } ?>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_jaminan_pensiun" name="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" id="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_pensiun" value="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_pensiun->OldValue) ?>">
+</td>
+	<?php } ?>
+	<?php if ($gaji_tu_smk_grid->jaminan_hari_tua->Visible) { // jaminan_hari_tua ?>
+		<td data-name="jaminan_hari_tua">
+<?php if (!$gaji_tu_smk->isConfirm()) { ?>
+<span id="el$rowindex$_gaji_tu_smk_jaminan_hari_tua" class="form-group gaji_tu_smk_jaminan_hari_tua">
+<input type="text" data-table="gaji_tu_smk" data-field="x_jaminan_hari_tua" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_hari_tua->getPlaceHolder()) ?>" value="<?php echo $gaji_tu_smk_grid->jaminan_hari_tua->EditValue ?>"<?php echo $gaji_tu_smk_grid->jaminan_hari_tua->editAttributes() ?>>
+</span>
+<?php } else { ?>
+<span id="el$rowindex$_gaji_tu_smk_jaminan_hari_tua" class="form-group gaji_tu_smk_jaminan_hari_tua">
+<span<?php echo $gaji_tu_smk_grid->jaminan_hari_tua->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($gaji_tu_smk_grid->jaminan_hari_tua->ViewValue)) ?>"></span>
+</span>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_jaminan_hari_tua" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" value="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_hari_tua->FormValue) ?>">
+<?php } ?>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_jaminan_hari_tua" name="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" id="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_jaminan_hari_tua" value="<?php echo HtmlEncode($gaji_tu_smk_grid->jaminan_hari_tua->OldValue) ?>">
+</td>
+	<?php } ?>
+	<?php if ($gaji_tu_smk_grid->total_pph21->Visible) { // total_pph21 ?>
+		<td data-name="total_pph21">
+<?php if (!$gaji_tu_smk->isConfirm()) { ?>
+<span id="el$rowindex$_gaji_tu_smk_total_pph21" class="form-group gaji_tu_smk_total_pph21">
+<input type="text" data-table="gaji_tu_smk" data-field="x_total_pph21" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_tu_smk_grid->total_pph21->getPlaceHolder()) ?>" value="<?php echo $gaji_tu_smk_grid->total_pph21->EditValue ?>"<?php echo $gaji_tu_smk_grid->total_pph21->editAttributes() ?>>
+</span>
+<?php } else { ?>
+<span id="el$rowindex$_gaji_tu_smk_total_pph21" class="form-group gaji_tu_smk_total_pph21">
+<span<?php echo $gaji_tu_smk_grid->total_pph21->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($gaji_tu_smk_grid->total_pph21->ViewValue)) ?>"></span>
+</span>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_total_pph21" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" value="<?php echo HtmlEncode($gaji_tu_smk_grid->total_pph21->FormValue) ?>">
+<?php } ?>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_total_pph21" name="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" id="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_total_pph21" value="<?php echo HtmlEncode($gaji_tu_smk_grid->total_pph21->OldValue) ?>">
+</td>
+	<?php } ?>
+	<?php if ($gaji_tu_smk_grid->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+		<td data-name="bpjs_kesehatan">
+<?php if (!$gaji_tu_smk->isConfirm()) { ?>
+<span id="el$rowindex$_gaji_tu_smk_bpjs_kesehatan" class="form-group gaji_tu_smk_bpjs_kesehatan">
+<input type="text" data-table="gaji_tu_smk" data-field="x_bpjs_kesehatan" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_tu_smk_grid->bpjs_kesehatan->getPlaceHolder()) ?>" value="<?php echo $gaji_tu_smk_grid->bpjs_kesehatan->EditValue ?>"<?php echo $gaji_tu_smk_grid->bpjs_kesehatan->editAttributes() ?>>
+</span>
+<?php } else { ?>
+<span id="el$rowindex$_gaji_tu_smk_bpjs_kesehatan" class="form-group gaji_tu_smk_bpjs_kesehatan">
+<span<?php echo $gaji_tu_smk_grid->bpjs_kesehatan->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($gaji_tu_smk_grid->bpjs_kesehatan->ViewValue)) ?>"></span>
+</span>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_bpjs_kesehatan" name="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" id="x<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" value="<?php echo HtmlEncode($gaji_tu_smk_grid->bpjs_kesehatan->FormValue) ?>">
+<?php } ?>
+<input type="hidden" data-table="gaji_tu_smk" data-field="x_bpjs_kesehatan" name="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" id="o<?php echo $gaji_tu_smk_grid->RowIndex ?>_bpjs_kesehatan" value="<?php echo HtmlEncode($gaji_tu_smk_grid->bpjs_kesehatan->OldValue) ?>">
 </td>
 	<?php } ?>
 	<?php if ($gaji_tu_smk_grid->potongan->Visible) { // potongan ?>

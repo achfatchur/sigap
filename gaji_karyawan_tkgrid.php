@@ -101,6 +101,46 @@ loadjs.ready("head", function() {
 				elm = this.getElements("x" + infix + "_voucher");
 				if (elm && !ew.checkInteger(elm.value))
 					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_tk_grid->voucher->errorMessage()) ?>");
+			<?php if ($gaji_karyawan_tk_grid->jaminan_pensiun->Required) { ?>
+				elm = this.getElements("x" + infix + "_jaminan_pensiun");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_karyawan_tk_grid->jaminan_pensiun->caption(), $gaji_karyawan_tk_grid->jaminan_pensiun->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_jaminan_pensiun");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_tk_grid->jaminan_pensiun->errorMessage()) ?>");
+			<?php if ($gaji_karyawan_tk_grid->jaminan_hari_tua->Required) { ?>
+				elm = this.getElements("x" + infix + "_jaminan_hari_tua");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_karyawan_tk_grid->jaminan_hari_tua->caption(), $gaji_karyawan_tk_grid->jaminan_hari_tua->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_jaminan_hari_tua");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_tk_grid->jaminan_hari_tua->errorMessage()) ?>");
+			<?php if ($gaji_karyawan_tk_grid->total_pph21->Required) { ?>
+				elm = this.getElements("x" + infix + "_total_pph21");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_karyawan_tk_grid->total_pph21->caption(), $gaji_karyawan_tk_grid->total_pph21->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_total_pph21");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_tk_grid->total_pph21->errorMessage()) ?>");
+			<?php if ($gaji_karyawan_tk_grid->bpjs_kesehatan->Required) { ?>
+				elm = this.getElements("x" + infix + "_bpjs_kesehatan");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_karyawan_tk_grid->bpjs_kesehatan->caption(), $gaji_karyawan_tk_grid->bpjs_kesehatan->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_bpjs_kesehatan");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_tk_grid->bpjs_kesehatan->errorMessage()) ?>");
+			<?php if ($gaji_karyawan_tk_grid->status_npwp->Required) { ?>
+				elm = this.getElements("x" + infix + "_status_npwp");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $gaji_karyawan_tk_grid->status_npwp->caption(), $gaji_karyawan_tk_grid->status_npwp->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_status_npwp");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($gaji_karyawan_tk_grid->status_npwp->errorMessage()) ?>");
 
 				// Call Form_CustomValidate event
 				if (!this.Form_CustomValidate(fobj))
@@ -120,6 +160,11 @@ loadjs.ready("head", function() {
 		if (ew.valueChanged(fobj, infix, "potongan_bendahara", false)) return false;
 		if (ew.valueChanged(fobj, infix, "total", false)) return false;
 		if (ew.valueChanged(fobj, infix, "voucher", false)) return false;
+		if (ew.valueChanged(fobj, infix, "jaminan_pensiun", false)) return false;
+		if (ew.valueChanged(fobj, infix, "jaminan_hari_tua", false)) return false;
+		if (ew.valueChanged(fobj, infix, "total_pph21", false)) return false;
+		if (ew.valueChanged(fobj, infix, "bpjs_kesehatan", false)) return false;
+		if (ew.valueChanged(fobj, infix, "status_npwp", false)) return false;
 		return true;
 	}
 
@@ -227,6 +272,51 @@ $gaji_karyawan_tk_grid->ListOptions->render("header", "left");
 	<?php } else { ?>
 		<th data-name="voucher" class="<?php echo $gaji_karyawan_tk_grid->voucher->headerCellClass() ?>"><div><div id="elh_gaji_karyawan_tk_voucher" class="gaji_karyawan_tk_voucher">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_tk_grid->voucher->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_tk_grid->voucher->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_tk_grid->voucher->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_grid->jaminan_pensiun->Visible) { // jaminan_pensiun ?>
+	<?php if ($gaji_karyawan_tk_grid->SortUrl($gaji_karyawan_tk_grid->jaminan_pensiun) == "") { ?>
+		<th data-name="jaminan_pensiun" class="<?php echo $gaji_karyawan_tk_grid->jaminan_pensiun->headerCellClass() ?>"><div id="elh_gaji_karyawan_tk_jaminan_pensiun" class="gaji_karyawan_tk_jaminan_pensiun"><div class="ew-table-header-caption"><?php echo $gaji_karyawan_tk_grid->jaminan_pensiun->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="jaminan_pensiun" class="<?php echo $gaji_karyawan_tk_grid->jaminan_pensiun->headerCellClass() ?>"><div><div id="elh_gaji_karyawan_tk_jaminan_pensiun" class="gaji_karyawan_tk_jaminan_pensiun">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_tk_grid->jaminan_pensiun->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_tk_grid->jaminan_pensiun->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_tk_grid->jaminan_pensiun->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_grid->jaminan_hari_tua->Visible) { // jaminan_hari_tua ?>
+	<?php if ($gaji_karyawan_tk_grid->SortUrl($gaji_karyawan_tk_grid->jaminan_hari_tua) == "") { ?>
+		<th data-name="jaminan_hari_tua" class="<?php echo $gaji_karyawan_tk_grid->jaminan_hari_tua->headerCellClass() ?>"><div id="elh_gaji_karyawan_tk_jaminan_hari_tua" class="gaji_karyawan_tk_jaminan_hari_tua"><div class="ew-table-header-caption"><?php echo $gaji_karyawan_tk_grid->jaminan_hari_tua->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="jaminan_hari_tua" class="<?php echo $gaji_karyawan_tk_grid->jaminan_hari_tua->headerCellClass() ?>"><div><div id="elh_gaji_karyawan_tk_jaminan_hari_tua" class="gaji_karyawan_tk_jaminan_hari_tua">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_tk_grid->jaminan_hari_tua->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_tk_grid->jaminan_hari_tua->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_tk_grid->jaminan_hari_tua->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_grid->total_pph21->Visible) { // total_pph21 ?>
+	<?php if ($gaji_karyawan_tk_grid->SortUrl($gaji_karyawan_tk_grid->total_pph21) == "") { ?>
+		<th data-name="total_pph21" class="<?php echo $gaji_karyawan_tk_grid->total_pph21->headerCellClass() ?>"><div id="elh_gaji_karyawan_tk_total_pph21" class="gaji_karyawan_tk_total_pph21"><div class="ew-table-header-caption"><?php echo $gaji_karyawan_tk_grid->total_pph21->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="total_pph21" class="<?php echo $gaji_karyawan_tk_grid->total_pph21->headerCellClass() ?>"><div><div id="elh_gaji_karyawan_tk_total_pph21" class="gaji_karyawan_tk_total_pph21">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_tk_grid->total_pph21->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_tk_grid->total_pph21->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_tk_grid->total_pph21->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_grid->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+	<?php if ($gaji_karyawan_tk_grid->SortUrl($gaji_karyawan_tk_grid->bpjs_kesehatan) == "") { ?>
+		<th data-name="bpjs_kesehatan" class="<?php echo $gaji_karyawan_tk_grid->bpjs_kesehatan->headerCellClass() ?>"><div id="elh_gaji_karyawan_tk_bpjs_kesehatan" class="gaji_karyawan_tk_bpjs_kesehatan"><div class="ew-table-header-caption"><?php echo $gaji_karyawan_tk_grid->bpjs_kesehatan->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="bpjs_kesehatan" class="<?php echo $gaji_karyawan_tk_grid->bpjs_kesehatan->headerCellClass() ?>"><div><div id="elh_gaji_karyawan_tk_bpjs_kesehatan" class="gaji_karyawan_tk_bpjs_kesehatan">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_tk_grid->bpjs_kesehatan->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_tk_grid->bpjs_kesehatan->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_tk_grid->bpjs_kesehatan->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_grid->status_npwp->Visible) { // status_npwp ?>
+	<?php if ($gaji_karyawan_tk_grid->SortUrl($gaji_karyawan_tk_grid->status_npwp) == "") { ?>
+		<th data-name="status_npwp" class="<?php echo $gaji_karyawan_tk_grid->status_npwp->headerCellClass() ?>"><div id="elh_gaji_karyawan_tk_status_npwp" class="gaji_karyawan_tk_status_npwp"><div class="ew-table-header-caption"><?php echo $gaji_karyawan_tk_grid->status_npwp->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="status_npwp" class="<?php echo $gaji_karyawan_tk_grid->status_npwp->headerCellClass() ?>"><div><div id="elh_gaji_karyawan_tk_status_npwp" class="gaji_karyawan_tk_status_npwp">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_tk_grid->status_npwp->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_tk_grid->status_npwp->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_tk_grid->status_npwp->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -548,6 +638,141 @@ $gaji_karyawan_tk_grid->ListOptions->render("body", "left", $gaji_karyawan_tk_gr
 <?php } ?>
 </td>
 	<?php } ?>
+	<?php if ($gaji_karyawan_tk_grid->jaminan_pensiun->Visible) { // jaminan_pensiun ?>
+		<td data-name="jaminan_pensiun" <?php echo $gaji_karyawan_tk_grid->jaminan_pensiun->cellAttributes() ?>>
+<?php if ($gaji_karyawan_tk->RowType == ROWTYPE_ADD) { // Add record ?>
+<span id="el<?php echo $gaji_karyawan_tk_grid->RowCount ?>_gaji_karyawan_tk_jaminan_pensiun" class="form-group">
+<input type="text" data-table="gaji_karyawan_tk" data-field="x_jaminan_pensiun" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_pensiun->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_tk_grid->jaminan_pensiun->EditValue ?>"<?php echo $gaji_karyawan_tk_grid->jaminan_pensiun->editAttributes() ?>>
+</span>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_jaminan_pensiun" name="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" id="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_pensiun->OldValue) ?>">
+<?php } ?>
+<?php if ($gaji_karyawan_tk->RowType == ROWTYPE_EDIT) { // Edit record ?>
+<span id="el<?php echo $gaji_karyawan_tk_grid->RowCount ?>_gaji_karyawan_tk_jaminan_pensiun" class="form-group">
+<input type="text" data-table="gaji_karyawan_tk" data-field="x_jaminan_pensiun" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_pensiun->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_tk_grid->jaminan_pensiun->EditValue ?>"<?php echo $gaji_karyawan_tk_grid->jaminan_pensiun->editAttributes() ?>>
+</span>
+<?php } ?>
+<?php if ($gaji_karyawan_tk->RowType == ROWTYPE_VIEW) { // View record ?>
+<span id="el<?php echo $gaji_karyawan_tk_grid->RowCount ?>_gaji_karyawan_tk_jaminan_pensiun">
+<span<?php echo $gaji_karyawan_tk_grid->jaminan_pensiun->viewAttributes() ?>><?php echo $gaji_karyawan_tk_grid->jaminan_pensiun->getViewValue() ?></span>
+</span>
+<?php if (!$gaji_karyawan_tk->isConfirm()) { ?>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_jaminan_pensiun" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_pensiun->FormValue) ?>">
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_jaminan_pensiun" name="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" id="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_pensiun->OldValue) ?>">
+<?php } else { ?>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_jaminan_pensiun" name="fgaji_karyawan_tkgrid$x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" id="fgaji_karyawan_tkgrid$x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_pensiun->FormValue) ?>">
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_jaminan_pensiun" name="fgaji_karyawan_tkgrid$o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" id="fgaji_karyawan_tkgrid$o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_pensiun->OldValue) ?>">
+<?php } ?>
+<?php } ?>
+</td>
+	<?php } ?>
+	<?php if ($gaji_karyawan_tk_grid->jaminan_hari_tua->Visible) { // jaminan_hari_tua ?>
+		<td data-name="jaminan_hari_tua" <?php echo $gaji_karyawan_tk_grid->jaminan_hari_tua->cellAttributes() ?>>
+<?php if ($gaji_karyawan_tk->RowType == ROWTYPE_ADD) { // Add record ?>
+<span id="el<?php echo $gaji_karyawan_tk_grid->RowCount ?>_gaji_karyawan_tk_jaminan_hari_tua" class="form-group">
+<input type="text" data-table="gaji_karyawan_tk" data-field="x_jaminan_hari_tua" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_hari_tua->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_tk_grid->jaminan_hari_tua->EditValue ?>"<?php echo $gaji_karyawan_tk_grid->jaminan_hari_tua->editAttributes() ?>>
+</span>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_jaminan_hari_tua" name="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" id="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_hari_tua->OldValue) ?>">
+<?php } ?>
+<?php if ($gaji_karyawan_tk->RowType == ROWTYPE_EDIT) { // Edit record ?>
+<span id="el<?php echo $gaji_karyawan_tk_grid->RowCount ?>_gaji_karyawan_tk_jaminan_hari_tua" class="form-group">
+<input type="text" data-table="gaji_karyawan_tk" data-field="x_jaminan_hari_tua" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_hari_tua->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_tk_grid->jaminan_hari_tua->EditValue ?>"<?php echo $gaji_karyawan_tk_grid->jaminan_hari_tua->editAttributes() ?>>
+</span>
+<?php } ?>
+<?php if ($gaji_karyawan_tk->RowType == ROWTYPE_VIEW) { // View record ?>
+<span id="el<?php echo $gaji_karyawan_tk_grid->RowCount ?>_gaji_karyawan_tk_jaminan_hari_tua">
+<span<?php echo $gaji_karyawan_tk_grid->jaminan_hari_tua->viewAttributes() ?>><?php echo $gaji_karyawan_tk_grid->jaminan_hari_tua->getViewValue() ?></span>
+</span>
+<?php if (!$gaji_karyawan_tk->isConfirm()) { ?>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_jaminan_hari_tua" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_hari_tua->FormValue) ?>">
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_jaminan_hari_tua" name="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" id="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_hari_tua->OldValue) ?>">
+<?php } else { ?>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_jaminan_hari_tua" name="fgaji_karyawan_tkgrid$x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" id="fgaji_karyawan_tkgrid$x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_hari_tua->FormValue) ?>">
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_jaminan_hari_tua" name="fgaji_karyawan_tkgrid$o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" id="fgaji_karyawan_tkgrid$o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_hari_tua->OldValue) ?>">
+<?php } ?>
+<?php } ?>
+</td>
+	<?php } ?>
+	<?php if ($gaji_karyawan_tk_grid->total_pph21->Visible) { // total_pph21 ?>
+		<td data-name="total_pph21" <?php echo $gaji_karyawan_tk_grid->total_pph21->cellAttributes() ?>>
+<?php if ($gaji_karyawan_tk->RowType == ROWTYPE_ADD) { // Add record ?>
+<span id="el<?php echo $gaji_karyawan_tk_grid->RowCount ?>_gaji_karyawan_tk_total_pph21" class="form-group">
+<input type="text" data-table="gaji_karyawan_tk" data-field="x_total_pph21" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_karyawan_tk_grid->total_pph21->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_tk_grid->total_pph21->EditValue ?>"<?php echo $gaji_karyawan_tk_grid->total_pph21->editAttributes() ?>>
+</span>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_total_pph21" name="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" id="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->total_pph21->OldValue) ?>">
+<?php } ?>
+<?php if ($gaji_karyawan_tk->RowType == ROWTYPE_EDIT) { // Edit record ?>
+<span id="el<?php echo $gaji_karyawan_tk_grid->RowCount ?>_gaji_karyawan_tk_total_pph21" class="form-group">
+<input type="text" data-table="gaji_karyawan_tk" data-field="x_total_pph21" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_karyawan_tk_grid->total_pph21->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_tk_grid->total_pph21->EditValue ?>"<?php echo $gaji_karyawan_tk_grid->total_pph21->editAttributes() ?>>
+</span>
+<?php } ?>
+<?php if ($gaji_karyawan_tk->RowType == ROWTYPE_VIEW) { // View record ?>
+<span id="el<?php echo $gaji_karyawan_tk_grid->RowCount ?>_gaji_karyawan_tk_total_pph21">
+<span<?php echo $gaji_karyawan_tk_grid->total_pph21->viewAttributes() ?>><?php echo $gaji_karyawan_tk_grid->total_pph21->getViewValue() ?></span>
+</span>
+<?php if (!$gaji_karyawan_tk->isConfirm()) { ?>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_total_pph21" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->total_pph21->FormValue) ?>">
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_total_pph21" name="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" id="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->total_pph21->OldValue) ?>">
+<?php } else { ?>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_total_pph21" name="fgaji_karyawan_tkgrid$x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" id="fgaji_karyawan_tkgrid$x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->total_pph21->FormValue) ?>">
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_total_pph21" name="fgaji_karyawan_tkgrid$o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" id="fgaji_karyawan_tkgrid$o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->total_pph21->OldValue) ?>">
+<?php } ?>
+<?php } ?>
+</td>
+	<?php } ?>
+	<?php if ($gaji_karyawan_tk_grid->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+		<td data-name="bpjs_kesehatan" <?php echo $gaji_karyawan_tk_grid->bpjs_kesehatan->cellAttributes() ?>>
+<?php if ($gaji_karyawan_tk->RowType == ROWTYPE_ADD) { // Add record ?>
+<span id="el<?php echo $gaji_karyawan_tk_grid->RowCount ?>_gaji_karyawan_tk_bpjs_kesehatan" class="form-group">
+<input type="text" data-table="gaji_karyawan_tk" data-field="x_bpjs_kesehatan" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_karyawan_tk_grid->bpjs_kesehatan->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_tk_grid->bpjs_kesehatan->EditValue ?>"<?php echo $gaji_karyawan_tk_grid->bpjs_kesehatan->editAttributes() ?>>
+</span>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_bpjs_kesehatan" name="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" id="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->bpjs_kesehatan->OldValue) ?>">
+<?php } ?>
+<?php if ($gaji_karyawan_tk->RowType == ROWTYPE_EDIT) { // Edit record ?>
+<span id="el<?php echo $gaji_karyawan_tk_grid->RowCount ?>_gaji_karyawan_tk_bpjs_kesehatan" class="form-group">
+<input type="text" data-table="gaji_karyawan_tk" data-field="x_bpjs_kesehatan" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_karyawan_tk_grid->bpjs_kesehatan->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_tk_grid->bpjs_kesehatan->EditValue ?>"<?php echo $gaji_karyawan_tk_grid->bpjs_kesehatan->editAttributes() ?>>
+</span>
+<?php } ?>
+<?php if ($gaji_karyawan_tk->RowType == ROWTYPE_VIEW) { // View record ?>
+<span id="el<?php echo $gaji_karyawan_tk_grid->RowCount ?>_gaji_karyawan_tk_bpjs_kesehatan">
+<span<?php echo $gaji_karyawan_tk_grid->bpjs_kesehatan->viewAttributes() ?>><?php echo $gaji_karyawan_tk_grid->bpjs_kesehatan->getViewValue() ?></span>
+</span>
+<?php if (!$gaji_karyawan_tk->isConfirm()) { ?>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_bpjs_kesehatan" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->bpjs_kesehatan->FormValue) ?>">
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_bpjs_kesehatan" name="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" id="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->bpjs_kesehatan->OldValue) ?>">
+<?php } else { ?>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_bpjs_kesehatan" name="fgaji_karyawan_tkgrid$x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" id="fgaji_karyawan_tkgrid$x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->bpjs_kesehatan->FormValue) ?>">
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_bpjs_kesehatan" name="fgaji_karyawan_tkgrid$o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" id="fgaji_karyawan_tkgrid$o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->bpjs_kesehatan->OldValue) ?>">
+<?php } ?>
+<?php } ?>
+</td>
+	<?php } ?>
+	<?php if ($gaji_karyawan_tk_grid->status_npwp->Visible) { // status_npwp ?>
+		<td data-name="status_npwp" <?php echo $gaji_karyawan_tk_grid->status_npwp->cellAttributes() ?>>
+<?php if ($gaji_karyawan_tk->RowType == ROWTYPE_ADD) { // Add record ?>
+<span id="el<?php echo $gaji_karyawan_tk_grid->RowCount ?>_gaji_karyawan_tk_status_npwp" class="form-group">
+<input type="text" data-table="gaji_karyawan_tk" data-field="x_status_npwp" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($gaji_karyawan_tk_grid->status_npwp->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_tk_grid->status_npwp->EditValue ?>"<?php echo $gaji_karyawan_tk_grid->status_npwp->editAttributes() ?>>
+</span>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_status_npwp" name="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" id="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->status_npwp->OldValue) ?>">
+<?php } ?>
+<?php if ($gaji_karyawan_tk->RowType == ROWTYPE_EDIT) { // Edit record ?>
+<span id="el<?php echo $gaji_karyawan_tk_grid->RowCount ?>_gaji_karyawan_tk_status_npwp" class="form-group">
+<input type="text" data-table="gaji_karyawan_tk" data-field="x_status_npwp" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($gaji_karyawan_tk_grid->status_npwp->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_tk_grid->status_npwp->EditValue ?>"<?php echo $gaji_karyawan_tk_grid->status_npwp->editAttributes() ?>>
+</span>
+<?php } ?>
+<?php if ($gaji_karyawan_tk->RowType == ROWTYPE_VIEW) { // View record ?>
+<span id="el<?php echo $gaji_karyawan_tk_grid->RowCount ?>_gaji_karyawan_tk_status_npwp">
+<span<?php echo $gaji_karyawan_tk_grid->status_npwp->viewAttributes() ?>><?php echo $gaji_karyawan_tk_grid->status_npwp->getViewValue() ?></span>
+</span>
+<?php if (!$gaji_karyawan_tk->isConfirm()) { ?>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_status_npwp" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->status_npwp->FormValue) ?>">
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_status_npwp" name="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" id="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->status_npwp->OldValue) ?>">
+<?php } else { ?>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_status_npwp" name="fgaji_karyawan_tkgrid$x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" id="fgaji_karyawan_tkgrid$x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->status_npwp->FormValue) ?>">
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_status_npwp" name="fgaji_karyawan_tkgrid$o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" id="fgaji_karyawan_tkgrid$o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->status_npwp->OldValue) ?>">
+<?php } ?>
+<?php } ?>
+</td>
+	<?php } ?>
 <?php
 
 // Render list options (body, right)
@@ -703,6 +928,81 @@ $gaji_karyawan_tk_grid->ListOptions->render("body", "left", $gaji_karyawan_tk_gr
 <input type="hidden" data-table="gaji_karyawan_tk" data-field="x_voucher" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_voucher" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_voucher" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->voucher->FormValue) ?>">
 <?php } ?>
 <input type="hidden" data-table="gaji_karyawan_tk" data-field="x_voucher" name="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_voucher" id="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_voucher" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->voucher->OldValue) ?>">
+</td>
+	<?php } ?>
+	<?php if ($gaji_karyawan_tk_grid->jaminan_pensiun->Visible) { // jaminan_pensiun ?>
+		<td data-name="jaminan_pensiun">
+<?php if (!$gaji_karyawan_tk->isConfirm()) { ?>
+<span id="el$rowindex$_gaji_karyawan_tk_jaminan_pensiun" class="form-group gaji_karyawan_tk_jaminan_pensiun">
+<input type="text" data-table="gaji_karyawan_tk" data-field="x_jaminan_pensiun" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_pensiun->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_tk_grid->jaminan_pensiun->EditValue ?>"<?php echo $gaji_karyawan_tk_grid->jaminan_pensiun->editAttributes() ?>>
+</span>
+<?php } else { ?>
+<span id="el$rowindex$_gaji_karyawan_tk_jaminan_pensiun" class="form-group gaji_karyawan_tk_jaminan_pensiun">
+<span<?php echo $gaji_karyawan_tk_grid->jaminan_pensiun->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($gaji_karyawan_tk_grid->jaminan_pensiun->ViewValue)) ?>"></span>
+</span>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_jaminan_pensiun" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_pensiun->FormValue) ?>">
+<?php } ?>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_jaminan_pensiun" name="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" id="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_pensiun" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_pensiun->OldValue) ?>">
+</td>
+	<?php } ?>
+	<?php if ($gaji_karyawan_tk_grid->jaminan_hari_tua->Visible) { // jaminan_hari_tua ?>
+		<td data-name="jaminan_hari_tua">
+<?php if (!$gaji_karyawan_tk->isConfirm()) { ?>
+<span id="el$rowindex$_gaji_karyawan_tk_jaminan_hari_tua" class="form-group gaji_karyawan_tk_jaminan_hari_tua">
+<input type="text" data-table="gaji_karyawan_tk" data-field="x_jaminan_hari_tua" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_hari_tua->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_tk_grid->jaminan_hari_tua->EditValue ?>"<?php echo $gaji_karyawan_tk_grid->jaminan_hari_tua->editAttributes() ?>>
+</span>
+<?php } else { ?>
+<span id="el$rowindex$_gaji_karyawan_tk_jaminan_hari_tua" class="form-group gaji_karyawan_tk_jaminan_hari_tua">
+<span<?php echo $gaji_karyawan_tk_grid->jaminan_hari_tua->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($gaji_karyawan_tk_grid->jaminan_hari_tua->ViewValue)) ?>"></span>
+</span>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_jaminan_hari_tua" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_hari_tua->FormValue) ?>">
+<?php } ?>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_jaminan_hari_tua" name="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" id="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_jaminan_hari_tua" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->jaminan_hari_tua->OldValue) ?>">
+</td>
+	<?php } ?>
+	<?php if ($gaji_karyawan_tk_grid->total_pph21->Visible) { // total_pph21 ?>
+		<td data-name="total_pph21">
+<?php if (!$gaji_karyawan_tk->isConfirm()) { ?>
+<span id="el$rowindex$_gaji_karyawan_tk_total_pph21" class="form-group gaji_karyawan_tk_total_pph21">
+<input type="text" data-table="gaji_karyawan_tk" data-field="x_total_pph21" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_karyawan_tk_grid->total_pph21->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_tk_grid->total_pph21->EditValue ?>"<?php echo $gaji_karyawan_tk_grid->total_pph21->editAttributes() ?>>
+</span>
+<?php } else { ?>
+<span id="el$rowindex$_gaji_karyawan_tk_total_pph21" class="form-group gaji_karyawan_tk_total_pph21">
+<span<?php echo $gaji_karyawan_tk_grid->total_pph21->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($gaji_karyawan_tk_grid->total_pph21->ViewValue)) ?>"></span>
+</span>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_total_pph21" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->total_pph21->FormValue) ?>">
+<?php } ?>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_total_pph21" name="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" id="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_total_pph21" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->total_pph21->OldValue) ?>">
+</td>
+	<?php } ?>
+	<?php if ($gaji_karyawan_tk_grid->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+		<td data-name="bpjs_kesehatan">
+<?php if (!$gaji_karyawan_tk->isConfirm()) { ?>
+<span id="el$rowindex$_gaji_karyawan_tk_bpjs_kesehatan" class="form-group gaji_karyawan_tk_bpjs_kesehatan">
+<input type="text" data-table="gaji_karyawan_tk" data-field="x_bpjs_kesehatan" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" size="30" maxlength="19" placeholder="<?php echo HtmlEncode($gaji_karyawan_tk_grid->bpjs_kesehatan->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_tk_grid->bpjs_kesehatan->EditValue ?>"<?php echo $gaji_karyawan_tk_grid->bpjs_kesehatan->editAttributes() ?>>
+</span>
+<?php } else { ?>
+<span id="el$rowindex$_gaji_karyawan_tk_bpjs_kesehatan" class="form-group gaji_karyawan_tk_bpjs_kesehatan">
+<span<?php echo $gaji_karyawan_tk_grid->bpjs_kesehatan->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($gaji_karyawan_tk_grid->bpjs_kesehatan->ViewValue)) ?>"></span>
+</span>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_bpjs_kesehatan" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->bpjs_kesehatan->FormValue) ?>">
+<?php } ?>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_bpjs_kesehatan" name="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" id="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_bpjs_kesehatan" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->bpjs_kesehatan->OldValue) ?>">
+</td>
+	<?php } ?>
+	<?php if ($gaji_karyawan_tk_grid->status_npwp->Visible) { // status_npwp ?>
+		<td data-name="status_npwp">
+<?php if (!$gaji_karyawan_tk->isConfirm()) { ?>
+<span id="el$rowindex$_gaji_karyawan_tk_status_npwp" class="form-group gaji_karyawan_tk_status_npwp">
+<input type="text" data-table="gaji_karyawan_tk" data-field="x_status_npwp" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($gaji_karyawan_tk_grid->status_npwp->getPlaceHolder()) ?>" value="<?php echo $gaji_karyawan_tk_grid->status_npwp->EditValue ?>"<?php echo $gaji_karyawan_tk_grid->status_npwp->editAttributes() ?>>
+</span>
+<?php } else { ?>
+<span id="el$rowindex$_gaji_karyawan_tk_status_npwp" class="form-group gaji_karyawan_tk_status_npwp">
+<span<?php echo $gaji_karyawan_tk_grid->status_npwp->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($gaji_karyawan_tk_grid->status_npwp->ViewValue)) ?>"></span>
+</span>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_status_npwp" name="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" id="x<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->status_npwp->FormValue) ?>">
+<?php } ?>
+<input type="hidden" data-table="gaji_karyawan_tk" data-field="x_status_npwp" name="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" id="o<?php echo $gaji_karyawan_tk_grid->RowIndex ?>_status_npwp" value="<?php echo HtmlEncode($gaji_karyawan_tk_grid->status_npwp->OldValue) ?>">
 </td>
 	<?php } ?>
 <?php

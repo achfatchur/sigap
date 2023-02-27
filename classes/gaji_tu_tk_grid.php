@@ -746,6 +746,10 @@ class gaji_tu_tk_grid extends gaji_tu_tk
 		$this->tugastambahan->Visible = FALSE;
 		$this->tj_jabatan->Visible = FALSE;
 		$this->tunjangan2->Visible = FALSE;
+		$this->jaminan_pensiun->Visible = FALSE;
+		$this->jaminan_hari_tua->Visible = FALSE;
+		$this->total_pph21->Visible = FALSE;
+		$this->bpjs_kesehatan->Visible = FALSE;
 		$this->potongan->setVisibility();
 		$this->sub_total->setVisibility();
 		$this->penyesuaian->setVisibility();
@@ -753,6 +757,7 @@ class gaji_tu_tk_grid extends gaji_tu_tk
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
 		$this->status->Visible = FALSE;
+		$this->status_npwp->Visible = FALSE;
 		$this->hideFieldsForAddEdit();
 
 		// Global Page Loading event (in userfn*.php)
@@ -784,6 +789,7 @@ class gaji_tu_tk_grid extends gaji_tu_tk
 		$this->setupLookupOptions($this->type_jabatan);
 		$this->setupLookupOptions($this->tambahan);
 		$this->setupLookupOptions($this->sertif);
+		$this->setupLookupOptions($this->status_npwp);
 
 		// Search filters
 		$srchAdvanced = ""; // Advanced search filter
@@ -1579,6 +1585,14 @@ class gaji_tu_tk_grid extends gaji_tu_tk
 		$this->tj_jabatan->OldValue = $this->tj_jabatan->CurrentValue;
 		$this->tunjangan2->CurrentValue = NULL;
 		$this->tunjangan2->OldValue = $this->tunjangan2->CurrentValue;
+		$this->jaminan_pensiun->CurrentValue = NULL;
+		$this->jaminan_pensiun->OldValue = $this->jaminan_pensiun->CurrentValue;
+		$this->jaminan_hari_tua->CurrentValue = NULL;
+		$this->jaminan_hari_tua->OldValue = $this->jaminan_hari_tua->CurrentValue;
+		$this->total_pph21->CurrentValue = NULL;
+		$this->total_pph21->OldValue = $this->total_pph21->CurrentValue;
+		$this->bpjs_kesehatan->CurrentValue = NULL;
+		$this->bpjs_kesehatan->OldValue = $this->bpjs_kesehatan->CurrentValue;
 		$this->potongan->CurrentValue = NULL;
 		$this->potongan->OldValue = $this->potongan->CurrentValue;
 		$this->sub_total->CurrentValue = NULL;
@@ -1593,6 +1607,8 @@ class gaji_tu_tk_grid extends gaji_tu_tk
 		$this->voucher->OldValue = $this->voucher->CurrentValue;
 		$this->status->CurrentValue = NULL;
 		$this->status->OldValue = $this->status->CurrentValue;
+		$this->status_npwp->CurrentValue = NULL;
+		$this->status_npwp->OldValue = $this->status_npwp->CurrentValue;
 	}
 
 	// Load form values
@@ -1813,6 +1829,10 @@ class gaji_tu_tk_grid extends gaji_tu_tk
 		$this->tugastambahan->setDbValue($row['tugastambahan']);
 		$this->tj_jabatan->setDbValue($row['tj_jabatan']);
 		$this->tunjangan2->setDbValue($row['tunjangan2']);
+		$this->jaminan_pensiun->setDbValue($row['jaminan_pensiun']);
+		$this->jaminan_hari_tua->setDbValue($row['jaminan_hari_tua']);
+		$this->total_pph21->setDbValue($row['total_pph21']);
+		$this->bpjs_kesehatan->setDbValue($row['bpjs_kesehatan']);
 		$this->potongan->setDbValue($row['potongan']);
 		$this->sub_total->setDbValue($row['sub_total']);
 		$this->penyesuaian->setDbValue($row['penyesuaian']);
@@ -1820,6 +1840,7 @@ class gaji_tu_tk_grid extends gaji_tu_tk
 		$this->total->setDbValue($row['total']);
 		$this->voucher->setDbValue($row['voucher']);
 		$this->status->setDbValue($row['status']);
+		$this->status_npwp->setDbValue($row['status_npwp']);
 	}
 
 	// Return a row with default values
@@ -1853,6 +1874,10 @@ class gaji_tu_tk_grid extends gaji_tu_tk
 		$row['tugastambahan'] = $this->tugastambahan->CurrentValue;
 		$row['tj_jabatan'] = $this->tj_jabatan->CurrentValue;
 		$row['tunjangan2'] = $this->tunjangan2->CurrentValue;
+		$row['jaminan_pensiun'] = $this->jaminan_pensiun->CurrentValue;
+		$row['jaminan_hari_tua'] = $this->jaminan_hari_tua->CurrentValue;
+		$row['total_pph21'] = $this->total_pph21->CurrentValue;
+		$row['bpjs_kesehatan'] = $this->bpjs_kesehatan->CurrentValue;
 		$row['potongan'] = $this->potongan->CurrentValue;
 		$row['sub_total'] = $this->sub_total->CurrentValue;
 		$row['penyesuaian'] = $this->penyesuaian->CurrentValue;
@@ -1860,6 +1885,7 @@ class gaji_tu_tk_grid extends gaji_tu_tk
 		$row['total'] = $this->total->CurrentValue;
 		$row['voucher'] = $this->voucher->CurrentValue;
 		$row['status'] = $this->status->CurrentValue;
+		$row['status_npwp'] = $this->status_npwp->CurrentValue;
 		return $row;
 	}
 
@@ -1933,6 +1959,10 @@ class gaji_tu_tk_grid extends gaji_tu_tk
 		// tugastambahan
 		// tj_jabatan
 		// tunjangan2
+		// jaminan_pensiun
+		// jaminan_hari_tua
+		// total_pph21
+		// bpjs_kesehatan
 		// potongan
 		// sub_total
 		// penyesuaian
@@ -1940,6 +1970,7 @@ class gaji_tu_tk_grid extends gaji_tu_tk
 		// total
 		// voucher
 		// status
+		// status_npwp
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
@@ -2196,6 +2227,26 @@ class gaji_tu_tk_grid extends gaji_tu_tk
 			$this->tunjangan2->ViewValue = FormatNumber($this->tunjangan2->ViewValue, 0, -2, -2, -2);
 			$this->tunjangan2->ViewCustomAttributes = "";
 
+			// jaminan_pensiun
+			$this->jaminan_pensiun->ViewValue = $this->jaminan_pensiun->CurrentValue;
+			$this->jaminan_pensiun->ViewValue = FormatNumber($this->jaminan_pensiun->ViewValue, 0, -2, -2, -2);
+			$this->jaminan_pensiun->ViewCustomAttributes = "";
+
+			// jaminan_hari_tua
+			$this->jaminan_hari_tua->ViewValue = $this->jaminan_hari_tua->CurrentValue;
+			$this->jaminan_hari_tua->ViewValue = FormatNumber($this->jaminan_hari_tua->ViewValue, 0, -2, -2, -2);
+			$this->jaminan_hari_tua->ViewCustomAttributes = "";
+
+			// total_pph21
+			$this->total_pph21->ViewValue = $this->total_pph21->CurrentValue;
+			$this->total_pph21->ViewValue = FormatNumber($this->total_pph21->ViewValue, 0, -2, -2, -2);
+			$this->total_pph21->ViewCustomAttributes = "";
+
+			// bpjs_kesehatan
+			$this->bpjs_kesehatan->ViewValue = $this->bpjs_kesehatan->CurrentValue;
+			$this->bpjs_kesehatan->ViewValue = FormatNumber($this->bpjs_kesehatan->ViewValue, 0, -2, -2, -2);
+			$this->bpjs_kesehatan->ViewCustomAttributes = "";
+
 			// potongan
 			$this->potongan->ViewValue = $this->potongan->CurrentValue;
 			$this->potongan->ViewValue = FormatNumber($this->potongan->ViewValue, 0, -2, -2, -2);
@@ -2230,6 +2281,29 @@ class gaji_tu_tk_grid extends gaji_tu_tk
 			$this->status->ViewValue = $this->status->CurrentValue;
 			$this->status->ViewValue = FormatNumber($this->status->ViewValue, 0, -2, -2, -2);
 			$this->status->ViewCustomAttributes = "";
+
+			// status_npwp
+			$this->status_npwp->ViewValue = $this->status_npwp->CurrentValue;
+			$curVal = strval($this->status_npwp->CurrentValue);
+			if ($curVal != "") {
+				$this->status_npwp->ViewValue = $this->status_npwp->lookupCacheOption($curVal);
+				if ($this->status_npwp->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->status_npwp->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->status_npwp->ViewValue = $this->status_npwp->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->status_npwp->ViewValue = $this->status_npwp->CurrentValue;
+					}
+				}
+			} else {
+				$this->status_npwp->ViewValue = NULL;
+			}
+			$this->status_npwp->ViewCustomAttributes = "";
 
 			// tahun
 			$this->tahun->LinkCustomAttributes = "";
@@ -3113,6 +3187,8 @@ class gaji_tu_tk_grid extends gaji_tu_tk
 					break;
 				case "x_sertif":
 					break;
+				case "x_status_npwp":
+					break;
 				default:
 					$lookupFilter = "";
 					break;
@@ -3146,6 +3222,8 @@ class gaji_tu_tk_grid extends gaji_tu_tk
 						case "x_tambahan":
 							break;
 						case "x_sertif":
+							break;
+						case "x_status_npwp":
 							break;
 					}
 					$ar[strval($row[0])] = $row;

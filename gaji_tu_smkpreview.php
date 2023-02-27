@@ -92,6 +92,42 @@ $gaji_tu_smk_preview->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($gaji_tu_smk_preview->jaminan_pensiun->Visible) { // jaminan_pensiun ?>
+	<?php if ($gaji_tu_smk->SortUrl($gaji_tu_smk_preview->jaminan_pensiun) == "") { ?>
+		<th class="<?php echo $gaji_tu_smk_preview->jaminan_pensiun->headerCellClass() ?>"><?php echo $gaji_tu_smk_preview->jaminan_pensiun->caption() ?></th>
+	<?php } else { ?>
+		<th class="<?php echo $gaji_tu_smk_preview->jaminan_pensiun->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_tu_smk_preview->jaminan_pensiun->Name) ?>" data-sort-order="<?php echo $gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->jaminan_pensiun->Name && $gaji_tu_smk_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_preview->jaminan_pensiun->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->jaminan_pensiun->Name) { ?><?php if ($gaji_tu_smk_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_tu_smk_preview->jaminan_hari_tua->Visible) { // jaminan_hari_tua ?>
+	<?php if ($gaji_tu_smk->SortUrl($gaji_tu_smk_preview->jaminan_hari_tua) == "") { ?>
+		<th class="<?php echo $gaji_tu_smk_preview->jaminan_hari_tua->headerCellClass() ?>"><?php echo $gaji_tu_smk_preview->jaminan_hari_tua->caption() ?></th>
+	<?php } else { ?>
+		<th class="<?php echo $gaji_tu_smk_preview->jaminan_hari_tua->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_tu_smk_preview->jaminan_hari_tua->Name) ?>" data-sort-order="<?php echo $gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->jaminan_hari_tua->Name && $gaji_tu_smk_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_preview->jaminan_hari_tua->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->jaminan_hari_tua->Name) { ?><?php if ($gaji_tu_smk_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_tu_smk_preview->total_pph21->Visible) { // total_pph21 ?>
+	<?php if ($gaji_tu_smk->SortUrl($gaji_tu_smk_preview->total_pph21) == "") { ?>
+		<th class="<?php echo $gaji_tu_smk_preview->total_pph21->headerCellClass() ?>"><?php echo $gaji_tu_smk_preview->total_pph21->caption() ?></th>
+	<?php } else { ?>
+		<th class="<?php echo $gaji_tu_smk_preview->total_pph21->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_tu_smk_preview->total_pph21->Name) ?>" data-sort-order="<?php echo $gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->total_pph21->Name && $gaji_tu_smk_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_preview->total_pph21->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->total_pph21->Name) { ?><?php if ($gaji_tu_smk_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_tu_smk_preview->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+	<?php if ($gaji_tu_smk->SortUrl($gaji_tu_smk_preview->bpjs_kesehatan) == "") { ?>
+		<th class="<?php echo $gaji_tu_smk_preview->bpjs_kesehatan->headerCellClass() ?>"><?php echo $gaji_tu_smk_preview->bpjs_kesehatan->caption() ?></th>
+	<?php } else { ?>
+		<th class="<?php echo $gaji_tu_smk_preview->bpjs_kesehatan->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_tu_smk_preview->bpjs_kesehatan->Name) ?>" data-sort-order="<?php echo $gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->bpjs_kesehatan->Name && $gaji_tu_smk_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_preview->bpjs_kesehatan->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_preview->SortField == $gaji_tu_smk_preview->bpjs_kesehatan->Name) { ?><?php if ($gaji_tu_smk_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($gaji_tu_smk_preview->potongan->Visible) { // potongan ?>
 	<?php if ($gaji_tu_smk->SortUrl($gaji_tu_smk_preview->potongan) == "") { ?>
 		<th class="<?php echo $gaji_tu_smk_preview->potongan->headerCellClass() ?>"><?php echo $gaji_tu_smk_preview->potongan->caption() ?></th>
@@ -198,6 +234,30 @@ $gaji_tu_smk_preview->ListOptions->render("body", "left", $gaji_tu_smk_preview->
 		<!-- sub_total -->
 		<td<?php echo $gaji_tu_smk_preview->sub_total->cellAttributes() ?>>
 <span<?php echo $gaji_tu_smk_preview->sub_total->viewAttributes() ?>><?php echo $gaji_tu_smk_preview->sub_total->getViewValue() ?></span>
+</td>
+<?php } ?>
+<?php if ($gaji_tu_smk_preview->jaminan_pensiun->Visible) { // jaminan_pensiun ?>
+		<!-- jaminan_pensiun -->
+		<td<?php echo $gaji_tu_smk_preview->jaminan_pensiun->cellAttributes() ?>>
+<span<?php echo $gaji_tu_smk_preview->jaminan_pensiun->viewAttributes() ?>><?php echo $gaji_tu_smk_preview->jaminan_pensiun->getViewValue() ?></span>
+</td>
+<?php } ?>
+<?php if ($gaji_tu_smk_preview->jaminan_hari_tua->Visible) { // jaminan_hari_tua ?>
+		<!-- jaminan_hari_tua -->
+		<td<?php echo $gaji_tu_smk_preview->jaminan_hari_tua->cellAttributes() ?>>
+<span<?php echo $gaji_tu_smk_preview->jaminan_hari_tua->viewAttributes() ?>><?php echo $gaji_tu_smk_preview->jaminan_hari_tua->getViewValue() ?></span>
+</td>
+<?php } ?>
+<?php if ($gaji_tu_smk_preview->total_pph21->Visible) { // total_pph21 ?>
+		<!-- total_pph21 -->
+		<td<?php echo $gaji_tu_smk_preview->total_pph21->cellAttributes() ?>>
+<span<?php echo $gaji_tu_smk_preview->total_pph21->viewAttributes() ?>><?php echo $gaji_tu_smk_preview->total_pph21->getViewValue() ?></span>
+</td>
+<?php } ?>
+<?php if ($gaji_tu_smk_preview->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+		<!-- bpjs_kesehatan -->
+		<td<?php echo $gaji_tu_smk_preview->bpjs_kesehatan->cellAttributes() ?>>
+<span<?php echo $gaji_tu_smk_preview->bpjs_kesehatan->viewAttributes() ?>><?php echo $gaji_tu_smk_preview->bpjs_kesehatan->getViewValue() ?></span>
 </td>
 <?php } ?>
 <?php if ($gaji_tu_smk_preview->potongan->Visible) { // potongan ?>

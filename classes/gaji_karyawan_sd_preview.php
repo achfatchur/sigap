@@ -602,12 +602,17 @@ class gaji_karyawan_sd_preview extends gaji_karyawan_sd
 		$this->value_reward->Visible = FALSE;
 		$this->value_inval->Visible = FALSE;
 		$this->sub_total->setVisibility();
+		$this->jaminan_pensiun->Visible = FALSE;
+		$this->jaminan_hari_tua->Visible = FALSE;
+		$this->bpjs_kesehatan->Visible = FALSE;
+		$this->total_pph21->Visible = FALSE;
 		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
 		$this->potongan_bendahara->setVisibility();
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
 		$this->status->Visible = FALSE;
+		$this->status_npwp->Visible = FALSE;
 		$this->hideFieldsForAddEdit();
 
 		// Do not use lookup cache
@@ -635,6 +640,7 @@ class gaji_karyawan_sd_preview extends gaji_karyawan_sd
 		$this->setupLookupOptions($this->pegawai);
 		$this->setupLookupOptions($this->jenjang_id);
 		$this->setupLookupOptions($this->jabatan_id);
+		$this->setupLookupOptions($this->status_npwp);
 
 		// Load filter
 		$filter = Get("f", "");
@@ -874,6 +880,8 @@ class gaji_karyawan_sd_preview extends gaji_karyawan_sd
 					break;
 				case "x_jabatan_id":
 					break;
+				case "x_status_npwp":
+					break;
 				default:
 					$lookupFilter = "";
 					break;
@@ -899,6 +907,8 @@ class gaji_karyawan_sd_preview extends gaji_karyawan_sd
 						case "x_jenjang_id":
 							break;
 						case "x_jabatan_id":
+							break;
+						case "x_status_npwp":
 							break;
 					}
 					$ar[strval($row[0])] = $row;

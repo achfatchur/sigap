@@ -238,6 +238,42 @@ $gaji_tu_smk_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($gaji_tu_smk_list->jaminan_pensiun->Visible) { // jaminan_pensiun ?>
+	<?php if ($gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->jaminan_pensiun) == "") { ?>
+		<th data-name="jaminan_pensiun" class="<?php echo $gaji_tu_smk_list->jaminan_pensiun->headerCellClass() ?>"><div id="elh_gaji_tu_smk_jaminan_pensiun" class="gaji_tu_smk_jaminan_pensiun"><div class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->jaminan_pensiun->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="jaminan_pensiun" class="<?php echo $gaji_tu_smk_list->jaminan_pensiun->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->jaminan_pensiun) ?>', 1);"><div id="elh_gaji_tu_smk_jaminan_pensiun" class="gaji_tu_smk_jaminan_pensiun">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->jaminan_pensiun->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_list->jaminan_pensiun->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_list->jaminan_pensiun->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_tu_smk_list->jaminan_hari_tua->Visible) { // jaminan_hari_tua ?>
+	<?php if ($gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->jaminan_hari_tua) == "") { ?>
+		<th data-name="jaminan_hari_tua" class="<?php echo $gaji_tu_smk_list->jaminan_hari_tua->headerCellClass() ?>"><div id="elh_gaji_tu_smk_jaminan_hari_tua" class="gaji_tu_smk_jaminan_hari_tua"><div class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->jaminan_hari_tua->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="jaminan_hari_tua" class="<?php echo $gaji_tu_smk_list->jaminan_hari_tua->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->jaminan_hari_tua) ?>', 1);"><div id="elh_gaji_tu_smk_jaminan_hari_tua" class="gaji_tu_smk_jaminan_hari_tua">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->jaminan_hari_tua->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_list->jaminan_hari_tua->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_list->jaminan_hari_tua->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_tu_smk_list->total_pph21->Visible) { // total_pph21 ?>
+	<?php if ($gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->total_pph21) == "") { ?>
+		<th data-name="total_pph21" class="<?php echo $gaji_tu_smk_list->total_pph21->headerCellClass() ?>"><div id="elh_gaji_tu_smk_total_pph21" class="gaji_tu_smk_total_pph21"><div class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->total_pph21->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="total_pph21" class="<?php echo $gaji_tu_smk_list->total_pph21->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->total_pph21) ?>', 1);"><div id="elh_gaji_tu_smk_total_pph21" class="gaji_tu_smk_total_pph21">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->total_pph21->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_list->total_pph21->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_list->total_pph21->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_tu_smk_list->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+	<?php if ($gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->bpjs_kesehatan) == "") { ?>
+		<th data-name="bpjs_kesehatan" class="<?php echo $gaji_tu_smk_list->bpjs_kesehatan->headerCellClass() ?>"><div id="elh_gaji_tu_smk_bpjs_kesehatan" class="gaji_tu_smk_bpjs_kesehatan"><div class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->bpjs_kesehatan->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="bpjs_kesehatan" class="<?php echo $gaji_tu_smk_list->bpjs_kesehatan->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->bpjs_kesehatan) ?>', 1);"><div id="elh_gaji_tu_smk_bpjs_kesehatan" class="gaji_tu_smk_bpjs_kesehatan">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->bpjs_kesehatan->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_tu_smk_list->bpjs_kesehatan->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_tu_smk_list->bpjs_kesehatan->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($gaji_tu_smk_list->potongan->Visible) { // potongan ?>
 	<?php if ($gaji_tu_smk_list->SortUrl($gaji_tu_smk_list->potongan) == "") { ?>
 		<th data-name="potongan" class="<?php echo $gaji_tu_smk_list->potongan->headerCellClass() ?>"><div id="elh_gaji_tu_smk_potongan" class="gaji_tu_smk_potongan"><div class="ew-table-header-caption"><?php echo $gaji_tu_smk_list->potongan->caption() ?></div></div></th>
@@ -380,6 +416,34 @@ $gaji_tu_smk_list->ListOptions->render("body", "left", $gaji_tu_smk_list->RowCou
 		<td data-name="sub_total" <?php echo $gaji_tu_smk_list->sub_total->cellAttributes() ?>>
 <span id="el<?php echo $gaji_tu_smk_list->RowCount ?>_gaji_tu_smk_sub_total">
 <span<?php echo $gaji_tu_smk_list->sub_total->viewAttributes() ?>><?php echo $gaji_tu_smk_list->sub_total->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($gaji_tu_smk_list->jaminan_pensiun->Visible) { // jaminan_pensiun ?>
+		<td data-name="jaminan_pensiun" <?php echo $gaji_tu_smk_list->jaminan_pensiun->cellAttributes() ?>>
+<span id="el<?php echo $gaji_tu_smk_list->RowCount ?>_gaji_tu_smk_jaminan_pensiun">
+<span<?php echo $gaji_tu_smk_list->jaminan_pensiun->viewAttributes() ?>><?php echo $gaji_tu_smk_list->jaminan_pensiun->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($gaji_tu_smk_list->jaminan_hari_tua->Visible) { // jaminan_hari_tua ?>
+		<td data-name="jaminan_hari_tua" <?php echo $gaji_tu_smk_list->jaminan_hari_tua->cellAttributes() ?>>
+<span id="el<?php echo $gaji_tu_smk_list->RowCount ?>_gaji_tu_smk_jaminan_hari_tua">
+<span<?php echo $gaji_tu_smk_list->jaminan_hari_tua->viewAttributes() ?>><?php echo $gaji_tu_smk_list->jaminan_hari_tua->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($gaji_tu_smk_list->total_pph21->Visible) { // total_pph21 ?>
+		<td data-name="total_pph21" <?php echo $gaji_tu_smk_list->total_pph21->cellAttributes() ?>>
+<span id="el<?php echo $gaji_tu_smk_list->RowCount ?>_gaji_tu_smk_total_pph21">
+<span<?php echo $gaji_tu_smk_list->total_pph21->viewAttributes() ?>><?php echo $gaji_tu_smk_list->total_pph21->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($gaji_tu_smk_list->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+		<td data-name="bpjs_kesehatan" <?php echo $gaji_tu_smk_list->bpjs_kesehatan->cellAttributes() ?>>
+<span id="el<?php echo $gaji_tu_smk_list->RowCount ?>_gaji_tu_smk_bpjs_kesehatan">
+<span<?php echo $gaji_tu_smk_list->bpjs_kesehatan->viewAttributes() ?>><?php echo $gaji_tu_smk_list->bpjs_kesehatan->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

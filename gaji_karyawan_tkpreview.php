@@ -110,6 +110,51 @@ $gaji_karyawan_tk_preview->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($gaji_karyawan_tk_preview->jaminan_pensiun->Visible) { // jaminan_pensiun ?>
+	<?php if ($gaji_karyawan_tk->SortUrl($gaji_karyawan_tk_preview->jaminan_pensiun) == "") { ?>
+		<th class="<?php echo $gaji_karyawan_tk_preview->jaminan_pensiun->headerCellClass() ?>"><?php echo $gaji_karyawan_tk_preview->jaminan_pensiun->caption() ?></th>
+	<?php } else { ?>
+		<th class="<?php echo $gaji_karyawan_tk_preview->jaminan_pensiun->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_karyawan_tk_preview->jaminan_pensiun->Name) ?>" data-sort-order="<?php echo $gaji_karyawan_tk_preview->SortField == $gaji_karyawan_tk_preview->jaminan_pensiun->Name && $gaji_karyawan_tk_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_tk_preview->jaminan_pensiun->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_tk_preview->SortField == $gaji_karyawan_tk_preview->jaminan_pensiun->Name) { ?><?php if ($gaji_karyawan_tk_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_tk_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_preview->jaminan_hari_tua->Visible) { // jaminan_hari_tua ?>
+	<?php if ($gaji_karyawan_tk->SortUrl($gaji_karyawan_tk_preview->jaminan_hari_tua) == "") { ?>
+		<th class="<?php echo $gaji_karyawan_tk_preview->jaminan_hari_tua->headerCellClass() ?>"><?php echo $gaji_karyawan_tk_preview->jaminan_hari_tua->caption() ?></th>
+	<?php } else { ?>
+		<th class="<?php echo $gaji_karyawan_tk_preview->jaminan_hari_tua->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_karyawan_tk_preview->jaminan_hari_tua->Name) ?>" data-sort-order="<?php echo $gaji_karyawan_tk_preview->SortField == $gaji_karyawan_tk_preview->jaminan_hari_tua->Name && $gaji_karyawan_tk_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_tk_preview->jaminan_hari_tua->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_tk_preview->SortField == $gaji_karyawan_tk_preview->jaminan_hari_tua->Name) { ?><?php if ($gaji_karyawan_tk_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_tk_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_preview->total_pph21->Visible) { // total_pph21 ?>
+	<?php if ($gaji_karyawan_tk->SortUrl($gaji_karyawan_tk_preview->total_pph21) == "") { ?>
+		<th class="<?php echo $gaji_karyawan_tk_preview->total_pph21->headerCellClass() ?>"><?php echo $gaji_karyawan_tk_preview->total_pph21->caption() ?></th>
+	<?php } else { ?>
+		<th class="<?php echo $gaji_karyawan_tk_preview->total_pph21->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_karyawan_tk_preview->total_pph21->Name) ?>" data-sort-order="<?php echo $gaji_karyawan_tk_preview->SortField == $gaji_karyawan_tk_preview->total_pph21->Name && $gaji_karyawan_tk_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_tk_preview->total_pph21->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_tk_preview->SortField == $gaji_karyawan_tk_preview->total_pph21->Name) { ?><?php if ($gaji_karyawan_tk_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_tk_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_preview->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+	<?php if ($gaji_karyawan_tk->SortUrl($gaji_karyawan_tk_preview->bpjs_kesehatan) == "") { ?>
+		<th class="<?php echo $gaji_karyawan_tk_preview->bpjs_kesehatan->headerCellClass() ?>"><?php echo $gaji_karyawan_tk_preview->bpjs_kesehatan->caption() ?></th>
+	<?php } else { ?>
+		<th class="<?php echo $gaji_karyawan_tk_preview->bpjs_kesehatan->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_karyawan_tk_preview->bpjs_kesehatan->Name) ?>" data-sort-order="<?php echo $gaji_karyawan_tk_preview->SortField == $gaji_karyawan_tk_preview->bpjs_kesehatan->Name && $gaji_karyawan_tk_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_tk_preview->bpjs_kesehatan->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_tk_preview->SortField == $gaji_karyawan_tk_preview->bpjs_kesehatan->Name) { ?><?php if ($gaji_karyawan_tk_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_tk_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_preview->status_npwp->Visible) { // status_npwp ?>
+	<?php if ($gaji_karyawan_tk->SortUrl($gaji_karyawan_tk_preview->status_npwp) == "") { ?>
+		<th class="<?php echo $gaji_karyawan_tk_preview->status_npwp->headerCellClass() ?>"><?php echo $gaji_karyawan_tk_preview->status_npwp->caption() ?></th>
+	<?php } else { ?>
+		<th class="<?php echo $gaji_karyawan_tk_preview->status_npwp->headerCellClass() ?>"><div class="ew-pointer" data-sort="<?php echo HtmlEncode($gaji_karyawan_tk_preview->status_npwp->Name) ?>" data-sort-order="<?php echo $gaji_karyawan_tk_preview->SortField == $gaji_karyawan_tk_preview->status_npwp->Name && $gaji_karyawan_tk_preview->SortOrder == "ASC" ? "DESC" : "ASC" ?>">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $gaji_karyawan_tk_preview->status_npwp->caption() ?></span><span class="ew-table-header-sort"><?php if ($gaji_karyawan_tk_preview->SortField == $gaji_karyawan_tk_preview->status_npwp->Name) { ?><?php if ($gaji_karyawan_tk_preview->SortOrder == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($gaji_karyawan_tk_preview->SortOrder == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?><?php } ?></span>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php
 
 // Render list options (header, right)
@@ -183,6 +228,36 @@ $gaji_karyawan_tk_preview->ListOptions->render("body", "left", $gaji_karyawan_tk
 		<!-- voucher -->
 		<td<?php echo $gaji_karyawan_tk_preview->voucher->cellAttributes() ?>>
 <span<?php echo $gaji_karyawan_tk_preview->voucher->viewAttributes() ?>><?php echo $gaji_karyawan_tk_preview->voucher->getViewValue() ?></span>
+</td>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_preview->jaminan_pensiun->Visible) { // jaminan_pensiun ?>
+		<!-- jaminan_pensiun -->
+		<td<?php echo $gaji_karyawan_tk_preview->jaminan_pensiun->cellAttributes() ?>>
+<span<?php echo $gaji_karyawan_tk_preview->jaminan_pensiun->viewAttributes() ?>><?php echo $gaji_karyawan_tk_preview->jaminan_pensiun->getViewValue() ?></span>
+</td>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_preview->jaminan_hari_tua->Visible) { // jaminan_hari_tua ?>
+		<!-- jaminan_hari_tua -->
+		<td<?php echo $gaji_karyawan_tk_preview->jaminan_hari_tua->cellAttributes() ?>>
+<span<?php echo $gaji_karyawan_tk_preview->jaminan_hari_tua->viewAttributes() ?>><?php echo $gaji_karyawan_tk_preview->jaminan_hari_tua->getViewValue() ?></span>
+</td>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_preview->total_pph21->Visible) { // total_pph21 ?>
+		<!-- total_pph21 -->
+		<td<?php echo $gaji_karyawan_tk_preview->total_pph21->cellAttributes() ?>>
+<span<?php echo $gaji_karyawan_tk_preview->total_pph21->viewAttributes() ?>><?php echo $gaji_karyawan_tk_preview->total_pph21->getViewValue() ?></span>
+</td>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_preview->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+		<!-- bpjs_kesehatan -->
+		<td<?php echo $gaji_karyawan_tk_preview->bpjs_kesehatan->cellAttributes() ?>>
+<span<?php echo $gaji_karyawan_tk_preview->bpjs_kesehatan->viewAttributes() ?>><?php echo $gaji_karyawan_tk_preview->bpjs_kesehatan->getViewValue() ?></span>
+</td>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_preview->status_npwp->Visible) { // status_npwp ?>
+		<!-- status_npwp -->
+		<td<?php echo $gaji_karyawan_tk_preview->status_npwp->cellAttributes() ?>>
+<span<?php echo $gaji_karyawan_tk_preview->status_npwp->viewAttributes() ?>><?php echo $gaji_karyawan_tk_preview->status_npwp->getViewValue() ?></span>
 </td>
 <?php } ?>
 <?php

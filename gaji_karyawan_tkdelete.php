@@ -91,6 +91,21 @@ $gaji_karyawan_tk_delete->showMessage();
 <?php if ($gaji_karyawan_tk_delete->voucher->Visible) { // voucher ?>
 		<th class="<?php echo $gaji_karyawan_tk_delete->voucher->headerCellClass() ?>"><span id="elh_gaji_karyawan_tk_voucher" class="gaji_karyawan_tk_voucher"><?php echo $gaji_karyawan_tk_delete->voucher->caption() ?></span></th>
 <?php } ?>
+<?php if ($gaji_karyawan_tk_delete->jaminan_pensiun->Visible) { // jaminan_pensiun ?>
+		<th class="<?php echo $gaji_karyawan_tk_delete->jaminan_pensiun->headerCellClass() ?>"><span id="elh_gaji_karyawan_tk_jaminan_pensiun" class="gaji_karyawan_tk_jaminan_pensiun"><?php echo $gaji_karyawan_tk_delete->jaminan_pensiun->caption() ?></span></th>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_delete->jaminan_hari_tua->Visible) { // jaminan_hari_tua ?>
+		<th class="<?php echo $gaji_karyawan_tk_delete->jaminan_hari_tua->headerCellClass() ?>"><span id="elh_gaji_karyawan_tk_jaminan_hari_tua" class="gaji_karyawan_tk_jaminan_hari_tua"><?php echo $gaji_karyawan_tk_delete->jaminan_hari_tua->caption() ?></span></th>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_delete->total_pph21->Visible) { // total_pph21 ?>
+		<th class="<?php echo $gaji_karyawan_tk_delete->total_pph21->headerCellClass() ?>"><span id="elh_gaji_karyawan_tk_total_pph21" class="gaji_karyawan_tk_total_pph21"><?php echo $gaji_karyawan_tk_delete->total_pph21->caption() ?></span></th>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_delete->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+		<th class="<?php echo $gaji_karyawan_tk_delete->bpjs_kesehatan->headerCellClass() ?>"><span id="elh_gaji_karyawan_tk_bpjs_kesehatan" class="gaji_karyawan_tk_bpjs_kesehatan"><?php echo $gaji_karyawan_tk_delete->bpjs_kesehatan->caption() ?></span></th>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_delete->status_npwp->Visible) { // status_npwp ?>
+		<th class="<?php echo $gaji_karyawan_tk_delete->status_npwp->headerCellClass() ?>"><span id="elh_gaji_karyawan_tk_status_npwp" class="gaji_karyawan_tk_status_npwp"><?php echo $gaji_karyawan_tk_delete->status_npwp->caption() ?></span></th>
+<?php } ?>
 	</tr>
 	</thead>
 	<tbody>
@@ -158,6 +173,41 @@ while (!$gaji_karyawan_tk_delete->Recordset->EOF) {
 		<td <?php echo $gaji_karyawan_tk_delete->voucher->cellAttributes() ?>>
 <span id="el<?php echo $gaji_karyawan_tk_delete->RowCount ?>_gaji_karyawan_tk_voucher" class="gaji_karyawan_tk_voucher">
 <span<?php echo $gaji_karyawan_tk_delete->voucher->viewAttributes() ?>><?php echo $gaji_karyawan_tk_delete->voucher->getViewValue() ?></span>
+</span>
+</td>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_delete->jaminan_pensiun->Visible) { // jaminan_pensiun ?>
+		<td <?php echo $gaji_karyawan_tk_delete->jaminan_pensiun->cellAttributes() ?>>
+<span id="el<?php echo $gaji_karyawan_tk_delete->RowCount ?>_gaji_karyawan_tk_jaminan_pensiun" class="gaji_karyawan_tk_jaminan_pensiun">
+<span<?php echo $gaji_karyawan_tk_delete->jaminan_pensiun->viewAttributes() ?>><?php echo $gaji_karyawan_tk_delete->jaminan_pensiun->getViewValue() ?></span>
+</span>
+</td>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_delete->jaminan_hari_tua->Visible) { // jaminan_hari_tua ?>
+		<td <?php echo $gaji_karyawan_tk_delete->jaminan_hari_tua->cellAttributes() ?>>
+<span id="el<?php echo $gaji_karyawan_tk_delete->RowCount ?>_gaji_karyawan_tk_jaminan_hari_tua" class="gaji_karyawan_tk_jaminan_hari_tua">
+<span<?php echo $gaji_karyawan_tk_delete->jaminan_hari_tua->viewAttributes() ?>><?php echo $gaji_karyawan_tk_delete->jaminan_hari_tua->getViewValue() ?></span>
+</span>
+</td>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_delete->total_pph21->Visible) { // total_pph21 ?>
+		<td <?php echo $gaji_karyawan_tk_delete->total_pph21->cellAttributes() ?>>
+<span id="el<?php echo $gaji_karyawan_tk_delete->RowCount ?>_gaji_karyawan_tk_total_pph21" class="gaji_karyawan_tk_total_pph21">
+<span<?php echo $gaji_karyawan_tk_delete->total_pph21->viewAttributes() ?>><?php echo $gaji_karyawan_tk_delete->total_pph21->getViewValue() ?></span>
+</span>
+</td>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_delete->bpjs_kesehatan->Visible) { // bpjs_kesehatan ?>
+		<td <?php echo $gaji_karyawan_tk_delete->bpjs_kesehatan->cellAttributes() ?>>
+<span id="el<?php echo $gaji_karyawan_tk_delete->RowCount ?>_gaji_karyawan_tk_bpjs_kesehatan" class="gaji_karyawan_tk_bpjs_kesehatan">
+<span<?php echo $gaji_karyawan_tk_delete->bpjs_kesehatan->viewAttributes() ?>><?php echo $gaji_karyawan_tk_delete->bpjs_kesehatan->getViewValue() ?></span>
+</span>
+</td>
+<?php } ?>
+<?php if ($gaji_karyawan_tk_delete->status_npwp->Visible) { // status_npwp ?>
+		<td <?php echo $gaji_karyawan_tk_delete->status_npwp->cellAttributes() ?>>
+<span id="el<?php echo $gaji_karyawan_tk_delete->RowCount ?>_gaji_karyawan_tk_status_npwp" class="gaji_karyawan_tk_status_npwp">
+<span<?php echo $gaji_karyawan_tk_delete->status_npwp->viewAttributes() ?>><?php echo $gaji_karyawan_tk_delete->status_npwp->getViewValue() ?></span>
 </span>
 </td>
 <?php } ?>

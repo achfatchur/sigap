@@ -1130,7 +1130,7 @@ class generate_pertahun extends DbTable
 					//5% x 50% x Gaji Pokok
 					$fase1 = $komponen_pph21["value2"] * $komponen_gapok;
 					$pph21 = $fase1 * $komponen_pph21["value3"];
-				}else if($query["status_npwp"] == '2'){
+				}else{
 					//125% x 5% x 50% x Gaji Pokok
 					$fase1 = ($komponen_pph21["value1"] * $komponen_gapok) * $komponen_pph21["value2"];
 					//$fase2 = $fase1 ;
@@ -1229,7 +1229,6 @@ class generate_pertahun extends DbTable
 				//$tambahan = ($piket["value"] * $absen["piket"]) +  ($lembur * $absen["lembur"]);
 
 				$inval2 = ($inval * $absen["inval"]) ;
-
 					//print_r($hadir);
 					//die;
 				$jaminan_tua = ExecuteScalar("select value from m_iuran_hari_tua where unit='".$query['jenjang_id']."'");
@@ -1248,13 +1247,9 @@ class generate_pertahun extends DbTable
 					//$fase2 = $fase1 ;
 					$pph21 = $fase1 * $komponen_pph21["value3"];
 				}
-
-				//bpjs kesehatan 
-
 				$bpjs = ExecuteScalar("select value from m_bpjs where id='".$query["bpjs_kesehatan"]."'");
-				//print_r($bpjs);
-				//die;
 				$solve_bpjs = 1 * $bpjs;
+
 
 				$penyesuaian = $solve_bpjs + $value_hari_tua + $value_pensiun + $pph21 + ($absen_tidak * $absen["absen"]) + ($absen_tidak * $absen["izin"]) + ($sakit * $absen["sakit"]) + ($terlambat * $absen["terlambat"]) + ($pulang_cepat * $absen['pulang_cepat']);
 				$tambahan_value = ($piket["value"] * $absen["piket"]) +  ($lembur * $absen["lembur"]);

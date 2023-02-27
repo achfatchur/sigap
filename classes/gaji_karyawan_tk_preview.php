@@ -608,6 +608,11 @@ class gaji_karyawan_tk_preview extends gaji_karyawan_tk
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
 		$this->status->Visible = FALSE;
+		$this->jaminan_pensiun->setVisibility();
+		$this->jaminan_hari_tua->setVisibility();
+		$this->total_pph21->setVisibility();
+		$this->bpjs_kesehatan->setVisibility();
+		$this->status_npwp->setVisibility();
 		$this->hideFieldsForAddEdit();
 
 		// Do not use lookup cache

@@ -848,12 +848,17 @@ class gaji_tu_smp_list extends gaji_tu_smp
 		$this->tj_jabatan->Visible = FALSE;
 		$this->tunjangan2->Visible = FALSE;
 		$this->sub_total->setVisibility();
+		$this->jaminan_pensiun->Visible = FALSE;
+		$this->jaminan_hari_tua->Visible = FALSE;
+		$this->total_pph21->Visible = FALSE;
+		$this->bpjs_kesehatan->Visible = FALSE;
 		$this->potongan->setVisibility();
 		$this->penyesuaian->setVisibility();
 		$this->potongan_bendahara->setVisibility();
 		$this->total->setVisibility();
 		$this->voucher->setVisibility();
 		$this->status->Visible = FALSE;
+		$this->status_npwp->Visible = FALSE;
 		$this->hideFieldsForAddEdit();
 
 		// Global Page Loading event (in userfn*.php)
@@ -897,6 +902,7 @@ class gaji_tu_smp_list extends gaji_tu_smp
 		$this->setupLookupOptions($this->type_jabatan);
 		$this->setupLookupOptions($this->tambahan);
 		$this->setupLookupOptions($this->sertif);
+		$this->setupLookupOptions($this->status_npwp);
 
 		// Search filters
 		$srchAdvanced = ""; // Advanced search filter
@@ -1196,12 +1202,17 @@ class gaji_tu_smp_list extends gaji_tu_smp
 		$filterList = Concat($filterList, $this->tj_jabatan->AdvancedSearch->toJson(), ","); // Field tj_jabatan
 		$filterList = Concat($filterList, $this->tunjangan2->AdvancedSearch->toJson(), ","); // Field tunjangan2
 		$filterList = Concat($filterList, $this->sub_total->AdvancedSearch->toJson(), ","); // Field sub_total
+		$filterList = Concat($filterList, $this->jaminan_pensiun->AdvancedSearch->toJson(), ","); // Field jaminan_pensiun
+		$filterList = Concat($filterList, $this->jaminan_hari_tua->AdvancedSearch->toJson(), ","); // Field jaminan_hari_tua
+		$filterList = Concat($filterList, $this->total_pph21->AdvancedSearch->toJson(), ","); // Field total_pph21
+		$filterList = Concat($filterList, $this->bpjs_kesehatan->AdvancedSearch->toJson(), ","); // Field bpjs_kesehatan
 		$filterList = Concat($filterList, $this->potongan->AdvancedSearch->toJson(), ","); // Field potongan
 		$filterList = Concat($filterList, $this->penyesuaian->AdvancedSearch->toJson(), ","); // Field penyesuaian
 		$filterList = Concat($filterList, $this->potongan_bendahara->AdvancedSearch->toJson(), ","); // Field potongan_bendahara
 		$filterList = Concat($filterList, $this->total->AdvancedSearch->toJson(), ","); // Field total
 		$filterList = Concat($filterList, $this->voucher->AdvancedSearch->toJson(), ","); // Field voucher
 		$filterList = Concat($filterList, $this->status->AdvancedSearch->toJson(), ","); // Field status
+		$filterList = Concat($filterList, $this->status_npwp->AdvancedSearch->toJson(), ","); // Field status_npwp
 		if ($this->BasicSearch->Keyword != "") {
 			$wrk = "\"" . Config("TABLE_BASIC_SEARCH") . "\":\"" . JsEncode($this->BasicSearch->Keyword) . "\",\"" . Config("TABLE_BASIC_SEARCH_TYPE") . "\":\"" . JsEncode($this->BasicSearch->Type) . "\"";
 			$filterList = Concat($filterList, $wrk, ",");
@@ -1456,6 +1467,38 @@ class gaji_tu_smp_list extends gaji_tu_smp
 		$this->sub_total->AdvancedSearch->SearchOperator2 = @$filter["w_sub_total"];
 		$this->sub_total->AdvancedSearch->save();
 
+		// Field jaminan_pensiun
+		$this->jaminan_pensiun->AdvancedSearch->SearchValue = @$filter["x_jaminan_pensiun"];
+		$this->jaminan_pensiun->AdvancedSearch->SearchOperator = @$filter["z_jaminan_pensiun"];
+		$this->jaminan_pensiun->AdvancedSearch->SearchCondition = @$filter["v_jaminan_pensiun"];
+		$this->jaminan_pensiun->AdvancedSearch->SearchValue2 = @$filter["y_jaminan_pensiun"];
+		$this->jaminan_pensiun->AdvancedSearch->SearchOperator2 = @$filter["w_jaminan_pensiun"];
+		$this->jaminan_pensiun->AdvancedSearch->save();
+
+		// Field jaminan_hari_tua
+		$this->jaminan_hari_tua->AdvancedSearch->SearchValue = @$filter["x_jaminan_hari_tua"];
+		$this->jaminan_hari_tua->AdvancedSearch->SearchOperator = @$filter["z_jaminan_hari_tua"];
+		$this->jaminan_hari_tua->AdvancedSearch->SearchCondition = @$filter["v_jaminan_hari_tua"];
+		$this->jaminan_hari_tua->AdvancedSearch->SearchValue2 = @$filter["y_jaminan_hari_tua"];
+		$this->jaminan_hari_tua->AdvancedSearch->SearchOperator2 = @$filter["w_jaminan_hari_tua"];
+		$this->jaminan_hari_tua->AdvancedSearch->save();
+
+		// Field total_pph21
+		$this->total_pph21->AdvancedSearch->SearchValue = @$filter["x_total_pph21"];
+		$this->total_pph21->AdvancedSearch->SearchOperator = @$filter["z_total_pph21"];
+		$this->total_pph21->AdvancedSearch->SearchCondition = @$filter["v_total_pph21"];
+		$this->total_pph21->AdvancedSearch->SearchValue2 = @$filter["y_total_pph21"];
+		$this->total_pph21->AdvancedSearch->SearchOperator2 = @$filter["w_total_pph21"];
+		$this->total_pph21->AdvancedSearch->save();
+
+		// Field bpjs_kesehatan
+		$this->bpjs_kesehatan->AdvancedSearch->SearchValue = @$filter["x_bpjs_kesehatan"];
+		$this->bpjs_kesehatan->AdvancedSearch->SearchOperator = @$filter["z_bpjs_kesehatan"];
+		$this->bpjs_kesehatan->AdvancedSearch->SearchCondition = @$filter["v_bpjs_kesehatan"];
+		$this->bpjs_kesehatan->AdvancedSearch->SearchValue2 = @$filter["y_bpjs_kesehatan"];
+		$this->bpjs_kesehatan->AdvancedSearch->SearchOperator2 = @$filter["w_bpjs_kesehatan"];
+		$this->bpjs_kesehatan->AdvancedSearch->save();
+
 		// Field potongan
 		$this->potongan->AdvancedSearch->SearchValue = @$filter["x_potongan"];
 		$this->potongan->AdvancedSearch->SearchOperator = @$filter["z_potongan"];
@@ -1503,6 +1546,14 @@ class gaji_tu_smp_list extends gaji_tu_smp
 		$this->status->AdvancedSearch->SearchValue2 = @$filter["y_status"];
 		$this->status->AdvancedSearch->SearchOperator2 = @$filter["w_status"];
 		$this->status->AdvancedSearch->save();
+
+		// Field status_npwp
+		$this->status_npwp->AdvancedSearch->SearchValue = @$filter["x_status_npwp"];
+		$this->status_npwp->AdvancedSearch->SearchOperator = @$filter["z_status_npwp"];
+		$this->status_npwp->AdvancedSearch->SearchCondition = @$filter["v_status_npwp"];
+		$this->status_npwp->AdvancedSearch->SearchValue2 = @$filter["y_status_npwp"];
+		$this->status_npwp->AdvancedSearch->SearchOperator2 = @$filter["w_status_npwp"];
+		$this->status_npwp->AdvancedSearch->save();
 		$this->BasicSearch->setKeyword(@$filter[Config("TABLE_BASIC_SEARCH")]);
 		$this->BasicSearch->setType(@$filter[Config("TABLE_BASIC_SEARCH_TYPE")]);
 	}
@@ -2112,12 +2163,17 @@ class gaji_tu_smp_list extends gaji_tu_smp
 		$this->tj_jabatan->setDbValue($row['tj_jabatan']);
 		$this->tunjangan2->setDbValue($row['tunjangan2']);
 		$this->sub_total->setDbValue($row['sub_total']);
+		$this->jaminan_pensiun->setDbValue($row['jaminan_pensiun']);
+		$this->jaminan_hari_tua->setDbValue($row['jaminan_hari_tua']);
+		$this->total_pph21->setDbValue($row['total_pph21']);
+		$this->bpjs_kesehatan->setDbValue($row['bpjs_kesehatan']);
 		$this->potongan->setDbValue($row['potongan']);
 		$this->penyesuaian->setDbValue($row['penyesuaian']);
 		$this->potongan_bendahara->setDbValue($row['potongan_bendahara']);
 		$this->total->setDbValue($row['total']);
 		$this->voucher->setDbValue($row['voucher']);
 		$this->status->setDbValue($row['status']);
+		$this->status_npwp->setDbValue($row['status_npwp']);
 	}
 
 	// Return a row with default values
@@ -2151,12 +2207,17 @@ class gaji_tu_smp_list extends gaji_tu_smp
 		$row['tj_jabatan'] = NULL;
 		$row['tunjangan2'] = NULL;
 		$row['sub_total'] = NULL;
+		$row['jaminan_pensiun'] = NULL;
+		$row['jaminan_hari_tua'] = NULL;
+		$row['total_pph21'] = NULL;
+		$row['bpjs_kesehatan'] = NULL;
 		$row['potongan'] = NULL;
 		$row['penyesuaian'] = NULL;
 		$row['potongan_bendahara'] = NULL;
 		$row['total'] = NULL;
 		$row['voucher'] = NULL;
 		$row['status'] = NULL;
+		$row['status_npwp'] = NULL;
 		return $row;
 	}
 
@@ -2227,12 +2288,17 @@ class gaji_tu_smp_list extends gaji_tu_smp
 		// tj_jabatan
 		// tunjangan2
 		// sub_total
+		// jaminan_pensiun
+		// jaminan_hari_tua
+		// total_pph21
+		// bpjs_kesehatan
 		// potongan
 		// penyesuaian
 		// potongan_bendahara
 		// total
 		// voucher
 		// status
+		// status_npwp
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
@@ -2494,6 +2560,26 @@ class gaji_tu_smp_list extends gaji_tu_smp
 			$this->sub_total->ViewValue = FormatNumber($this->sub_total->ViewValue, 0, -2, -2, -2);
 			$this->sub_total->ViewCustomAttributes = "";
 
+			// jaminan_pensiun
+			$this->jaminan_pensiun->ViewValue = $this->jaminan_pensiun->CurrentValue;
+			$this->jaminan_pensiun->ViewValue = FormatNumber($this->jaminan_pensiun->ViewValue, 0, -2, -2, -2);
+			$this->jaminan_pensiun->ViewCustomAttributes = "";
+
+			// jaminan_hari_tua
+			$this->jaminan_hari_tua->ViewValue = $this->jaminan_hari_tua->CurrentValue;
+			$this->jaminan_hari_tua->ViewValue = FormatNumber($this->jaminan_hari_tua->ViewValue, 0, -2, -2, -2);
+			$this->jaminan_hari_tua->ViewCustomAttributes = "";
+
+			// total_pph21
+			$this->total_pph21->ViewValue = $this->total_pph21->CurrentValue;
+			$this->total_pph21->ViewValue = FormatNumber($this->total_pph21->ViewValue, 0, -2, -2, -2);
+			$this->total_pph21->ViewCustomAttributes = "";
+
+			// bpjs_kesehatan
+			$this->bpjs_kesehatan->ViewValue = $this->bpjs_kesehatan->CurrentValue;
+			$this->bpjs_kesehatan->ViewValue = FormatNumber($this->bpjs_kesehatan->ViewValue, 0, -2, -2, -2);
+			$this->bpjs_kesehatan->ViewCustomAttributes = "";
+
 			// potongan
 			$this->potongan->ViewValue = $this->potongan->CurrentValue;
 			$this->potongan->ViewValue = FormatNumber($this->potongan->ViewValue, 0, -2, -2, -2);
@@ -2523,6 +2609,29 @@ class gaji_tu_smp_list extends gaji_tu_smp
 			$this->status->ViewValue = $this->status->CurrentValue;
 			$this->status->ViewValue = FormatNumber($this->status->ViewValue, 0, -2, -2, -2);
 			$this->status->ViewCustomAttributes = "";
+
+			// status_npwp
+			$this->status_npwp->ViewValue = $this->status_npwp->CurrentValue;
+			$curVal = strval($this->status_npwp->CurrentValue);
+			if ($curVal != "") {
+				$this->status_npwp->ViewValue = $this->status_npwp->lookupCacheOption($curVal);
+				if ($this->status_npwp->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->status_npwp->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->status_npwp->ViewValue = $this->status_npwp->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->status_npwp->ViewValue = $this->status_npwp->CurrentValue;
+					}
+				}
+			} else {
+				$this->status_npwp->ViewValue = NULL;
+			}
+			$this->status_npwp->ViewCustomAttributes = "";
 
 			// pegawai
 			$this->pegawai->LinkCustomAttributes = "";
@@ -2967,6 +3076,8 @@ class gaji_tu_smp_list extends gaji_tu_smp
 					break;
 				case "x_sertif":
 					break;
+				case "x_status_npwp":
+					break;
 				default:
 					$lookupFilter = "";
 					break;
@@ -3000,6 +3111,8 @@ class gaji_tu_smp_list extends gaji_tu_smp
 						case "x_tambahan":
 							break;
 						case "x_sertif":
+							break;
+						case "x_status_npwp":
 							break;
 					}
 					$ar[strval($row[0])] = $row;
