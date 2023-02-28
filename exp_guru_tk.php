@@ -15,7 +15,7 @@ while($row = mysqli_fetch_array($sql))
                 'bulan'=>$row['bulan'],
                 'nama'=>$row['nama'],
 				'nip'=>$row['pegawai'],
-				'total'=>number_format$row['total'],0,',','.'),
+				'total'=>number_format($row['total'],0,',','.'),
         		);   
 }
 $template = 'templateimport.xlsx';
