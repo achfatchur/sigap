@@ -1173,6 +1173,11 @@ class generate_pertahun_smp extends DbTable
 					//die;
 
 				$myResult = Execute($myquery);
+				$solve_gol_bpjs = 1 * $query["bpjs_kesehatan"];	
+				$delete_all ="DELETE FROM solved_smp WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
+				$clone_all = execute($delete_clone);
+				$all = "INSERT INTO solved_smp VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
+				$Result = Execute($all);
 				}
 
 			//}elseif($this->profesi->CurrentValue == '2'){
@@ -1270,6 +1275,11 @@ class generate_pertahun_smp extends DbTable
 					//	die;
 
 					$Result = Execute($myquery2);
+					$solve_gol_bpjs = 1 * $query["bpjs_kesehatan"];	
+					$delete_all ="DELETE FROM solved_smp WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
+					$clone_all = execute($delete_clone);
+					$all = "INSERT INTO solved_smp VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
+					$Result = Execute($all);
 						}
 
 				//}else{
@@ -1346,6 +1356,11 @@ class generate_pertahun_smp extends DbTable
 					//die;
 
 					$Result = Execute($myquery2);
+					$solve_gol_bpjs = 1 * $query["bpjs_kesehatan"];	
+					$delete_all ="DELETE FROM solved_smp WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
+					$clone_all = execute($delete_clone);
+					$all = "INSERT INTO solved_smp VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
+					$Result = Execute($all);
 						}
 					}
 

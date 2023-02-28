@@ -6,9 +6,7 @@ require_once'vendor/tbs_class.php';
 require_once'vendor/tbs_plugin_opentbs.php';
 $TBS = new clsTinyButStrong; 
 $TBS->Plugin(TBS_INSTALL, OPENTBS_PLUGIN);
-$bulan = $_GET['bulan'];
-$tahun = $_GET['tahun'];
-$sql = mysqli_query($con, "SELECT gaji_tk.pegawai, gaji_tk.tahun, pegawai.nama, gaji_tk.total,bulan.bulan, gaji_tk.pid FROM gaji_tk INNER JOIN pegawai ON gaji_tk.pegawai = pegawai.nip INNER JOIN bulan ON gaji_tk.bulan = bulan.id order by gaji_tk.pid DESC");	
+$sql = mysqli_query($con, "SELECT bulan.bulan, tpendidikan.name, pegawai.nama, solved_tk.nip,solved_tk.tahun, pegawai.rekbank, jenis_jabatan.name, solved_tk.type_peg,solved_tk.total_gaji FROM solved_tk INNER JOIN pegawai ON solved_tk.nip = pegawai.nip INNER JOIN tpendidikan ON solved_tk.unit = tpendidikan.nourut INNER JOIN bulan ON solved_tk.bulan = bulan.id INNER JOIN jenis_jabatan ON solved_tk.type_peg = jenis_jabatan.id ORDER BY solved_tk.type_peg ASC");	
 $data = [];
 while($row = mysqli_fetch_array($sql))
 {     
@@ -16,14 +14,14 @@ while($row = mysqli_fetch_array($sql))
                 'tahun'=>$row['tahun'],
                 'bulan'=>$row['bulan'],
                 'nama'=>$row['nama'],
-				'nip'=>$row['pegawai'],
-				'total'=>number_format($row['total'],0,',','.'),
+				'nip'=>$row['nip'],
+				'total'=>number_format($row['total_gaji'],0,',','.'),
         		);   
 }
 $template = 'templateimport.xlsx';
 $TBS->LoadTemplate($template, OPENTBS_ALREADY_UTF8);
 $TBS->MergeBlock('data', $data);
 $dateyear = date("F Y");
-$TBS->Show(OPENTBS_DOWNLOAD, $dateyear.' Laporan Gaji Guru TK.xlsx');
+$TBS->Show(OPENTBS_DOWNLOAD, $dateyear.' Laporan Gaji Guru SMA.xlsx');
 exit();
 ?>

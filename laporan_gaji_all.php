@@ -238,28 +238,19 @@ Page_Rendering();
 			</div>
 			<div class="form-row align-items-center">
 				<div class="col-auto">
-		<?php if ($jenjang == '1'){?>	
-			<a href="exp_guru_tk.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
-			<a href="exp_tu_tk.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
-			<a href="exp_pegawai_tk.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
+				<?php if ($jenjang == '1'){?>	
+			<a href="exp_guru_tk.php"class="btn btn-danger mb-2" target="_self">Export Data Unit TK</a>
 		<?php } elseif ($jenjang == '2') { ?>
-			<a href="exp_guru_sd.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
-			<a href="exp_tu_sd.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
-			<a href="exp_pegawai_sd.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
+			<a href="exp_guru_sd.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SD</a>
 		<?php } elseif ($jenjang == '3') { ?>
-			<a href="exp_guru_smp.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
-			<a href="exp_tu_smp.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
-			<a href="exp_pegawai_smp.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
+			<a href="exp_guru_smp.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMP</a>
 		<?php } elseif ($jenjang == '4') { ?>
-			<a href="exp_guru_sma.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
-			<a href="exp_tu_sma.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
-			<a href="exp_karyawan_sma.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
+			<a href="exp_guru_sma.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMA</a>
 		<?php } elseif ($jenjang == '5') { ?> 
-			<a href="exp_guru_smk.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
-			<a href="exp_tu_smk.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
-			<a href="exp_pegawai_smk.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
-		<?php } ?>		
-				</div>
+			<a href="exp_guru_smk.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMK</a>
+		<?php } ?>
+			<a href="exp_tu_tk.php"class="btn btn-danger mb-2" target="_self">Export Semua Data Unit</a>			
+				</div>	
 			</div>
 		</form>
 	<?php }else{ ?>
@@ -274,28 +265,19 @@ Page_Rendering();
 			</div>
 			<div class="form-row align-items-center">
 				<div class="col-auto">
-		<?php if ($jenjang == '1'){?>	
-			<a href="exp_guru_tk.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
-			<a href="exp_tu_tk.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
-			<a href="exp_pegawai_tk.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
+				<?php if ($jenjang == '1'){?>	
+			<a href="exp_guru_tk.php"class="btn btn-danger mb-2" target="_self">Export Data Unit TK</a>
 		<?php } elseif ($jenjang == '2') { ?>
-			<a href="exp_guru_sd.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
-			<a href="exp_tu_sd.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
-			<a href="exp_pegawai_sd.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
+			<a href="exp_guru_sd.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SD</a>
 		<?php } elseif ($jenjang == '3') { ?>
-			<a href="exp_guru_smp.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
-			<a href="exp_tu_smp.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
-			<a href="exp_pegawai_smp.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
+			<a href="exp_guru_smp.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMP</a>
 		<?php } elseif ($jenjang == '4') { ?>
-			<a href="exp_guru_sma.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
-			<a href="exp_tu_sma.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
-			<a href="exp_karyawan_sma.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
+			<a href="exp_guru_sma.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMA</a>
 		<?php } elseif ($jenjang == '5') { ?> 
-			<a href="exp_guru_smk.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
-			<a href="exp_tu_smk.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
-			<a href="exp_pegawai_smk.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
-		<?php } ?>		
-				</div>
+			<a href="exp_guru_smk.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMK</a>
+		<?php } ?>
+			<a href="exp_tu_tk.php"class="btn btn-danger mb-2" target="_self">Export Semua Data Unit</a>			
+				</div>	
 			</div>
 		</form>
 	<?php } ?>
@@ -400,7 +382,8 @@ Page_Rendering();
 	</table>
 <br><br>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script> 
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script> 
 <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script> 
 <script>

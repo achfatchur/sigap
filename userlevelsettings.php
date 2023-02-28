@@ -447,7 +447,17 @@ $USER_LEVEL_PRIVS = [["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen","-2","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_pajak_unit.php","-2","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_pajak_unit.php","0","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_bpjs_unit.php","-2","0"],
-	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_bpjs_unit.php","0","0"]];
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}laporan_bpjs_unit.php","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}solved_sma","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}solved_sma","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}solved_sd","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}solved_sd","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}solved_smk","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}solved_smk","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}solved_smp","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}solved_smp","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}solved_tk","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}solved_tk","0","0"]];
 
 // User level table info
 $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
@@ -668,4 +678,9 @@ $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3
 	["laporan_bpjs_all.php","laporan_bpjs_all","Laporan BPJS",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["laporan_gaji_unit.php","laporan_gaji_unit","Laporan Gaji Unit",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["laporan_pajak_unit.php","laporan_pajak_unit","Laporan Pajak Unit",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
-	["laporan_bpjs_unit.php","laporan_bpjs_unit","Laporan BPJS Unit",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];
+	["laporan_bpjs_unit.php","laporan_bpjs_unit","Laporan BPJS Unit",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["solved_sma","solved_sma","solved sma",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["solved_sd","solved_sd","solved sd",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["solved_smk","solved_smk","solved smk",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["solved_smp","solved_smp","solved smp",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["solved_tk","solved_tk","solved tk",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];

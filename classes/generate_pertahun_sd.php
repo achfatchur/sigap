@@ -1184,7 +1184,12 @@ class generate_pertahun_sd extends DbTable
 						//die;
 
 						$myResult = Execute($myquery);
-						}
+						$solve_gol_bpjs = 1 * $query["bpjs_kesehatan"];	
+						$delete_all ="DELETE FROM solved_sd WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
+						$clone_all = execute($delete_clone);
+						$all = "INSERT INTO solved_sd VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
+						$Result = Execute($all);	
+					}
 
 				//}elseif($this->profesi->CurrentValue == '2'){
 							$delete_detil_karyawan ="DELETE FROM gaji_tu_sd WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
@@ -1282,6 +1287,11 @@ class generate_pertahun_sd extends DbTable
 							//die;
 
 						$Result = Execute($myquery2);
+						$solve_gol_bpjs = 1 * $query["bpjs_kesehatan"];	
+						$delete_all ="DELETE FROM solved_sd WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
+						$clone_all = execute($delete_clone);
+						$all = "INSERT INTO solved_sd VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
+						$Result = Execute($all);
 							}
 
 					//}else{
@@ -1355,8 +1365,13 @@ class generate_pertahun_sd extends DbTable
 
 					//print_r($myquery2);
 					//die;
+				$Result = Execute($myquery2);
 
-					$Result = Execute($myquery2);
+				$solve_gol_bpjs = 1 * $query["bpjs_kesehatan"];	
+				$delete_all ="DELETE FROM solved_sd WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
+				$clone_all = execute($delete_clone);
+				$all = "INSERT INTO solved_sd VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
+				$Result = Execute($all);
 						}
 					}
 

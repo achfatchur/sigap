@@ -236,28 +236,7 @@ Page_Rendering();
 			<input type="hidden" name="bulan_s" value="<?=$bulan?>">
 			<input type="hidden" name="jenjang_s" value="<?=$jenjang?>">
 			<div class="form-row align-items-center">
-				<div class="col-auto">
-		<?php if ($jenjang == '1'){?>	
-			<a href="exp_guru_tk.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
-			<a href="exp_tu_tk.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
-			<a href="exp_pegawai_tk.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
-		<?php } elseif ($jenjang == '2') { ?>
-			<a href="exp_guru_sd.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
-			<a href="exp_tu_sd.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
-			<a href="exp_pegawai_sd.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
-		<?php } elseif ($jenjang == '3') { ?>
-			<a href="exp_guru_smp.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
-			<a href="exp_tu_smp.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
-			<a href="exp_pegawai_smp.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
-		<?php } elseif ($jenjang == '4') { ?>
-			<a href="exp_guru_sma.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
-			<a href="exp_tu_sma.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
-			<a href="exp_karyawan_sma.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
-		<?php } elseif ($jenjang == '5') { ?> 
-			<a href="exp_guru_smk.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
-			<a href="exp_tu_smk.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
-			<a href="exp_pegawai_smk.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
-		<?php } ?>		
+				<div class="col-auto">	
 				</div>
 				<input type="submit" class="btn btn-success mb-2" name="update_status" value="Konfirmasi Payroll">	
 			</div>	

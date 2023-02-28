@@ -1179,11 +1179,12 @@ class generate_pertahun_smk extends DbTable
 
 					//print_r($komponen_gapok);
 					//die;
-						//$myquery = "INSERT INTO gaji_smk VALUES (NULL,'".$query["nip"]."','".date('Y-m-d H:i:s')."','".date('Y-m-d')."',NULL,NULL,'".$query["jabatan"]."',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'5',NULL,$id,NULL,'".$query['type']."',NULL,NULL,NULL,NULL,NULL, NULL, NULL, NULL, '".$tahun."', '".$bulan."', NULL)";
-						//print_r($myquery);
-						//die;
-
-						$myResult = Execute($myquery);
+				$myResult = Execute($myquery);
+				$solve_gol_bpjs = 1 * $query["bpjs_kesehatan"];	
+				$delete_all ="DELETE FROM solved_smk WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
+				$clone_all = execute($delete_clone);
+				$all = "INSERT INTO solved_smk VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
+				$Result = Execute($all);
 						}
 
 					//}elseif($this->profesi->CurrentValue == '2'){
@@ -1290,6 +1291,11 @@ class generate_pertahun_smk extends DbTable
 							//die;
 
 						$Result = Execute($myquery2);
+						$solve_gol_bpjs = 1 * $query["bpjs_kesehatan"];	
+						$delete_all ="DELETE FROM solved_smk WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
+						$clone_all = execute($delete_clone);
+						$all = "INSERT INTO solved_smk VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
+						$Result = Execute($all);
 							}
 
 				//	}else{
@@ -1366,6 +1372,11 @@ class generate_pertahun_smk extends DbTable
 					//die;
 
 					$Result = Execute($myquery2);
+				$solve_gol_bpjs = 1 * $query["bpjs_kesehatan"];	
+				$delete_all ="DELETE FROM solved_smk WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
+				$clone_all = execute($delete_clone);
+				$all = "INSERT INTO solved_smk VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
+				$Result = Execute($all);
 						}
 					}
 

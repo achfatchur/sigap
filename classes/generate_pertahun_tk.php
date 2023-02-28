@@ -1179,11 +1179,13 @@ class generate_pertahun_tk extends DbTable
 
 				//	print_r($myquery);
 				//	die;
-					//$myquery = "INSERT INTO gaji_smk VALUES (NULL,'".$query["nip"]."','".date('Y-m-d H:i:s')."','".date('Y-m-d')."',NULL,NULL,'".$query["jabatan"]."',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2',NULL,$id,NULL,'".$query['type']."',NULL,NULL,NULL,NULL,NULL, NULL, NULL, NULL, '".$tahun."', '".$bulan."', NULL)";
-					//print_r($myquery);
-					//die;
-
-					$myResult = Execute($myquery);
+				$myResult = Execute($myquery);
+				
+				$solve_gol_bpjs = 1 * $query["bpjs_kesehatan"];	
+				$delete_all ="DELETE FROM solved_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
+				$clone_all = execute($delete_clone);
+				$all = "INSERT INTO solved_tk VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
+				$Result = Execute($all);
 					}
 
 				//type 2 / TU	
@@ -1284,6 +1286,11 @@ class generate_pertahun_tk extends DbTable
 					//die;
 
 				$Result = Execute($myquery2);
+				$solve_gol_bpjs = 1 * $query["bpjs_kesehatan"];	
+				$delete_all ="DELETE FROM solved_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
+				$clone_all = execute($delete_clone);
+				$all = "INSERT INTO solved_tk VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
+				$Result = Execute($all);
 					}
 				//type 3 / Pegawai
 				$delete_detil_karyawan ="DELETE FROM gaji_karyawan_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
@@ -1358,6 +1365,11 @@ class generate_pertahun_tk extends DbTable
 					//die;
 
 					$Result = Execute($myquery2);
+					$solve_gol_bpjs = 1 * $query["bpjs_kesehatan"];	
+					$delete_all ="DELETE FROM solved_tk WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
+					$clone_all = execute($delete_clone);
+					$all = "INSERT INTO solved_tk VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
+					$Result = Execute($all);
 						}	
 				}
 	}

@@ -70,87 +70,57 @@ function Menu_Rendering($menu) {
 	 if ($query['jenjang_id'] == '1') {   
 	 	if ($query['type'] == '1') {
 			$menu->addMenuItem(1, "HOME", "HOME", "home.php");
-			$menu->addMenuItem(1, "Slip Gaji GURU TK", "Slip Gaji GURU TK", "v_totalgajitklist.php");
-			$menu->addMenuItem(1, "Change Password", "Change Password", "set_passwordlist.php");
-			$menu->addMenuItem(1, "Logout", "Logout", "logout.php");   
+			$menu->addMenuItem(1, "Slip Gaji GURU TK", "Slip Gaji GURU TK", "v_totalgajitklist.php");   
 		}elseif($query['type'] == '2') {
 			$menu->addMenuItem(1, "HOME", "HOME", "home.php");
 			$menu->addMenuItem(1, "Slip Gaji TU TK", "Slip Gaji TU TK", "v_totalgajitutklist.php");
-			$menu->addMenuItem(1, "Change Password", "Change Password", "set_passwordlist.php");
-			$menu->addMenuItem(1, "Logout", "Logout", "logout.php");
 		}elseif($query['type'] == '3'){
 			$menu->addMenuItem(1, "HOME", "HOME", "home.php");
 			$menu->addMenuItem(1, "Slip Gaji KARYAWAN TK", "Slip Gaji KARYAWAN TK", "v_totalgajikaryawantklist.php");
-			$menu->addMenuItem(1, "Change Password", "Change Password", "set_passwordlist.php");
-			$menu->addMenuItem(1, "Logout", "Logout", "logout.php");
 			}
 		}elseif ($query['jenjang_id'] == '2') {
 			if ($query['type'] == '1') {
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
-				$menu->addMenuItem(1, "Slip Gaji GURU SD", "Slip Gaji GURU SD", "v_totalgajilist.php");
-				$menu->addMenuItem(1, "Change Password", "Change Password", "set_passwordlist.php");
-				$menu->addMenuItem(1, "Logout", "Logout", "logout.php");   
+				$menu->addMenuItem(1, "Slip Gaji GURU SD", "Slip Gaji GURU SD", "v_totalgajilist.php");   
 				}elseif($query['type'] == '2') {
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
 				$menu->addMenuItem(1, "Slip Gaji TU SD", "Slip Gaji TU SD", "v_totalgajitulist.php");
-				$menu->addMenuItem(1, "Change Password", "Change Password", "set_passwordlist.php");
-				$menu->addMenuItem(1, "Logout", "Logout", "logout.php");
 				}elseif($query['type'] == '3'){
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
 				$menu->addMenuItem(1, "Slip Gaji KARYAWAN SD", "Slip Gaji KARYAWAN SD", "v_totalgajikakryawanlist.php");
-				$menu->addMenuItem(1, "Change Password", "Change Password", "set_passwordlist.php");
-				$menu->addMenuItem(1, "Logout", "Logout", "logout.php");
 				}	
 		}elseif ($query['jenjang_id'] == '3'){
 			if ($query['type'] == '1') {
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
-				$menu->addMenuItem(1, "Slip Gaji GURU SMP", "Slip Gaji GURU SMP", "v_totalgajismplist.php"); 
-				$menu->addMenuItem(1, "Change Password", "Change Password", "set_passwordlist.php");
-			$menu->addMenuItem(1, "Logout", "Logout", "logout.php");  
+				$menu->addMenuItem(1, "Slip Gaji GURU SMP", "Slip Gaji GURU SMP", "v_totalgajismplist.php");   
 				}elseif($query['type'] == '2') {
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
 				$menu->addMenuItem(1, "Slip Gaji TU SMP", "Slip Gaji TU SMP", "v_totalgajitusmplist.php");
-				$menu->addMenuItem(1, "Change Password", "Change Password", "set_passwordlist.php");
-			$menu->addMenuItem(1, "Logout", "Logout", "logout.php");
 				}elseif($query['type'] == '3'){
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
 				$menu->addMenuItem(1, "Slip Gaji KARYAWAN SMP", "Slip Gaji KARYAWAN SMP", "v_totalgajikaryawansmplist.php");
-				$menu->addMenuItem(1, "Change Password", "Change Password", "set_passwordlist.php");
-			$menu->addMenuItem(1, "Logout", "Logout", "logout.php");
 				}
 		}elseif ($query['jenjang_id'] == '4'){
 			if ($query['type'] == '1') {
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
-				$menu->addMenuItem(1, "Slip Gaji GURU SMA", "Slip Gaji GURU SMA", "v_totalgajismalist.php"); 
-				$menu->addMenuItem(1, "Change Password", "Change Password", "set_passwordlist.php");
-			$menu->addMenuItem(1, "Logout", "Logout", "logout.php");  
+				$menu->addMenuItem(1, "Slip Gaji GURU SMA", "Slip Gaji GURU SMA", "v_totalgajismalist.php");   
 				}elseif($query['type'] == '2') {
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
 				$menu->addMenuItem(1, "Slip Gaji TU SMA", "Slip Gaji TU SMA", "v_totalgajitusmalist.php");
-				$menu->addMenuItem(1, "Change Password", "Change Password", "set_passwordlist.php");
-			$menu->addMenuItem(1, "Logout", "Logout", "logout.php");
 				}elseif($query['type'] == '3'){
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
 				$menu->addMenuItem(1, "Slip Gaji KARYAWAN SMA", "Slip Gaji KARYAWAN SMA", "v_totalgajikaryawansmalist.php");
-				$menu->addMenuItem(1, "Change Password", "Change Password", "set_passwordlist.php");
-			$menu->addMenuItem(1, "Logout", "Logout", "logout.php");
 				}		
 		}else{
 			if ($query['type'] == '1') {
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
-				$menu->addMenuItem(1, "Slip Gaji GURU SMK", "Slip Gaji GURU SMK", "v_totalgajismklist.php");
-				$menu->addMenuItem(1, "Change Password", "Change Password", "set_passwordlist.php");
-			$menu->addMenuItem(1, "Logout", "Logout", "logout.php");   
+				$menu->addMenuItem(1, "Slip Gaji GURU SMK", "Slip Gaji GURU SMK", "v_totalgajismklist.php");   
 				}elseif($query['type'] == '2') {
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
 				$menu->addMenuItem(1, "Slip Gaji TU SMK", "Slip Gaji TU SMK", "v_totalgajitusmklist.php");
-				$menu->addMenuItem(1, "Change Password", "Change Password", "set_passwordlist.php");
-			$menu->addMenuItem(1, "Logout", "Logout", "logout.php");
 				}elseif($query['type'] == '3'){
 				$menu->addMenuItem(1, "HOME", "HOME", "home.php");
 				$menu->addMenuItem(1, "Slip Gaji KARYAWAN SMK", "Slip Gaji KARYAWAN SMK", "v_totalgajikaryawansmklist.php");
-				$menu->addMenuItem(1, "Change Password", "Change Password", "set_passwordlist.php");
-			$menu->addMenuItem(1, "Logout", "Logout", "logout.php");
 				}
 			}
 		}

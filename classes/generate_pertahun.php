@@ -1039,11 +1039,8 @@ class generate_pertahun extends DbTable
 			//delete field bulan ketika generate bulan2
 			$delete ="DELETE FROM generate_pertahun WHERE bulan2 is null";
 			$delete2 = Execute($delete);
+			
 			$delete_clone ="DELETE FROM generate_pertahun WHERE id < '".$id."' AND tahun ='".$tahun."' AND bulan2='".$bulan."'";	
-
-					//print_r($delete_clone);
-					//die;
-
 			$clone_delete = execute($delete_clone);
 
 			//if($this->profesi->CurrentValue == '1'){
@@ -1169,7 +1166,7 @@ class generate_pertahun extends DbTable
 					$v_voucher = 1 * $absen["voucher"];
 					$v_kehadiran = 1 * $kehadiran["value"];
 					$solved_npwp = 1* $query["status_npwp"];
-
+					$solve_gol_bpjs = 1 * $query["bpjs_kesehatan"];
 
 					//print_r($solved);
 					//die;
@@ -1183,6 +1180,10 @@ class generate_pertahun extends DbTable
 				//die;
 
 				$myResult = Execute($myquery);
+				$delete_all ="DELETE FROM solved_sma WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
+				$clone_all = execute($delete_clone);
+				$all = "INSERT INTO solved_sma VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
+				$Result = Execute($all);
 				}
 
 			//}elseif($this->profesi->CurrentValue == '2'){
@@ -1273,14 +1274,18 @@ class generate_pertahun extends DbTable
 				//note salah diinval harusnya tidak nampil
 				//print_r($tunjanagan_khusus);
 				//die;	
-
+				$solve_gol_bpjs = 1 * $query["bpjs_kesehatan"];
 				
-				$myquery2 = "INSERT INTO gaji_tu_sma VALUES (NULL,NULL,'".$query["nip"]."','".$query["jenjang_id"]."','".$query["jabatan"]."',NULL,'".$komponen_gapok."','".$hadir	."','".$c_lembur."','".$lembur."','".$reward."','".$inval2."','".$c_piket."','".$piket["value"]."','".$solved."','".$tj_jbtn."','".$penyesuaian."','".$sub_total."','".$tambahan_value."','".$total."','".$pid."','".$khusus."','".$tambahan."','2','".$pendidikan."','".$lm_kerja."','".$sertif."','".$kehadiran["value"]."','".$tahun."','".$bulan."','".$v_voucher."',NULL,NULL,'".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_bpjs."')";
+			$myquery2 = "INSERT INTO gaji_tu_sma VALUES (NULL,NULL,'".$query["nip"]."','".$query["jenjang_id"]."','".$query["jabatan"]."',NULL,'".$komponen_gapok."','".$hadir	."','".$c_lembur."','".$lembur."','".$reward."','".$inval2."','".$c_piket."','".$piket["value"]."','".$solved."','".$tj_jbtn."','".$penyesuaian."','".$sub_total."','".$tambahan_value."','".$total."','".$pid."','".$khusus."','".$tambahan."','2','".$pendidikan."','".$lm_kerja."','".$sertif."','".$kehadiran["value"]."','".$tahun."','".$bulan."','".$v_voucher."',NULL,NULL,'".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_bpjs."')";
 
 					//print_r($myquery2);
 					//die;
 
 				$Result = Execute($myquery2);
+				$delete_all ="DELETE FROM solved_sma WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
+				$clone_all = execute($delete_clone);
+				$all = "INSERT INTO solved_sma VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
+				$Result = Execute($all);
 					}
 
 			//}else{
@@ -1351,17 +1356,17 @@ class generate_pertahun extends DbTable
 
 				//print_r($v_kehadiran);
 				//die;
+				$solve_gol_bpjs =1 * query["bpjs_kesehatan"];
 
 				$myquery2 = "INSERT INTO gaji_karyawan_sma VALUES (NULL, '".$query["nip"]."','".$query["jabatan"]."','4','".$komponen_gapok."',NULL,'".$inval2."','".$c_jjm."','".$sub_total."','".$penyesuaian."','".$tambahan."','".$total."','".$pid."','".$v_kehadiran."',NULL,'".$tahun."', '".$bulan."','".$v_voucher."',NULL,'".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_bpjs."')";
-
 				//print_r($myquery2);
 				//die;
-				//print_r($myquery2);
-				//die;
-
-
 				$Result = Execute($myquery2);
-
+				
+				$delete_all ="DELETE FROM solved_sma WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
+				$clone_all = execute($delete_clone);
+				$all = "INSERT INTO solved_sma VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
+				$Result = Execute($all);
 						}
 
 				//	}
