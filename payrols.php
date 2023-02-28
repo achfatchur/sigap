@@ -93,23 +93,23 @@ Page_Rendering();
 		if ($jenjang_s == '1') { 
 			$tabel = 'gaji_tk';
 			$tabel1 = 'gaji_tu_tk';
-			$tabel2 = 'gaji_karyawan_tk';
+			$tabel2 = 'gaji_pegawai_tk';
 		} elseif ($jenjang_s == '2') { 
 			$tabel = 'gaji';
 			$tabel1 = 'gaji_tu_sd';
-			$tabel2 = 'gaji_karyawan_sd';
+			$tabel2 = 'gaji_pegawai_sd';
 		} elseif ($jenjang_s == '3') { 
 			$tabel = 'gaji_smp';
 			$tabel1 = 'gaji_tu_smp';
-			$tabel2 = 'gaji_karyawan_smp';
+			$tabel2 = 'gaji_pegawai_smp';
 		} elseif ($jenjang_s == '4') { 
 			$tabel = 'gaji_sma';
 			$tabel1 = 'gaji_tu_sma';
-			$tabel2 = 'gaji_karyawan_sma';
+			$tabel2 = 'gaji_pegawai_sma';
 		} elseif ($jenjang_s == '5') { 
 			$tabel = 'gaji_smk';
 			$tabel1 = 'gaji_tu_smk';
-			$tabel2 = 'gaji_karyawan_smk';
+			$tabel2 = 'gaji_pegawai_smk';
 		}
 
 		$tabel = Execute("UPDATE ".$tabel." SET status='1' WHERE bulan='$bulan_s' AND tahun='$tahun_s'");
@@ -132,23 +132,23 @@ Page_Rendering();
 		if ($jenjang_s == '1') { 
 			$tabel = 'gaji_tk';
 			$tabel1 = 'gaji_tu_tk';
-			$tabel2 = 'gaji_karyawan_tk';
+			$tabel2 = 'gaji_pegawai_tk';
 		} elseif ($jenjang_s == '2') { 
 			$tabel = 'gaji';
 			$tabel1 = 'gaji_tu_sd';
-			$tabel2 = 'gaji_karyawan_sd';
+			$tabel2 = 'gaji_pegawai_sd';
 		} elseif ($jenjang_s == '3') { 
 			$tabel = 'gaji_smp';
 			$tabel1 = 'gaji_tu_smp';
-			$tabel2 = 'gaji_karyawan_smp';
+			$tabel2 = 'gaji_pegawai_smp';
 		} elseif ($jenjang_s == '4') { 
 			$tabel = 'gaji_sma';
 			$tabel1 = 'gaji_tu_sma';
-			$tabel2 = 'gaji_karyawan_sma';
+			$tabel2 = 'gaji_pegawai_sma';
 		} elseif ($jenjang_s == '5') { 
 			$tabel = 'gaji_smk';
 			$tabel1 = 'gaji_tu_smk';
-			$tabel2 = 'gaji_karyawan_smk';
+			$tabel2 = 'gaji_pegawai_smk';
 		}
 
 		$tabel = Execute("UPDATE ".$tabel." SET status='0' WHERE bulan='$bulan_s' AND tahun='$tahun_s'");
@@ -166,23 +166,23 @@ Page_Rendering();
 	if ($jenjang == '1') { 
 		$tabel = 'gaji_tk';
 		$tabel1 = 'gaji_tu_tk';
-		$tabel2 = 'gaji_karyawan_tk';
+		$tabel2 = 'gaji_pegawai_tk';
 	} elseif ($jenjang == '2') { 
 		$tabel = 'gaji';
 		$tabel1 = 'gaji_tu_sd';
-		$tabel2 = 'gaji_karyawan_sd';
+		$tabel2 = 'gaji_pegawai_sd';
 	} elseif ($jenjang == '3') { 
 		$tabel = 'gaji_smp';
 		$tabel1 = 'gaji_tu_smp';
-		$tabel2 = 'gaji_karyawan_smp';
+		$tabel2 = 'gaji_pegawai_smp';
 	} elseif ($jenjang == '4') { 
 		$tabel = 'gaji_sma';
 		$tabel1 = 'gaji_tu_sma';
-		$tabel2 = 'gaji_karyawan_sma';
+		$tabel2 = 'gaji_pegawai_sma';
 	} elseif ($jenjang == '5') { 
 		$tabel = 'gaji_smk';
 		$tabel1 = 'gaji_tu_smk';
-		$tabel2 = 'gaji_karyawan_smk';
+		$tabel2 = 'gaji_pegawai_smk';
 	}
 ?>	
 	<form method="get" action="">
@@ -237,9 +237,30 @@ Page_Rendering();
 			<input type="hidden" name="jenjang_s" value="<?=$jenjang?>">
 			<div class="form-row align-items-center">
 				<div class="col-auto">
-					<input type="submit" class="btn btn-success mb-2" name="update_status" value="Konfirmasi Payroll">
+		<?php if ($jenjang == '1'){?>	
+			<a href="exp_guru_tk.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
+			<a href="exp_tu_tk.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
+			<a href="exp_pegawai_tk.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
+		<?php } elseif ($jenjang == '2') { ?>
+			<a href="exp_guru_sd.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
+			<a href="exp_tu_sd.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
+			<a href="exp_pegawai_sd.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
+		<?php } elseif ($jenjang == '3') { ?>
+			<a href="exp_guru_smp.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
+			<a href="exp_tu_smp.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
+			<a href="exp_pegawai_smp.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
+		<?php } elseif ($jenjang == '4') { ?>
+			<a href="exp_guru_sma.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
+			<a href="exp_tu_sma.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
+			<a href="exp_karyawan_sma.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
+		<?php } elseif ($jenjang == '5') { ?> 
+			<a href="exp_guru_smk.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
+			<a href="exp_tu_smk.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
+			<a href="exp_pegawai_smk.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
+		<?php } ?>		
 				</div>
-			</div>
+				<input type="submit" class="btn btn-success mb-2" name="update_status" value="Konfirmasi Payroll">	
+			</div>	
 		</form>
 	<?php }else{ ?>
 		<form role="form" action="<?php echo CurrentPageName() ?>" method="post">
@@ -250,9 +271,10 @@ Page_Rendering();
 			<input type="hidden" name="bulan_s" value="<?=$bulan?>">
 			<input type="hidden" name="jenjang_s" value="<?=$jenjang?>">
 			<div class="form-row align-items-center">
-				<div class="col-auto">
-					<button id="submit" type="submit" name="update_status_belum_selesai"  class="btn btn-danger mb-2">Batalkan Konfirmasi</button>
+				<div class="col-auto">	
 				</div>
+				<input type="submit" class="btn btn-success mb-2" name="update_status" value="Konfirmasi Payroll">	
+			</div>
 			</div>
 		</form>
 	<?php } ?>
@@ -277,23 +299,23 @@ Page_Rendering();
 					if ($jenjang == '1') { 
 						$tabel = 'gaji_tk';
 						$tabel1 = 'gaji_tu_tk';
-						$tabel2 = 'gaji_karyawan_tk';
+						$tabel2 = 'gaji_pegawai_tk';
 						} elseif ($jenjang == '2') { 
 							$tabel = 'gaji';
 							$tabel1 = 'gaji_tu_sd';
-							$tabel2 = 'gaji_karyawan_sd';
+							$tabel2 = 'gaji_pegawai_sd';
 						} elseif ($jenjang == '3') { 
 							$tabel = 'gaji_smp';
 							$tabel1 = 'gaji_tu_smp';
-							$tabel2 = 'gaji_karyawan_smp';
+							$tabel2 = 'gaji_pegawai_smp';
 						} elseif ($jenjang == '4') { 
 							$tabel = 'gaji_sma';
 							$tabel1 = 'gaji_tu_sma';
-							$tabel2 = 'gaji_karyawan_sma';
+							$tabel2 = 'gaji_pegawai_sma';
 						} elseif ($jenjang == '5') { 
 							$tabel = 'gaji_smk';
 							$tabel1 = 'gaji_tu_smk';
-							$tabel2 = 'gaji_karyawan_smk';
+							$tabel2 = 'gaji_pegawai_smk';
 					}
 					$jenjang = ExecuteScalar("SELECT name FROM tpendidikan WHERE nourut = '".$jenjang."'");
 					if(ExecuteRows("SELECT * FROM ".$tabel." WHERE bulan = '".$bulan."' AND tahun = '".$tahun."'") != false){

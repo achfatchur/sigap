@@ -6,7 +6,7 @@ require_once'vendor/tbs_class.php';
 require_once'vendor/tbs_plugin_opentbs.php';
 $TBS = new clsTinyButStrong; 
 $TBS->Plugin(TBS_INSTALL, OPENTBS_PLUGIN);
-$sql = mysqli_query($con, "SELECT * FROM gaji_sma INNER JOIN pegawai ON pegawai.nip = gaji_sma.pegawai ORDER BY gaji_sma.id DESC limit 1");	
+$sql = mysqli_query($con, "SELECT gaji_sma.pegawai, gaji_sma.tahun, pegawai.nama, gaji_sma.total,bulan.bulan, gaji_sma.pid FROM gaji_sma INNER JOIN pegawai ON gaji_sma.pegawai = pegawai.nip INNER JOIN bulan ON gaji_sma.bulan = bulan.id order by gaji_sma.pid DESC");	
 $data = [];
 while($row = mysqli_fetch_array($sql))
 {     
@@ -21,7 +21,7 @@ while($row = mysqli_fetch_array($sql))
 $template = 'templateimport.xlsx';
 $TBS->LoadTemplate($template, OPENTBS_ALREADY_UTF8);
 $TBS->MergeBlock('data', $data);
-
-$TBS->Show(OPENTBS_DOWNLOAD, 'Laporan Gaji SMA.xlsx');
+$dateyear = date("F Y");
+$TBS->Show(OPENTBS_DOWNLOAD, $dateyear.' Laporan Gaji Guru SMA.xlsx');
 exit();
 ?>

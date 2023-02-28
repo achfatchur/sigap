@@ -118,25 +118,39 @@ Page_Rendering();
 		$total_isi1 = ExecuteScalar("SELECT count(*) FROM ".$tabel1." WHERE bulan = '".$bulan."' AND tahun = '".$tahun."'");
 		$total_status2 = ExecuteScalar("SELECT count(*) FROM ".$tabel2." WHERE bulan = '".$bulan."' AND tahun = '".$tahun."' AND status = '0'");
 		$total_isi2 = ExecuteScalar("SELECT count(*) FROM ".$tabel2." WHERE bulan = '".$bulan."' AND tahun = '".$tahun."'");
-	if($total_status == $total_isi && $total_status1 == $total_isi1 && $total_status2 == $total_isi2){ ?>
+	//if($total_status == $total_isi && $total_status1 == $total_isi1 && $total_status2 == $total_isi2){ ?>
 		<form method="get" action="">
 			<input type="hidden" name="tahun_s" value="<?=$tahun?>">
 			<input type="hidden" name="bulan_s" value="<?=$bulan?>">
 			<input type="hidden" name="jenjang_s" value="<?=$jenjang?>">
+			<div class="form-row align-items-center">
+				<div class="col-auto">
+					<?php
+				if(CurrentUserLevel() == '8'){ ?>
+				<a href=""class="btn btn-danger mb-2"target="_self">Export Data Guru</a>
+				<a href=""class="btn btn-danger mb-2" target="_self">Export Data TU</a>
+				<a href=""class="btn btn-danger mb-2"target="_self">Export Data pegawai</a>
+				<?php } elseif (CurrentUserLevel() == '9') { ?>
+					<a href=""class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
+					<a href=""class="btn btn-danger mb-2" target="_self">Export Data TU</a>
+					<a href=""class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
+				<?php } elseif (CurrentUserLevel() == '10') { ?>
+					<a href=""class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
+					<a href=""class="btn btn-danger mb-2" target="_self">Export Data TU</a>
+					<a href=""class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
+				<?php } elseif (CurrentUserLevel() == '11') { ?>
+					<a href="exp_guru_sma.php"class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
+					<a href="exp_tu_sma.php"class="btn btn-danger mb-2" target="_self">Export Data TU</a>
+					<a href="exp_karyawan_sma.php"class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
+				<?php } elseif (CurrentUserLevel() == '12') { ?>
+					<a href=""class="btn btn-danger mb-2" target="_self">Export Data Guru</a>
+					<a href=""class="btn btn-danger mb-2" target="_self">Export Data TU</a>
+					<a href=""class="btn btn-danger mb-2" target="_self">Export Data pegawai</a>
+				<?php }?>
+				</div>
+			</div>
 			</div>
 		</form>
-	<?php }else{ ?>
-		<form role="form" action="<?php echo CurrentPageName() ?>" method="post">
-		<?php if ($Page->CheckToken) { ?>
-		<input type="hidden" name="<?php echo Config("TOKEN_NAME") ?>" value="<?php echo $Page->Token ?>">
-		<?php } ?>
-			<input type="hidden" name="tahun_s" value="<?=$tahun?>">
-			<input type="hidden" name="bulan_s" value="<?=$bulan?>">
-			<input type="hidden" name="jenjang_s" value="<?=$jenjang?>">
-			<div class="form-row align-items-center">	
-			</div>
-		</form>
-	<?php } ?>
 	</div>
 <br>
 <br><br>
