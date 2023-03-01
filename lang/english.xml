@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ew-language date="2023/2/28" version="16.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
+<ew-language date="2023/3/1" version="16.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
   <!--
 	*** Important Notes:
 	1. Language ID should follow: https://developers.google.com/recaptcha/docs/language,
@@ -856,6 +856,9 @@
   <project>
     <phrase id="bodytitle" value="SIGAP YWH" />
     <phrase id="footertext" value="&amp;copy;2022 PT PrimaVisi." />
+    <menu id="1644">
+      <phrase id="menutext" value="gaji pegawai tk" />
+    </menu>
     <menu id="1638">
       <phrase id="menutext" value="solved sma" />
     </menu>
@@ -888,9 +891,6 @@
     </menu>
     <menu id="1154">
       <phrase id="menutext" value="Slip Gaji" />
-    </menu>
-    <menu id="1155">
-      <phrase id="menutext" value="Coba" />
     </menu>
     <menu id="1148">
       <phrase id="menutext" value="Contoh Template Slip gaji" />
@@ -952,17 +952,11 @@
     <menu id="290">
       <phrase id="menutext" value="Gaji TU SMA" />
     </menu>
-    <menu id="59">
-      <phrase id="menutext" value="barangnew" />
-    </menu>
     <menu id="58">
       <phrase id="menutext" value="barang" />
     </menu>
     <menu id="60">
       <phrase id="menutext" value="hapus barang" />
-    </menu>
-    <menu id="61">
-      <phrase id="menutext" value="hapus barangnew" />
     </menu>
     <menu id="40">
       <phrase id="menutext" value="Pegawai" />
@@ -1399,10 +1393,7 @@
     <menu id="1386">
       <phrase id="menutext" value="Yayasan" />
     </menu>
-    <menu id="1379">
-      <phrase id="menutext" value="Laporan Gaji Yayasan" />
-    </menu>
-    <menu id="1622">
+    <menu id="1645">
       <phrase id="menutext" value="Slip Gaji Yayasan" />
     </menu>
     <menu id="769">
@@ -1416,9 +1407,6 @@
     </menu>
     <menu id="29">
       <phrase id="menutext" value="jenis grup ilmu" />
-    </menu>
-    <menu id="30">
-      <phrase id="menutext" value="jenis ijin" />
     </menu>
     <menu id="28">
       <phrase id="menutext" value="jenis grup berita" />
@@ -1489,9 +1477,6 @@
     <menu id="25">
       <phrase id="menutext" value="Jenis PTK" />
     </menu>
-    <menu id="24">
-      <phrase id="menutext" value="Izin" />
-    </menu>
     <menu id="31">
       <phrase id="menutext" value="jenis lembur" />
     </menu>
@@ -1518,9 +1503,6 @@
     </menu>
     <menu id="22">
       <phrase id="menutext" value="Gender" />
-    </menu>
-    <menu id="27">
-      <phrase id="menutext" value="jenis dinasluar" />
     </menu>
     <menu id="6">
       <phrase id="menutext" value="bulan" />
@@ -1569,9 +1551,6 @@
     </menu>
     <menu id="5">
       <phrase id="menutext" value="Berita" />
-    </menu>
-    <menu id="8">
-      <phrase id="menutext" value="Dinas Luar" />
     </menu>
     <menu id="37">
       <phrase id="menutext" value="Pegawai Dokumen" />
@@ -1741,15 +1720,6 @@
         <phrase id="fldcaption" value="Nama Barang" />
       </field>
     </table>
-    <table id="barangnew">
-      <phrase id="tblcaption" value="barangnew" />
-      <field id="kode_barang">
-        <phrase id="fldcaption" value="kode barang" />
-      </field>
-      <field id="nama_barang">
-        <phrase id="fldcaption" value="nama barang" />
-      </field>
-    </table>
     <table id="berita">
       <phrase id="tblcaption" value="Berita" />
       <field id="id">
@@ -1835,46 +1805,6 @@
       </field>
       <field id="status">
         <phrase id="fldcaption" value="Status" />
-      </field>
-    </table>
-    <table id="dinasluar">
-      <phrase id="tblcaption" value="Dinas Luar" />
-      <field id="id">
-        <phrase id="fldcaption" value="id" />
-      </field>
-      <field id="pegawai">
-        <phrase id="fldcaption" value="Pegawai" />
-      </field>
-      <field id="pm">
-        <phrase id="fldcaption" value="Project Manager" />
-      </field>
-      <field id="proyek">
-        <phrase id="fldcaption" value="Proyek" />
-      </field>
-      <field id="tgl">
-        <phrase id="fldcaption" value="Tanggal" />
-      </field>
-      <field id="tgl_dl_awal">
-        <phrase id="fldcaption" value="Tanggal Awal" />
-      </field>
-      <field id="tgl_dl_akhir">
-        <phrase id="fldcaption" value="Tanggal Akhir" />
-      </field>
-      <field id="jenis">
-        <phrase id="fldcaption" value="Jenis" />
-      </field>
-      <field id="keterangan">
-        <phrase id="fldcaption" value="Keterangan" />
-      </field>
-      <field id="disetujui">
-        <phrase id="fldcaption" value="Disetujui" />
-        <phrase id="fldtagvalue1" value="ya" />
-        <phrase id="fldtagcaption1" value="YA" />
-        <phrase id="fldtagvalue2" value="tidak" />
-        <phrase id="fldtagcaption2" value="Tidak" />
-      </field>
-      <field id="dokumen">
-        <phrase id="fldcaption" value="Dokumen" />
       </field>
     </table>
     <table id="gaji">
@@ -3937,21 +3867,6 @@
         <phrase id="fldcaption" value="Keterangan" />
       </field>
     </table>
-    <table id="hapus_barangnew">
-      <phrase id="tblcaption" value="hapus barangnew" />
-      <field id="id_hapus">
-        <phrase id="fldcaption" value="id hapus" />
-      </field>
-      <field id="kode_barang">
-        <phrase id="fldcaption" value="kode barang" />
-      </field>
-      <field id="nama_barang">
-        <phrase id="fldcaption" value="nama barang" />
-      </field>
-      <field id="keterangan">
-        <phrase id="fldcaption" value="keterangan" />
-      </field>
-    </table>
     <table id="ijazah">
       <phrase id="tblcaption" value="Ijazah" />
       <field id="id">
@@ -3959,40 +3874,6 @@
       </field>
       <field id="name">
         <phrase id="fldcaption" value="Name" />
-      </field>
-    </table>
-    <table id="ijin">
-      <phrase id="tblcaption" value="Izin" />
-      <field id="id">
-        <phrase id="fldcaption" value="id" />
-      </field>
-      <field id="pegawai">
-        <phrase id="fldcaption" value="Pegawai" />
-      </field>
-      <field id="tgl">
-        <phrase id="fldcaption" value="Tanggal" />
-      </field>
-      <field id="tgl_ijin_awal">
-        <phrase id="fldcaption" value="Tanggal Izin Awal" />
-      </field>
-      <field id="tgl_ijin_akhir">
-        <phrase id="fldcaption" value="Tanggal Ijin Akhir" />
-      </field>
-      <field id="jenis">
-        <phrase id="fldcaption" value="Jenis" />
-      </field>
-      <field id="keterangan">
-        <phrase id="fldcaption" value="Keterangan" />
-      </field>
-      <field id="disetujui">
-        <phrase id="fldcaption" value="disetujui" />
-        <phrase id="fldtagvalue1" value="ya" />
-        <phrase id="fldtagcaption1" value="YA" />
-        <phrase id="fldtagvalue2" value="tidak" />
-        <phrase id="fldtagcaption2" value="Tidak" />
-      </field>
-      <field id="dokumen">
-        <phrase id="fldcaption" value="dokumen" />
       </field>
     </table>
     <table id="jabatan">
@@ -4049,18 +3930,6 @@
         <phrase id="fldcaption" value="aktif" />
       </field>
     </table>
-    <table id="jenis_dinasluar">
-      <phrase id="tblcaption" value="jenis dinasluar" />
-      <field id="id">
-        <phrase id="fldcaption" value="id" />
-      </field>
-      <field id="nama">
-        <phrase id="fldcaption" value="Nama" />
-      </field>
-      <field id="aktif">
-        <phrase id="fldcaption" value="Aktif" />
-      </field>
-    </table>
     <table id="jenis_grup_berita">
       <phrase id="tblcaption" value="jenis grup berita" />
       <field id="id">
@@ -4083,30 +3952,6 @@
       </field>
       <field id="aktif">
         <phrase id="fldcaption" value="Aktif" />
-      </field>
-    </table>
-    <table id="jenis_ijin">
-      <phrase id="tblcaption" value="jenis ijin" />
-      <field id="id">
-        <phrase id="fldcaption" value="id" />
-      </field>
-      <field id="nama">
-        <phrase id="fldcaption" value="Nama" />
-      </field>
-      <field id="aktif">
-        <phrase id="fldcaption" value="Aktif" />
-      </field>
-      <field id="value">
-        <phrase id="fldcaption" value="Value" />
-      </field>
-      <field id="valueperjam">
-        <phrase id="fldcaption" value="Value Perjam" />
-      </field>
-      <field id="jabatan_id">
-        <phrase id="fldcaption" value="Jabatan" />
-      </field>
-      <field id="jenjang_id">
-        <phrase id="fldcaption" value="Jenjang" />
       </field>
     </table>
     <table id="jenis_jabatan">
@@ -6916,14 +6761,14 @@
       <field id="m_id">
         <phrase id="fldcaption" value="Master ID" />
       </field>
+      <field id="pegawai">
+        <phrase id="fldcaption" value="Pegawai" />
+      </field>
       <field id="bulan">
         <phrase id="fldcaption" value="Bulan" />
       </field>
       <field id="tahun">
         <phrase id="fldcaption" value="Tahun" />
-      </field>
-      <field id="id_pegawai">
-        <phrase id="fldcaption" value="Pegawai" />
       </field>
       <field id="datetime">
         <phrase id="fldcaption" value="Date Time" />
@@ -8120,9 +7965,6 @@
     <table id="slipgaji">
       <phrase id="tblcaption" value="Slip Gaji" />
     </table>
-    <table id="coba">
-      <phrase id="tblcaption" value="Coba" />
-    </table>
     <table id="vgaji_karyawan_tk">
       <phrase id="tblcaption" value="Laporan Gaji Karyawan TK" />
       <field id="id">
@@ -8365,36 +8207,6 @@
     </table>
     <table id="login_bendahara">
       <phrase id="tblcaption" value="Login Bendahara" />
-    </table>
-    <table id="v_yayasan">
-      <phrase id="tblcaption" value="Laporan Gaji Yayasan" />
-      <field id="id">
-        <phrase id="fldcaption" value="id" />
-      </field>
-      <field id="m_id">
-        <phrase id="fldcaption" value="m id" />
-      </field>
-      <field id="bulan">
-        <phrase id="fldcaption" value="Bulan" />
-      </field>
-      <field id="tahun">
-        <phrase id="fldcaption" value="Tahun" />
-      </field>
-      <field id="id_pegawai">
-        <phrase id="fldcaption" value="Pegawai" />
-      </field>
-      <field id="rekbank">
-        <phrase id="fldcaption" value="Rek Bank" />
-      </field>
-      <field id="gaji_pokok">
-        <phrase id="fldcaption" value="Gaji Pokok" />
-      </field>
-      <field id="potongan">
-        <phrase id="fldcaption" value="Potongan" />
-      </field>
-      <field id="total">
-        <phrase id="fldcaption" value="WhatsApp" />
-      </field>
     </table>
     <table id="v_pengurus_yayasan">
       <phrase id="tblcaption" value="Pengurus Yayasan" />
@@ -9005,27 +8817,6 @@
         <phrase id="fldcaption" value="WhatsApp" />
       </field>
     </table>
-    <table id="slip_gaji_yayasan">
-      <phrase id="tblcaption" value="Slip Gaji Yayasan" />
-      <field id="id">
-        <phrase id="fldcaption" value="id" />
-      </field>
-      <field id="bulan">
-        <phrase id="fldcaption" value="Bulan" />
-      </field>
-      <field id="tahun">
-        <phrase id="fldcaption" value="Tahun" />
-      </field>
-      <field id="id_pegawai">
-        <phrase id="fldcaption" value="Pegawai" />
-      </field>
-      <field id="total">
-        <phrase id="fldcaption" value="Total" />
-      </field>
-      <field id="id1">
-        <phrase id="fldcaption" value="id 1" />
-      </field>
-    </table>
     <table id="backup_restore">
       <phrase id="tblcaption" value="Back UP Restore DataBase" />
     </table>
@@ -9324,6 +9115,42 @@
       </field>
       <field id="tanggal">
         <phrase id="fldcaption" value="tanggal" />
+      </field>
+    </table>
+    <table id="gaji_pegawai_tk">
+      <phrase id="tblcaption" value="gaji pegawai tk" />
+      <field id="id">
+        <phrase id="fldcaption" value="id" />
+      </field>
+      <field id="bulan">
+        <phrase id="fldcaption" value="bulan" />
+      </field>
+      <field id="tahun">
+        <phrase id="fldcaption" value="tahun" />
+      </field>
+      <field id="status">
+        <phrase id="fldcaption" value="status" />
+      </field>
+    </table>
+    <table id="m_slip_yayasan">
+      <phrase id="tblcaption" value="Slip Gaji Yayasan" />
+      <field id="id">
+        <phrase id="fldcaption" value="id" />
+      </field>
+      <field id="bulan">
+        <phrase id="fldcaption" value="Bulan" />
+      </field>
+      <field id="tahun">
+        <phrase id="fldcaption" value="Tahun" />
+      </field>
+      <field id="pegawai">
+        <phrase id="fldcaption" value="pegawai" />
+      </field>
+      <field id="total">
+        <phrase id="fldcaption" value="Total" />
+      </field>
+      <field id="id1">
+        <phrase id="fldcaption" value="id" />
       </field>
     </table>
   </project>

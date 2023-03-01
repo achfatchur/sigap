@@ -75,6 +75,8 @@ Page_Rendering();
 			$jenjang = '4';
 		} elseif ($jenjang == 'SMK') { 
 			$jenjang = '5';
+		} elseif ($jenjang == 'Yayasan') { 
+			$jenjang = '6';
 		}
 		
 		$potongan_bendahara = $_POST['potongan_bendahara'];
@@ -149,6 +151,8 @@ Page_Rendering();
 			$tabel = 'gaji_smk';
 			$tabel1 = 'gaji_tu_smk';
 			$tabel2 = 'gaji_karyawan_smk';
+		} elseif ($jenjang == 'SMK') { 
+			$tabel = 'yayasan';
 		}
 
 		$tabel = Execute("UPDATE ".$tabel." SET status='0' WHERE bulan='$bulan_s' AND tahun='$tahun_s'");
@@ -183,6 +187,10 @@ Page_Rendering();
 		$tabel = 'gaji_smk';
 		$tabel1 = 'gaji_tu_smk';
 		$tabel2 = 'gaji_karyawan_smk';
+	} elseif ($jenjang == '6') { 
+		$tabel = 'yayasan';
+		$tabel1 = 0;
+		$tabel2 = 0;
 	}
 ?>	
 	<form method="get" action="">
@@ -216,6 +224,7 @@ Page_Rendering();
 					<option value="3" <?= ($jenjang == 3) ? 'selected' : '' ?>>SMP</option>
 					<option value="4" <?= ($jenjang == 4) ? 'selected' : '' ?>>SMA</option>
 					<option value="5" <?= ($jenjang == 5) ? 'selected' : '' ?>>SMK</option>
+					<option value="6" <?= ($jenjang == 6) ? 'selected' : '' ?>>Yayasan</option>
 				</select>
 			</div>
 			<div class="col-auto">
@@ -237,7 +246,7 @@ Page_Rendering();
 			<input type="hidden" name="jenjang_s" value="<?=$jenjang?>">
 			<div class="form-row align-items-center">
 				<div class="col-auto">
-				<?php if ($jenjang == '1'){?>	
+		<?php if ($jenjang == '1'){?>	
 			<a href="exp_guru_tk.php"class="btn btn-danger mb-2" target="_self">Export Data Unit TK</a>
 		<?php } elseif ($jenjang == '2') { ?>
 			<a href="exp_guru_sd.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SD</a>
@@ -247,6 +256,8 @@ Page_Rendering();
 			<a href="exp_guru_sma.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMA</a>
 		<?php } elseif ($jenjang == '5') { ?> 
 			<a href="exp_guru_smk.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMK</a>
+		<?php } elseif ($jenjang == '6') { ?> 
+			<a href="exp_yayasan.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMK</a>
 		<?php } ?>			
 				</div>	
 			</div>
@@ -311,13 +322,23 @@ Page_Rendering();
 							$tabel = 'gaji_smk';
 							$tabel1 = 'gaji_tu_smk';
 							$tabel2 = 'gaji_karyawan_smk';
+					}elseif ($jenjang == '6') { 
+						$tabel = 'yayasan';
 					}
 					$jenjang = ExecuteScalar("SELECT name FROM tpendidikan WHERE nourut = '".$jenjang."'");
 					if(ExecuteRows("SELECT * FROM ".$tabel." WHERE bulan = '".$bulan."' AND tahun = '".$tahun."'") != false){
 						$rows = ExecuteRows("SELECT * FROM ".$tabel." WHERE bulan = '".$bulan."' AND tahun = '".$tahun."'");
 						foreach($rows as $data){
-						$pegawai = ExecuteRow("SELECT * FROM pegawai WHERE nip = '".$data['pegawai']."'");
+						//if ($jenjang == '6'){
+							//print_r($data['id_pegawai']);
+							//die;
+						//$pegawai = ExecuteRow("SELECT * FROM pegawai WHERE id = '".$data['id_pegawai']."' OR nip='".$data["pegawai"]."'");
+						//}else{
+						$pegawai = ExecuteRow("SELECT * FROM pegawai WHERE nip = '".$data['pegawai']."' OR id ='".$data['pegawai']."'");
+						//}
+						
 						$jabatan = ExecuteRow("SELECT * FROM jenis_jabatan WHERE id = '".$pegawai['type']."'");
+
 				?>
 			<tr>
 				<td><?=$jenjang?></td>

@@ -52,8 +52,8 @@ class slip_gaji_yayasan extends DbTable
 		$this->ExportPageBreakCount = 0; // Page break per every n record (PDF only)
 		$this->ExportPageOrientation = "portrait"; // Page orientation (PDF only)
 		$this->ExportPageSize = "a4"; // Page size (PDF only)
-		$this->ExportExcelPageOrientation = ""; // Page orientation (PhpSpreadsheet only)
-		$this->ExportExcelPageSize = ""; // Page size (PhpSpreadsheet only)
+		$this->ExportExcelPageOrientation = \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_DEFAULT; // Page orientation (PhpSpreadsheet only)
+		$this->ExportExcelPageSize = \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_A4; // Page size (PhpSpreadsheet only)
 		$this->ExportWordPageOrientation = "portrait"; // Page orientation (PHPWord only)
 		$this->ExportWordColumnWidth = NULL; // Cell width (PHPWord only)
 		$this->DetailAdd = FALSE; // Allow detail add
@@ -74,11 +74,8 @@ class slip_gaji_yayasan extends DbTable
 		$this->fields['id'] = &$this->id;
 
 		// bulan
-		$this->bulan = new DbField('slip_gaji_yayasan', 'slip_gaji_yayasan', 'x_bulan', 'bulan', '`bulan`', '`bulan`', 3, 11, -1, FALSE, '`bulan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->bulan = new DbField('slip_gaji_yayasan', 'slip_gaji_yayasan', 'x_bulan', 'bulan', '`bulan`', '`bulan`', 3, 11, -1, FALSE, '`bulan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->bulan->Sortable = TRUE; // Allow sort
-		$this->bulan->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->bulan->PleaseSelectText = $Language->phrase("PleaseSelect"); // "PleaseSelect" text
-		$this->bulan->Lookup = new Lookup('bulan', 'bulan', FALSE, 'id', ["bulan","","",""], [], [], [], [], [], [], '', '');
 		$this->bulan->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['bulan'] = &$this->bulan;
 
@@ -91,12 +88,11 @@ class slip_gaji_yayasan extends DbTable
 		// id_pegawai
 		$this->id_pegawai = new DbField('slip_gaji_yayasan', 'slip_gaji_yayasan', 'x_id_pegawai', 'id_pegawai', '`id_pegawai`', '`id_pegawai`', 3, 11, -1, FALSE, '`id_pegawai`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->id_pegawai->Sortable = TRUE; // Allow sort
-		$this->id_pegawai->Lookup = new Lookup('id_pegawai', 'pegawai', FALSE, 'id', ["nama","","",""], [], [], [], [], [], [], '', '');
 		$this->id_pegawai->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['id_pegawai'] = &$this->id_pegawai;
 
 		// total
-		$this->total = new DbField('slip_gaji_yayasan', 'slip_gaji_yayasan', 'x_total', 'total', '`total`', '`total`', 20, 200, -1, FALSE, '`total`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->total = new DbField('slip_gaji_yayasan', 'slip_gaji_yayasan', 'x_total', 'total', '`total`', '`total`', 20, 20, -1, FALSE, '`total`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->total->Sortable = TRUE; // Allow sort
 		$this->total->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['total'] = &$this->total;
@@ -104,6 +100,7 @@ class slip_gaji_yayasan extends DbTable
 		// id1
 		$this->id1 = new DbField('slip_gaji_yayasan', 'slip_gaji_yayasan', 'x_id1', 'id1', '`id1`', '`id1`', 3, 11, -1, FALSE, '`id1`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'NO');
 		$this->id1->IsAutoIncrement = TRUE; // Autoincrement field
+		$this->id1->IsPrimaryKey = TRUE; // Primary key field
 		$this->id1->Sortable = TRUE; // Allow sort
 		$this->id1->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['id1'] = &$this->id1;
@@ -440,6 +437,8 @@ class slip_gaji_yayasan extends DbTable
 		if ($rs) {
 			if (array_key_exists('id', $rs))
 				AddFilter($where, QuotedName('id', $this->Dbid) . '=' . QuotedValue($rs['id'], $this->id->DataType, $this->Dbid));
+			if (array_key_exists('id1', $rs))
+				AddFilter($where, QuotedName('id1', $this->Dbid) . '=' . QuotedValue($rs['id1'], $this->id1->DataType, $this->Dbid));
 		}
 		$filter = ($curfilter) ? $this->CurrentFilter : "";
 		AddFilter($filter, $where);
@@ -483,7 +482,7 @@ class slip_gaji_yayasan extends DbTable
 	// Record filter WHERE clause
 	protected function sqlKeyFilter()
 	{
-		return "`id` = @id@";
+		return "`id` = @id@ AND `id1` = @id1@";
 	}
 
 	// Get record filter
@@ -500,6 +499,16 @@ class slip_gaji_yayasan extends DbTable
 			return "0=1"; // Invalid key
 		else
 			$keyFilter = str_replace("@id@", AdjustSql($val, $this->Dbid), $keyFilter); // Replace key value
+		if (is_array($row))
+			$val = array_key_exists('id1', $row) ? $row['id1'] : NULL;
+		else
+			$val = $this->id1->OldValue !== NULL ? $this->id1->OldValue : $this->id1->CurrentValue;
+		if (!is_numeric($val))
+			return "0=1"; // Invalid key
+		if ($val == NULL)
+			return "0=1"; // Invalid key
+		else
+			$keyFilter = str_replace("@id1@", AdjustSql($val, $this->Dbid), $keyFilter); // Replace key value
 		return $keyFilter;
 	}
 
@@ -605,6 +614,7 @@ class slip_gaji_yayasan extends DbTable
 	{
 		$json = "";
 		$json .= "id:" . JsonEncode($this->id->CurrentValue, "number");
+		$json .= ",id1:" . JsonEncode($this->id1->CurrentValue, "number");
 		$json = "{" . $json . "}";
 		if ($htmlEncode)
 			$json = HtmlEncode($json);
@@ -619,6 +629,11 @@ class slip_gaji_yayasan extends DbTable
 			$url .= $parm . "&";
 		if ($this->id->CurrentValue != NULL) {
 			$url .= "id=" . urlencode($this->id->CurrentValue);
+		} else {
+			return "javascript:ew.alert(ew.language.phrase('InvalidRecord'));";
+		}
+		if ($this->id1->CurrentValue != NULL) {
+			$url .= "&id1=" . urlencode($this->id1->CurrentValue);
 		} else {
 			return "javascript:ew.alert(ew.language.phrase('InvalidRecord'));";
 		}
@@ -647,15 +662,26 @@ class slip_gaji_yayasan extends DbTable
 		if (Param("key_m") !== NULL) {
 			$arKeys = Param("key_m");
 			$cnt = count($arKeys);
+			for ($i = 0; $i < $cnt; $i++)
+				$arKeys[$i] = explode(Config("COMPOSITE_KEY_SEPARATOR"), $arKeys[$i]);
 		} else {
 			if (Param("id") !== NULL)
-				$arKeys[] = Param("id");
+				$arKey[] = Param("id");
 			elseif (IsApi() && Key(0) !== NULL)
-				$arKeys[] = Key(0);
+				$arKey[] = Key(0);
 			elseif (IsApi() && Route(2) !== NULL)
-				$arKeys[] = Route(2);
+				$arKey[] = Route(2);
 			else
 				$arKeys = NULL; // Do not setup
+			if (Param("id1") !== NULL)
+				$arKey[] = Param("id1");
+			elseif (IsApi() && Key(1) !== NULL)
+				$arKey[] = Key(1);
+			elseif (IsApi() && Route(3) !== NULL)
+				$arKey[] = Route(3);
+			else
+				$arKeys = NULL; // Do not setup
+			if (is_array($arKeys)) $arKeys[] = $arKey;
 
 			//return $arKeys; // Do not return yet, so the values will also be checked by the following code
 		}
@@ -664,7 +690,11 @@ class slip_gaji_yayasan extends DbTable
 		$ar = [];
 		if (is_array($arKeys)) {
 			foreach ($arKeys as $key) {
-				if (!is_numeric($key))
+				if (!is_array($key) || count($key) != 2)
+					continue; // Just skip so other keys will still work
+				if (!is_numeric($key[0])) // id
+					continue;
+				if (!is_numeric($key[1])) // id1
 					continue;
 				$ar[] = $key;
 			}
@@ -680,9 +710,13 @@ class slip_gaji_yayasan extends DbTable
 		foreach ($arKeys as $key) {
 			if ($keyFilter != "") $keyFilter .= " OR ";
 			if ($setCurrent)
-				$this->id->CurrentValue = $key;
+				$this->id->CurrentValue = $key[0];
 			else
-				$this->id->OldValue = $key;
+				$this->id->OldValue = $key[0];
+			if ($setCurrent)
+				$this->id1->CurrentValue = $key[1];
+			else
+				$this->id1->OldValue = $key[1];
 			$keyFilter .= "(" . $this->getRecordFilter() . ")";
 		}
 		return $keyFilter;
@@ -731,52 +765,18 @@ class slip_gaji_yayasan extends DbTable
 		$this->id->ViewCustomAttributes = "";
 
 		// bulan
-		$curVal = strval($this->bulan->CurrentValue);
-		if ($curVal != "") {
-			$this->bulan->ViewValue = $this->bulan->lookupCacheOption($curVal);
-			if ($this->bulan->ViewValue === NULL) { // Lookup from database
-				$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
-				$sqlWrk = $this->bulan->Lookup->getSql(FALSE, $filterWrk, '', $this);
-				$rswrk = Conn()->execute($sqlWrk);
-				if ($rswrk && !$rswrk->EOF) { // Lookup values found
-					$arwrk = [];
-					$arwrk[1] = $rswrk->fields('df');
-					$this->bulan->ViewValue = $this->bulan->displayValue($arwrk);
-					$rswrk->Close();
-				} else {
-					$this->bulan->ViewValue = $this->bulan->CurrentValue;
-				}
-			}
-		} else {
-			$this->bulan->ViewValue = NULL;
-		}
+		$this->bulan->ViewValue = $this->bulan->CurrentValue;
+		$this->bulan->ViewValue = FormatNumber($this->bulan->ViewValue, 0, -2, -2, -2);
 		$this->bulan->ViewCustomAttributes = "";
 
 		// tahun
 		$this->tahun->ViewValue = $this->tahun->CurrentValue;
+		$this->tahun->ViewValue = FormatNumber($this->tahun->ViewValue, 0, -2, -2, -2);
 		$this->tahun->ViewCustomAttributes = "";
 
 		// id_pegawai
 		$this->id_pegawai->ViewValue = $this->id_pegawai->CurrentValue;
-		$curVal = strval($this->id_pegawai->CurrentValue);
-		if ($curVal != "") {
-			$this->id_pegawai->ViewValue = $this->id_pegawai->lookupCacheOption($curVal);
-			if ($this->id_pegawai->ViewValue === NULL) { // Lookup from database
-				$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
-				$sqlWrk = $this->id_pegawai->Lookup->getSql(FALSE, $filterWrk, '', $this);
-				$rswrk = Conn()->execute($sqlWrk);
-				if ($rswrk && !$rswrk->EOF) { // Lookup values found
-					$arwrk = [];
-					$arwrk[1] = $rswrk->fields('df');
-					$this->id_pegawai->ViewValue = $this->id_pegawai->displayValue($arwrk);
-					$rswrk->Close();
-				} else {
-					$this->id_pegawai->ViewValue = $this->id_pegawai->CurrentValue;
-				}
-			}
-		} else {
-			$this->id_pegawai->ViewValue = NULL;
-		}
+		$this->id_pegawai->ViewValue = FormatNumber($this->id_pegawai->ViewValue, 0, -2, -2, -2);
 		$this->id_pegawai->ViewCustomAttributes = "";
 
 		// total
@@ -842,6 +842,8 @@ class slip_gaji_yayasan extends DbTable
 		// bulan
 		$this->bulan->EditAttrs["class"] = "form-control";
 		$this->bulan->EditCustomAttributes = "";
+		$this->bulan->EditValue = $this->bulan->CurrentValue;
+		$this->bulan->PlaceHolder = RemoveHtml($this->bulan->caption());
 
 		// tahun
 		$this->tahun->EditAttrs["class"] = "form-control";
@@ -857,7 +859,7 @@ class slip_gaji_yayasan extends DbTable
 
 		// total
 		$this->total->EditAttrs["class"] = "form-control";
-		$this->total->EditCustomAttributes = "readonly";
+		$this->total->EditCustomAttributes = "";
 		$this->total->EditValue = $this->total->CurrentValue;
 		$this->total->PlaceHolder = RemoveHtml($this->total->caption());
 
@@ -865,7 +867,7 @@ class slip_gaji_yayasan extends DbTable
 		$this->id1->EditAttrs["class"] = "form-control";
 		$this->id1->EditCustomAttributes = "";
 		$this->id1->EditValue = $this->id1->CurrentValue;
-		$this->id1->PlaceHolder = RemoveHtml($this->id1->caption());
+		$this->id1->ViewCustomAttributes = "";
 
 		// Call Row Rendered event
 		$this->Row_Rendered();
@@ -896,16 +898,19 @@ class slip_gaji_yayasan extends DbTable
 			if ($doc->Horizontal) { // Horizontal format, write header
 				$doc->beginExportRow();
 				if ($exportPageType == "view") {
+					$doc->exportCaption($this->id);
 					$doc->exportCaption($this->bulan);
 					$doc->exportCaption($this->tahun);
 					$doc->exportCaption($this->id_pegawai);
 					$doc->exportCaption($this->total);
 					$doc->exportCaption($this->id1);
 				} else {
+					$doc->exportCaption($this->id);
 					$doc->exportCaption($this->bulan);
 					$doc->exportCaption($this->tahun);
 					$doc->exportCaption($this->id_pegawai);
 					$doc->exportCaption($this->total);
+					$doc->exportCaption($this->id1);
 				}
 				$doc->endExportRow();
 			}
@@ -937,16 +942,19 @@ class slip_gaji_yayasan extends DbTable
 				if (!$doc->ExportCustom) {
 					$doc->beginExportRow($rowCnt); // Allow CSS styles if enabled
 					if ($exportPageType == "view") {
+						$doc->exportField($this->id);
 						$doc->exportField($this->bulan);
 						$doc->exportField($this->tahun);
 						$doc->exportField($this->id_pegawai);
 						$doc->exportField($this->total);
 						$doc->exportField($this->id1);
 					} else {
+						$doc->exportField($this->id);
 						$doc->exportField($this->bulan);
 						$doc->exportField($this->tahun);
 						$doc->exportField($this->id_pegawai);
 						$doc->exportField($this->total);
+						$doc->exportField($this->id1);
 					}
 					$doc->endExportRow($rowCnt);
 				}
@@ -975,12 +983,6 @@ class slip_gaji_yayasan extends DbTable
 	function Recordset_Selecting(&$filter) {
 
 		// Enter your code here
-			if(CurrentUserLevel() != '-1'){
-			$nip = CurrentUserInfo("id");
-			if($nip != '' OR $nip != FALSE) {
-				AddFilter($filter, "id_pegawai = $nip");
-			}
-		}
 	}
 
 	// Recordset Selected event

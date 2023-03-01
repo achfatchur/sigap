@@ -2,9 +2,9 @@
 <?php
 
 /**
- * Table class for m_yayasan
+ * Table class for m_slip_yayasan
  */
-class m_yayasan extends DbTable
+class m_slip_yayasan extends DbTable
 {
 	protected $SqlFrom = "";
 	protected $SqlSelect = "";
@@ -28,8 +28,9 @@ class m_yayasan extends DbTable
 	public $id;
 	public $bulan;
 	public $tahun;
-	public $datetime;
-	public $import_file;
+	public $pegawai;
+	public $total;
+	public $id1;
 
 	// Constructor
 	public function __construct()
@@ -40,12 +41,12 @@ class m_yayasan extends DbTable
 		// Language object
 		if (!isset($Language))
 			$Language = new Language();
-		$this->TableVar = 'm_yayasan';
-		$this->TableName = 'm_yayasan';
-		$this->TableType = 'TABLE';
+		$this->TableVar = 'm_slip_yayasan';
+		$this->TableName = 'm_slip_yayasan';
+		$this->TableType = 'VIEW';
 
 		// Update Table
-		$this->UpdateTable = "`m_yayasan`";
+		$this->UpdateTable = "`m_slip_yayasan`";
 		$this->Dbid = 'DB';
 		$this->ExportAll = TRUE;
 		$this->ExportPageBreakCount = 0; // Page break per every n record (PDF only)
@@ -65,17 +66,15 @@ class m_yayasan extends DbTable
 		$this->BasicSearch = new BasicSearch($this->TableVar);
 
 		// id
-		$this->id = new DbField('m_yayasan', 'm_yayasan', 'x_id', 'id', '`id`', '`id`', 3, 11, -1, FALSE, '`id`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'NO');
+		$this->id = new DbField('m_slip_yayasan', 'm_slip_yayasan', 'x_id', 'id', '`id`', '`id`', 3, 11, -1, FALSE, '`id`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'NO');
 		$this->id->IsAutoIncrement = TRUE; // Autoincrement field
 		$this->id->IsPrimaryKey = TRUE; // Primary key field
-		$this->id->IsForeignKey = TRUE; // Foreign key field
 		$this->id->Sortable = TRUE; // Allow sort
 		$this->id->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['id'] = &$this->id;
 
 		// bulan
-		$this->bulan = new DbField('m_yayasan', 'm_yayasan', 'x_bulan', 'bulan', '`bulan`', '`bulan`', 3, 11, -1, FALSE, '`bulan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
-		$this->bulan->IsForeignKey = TRUE; // Foreign key field
+		$this->bulan = new DbField('m_slip_yayasan', 'm_slip_yayasan', 'x_bulan', 'bulan', '`bulan`', '`bulan`', 3, 11, -1, FALSE, '`bulan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
 		$this->bulan->Sortable = TRUE; // Allow sort
 		$this->bulan->UsePleaseSelect = TRUE; // Use PleaseSelect by default
 		$this->bulan->PleaseSelectText = $Language->phrase("PleaseSelect"); // "PleaseSelect" text
@@ -84,22 +83,31 @@ class m_yayasan extends DbTable
 		$this->fields['bulan'] = &$this->bulan;
 
 		// tahun
-		$this->tahun = new DbField('m_yayasan', 'm_yayasan', 'x_tahun', 'tahun', '`tahun`', '`tahun`', 3, 11, -1, FALSE, '`tahun`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->tahun->IsForeignKey = TRUE; // Foreign key field
+		$this->tahun = new DbField('m_slip_yayasan', 'm_slip_yayasan', 'x_tahun', 'tahun', '`tahun`', '`tahun`', 3, 11, -1, FALSE, '`tahun`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->tahun->Sortable = TRUE; // Allow sort
 		$this->tahun->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['tahun'] = &$this->tahun;
 
-		// datetime
-		$this->datetime = new DbField('m_yayasan', 'm_yayasan', 'x_datetime', 'datetime', '`datetime`', CastDateFieldForLike("`datetime`", 0, "DB"), 135, 19, 0, FALSE, '`datetime`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->datetime->Sortable = TRUE; // Allow sort
-		$this->datetime->DefaultErrorMessage = str_replace("%s", $GLOBALS["DATE_FORMAT"], $Language->phrase("IncorrectDate"));
-		$this->fields['datetime'] = &$this->datetime;
+		// pegawai
+		$this->pegawai = new DbField('m_slip_yayasan', 'm_slip_yayasan', 'x_pegawai', 'pegawai', '`pegawai`', '`pegawai`', 3, 10, -1, FALSE, '`pegawai`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->pegawai->Sortable = TRUE; // Allow sort
+		$this->pegawai->Lookup = new Lookup('pegawai', 'pegawai', FALSE, 'id', ["nip","","",""], [], [], [], [], [], [], '', '');
+		$this->pegawai->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['pegawai'] = &$this->pegawai;
 
-		// import_file
-		$this->import_file = new DbField('m_yayasan', 'm_yayasan', 'x_import_file', 'import_file', '`import_file`', '`import_file`', 201, 65535, -1, TRUE, '`import_file`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'FILE');
-		$this->import_file->Sortable = TRUE; // Allow sort
-		$this->fields['import_file'] = &$this->import_file;
+		// total
+		$this->total = new DbField('m_slip_yayasan', 'm_slip_yayasan', 'x_total', 'total', '`total`', '`total`', 20, 20, -1, FALSE, '`total`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->total->Sortable = TRUE; // Allow sort
+		$this->total->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['total'] = &$this->total;
+
+		// id1
+		$this->id1 = new DbField('m_slip_yayasan', 'm_slip_yayasan', 'x_id1', 'id1', '`id1`', '`id1`', 3, 11, -1, FALSE, '`id1`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'NO');
+		$this->id1->IsAutoIncrement = TRUE; // Autoincrement field
+		$this->id1->IsPrimaryKey = TRUE; // Primary key field
+		$this->id1->Sortable = TRUE; // Allow sort
+		$this->id1->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['id1'] = &$this->id1;
 	}
 
 	// Field Visibility
@@ -138,37 +146,10 @@ class m_yayasan extends DbTable
 		}
 	}
 
-	// Current detail table name
-	public function getCurrentDetailTable()
-	{
-		return @$_SESSION[PROJECT_NAME . "_" . $this->TableVar . "_" . Config("TABLE_DETAIL_TABLE")];
-	}
-	public function setCurrentDetailTable($v)
-	{
-		$_SESSION[PROJECT_NAME . "_" . $this->TableVar . "_" . Config("TABLE_DETAIL_TABLE")] = $v;
-	}
-
-	// Get detail url
-	public function getDetailUrl()
-	{
-
-		// Detail url
-		$detailUrl = "";
-		if ($this->getCurrentDetailTable() == "yayasan") {
-			$detailUrl = $GLOBALS["yayasan"]->getListUrl() . "?" . Config("TABLE_SHOW_MASTER") . "=" . $this->TableVar;
-			$detailUrl .= "&fk_id=" . urlencode($this->id->CurrentValue);
-			$detailUrl .= "&fk_bulan=" . urlencode($this->bulan->CurrentValue);
-			$detailUrl .= "&fk_tahun=" . urlencode($this->tahun->CurrentValue);
-		}
-		if ($detailUrl == "")
-			$detailUrl = "m_yayasanlist.php";
-		return $detailUrl;
-	}
-
 	// Table level SQL
 	public function getSqlFrom() // From
 	{
-		return ($this->SqlFrom != "") ? $this->SqlFrom : "`m_yayasan`";
+		return ($this->SqlFrom != "") ? $this->SqlFrom : "`m_slip_yayasan`";
 	}
 	public function sqlFrom() // For backward compatibility
 	{
@@ -415,6 +396,10 @@ class m_yayasan extends DbTable
 			// Get insert id if necessary
 			$this->id->setDbValue($conn->insert_ID());
 			$rs['id'] = $this->id->DbValue;
+
+			// Get insert id if necessary
+			$this->id1->setDbValue($conn->insert_ID());
+			$rs['id1'] = $this->id1->DbValue;
 		}
 		return $success;
 	}
@@ -443,45 +428,6 @@ class m_yayasan extends DbTable
 	public function update(&$rs, $where = "", $rsold = NULL, $curfilter = TRUE)
 	{
 		$conn = $this->getConnection();
-
-		// Cascade Update detail table 'yayasan'
-		$cascadeUpdate = FALSE;
-		$rscascade = [];
-		if ($rsold && (isset($rs['id']) && $rsold['id'] != $rs['id'])) { // Update detail field 'm_id'
-			$cascadeUpdate = TRUE;
-			$rscascade['m_id'] = $rs['id'];
-		}
-		if ($rsold && (isset($rs['bulan']) && $rsold['bulan'] != $rs['bulan'])) { // Update detail field 'bulan'
-			$cascadeUpdate = TRUE;
-			$rscascade['bulan'] = $rs['bulan'];
-		}
-		if ($rsold && (isset($rs['tahun']) && $rsold['tahun'] != $rs['tahun'])) { // Update detail field 'tahun'
-			$cascadeUpdate = TRUE;
-			$rscascade['tahun'] = $rs['tahun'];
-		}
-		if ($cascadeUpdate) {
-			if (!isset($GLOBALS["yayasan"]))
-				$GLOBALS["yayasan"] = new yayasan();
-			$rswrk = $GLOBALS["yayasan"]->loadRs("`m_id` = " . QuotedValue($rsold['id'], DATATYPE_NUMBER, 'DB') . " AND " . "`bulan` = " . QuotedValue($rsold['bulan'], DATATYPE_NUMBER, 'DB') . " AND " . "`tahun` = " . QuotedValue($rsold['tahun'], DATATYPE_NUMBER, 'DB'));
-			while ($rswrk && !$rswrk->EOF) {
-				$rskey = [];
-				$fldname = 'id';
-				$rskey[$fldname] = $rswrk->fields[$fldname];
-				$rsdtlold = &$rswrk->fields;
-				$rsdtlnew = array_merge($rsdtlold, $rscascade);
-
-				// Call Row_Updating event
-				$success = $GLOBALS["yayasan"]->Row_Updating($rsdtlold, $rsdtlnew);
-				if ($success)
-					$success = $GLOBALS["yayasan"]->update($rscascade, $rskey, $rswrk->fields);
-				if (!$success)
-					return FALSE;
-
-				// Call Row_Updated event
-				$GLOBALS["yayasan"]->Row_Updated($rsdtlold, $rsdtlnew);
-				$rswrk->moveNext();
-			}
-		}
 		$success = $conn->execute($this->updateSql($rs, $where, $curfilter));
 		return $success;
 	}
@@ -495,6 +441,8 @@ class m_yayasan extends DbTable
 		if ($rs) {
 			if (array_key_exists('id', $rs))
 				AddFilter($where, QuotedName('id', $this->Dbid) . '=' . QuotedValue($rs['id'], $this->id->DataType, $this->Dbid));
+			if (array_key_exists('id1', $rs))
+				AddFilter($where, QuotedName('id1', $this->Dbid) . '=' . QuotedValue($rs['id1'], $this->id1->DataType, $this->Dbid));
 		}
 		$filter = ($curfilter) ? $this->CurrentFilter : "";
 		AddFilter($filter, $where);
@@ -510,32 +458,6 @@ class m_yayasan extends DbTable
 	{
 		$success = TRUE;
 		$conn = $this->getConnection();
-
-		// Cascade delete detail table 'yayasan'
-		if (!isset($GLOBALS["yayasan"]))
-			$GLOBALS["yayasan"] = new yayasan();
-		$rscascade = $GLOBALS["yayasan"]->loadRs("`m_id` = " . QuotedValue($rs['id'], DATATYPE_NUMBER, "DB") . " AND " . "`bulan` = " . QuotedValue($rs['bulan'], DATATYPE_NUMBER, "DB") . " AND " . "`tahun` = " . QuotedValue($rs['tahun'], DATATYPE_NUMBER, "DB"));
-		$dtlrows = ($rscascade) ? $rscascade->getRows() : [];
-
-		// Call Row Deleting event
-		foreach ($dtlrows as $dtlrow) {
-			$success = $GLOBALS["yayasan"]->Row_Deleting($dtlrow);
-			if (!$success)
-				break;
-		}
-		if ($success) {
-			foreach ($dtlrows as $dtlrow) {
-				$success = $GLOBALS["yayasan"]->delete($dtlrow); // Delete
-				if (!$success)
-					break;
-			}
-		}
-
-		// Call Row Deleted event
-		if ($success) {
-			foreach ($dtlrows as $dtlrow)
-				$GLOBALS["yayasan"]->Row_Deleted($dtlrow);
-		}
 		if ($success)
 			$success = $conn->execute($this->deleteSql($rs, $where, $curfilter));
 		return $success;
@@ -550,25 +472,21 @@ class m_yayasan extends DbTable
 		$this->id->DbValue = $row['id'];
 		$this->bulan->DbValue = $row['bulan'];
 		$this->tahun->DbValue = $row['tahun'];
-		$this->datetime->DbValue = $row['datetime'];
-		$this->import_file->Upload->DbValue = $row['import_file'];
+		$this->pegawai->DbValue = $row['pegawai'];
+		$this->total->DbValue = $row['total'];
+		$this->id1->DbValue = $row['id1'];
 	}
 
 	// Delete uploaded files
 	public function deleteUploadedFiles($row)
 	{
 		$this->loadDbValues($row);
-		$oldFiles = EmptyValue($row['import_file']) ? [] : [$row['import_file']];
-		foreach ($oldFiles as $oldFile) {
-			if (file_exists($this->import_file->oldPhysicalUploadPath() . $oldFile))
-				@unlink($this->import_file->oldPhysicalUploadPath() . $oldFile);
-		}
 	}
 
 	// Record filter WHERE clause
 	protected function sqlKeyFilter()
 	{
-		return "`id` = @id@";
+		return "`id` = @id@ AND `id1` = @id1@";
 	}
 
 	// Get record filter
@@ -585,6 +503,16 @@ class m_yayasan extends DbTable
 			return "0=1"; // Invalid key
 		else
 			$keyFilter = str_replace("@id@", AdjustSql($val, $this->Dbid), $keyFilter); // Replace key value
+		if (is_array($row))
+			$val = array_key_exists('id1', $row) ? $row['id1'] : NULL;
+		else
+			$val = $this->id1->OldValue !== NULL ? $this->id1->OldValue : $this->id1->CurrentValue;
+		if (!is_numeric($val))
+			return "0=1"; // Invalid key
+		if ($val == NULL)
+			return "0=1"; // Invalid key
+		else
+			$keyFilter = str_replace("@id1@", AdjustSql($val, $this->Dbid), $keyFilter); // Replace key value
 		return $keyFilter;
 	}
 
@@ -599,7 +527,7 @@ class m_yayasan extends DbTable
 		if (@$_SESSION[$name] != "") {
 			return $_SESSION[$name];
 		} else {
-			return "m_yayasanlist.php";
+			return "m_slip_yayasanlist.php";
 		}
 	}
 	public function setReturnUrl($v)
@@ -611,11 +539,11 @@ class m_yayasan extends DbTable
 	public function getModalCaption($pageName)
 	{
 		global $Language;
-		if ($pageName == "m_yayasanview.php")
+		if ($pageName == "m_slip_yayasanview.php")
 			return $Language->phrase("View");
-		elseif ($pageName == "m_yayasanedit.php")
+		elseif ($pageName == "m_slip_yayasanedit.php")
 			return $Language->phrase("Edit");
-		elseif ($pageName == "m_yayasanadd.php")
+		elseif ($pageName == "m_slip_yayasanadd.php")
 			return $Language->phrase("Add");
 		else
 			return "";
@@ -624,16 +552,16 @@ class m_yayasan extends DbTable
 	// List URL
 	public function getListUrl()
 	{
-		return "m_yayasanlist.php";
+		return "m_slip_yayasanlist.php";
 	}
 
 	// View URL
 	public function getViewUrl($parm = "")
 	{
 		if ($parm != "")
-			$url = $this->keyUrl("m_yayasanview.php", $this->getUrlParm($parm));
+			$url = $this->keyUrl("m_slip_yayasanview.php", $this->getUrlParm($parm));
 		else
-			$url = $this->keyUrl("m_yayasanview.php", $this->getUrlParm(Config("TABLE_SHOW_DETAIL") . "="));
+			$url = $this->keyUrl("m_slip_yayasanview.php", $this->getUrlParm(Config("TABLE_SHOW_DETAIL") . "="));
 		return $this->addMasterUrl($url);
 	}
 
@@ -641,19 +569,16 @@ class m_yayasan extends DbTable
 	public function getAddUrl($parm = "")
 	{
 		if ($parm != "")
-			$url = "m_yayasanadd.php?" . $this->getUrlParm($parm);
+			$url = "m_slip_yayasanadd.php?" . $this->getUrlParm($parm);
 		else
-			$url = "m_yayasanadd.php";
+			$url = "m_slip_yayasanadd.php";
 		return $this->addMasterUrl($url);
 	}
 
 	// Edit URL
 	public function getEditUrl($parm = "")
 	{
-		if ($parm != "")
-			$url = $this->keyUrl("m_yayasanedit.php", $this->getUrlParm($parm));
-		else
-			$url = $this->keyUrl("m_yayasanedit.php", $this->getUrlParm(Config("TABLE_SHOW_DETAIL") . "="));
+		$url = $this->keyUrl("m_slip_yayasanedit.php", $this->getUrlParm($parm));
 		return $this->addMasterUrl($url);
 	}
 
@@ -667,10 +592,7 @@ class m_yayasan extends DbTable
 	// Copy URL
 	public function getCopyUrl($parm = "")
 	{
-		if ($parm != "")
-			$url = $this->keyUrl("m_yayasanadd.php", $this->getUrlParm($parm));
-		else
-			$url = $this->keyUrl("m_yayasanadd.php", $this->getUrlParm(Config("TABLE_SHOW_DETAIL") . "="));
+		$url = $this->keyUrl("m_slip_yayasanadd.php", $this->getUrlParm($parm));
 		return $this->addMasterUrl($url);
 	}
 
@@ -684,7 +606,7 @@ class m_yayasan extends DbTable
 	// Delete URL
 	public function getDeleteUrl()
 	{
-		return $this->keyUrl("m_yayasandelete.php", $this->getUrlParm());
+		return $this->keyUrl("m_slip_yayasandelete.php", $this->getUrlParm());
 	}
 
 	// Add master url
@@ -696,6 +618,7 @@ class m_yayasan extends DbTable
 	{
 		$json = "";
 		$json .= "id:" . JsonEncode($this->id->CurrentValue, "number");
+		$json .= ",id1:" . JsonEncode($this->id1->CurrentValue, "number");
 		$json = "{" . $json . "}";
 		if ($htmlEncode)
 			$json = HtmlEncode($json);
@@ -710,6 +633,11 @@ class m_yayasan extends DbTable
 			$url .= $parm . "&";
 		if ($this->id->CurrentValue != NULL) {
 			$url .= "id=" . urlencode($this->id->CurrentValue);
+		} else {
+			return "javascript:ew.alert(ew.language.phrase('InvalidRecord'));";
+		}
+		if ($this->id1->CurrentValue != NULL) {
+			$url .= "&id1=" . urlencode($this->id1->CurrentValue);
 		} else {
 			return "javascript:ew.alert(ew.language.phrase('InvalidRecord'));";
 		}
@@ -738,15 +666,26 @@ class m_yayasan extends DbTable
 		if (Param("key_m") !== NULL) {
 			$arKeys = Param("key_m");
 			$cnt = count($arKeys);
+			for ($i = 0; $i < $cnt; $i++)
+				$arKeys[$i] = explode(Config("COMPOSITE_KEY_SEPARATOR"), $arKeys[$i]);
 		} else {
 			if (Param("id") !== NULL)
-				$arKeys[] = Param("id");
+				$arKey[] = Param("id");
 			elseif (IsApi() && Key(0) !== NULL)
-				$arKeys[] = Key(0);
+				$arKey[] = Key(0);
 			elseif (IsApi() && Route(2) !== NULL)
-				$arKeys[] = Route(2);
+				$arKey[] = Route(2);
 			else
 				$arKeys = NULL; // Do not setup
+			if (Param("id1") !== NULL)
+				$arKey[] = Param("id1");
+			elseif (IsApi() && Key(1) !== NULL)
+				$arKey[] = Key(1);
+			elseif (IsApi() && Route(3) !== NULL)
+				$arKey[] = Route(3);
+			else
+				$arKeys = NULL; // Do not setup
+			if (is_array($arKeys)) $arKeys[] = $arKey;
 
 			//return $arKeys; // Do not return yet, so the values will also be checked by the following code
 		}
@@ -755,7 +694,11 @@ class m_yayasan extends DbTable
 		$ar = [];
 		if (is_array($arKeys)) {
 			foreach ($arKeys as $key) {
-				if (!is_numeric($key))
+				if (!is_array($key) || count($key) != 2)
+					continue; // Just skip so other keys will still work
+				if (!is_numeric($key[0])) // id
+					continue;
+				if (!is_numeric($key[1])) // id1
 					continue;
 				$ar[] = $key;
 			}
@@ -771,9 +714,13 @@ class m_yayasan extends DbTable
 		foreach ($arKeys as $key) {
 			if ($keyFilter != "") $keyFilter .= " OR ";
 			if ($setCurrent)
-				$this->id->CurrentValue = $key;
+				$this->id->CurrentValue = $key[0];
 			else
-				$this->id->OldValue = $key;
+				$this->id->OldValue = $key[0];
+			if ($setCurrent)
+				$this->id1->CurrentValue = $key[1];
+			else
+				$this->id1->OldValue = $key[1];
 			$keyFilter .= "(" . $this->getRecordFilter() . ")";
 		}
 		return $keyFilter;
@@ -796,8 +743,9 @@ class m_yayasan extends DbTable
 		$this->id->setDbValue($rs->fields('id'));
 		$this->bulan->setDbValue($rs->fields('bulan'));
 		$this->tahun->setDbValue($rs->fields('tahun'));
-		$this->datetime->setDbValue($rs->fields('datetime'));
-		$this->import_file->Upload->DbValue = $rs->fields('import_file');
+		$this->pegawai->setDbValue($rs->fields('pegawai'));
+		$this->total->setDbValue($rs->fields('total'));
+		$this->id1->setDbValue($rs->fields('id1'));
 	}
 
 	// Render list row values
@@ -812,8 +760,9 @@ class m_yayasan extends DbTable
 		// id
 		// bulan
 		// tahun
-		// datetime
-		// import_file
+		// pegawai
+		// total
+		// id1
 		// id
 
 		$this->id->ViewValue = $this->id->CurrentValue;
@@ -845,18 +794,37 @@ class m_yayasan extends DbTable
 		$this->tahun->ViewValue = $this->tahun->CurrentValue;
 		$this->tahun->ViewCustomAttributes = "";
 
-		// datetime
-		$this->datetime->ViewValue = $this->datetime->CurrentValue;
-		$this->datetime->ViewValue = FormatDateTime($this->datetime->ViewValue, 0);
-		$this->datetime->ViewCustomAttributes = "";
-
-		// import_file
-		if (!EmptyValue($this->import_file->Upload->DbValue)) {
-			$this->import_file->ViewValue = $this->import_file->Upload->DbValue;
+		// pegawai
+		$this->pegawai->ViewValue = $this->pegawai->CurrentValue;
+		$curVal = strval($this->pegawai->CurrentValue);
+		if ($curVal != "") {
+			$this->pegawai->ViewValue = $this->pegawai->lookupCacheOption($curVal);
+			if ($this->pegawai->ViewValue === NULL) { // Lookup from database
+				$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+				$sqlWrk = $this->pegawai->Lookup->getSql(FALSE, $filterWrk, '', $this);
+				$rswrk = Conn()->execute($sqlWrk);
+				if ($rswrk && !$rswrk->EOF) { // Lookup values found
+					$arwrk = [];
+					$arwrk[1] = $rswrk->fields('df');
+					$this->pegawai->ViewValue = $this->pegawai->displayValue($arwrk);
+					$rswrk->Close();
+				} else {
+					$this->pegawai->ViewValue = $this->pegawai->CurrentValue;
+				}
+			}
 		} else {
-			$this->import_file->ViewValue = "";
+			$this->pegawai->ViewValue = NULL;
 		}
-		$this->import_file->ViewCustomAttributes = "";
+		$this->pegawai->ViewCustomAttributes = "";
+
+		// total
+		$this->total->ViewValue = $this->total->CurrentValue;
+		$this->total->ViewValue = FormatNumber($this->total->ViewValue, 0, -2, -2, -2);
+		$this->total->ViewCustomAttributes = "";
+
+		// id1
+		$this->id1->ViewValue = $this->id1->CurrentValue;
+		$this->id1->ViewCustomAttributes = "";
 
 		// id
 		$this->id->LinkCustomAttributes = "";
@@ -873,16 +841,20 @@ class m_yayasan extends DbTable
 		$this->tahun->HrefValue = "";
 		$this->tahun->TooltipValue = "";
 
-		// datetime
-		$this->datetime->LinkCustomAttributes = "";
-		$this->datetime->HrefValue = "";
-		$this->datetime->TooltipValue = "";
+		// pegawai
+		$this->pegawai->LinkCustomAttributes = "";
+		$this->pegawai->HrefValue = "";
+		$this->pegawai->TooltipValue = "";
 
-		// import_file
-		$this->import_file->LinkCustomAttributes = "";
-		$this->import_file->HrefValue = "";
-		$this->import_file->ExportHrefValue = $this->import_file->UploadPath . $this->import_file->Upload->DbValue;
-		$this->import_file->TooltipValue = "";
+		// total
+		$this->total->LinkCustomAttributes = "";
+		$this->total->HrefValue = "";
+		$this->total->TooltipValue = "";
+
+		// id1
+		$this->id1->LinkCustomAttributes = "";
+		$this->id1->HrefValue = "";
+		$this->id1->TooltipValue = "";
 
 		// Call Row Rendered event
 		$this->Row_Rendered();
@@ -915,18 +887,23 @@ class m_yayasan extends DbTable
 		$this->tahun->EditValue = $this->tahun->CurrentValue;
 		$this->tahun->PlaceHolder = RemoveHtml($this->tahun->caption());
 
-		// datetime
-		// import_file
+		// pegawai
+		$this->pegawai->EditAttrs["class"] = "form-control";
+		$this->pegawai->EditCustomAttributes = "";
+		$this->pegawai->EditValue = $this->pegawai->CurrentValue;
+		$this->pegawai->PlaceHolder = RemoveHtml($this->pegawai->caption());
 
-		$this->import_file->EditAttrs["class"] = "form-control";
-		$this->import_file->EditCustomAttributes = "";
-		if (!EmptyValue($this->import_file->Upload->DbValue)) {
-			$this->import_file->EditValue = $this->import_file->Upload->DbValue;
-		} else {
-			$this->import_file->EditValue = "";
-		}
-		if (!EmptyValue($this->import_file->CurrentValue))
-				$this->import_file->Upload->FileName = $this->import_file->CurrentValue;
+		// total
+		$this->total->EditAttrs["class"] = "form-control";
+		$this->total->EditCustomAttributes = "readonly";
+		$this->total->EditValue = $this->total->CurrentValue;
+		$this->total->PlaceHolder = RemoveHtml($this->total->caption());
+
+		// id1
+		$this->id1->EditAttrs["class"] = "form-control";
+		$this->id1->EditCustomAttributes = "";
+		$this->id1->EditValue = $this->id1->CurrentValue;
+		$this->id1->ViewCustomAttributes = "";
 
 		// Call Row Rendered event
 		$this->Row_Rendered();
@@ -959,12 +936,16 @@ class m_yayasan extends DbTable
 				if ($exportPageType == "view") {
 					$doc->exportCaption($this->bulan);
 					$doc->exportCaption($this->tahun);
-					$doc->exportCaption($this->import_file);
+					$doc->exportCaption($this->pegawai);
+					$doc->exportCaption($this->total);
+					$doc->exportCaption($this->id1);
 				} else {
 					$doc->exportCaption($this->id);
 					$doc->exportCaption($this->bulan);
 					$doc->exportCaption($this->tahun);
-					$doc->exportCaption($this->datetime);
+					$doc->exportCaption($this->pegawai);
+					$doc->exportCaption($this->total);
+					$doc->exportCaption($this->id1);
 				}
 				$doc->endExportRow();
 			}
@@ -998,12 +979,16 @@ class m_yayasan extends DbTable
 					if ($exportPageType == "view") {
 						$doc->exportField($this->bulan);
 						$doc->exportField($this->tahun);
-						$doc->exportField($this->import_file);
+						$doc->exportField($this->pegawai);
+						$doc->exportField($this->total);
+						$doc->exportField($this->id1);
 					} else {
 						$doc->exportField($this->id);
 						$doc->exportField($this->bulan);
 						$doc->exportField($this->tahun);
-						$doc->exportField($this->datetime);
+						$doc->exportField($this->pegawai);
+						$doc->exportField($this->total);
+						$doc->exportField($this->id1);
 					}
 					$doc->endExportRow($rowCnt);
 				}
@@ -1022,104 +1007,8 @@ class m_yayasan extends DbTable
 	// Get file data
 	public function getFileData($fldparm, $key, $resize, $width = 0, $height = 0)
 	{
-		$width = ($width > 0) ? $width : Config("THUMBNAIL_DEFAULT_WIDTH");
-		$height = ($height > 0) ? $height : Config("THUMBNAIL_DEFAULT_HEIGHT");
 
-		// Set up field name / file name field / file type field
-		$fldName = "";
-		$fileNameFld = "";
-		$fileTypeFld = "";
-		if ($fldparm == 'import_file') {
-			$fldName = "import_file";
-			$fileNameFld = "import_file";
-		} else {
-			return FALSE; // Incorrect field
-		}
-
-		// Set up key values
-		$ar = explode(Config("COMPOSITE_KEY_SEPARATOR"), $key);
-		if (count($ar) == 1) {
-			$this->id->CurrentValue = $ar[0];
-		} else {
-			return FALSE; // Incorrect key
-		}
-
-		// Set up filter (WHERE Clause)
-		$filter = $this->getRecordFilter();
-		$this->CurrentFilter = $filter;
-		$sql = $this->getCurrentSql();
-		$conn = $this->getConnection();
-		$dbtype = GetConnectionType($this->Dbid);
-		if (($rs = $conn->execute($sql)) && !$rs->EOF) {
-			$val = $rs->fields($fldName);
-			if (!EmptyValue($val)) {
-				$fld = $this->fields[$fldName];
-
-				// Binary data
-				if ($fld->DataType == DATATYPE_BLOB) {
-					if ($dbtype != "MYSQL") {
-						if (is_array($val) || is_object($val)) // Byte array
-							$val = BytesToString($val);
-					}
-					if ($resize)
-						ResizeBinary($val, $width, $height);
-
-					// Write file type
-					if ($fileTypeFld != "" && !EmptyValue($rs->fields($fileTypeFld))) {
-						AddHeader("Content-type", $rs->fields($fileTypeFld));
-					} else {
-						AddHeader("Content-type", ContentType($val));
-					}
-
-					// Write file name
-					$downloadPdf = !Config("EMBED_PDF") && Config("DOWNLOAD_PDF_FILE");
-					if ($fileNameFld != "" && !EmptyValue($rs->fields($fileNameFld))) {
-						$fileName = $rs->fields($fileNameFld);
-						$pathinfo = pathinfo($fileName);
-						$ext = strtolower(@$pathinfo["extension"]);
-						$isPdf = SameText($ext, "pdf");
-						if ($downloadPdf || !$isPdf) // Skip header if not download PDF
-							AddHeader("Content-Disposition", "attachment; filename=\"" . $fileName . "\"");
-					} else {
-						$ext = ContentExtension($val);
-						$isPdf = SameText($ext, ".pdf");
-						if ($isPdf && $downloadPdf) // Add header if download PDF
-							AddHeader("Content-Disposition", "attachment; filename=\"" . $fileName . "\"");
-					}
-
-					// Write file data
-					if (StartsString("PK", $val) && ContainsString($val, "[Content_Types].xml") &&
-						ContainsString($val, "_rels") && ContainsString($val, "docProps")) { // Fix Office 2007 documents
-						if (!EndsString("\0\0\0", $val)) // Not ends with 3 or 4 \0
-							$val .= "\0\0\0\0";
-					}
-
-					// Clear any debug message
-					if (ob_get_length())
-						ob_end_clean();
-
-					// Write binary data
-					Write($val);
-
-				// Upload to folder
-				} else {
-					if ($fld->UploadMultiple)
-						$files = explode(Config("MULTIPLE_UPLOAD_SEPARATOR"), $val);
-					else
-						$files = [$val];
-					$data = [];
-					$ar = [];
-					foreach ($files as $file) {
-						if (!EmptyValue($file))
-							$ar[$file] = FullUrl($fld->hrefPath() . $file);
-					}
-					$data[$fld->Param] = $ar;
-					WriteJson($data);
-				}
-			}
-			$rs->close();
-			return TRUE;
-		}
+		// No binary fields
 		return FALSE;
 	}
 
@@ -1128,6 +1017,12 @@ class m_yayasan extends DbTable
 	function Recordset_Selecting(&$filter) {
 
 		// Enter your code here
+		if(CurrentUserLevel() != '-1'){
+			$nip = CurrentUserInfo("id");
+			if($nip != '' OR $nip != FALSE) {
+				AddFilter($filter, "pegawai = $nip");
+			}
+			}
 	}
 
 	// Recordset Selected event
@@ -1168,9 +1063,6 @@ class m_yayasan extends DbTable
 		// Enter your code here
 		// To cancel, set return value to FALSE
 
-		$rsnew['datetime'] = date('Y-m-d H:i:s');
-
-		//$rsnew['total'] = $rsnew['gaji_pokok'] - $rsnew['potongan'];
 		return TRUE;
 	}
 
@@ -1178,40 +1070,6 @@ class m_yayasan extends DbTable
 	function Row_Inserted($rsold, &$rsnew) {
 
 		//echo "Row Inserted"
-		if ($rsnew["import_file"]){
-						$path2file = "files/".$rsnew["import_file"];
-						$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-						if($reader) {
-							$reader->setReadDataOnly(true);
-							$spreadsheet = $reader->load($path2file);
-							$worksheet = $spreadsheet->getActiveSheet();
-							$highestRow = $worksheet->getHighestRow();
-							$highestColumn = $worksheet->getHighestColumn();
-							$startRowIdx = 2;
-							$records = $worksheet->rangeToArray("B" . $startRowIdx . ":"  . $highestColumn. $highestRow);
-							$XLSXdata = "";
-							foreach($records as $row) {
-								$pegawai = ExecuteRow("SELECT * FROM pegawai WHERE nip='".$row[0]."'");
-
-								// print_r($pegawai);die;
-								$total = $row[1] - $row[2];
-								$XLSXdata .= "("
-								.("NULL").","
-								."'".$rsnew["id"]."',"
-								."'".$pegawai["id"]."',"
-								.("'".date('Y-m-d H:i:s')."'").","
-								.(isset($row[1]) ? "'".$row[1]."'" : "NULL").","
-								.(isset($row[2]) ? "'".$row[2]."'" : "NULL").","
-								."'".$total."',"
-								."'".$rsnew["tahun"]."',"
-								."'".$rsnew["bulan"]."'),";
-							}
-								if ($XLSXdata != "") {
-									$myquery = "INSERT INTO `yayasan` VALUES ".rtrim($XLSXdata, ',') . ';';
-									$myResult = Execute($myquery);
-								}
-						}
-				}
 	}
 
 	// Row Updating event
@@ -1220,42 +1078,7 @@ class m_yayasan extends DbTable
 		// Enter your code here
 		// To cancel, set return value to FALSE
 
-			$rsnew['datetime'] = date('Y-m-d H:i:s');
-				$id = $rsold['id'];
-				$delete = Execute("DELETE FROM yayasan WHERE m_id = '".$id."'");
-				if ($rsnew["import_file"]){
-						$path2file = "files/".$rsnew["import_file"];
-						$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-						if($reader) {
-							$reader->setReadDataOnly(true);
-							$spreadsheet = $reader->load($path2file);
-							$worksheet = $spreadsheet->getActiveSheet();
-							$highestRow = $worksheet->getHighestRow();
-							$highestColumn = $worksheet->getHighestColumn();
-							$startRowIdx = 2;
-							$records = $worksheet->rangeToArray("B" . $startRowIdx . ":"  . $highestColumn. $highestRow);
-							$XLSXdata = "";
-							foreach($records as $row) {
-								$pegawai = ExecuteRow("SELECT * FROM pegawai WHERE nip='".$row[0]."'");
-
-								// print_r($pegawai);die;
-								$total = $row[1] - $row[2];
-								$XLSXdata .= "("
-								.("NULL").","
-								."'".$rsnew["id"]."',"
-								."'".$pegawai["id"]."',"
-								.("'".date('Y-m-d H:i:s')."'").","
-								.(isset($row[1]) ? "'".$row[1]."'" : "NULL").","
-								.(isset($row[2]) ? "'".$row[2]."'" : "NULL").","
-								."'".$total."'),";
-							}
-								if ($XLSXdata != "") {
-									$myquery = "INSERT INTO `yayasan` VALUES ".rtrim($XLSXdata, ',') . ';';
-									$myResult = Execute($myquery);
-								}
-						}
-				}
-			return TRUE;
+		return TRUE;
 	}
 
 	// Row Updated event

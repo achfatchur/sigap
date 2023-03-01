@@ -91,6 +91,16 @@ $yayasan_view->showMessage();
 </td>
 	</tr>
 <?php } ?>
+<?php if ($yayasan_view->pegawai->Visible) { // pegawai ?>
+	<tr id="r_pegawai">
+		<td class="<?php echo $yayasan_view->TableLeftColumnClass ?>"><span id="elh_yayasan_pegawai"><?php echo $yayasan_view->pegawai->caption() ?></span></td>
+		<td data-name="pegawai" <?php echo $yayasan_view->pegawai->cellAttributes() ?>>
+<span id="el_yayasan_pegawai">
+<span<?php echo $yayasan_view->pegawai->viewAttributes() ?>><?php echo $yayasan_view->pegawai->getViewValue() ?></span>
+</span>
+</td>
+	</tr>
+<?php } ?>
 <?php if ($yayasan_view->bulan->Visible) { // bulan ?>
 	<tr id="r_bulan">
 		<td class="<?php echo $yayasan_view->TableLeftColumnClass ?>"><span id="elh_yayasan_bulan"><?php echo $yayasan_view->bulan->caption() ?></span></td>
@@ -107,16 +117,6 @@ $yayasan_view->showMessage();
 		<td data-name="tahun" <?php echo $yayasan_view->tahun->cellAttributes() ?>>
 <span id="el_yayasan_tahun">
 <span<?php echo $yayasan_view->tahun->viewAttributes() ?>><?php echo $yayasan_view->tahun->getViewValue() ?></span>
-</span>
-</td>
-	</tr>
-<?php } ?>
-<?php if ($yayasan_view->id_pegawai->Visible) { // id_pegawai ?>
-	<tr id="r_id_pegawai">
-		<td class="<?php echo $yayasan_view->TableLeftColumnClass ?>"><span id="elh_yayasan_id_pegawai"><?php echo $yayasan_view->id_pegawai->caption() ?></span></td>
-		<td data-name="id_pegawai" <?php echo $yayasan_view->id_pegawai->cellAttributes() ?>>
-<span id="el_yayasan_id_pegawai">
-<span<?php echo $yayasan_view->id_pegawai->viewAttributes() ?>><?php echo $yayasan_view->id_pegawai->getViewValue() ?></span>
 </span>
 </td>
 	</tr>

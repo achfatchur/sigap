@@ -70,8 +70,8 @@ $yayasan_delete->showMessage();
 <table class="table ew-table">
 	<thead>
 	<tr class="ew-table-header">
-<?php if ($yayasan_delete->id_pegawai->Visible) { // id_pegawai ?>
-		<th class="<?php echo $yayasan_delete->id_pegawai->headerCellClass() ?>"><span id="elh_yayasan_id_pegawai" class="yayasan_id_pegawai"><?php echo $yayasan_delete->id_pegawai->caption() ?></span></th>
+<?php if ($yayasan_delete->pegawai->Visible) { // pegawai ?>
+		<th class="<?php echo $yayasan_delete->pegawai->headerCellClass() ?>"><span id="elh_yayasan_pegawai" class="yayasan_pegawai"><?php echo $yayasan_delete->pegawai->caption() ?></span></th>
 <?php } ?>
 <?php if ($yayasan_delete->gaji_pokok->Visible) { // gaji_pokok ?>
 		<th class="<?php echo $yayasan_delete->gaji_pokok->headerCellClass() ?>"><span id="elh_yayasan_gaji_pokok" class="yayasan_gaji_pokok"><?php echo $yayasan_delete->gaji_pokok->caption() ?></span></th>
@@ -103,10 +103,10 @@ while (!$yayasan_delete->Recordset->EOF) {
 	$yayasan_delete->renderRow();
 ?>
 	<tr <?php echo $yayasan->rowAttributes() ?>>
-<?php if ($yayasan_delete->id_pegawai->Visible) { // id_pegawai ?>
-		<td <?php echo $yayasan_delete->id_pegawai->cellAttributes() ?>>
-<span id="el<?php echo $yayasan_delete->RowCount ?>_yayasan_id_pegawai" class="yayasan_id_pegawai">
-<span<?php echo $yayasan_delete->id_pegawai->viewAttributes() ?>><?php echo $yayasan_delete->id_pegawai->getViewValue() ?></span>
+<?php if ($yayasan_delete->pegawai->Visible) { // pegawai ?>
+		<td <?php echo $yayasan_delete->pegawai->cellAttributes() ?>>
+<span id="el<?php echo $yayasan_delete->RowCount ?>_yayasan_pegawai" class="yayasan_pegawai">
+<span<?php echo $yayasan_delete->pegawai->viewAttributes() ?>><?php echo $yayasan_delete->pegawai->getViewValue() ?></span>
 </span>
 </td>
 <?php } ?>

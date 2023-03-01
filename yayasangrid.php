@@ -48,14 +48,14 @@ loadjs.ready("head", function() {
 			var checkrow = (gridinsert) ? !this.emptyRow(infix) : true;
 			if (checkrow) {
 				addcnt++;
-			<?php if ($yayasan_grid->id_pegawai->Required) { ?>
-				elm = this.getElements("x" + infix + "_id_pegawai");
+			<?php if ($yayasan_grid->pegawai->Required) { ?>
+				elm = this.getElements("x" + infix + "_pegawai");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
-					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $yayasan_grid->id_pegawai->caption(), $yayasan_grid->id_pegawai->RequiredErrorMessage)) ?>");
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $yayasan_grid->pegawai->caption(), $yayasan_grid->pegawai->RequiredErrorMessage)) ?>");
 			<?php } ?>
-				elm = this.getElements("x" + infix + "_id_pegawai");
+				elm = this.getElements("x" + infix + "_pegawai");
 				if (elm && !ew.checkInteger(elm.value))
-					return this.onError(elm, "<?php echo JsEncode($yayasan_grid->id_pegawai->errorMessage()) ?>");
+					return this.onError(elm, "<?php echo JsEncode($yayasan_grid->pegawai->errorMessage()) ?>");
 			<?php if ($yayasan_grid->gaji_pokok->Required) { ?>
 				elm = this.getElements("x" + infix + "_gaji_pokok");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -92,7 +92,7 @@ loadjs.ready("head", function() {
 	// Check empty row
 	fyayasangrid.emptyRow = function(infix) {
 		var fobj = this._form;
-		if (ew.valueChanged(fobj, infix, "id_pegawai", false)) return false;
+		if (ew.valueChanged(fobj, infix, "pegawai", false)) return false;
 		if (ew.valueChanged(fobj, infix, "gaji_pokok", false)) return false;
 		if (ew.valueChanged(fobj, infix, "potongan", false)) return false;
 		if (ew.valueChanged(fobj, infix, "total", false)) return false;
@@ -110,9 +110,9 @@ loadjs.ready("head", function() {
 	fyayasangrid.validateRequired = <?php echo Config("CLIENT_VALIDATE") ? "true" : "false" ?>;
 
 	// Dynamic selection lists
-	fyayasangrid.lists["x_id_pegawai"] = <?php echo $yayasan_grid->id_pegawai->Lookup->toClientList($yayasan_grid) ?>;
-	fyayasangrid.lists["x_id_pegawai"].options = <?php echo JsonEncode($yayasan_grid->id_pegawai->lookupOptions()) ?>;
-	fyayasangrid.autoSuggests["x_id_pegawai"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
+	fyayasangrid.lists["x_pegawai"] = <?php echo $yayasan_grid->pegawai->Lookup->toClientList($yayasan_grid) ?>;
+	fyayasangrid.lists["x_pegawai"].options = <?php echo JsonEncode($yayasan_grid->pegawai->lookupOptions()) ?>;
+	fyayasangrid.autoSuggests["x_pegawai"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
 	loadjs.done("fyayasangrid");
 });
 </script>
@@ -144,12 +144,12 @@ $yayasan_grid->renderListOptions();
 // Render list options (header, left)
 $yayasan_grid->ListOptions->render("header", "left");
 ?>
-<?php if ($yayasan_grid->id_pegawai->Visible) { // id_pegawai ?>
-	<?php if ($yayasan_grid->SortUrl($yayasan_grid->id_pegawai) == "") { ?>
-		<th data-name="id_pegawai" class="<?php echo $yayasan_grid->id_pegawai->headerCellClass() ?>"><div id="elh_yayasan_id_pegawai" class="yayasan_id_pegawai"><div class="ew-table-header-caption"><?php echo $yayasan_grid->id_pegawai->caption() ?></div></div></th>
+<?php if ($yayasan_grid->pegawai->Visible) { // pegawai ?>
+	<?php if ($yayasan_grid->SortUrl($yayasan_grid->pegawai) == "") { ?>
+		<th data-name="pegawai" class="<?php echo $yayasan_grid->pegawai->headerCellClass() ?>"><div id="elh_yayasan_pegawai" class="yayasan_pegawai"><div class="ew-table-header-caption"><?php echo $yayasan_grid->pegawai->caption() ?></div></div></th>
 	<?php } else { ?>
-		<th data-name="id_pegawai" class="<?php echo $yayasan_grid->id_pegawai->headerCellClass() ?>"><div><div id="elh_yayasan_id_pegawai" class="yayasan_id_pegawai">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $yayasan_grid->id_pegawai->caption() ?></span><span class="ew-table-header-sort"><?php if ($yayasan_grid->id_pegawai->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($yayasan_grid->id_pegawai->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		<th data-name="pegawai" class="<?php echo $yayasan_grid->pegawai->headerCellClass() ?>"><div><div id="elh_yayasan_pegawai" class="yayasan_pegawai">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $yayasan_grid->pegawai->caption() ?></span><span class="ew-table-header-sort"><?php if ($yayasan_grid->pegawai->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($yayasan_grid->pegawai->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -288,57 +288,57 @@ while ($yayasan_grid->RecordCount < $yayasan_grid->StopRecord) {
 // Render list options (body, left)
 $yayasan_grid->ListOptions->render("body", "left", $yayasan_grid->RowCount);
 ?>
-	<?php if ($yayasan_grid->id_pegawai->Visible) { // id_pegawai ?>
-		<td data-name="id_pegawai" <?php echo $yayasan_grid->id_pegawai->cellAttributes() ?>>
+	<?php if ($yayasan_grid->pegawai->Visible) { // pegawai ?>
+		<td data-name="pegawai" <?php echo $yayasan_grid->pegawai->cellAttributes() ?>>
 <?php if ($yayasan->RowType == ROWTYPE_ADD) { // Add record ?>
-<span id="el<?php echo $yayasan_grid->RowCount ?>_yayasan_id_pegawai" class="form-group">
+<span id="el<?php echo $yayasan_grid->RowCount ?>_yayasan_pegawai" class="form-group">
 <?php
-$onchange = $yayasan_grid->id_pegawai->EditAttrs->prepend("onchange", "");
+$onchange = $yayasan_grid->pegawai->EditAttrs->prepend("onchange", "");
 $onchange = ($onchange) ? ' onchange="' . JsEncode($onchange) . '"' : '';
-$yayasan_grid->id_pegawai->EditAttrs["onchange"] = "";
+$yayasan_grid->pegawai->EditAttrs["onchange"] = "";
 ?>
-<span id="as_x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai">
-	<input type="text" class="form-control" name="sv_x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" id="sv_x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" value="<?php echo RemoveHtml($yayasan_grid->id_pegawai->EditValue) ?>" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($yayasan_grid->id_pegawai->getPlaceHolder()) ?>" data-placeholder="<?php echo HtmlEncode($yayasan_grid->id_pegawai->getPlaceHolder()) ?>"<?php echo $yayasan_grid->id_pegawai->editAttributes() ?>>
+<span id="as_x<?php echo $yayasan_grid->RowIndex ?>_pegawai">
+	<input type="text" class="form-control" name="sv_x<?php echo $yayasan_grid->RowIndex ?>_pegawai" id="sv_x<?php echo $yayasan_grid->RowIndex ?>_pegawai" value="<?php echo RemoveHtml($yayasan_grid->pegawai->EditValue) ?>" size="30" maxlength="10" placeholder="<?php echo HtmlEncode($yayasan_grid->pegawai->getPlaceHolder()) ?>" data-placeholder="<?php echo HtmlEncode($yayasan_grid->pegawai->getPlaceHolder()) ?>"<?php echo $yayasan_grid->pegawai->editAttributes() ?>>
 </span>
-<input type="hidden" data-table="yayasan" data-field="x_id_pegawai" data-value-separator="<?php echo $yayasan_grid->id_pegawai->displayValueSeparatorAttribute() ?>" name="x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" id="x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" value="<?php echo HtmlEncode($yayasan_grid->id_pegawai->CurrentValue) ?>"<?php echo $onchange ?>>
+<input type="hidden" data-table="yayasan" data-field="x_pegawai" data-value-separator="<?php echo $yayasan_grid->pegawai->displayValueSeparatorAttribute() ?>" name="x<?php echo $yayasan_grid->RowIndex ?>_pegawai" id="x<?php echo $yayasan_grid->RowIndex ?>_pegawai" value="<?php echo HtmlEncode($yayasan_grid->pegawai->CurrentValue) ?>"<?php echo $onchange ?>>
 <script>
 loadjs.ready(["fyayasangrid"], function() {
-	fyayasangrid.createAutoSuggest({"id":"x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai","forceSelect":false});
+	fyayasangrid.createAutoSuggest({"id":"x<?php echo $yayasan_grid->RowIndex ?>_pegawai","forceSelect":false});
 });
 </script>
-<?php echo $yayasan_grid->id_pegawai->Lookup->getParamTag($yayasan_grid, "p_x" . $yayasan_grid->RowIndex . "_id_pegawai") ?>
+<?php echo $yayasan_grid->pegawai->Lookup->getParamTag($yayasan_grid, "p_x" . $yayasan_grid->RowIndex . "_pegawai") ?>
 </span>
-<input type="hidden" data-table="yayasan" data-field="x_id_pegawai" name="o<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" id="o<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" value="<?php echo HtmlEncode($yayasan_grid->id_pegawai->OldValue) ?>">
+<input type="hidden" data-table="yayasan" data-field="x_pegawai" name="o<?php echo $yayasan_grid->RowIndex ?>_pegawai" id="o<?php echo $yayasan_grid->RowIndex ?>_pegawai" value="<?php echo HtmlEncode($yayasan_grid->pegawai->OldValue) ?>">
 <?php } ?>
 <?php if ($yayasan->RowType == ROWTYPE_EDIT) { // Edit record ?>
-<span id="el<?php echo $yayasan_grid->RowCount ?>_yayasan_id_pegawai" class="form-group">
+<span id="el<?php echo $yayasan_grid->RowCount ?>_yayasan_pegawai" class="form-group">
 <?php
-$onchange = $yayasan_grid->id_pegawai->EditAttrs->prepend("onchange", "");
+$onchange = $yayasan_grid->pegawai->EditAttrs->prepend("onchange", "");
 $onchange = ($onchange) ? ' onchange="' . JsEncode($onchange) . '"' : '';
-$yayasan_grid->id_pegawai->EditAttrs["onchange"] = "";
+$yayasan_grid->pegawai->EditAttrs["onchange"] = "";
 ?>
-<span id="as_x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai">
-	<input type="text" class="form-control" name="sv_x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" id="sv_x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" value="<?php echo RemoveHtml($yayasan_grid->id_pegawai->EditValue) ?>" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($yayasan_grid->id_pegawai->getPlaceHolder()) ?>" data-placeholder="<?php echo HtmlEncode($yayasan_grid->id_pegawai->getPlaceHolder()) ?>"<?php echo $yayasan_grid->id_pegawai->editAttributes() ?>>
+<span id="as_x<?php echo $yayasan_grid->RowIndex ?>_pegawai">
+	<input type="text" class="form-control" name="sv_x<?php echo $yayasan_grid->RowIndex ?>_pegawai" id="sv_x<?php echo $yayasan_grid->RowIndex ?>_pegawai" value="<?php echo RemoveHtml($yayasan_grid->pegawai->EditValue) ?>" size="30" maxlength="10" placeholder="<?php echo HtmlEncode($yayasan_grid->pegawai->getPlaceHolder()) ?>" data-placeholder="<?php echo HtmlEncode($yayasan_grid->pegawai->getPlaceHolder()) ?>"<?php echo $yayasan_grid->pegawai->editAttributes() ?>>
 </span>
-<input type="hidden" data-table="yayasan" data-field="x_id_pegawai" data-value-separator="<?php echo $yayasan_grid->id_pegawai->displayValueSeparatorAttribute() ?>" name="x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" id="x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" value="<?php echo HtmlEncode($yayasan_grid->id_pegawai->CurrentValue) ?>"<?php echo $onchange ?>>
+<input type="hidden" data-table="yayasan" data-field="x_pegawai" data-value-separator="<?php echo $yayasan_grid->pegawai->displayValueSeparatorAttribute() ?>" name="x<?php echo $yayasan_grid->RowIndex ?>_pegawai" id="x<?php echo $yayasan_grid->RowIndex ?>_pegawai" value="<?php echo HtmlEncode($yayasan_grid->pegawai->CurrentValue) ?>"<?php echo $onchange ?>>
 <script>
 loadjs.ready(["fyayasangrid"], function() {
-	fyayasangrid.createAutoSuggest({"id":"x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai","forceSelect":false});
+	fyayasangrid.createAutoSuggest({"id":"x<?php echo $yayasan_grid->RowIndex ?>_pegawai","forceSelect":false});
 });
 </script>
-<?php echo $yayasan_grid->id_pegawai->Lookup->getParamTag($yayasan_grid, "p_x" . $yayasan_grid->RowIndex . "_id_pegawai") ?>
+<?php echo $yayasan_grid->pegawai->Lookup->getParamTag($yayasan_grid, "p_x" . $yayasan_grid->RowIndex . "_pegawai") ?>
 </span>
 <?php } ?>
 <?php if ($yayasan->RowType == ROWTYPE_VIEW) { // View record ?>
-<span id="el<?php echo $yayasan_grid->RowCount ?>_yayasan_id_pegawai">
-<span<?php echo $yayasan_grid->id_pegawai->viewAttributes() ?>><?php echo $yayasan_grid->id_pegawai->getViewValue() ?></span>
+<span id="el<?php echo $yayasan_grid->RowCount ?>_yayasan_pegawai">
+<span<?php echo $yayasan_grid->pegawai->viewAttributes() ?>><?php echo $yayasan_grid->pegawai->getViewValue() ?></span>
 </span>
 <?php if (!$yayasan->isConfirm()) { ?>
-<input type="hidden" data-table="yayasan" data-field="x_id_pegawai" name="x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" id="x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" value="<?php echo HtmlEncode($yayasan_grid->id_pegawai->FormValue) ?>">
-<input type="hidden" data-table="yayasan" data-field="x_id_pegawai" name="o<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" id="o<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" value="<?php echo HtmlEncode($yayasan_grid->id_pegawai->OldValue) ?>">
+<input type="hidden" data-table="yayasan" data-field="x_pegawai" name="x<?php echo $yayasan_grid->RowIndex ?>_pegawai" id="x<?php echo $yayasan_grid->RowIndex ?>_pegawai" value="<?php echo HtmlEncode($yayasan_grid->pegawai->FormValue) ?>">
+<input type="hidden" data-table="yayasan" data-field="x_pegawai" name="o<?php echo $yayasan_grid->RowIndex ?>_pegawai" id="o<?php echo $yayasan_grid->RowIndex ?>_pegawai" value="<?php echo HtmlEncode($yayasan_grid->pegawai->OldValue) ?>">
 <?php } else { ?>
-<input type="hidden" data-table="yayasan" data-field="x_id_pegawai" name="fyayasangrid$x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" id="fyayasangrid$x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" value="<?php echo HtmlEncode($yayasan_grid->id_pegawai->FormValue) ?>">
-<input type="hidden" data-table="yayasan" data-field="x_id_pegawai" name="fyayasangrid$o<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" id="fyayasangrid$o<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" value="<?php echo HtmlEncode($yayasan_grid->id_pegawai->OldValue) ?>">
+<input type="hidden" data-table="yayasan" data-field="x_pegawai" name="fyayasangrid$x<?php echo $yayasan_grid->RowIndex ?>_pegawai" id="fyayasangrid$x<?php echo $yayasan_grid->RowIndex ?>_pegawai" value="<?php echo HtmlEncode($yayasan_grid->pegawai->FormValue) ?>">
+<input type="hidden" data-table="yayasan" data-field="x_pegawai" name="fyayasangrid$o<?php echo $yayasan_grid->RowIndex ?>_pegawai" id="fyayasangrid$o<?php echo $yayasan_grid->RowIndex ?>_pegawai" value="<?php echo HtmlEncode($yayasan_grid->pegawai->OldValue) ?>">
 <?php } ?>
 <?php } ?>
 </td>
@@ -476,33 +476,33 @@ loadjs.ready(["fyayasangrid", "load"], function() {
 // Render list options (body, left)
 $yayasan_grid->ListOptions->render("body", "left", $yayasan_grid->RowIndex);
 ?>
-	<?php if ($yayasan_grid->id_pegawai->Visible) { // id_pegawai ?>
-		<td data-name="id_pegawai">
+	<?php if ($yayasan_grid->pegawai->Visible) { // pegawai ?>
+		<td data-name="pegawai">
 <?php if (!$yayasan->isConfirm()) { ?>
-<span id="el$rowindex$_yayasan_id_pegawai" class="form-group yayasan_id_pegawai">
+<span id="el$rowindex$_yayasan_pegawai" class="form-group yayasan_pegawai">
 <?php
-$onchange = $yayasan_grid->id_pegawai->EditAttrs->prepend("onchange", "");
+$onchange = $yayasan_grid->pegawai->EditAttrs->prepend("onchange", "");
 $onchange = ($onchange) ? ' onchange="' . JsEncode($onchange) . '"' : '';
-$yayasan_grid->id_pegawai->EditAttrs["onchange"] = "";
+$yayasan_grid->pegawai->EditAttrs["onchange"] = "";
 ?>
-<span id="as_x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai">
-	<input type="text" class="form-control" name="sv_x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" id="sv_x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" value="<?php echo RemoveHtml($yayasan_grid->id_pegawai->EditValue) ?>" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($yayasan_grid->id_pegawai->getPlaceHolder()) ?>" data-placeholder="<?php echo HtmlEncode($yayasan_grid->id_pegawai->getPlaceHolder()) ?>"<?php echo $yayasan_grid->id_pegawai->editAttributes() ?>>
+<span id="as_x<?php echo $yayasan_grid->RowIndex ?>_pegawai">
+	<input type="text" class="form-control" name="sv_x<?php echo $yayasan_grid->RowIndex ?>_pegawai" id="sv_x<?php echo $yayasan_grid->RowIndex ?>_pegawai" value="<?php echo RemoveHtml($yayasan_grid->pegawai->EditValue) ?>" size="30" maxlength="10" placeholder="<?php echo HtmlEncode($yayasan_grid->pegawai->getPlaceHolder()) ?>" data-placeholder="<?php echo HtmlEncode($yayasan_grid->pegawai->getPlaceHolder()) ?>"<?php echo $yayasan_grid->pegawai->editAttributes() ?>>
 </span>
-<input type="hidden" data-table="yayasan" data-field="x_id_pegawai" data-value-separator="<?php echo $yayasan_grid->id_pegawai->displayValueSeparatorAttribute() ?>" name="x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" id="x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" value="<?php echo HtmlEncode($yayasan_grid->id_pegawai->CurrentValue) ?>"<?php echo $onchange ?>>
+<input type="hidden" data-table="yayasan" data-field="x_pegawai" data-value-separator="<?php echo $yayasan_grid->pegawai->displayValueSeparatorAttribute() ?>" name="x<?php echo $yayasan_grid->RowIndex ?>_pegawai" id="x<?php echo $yayasan_grid->RowIndex ?>_pegawai" value="<?php echo HtmlEncode($yayasan_grid->pegawai->CurrentValue) ?>"<?php echo $onchange ?>>
 <script>
 loadjs.ready(["fyayasangrid"], function() {
-	fyayasangrid.createAutoSuggest({"id":"x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai","forceSelect":false});
+	fyayasangrid.createAutoSuggest({"id":"x<?php echo $yayasan_grid->RowIndex ?>_pegawai","forceSelect":false});
 });
 </script>
-<?php echo $yayasan_grid->id_pegawai->Lookup->getParamTag($yayasan_grid, "p_x" . $yayasan_grid->RowIndex . "_id_pegawai") ?>
+<?php echo $yayasan_grid->pegawai->Lookup->getParamTag($yayasan_grid, "p_x" . $yayasan_grid->RowIndex . "_pegawai") ?>
 </span>
 <?php } else { ?>
-<span id="el$rowindex$_yayasan_id_pegawai" class="form-group yayasan_id_pegawai">
-<span<?php echo $yayasan_grid->id_pegawai->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($yayasan_grid->id_pegawai->ViewValue)) ?>"></span>
+<span id="el$rowindex$_yayasan_pegawai" class="form-group yayasan_pegawai">
+<span<?php echo $yayasan_grid->pegawai->viewAttributes() ?>><input type="text" readonly class="form-control-plaintext" value="<?php echo HtmlEncode(RemoveHtml($yayasan_grid->pegawai->ViewValue)) ?>"></span>
 </span>
-<input type="hidden" data-table="yayasan" data-field="x_id_pegawai" name="x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" id="x<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" value="<?php echo HtmlEncode($yayasan_grid->id_pegawai->FormValue) ?>">
+<input type="hidden" data-table="yayasan" data-field="x_pegawai" name="x<?php echo $yayasan_grid->RowIndex ?>_pegawai" id="x<?php echo $yayasan_grid->RowIndex ?>_pegawai" value="<?php echo HtmlEncode($yayasan_grid->pegawai->FormValue) ?>">
 <?php } ?>
-<input type="hidden" data-table="yayasan" data-field="x_id_pegawai" name="o<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" id="o<?php echo $yayasan_grid->RowIndex ?>_id_pegawai" value="<?php echo HtmlEncode($yayasan_grid->id_pegawai->OldValue) ?>">
+<input type="hidden" data-table="yayasan" data-field="x_pegawai" name="o<?php echo $yayasan_grid->RowIndex ?>_pegawai" id="o<?php echo $yayasan_grid->RowIndex ?>_pegawai" value="<?php echo HtmlEncode($yayasan_grid->pegawai->OldValue) ?>">
 </td>
 	<?php } ?>
 	<?php if ($yayasan_grid->gaji_pokok->Visible) { // gaji_pokok ?>

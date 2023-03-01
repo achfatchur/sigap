@@ -589,7 +589,8 @@ class slip_gaji_yayasan_list extends slip_gaji_yayasan
 	{
 		$key = "";
 		if (is_array($ar)) {
-			$key .= @$ar['id'];
+			$key .= @$ar['id'] . Config("COMPOSITE_KEY_SEPARATOR");
+			$key .= @$ar['id1'];
 		}
 		return $key;
 	}
@@ -603,7 +604,7 @@ class slip_gaji_yayasan_list extends slip_gaji_yayasan
 	{
 		if ($this->isAdd() || $this->isCopy() || $this->isGridAdd())
 			$this->id->Visible = FALSE;
-		if ($this->isAddOrEdit())
+		if ($this->isAdd() || $this->isCopy() || $this->isGridAdd())
 			$this->id1->Visible = FALSE;
 	}
 
@@ -817,12 +818,12 @@ class slip_gaji_yayasan_list extends slip_gaji_yayasan
 
 		// Setup export options
 		$this->setupExportOptions();
-		$this->id->Visible = FALSE;
+		$this->id->setVisibility();
 		$this->bulan->setVisibility();
 		$this->tahun->setVisibility();
 		$this->id_pegawai->setVisibility();
 		$this->total->setVisibility();
-		$this->id1->Visible = FALSE;
+		$this->id1->setVisibility();
 		$this->hideFieldsForAddEdit();
 
 		// Global Page Loading event (in userfn*.php)
@@ -856,10 +857,8 @@ class slip_gaji_yayasan_list extends slip_gaji_yayasan
 		}
 
 		// Set up lookup cache
-		$this->setupLookupOptions($this->bulan);
-		$this->setupLookupOptions($this->id_pegawai);
-
 		// Search filters
+
 		$srchAdvanced = ""; // Advanced search filter
 		$srchBasic = ""; // Basic search filter
 		$filter = "";
@@ -1048,9 +1047,12 @@ class slip_gaji_yayasan_list extends slip_gaji_yayasan
 	protected function setupKeyValues($key)
 	{
 		$arKeyFlds = explode(Config("COMPOSITE_KEY_SEPARATOR"), $key);
-		if (count($arKeyFlds) >= 1) {
+		if (count($arKeyFlds) >= 2) {
 			$this->id->setOldValue($arKeyFlds[0]);
 			if (!is_numeric($this->id->OldValue))
+				return FALSE;
+			$this->id1->setOldValue($arKeyFlds[1]);
+			if (!is_numeric($this->id1->OldValue))
 				return FALSE;
 		}
 		return TRUE;
@@ -1064,10 +1066,12 @@ class slip_gaji_yayasan_list extends slip_gaji_yayasan
 		if (Get("order") !== NULL) {
 			$this->CurrentOrder = Get("order");
 			$this->CurrentOrderType = Get("ordertype", "");
+			$this->updateSort($this->id); // id
 			$this->updateSort($this->bulan); // bulan
 			$this->updateSort($this->tahun); // tahun
 			$this->updateSort($this->id_pegawai); // id_pegawai
 			$this->updateSort($this->total); // total
+			$this->updateSort($this->id1); // id1
 			$this->setStartRecordNumber(1); // Reset start position
 		}
 	}
@@ -1099,10 +1103,12 @@ class slip_gaji_yayasan_list extends slip_gaji_yayasan
 			if ($this->Command == "resetsort") {
 				$orderBy = "";
 				$this->setSessionOrderBy($orderBy);
+				$this->id->setSort("");
 				$this->bulan->setSort("");
 				$this->tahun->setSort("");
 				$this->id_pegawai->setSort("");
 				$this->total->setSort("");
+				$this->id1->setSort("");
 			}
 
 			// Reset start position
@@ -1138,14 +1144,6 @@ class slip_gaji_yayasan_list extends slip_gaji_yayasan
 		$item->ShowInDropDown = FALSE;
 		$item->ShowInButtonGroup = FALSE;
 
-		// "sequence"
-		$item = &$this->ListOptions->add("sequence");
-		$item->CssClass = "text-nowrap";
-		$item->Visible = TRUE;
-		$item->OnLeft = TRUE; // Always on left
-		$item->ShowInDropDown = FALSE;
-		$item->ShowInButtonGroup = FALSE;
-
 		// Drop down button for ListOptions
 		$this->ListOptions->UseDropDownButton = FALSE;
 		$this->ListOptions->DropDownButtonPhrase = $Language->phrase("ButtonListOptions");
@@ -1170,10 +1168,6 @@ class slip_gaji_yayasan_list extends slip_gaji_yayasan
 
 		// Call ListOptions_Rendering event
 		$this->ListOptions_Rendering();
-
-		// "sequence"
-		$opt = $this->ListOptions["sequence"];
-		$opt->Body = FormatSequenceNumber($this->RecordCount);
 
 		// Set up list action buttons
 		$opt = $this->ListOptions["listactions"];
@@ -1206,7 +1200,7 @@ class slip_gaji_yayasan_list extends slip_gaji_yayasan
 
 		// "checkbox"
 		$opt = $this->ListOptions["checkbox"];
-		$opt->Body = "<div class=\"custom-control custom-checkbox d-inline-block\"><input type=\"checkbox\" id=\"key_m_" . $this->RowCount . "\" name=\"key_m[]\" class=\"custom-control-input ew-multi-select\" value=\"" . HtmlEncode($this->id->CurrentValue) . "\" onclick=\"ew.clickMultiCheckbox(event);\"><label class=\"custom-control-label\" for=\"key_m_" . $this->RowCount . "\"></label></div>";
+		$opt->Body = "<div class=\"custom-control custom-checkbox d-inline-block\"><input type=\"checkbox\" id=\"key_m_" . $this->RowCount . "\" name=\"key_m[]\" class=\"custom-control-input ew-multi-select\" value=\"" . HtmlEncode($this->id->CurrentValue . Config("COMPOSITE_KEY_SEPARATOR") . $this->id1->CurrentValue) . "\" onclick=\"ew.clickMultiCheckbox(event);\"><label class=\"custom-control-label\" for=\"key_m_" . $this->RowCount . "\"></label></div>";
 		$this->renderListOptionsExt();
 
 		// Call ListOptions_Rendered event
@@ -1468,6 +1462,10 @@ class slip_gaji_yayasan_list extends slip_gaji_yayasan
 			$this->id->OldValue = $this->getKey("id"); // id
 		else
 			$validKey = FALSE;
+		if (strval($this->getKey("id1")) != "")
+			$this->id1->OldValue = $this->getKey("id1"); // id1
+		else
+			$validKey = FALSE;
 
 		// Load old record
 		$this->OldRecordset = NULL;
@@ -1507,59 +1505,38 @@ class slip_gaji_yayasan_list extends slip_gaji_yayasan
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
+			// id
+			$this->id->ViewValue = $this->id->CurrentValue;
+			$this->id->ViewCustomAttributes = "";
+
 			// bulan
-			$curVal = strval($this->bulan->CurrentValue);
-			if ($curVal != "") {
-				$this->bulan->ViewValue = $this->bulan->lookupCacheOption($curVal);
-				if ($this->bulan->ViewValue === NULL) { // Lookup from database
-					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
-					$sqlWrk = $this->bulan->Lookup->getSql(FALSE, $filterWrk, '', $this);
-					$rswrk = Conn()->execute($sqlWrk);
-					if ($rswrk && !$rswrk->EOF) { // Lookup values found
-						$arwrk = [];
-						$arwrk[1] = $rswrk->fields('df');
-						$this->bulan->ViewValue = $this->bulan->displayValue($arwrk);
-						$rswrk->Close();
-					} else {
-						$this->bulan->ViewValue = $this->bulan->CurrentValue;
-					}
-				}
-			} else {
-				$this->bulan->ViewValue = NULL;
-			}
+			$this->bulan->ViewValue = $this->bulan->CurrentValue;
+			$this->bulan->ViewValue = FormatNumber($this->bulan->ViewValue, 0, -2, -2, -2);
 			$this->bulan->ViewCustomAttributes = "";
 
 			// tahun
 			$this->tahun->ViewValue = $this->tahun->CurrentValue;
+			$this->tahun->ViewValue = FormatNumber($this->tahun->ViewValue, 0, -2, -2, -2);
 			$this->tahun->ViewCustomAttributes = "";
 
 			// id_pegawai
 			$this->id_pegawai->ViewValue = $this->id_pegawai->CurrentValue;
-			$curVal = strval($this->id_pegawai->CurrentValue);
-			if ($curVal != "") {
-				$this->id_pegawai->ViewValue = $this->id_pegawai->lookupCacheOption($curVal);
-				if ($this->id_pegawai->ViewValue === NULL) { // Lookup from database
-					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
-					$sqlWrk = $this->id_pegawai->Lookup->getSql(FALSE, $filterWrk, '', $this);
-					$rswrk = Conn()->execute($sqlWrk);
-					if ($rswrk && !$rswrk->EOF) { // Lookup values found
-						$arwrk = [];
-						$arwrk[1] = $rswrk->fields('df');
-						$this->id_pegawai->ViewValue = $this->id_pegawai->displayValue($arwrk);
-						$rswrk->Close();
-					} else {
-						$this->id_pegawai->ViewValue = $this->id_pegawai->CurrentValue;
-					}
-				}
-			} else {
-				$this->id_pegawai->ViewValue = NULL;
-			}
+			$this->id_pegawai->ViewValue = FormatNumber($this->id_pegawai->ViewValue, 0, -2, -2, -2);
 			$this->id_pegawai->ViewCustomAttributes = "";
 
 			// total
 			$this->total->ViewValue = $this->total->CurrentValue;
 			$this->total->ViewValue = FormatNumber($this->total->ViewValue, 0, -2, -2, -2);
 			$this->total->ViewCustomAttributes = "";
+
+			// id1
+			$this->id1->ViewValue = $this->id1->CurrentValue;
+			$this->id1->ViewCustomAttributes = "";
+
+			// id
+			$this->id->LinkCustomAttributes = "";
+			$this->id->HrefValue = "";
+			$this->id->TooltipValue = "";
 
 			// bulan
 			$this->bulan->LinkCustomAttributes = "";
@@ -1580,6 +1557,11 @@ class slip_gaji_yayasan_list extends slip_gaji_yayasan
 			$this->total->LinkCustomAttributes = "";
 			$this->total->HrefValue = "";
 			$this->total->TooltipValue = "";
+
+			// id1
+			$this->id1->LinkCustomAttributes = "";
+			$this->id1->HrefValue = "";
+			$this->id1->TooltipValue = "";
 		}
 
 		// Call Row Rendered event
@@ -1832,10 +1814,6 @@ class slip_gaji_yayasan_list extends slip_gaji_yayasan
 
 			// Set up lookup SQL and connection
 			switch ($fld->FieldVar) {
-				case "x_bulan":
-					break;
-				case "x_id_pegawai":
-					break;
 				default:
 					$lookupFilter = "";
 					break;
@@ -1856,10 +1834,6 @@ class slip_gaji_yayasan_list extends slip_gaji_yayasan
 
 					// Format the field values
 					switch ($fld->FieldVar) {
-						case "x_bulan":
-							break;
-						case "x_id_pegawai":
-							break;
 					}
 					$ar[strval($row[0])] = $row;
 					$rs->moveNext();
@@ -1985,9 +1959,6 @@ class slip_gaji_yayasan_list extends slip_gaji_yayasan
 		//$opt->OnLeft = TRUE; // Link on left
 		//$opt->MoveTo(0); // Move to first column
 
-		$opt = &$this->ListOptions->Add("ion");
-		$opt->Header = "";
-		$this->ListOptions->Items["ion"]->Header = "Slip Gaji";
 	}
 
 	// ListOptions Rendering event
@@ -2005,8 +1976,6 @@ class slip_gaji_yayasan_list extends slip_gaji_yayasan
 		// Example:
 		//$this->ListOptions["new"]->Body = "xxx";
 
-		$id = $this->id1->CurrentValue;
-		$this->ListOptions->Items["ion"]->Body = '<a href="slipgaji.php?id='.$id.'&table=yayasan" class="btn btn-primary">Download</a>';
 	}
 
 	// Row Custom Action event

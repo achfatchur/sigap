@@ -591,9 +591,9 @@ class yayasan_preview extends yayasan
 		$this->setupListOptions();
 		$this->id->Visible = FALSE;
 		$this->m_id->Visible = FALSE;
+		$this->pegawai->setVisibility();
 		$this->bulan->Visible = FALSE;
 		$this->tahun->Visible = FALSE;
-		$this->id_pegawai->setVisibility();
 		$this->datetime->Visible = FALSE;
 		$this->gaji_pokok->setVisibility();
 		$this->potongan->setVisibility();
@@ -622,8 +622,8 @@ class yayasan_preview extends yayasan
 		$this->setupOtherOptions();
 
 		// Set up lookup cache
+		$this->setupLookupOptions($this->pegawai);
 		$this->setupLookupOptions($this->bulan);
-		$this->setupLookupOptions($this->id_pegawai);
 
 		// Load filter
 		$filter = Get("f", "");
@@ -904,9 +904,9 @@ class yayasan_preview extends yayasan
 
 			// Set up lookup SQL and connection
 			switch ($fld->FieldVar) {
-				case "x_bulan":
+				case "x_pegawai":
 					break;
-				case "x_id_pegawai":
+				case "x_bulan":
 					break;
 				default:
 					$lookupFilter = "";
@@ -928,9 +928,9 @@ class yayasan_preview extends yayasan
 
 					// Format the field values
 					switch ($fld->FieldVar) {
-						case "x_bulan":
+						case "x_pegawai":
 							break;
-						case "x_id_pegawai":
+						case "x_bulan":
 							break;
 					}
 					$ar[strval($row[0])] = $row;

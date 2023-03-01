@@ -26,14 +26,14 @@ class v_yayasan extends DbTable
 
 	// Fields
 	public $id;
-	public $m_id;
 	public $bulan;
 	public $tahun;
+	public $m_id;
 	public $id_pegawai;
-	public $rekbank;
 	public $gaji_pokok;
 	public $potongan;
 	public $total;
+	public $rekbank;
 
 	// Constructor
 	public function __construct()
@@ -76,18 +76,9 @@ class v_yayasan extends DbTable
 		$this->id->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['id'] = &$this->id;
 
-		// m_id
-		$this->m_id = new DbField('v_yayasan', 'v_yayasan', 'x_m_id', 'm_id', '`m_id`', '`m_id`', 3, 11, -1, FALSE, '`m_id`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->m_id->Sortable = TRUE; // Allow sort
-		$this->m_id->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
-		$this->fields['m_id'] = &$this->m_id;
-
 		// bulan
-		$this->bulan = new DbField('v_yayasan', 'v_yayasan', 'x_bulan', 'bulan', '`bulan`', '`bulan`', 3, 11, -1, FALSE, '`bulan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->bulan = new DbField('v_yayasan', 'v_yayasan', 'x_bulan', 'bulan', '`bulan`', '`bulan`', 3, 11, -1, FALSE, '`bulan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->bulan->Sortable = TRUE; // Allow sort
-		$this->bulan->UsePleaseSelect = TRUE; // Use PleaseSelect by default
-		$this->bulan->PleaseSelectText = $Language->phrase("PleaseSelect"); // "PleaseSelect" text
-		$this->bulan->Lookup = new Lookup('bulan', 'bulan', FALSE, 'id', ["bulan","","",""], [], [], [], [], [], [], '', '');
 		$this->bulan->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['bulan'] = &$this->bulan;
 
@@ -97,35 +88,40 @@ class v_yayasan extends DbTable
 		$this->tahun->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['tahun'] = &$this->tahun;
 
+		// m_id
+		$this->m_id = new DbField('v_yayasan', 'v_yayasan', 'x_m_id', 'm_id', '`m_id`', '`m_id`', 3, 10, -1, FALSE, '`m_id`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->m_id->Sortable = TRUE; // Allow sort
+		$this->m_id->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
+		$this->fields['m_id'] = &$this->m_id;
+
 		// id_pegawai
 		$this->id_pegawai = new DbField('v_yayasan', 'v_yayasan', 'x_id_pegawai', 'id_pegawai', '`id_pegawai`', '`id_pegawai`', 3, 11, -1, FALSE, '`id_pegawai`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->id_pegawai->Sortable = TRUE; // Allow sort
-		$this->id_pegawai->Lookup = new Lookup('id_pegawai', 'pegawai', FALSE, 'id', ["nama","","",""], [], [], [], [], [], [], '', '');
 		$this->id_pegawai->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['id_pegawai'] = &$this->id_pegawai;
 
-		// rekbank
-		$this->rekbank = new DbField('v_yayasan', 'v_yayasan', 'x_rekbank', 'rekbank', '`rekbank`', '`rekbank`', 200, 255, -1, FALSE, '`rekbank`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
-		$this->rekbank->Sortable = TRUE; // Allow sort
-		$this->fields['rekbank'] = &$this->rekbank;
-
 		// gaji_pokok
-		$this->gaji_pokok = new DbField('v_yayasan', 'v_yayasan', 'x_gaji_pokok', 'gaji_pokok', '`gaji_pokok`', '`gaji_pokok`', 20, 200, -1, FALSE, '`gaji_pokok`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->gaji_pokok = new DbField('v_yayasan', 'v_yayasan', 'x_gaji_pokok', 'gaji_pokok', '`gaji_pokok`', '`gaji_pokok`', 20, 20, -1, FALSE, '`gaji_pokok`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->gaji_pokok->Sortable = TRUE; // Allow sort
 		$this->gaji_pokok->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['gaji_pokok'] = &$this->gaji_pokok;
 
 		// potongan
-		$this->potongan = new DbField('v_yayasan', 'v_yayasan', 'x_potongan', 'potongan', '`potongan`', '`potongan`', 20, 200, -1, FALSE, '`potongan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->potongan = new DbField('v_yayasan', 'v_yayasan', 'x_potongan', 'potongan', '`potongan`', '`potongan`', 20, 20, -1, FALSE, '`potongan`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->potongan->Sortable = TRUE; // Allow sort
 		$this->potongan->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['potongan'] = &$this->potongan;
 
 		// total
-		$this->total = new DbField('v_yayasan', 'v_yayasan', 'x_total', 'total', '`total`', '`total`', 20, 200, -1, FALSE, '`total`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->total = new DbField('v_yayasan', 'v_yayasan', 'x_total', 'total', '`total`', '`total`', 20, 20, -1, FALSE, '`total`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->total->Sortable = TRUE; // Allow sort
 		$this->total->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['total'] = &$this->total;
+
+		// rekbank
+		$this->rekbank = new DbField('v_yayasan', 'v_yayasan', 'x_rekbank', 'rekbank', '`rekbank`', '`rekbank`', 200, 255, -1, FALSE, '`rekbank`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->rekbank->Sortable = TRUE; // Allow sort
+		$this->fields['rekbank'] = &$this->rekbank;
 	}
 
 	// Field Visibility
@@ -230,7 +226,7 @@ class v_yayasan extends DbTable
 	}
 	public function getSqlOrderBy() // Order By
 	{
-		return ($this->SqlOrderBy != "") ? $this->SqlOrderBy : "`m_id` DESC";
+		return ($this->SqlOrderBy != "") ? $this->SqlOrderBy : "";
 	}
 	public function sqlOrderBy() // For backward compatibility
 	{
@@ -482,14 +478,14 @@ class v_yayasan extends DbTable
 			return;
 		$row = is_array($rs) ? $rs : $rs->fields;
 		$this->id->DbValue = $row['id'];
-		$this->m_id->DbValue = $row['m_id'];
 		$this->bulan->DbValue = $row['bulan'];
 		$this->tahun->DbValue = $row['tahun'];
+		$this->m_id->DbValue = $row['m_id'];
 		$this->id_pegawai->DbValue = $row['id_pegawai'];
-		$this->rekbank->DbValue = $row['rekbank'];
 		$this->gaji_pokok->DbValue = $row['gaji_pokok'];
 		$this->potongan->DbValue = $row['potongan'];
 		$this->total->DbValue = $row['total'];
+		$this->rekbank->DbValue = $row['rekbank'];
 	}
 
 	// Delete uploaded files
@@ -721,14 +717,14 @@ class v_yayasan extends DbTable
 	public function loadListRowValues(&$rs)
 	{
 		$this->id->setDbValue($rs->fields('id'));
-		$this->m_id->setDbValue($rs->fields('m_id'));
 		$this->bulan->setDbValue($rs->fields('bulan'));
 		$this->tahun->setDbValue($rs->fields('tahun'));
+		$this->m_id->setDbValue($rs->fields('m_id'));
 		$this->id_pegawai->setDbValue($rs->fields('id_pegawai'));
-		$this->rekbank->setDbValue($rs->fields('rekbank'));
 		$this->gaji_pokok->setDbValue($rs->fields('gaji_pokok'));
 		$this->potongan->setDbValue($rs->fields('potongan'));
 		$this->total->setDbValue($rs->fields('total'));
+		$this->rekbank->setDbValue($rs->fields('rekbank'));
 	}
 
 	// Render list row values
@@ -741,76 +737,38 @@ class v_yayasan extends DbTable
 
 		// Common render codes
 		// id
-		// m_id
 		// bulan
 		// tahun
+		// m_id
 		// id_pegawai
-		// rekbank
 		// gaji_pokok
 		// potongan
 		// total
+		// rekbank
 		// id
 
 		$this->id->ViewValue = $this->id->CurrentValue;
 		$this->id->ViewCustomAttributes = "";
+
+		// bulan
+		$this->bulan->ViewValue = $this->bulan->CurrentValue;
+		$this->bulan->ViewValue = FormatNumber($this->bulan->ViewValue, 0, -2, -2, -2);
+		$this->bulan->ViewCustomAttributes = "";
+
+		// tahun
+		$this->tahun->ViewValue = $this->tahun->CurrentValue;
+		$this->tahun->ViewValue = FormatNumber($this->tahun->ViewValue, 0, -2, -2, -2);
+		$this->tahun->ViewCustomAttributes = "";
 
 		// m_id
 		$this->m_id->ViewValue = $this->m_id->CurrentValue;
 		$this->m_id->ViewValue = FormatNumber($this->m_id->ViewValue, 0, -2, -2, -2);
 		$this->m_id->ViewCustomAttributes = "";
 
-		// bulan
-		$curVal = strval($this->bulan->CurrentValue);
-		if ($curVal != "") {
-			$this->bulan->ViewValue = $this->bulan->lookupCacheOption($curVal);
-			if ($this->bulan->ViewValue === NULL) { // Lookup from database
-				$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
-				$sqlWrk = $this->bulan->Lookup->getSql(FALSE, $filterWrk, '', $this);
-				$rswrk = Conn()->execute($sqlWrk);
-				if ($rswrk && !$rswrk->EOF) { // Lookup values found
-					$arwrk = [];
-					$arwrk[1] = $rswrk->fields('df');
-					$this->bulan->ViewValue = $this->bulan->displayValue($arwrk);
-					$rswrk->Close();
-				} else {
-					$this->bulan->ViewValue = $this->bulan->CurrentValue;
-				}
-			}
-		} else {
-			$this->bulan->ViewValue = NULL;
-		}
-		$this->bulan->ViewCustomAttributes = "";
-
-		// tahun
-		$this->tahun->ViewValue = $this->tahun->CurrentValue;
-		$this->tahun->ViewCustomAttributes = "";
-
 		// id_pegawai
 		$this->id_pegawai->ViewValue = $this->id_pegawai->CurrentValue;
-		$curVal = strval($this->id_pegawai->CurrentValue);
-		if ($curVal != "") {
-			$this->id_pegawai->ViewValue = $this->id_pegawai->lookupCacheOption($curVal);
-			if ($this->id_pegawai->ViewValue === NULL) { // Lookup from database
-				$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
-				$sqlWrk = $this->id_pegawai->Lookup->getSql(FALSE, $filterWrk, '', $this);
-				$rswrk = Conn()->execute($sqlWrk);
-				if ($rswrk && !$rswrk->EOF) { // Lookup values found
-					$arwrk = [];
-					$arwrk[1] = $rswrk->fields('df');
-					$this->id_pegawai->ViewValue = $this->id_pegawai->displayValue($arwrk);
-					$rswrk->Close();
-				} else {
-					$this->id_pegawai->ViewValue = $this->id_pegawai->CurrentValue;
-				}
-			}
-		} else {
-			$this->id_pegawai->ViewValue = NULL;
-		}
+		$this->id_pegawai->ViewValue = FormatNumber($this->id_pegawai->ViewValue, 0, -2, -2, -2);
 		$this->id_pegawai->ViewCustomAttributes = "";
-
-		// rekbank
-		$this->rekbank->ViewValue = $this->rekbank->CurrentValue;
-		$this->rekbank->ViewCustomAttributes = "";
 
 		// gaji_pokok
 		$this->gaji_pokok->ViewValue = $this->gaji_pokok->CurrentValue;
@@ -827,15 +785,14 @@ class v_yayasan extends DbTable
 		$this->total->ViewValue = FormatNumber($this->total->ViewValue, 0, -2, -2, -2);
 		$this->total->ViewCustomAttributes = "";
 
+		// rekbank
+		$this->rekbank->ViewValue = $this->rekbank->CurrentValue;
+		$this->rekbank->ViewCustomAttributes = "";
+
 		// id
 		$this->id->LinkCustomAttributes = "";
 		$this->id->HrefValue = "";
 		$this->id->TooltipValue = "";
-
-		// m_id
-		$this->m_id->LinkCustomAttributes = "";
-		$this->m_id->HrefValue = "";
-		$this->m_id->TooltipValue = "";
 
 		// bulan
 		$this->bulan->LinkCustomAttributes = "";
@@ -847,15 +804,15 @@ class v_yayasan extends DbTable
 		$this->tahun->HrefValue = "";
 		$this->tahun->TooltipValue = "";
 
+		// m_id
+		$this->m_id->LinkCustomAttributes = "";
+		$this->m_id->HrefValue = "";
+		$this->m_id->TooltipValue = "";
+
 		// id_pegawai
 		$this->id_pegawai->LinkCustomAttributes = "";
 		$this->id_pegawai->HrefValue = "";
 		$this->id_pegawai->TooltipValue = "";
-
-		// rekbank
-		$this->rekbank->LinkCustomAttributes = "";
-		$this->rekbank->HrefValue = "";
-		$this->rekbank->TooltipValue = "";
 
 		// gaji_pokok
 		$this->gaji_pokok->LinkCustomAttributes = "";
@@ -871,6 +828,11 @@ class v_yayasan extends DbTable
 		$this->total->LinkCustomAttributes = "";
 		$this->total->HrefValue = "";
 		$this->total->TooltipValue = "";
+
+		// rekbank
+		$this->rekbank->LinkCustomAttributes = "";
+		$this->rekbank->HrefValue = "";
+		$this->rekbank->TooltipValue = "";
 
 		// Call Row Rendered event
 		$this->Row_Rendered();
@@ -893,15 +855,11 @@ class v_yayasan extends DbTable
 		$this->id->EditValue = $this->id->CurrentValue;
 		$this->id->ViewCustomAttributes = "";
 
-		// m_id
-		$this->m_id->EditAttrs["class"] = "form-control";
-		$this->m_id->EditCustomAttributes = "";
-		$this->m_id->EditValue = $this->m_id->CurrentValue;
-		$this->m_id->PlaceHolder = RemoveHtml($this->m_id->caption());
-
 		// bulan
 		$this->bulan->EditAttrs["class"] = "form-control";
 		$this->bulan->EditCustomAttributes = "";
+		$this->bulan->EditValue = $this->bulan->CurrentValue;
+		$this->bulan->PlaceHolder = RemoveHtml($this->bulan->caption());
 
 		// tahun
 		$this->tahun->EditAttrs["class"] = "form-control";
@@ -909,19 +867,17 @@ class v_yayasan extends DbTable
 		$this->tahun->EditValue = $this->tahun->CurrentValue;
 		$this->tahun->PlaceHolder = RemoveHtml($this->tahun->caption());
 
+		// m_id
+		$this->m_id->EditAttrs["class"] = "form-control";
+		$this->m_id->EditCustomAttributes = "";
+		$this->m_id->EditValue = $this->m_id->CurrentValue;
+		$this->m_id->PlaceHolder = RemoveHtml($this->m_id->caption());
+
 		// id_pegawai
 		$this->id_pegawai->EditAttrs["class"] = "form-control";
 		$this->id_pegawai->EditCustomAttributes = "";
 		$this->id_pegawai->EditValue = $this->id_pegawai->CurrentValue;
 		$this->id_pegawai->PlaceHolder = RemoveHtml($this->id_pegawai->caption());
-
-		// rekbank
-		$this->rekbank->EditAttrs["class"] = "form-control";
-		$this->rekbank->EditCustomAttributes = "";
-		if (!$this->rekbank->Raw)
-			$this->rekbank->CurrentValue = HtmlDecode($this->rekbank->CurrentValue);
-		$this->rekbank->EditValue = $this->rekbank->CurrentValue;
-		$this->rekbank->PlaceHolder = RemoveHtml($this->rekbank->caption());
 
 		// gaji_pokok
 		$this->gaji_pokok->EditAttrs["class"] = "form-control";
@@ -937,9 +893,17 @@ class v_yayasan extends DbTable
 
 		// total
 		$this->total->EditAttrs["class"] = "form-control";
-		$this->total->EditCustomAttributes = "readonly";
+		$this->total->EditCustomAttributes = "";
 		$this->total->EditValue = $this->total->CurrentValue;
 		$this->total->PlaceHolder = RemoveHtml($this->total->caption());
+
+		// rekbank
+		$this->rekbank->EditAttrs["class"] = "form-control";
+		$this->rekbank->EditCustomAttributes = "";
+		if (!$this->rekbank->Raw)
+			$this->rekbank->CurrentValue = HtmlDecode($this->rekbank->CurrentValue);
+		$this->rekbank->EditValue = $this->rekbank->CurrentValue;
+		$this->rekbank->PlaceHolder = RemoveHtml($this->rekbank->caption());
 
 		// Call Row Rendered event
 		$this->Row_Rendered();
@@ -970,24 +934,25 @@ class v_yayasan extends DbTable
 			if ($doc->Horizontal) { // Horizontal format, write header
 				$doc->beginExportRow();
 				if ($exportPageType == "view") {
-					$doc->exportCaption($this->m_id);
+					$doc->exportCaption($this->id);
 					$doc->exportCaption($this->bulan);
 					$doc->exportCaption($this->tahun);
+					$doc->exportCaption($this->m_id);
 					$doc->exportCaption($this->id_pegawai);
-					$doc->exportCaption($this->rekbank);
 					$doc->exportCaption($this->gaji_pokok);
 					$doc->exportCaption($this->potongan);
 					$doc->exportCaption($this->total);
+					$doc->exportCaption($this->rekbank);
 				} else {
 					$doc->exportCaption($this->id);
-					$doc->exportCaption($this->m_id);
 					$doc->exportCaption($this->bulan);
 					$doc->exportCaption($this->tahun);
+					$doc->exportCaption($this->m_id);
 					$doc->exportCaption($this->id_pegawai);
-					$doc->exportCaption($this->rekbank);
 					$doc->exportCaption($this->gaji_pokok);
 					$doc->exportCaption($this->potongan);
 					$doc->exportCaption($this->total);
+					$doc->exportCaption($this->rekbank);
 				}
 				$doc->endExportRow();
 			}
@@ -1019,24 +984,25 @@ class v_yayasan extends DbTable
 				if (!$doc->ExportCustom) {
 					$doc->beginExportRow($rowCnt); // Allow CSS styles if enabled
 					if ($exportPageType == "view") {
-						$doc->exportField($this->m_id);
+						$doc->exportField($this->id);
 						$doc->exportField($this->bulan);
 						$doc->exportField($this->tahun);
+						$doc->exportField($this->m_id);
 						$doc->exportField($this->id_pegawai);
-						$doc->exportField($this->rekbank);
 						$doc->exportField($this->gaji_pokok);
 						$doc->exportField($this->potongan);
 						$doc->exportField($this->total);
+						$doc->exportField($this->rekbank);
 					} else {
 						$doc->exportField($this->id);
-						$doc->exportField($this->m_id);
 						$doc->exportField($this->bulan);
 						$doc->exportField($this->tahun);
+						$doc->exportField($this->m_id);
 						$doc->exportField($this->id_pegawai);
-						$doc->exportField($this->rekbank);
 						$doc->exportField($this->gaji_pokok);
 						$doc->exportField($this->potongan);
 						$doc->exportField($this->total);
+						$doc->exportField($this->rekbank);
 					}
 					$doc->endExportRow($rowCnt);
 				}

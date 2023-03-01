@@ -582,9 +582,9 @@ class yayasan_delete extends yayasan
 		$this->CurrentAction = Param("action"); // Set up current action
 		$this->id->Visible = FALSE;
 		$this->m_id->Visible = FALSE;
+		$this->pegawai->setVisibility();
 		$this->bulan->Visible = FALSE;
 		$this->tahun->Visible = FALSE;
-		$this->id_pegawai->setVisibility();
 		$this->datetime->Visible = FALSE;
 		$this->gaji_pokok->setVisibility();
 		$this->potongan->setVisibility();
@@ -610,8 +610,8 @@ class yayasan_delete extends yayasan
 		$this->createToken();
 
 		// Set up lookup cache
+		$this->setupLookupOptions($this->pegawai);
 		$this->setupLookupOptions($this->bulan);
-		$this->setupLookupOptions($this->id_pegawai);
 
 		// Check permission
 		if (!$Security->canDelete()) {
@@ -741,9 +741,9 @@ class yayasan_delete extends yayasan
 			return;
 		$this->id->setDbValue($row['id']);
 		$this->m_id->setDbValue($row['m_id']);
+		$this->pegawai->setDbValue($row['pegawai']);
 		$this->bulan->setDbValue($row['bulan']);
 		$this->tahun->setDbValue($row['tahun']);
-		$this->id_pegawai->setDbValue($row['id_pegawai']);
 		$this->datetime->setDbValue($row['datetime']);
 		$this->gaji_pokok->setDbValue($row['gaji_pokok']);
 		$this->potongan->setDbValue($row['potongan']);
@@ -756,9 +756,9 @@ class yayasan_delete extends yayasan
 		$row = [];
 		$row['id'] = NULL;
 		$row['m_id'] = NULL;
+		$row['pegawai'] = NULL;
 		$row['bulan'] = NULL;
 		$row['tahun'] = NULL;
-		$row['id_pegawai'] = NULL;
 		$row['datetime'] = NULL;
 		$row['gaji_pokok'] = NULL;
 		$row['potongan'] = NULL;
@@ -779,9 +779,9 @@ class yayasan_delete extends yayasan
 		// Common render codes for all row types
 		// id
 		// m_id
+		// pegawai
 		// bulan
 		// tahun
-		// id_pegawai
 		// datetime
 		// gaji_pokok
 		// potongan
@@ -797,6 +797,29 @@ class yayasan_delete extends yayasan
 			$this->m_id->ViewValue = $this->m_id->CurrentValue;
 			$this->m_id->ViewValue = FormatNumber($this->m_id->ViewValue, 0, -2, -2, -2);
 			$this->m_id->ViewCustomAttributes = "";
+
+			// pegawai
+			$this->pegawai->ViewValue = $this->pegawai->CurrentValue;
+			$curVal = strval($this->pegawai->CurrentValue);
+			if ($curVal != "") {
+				$this->pegawai->ViewValue = $this->pegawai->lookupCacheOption($curVal);
+				if ($this->pegawai->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->pegawai->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->pegawai->ViewValue = $this->pegawai->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->pegawai->ViewValue = $this->pegawai->CurrentValue;
+					}
+				}
+			} else {
+				$this->pegawai->ViewValue = NULL;
+			}
+			$this->pegawai->ViewCustomAttributes = "";
 
 			// bulan
 			$this->bulan->ViewValue = $this->bulan->CurrentValue;
@@ -825,29 +848,6 @@ class yayasan_delete extends yayasan
 			$this->tahun->ViewValue = $this->tahun->CurrentValue;
 			$this->tahun->ViewCustomAttributes = "";
 
-			// id_pegawai
-			$this->id_pegawai->ViewValue = $this->id_pegawai->CurrentValue;
-			$curVal = strval($this->id_pegawai->CurrentValue);
-			if ($curVal != "") {
-				$this->id_pegawai->ViewValue = $this->id_pegawai->lookupCacheOption($curVal);
-				if ($this->id_pegawai->ViewValue === NULL) { // Lookup from database
-					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
-					$sqlWrk = $this->id_pegawai->Lookup->getSql(FALSE, $filterWrk, '', $this);
-					$rswrk = Conn()->execute($sqlWrk);
-					if ($rswrk && !$rswrk->EOF) { // Lookup values found
-						$arwrk = [];
-						$arwrk[1] = $rswrk->fields('df');
-						$this->id_pegawai->ViewValue = $this->id_pegawai->displayValue($arwrk);
-						$rswrk->Close();
-					} else {
-						$this->id_pegawai->ViewValue = $this->id_pegawai->CurrentValue;
-					}
-				}
-			} else {
-				$this->id_pegawai->ViewValue = NULL;
-			}
-			$this->id_pegawai->ViewCustomAttributes = "";
-
 			// datetime
 			$this->datetime->ViewValue = $this->datetime->CurrentValue;
 			$this->datetime->ViewValue = FormatDateTime($this->datetime->ViewValue, 0);
@@ -868,10 +868,10 @@ class yayasan_delete extends yayasan
 			$this->total->ViewValue = FormatNumber($this->total->ViewValue, 0, -2, -2, -2);
 			$this->total->ViewCustomAttributes = "";
 
-			// id_pegawai
-			$this->id_pegawai->LinkCustomAttributes = "";
-			$this->id_pegawai->HrefValue = "";
-			$this->id_pegawai->TooltipValue = "";
+			// pegawai
+			$this->pegawai->LinkCustomAttributes = "";
+			$this->pegawai->HrefValue = "";
+			$this->pegawai->TooltipValue = "";
 
 			// gaji_pokok
 			$this->gaji_pokok->LinkCustomAttributes = "";
@@ -1115,9 +1115,9 @@ class yayasan_delete extends yayasan
 
 			// Set up lookup SQL and connection
 			switch ($fld->FieldVar) {
-				case "x_bulan":
+				case "x_pegawai":
 					break;
-				case "x_id_pegawai":
+				case "x_bulan":
 					break;
 				default:
 					$lookupFilter = "";
@@ -1139,9 +1139,9 @@ class yayasan_delete extends yayasan
 
 					// Format the field values
 					switch ($fld->FieldVar) {
-						case "x_bulan":
+						case "x_pegawai":
 							break;
-						case "x_id_pegawai":
+						case "x_bulan":
 							break;
 					}
 					$ar[strval($row[0])] = $row;

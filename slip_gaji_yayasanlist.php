@@ -132,6 +132,15 @@ $slip_gaji_yayasan_list->renderListOptions();
 // Render list options (header, left)
 $slip_gaji_yayasan_list->ListOptions->render("header", "left");
 ?>
+<?php if ($slip_gaji_yayasan_list->id->Visible) { // id ?>
+	<?php if ($slip_gaji_yayasan_list->SortUrl($slip_gaji_yayasan_list->id) == "") { ?>
+		<th data-name="id" class="<?php echo $slip_gaji_yayasan_list->id->headerCellClass() ?>"><div id="elh_slip_gaji_yayasan_id" class="slip_gaji_yayasan_id"><div class="ew-table-header-caption"><?php echo $slip_gaji_yayasan_list->id->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="id" class="<?php echo $slip_gaji_yayasan_list->id->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $slip_gaji_yayasan_list->SortUrl($slip_gaji_yayasan_list->id) ?>', 1);"><div id="elh_slip_gaji_yayasan_id" class="slip_gaji_yayasan_id">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $slip_gaji_yayasan_list->id->caption() ?></span><span class="ew-table-header-sort"><?php if ($slip_gaji_yayasan_list->id->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($slip_gaji_yayasan_list->id->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($slip_gaji_yayasan_list->bulan->Visible) { // bulan ?>
 	<?php if ($slip_gaji_yayasan_list->SortUrl($slip_gaji_yayasan_list->bulan) == "") { ?>
 		<th data-name="bulan" class="<?php echo $slip_gaji_yayasan_list->bulan->headerCellClass() ?>"><div id="elh_slip_gaji_yayasan_bulan" class="slip_gaji_yayasan_bulan"><div class="ew-table-header-caption"><?php echo $slip_gaji_yayasan_list->bulan->caption() ?></div></div></th>
@@ -165,6 +174,15 @@ $slip_gaji_yayasan_list->ListOptions->render("header", "left");
 	<?php } else { ?>
 		<th data-name="total" class="<?php echo $slip_gaji_yayasan_list->total->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $slip_gaji_yayasan_list->SortUrl($slip_gaji_yayasan_list->total) ?>', 1);"><div id="elh_slip_gaji_yayasan_total" class="slip_gaji_yayasan_total">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $slip_gaji_yayasan_list->total->caption() ?></span><span class="ew-table-header-sort"><?php if ($slip_gaji_yayasan_list->total->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($slip_gaji_yayasan_list->total->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($slip_gaji_yayasan_list->id1->Visible) { // id1 ?>
+	<?php if ($slip_gaji_yayasan_list->SortUrl($slip_gaji_yayasan_list->id1) == "") { ?>
+		<th data-name="id1" class="<?php echo $slip_gaji_yayasan_list->id1->headerCellClass() ?>"><div id="elh_slip_gaji_yayasan_id1" class="slip_gaji_yayasan_id1"><div class="ew-table-header-caption"><?php echo $slip_gaji_yayasan_list->id1->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="id1" class="<?php echo $slip_gaji_yayasan_list->id1->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $slip_gaji_yayasan_list->SortUrl($slip_gaji_yayasan_list->id1) ?>', 1);"><div id="elh_slip_gaji_yayasan_id1" class="slip_gaji_yayasan_id1">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $slip_gaji_yayasan_list->id1->caption() ?></span><span class="ew-table-header-sort"><?php if ($slip_gaji_yayasan_list->id1->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($slip_gaji_yayasan_list->id1->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -233,6 +251,13 @@ while ($slip_gaji_yayasan_list->RecordCount < $slip_gaji_yayasan_list->StopRecor
 // Render list options (body, left)
 $slip_gaji_yayasan_list->ListOptions->render("body", "left", $slip_gaji_yayasan_list->RowCount);
 ?>
+	<?php if ($slip_gaji_yayasan_list->id->Visible) { // id ?>
+		<td data-name="id" <?php echo $slip_gaji_yayasan_list->id->cellAttributes() ?>>
+<span id="el<?php echo $slip_gaji_yayasan_list->RowCount ?>_slip_gaji_yayasan_id">
+<span<?php echo $slip_gaji_yayasan_list->id->viewAttributes() ?>><?php echo $slip_gaji_yayasan_list->id->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
 	<?php if ($slip_gaji_yayasan_list->bulan->Visible) { // bulan ?>
 		<td data-name="bulan" <?php echo $slip_gaji_yayasan_list->bulan->cellAttributes() ?>>
 <span id="el<?php echo $slip_gaji_yayasan_list->RowCount ?>_slip_gaji_yayasan_bulan">
@@ -258,6 +283,13 @@ $slip_gaji_yayasan_list->ListOptions->render("body", "left", $slip_gaji_yayasan_
 		<td data-name="total" <?php echo $slip_gaji_yayasan_list->total->cellAttributes() ?>>
 <span id="el<?php echo $slip_gaji_yayasan_list->RowCount ?>_slip_gaji_yayasan_total">
 <span<?php echo $slip_gaji_yayasan_list->total->viewAttributes() ?>><?php echo $slip_gaji_yayasan_list->total->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($slip_gaji_yayasan_list->id1->Visible) { // id1 ?>
+		<td data-name="id1" <?php echo $slip_gaji_yayasan_list->id1->cellAttributes() ?>>
+<span id="el<?php echo $slip_gaji_yayasan_list->RowCount ?>_slip_gaji_yayasan_id1">
+<span<?php echo $slip_gaji_yayasan_list->id1->viewAttributes() ?>><?php echo $slip_gaji_yayasan_list->id1->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

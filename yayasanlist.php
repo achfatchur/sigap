@@ -147,12 +147,12 @@ $yayasan_list->renderListOptions();
 // Render list options (header, left)
 $yayasan_list->ListOptions->render("header", "left");
 ?>
-<?php if ($yayasan_list->id_pegawai->Visible) { // id_pegawai ?>
-	<?php if ($yayasan_list->SortUrl($yayasan_list->id_pegawai) == "") { ?>
-		<th data-name="id_pegawai" class="<?php echo $yayasan_list->id_pegawai->headerCellClass() ?>"><div id="elh_yayasan_id_pegawai" class="yayasan_id_pegawai"><div class="ew-table-header-caption"><?php echo $yayasan_list->id_pegawai->caption() ?></div></div></th>
+<?php if ($yayasan_list->pegawai->Visible) { // pegawai ?>
+	<?php if ($yayasan_list->SortUrl($yayasan_list->pegawai) == "") { ?>
+		<th data-name="pegawai" class="<?php echo $yayasan_list->pegawai->headerCellClass() ?>"><div id="elh_yayasan_pegawai" class="yayasan_pegawai"><div class="ew-table-header-caption"><?php echo $yayasan_list->pegawai->caption() ?></div></div></th>
 	<?php } else { ?>
-		<th data-name="id_pegawai" class="<?php echo $yayasan_list->id_pegawai->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $yayasan_list->SortUrl($yayasan_list->id_pegawai) ?>', 1);"><div id="elh_yayasan_id_pegawai" class="yayasan_id_pegawai">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $yayasan_list->id_pegawai->caption() ?></span><span class="ew-table-header-sort"><?php if ($yayasan_list->id_pegawai->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($yayasan_list->id_pegawai->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		<th data-name="pegawai" class="<?php echo $yayasan_list->pegawai->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $yayasan_list->SortUrl($yayasan_list->pegawai) ?>', 1);"><div id="elh_yayasan_pegawai" class="yayasan_pegawai">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $yayasan_list->pegawai->caption() ?></span><span class="ew-table-header-sort"><?php if ($yayasan_list->pegawai->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($yayasan_list->pegawai->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -248,10 +248,10 @@ while ($yayasan_list->RecordCount < $yayasan_list->StopRecord) {
 // Render list options (body, left)
 $yayasan_list->ListOptions->render("body", "left", $yayasan_list->RowCount);
 ?>
-	<?php if ($yayasan_list->id_pegawai->Visible) { // id_pegawai ?>
-		<td data-name="id_pegawai" <?php echo $yayasan_list->id_pegawai->cellAttributes() ?>>
-<span id="el<?php echo $yayasan_list->RowCount ?>_yayasan_id_pegawai">
-<span<?php echo $yayasan_list->id_pegawai->viewAttributes() ?>><?php echo $yayasan_list->id_pegawai->getViewValue() ?></span>
+	<?php if ($yayasan_list->pegawai->Visible) { // pegawai ?>
+		<td data-name="pegawai" <?php echo $yayasan_list->pegawai->cellAttributes() ?>>
+<span id="el<?php echo $yayasan_list->RowCount ?>_yayasan_pegawai">
+<span<?php echo $yayasan_list->pegawai->viewAttributes() ?>><?php echo $yayasan_list->pegawai->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

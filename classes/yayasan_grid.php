@@ -722,9 +722,9 @@ class yayasan_grid extends yayasan
 		$this->setupListOptions();
 		$this->id->Visible = FALSE;
 		$this->m_id->Visible = FALSE;
+		$this->pegawai->setVisibility();
 		$this->bulan->Visible = FALSE;
 		$this->tahun->Visible = FALSE;
-		$this->id_pegawai->setVisibility();
 		$this->datetime->Visible = FALSE;
 		$this->gaji_pokok->setVisibility();
 		$this->potongan->setVisibility();
@@ -753,8 +753,8 @@ class yayasan_grid extends yayasan
 		$this->setupOtherOptions();
 
 		// Set up lookup cache
+		$this->setupLookupOptions($this->pegawai);
 		$this->setupLookupOptions($this->bulan);
-		$this->setupLookupOptions($this->id_pegawai);
 
 		// Search filters
 		$srchAdvanced = ""; // Advanced search filter
@@ -1164,7 +1164,7 @@ class yayasan_grid extends yayasan
 	public function emptyRow()
 	{
 		global $CurrentForm;
-		if ($CurrentForm->hasValue("x_id_pegawai") && $CurrentForm->hasValue("o_id_pegawai") && $this->id_pegawai->CurrentValue != $this->id_pegawai->OldValue)
+		if ($CurrentForm->hasValue("x_pegawai") && $CurrentForm->hasValue("o_pegawai") && $this->pegawai->CurrentValue != $this->pegawai->OldValue)
 			return FALSE;
 		if ($CurrentForm->hasValue("x_gaji_pokok") && $CurrentForm->hasValue("o_gaji_pokok") && $this->gaji_pokok->CurrentValue != $this->gaji_pokok->OldValue)
 			return FALSE;
@@ -1531,12 +1531,12 @@ class yayasan_grid extends yayasan
 		$this->id->OldValue = $this->id->CurrentValue;
 		$this->m_id->CurrentValue = NULL;
 		$this->m_id->OldValue = $this->m_id->CurrentValue;
+		$this->pegawai->CurrentValue = NULL;
+		$this->pegawai->OldValue = $this->pegawai->CurrentValue;
 		$this->bulan->CurrentValue = NULL;
 		$this->bulan->OldValue = $this->bulan->CurrentValue;
 		$this->tahun->CurrentValue = NULL;
 		$this->tahun->OldValue = $this->tahun->CurrentValue;
-		$this->id_pegawai->CurrentValue = NULL;
-		$this->id_pegawai->OldValue = $this->id_pegawai->CurrentValue;
 		$this->datetime->CurrentValue = NULL;
 		$this->datetime->OldValue = $this->datetime->CurrentValue;
 		$this->gaji_pokok->CurrentValue = NULL;
@@ -1555,16 +1555,16 @@ class yayasan_grid extends yayasan
 		global $CurrentForm;
 		$CurrentForm->FormName = $this->FormName;
 
-		// Check field name 'id_pegawai' first before field var 'x_id_pegawai'
-		$val = $CurrentForm->hasValue("id_pegawai") ? $CurrentForm->getValue("id_pegawai") : $CurrentForm->getValue("x_id_pegawai");
-		if (!$this->id_pegawai->IsDetailKey) {
+		// Check field name 'pegawai' first before field var 'x_pegawai'
+		$val = $CurrentForm->hasValue("pegawai") ? $CurrentForm->getValue("pegawai") : $CurrentForm->getValue("x_pegawai");
+		if (!$this->pegawai->IsDetailKey) {
 			if (IsApi() && $val == NULL)
-				$this->id_pegawai->Visible = FALSE; // Disable update for API request
+				$this->pegawai->Visible = FALSE; // Disable update for API request
 			else
-				$this->id_pegawai->setFormValue($val);
+				$this->pegawai->setFormValue($val);
 		}
-		if ($CurrentForm->hasValue("o_id_pegawai"))
-			$this->id_pegawai->setOldValue($CurrentForm->getValue("o_id_pegawai"));
+		if ($CurrentForm->hasValue("o_pegawai"))
+			$this->pegawai->setOldValue($CurrentForm->getValue("o_pegawai"));
 
 		// Check field name 'gaji_pokok' first before field var 'x_gaji_pokok'
 		$val = $CurrentForm->hasValue("gaji_pokok") ? $CurrentForm->getValue("gaji_pokok") : $CurrentForm->getValue("x_gaji_pokok");
@@ -1611,7 +1611,7 @@ class yayasan_grid extends yayasan
 		global $CurrentForm;
 		if (!$this->isGridAdd() && !$this->isAdd())
 			$this->id->CurrentValue = $this->id->FormValue;
-		$this->id_pegawai->CurrentValue = $this->id_pegawai->FormValue;
+		$this->pegawai->CurrentValue = $this->pegawai->FormValue;
 		$this->gaji_pokok->CurrentValue = $this->gaji_pokok->FormValue;
 		$this->potongan->CurrentValue = $this->potongan->FormValue;
 		$this->total->CurrentValue = $this->total->FormValue;
@@ -1681,9 +1681,9 @@ class yayasan_grid extends yayasan
 			return;
 		$this->id->setDbValue($row['id']);
 		$this->m_id->setDbValue($row['m_id']);
+		$this->pegawai->setDbValue($row['pegawai']);
 		$this->bulan->setDbValue($row['bulan']);
 		$this->tahun->setDbValue($row['tahun']);
-		$this->id_pegawai->setDbValue($row['id_pegawai']);
 		$this->datetime->setDbValue($row['datetime']);
 		$this->gaji_pokok->setDbValue($row['gaji_pokok']);
 		$this->potongan->setDbValue($row['potongan']);
@@ -1697,9 +1697,9 @@ class yayasan_grid extends yayasan
 		$row = [];
 		$row['id'] = $this->id->CurrentValue;
 		$row['m_id'] = $this->m_id->CurrentValue;
+		$row['pegawai'] = $this->pegawai->CurrentValue;
 		$row['bulan'] = $this->bulan->CurrentValue;
 		$row['tahun'] = $this->tahun->CurrentValue;
-		$row['id_pegawai'] = $this->id_pegawai->CurrentValue;
 		$row['datetime'] = $this->datetime->CurrentValue;
 		$row['gaji_pokok'] = $this->gaji_pokok->CurrentValue;
 		$row['potongan'] = $this->potongan->CurrentValue;
@@ -1753,9 +1753,9 @@ class yayasan_grid extends yayasan
 		// Common render codes for all row types
 		// id
 		// m_id
+		// pegawai
 		// bulan
 		// tahun
-		// id_pegawai
 		// datetime
 		// gaji_pokok
 		// potongan
@@ -1771,6 +1771,29 @@ class yayasan_grid extends yayasan
 			$this->m_id->ViewValue = $this->m_id->CurrentValue;
 			$this->m_id->ViewValue = FormatNumber($this->m_id->ViewValue, 0, -2, -2, -2);
 			$this->m_id->ViewCustomAttributes = "";
+
+			// pegawai
+			$this->pegawai->ViewValue = $this->pegawai->CurrentValue;
+			$curVal = strval($this->pegawai->CurrentValue);
+			if ($curVal != "") {
+				$this->pegawai->ViewValue = $this->pegawai->lookupCacheOption($curVal);
+				if ($this->pegawai->ViewValue === NULL) { // Lookup from database
+					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
+					$sqlWrk = $this->pegawai->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$rswrk = Conn()->execute($sqlWrk);
+					if ($rswrk && !$rswrk->EOF) { // Lookup values found
+						$arwrk = [];
+						$arwrk[1] = $rswrk->fields('df');
+						$this->pegawai->ViewValue = $this->pegawai->displayValue($arwrk);
+						$rswrk->Close();
+					} else {
+						$this->pegawai->ViewValue = $this->pegawai->CurrentValue;
+					}
+				}
+			} else {
+				$this->pegawai->ViewValue = NULL;
+			}
+			$this->pegawai->ViewCustomAttributes = "";
 
 			// bulan
 			$this->bulan->ViewValue = $this->bulan->CurrentValue;
@@ -1799,29 +1822,6 @@ class yayasan_grid extends yayasan
 			$this->tahun->ViewValue = $this->tahun->CurrentValue;
 			$this->tahun->ViewCustomAttributes = "";
 
-			// id_pegawai
-			$this->id_pegawai->ViewValue = $this->id_pegawai->CurrentValue;
-			$curVal = strval($this->id_pegawai->CurrentValue);
-			if ($curVal != "") {
-				$this->id_pegawai->ViewValue = $this->id_pegawai->lookupCacheOption($curVal);
-				if ($this->id_pegawai->ViewValue === NULL) { // Lookup from database
-					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
-					$sqlWrk = $this->id_pegawai->Lookup->getSql(FALSE, $filterWrk, '', $this);
-					$rswrk = Conn()->execute($sqlWrk);
-					if ($rswrk && !$rswrk->EOF) { // Lookup values found
-						$arwrk = [];
-						$arwrk[1] = $rswrk->fields('df');
-						$this->id_pegawai->ViewValue = $this->id_pegawai->displayValue($arwrk);
-						$rswrk->Close();
-					} else {
-						$this->id_pegawai->ViewValue = $this->id_pegawai->CurrentValue;
-					}
-				}
-			} else {
-				$this->id_pegawai->ViewValue = NULL;
-			}
-			$this->id_pegawai->ViewCustomAttributes = "";
-
 			// datetime
 			$this->datetime->ViewValue = $this->datetime->CurrentValue;
 			$this->datetime->ViewValue = FormatDateTime($this->datetime->ViewValue, 0);
@@ -1842,10 +1842,10 @@ class yayasan_grid extends yayasan
 			$this->total->ViewValue = FormatNumber($this->total->ViewValue, 0, -2, -2, -2);
 			$this->total->ViewCustomAttributes = "";
 
-			// id_pegawai
-			$this->id_pegawai->LinkCustomAttributes = "";
-			$this->id_pegawai->HrefValue = "";
-			$this->id_pegawai->TooltipValue = "";
+			// pegawai
+			$this->pegawai->LinkCustomAttributes = "";
+			$this->pegawai->HrefValue = "";
+			$this->pegawai->TooltipValue = "";
 
 			// gaji_pokok
 			$this->gaji_pokok->LinkCustomAttributes = "";
@@ -1863,30 +1863,30 @@ class yayasan_grid extends yayasan
 			$this->total->TooltipValue = "";
 		} elseif ($this->RowType == ROWTYPE_ADD) { // Add row
 
-			// id_pegawai
-			$this->id_pegawai->EditAttrs["class"] = "form-control";
-			$this->id_pegawai->EditCustomAttributes = "";
-			$this->id_pegawai->EditValue = HtmlEncode($this->id_pegawai->CurrentValue);
-			$curVal = strval($this->id_pegawai->CurrentValue);
+			// pegawai
+			$this->pegawai->EditAttrs["class"] = "form-control";
+			$this->pegawai->EditCustomAttributes = "";
+			$this->pegawai->EditValue = HtmlEncode($this->pegawai->CurrentValue);
+			$curVal = strval($this->pegawai->CurrentValue);
 			if ($curVal != "") {
-				$this->id_pegawai->EditValue = $this->id_pegawai->lookupCacheOption($curVal);
-				if ($this->id_pegawai->EditValue === NULL) { // Lookup from database
+				$this->pegawai->EditValue = $this->pegawai->lookupCacheOption($curVal);
+				if ($this->pegawai->EditValue === NULL) { // Lookup from database
 					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
-					$sqlWrk = $this->id_pegawai->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$sqlWrk = $this->pegawai->Lookup->getSql(FALSE, $filterWrk, '', $this);
 					$rswrk = Conn()->execute($sqlWrk);
 					if ($rswrk && !$rswrk->EOF) { // Lookup values found
 						$arwrk = [];
 						$arwrk[1] = HtmlEncode($rswrk->fields('df'));
-						$this->id_pegawai->EditValue = $this->id_pegawai->displayValue($arwrk);
+						$this->pegawai->EditValue = $this->pegawai->displayValue($arwrk);
 						$rswrk->Close();
 					} else {
-						$this->id_pegawai->EditValue = HtmlEncode($this->id_pegawai->CurrentValue);
+						$this->pegawai->EditValue = HtmlEncode($this->pegawai->CurrentValue);
 					}
 				}
 			} else {
-				$this->id_pegawai->EditValue = NULL;
+				$this->pegawai->EditValue = NULL;
 			}
-			$this->id_pegawai->PlaceHolder = RemoveHtml($this->id_pegawai->caption());
+			$this->pegawai->PlaceHolder = RemoveHtml($this->pegawai->caption());
 
 			// gaji_pokok
 			$this->gaji_pokok->EditAttrs["class"] = "form-control";
@@ -1907,10 +1907,10 @@ class yayasan_grid extends yayasan
 			$this->total->PlaceHolder = RemoveHtml($this->total->caption());
 
 			// Add refer script
-			// id_pegawai
+			// pegawai
 
-			$this->id_pegawai->LinkCustomAttributes = "";
-			$this->id_pegawai->HrefValue = "";
+			$this->pegawai->LinkCustomAttributes = "";
+			$this->pegawai->HrefValue = "";
 
 			// gaji_pokok
 			$this->gaji_pokok->LinkCustomAttributes = "";
@@ -1925,30 +1925,30 @@ class yayasan_grid extends yayasan
 			$this->total->HrefValue = "";
 		} elseif ($this->RowType == ROWTYPE_EDIT) { // Edit row
 
-			// id_pegawai
-			$this->id_pegawai->EditAttrs["class"] = "form-control";
-			$this->id_pegawai->EditCustomAttributes = "";
-			$this->id_pegawai->EditValue = HtmlEncode($this->id_pegawai->CurrentValue);
-			$curVal = strval($this->id_pegawai->CurrentValue);
+			// pegawai
+			$this->pegawai->EditAttrs["class"] = "form-control";
+			$this->pegawai->EditCustomAttributes = "";
+			$this->pegawai->EditValue = HtmlEncode($this->pegawai->CurrentValue);
+			$curVal = strval($this->pegawai->CurrentValue);
 			if ($curVal != "") {
-				$this->id_pegawai->EditValue = $this->id_pegawai->lookupCacheOption($curVal);
-				if ($this->id_pegawai->EditValue === NULL) { // Lookup from database
+				$this->pegawai->EditValue = $this->pegawai->lookupCacheOption($curVal);
+				if ($this->pegawai->EditValue === NULL) { // Lookup from database
 					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
-					$sqlWrk = $this->id_pegawai->Lookup->getSql(FALSE, $filterWrk, '', $this);
+					$sqlWrk = $this->pegawai->Lookup->getSql(FALSE, $filterWrk, '', $this);
 					$rswrk = Conn()->execute($sqlWrk);
 					if ($rswrk && !$rswrk->EOF) { // Lookup values found
 						$arwrk = [];
 						$arwrk[1] = HtmlEncode($rswrk->fields('df'));
-						$this->id_pegawai->EditValue = $this->id_pegawai->displayValue($arwrk);
+						$this->pegawai->EditValue = $this->pegawai->displayValue($arwrk);
 						$rswrk->Close();
 					} else {
-						$this->id_pegawai->EditValue = HtmlEncode($this->id_pegawai->CurrentValue);
+						$this->pegawai->EditValue = HtmlEncode($this->pegawai->CurrentValue);
 					}
 				}
 			} else {
-				$this->id_pegawai->EditValue = NULL;
+				$this->pegawai->EditValue = NULL;
 			}
-			$this->id_pegawai->PlaceHolder = RemoveHtml($this->id_pegawai->caption());
+			$this->pegawai->PlaceHolder = RemoveHtml($this->pegawai->caption());
 
 			// gaji_pokok
 			$this->gaji_pokok->EditAttrs["class"] = "form-control";
@@ -1969,10 +1969,10 @@ class yayasan_grid extends yayasan
 			$this->total->PlaceHolder = RemoveHtml($this->total->caption());
 
 			// Edit refer script
-			// id_pegawai
+			// pegawai
 
-			$this->id_pegawai->LinkCustomAttributes = "";
-			$this->id_pegawai->HrefValue = "";
+			$this->pegawai->LinkCustomAttributes = "";
+			$this->pegawai->HrefValue = "";
 
 			// gaji_pokok
 			$this->gaji_pokok->LinkCustomAttributes = "";
@@ -2002,13 +2002,13 @@ class yayasan_grid extends yayasan
 		// Check if validation required
 		if (!Config("SERVER_VALIDATE"))
 			return ($FormError == "");
-		if ($this->id_pegawai->Required) {
-			if (!$this->id_pegawai->IsDetailKey && $this->id_pegawai->FormValue != NULL && $this->id_pegawai->FormValue == "") {
-				AddMessage($FormError, str_replace("%s", $this->id_pegawai->caption(), $this->id_pegawai->RequiredErrorMessage));
+		if ($this->pegawai->Required) {
+			if (!$this->pegawai->IsDetailKey && $this->pegawai->FormValue != NULL && $this->pegawai->FormValue == "") {
+				AddMessage($FormError, str_replace("%s", $this->pegawai->caption(), $this->pegawai->RequiredErrorMessage));
 			}
 		}
-		if (!CheckInteger($this->id_pegawai->FormValue)) {
-			AddMessage($FormError, $this->id_pegawai->errorMessage());
+		if (!CheckInteger($this->pegawai->FormValue)) {
+			AddMessage($FormError, $this->pegawai->errorMessage());
 		}
 		if ($this->gaji_pokok->Required) {
 			if (!$this->gaji_pokok->IsDetailKey && $this->gaji_pokok->FormValue != NULL && $this->gaji_pokok->FormValue == "") {
@@ -2155,8 +2155,8 @@ class yayasan_grid extends yayasan
 			$this->loadDbValues($rsold);
 			$rsnew = [];
 
-			// id_pegawai
-			$this->id_pegawai->setDbValueDef($rsnew, $this->id_pegawai->CurrentValue, NULL, $this->id_pegawai->ReadOnly);
+			// pegawai
+			$this->pegawai->setDbValueDef($rsnew, $this->pegawai->CurrentValue, NULL, $this->pegawai->ReadOnly);
 
 			// gaji_pokok
 			$this->gaji_pokok->setDbValueDef($rsnew, $this->gaji_pokok->CurrentValue, NULL, $this->gaji_pokok->ReadOnly);
@@ -2308,8 +2308,8 @@ class yayasan_grid extends yayasan
 		}
 		$rsnew = [];
 
-		// id_pegawai
-		$this->id_pegawai->setDbValueDef($rsnew, $this->id_pegawai->CurrentValue, NULL, FALSE);
+		// pegawai
+		$this->pegawai->setDbValueDef($rsnew, $this->pegawai->CurrentValue, NULL, FALSE);
 
 		// gaji_pokok
 		$this->gaji_pokok->setDbValueDef($rsnew, $this->gaji_pokok->CurrentValue, NULL, FALSE);
@@ -2410,9 +2410,9 @@ class yayasan_grid extends yayasan
 
 			// Set up lookup SQL and connection
 			switch ($fld->FieldVar) {
-				case "x_bulan":
+				case "x_pegawai":
 					break;
-				case "x_id_pegawai":
+				case "x_bulan":
 					break;
 				default:
 					$lookupFilter = "";
@@ -2434,9 +2434,9 @@ class yayasan_grid extends yayasan
 
 					// Format the field values
 					switch ($fld->FieldVar) {
-						case "x_bulan":
+						case "x_pegawai":
 							break;
-						case "x_id_pegawai":
+						case "x_bulan":
 							break;
 					}
 					$ar[strval($row[0])] = $row;

@@ -50,37 +50,9 @@ loadjs.ready("head", function() {
 	// Form object for search
 	fv_yayasanlistsrch = currentSearchForm = new ew.Form("fv_yayasanlistsrch");
 
-	// Validate function for search
-	fv_yayasanlistsrch.validate = function(fobj) {
-		if (!this.validateRequired)
-			return true; // Ignore validation
-		fobj = fobj || this._form;
-		var infix = "";
-		elm = this.getElements("x" + infix + "_tahun");
-		if (elm && !ew.checkInteger(elm.value))
-			return this.onError(elm, "<?php echo JsEncode($v_yayasan_list->tahun->errorMessage()) ?>");
-
-		// Call Form_CustomValidate event
-		if (!this.Form_CustomValidate(fobj))
-			return false;
-		return true;
-	}
-
-	// Form_CustomValidate
-	fv_yayasanlistsrch.Form_CustomValidate = function(fobj) { // DO NOT CHANGE THIS LINE!
-
-		// Your custom validation code here, return false if invalid.
-		return true;
-	}
-
-	// Use JavaScript validation or not
-	fv_yayasanlistsrch.validateRequired = <?php echo Config("CLIENT_VALIDATE") ? "true" : "false" ?>;
-
 	// Dynamic selection lists
-	fv_yayasanlistsrch.lists["x_bulan"] = <?php echo $v_yayasan_list->bulan->Lookup->toClientList($v_yayasan_list) ?>;
-	fv_yayasanlistsrch.lists["x_bulan"].options = <?php echo JsonEncode($v_yayasan_list->bulan->lookupOptions()) ?>;
-
 	// Filters
+
 	fv_yayasanlistsrch.filterList = <?php echo $v_yayasan_list->getFilterList() ?>;
 	loadjs.done("fv_yayasanlistsrch");
 });
@@ -145,69 +117,6 @@ $v_yayasan_list->renderOtherOptions();
 <input type="hidden" name="cmd" value="search">
 <input type="hidden" name="t" value="v_yayasan">
 	<div class="ew-extended-search">
-<?php
-
-// Render search row
-$v_yayasan->RowType = ROWTYPE_SEARCH;
-$v_yayasan->resetAttributes();
-$v_yayasan_list->renderRow();
-?>
-<?php if ($v_yayasan_list->bulan->Visible) { // bulan ?>
-	<?php
-		$v_yayasan_list->SearchColumnCount++;
-		if (($v_yayasan_list->SearchColumnCount - 1) % $v_yayasan_list->SearchFieldsPerRow == 0) {
-			$v_yayasan_list->SearchRowCount++;
-	?>
-<div id="xsr_<?php echo $v_yayasan_list->SearchRowCount ?>" class="ew-row d-sm-flex">
-	<?php
-		}
-	 ?>
-	<div id="xsc_bulan" class="ew-cell form-group">
-		<label for="x_bulan" class="ew-search-caption ew-label"><?php echo $v_yayasan_list->bulan->caption() ?></label>
-		<span class="ew-search-operator">
-<?php echo $Language->phrase("=") ?>
-<input type="hidden" name="z_bulan" id="z_bulan" value="=">
-</span>
-		<span id="el_v_yayasan_bulan" class="ew-search-field">
-<div class="input-group">
-	<select class="custom-select ew-custom-select" data-table="v_yayasan" data-field="x_bulan" data-value-separator="<?php echo $v_yayasan_list->bulan->displayValueSeparatorAttribute() ?>" id="x_bulan" name="x_bulan"<?php echo $v_yayasan_list->bulan->editAttributes() ?>>
-			<?php echo $v_yayasan_list->bulan->selectOptionListHtml("x_bulan") ?>
-		</select>
-</div>
-<?php echo $v_yayasan_list->bulan->Lookup->getParamTag($v_yayasan_list, "p_x_bulan") ?>
-</span>
-	</div>
-	<?php if ($v_yayasan_list->SearchColumnCount % $v_yayasan_list->SearchFieldsPerRow == 0) { ?>
-</div>
-	<?php } ?>
-<?php } ?>
-<?php if ($v_yayasan_list->tahun->Visible) { // tahun ?>
-	<?php
-		$v_yayasan_list->SearchColumnCount++;
-		if (($v_yayasan_list->SearchColumnCount - 1) % $v_yayasan_list->SearchFieldsPerRow == 0) {
-			$v_yayasan_list->SearchRowCount++;
-	?>
-<div id="xsr_<?php echo $v_yayasan_list->SearchRowCount ?>" class="ew-row d-sm-flex">
-	<?php
-		}
-	 ?>
-	<div id="xsc_tahun" class="ew-cell form-group">
-		<label for="x_tahun" class="ew-search-caption ew-label"><?php echo $v_yayasan_list->tahun->caption() ?></label>
-		<span class="ew-search-operator">
-<?php echo $Language->phrase("=") ?>
-<input type="hidden" name="z_tahun" id="z_tahun" value="=">
-</span>
-		<span id="el_v_yayasan_tahun" class="ew-search-field">
-<input type="text" data-table="v_yayasan" data-field="x_tahun" name="x_tahun" id="x_tahun" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($v_yayasan_list->tahun->getPlaceHolder()) ?>" value="<?php echo $v_yayasan_list->tahun->EditValue ?>"<?php echo $v_yayasan_list->tahun->editAttributes() ?>>
-</span>
-	</div>
-	<?php if ($v_yayasan_list->SearchColumnCount % $v_yayasan_list->SearchFieldsPerRow == 0) { ?>
-</div>
-	<?php } ?>
-<?php } ?>
-	<?php if ($v_yayasan_list->SearchColumnCount % $v_yayasan_list->SearchFieldsPerRow > 0) { ?>
-</div>
-	<?php } ?>
 <div id="xsr_<?php echo $v_yayasan_list->SearchRowCount + 1 ?>" class="ew-row d-sm-flex">
 	<div class="ew-quick-search input-group">
 		<input type="text" name="<?php echo Config("TABLE_BASIC_SEARCH") ?>" id="<?php echo Config("TABLE_BASIC_SEARCH") ?>" class="form-control" value="<?php echo HtmlEncode($v_yayasan_list->BasicSearch->getKeyword()) ?>" placeholder="<?php echo HtmlEncode($Language->phrase("Search")) ?>">
@@ -269,6 +178,15 @@ $v_yayasan_list->renderListOptions();
 // Render list options (header, left)
 $v_yayasan_list->ListOptions->render("header", "left");
 ?>
+<?php if ($v_yayasan_list->id->Visible) { // id ?>
+	<?php if ($v_yayasan_list->SortUrl($v_yayasan_list->id) == "") { ?>
+		<th data-name="id" class="<?php echo $v_yayasan_list->id->headerCellClass() ?>"><div id="elh_v_yayasan_id" class="v_yayasan_id"><div class="ew-table-header-caption"><?php echo $v_yayasan_list->id->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="id" class="<?php echo $v_yayasan_list->id->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_yayasan_list->SortUrl($v_yayasan_list->id) ?>', 1);"><div id="elh_v_yayasan_id" class="v_yayasan_id">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_yayasan_list->id->caption() ?></span><span class="ew-table-header-sort"><?php if ($v_yayasan_list->id->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_yayasan_list->id->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($v_yayasan_list->bulan->Visible) { // bulan ?>
 	<?php if ($v_yayasan_list->SortUrl($v_yayasan_list->bulan) == "") { ?>
 		<th data-name="bulan" class="<?php echo $v_yayasan_list->bulan->headerCellClass() ?>"><div id="elh_v_yayasan_bulan" class="v_yayasan_bulan"><div class="ew-table-header-caption"><?php echo $v_yayasan_list->bulan->caption() ?></div></div></th>
@@ -287,21 +205,39 @@ $v_yayasan_list->ListOptions->render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($v_yayasan_list->m_id->Visible) { // m_id ?>
+	<?php if ($v_yayasan_list->SortUrl($v_yayasan_list->m_id) == "") { ?>
+		<th data-name="m_id" class="<?php echo $v_yayasan_list->m_id->headerCellClass() ?>"><div id="elh_v_yayasan_m_id" class="v_yayasan_m_id"><div class="ew-table-header-caption"><?php echo $v_yayasan_list->m_id->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="m_id" class="<?php echo $v_yayasan_list->m_id->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_yayasan_list->SortUrl($v_yayasan_list->m_id) ?>', 1);"><div id="elh_v_yayasan_m_id" class="v_yayasan_m_id">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_yayasan_list->m_id->caption() ?></span><span class="ew-table-header-sort"><?php if ($v_yayasan_list->m_id->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_yayasan_list->m_id->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($v_yayasan_list->id_pegawai->Visible) { // id_pegawai ?>
 	<?php if ($v_yayasan_list->SortUrl($v_yayasan_list->id_pegawai) == "") { ?>
 		<th data-name="id_pegawai" class="<?php echo $v_yayasan_list->id_pegawai->headerCellClass() ?>"><div id="elh_v_yayasan_id_pegawai" class="v_yayasan_id_pegawai"><div class="ew-table-header-caption"><?php echo $v_yayasan_list->id_pegawai->caption() ?></div></div></th>
 	<?php } else { ?>
 		<th data-name="id_pegawai" class="<?php echo $v_yayasan_list->id_pegawai->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_yayasan_list->SortUrl($v_yayasan_list->id_pegawai) ?>', 1);"><div id="elh_v_yayasan_id_pegawai" class="v_yayasan_id_pegawai">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_yayasan_list->id_pegawai->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($v_yayasan_list->id_pegawai->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_yayasan_list->id_pegawai->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_yayasan_list->id_pegawai->caption() ?></span><span class="ew-table-header-sort"><?php if ($v_yayasan_list->id_pegawai->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_yayasan_list->id_pegawai->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
-<?php if ($v_yayasan_list->rekbank->Visible) { // rekbank ?>
-	<?php if ($v_yayasan_list->SortUrl($v_yayasan_list->rekbank) == "") { ?>
-		<th data-name="rekbank" class="<?php echo $v_yayasan_list->rekbank->headerCellClass() ?>"><div id="elh_v_yayasan_rekbank" class="v_yayasan_rekbank"><div class="ew-table-header-caption"><?php echo $v_yayasan_list->rekbank->caption() ?></div></div></th>
+<?php if ($v_yayasan_list->gaji_pokok->Visible) { // gaji_pokok ?>
+	<?php if ($v_yayasan_list->SortUrl($v_yayasan_list->gaji_pokok) == "") { ?>
+		<th data-name="gaji_pokok" class="<?php echo $v_yayasan_list->gaji_pokok->headerCellClass() ?>"><div id="elh_v_yayasan_gaji_pokok" class="v_yayasan_gaji_pokok"><div class="ew-table-header-caption"><?php echo $v_yayasan_list->gaji_pokok->caption() ?></div></div></th>
 	<?php } else { ?>
-		<th data-name="rekbank" class="<?php echo $v_yayasan_list->rekbank->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_yayasan_list->SortUrl($v_yayasan_list->rekbank) ?>', 1);"><div id="elh_v_yayasan_rekbank" class="v_yayasan_rekbank">
-			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_yayasan_list->rekbank->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($v_yayasan_list->rekbank->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_yayasan_list->rekbank->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		<th data-name="gaji_pokok" class="<?php echo $v_yayasan_list->gaji_pokok->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_yayasan_list->SortUrl($v_yayasan_list->gaji_pokok) ?>', 1);"><div id="elh_v_yayasan_gaji_pokok" class="v_yayasan_gaji_pokok">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_yayasan_list->gaji_pokok->caption() ?></span><span class="ew-table-header-sort"><?php if ($v_yayasan_list->gaji_pokok->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_yayasan_list->gaji_pokok->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($v_yayasan_list->potongan->Visible) { // potongan ?>
+	<?php if ($v_yayasan_list->SortUrl($v_yayasan_list->potongan) == "") { ?>
+		<th data-name="potongan" class="<?php echo $v_yayasan_list->potongan->headerCellClass() ?>"><div id="elh_v_yayasan_potongan" class="v_yayasan_potongan"><div class="ew-table-header-caption"><?php echo $v_yayasan_list->potongan->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="potongan" class="<?php echo $v_yayasan_list->potongan->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_yayasan_list->SortUrl($v_yayasan_list->potongan) ?>', 1);"><div id="elh_v_yayasan_potongan" class="v_yayasan_potongan">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_yayasan_list->potongan->caption() ?></span><span class="ew-table-header-sort"><?php if ($v_yayasan_list->potongan->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_yayasan_list->potongan->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -311,6 +247,15 @@ $v_yayasan_list->ListOptions->render("header", "left");
 	<?php } else { ?>
 		<th data-name="total" class="<?php echo $v_yayasan_list->total->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_yayasan_list->SortUrl($v_yayasan_list->total) ?>', 1);"><div id="elh_v_yayasan_total" class="v_yayasan_total">
 			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_yayasan_list->total->caption() ?></span><span class="ew-table-header-sort"><?php if ($v_yayasan_list->total->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_yayasan_list->total->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
+<?php if ($v_yayasan_list->rekbank->Visible) { // rekbank ?>
+	<?php if ($v_yayasan_list->SortUrl($v_yayasan_list->rekbank) == "") { ?>
+		<th data-name="rekbank" class="<?php echo $v_yayasan_list->rekbank->headerCellClass() ?>"><div id="elh_v_yayasan_rekbank" class="v_yayasan_rekbank"><div class="ew-table-header-caption"><?php echo $v_yayasan_list->rekbank->caption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="rekbank" class="<?php echo $v_yayasan_list->rekbank->headerCellClass() ?>"><div class="ew-pointer" onclick="ew.sort(event, '<?php echo $v_yayasan_list->SortUrl($v_yayasan_list->rekbank) ?>', 1);"><div id="elh_v_yayasan_rekbank" class="v_yayasan_rekbank">
+			<div class="ew-table-header-btn"><span class="ew-table-header-caption"><?php echo $v_yayasan_list->rekbank->caption() ?><?php echo $Language->phrase("SrchLegend") ?></span><span class="ew-table-header-sort"><?php if ($v_yayasan_list->rekbank->getSort() == "ASC") { ?><i class="fas fa-sort-up"></i><?php } elseif ($v_yayasan_list->rekbank->getSort() == "DESC") { ?><i class="fas fa-sort-down"></i><?php } ?></span></div>
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
@@ -379,6 +324,13 @@ while ($v_yayasan_list->RecordCount < $v_yayasan_list->StopRecord) {
 // Render list options (body, left)
 $v_yayasan_list->ListOptions->render("body", "left", $v_yayasan_list->RowCount);
 ?>
+	<?php if ($v_yayasan_list->id->Visible) { // id ?>
+		<td data-name="id" <?php echo $v_yayasan_list->id->cellAttributes() ?>>
+<span id="el<?php echo $v_yayasan_list->RowCount ?>_v_yayasan_id">
+<span<?php echo $v_yayasan_list->id->viewAttributes() ?>><?php echo $v_yayasan_list->id->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
 	<?php if ($v_yayasan_list->bulan->Visible) { // bulan ?>
 		<td data-name="bulan" <?php echo $v_yayasan_list->bulan->cellAttributes() ?>>
 <span id="el<?php echo $v_yayasan_list->RowCount ?>_v_yayasan_bulan">
@@ -393,6 +345,13 @@ $v_yayasan_list->ListOptions->render("body", "left", $v_yayasan_list->RowCount);
 </span>
 </td>
 	<?php } ?>
+	<?php if ($v_yayasan_list->m_id->Visible) { // m_id ?>
+		<td data-name="m_id" <?php echo $v_yayasan_list->m_id->cellAttributes() ?>>
+<span id="el<?php echo $v_yayasan_list->RowCount ?>_v_yayasan_m_id">
+<span<?php echo $v_yayasan_list->m_id->viewAttributes() ?>><?php echo $v_yayasan_list->m_id->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
 	<?php if ($v_yayasan_list->id_pegawai->Visible) { // id_pegawai ?>
 		<td data-name="id_pegawai" <?php echo $v_yayasan_list->id_pegawai->cellAttributes() ?>>
 <span id="el<?php echo $v_yayasan_list->RowCount ?>_v_yayasan_id_pegawai">
@@ -400,10 +359,17 @@ $v_yayasan_list->ListOptions->render("body", "left", $v_yayasan_list->RowCount);
 </span>
 </td>
 	<?php } ?>
-	<?php if ($v_yayasan_list->rekbank->Visible) { // rekbank ?>
-		<td data-name="rekbank" <?php echo $v_yayasan_list->rekbank->cellAttributes() ?>>
-<span id="el<?php echo $v_yayasan_list->RowCount ?>_v_yayasan_rekbank">
-<span<?php echo $v_yayasan_list->rekbank->viewAttributes() ?>><?php echo $v_yayasan_list->rekbank->getViewValue() ?></span>
+	<?php if ($v_yayasan_list->gaji_pokok->Visible) { // gaji_pokok ?>
+		<td data-name="gaji_pokok" <?php echo $v_yayasan_list->gaji_pokok->cellAttributes() ?>>
+<span id="el<?php echo $v_yayasan_list->RowCount ?>_v_yayasan_gaji_pokok">
+<span<?php echo $v_yayasan_list->gaji_pokok->viewAttributes() ?>><?php echo $v_yayasan_list->gaji_pokok->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($v_yayasan_list->potongan->Visible) { // potongan ?>
+		<td data-name="potongan" <?php echo $v_yayasan_list->potongan->cellAttributes() ?>>
+<span id="el<?php echo $v_yayasan_list->RowCount ?>_v_yayasan_potongan">
+<span<?php echo $v_yayasan_list->potongan->viewAttributes() ?>><?php echo $v_yayasan_list->potongan->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>
@@ -411,6 +377,13 @@ $v_yayasan_list->ListOptions->render("body", "left", $v_yayasan_list->RowCount);
 		<td data-name="total" <?php echo $v_yayasan_list->total->cellAttributes() ?>>
 <span id="el<?php echo $v_yayasan_list->RowCount ?>_v_yayasan_total">
 <span<?php echo $v_yayasan_list->total->viewAttributes() ?>><?php echo $v_yayasan_list->total->getViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($v_yayasan_list->rekbank->Visible) { // rekbank ?>
+		<td data-name="rekbank" <?php echo $v_yayasan_list->rekbank->cellAttributes() ?>>
+<span id="el<?php echo $v_yayasan_list->RowCount ?>_v_yayasan_rekbank">
+<span<?php echo $v_yayasan_list->rekbank->viewAttributes() ?>><?php echo $v_yayasan_list->rekbank->getViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

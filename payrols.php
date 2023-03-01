@@ -78,9 +78,8 @@ Page_Rendering();
 		}
 		
 		$potongan_bendahara = $_POST['potongan_bendahara'];
-        $querypotong=ExecuteRow("select * from ".$tabel." WHERE id='$id_edit'");
-        $calculasi = $querypotong['total']-$potongan_bendahara;
-		$myquery = "UPDATE ".$tabel." SET potongan_bendahara='$potongan_bendahara',total='$calculasi' WHERE id='$id_edit'";
+
+		$myquery = "UPDATE ".$tabel." SET potongan_bendahara='$potongan_bendahara'  WHERE id='$id_edit'";
 		$myResult = Execute($myquery);
 		header("location:payrols.php?tahun=".$tahun."&bulan=".$bulan."&jenjang=".$jenjang."&submit=Cari");
 	}
@@ -93,23 +92,23 @@ Page_Rendering();
 		if ($jenjang_s == '1') { 
 			$tabel = 'gaji_tk';
 			$tabel1 = 'gaji_tu_tk';
-			$tabel2 = 'gaji_pegawai_tk';
+			$tabel2 = 'gaji_karyawan_tk';
 		} elseif ($jenjang_s == '2') { 
 			$tabel = 'gaji';
 			$tabel1 = 'gaji_tu_sd';
-			$tabel2 = 'gaji_pegawai_sd';
+			$tabel2 = 'gaji_karyawan_sd';
 		} elseif ($jenjang_s == '3') { 
 			$tabel = 'gaji_smp';
 			$tabel1 = 'gaji_tu_smp';
-			$tabel2 = 'gaji_pegawai_smp';
+			$tabel2 = 'gaji_karyawan_smp';
 		} elseif ($jenjang_s == '4') { 
 			$tabel = 'gaji_sma';
 			$tabel1 = 'gaji_tu_sma';
-			$tabel2 = 'gaji_pegawai_sma';
+			$tabel2 = 'gaji_karyawan_sma';
 		} elseif ($jenjang_s == '5') { 
 			$tabel = 'gaji_smk';
 			$tabel1 = 'gaji_tu_smk';
-			$tabel2 = 'gaji_pegawai_smk';
+			$tabel2 = 'gaji_karyawan_smk';
 		}
 
 		$tabel = Execute("UPDATE ".$tabel." SET status='1' WHERE bulan='$bulan_s' AND tahun='$tahun_s'");
@@ -132,23 +131,23 @@ Page_Rendering();
 		if ($jenjang_s == '1') { 
 			$tabel = 'gaji_tk';
 			$tabel1 = 'gaji_tu_tk';
-			$tabel2 = 'gaji_pegawai_tk';
+			$tabel2 = 'gaji_karyawan_tk';
 		} elseif ($jenjang_s == '2') { 
 			$tabel = 'gaji';
 			$tabel1 = 'gaji_tu_sd';
-			$tabel2 = 'gaji_pegawai_sd';
+			$tabel2 = 'gaji_karyawan_sd';
 		} elseif ($jenjang_s == '3') { 
 			$tabel = 'gaji_smp';
 			$tabel1 = 'gaji_tu_smp';
-			$tabel2 = 'gaji_pegawai_smp';
+			$tabel2 = 'gaji_karyawan_smp';
 		} elseif ($jenjang_s == '4') { 
 			$tabel = 'gaji_sma';
 			$tabel1 = 'gaji_tu_sma';
-			$tabel2 = 'gaji_pegawai_sma';
+			$tabel2 = 'gaji_karyawan_sma';
 		} elseif ($jenjang_s == '5') { 
 			$tabel = 'gaji_smk';
 			$tabel1 = 'gaji_tu_smk';
-			$tabel2 = 'gaji_pegawai_smk';
+			$tabel2 = 'gaji_karyawan_smk';
 		}
 
 		$tabel = Execute("UPDATE ".$tabel." SET status='0' WHERE bulan='$bulan_s' AND tahun='$tahun_s'");
@@ -166,23 +165,23 @@ Page_Rendering();
 	if ($jenjang == '1') { 
 		$tabel = 'gaji_tk';
 		$tabel1 = 'gaji_tu_tk';
-		$tabel2 = 'gaji_pegawai_tk';
+		$tabel2 = 'gaji_karyawan_tk';
 	} elseif ($jenjang == '2') { 
 		$tabel = 'gaji';
 		$tabel1 = 'gaji_tu_sd';
-		$tabel2 = 'gaji_pegawai_sd';
+		$tabel2 = 'gaji_karyawan_sd';
 	} elseif ($jenjang == '3') { 
 		$tabel = 'gaji_smp';
 		$tabel1 = 'gaji_tu_smp';
-		$tabel2 = 'gaji_pegawai_smp';
+		$tabel2 = 'gaji_karyawan_smp';
 	} elseif ($jenjang == '4') { 
 		$tabel = 'gaji_sma';
 		$tabel1 = 'gaji_tu_sma';
-		$tabel2 = 'gaji_pegawai_sma';
+		$tabel2 = 'gaji_karyawan_sma';
 	} elseif ($jenjang == '5') { 
 		$tabel = 'gaji_smk';
 		$tabel1 = 'gaji_tu_smk';
-		$tabel2 = 'gaji_pegawai_smk';
+		$tabel2 = 'gaji_karyawan_smk';
 	}
 ?>	
 	<form method="get" action="">
@@ -236,10 +235,10 @@ Page_Rendering();
 			<input type="hidden" name="bulan_s" value="<?=$bulan?>">
 			<input type="hidden" name="jenjang_s" value="<?=$jenjang?>">
 			<div class="form-row align-items-center">
-				<div class="col-auto">	
+				<div class="col-auto">
+					<input type="submit" class="btn btn-success mb-2" name="update_status" value="Konfirmasi Payroll">
 				</div>
-				<input type="submit" class="btn btn-success mb-2" name="update_status" value="Konfirmasi Payroll">	
-			</div>	
+			</div>
 		</form>
 	<?php }else{ ?>
 		<form role="form" action="<?php echo CurrentPageName() ?>" method="post">
@@ -250,10 +249,9 @@ Page_Rendering();
 			<input type="hidden" name="bulan_s" value="<?=$bulan?>">
 			<input type="hidden" name="jenjang_s" value="<?=$jenjang?>">
 			<div class="form-row align-items-center">
-				<div class="col-auto">	
+				<div class="col-auto">
+					<button id="submit" type="submit" name="update_status_belum_selesai"  class="btn btn-danger mb-2">Batalkan Konfirmasi</button>
 				</div>
-				<input type="submit" class="btn btn-success mb-2" name="update_status" value="Konfirmasi Payroll">	
-			</div>
 			</div>
 		</form>
 	<?php } ?>
@@ -267,8 +265,8 @@ Page_Rendering();
 				<th>NIP</th>
 				<th>Nama</th>
 				<th>No Rekening</th>
-				<th>Sub Total Gaji</th>
-				<th>Jumlah Potongan</th>
+				<th>Gaji</th>
+				<th>Potongan</th>
 				<th>Total Gaji</th>
 				<th>Aksi</th>
 			</tr>
@@ -278,23 +276,23 @@ Page_Rendering();
 					if ($jenjang == '1') { 
 						$tabel = 'gaji_tk';
 						$tabel1 = 'gaji_tu_tk';
-						$tabel2 = 'gaji_pegawai_tk';
+						$tabel2 = 'gaji_karyawan_tk';
 						} elseif ($jenjang == '2') { 
 							$tabel = 'gaji';
 							$tabel1 = 'gaji_tu_sd';
-							$tabel2 = 'gaji_pegawai_sd';
+							$tabel2 = 'gaji_karyawan_sd';
 						} elseif ($jenjang == '3') { 
 							$tabel = 'gaji_smp';
 							$tabel1 = 'gaji_tu_smp';
-							$tabel2 = 'gaji_pegawai_smp';
+							$tabel2 = 'gaji_karyawan_smp';
 						} elseif ($jenjang == '4') { 
 							$tabel = 'gaji_sma';
 							$tabel1 = 'gaji_tu_sma';
-							$tabel2 = 'gaji_pegawai_sma';
+							$tabel2 = 'gaji_karyawan_sma';
 						} elseif ($jenjang == '5') { 
 							$tabel = 'gaji_smk';
 							$tabel1 = 'gaji_tu_smk';
-							$tabel2 = 'gaji_pegawai_smk';
+							$tabel2 = 'gaji_karyawan_smk';
 					}
 					$jenjang = ExecuteScalar("SELECT name FROM tpendidikan WHERE nourut = '".$jenjang."'");
 					if(ExecuteRows("SELECT * FROM ".$tabel." WHERE bulan = '".$bulan."' AND tahun = '".$tahun."'") != false){
@@ -308,9 +306,9 @@ Page_Rendering();
 				<td><?=$pegawai['nip']?></td>
 				<td><?=$pegawai['nama']?> - <?=$jabatan['name']?></td>
 				<td><?=$pegawai['rekbank']?></td>
-				<td>Rp. <?= number_format($data['total']+$data['potongan_bendahara'] ,0,',','.');?></td>
-				<td>Rp. <?= number_format($data['potongan_bendahara'],0,',','.');?></td>
 				<td>Rp. <?= number_format($data['total'],0,',','.');?></td>
+				<td>Rp. <?= number_format($data['potongan_bendahara'],0,',','.');?></td>
+				<td>Rp. <?= number_format($data['total']-$data['potongan_bendahara'] ,0,',','.');?></td>
 				<td>
 					<?php if($data['status'] == '1'){ ?>
 						<p style="text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;">Dipublikasi<p>
@@ -366,9 +364,9 @@ Page_Rendering();
 				<td><?=$pegawai1['nip']?></td>
 				<td><?=$pegawai1['nama']?> - <?=$jabatan1['name']?></td>
 				<td><?=$pegawai1['rekbank']?></td>
-				<td>Rp. <?= number_format($data1['total']+$data1['potongan_bendahara'] ,0,',','.');?></td>
-				<td>Rp. <?= number_format($data1['potongan_bendahara'],0,',','.');?></td>
 				<td>Rp. <?= number_format($data1['total'],0,',','.');?></td>
+				<td>Rp. <?= number_format($data1['potongan_bendahara'],0,',','.');?></td>
+				<td>Rp. <?= number_format($data1['total']-$data1['potongan_bendahara'] ,0,',','.');?></td>
 				<td>
 					<?php if($data1['status'] == '1'){ ?>
 						<p style="text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;">Dipublikasi<p>
@@ -424,9 +422,9 @@ Page_Rendering();
 				<td><?=$pegawai2['nip']?></td>
 				<td><?=$pegawai2['nama']?> - <?=$jabatan2['name']?></td>
 				<td><?=$pegawai2['rekbank']?></td>
-				<td>Rp. <?= number_format($data2['total']+$data2['potongan_bendahara'] ,0,',','.');?></td>
-				<td>Rp. <?= number_format($data2['potongan_bendahara'],0,',','.');?></td>
 				<td>Rp. <?= number_format($data2['total'],0,',','.');?></td>
+				<td>Rp. <?= number_format($data2['potongan_bendahara'],0,',','.');?></td>
+				<td>Rp. <?= number_format($data2['total']-$data2['potongan_bendahara'] ,0,',','.');?></td>
 				<td>
 					<?php if($data2['status'] == '1'){ ?>
 						<p style="text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;">Dipublikasi<p>
@@ -478,8 +476,8 @@ Page_Rendering();
 				<th>NIP</th>
 				<th>Nama</th>
 				<th>No Rekening</th>
-				<th>Sub Total Gaji</th>
-				<th>Jumlah Potongan</th>
+				<th>Gaji</th>
+				<th>Potongan</th>
 				<th>Total Gaji</th>
 				<th>Aksi</th>
 			</tr>

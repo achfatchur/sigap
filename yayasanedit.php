@@ -56,6 +56,14 @@ loadjs.ready("head", function() {
 		for (var i = startcnt; i <= rowcnt; i++) {
 			var infix = ($k[0]) ? String(i) : "";
 			$fobj.data("rowindex", infix);
+			<?php if ($yayasan_edit->pegawai->Required) { ?>
+				elm = this.getElements("x" + infix + "_pegawai");
+				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
+					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $yayasan_edit->pegawai->caption(), $yayasan_edit->pegawai->RequiredErrorMessage)) ?>");
+			<?php } ?>
+				elm = this.getElements("x" + infix + "_pegawai");
+				if (elm && !ew.checkInteger(elm.value))
+					return this.onError(elm, "<?php echo JsEncode($yayasan_edit->pegawai->errorMessage()) ?>");
 			<?php if ($yayasan_edit->bulan->Required) { ?>
 				elm = this.getElements("x" + infix + "_bulan");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -72,14 +80,6 @@ loadjs.ready("head", function() {
 				elm = this.getElements("x" + infix + "_tahun");
 				if (elm && !ew.checkInteger(elm.value))
 					return this.onError(elm, "<?php echo JsEncode($yayasan_edit->tahun->errorMessage()) ?>");
-			<?php if ($yayasan_edit->id_pegawai->Required) { ?>
-				elm = this.getElements("x" + infix + "_id_pegawai");
-				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
-					return this.onError(elm, "<?php echo JsEncode(str_replace("%s", $yayasan_edit->id_pegawai->caption(), $yayasan_edit->id_pegawai->RequiredErrorMessage)) ?>");
-			<?php } ?>
-				elm = this.getElements("x" + infix + "_id_pegawai");
-				if (elm && !ew.checkInteger(elm.value))
-					return this.onError(elm, "<?php echo JsEncode($yayasan_edit->id_pegawai->errorMessage()) ?>");
 			<?php if ($yayasan_edit->gaji_pokok->Required) { ?>
 				elm = this.getElements("x" + infix + "_gaji_pokok");
 				if (elm && !ew.isHidden(elm) && !ew.hasValue(elm))
@@ -132,12 +132,12 @@ loadjs.ready("head", function() {
 	fyayasanedit.validateRequired = <?php echo Config("CLIENT_VALIDATE") ? "true" : "false" ?>;
 
 	// Dynamic selection lists
+	fyayasanedit.lists["x_pegawai"] = <?php echo $yayasan_edit->pegawai->Lookup->toClientList($yayasan_edit) ?>;
+	fyayasanedit.lists["x_pegawai"].options = <?php echo JsonEncode($yayasan_edit->pegawai->lookupOptions()) ?>;
+	fyayasanedit.autoSuggests["x_pegawai"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
 	fyayasanedit.lists["x_bulan"] = <?php echo $yayasan_edit->bulan->Lookup->toClientList($yayasan_edit) ?>;
 	fyayasanedit.lists["x_bulan"].options = <?php echo JsonEncode($yayasan_edit->bulan->lookupOptions()) ?>;
 	fyayasanedit.autoSuggests["x_bulan"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
-	fyayasanedit.lists["x_id_pegawai"] = <?php echo $yayasan_edit->id_pegawai->Lookup->toClientList($yayasan_edit) ?>;
-	fyayasanedit.lists["x_id_pegawai"].options = <?php echo JsonEncode($yayasan_edit->id_pegawai->lookupOptions()) ?>;
-	fyayasanedit.autoSuggests["x_id_pegawai"] = <?php echo json_encode(["data" => "ajax=autosuggest"]) ?>;
 	loadjs.done("fyayasanedit");
 });
 </script>
@@ -167,6 +167,30 @@ $yayasan_edit->showMessage();
 <input type="hidden" name="fk_tahun" value="<?php echo HtmlEncode($yayasan_edit->tahun->getSessionValue()) ?>">
 <?php } ?>
 <div class="ew-edit-div"><!-- page* -->
+<?php if ($yayasan_edit->pegawai->Visible) { // pegawai ?>
+	<div id="r_pegawai" class="form-group row">
+		<label id="elh_yayasan_pegawai" class="<?php echo $yayasan_edit->LeftColumnClass ?>"><?php echo $yayasan_edit->pegawai->caption() ?><?php echo $yayasan_edit->pegawai->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
+		<div class="<?php echo $yayasan_edit->RightColumnClass ?>"><div <?php echo $yayasan_edit->pegawai->cellAttributes() ?>>
+<span id="el_yayasan_pegawai">
+<?php
+$onchange = $yayasan_edit->pegawai->EditAttrs->prepend("onchange", "");
+$onchange = ($onchange) ? ' onchange="' . JsEncode($onchange) . '"' : '';
+$yayasan_edit->pegawai->EditAttrs["onchange"] = "";
+?>
+<span id="as_x_pegawai">
+	<input type="text" class="form-control" name="sv_x_pegawai" id="sv_x_pegawai" value="<?php echo RemoveHtml($yayasan_edit->pegawai->EditValue) ?>" size="30" maxlength="10" placeholder="<?php echo HtmlEncode($yayasan_edit->pegawai->getPlaceHolder()) ?>" data-placeholder="<?php echo HtmlEncode($yayasan_edit->pegawai->getPlaceHolder()) ?>"<?php echo $yayasan_edit->pegawai->editAttributes() ?>>
+</span>
+<input type="hidden" data-table="yayasan" data-field="x_pegawai" data-value-separator="<?php echo $yayasan_edit->pegawai->displayValueSeparatorAttribute() ?>" name="x_pegawai" id="x_pegawai" value="<?php echo HtmlEncode($yayasan_edit->pegawai->CurrentValue) ?>"<?php echo $onchange ?>>
+<script>
+loadjs.ready(["fyayasanedit"], function() {
+	fyayasanedit.createAutoSuggest({"id":"x_pegawai","forceSelect":false});
+});
+</script>
+<?php echo $yayasan_edit->pegawai->Lookup->getParamTag($yayasan_edit, "p_x_pegawai") ?>
+</span>
+<?php echo $yayasan_edit->pegawai->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
 <?php if ($yayasan_edit->bulan->Visible) { // bulan ?>
 	<div id="r_bulan" class="form-group row">
 		<label id="elh_yayasan_bulan" class="<?php echo $yayasan_edit->LeftColumnClass ?>"><?php echo $yayasan_edit->bulan->caption() ?><?php echo $yayasan_edit->bulan->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
@@ -213,30 +237,6 @@ loadjs.ready(["fyayasanedit"], function() {
 </span>
 <?php } ?>
 <?php echo $yayasan_edit->tahun->CustomMsg ?></div></div>
-	</div>
-<?php } ?>
-<?php if ($yayasan_edit->id_pegawai->Visible) { // id_pegawai ?>
-	<div id="r_id_pegawai" class="form-group row">
-		<label id="elh_yayasan_id_pegawai" class="<?php echo $yayasan_edit->LeftColumnClass ?>"><?php echo $yayasan_edit->id_pegawai->caption() ?><?php echo $yayasan_edit->id_pegawai->Required ? $Language->phrase("FieldRequiredIndicator") : "" ?></label>
-		<div class="<?php echo $yayasan_edit->RightColumnClass ?>"><div <?php echo $yayasan_edit->id_pegawai->cellAttributes() ?>>
-<span id="el_yayasan_id_pegawai">
-<?php
-$onchange = $yayasan_edit->id_pegawai->EditAttrs->prepend("onchange", "");
-$onchange = ($onchange) ? ' onchange="' . JsEncode($onchange) . '"' : '';
-$yayasan_edit->id_pegawai->EditAttrs["onchange"] = "";
-?>
-<span id="as_x_id_pegawai">
-	<input type="text" class="form-control" name="sv_x_id_pegawai" id="sv_x_id_pegawai" value="<?php echo RemoveHtml($yayasan_edit->id_pegawai->EditValue) ?>" size="30" maxlength="11" placeholder="<?php echo HtmlEncode($yayasan_edit->id_pegawai->getPlaceHolder()) ?>" data-placeholder="<?php echo HtmlEncode($yayasan_edit->id_pegawai->getPlaceHolder()) ?>"<?php echo $yayasan_edit->id_pegawai->editAttributes() ?>>
-</span>
-<input type="hidden" data-table="yayasan" data-field="x_id_pegawai" data-value-separator="<?php echo $yayasan_edit->id_pegawai->displayValueSeparatorAttribute() ?>" name="x_id_pegawai" id="x_id_pegawai" value="<?php echo HtmlEncode($yayasan_edit->id_pegawai->CurrentValue) ?>"<?php echo $onchange ?>>
-<script>
-loadjs.ready(["fyayasanedit"], function() {
-	fyayasanedit.createAutoSuggest({"id":"x_id_pegawai","forceSelect":false});
-});
-</script>
-<?php echo $yayasan_edit->id_pegawai->Lookup->getParamTag($yayasan_edit, "p_x_id_pegawai") ?>
-</span>
-<?php echo $yayasan_edit->id_pegawai->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
 <?php if ($yayasan_edit->gaji_pokok->Visible) { // gaji_pokok ?>

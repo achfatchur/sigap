@@ -341,12 +341,8 @@ class index
 			$this->terminate("genderlist.php");
 		if ($Security->allowList(CurrentProjectID() . 'ijazah'))
 			$this->terminate("ijazahlist.php");
-		if ($Security->allowList(CurrentProjectID() . 'ijin'))
-			$this->terminate("ijinlist.php");
 		if ($Security->allowList(CurrentProjectID() . 'jabatan'))
 			$this->terminate("jabatanlist.php");
-		if ($Security->allowList(CurrentProjectID() . 'jenis_dinasluar'))
-			$this->terminate("jenis_dinasluarlist.php");
 		if ($Security->allowList(CurrentProjectID() . 'jenis_jabatan'))
 			$this->terminate("jenis_jabatanlist.php");
 		if ($Security->allowList(CurrentProjectID() . 'jenis_lembur'))
@@ -539,8 +535,6 @@ class index
 			$this->terminate("vgaji_tu_smplist.php");
 		if ($Security->allowList(CurrentProjectID() . 'slipgaji.php'))
 			$this->terminate("slipgaji.php");
-		if ($Security->allowList(CurrentProjectID() . 'coba.php'))
-			$this->terminate("coba.php");
 		if ($Security->allowList(CurrentProjectID() . 'vgaji_karyawan_tk'))
 			$this->terminate("vgaji_karyawan_tklist.php");
 		if ($Security->allowList(CurrentProjectID() . 'vgaji_karyawan_sd'))
@@ -553,8 +547,6 @@ class index
 			$this->terminate("login_pegawai.php");
 		if ($Security->allowList(CurrentProjectID() . 'login_bendahara.php'))
 			$this->terminate("login_bendahara.php");
-		if ($Security->allowList(CurrentProjectID() . 'v_yayasan'))
-			$this->terminate("v_yayasanlist.php");
 		if ($Security->allowList(CurrentProjectID() . 'v_pengurus_yayasan'))
 			$this->terminate("v_pengurus_yayasanlist.php");
 		if ($Security->allowList(CurrentProjectID() . 'v_pegawai_tk'))
@@ -567,8 +559,6 @@ class index
 			$this->terminate("v_pegawai_smalist.php");
 		if ($Security->allowList(CurrentProjectID() . 'v_pegawai_smk'))
 			$this->terminate("v_pegawai_smklist.php");
-		if ($Security->allowList(CurrentProjectID() . 'slip_gaji_yayasan'))
-			$this->terminate("slip_gaji_yayasanlist.php");
 		if ($Security->allowList(CurrentProjectID() . 'backup_restore.php'))
 			$this->terminate("backup_restore.php");
 		if ($Security->allowList(CurrentProjectID() . 'laporan_gaji_all.php'))
@@ -599,6 +589,20 @@ class index
 			$this->terminate("laporan_pajak_unit.php");
 		if ($Security->allowList(CurrentProjectID() . 'laporan_bpjs_unit.php'))
 			$this->terminate("laporan_bpjs_unit.php");
+		if ($Security->allowList(CurrentProjectID() . 'solved_sma'))
+			$this->terminate("solved_smalist.php");
+		if ($Security->allowList(CurrentProjectID() . 'solved_sd'))
+			$this->terminate("solved_sdlist.php");
+		if ($Security->allowList(CurrentProjectID() . 'solved_smk'))
+			$this->terminate("solved_smklist.php");
+		if ($Security->allowList(CurrentProjectID() . 'solved_smp'))
+			$this->terminate("solved_smplist.php");
+		if ($Security->allowList(CurrentProjectID() . 'solved_tk'))
+			$this->terminate("solved_tklist.php");
+		if ($Security->allowList(CurrentProjectID() . 'gaji_pegawai_tk'))
+			$this->terminate("gaji_pegawai_tklist.php");
+		if ($Security->allowList(CurrentProjectID() . 'm_slip_yayasan'))
+			$this->terminate("m_slip_yayasanlist.php");
 		if ($Security->isLoggedIn()) {
 			$this->setFailureMessage(DeniedMessage() . "<br><br><a href=\"logout.php\">" . $Language->phrase("BackToLogin") . "</a>");
 		} else {
