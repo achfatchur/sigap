@@ -235,7 +235,6 @@ Page_Rendering();
 			<input type="hidden" name="tahun_s" value="<?=$tahun?>">
 			<input type="hidden" name="bulan_s" value="<?=$bulan?>">
 			<input type="hidden" name="jenjang_s" value="<?=$jenjang?>">
-			</div>
 			<div class="form-row align-items-center">
 				<div class="col-auto">
 				<?php if ($jenjang == '1'){?>	
@@ -261,8 +260,6 @@ Page_Rendering();
 			<input type="hidden" name="bulan_s" value="<?=$bulan?>">
 			<input type="hidden" name="jenjang_s" value="<?=$jenjang?>">
 			<div class="form-row align-items-center">	
-			</div>
-			<div class="form-row align-items-center">
 				<div class="col-auto">
 				<?php if ($jenjang == '1'){?>	
 			<a href="exp_guru_tk.php"class="btn btn-danger mb-2" target="_self">Export Data Unit TK</a>
