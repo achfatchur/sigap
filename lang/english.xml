@@ -4212,7 +4212,7 @@
         <phrase id="fldcaption" value="datetime" />
       </field>
       <field id="import_file">
-        <phrase id="fldcaption" value="Total Potongan" />
+        <phrase id="fldcaption" value="Import File" />
       </field>
     </table>
     <table id="m_piket">
