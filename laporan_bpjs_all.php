@@ -230,26 +230,23 @@ Page_Rendering();
 		$total_isi1 = ExecuteScalar("SELECT count(*) FROM ".$tabel1." WHERE bulan = '".$bulan."' AND tahun = '".$tahun."'");
 		$total_status2 = ExecuteScalar("SELECT count(*) FROM ".$tabel2." WHERE bulan = '".$bulan."' AND tahun = '".$tahun."' AND status = '0'");
 		$total_isi2 = ExecuteScalar("SELECT count(*) FROM ".$tabel2." WHERE bulan = '".$bulan."' AND tahun = '".$tahun."'");
-	if($total_status == $total_isi && $total_status1 == $total_isi1 && $total_status2 == $total_isi2){ ?>
+	//if($total_status == $total_isi && $total_status1 == $total_isi1 && $total_status2 == $total_isi2){ ?>
 		<form method="get" action="">
 			<input type="hidden" name="tahun_s" value="<?=$tahun?>">
 			<input type="hidden" name="bulan_s" value="<?=$bulan?>">
 			<input type="hidden" name="jenjang_s" value="<?=$jenjang?>">
-			</div>
-		</form>
-	<?php }else{ ?>
-		<form role="form" action="<?php echo CurrentPageName() ?>" method="post">
-		<?php if ($Page->CheckToken) { ?>
-		<input type="hidden" name="<?php echo Config("TOKEN_NAME") ?>" value="<?php echo $Page->Token ?>">
-		<?php } ?>
-			<input type="hidden" name="tahun_s" value="<?=$tahun?>">
-			<input type="hidden" name="bulan_s" value="<?=$bulan?>">
-			<input type="hidden" name="jenjang_s" value="<?=$jenjang?>">
-			<div class="form-row align-items-center">	
-			</div>
-		</form>
-	<?php } ?>
-	</div>
+			<?php if($jenjang == '1'){ ?>
+				<a href="exp_bpjs_tk.php"class="btn btn-danger mb-2"target="_self">Export Data Unit TK</a>
+				<?php } elseif ($jenjang == '2') { ?>
+					<a href="exp_bpjs_sd.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SD</a>
+				<?php } elseif ($jenjang == '3') { ?>
+					<a href="exp_bpjs_smp.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMP</a>
+				<?php } elseif ($jenjang == '4') { ?>
+					<a href="exp_bpjs_sma.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMA</a>
+				<?php } elseif ($jenjang == '5') { ?>
+					<a href="exp_bpjs_smk.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMK</a>
+				<?php }?>				
+</div>
 <br>
 <br><br>
 	<table id="example" class="table table-bordered" style="width:100%">

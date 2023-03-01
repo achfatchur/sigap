@@ -118,29 +118,28 @@ Page_Rendering();
 		$total_isi1 = ExecuteScalar("SELECT count(*) FROM ".$tabel1." WHERE bulan = '".$bulan."' AND tahun = '".$tahun."'");
 		$total_status2 = ExecuteScalar("SELECT count(*) FROM ".$tabel2." WHERE bulan = '".$bulan."' AND tahun = '".$tahun."' AND status = '0'");
 		$total_isi2 = ExecuteScalar("SELECT count(*) FROM ".$tabel2." WHERE bulan = '".$bulan."' AND tahun = '".$tahun."'");
-	if($total_status == $total_isi && $total_status1 == $total_isi1 && $total_status2 == $total_isi2){ ?>
+	//if($total_status == $total_isi && $total_status1 == $total_isi1 && $total_status2 == $total_isi2){ ?>
 		<form method="get" action="">
 			<input type="hidden" name="tahun_s" value="<?=$tahun?>">
 			<input type="hidden" name="bulan_s" value="<?=$bulan?>">
 			<input type="hidden" name="jenjang_s" value="<?=$jenjang?>">
 			<div class="form-row align-items-center">
 				<div class="col-auto">
-					<input type="submit" class="btn btn-success mb-2" name="update_status" value="Konfirmasi Payroll">
+				<?php
+				if(CurrentUserLevel() == '8'){ ?>
+				<a href="exp_bpjs_tk.php"class="btn btn-danger mb-2"target="_self">Export Data Unit TK</a>
+				<?php } elseif (CurrentUserLevel() == '9') { ?>
+					<a href="exp_bpjs_sd.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SD</a>
+				<?php } elseif (CurrentUserLevel() == '10') { ?>
+					<a href="exp_bpjs_smp.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMP</a>
+				<?php } elseif (CurrentUserLevel() == '11') { ?>
+					<a href="exp_bpjs_sma.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMA</a>
+				<?php } elseif (CurrentUserLevel() == '12') { ?>
+					<a href="exp_bpjs_smk.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMK</a>
+				<?php }?>
 				</div>
 			</div>
 		</form>
-	<?php }else{ ?>
-		<form role="form" action="<?php echo CurrentPageName() ?>" method="post">
-		<?php if ($Page->CheckToken) { ?>
-		<input type="hidden" name="<?php echo Config("TOKEN_NAME") ?>" value="<?php echo $Page->Token ?>">
-		<?php } ?>
-			<input type="hidden" name="tahun_s" value="<?=$tahun?>">
-			<input type="hidden" name="bulan_s" value="<?=$bulan?>">
-			<input type="hidden" name="jenjang_s" value="<?=$jenjang?>">
-			<div class="form-row align-items-center">	
-			</div>
-		</form>
-	<?php } ?>
 	</div>
 <br>
 <br><br>

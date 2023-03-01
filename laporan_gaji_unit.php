@@ -127,15 +127,15 @@ Page_Rendering();
 				<div class="col-auto">
 					<?php
 				if(CurrentUserLevel() == '8'){ ?>
-				<a href=""class="btn btn-danger mb-2"target="_self">Export Data Unit TK</a>
+				<a href="exp_guru_tk.php"class="btn btn-danger mb-2"target="_self">Export Data Unit TK</a>
 				<?php } elseif (CurrentUserLevel() == '9') { ?>
-					<a href=""class="btn btn-danger mb-2" target="_self">Export Data Unit SD</a>
+					<a href="exp_guru_sd.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SD</a>
 				<?php } elseif (CurrentUserLevel() == '10') { ?>
-					<a href=""class="btn btn-danger mb-2" target="_self">Export Data Unit SMP</a>
+					<a href="exp_guru_smp.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMP</a>
 				<?php } elseif (CurrentUserLevel() == '11') { ?>
 					<a href="exp_guru_sma.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMA</a>
 				<?php } elseif (CurrentUserLevel() == '12') { ?>
-					<a href=""class="btn btn-danger mb-2" target="_self">Export Data Unit SMK</a>
+					<a href="exp_guru_smk.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMK</a>
 				<?php }?>
 				</div>
 			</div>

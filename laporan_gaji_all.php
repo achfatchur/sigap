@@ -248,8 +248,7 @@ Page_Rendering();
 			<a href="exp_guru_sma.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMA</a>
 		<?php } elseif ($jenjang == '5') { ?> 
 			<a href="exp_guru_smk.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMK</a>
-		<?php } ?>
-			<a href="exp_tu_tk.php"class="btn btn-danger mb-2" target="_self">Export Semua Data Unit</a>			
+		<?php } ?>			
 				</div>	
 			</div>
 		</form>
@@ -275,8 +274,7 @@ Page_Rendering();
 			<a href="exp_guru_sma.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMA</a>
 		<?php } elseif ($jenjang == '5') { ?> 
 			<a href="exp_guru_smk.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMK</a>
-		<?php } ?>
-			<a href="exp_tu_tk.php"class="btn btn-danger mb-2" target="_self">Export Semua Data Unit</a>			
+		<?php } ?>			
 				</div>	
 			</div>
 		</form>
