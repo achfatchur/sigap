@@ -4,7 +4,7 @@ namespace PHPMaker2020\sigap;
 /**
  * Page class
  */
-class m_slip_yayasan_list extends m_slip_yayasan
+class solved_all_unit_list extends solved_all_unit
 {
 
 	// Page ID
@@ -14,13 +14,13 @@ class m_slip_yayasan_list extends m_slip_yayasan
 	public $ProjectID = "{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}";
 
 	// Table name
-	public $TableName = 'm_slip_yayasan';
+	public $TableName = 'solved_all_unit';
 
 	// Page object name
-	public $PageObjName = "m_slip_yayasan_list";
+	public $PageObjName = "solved_all_unit_list";
 
 	// Grid form hidden field names
-	public $FormName = "fm_slip_yayasanlist";
+	public $FormName = "fsolved_all_unitlist";
 	public $FormActionName = "k_action";
 	public $FormKeyName = "k_key";
 	public $FormOldKeyName = "k_oldkey";
@@ -381,10 +381,10 @@ class m_slip_yayasan_list extends m_slip_yayasan
 		// Parent constuctor
 		parent::__construct();
 
-		// Table object (m_slip_yayasan)
-		if (!isset($GLOBALS["m_slip_yayasan"]) || get_class($GLOBALS["m_slip_yayasan"]) == PROJECT_NAMESPACE . "m_slip_yayasan") {
-			$GLOBALS["m_slip_yayasan"] = &$this;
-			$GLOBALS["Table"] = &$GLOBALS["m_slip_yayasan"];
+		// Table object (solved_all_unit)
+		if (!isset($GLOBALS["solved_all_unit"]) || get_class($GLOBALS["solved_all_unit"]) == PROJECT_NAMESPACE . "solved_all_unit") {
+			$GLOBALS["solved_all_unit"] = &$this;
+			$GLOBALS["Table"] = &$GLOBALS["solved_all_unit"];
 		}
 
 		// Initialize URLs
@@ -395,12 +395,12 @@ class m_slip_yayasan_list extends m_slip_yayasan
 		$this->ExportHtmlUrl = $this->pageUrl() . "export=html";
 		$this->ExportXmlUrl = $this->pageUrl() . "export=xml";
 		$this->ExportCsvUrl = $this->pageUrl() . "export=csv";
-		$this->AddUrl = "m_slip_yayasanadd.php";
+		$this->AddUrl = "solved_all_unitadd.php";
 		$this->InlineAddUrl = $this->pageUrl() . "action=add";
 		$this->GridAddUrl = $this->pageUrl() . "action=gridadd";
 		$this->GridEditUrl = $this->pageUrl() . "action=gridedit";
-		$this->MultiDeleteUrl = "m_slip_yayasandelete.php";
-		$this->MultiUpdateUrl = "m_slip_yayasanupdate.php";
+		$this->MultiDeleteUrl = "solved_all_unitdelete.php";
+		$this->MultiUpdateUrl = "solved_all_unitupdate.php";
 
 		// Table object (pegawai)
 		if (!isset($GLOBALS['pegawai']))
@@ -412,7 +412,7 @@ class m_slip_yayasan_list extends m_slip_yayasan
 
 		// Table name (for backward compatibility only)
 		if (!defined(PROJECT_NAMESPACE . "TABLE_NAME"))
-			define(PROJECT_NAMESPACE . "TABLE_NAME", 'm_slip_yayasan');
+			define(PROJECT_NAMESPACE . "TABLE_NAME", 'solved_all_unit');
 
 		// Start timer
 		if (!isset($GLOBALS["DebugTimer"]))
@@ -452,7 +452,7 @@ class m_slip_yayasan_list extends m_slip_yayasan
 
 		// Filter options
 		$this->FilterOptions = new ListOptions("div");
-		$this->FilterOptions->TagClassName = "ew-filter-option fm_slip_yayasanlistsrch";
+		$this->FilterOptions->TagClassName = "ew-filter-option fsolved_all_unitlistsrch";
 
 		// List actions
 		$this->ListActions = new ListActions();
@@ -470,14 +470,14 @@ class m_slip_yayasan_list extends m_slip_yayasan
 		Page_Unloaded();
 
 		// Export
-		global $m_slip_yayasan;
+		global $solved_all_unit;
 		if ($this->CustomExport && $this->CustomExport == $this->Export && array_key_exists($this->CustomExport, Config("EXPORT_CLASSES"))) {
 				$content = ob_get_contents();
 			if ($ExportFileName == "")
 				$ExportFileName = $this->TableVar;
 			$class = PROJECT_NAMESPACE . Config("EXPORT_CLASSES." . $this->CustomExport);
 			if (class_exists($class)) {
-				$doc = new $class($m_slip_yayasan);
+				$doc = new $class($solved_all_unit);
 				$doc->Text = @$content;
 				if ($this->isExport("email"))
 					echo $this->exportEmail($doc->Text);
@@ -589,8 +589,7 @@ class m_slip_yayasan_list extends m_slip_yayasan
 	{
 		$key = "";
 		if (is_array($ar)) {
-			$key .= @$ar['id'] . Config("COMPOSITE_KEY_SEPARATOR");
-			$key .= @$ar['id1'];
+			$key .= @$ar['id'];
 		}
 		return $key;
 	}
@@ -604,8 +603,6 @@ class m_slip_yayasan_list extends m_slip_yayasan
 	{
 		if ($this->isAdd() || $this->isCopy() || $this->isGridAdd())
 			$this->id->Visible = FALSE;
-		if ($this->isAdd() || $this->isCopy() || $this->isGridAdd())
-			$this->id1->Visible = FALSE;
 	}
 
 	// Lookup data
@@ -818,12 +815,19 @@ class m_slip_yayasan_list extends m_slip_yayasan
 
 		// Setup export options
 		$this->setupExportOptions();
-		$this->id->Visible = FALSE;
+		$this->id->setVisibility();
+		$this->nip->setVisibility();
+		$this->total_gaji->setVisibility();
+		$this->j_pensiun->setVisibility();
+		$this->hari_tua->setVisibility();
+		$this->pph21->setVisibility();
+		$this->golongan_bpjs->setVisibility();
+		$this->iuran_bpjs->setVisibility();
 		$this->bulan->setVisibility();
 		$this->tahun->setVisibility();
-		$this->pegawai->setVisibility();
-		$this->total->setVisibility();
-		$this->id1->Visible = FALSE;
+		$this->type_peg->setVisibility();
+		$this->unit->setVisibility();
+		$this->tanggal->setVisibility();
 		$this->hideFieldsForAddEdit();
 
 		// Global Page Loading event (in userfn*.php)
@@ -857,10 +861,8 @@ class m_slip_yayasan_list extends m_slip_yayasan
 		}
 
 		// Set up lookup cache
-		$this->setupLookupOptions($this->bulan);
-		$this->setupLookupOptions($this->pegawai);
-
 		// Search filters
+
 		$srchAdvanced = ""; // Advanced search filter
 		$srchBasic = ""; // Basic search filter
 		$filter = "";
@@ -905,8 +907,29 @@ class m_slip_yayasan_list extends m_slip_yayasan
 			if ($this->isExport())
 				$this->OtherOptions->hideAllOptions();
 
+			// Get default search criteria
+			AddFilter($this->DefaultSearchWhere, $this->basicSearchWhere(TRUE));
+
+			// Get basic search values
+			$this->loadBasicSearchValues();
+
+			// Process filter list
+			if ($this->processFilterList())
+				$this->terminate();
+
+			// Restore search parms from Session if not searching / reset / export
+			if (($this->isExport() || $this->Command != "search" && $this->Command != "reset" && $this->Command != "resetall") && $this->Command != "json" && $this->checkSearchParms())
+				$this->restoreSearchParms();
+
+			// Call Recordset SearchValidated event
+			$this->Recordset_SearchValidated();
+
 			// Set up sorting order
 			$this->setupSortOrder();
+
+			// Get basic search criteria
+			if ($SearchError == "")
+				$srchBasic = $this->basicSearchWhere();
 		}
 
 		// Restore display records
@@ -920,6 +943,31 @@ class m_slip_yayasan_list extends m_slip_yayasan
 		// Load Sorting Order
 		if ($this->Command != "json")
 			$this->loadSortOrder();
+
+		// Load search default if no existing search criteria
+		if (!$this->checkSearchParms()) {
+
+			// Load basic search from default
+			$this->BasicSearch->loadDefault();
+			if ($this->BasicSearch->Keyword != "")
+				$srchBasic = $this->basicSearchWhere();
+		}
+
+		// Build search criteria
+		AddFilter($this->SearchWhere, $srchAdvanced);
+		AddFilter($this->SearchWhere, $srchBasic);
+
+		// Call Recordset_Searching event
+		$this->Recordset_Searching($this->SearchWhere);
+
+		// Save search criteria
+		if ($this->Command == "search" && !$this->RestoreSearch) {
+			$this->setSearchWhere($this->SearchWhere); // Save to Session
+			$this->StartRecord = 1; // Reset start record counter
+			$this->setStartRecordNumber($this->StartRecord);
+		} elseif ($this->Command != "json") {
+			$this->SearchWhere = $this->getSearchWhere();
+		}
 
 		// Build filter
 		$filter = "";
@@ -1049,15 +1097,333 @@ class m_slip_yayasan_list extends m_slip_yayasan
 	protected function setupKeyValues($key)
 	{
 		$arKeyFlds = explode(Config("COMPOSITE_KEY_SEPARATOR"), $key);
-		if (count($arKeyFlds) >= 2) {
+		if (count($arKeyFlds) >= 1) {
 			$this->id->setOldValue($arKeyFlds[0]);
 			if (!is_numeric($this->id->OldValue))
 				return FALSE;
-			$this->id1->setOldValue($arKeyFlds[1]);
-			if (!is_numeric($this->id1->OldValue))
-				return FALSE;
 		}
 		return TRUE;
+	}
+
+	// Get list of filters
+	public function getFilterList()
+	{
+		global $UserProfile;
+
+		// Initialize
+		$filterList = "";
+		$savedFilterList = "";
+		$filterList = Concat($filterList, $this->id->AdvancedSearch->toJson(), ","); // Field id
+		$filterList = Concat($filterList, $this->nip->AdvancedSearch->toJson(), ","); // Field nip
+		$filterList = Concat($filterList, $this->total_gaji->AdvancedSearch->toJson(), ","); // Field total_gaji
+		$filterList = Concat($filterList, $this->j_pensiun->AdvancedSearch->toJson(), ","); // Field j_pensiun
+		$filterList = Concat($filterList, $this->hari_tua->AdvancedSearch->toJson(), ","); // Field hari_tua
+		$filterList = Concat($filterList, $this->pph21->AdvancedSearch->toJson(), ","); // Field pph21
+		$filterList = Concat($filterList, $this->golongan_bpjs->AdvancedSearch->toJson(), ","); // Field golongan_bpjs
+		$filterList = Concat($filterList, $this->iuran_bpjs->AdvancedSearch->toJson(), ","); // Field iuran_bpjs
+		$filterList = Concat($filterList, $this->bulan->AdvancedSearch->toJson(), ","); // Field bulan
+		$filterList = Concat($filterList, $this->tahun->AdvancedSearch->toJson(), ","); // Field tahun
+		$filterList = Concat($filterList, $this->type_peg->AdvancedSearch->toJson(), ","); // Field type_peg
+		$filterList = Concat($filterList, $this->unit->AdvancedSearch->toJson(), ","); // Field unit
+		$filterList = Concat($filterList, $this->tanggal->AdvancedSearch->toJson(), ","); // Field tanggal
+		if ($this->BasicSearch->Keyword != "") {
+			$wrk = "\"" . Config("TABLE_BASIC_SEARCH") . "\":\"" . JsEncode($this->BasicSearch->Keyword) . "\",\"" . Config("TABLE_BASIC_SEARCH_TYPE") . "\":\"" . JsEncode($this->BasicSearch->Type) . "\"";
+			$filterList = Concat($filterList, $wrk, ",");
+		}
+
+		// Return filter list in JSON
+		if ($filterList != "")
+			$filterList = "\"data\":{" . $filterList . "}";
+		if ($savedFilterList != "")
+			$filterList = Concat($filterList, "\"filters\":" . $savedFilterList, ",");
+		return ($filterList != "") ? "{" . $filterList . "}" : "null";
+	}
+
+	// Process filter list
+	protected function processFilterList()
+	{
+		global $UserProfile;
+		if (Post("ajax") == "savefilters") { // Save filter request (Ajax)
+			$filters = Post("filters");
+			$UserProfile->setSearchFilters(CurrentUserName(), "fsolved_all_unitlistsrch", $filters);
+			WriteJson([["success" => TRUE]]); // Success
+			return TRUE;
+		} elseif (Post("cmd") == "resetfilter") {
+			$this->restoreFilterList();
+		}
+		return FALSE;
+	}
+
+	// Restore list of filters
+	protected function restoreFilterList()
+	{
+
+		// Return if not reset filter
+		if (Post("cmd") !== "resetfilter")
+			return FALSE;
+		$filter = json_decode(Post("filter"), TRUE);
+		$this->Command = "search";
+
+		// Field id
+		$this->id->AdvancedSearch->SearchValue = @$filter["x_id"];
+		$this->id->AdvancedSearch->SearchOperator = @$filter["z_id"];
+		$this->id->AdvancedSearch->SearchCondition = @$filter["v_id"];
+		$this->id->AdvancedSearch->SearchValue2 = @$filter["y_id"];
+		$this->id->AdvancedSearch->SearchOperator2 = @$filter["w_id"];
+		$this->id->AdvancedSearch->save();
+
+		// Field nip
+		$this->nip->AdvancedSearch->SearchValue = @$filter["x_nip"];
+		$this->nip->AdvancedSearch->SearchOperator = @$filter["z_nip"];
+		$this->nip->AdvancedSearch->SearchCondition = @$filter["v_nip"];
+		$this->nip->AdvancedSearch->SearchValue2 = @$filter["y_nip"];
+		$this->nip->AdvancedSearch->SearchOperator2 = @$filter["w_nip"];
+		$this->nip->AdvancedSearch->save();
+
+		// Field total_gaji
+		$this->total_gaji->AdvancedSearch->SearchValue = @$filter["x_total_gaji"];
+		$this->total_gaji->AdvancedSearch->SearchOperator = @$filter["z_total_gaji"];
+		$this->total_gaji->AdvancedSearch->SearchCondition = @$filter["v_total_gaji"];
+		$this->total_gaji->AdvancedSearch->SearchValue2 = @$filter["y_total_gaji"];
+		$this->total_gaji->AdvancedSearch->SearchOperator2 = @$filter["w_total_gaji"];
+		$this->total_gaji->AdvancedSearch->save();
+
+		// Field j_pensiun
+		$this->j_pensiun->AdvancedSearch->SearchValue = @$filter["x_j_pensiun"];
+		$this->j_pensiun->AdvancedSearch->SearchOperator = @$filter["z_j_pensiun"];
+		$this->j_pensiun->AdvancedSearch->SearchCondition = @$filter["v_j_pensiun"];
+		$this->j_pensiun->AdvancedSearch->SearchValue2 = @$filter["y_j_pensiun"];
+		$this->j_pensiun->AdvancedSearch->SearchOperator2 = @$filter["w_j_pensiun"];
+		$this->j_pensiun->AdvancedSearch->save();
+
+		// Field hari_tua
+		$this->hari_tua->AdvancedSearch->SearchValue = @$filter["x_hari_tua"];
+		$this->hari_tua->AdvancedSearch->SearchOperator = @$filter["z_hari_tua"];
+		$this->hari_tua->AdvancedSearch->SearchCondition = @$filter["v_hari_tua"];
+		$this->hari_tua->AdvancedSearch->SearchValue2 = @$filter["y_hari_tua"];
+		$this->hari_tua->AdvancedSearch->SearchOperator2 = @$filter["w_hari_tua"];
+		$this->hari_tua->AdvancedSearch->save();
+
+		// Field pph21
+		$this->pph21->AdvancedSearch->SearchValue = @$filter["x_pph21"];
+		$this->pph21->AdvancedSearch->SearchOperator = @$filter["z_pph21"];
+		$this->pph21->AdvancedSearch->SearchCondition = @$filter["v_pph21"];
+		$this->pph21->AdvancedSearch->SearchValue2 = @$filter["y_pph21"];
+		$this->pph21->AdvancedSearch->SearchOperator2 = @$filter["w_pph21"];
+		$this->pph21->AdvancedSearch->save();
+
+		// Field golongan_bpjs
+		$this->golongan_bpjs->AdvancedSearch->SearchValue = @$filter["x_golongan_bpjs"];
+		$this->golongan_bpjs->AdvancedSearch->SearchOperator = @$filter["z_golongan_bpjs"];
+		$this->golongan_bpjs->AdvancedSearch->SearchCondition = @$filter["v_golongan_bpjs"];
+		$this->golongan_bpjs->AdvancedSearch->SearchValue2 = @$filter["y_golongan_bpjs"];
+		$this->golongan_bpjs->AdvancedSearch->SearchOperator2 = @$filter["w_golongan_bpjs"];
+		$this->golongan_bpjs->AdvancedSearch->save();
+
+		// Field iuran_bpjs
+		$this->iuran_bpjs->AdvancedSearch->SearchValue = @$filter["x_iuran_bpjs"];
+		$this->iuran_bpjs->AdvancedSearch->SearchOperator = @$filter["z_iuran_bpjs"];
+		$this->iuran_bpjs->AdvancedSearch->SearchCondition = @$filter["v_iuran_bpjs"];
+		$this->iuran_bpjs->AdvancedSearch->SearchValue2 = @$filter["y_iuran_bpjs"];
+		$this->iuran_bpjs->AdvancedSearch->SearchOperator2 = @$filter["w_iuran_bpjs"];
+		$this->iuran_bpjs->AdvancedSearch->save();
+
+		// Field bulan
+		$this->bulan->AdvancedSearch->SearchValue = @$filter["x_bulan"];
+		$this->bulan->AdvancedSearch->SearchOperator = @$filter["z_bulan"];
+		$this->bulan->AdvancedSearch->SearchCondition = @$filter["v_bulan"];
+		$this->bulan->AdvancedSearch->SearchValue2 = @$filter["y_bulan"];
+		$this->bulan->AdvancedSearch->SearchOperator2 = @$filter["w_bulan"];
+		$this->bulan->AdvancedSearch->save();
+
+		// Field tahun
+		$this->tahun->AdvancedSearch->SearchValue = @$filter["x_tahun"];
+		$this->tahun->AdvancedSearch->SearchOperator = @$filter["z_tahun"];
+		$this->tahun->AdvancedSearch->SearchCondition = @$filter["v_tahun"];
+		$this->tahun->AdvancedSearch->SearchValue2 = @$filter["y_tahun"];
+		$this->tahun->AdvancedSearch->SearchOperator2 = @$filter["w_tahun"];
+		$this->tahun->AdvancedSearch->save();
+
+		// Field type_peg
+		$this->type_peg->AdvancedSearch->SearchValue = @$filter["x_type_peg"];
+		$this->type_peg->AdvancedSearch->SearchOperator = @$filter["z_type_peg"];
+		$this->type_peg->AdvancedSearch->SearchCondition = @$filter["v_type_peg"];
+		$this->type_peg->AdvancedSearch->SearchValue2 = @$filter["y_type_peg"];
+		$this->type_peg->AdvancedSearch->SearchOperator2 = @$filter["w_type_peg"];
+		$this->type_peg->AdvancedSearch->save();
+
+		// Field unit
+		$this->unit->AdvancedSearch->SearchValue = @$filter["x_unit"];
+		$this->unit->AdvancedSearch->SearchOperator = @$filter["z_unit"];
+		$this->unit->AdvancedSearch->SearchCondition = @$filter["v_unit"];
+		$this->unit->AdvancedSearch->SearchValue2 = @$filter["y_unit"];
+		$this->unit->AdvancedSearch->SearchOperator2 = @$filter["w_unit"];
+		$this->unit->AdvancedSearch->save();
+
+		// Field tanggal
+		$this->tanggal->AdvancedSearch->SearchValue = @$filter["x_tanggal"];
+		$this->tanggal->AdvancedSearch->SearchOperator = @$filter["z_tanggal"];
+		$this->tanggal->AdvancedSearch->SearchCondition = @$filter["v_tanggal"];
+		$this->tanggal->AdvancedSearch->SearchValue2 = @$filter["y_tanggal"];
+		$this->tanggal->AdvancedSearch->SearchOperator2 = @$filter["w_tanggal"];
+		$this->tanggal->AdvancedSearch->save();
+		$this->BasicSearch->setKeyword(@$filter[Config("TABLE_BASIC_SEARCH")]);
+		$this->BasicSearch->setType(@$filter[Config("TABLE_BASIC_SEARCH_TYPE")]);
+	}
+
+	// Return basic search SQL
+	protected function basicSearchSql($arKeywords, $type)
+	{
+		$where = "";
+		$this->buildBasicSearchSql($where, $this->nip, $arKeywords, $type);
+		return $where;
+	}
+
+	// Build basic search SQL
+	protected function buildBasicSearchSql(&$where, &$fld, $arKeywords, $type)
+	{
+		$defCond = ($type == "OR") ? "OR" : "AND";
+		$arSql = []; // Array for SQL parts
+		$arCond = []; // Array for search conditions
+		$cnt = count($arKeywords);
+		$j = 0; // Number of SQL parts
+		for ($i = 0; $i < $cnt; $i++) {
+			$keyword = $arKeywords[$i];
+			$keyword = trim($keyword);
+			if (Config("BASIC_SEARCH_IGNORE_PATTERN") != "") {
+				$keyword = preg_replace(Config("BASIC_SEARCH_IGNORE_PATTERN"), "\\", $keyword);
+				$ar = explode("\\", $keyword);
+			} else {
+				$ar = [$keyword];
+			}
+			foreach ($ar as $keyword) {
+				if ($keyword != "") {
+					$wrk = "";
+					if ($keyword == "OR" && $type == "") {
+						if ($j > 0)
+							$arCond[$j - 1] = "OR";
+					} elseif ($keyword == Config("NULL_VALUE")) {
+						$wrk = $fld->Expression . " IS NULL";
+					} elseif ($keyword == Config("NOT_NULL_VALUE")) {
+						$wrk = $fld->Expression . " IS NOT NULL";
+					} elseif ($fld->IsVirtual) {
+						$wrk = $fld->VirtualExpression . Like(QuotedValue("%" . $keyword . "%", DATATYPE_STRING, $this->Dbid), $this->Dbid);
+					} elseif ($fld->DataType != DATATYPE_NUMBER || is_numeric($keyword)) {
+						$wrk = $fld->BasicSearchExpression . Like(QuotedValue("%" . $keyword . "%", DATATYPE_STRING, $this->Dbid), $this->Dbid);
+					}
+					if ($wrk != "") {
+						$arSql[$j] = $wrk;
+						$arCond[$j] = $defCond;
+						$j += 1;
+					}
+				}
+			}
+		}
+		$cnt = count($arSql);
+		$quoted = FALSE;
+		$sql = "";
+		if ($cnt > 0) {
+			for ($i = 0; $i < $cnt - 1; $i++) {
+				if ($arCond[$i] == "OR") {
+					if (!$quoted)
+						$sql .= "(";
+					$quoted = TRUE;
+				}
+				$sql .= $arSql[$i];
+				if ($quoted && $arCond[$i] != "OR") {
+					$sql .= ")";
+					$quoted = FALSE;
+				}
+				$sql .= " " . $arCond[$i] . " ";
+			}
+			$sql .= $arSql[$cnt - 1];
+			if ($quoted)
+				$sql .= ")";
+		}
+		if ($sql != "") {
+			if ($where != "")
+				$where .= " OR ";
+			$where .= "(" . $sql . ")";
+		}
+	}
+
+	// Return basic search WHERE clause based on search keyword and type
+	protected function basicSearchWhere($default = FALSE)
+	{
+		global $Security;
+		$searchStr = "";
+		if (!$Security->canSearch())
+			return "";
+		$searchKeyword = ($default) ? $this->BasicSearch->KeywordDefault : $this->BasicSearch->Keyword;
+		$searchType = ($default) ? $this->BasicSearch->TypeDefault : $this->BasicSearch->Type;
+
+		// Get search SQL
+		if ($searchKeyword != "") {
+			$ar = $this->BasicSearch->keywordList($default);
+
+			// Search keyword in any fields
+			if (($searchType == "OR" || $searchType == "AND") && $this->BasicSearch->BasicSearchAnyFields) {
+				foreach ($ar as $keyword) {
+					if ($keyword != "") {
+						if ($searchStr != "")
+							$searchStr .= " " . $searchType . " ";
+						$searchStr .= "(" . $this->basicSearchSql([$keyword], $searchType) . ")";
+					}
+				}
+			} else {
+				$searchStr = $this->basicSearchSql($ar, $searchType);
+			}
+			if (!$default && in_array($this->Command, ["", "reset", "resetall"]))
+				$this->Command = "search";
+		}
+		if (!$default && $this->Command == "search") {
+			$this->BasicSearch->setKeyword($searchKeyword);
+			$this->BasicSearch->setType($searchType);
+		}
+		return $searchStr;
+	}
+
+	// Check if search parm exists
+	protected function checkSearchParms()
+	{
+
+		// Check basic search
+		if ($this->BasicSearch->issetSession())
+			return TRUE;
+		return FALSE;
+	}
+
+	// Clear all search parameters
+	protected function resetSearchParms()
+	{
+
+		// Clear search WHERE clause
+		$this->SearchWhere = "";
+		$this->setSearchWhere($this->SearchWhere);
+
+		// Clear basic search parameters
+		$this->resetBasicSearchParms();
+	}
+
+	// Load advanced search default values
+	protected function loadAdvancedSearchDefault()
+	{
+		return FALSE;
+	}
+
+	// Clear all basic search parameters
+	protected function resetBasicSearchParms()
+	{
+		$this->BasicSearch->unsetSession();
+	}
+
+	// Restore all search parameters
+	protected function restoreSearchParms()
+	{
+		$this->RestoreSearch = TRUE;
+
+		// Restore basic search values
+		$this->BasicSearch->load();
 	}
 
 	// Set up sort parameters
@@ -1068,10 +1434,19 @@ class m_slip_yayasan_list extends m_slip_yayasan
 		if (Get("order") !== NULL) {
 			$this->CurrentOrder = Get("order");
 			$this->CurrentOrderType = Get("ordertype", "");
+			$this->updateSort($this->id); // id
+			$this->updateSort($this->nip); // nip
+			$this->updateSort($this->total_gaji); // total_gaji
+			$this->updateSort($this->j_pensiun); // j_pensiun
+			$this->updateSort($this->hari_tua); // hari_tua
+			$this->updateSort($this->pph21); // pph21
+			$this->updateSort($this->golongan_bpjs); // golongan_bpjs
+			$this->updateSort($this->iuran_bpjs); // iuran_bpjs
 			$this->updateSort($this->bulan); // bulan
 			$this->updateSort($this->tahun); // tahun
-			$this->updateSort($this->pegawai); // pegawai
-			$this->updateSort($this->total); // total
+			$this->updateSort($this->type_peg); // type_peg
+			$this->updateSort($this->unit); // unit
+			$this->updateSort($this->tanggal); // tanggal
 			$this->setStartRecordNumber(1); // Reset start position
 		}
 	}
@@ -1099,14 +1474,27 @@ class m_slip_yayasan_list extends m_slip_yayasan
 		// Check if reset command
 		if (StartsString("reset", $this->Command)) {
 
+			// Reset search criteria
+			if ($this->Command == "reset" || $this->Command == "resetall")
+				$this->resetSearchParms();
+
 			// Reset sorting order
 			if ($this->Command == "resetsort") {
 				$orderBy = "";
 				$this->setSessionOrderBy($orderBy);
+				$this->id->setSort("");
+				$this->nip->setSort("");
+				$this->total_gaji->setSort("");
+				$this->j_pensiun->setSort("");
+				$this->hari_tua->setSort("");
+				$this->pph21->setSort("");
+				$this->golongan_bpjs->setSort("");
+				$this->iuran_bpjs->setSort("");
 				$this->bulan->setSort("");
 				$this->tahun->setSort("");
-				$this->pegawai->setSort("");
-				$this->total->setSort("");
+				$this->type_peg->setSort("");
+				$this->unit->setSort("");
+				$this->tanggal->setSort("");
 			}
 
 			// Reset start position
@@ -1126,6 +1514,30 @@ class m_slip_yayasan_list extends m_slip_yayasan
 		$item->OnLeft = FALSE;
 		$item->Visible = FALSE;
 
+		// "view"
+		$item = &$this->ListOptions->add("view");
+		$item->CssClass = "text-nowrap";
+		$item->Visible = $Security->canView();
+		$item->OnLeft = FALSE;
+
+		// "edit"
+		$item = &$this->ListOptions->add("edit");
+		$item->CssClass = "text-nowrap";
+		$item->Visible = $Security->canEdit();
+		$item->OnLeft = FALSE;
+
+		// "copy"
+		$item = &$this->ListOptions->add("copy");
+		$item->CssClass = "text-nowrap";
+		$item->Visible = $Security->canAdd();
+		$item->OnLeft = FALSE;
+
+		// "delete"
+		$item = &$this->ListOptions->add("delete");
+		$item->CssClass = "text-nowrap";
+		$item->Visible = $Security->canDelete();
+		$item->OnLeft = FALSE;
+
 		// List actions
 		$item = &$this->ListOptions->add("listactions");
 		$item->CssClass = "text-nowrap";
@@ -1139,14 +1551,6 @@ class m_slip_yayasan_list extends m_slip_yayasan
 		$item->Visible = FALSE;
 		$item->OnLeft = FALSE;
 		$item->Header = "<div class=\"custom-control custom-checkbox d-inline-block\"><input type=\"checkbox\" name=\"key\" id=\"key\" class=\"custom-control-input\" onclick=\"ew.selectAllKey(this);\"><label class=\"custom-control-label\" for=\"key\"></label></div>";
-		$item->ShowInDropDown = FALSE;
-		$item->ShowInButtonGroup = FALSE;
-
-		// "sequence"
-		$item = &$this->ListOptions->add("sequence");
-		$item->CssClass = "text-nowrap";
-		$item->Visible = TRUE;
-		$item->OnLeft = TRUE; // Always on left
 		$item->ShowInDropDown = FALSE;
 		$item->ShowInButtonGroup = FALSE;
 
@@ -1175,9 +1579,39 @@ class m_slip_yayasan_list extends m_slip_yayasan
 		// Call ListOptions_Rendering event
 		$this->ListOptions_Rendering();
 
-		// "sequence"
-		$opt = $this->ListOptions["sequence"];
-		$opt->Body = FormatSequenceNumber($this->RecordCount);
+		// "view"
+		$opt = $this->ListOptions["view"];
+		$viewcaption = HtmlTitle($Language->phrase("ViewLink"));
+		if ($Security->canView()) {
+			$opt->Body = "<a class=\"ew-row-link ew-view\" title=\"" . $viewcaption . "\" data-caption=\"" . $viewcaption . "\" href=\"" . HtmlEncode($this->ViewUrl) . "\">" . $Language->phrase("ViewLink") . "</a>";
+		} else {
+			$opt->Body = "";
+		}
+
+		// "edit"
+		$opt = $this->ListOptions["edit"];
+		$editcaption = HtmlTitle($Language->phrase("EditLink"));
+		if ($Security->canEdit()) {
+			$opt->Body = "<a class=\"ew-row-link ew-edit\" title=\"" . HtmlTitle($Language->phrase("EditLink")) . "\" data-caption=\"" . HtmlTitle($Language->phrase("EditLink")) . "\" href=\"" . HtmlEncode($this->EditUrl) . "\">" . $Language->phrase("EditLink") . "</a>";
+		} else {
+			$opt->Body = "";
+		}
+
+		// "copy"
+		$opt = $this->ListOptions["copy"];
+		$copycaption = HtmlTitle($Language->phrase("CopyLink"));
+		if ($Security->canAdd()) {
+			$opt->Body = "<a class=\"ew-row-link ew-copy\" title=\"" . $copycaption . "\" data-caption=\"" . $copycaption . "\" href=\"" . HtmlEncode($this->CopyUrl) . "\">" . $Language->phrase("CopyLink") . "</a>";
+		} else {
+			$opt->Body = "";
+		}
+
+		// "delete"
+		$opt = $this->ListOptions["delete"];
+		if ($Security->canDelete())
+			$opt->Body = "<a class=\"ew-row-link ew-delete\"" . "" . " title=\"" . HtmlTitle($Language->phrase("DeleteLink")) . "\" data-caption=\"" . HtmlTitle($Language->phrase("DeleteLink")) . "\" href=\"" . HtmlEncode($this->DeleteUrl) . "\">" . $Language->phrase("DeleteLink") . "</a>";
+		else
+			$opt->Body = "";
 
 		// Set up list action buttons
 		$opt = $this->ListOptions["listactions"];
@@ -1210,7 +1644,7 @@ class m_slip_yayasan_list extends m_slip_yayasan
 
 		// "checkbox"
 		$opt = $this->ListOptions["checkbox"];
-		$opt->Body = "<div class=\"custom-control custom-checkbox d-inline-block\"><input type=\"checkbox\" id=\"key_m_" . $this->RowCount . "\" name=\"key_m[]\" class=\"custom-control-input ew-multi-select\" value=\"" . HtmlEncode($this->id->CurrentValue . Config("COMPOSITE_KEY_SEPARATOR") . $this->id1->CurrentValue) . "\" onclick=\"ew.clickMultiCheckbox(event);\"><label class=\"custom-control-label\" for=\"key_m_" . $this->RowCount . "\"></label></div>";
+		$opt->Body = "<div class=\"custom-control custom-checkbox d-inline-block\"><input type=\"checkbox\" id=\"key_m_" . $this->RowCount . "\" name=\"key_m[]\" class=\"custom-control-input ew-multi-select\" value=\"" . HtmlEncode($this->id->CurrentValue) . "\" onclick=\"ew.clickMultiCheckbox(event);\"><label class=\"custom-control-label\" for=\"key_m_" . $this->RowCount . "\"></label></div>";
 		$this->renderListOptionsExt();
 
 		// Call ListOptions_Rendered event
@@ -1222,6 +1656,13 @@ class m_slip_yayasan_list extends m_slip_yayasan
 	{
 		global $Language, $Security;
 		$options = &$this->OtherOptions;
+		$option = $options["addedit"];
+
+		// Add
+		$item = &$option->add("add");
+		$addcaption = HtmlTitle($Language->phrase("AddLink"));
+		$item->Body = "<a class=\"ew-add-edit ew-add\" title=\"" . $addcaption . "\" data-caption=\"" . $addcaption . "\" href=\"" . HtmlEncode($this->AddUrl) . "\">" . $Language->phrase("AddLink") . "</a>";
+		$item->Visible = $this->AddUrl != "" && $Security->canAdd();
 		$option = $options["action"];
 
 		// Set up options default
@@ -1240,11 +1681,11 @@ class m_slip_yayasan_list extends m_slip_yayasan
 
 		// Filter button
 		$item = &$this->FilterOptions->add("savecurrentfilter");
-		$item->Body = "<a class=\"ew-save-filter\" data-form=\"fm_slip_yayasanlistsrch\" href=\"#\" onclick=\"return false;\">" . $Language->phrase("SaveCurrentFilter") . "</a>";
-		$item->Visible = FALSE;
+		$item->Body = "<a class=\"ew-save-filter\" data-form=\"fsolved_all_unitlistsrch\" href=\"#\" onclick=\"return false;\">" . $Language->phrase("SaveCurrentFilter") . "</a>";
+		$item->Visible = TRUE;
 		$item = &$this->FilterOptions->add("deletefilter");
-		$item->Body = "<a class=\"ew-delete-filter\" data-form=\"fm_slip_yayasanlistsrch\" href=\"#\" onclick=\"return false;\">" . $Language->phrase("DeleteFilter") . "</a>";
-		$item->Visible = FALSE;
+		$item->Body = "<a class=\"ew-delete-filter\" data-form=\"fsolved_all_unitlistsrch\" href=\"#\" onclick=\"return false;\">" . $Language->phrase("DeleteFilter") . "</a>";
+		$item->Visible = TRUE;
 		$this->FilterOptions->UseDropDownButton = TRUE;
 		$this->FilterOptions->UseButtonGroup = !$this->FilterOptions->UseDropDownButton;
 		$this->FilterOptions->DropDownButtonPhrase = $Language->phrase("Filters");
@@ -1268,7 +1709,7 @@ class m_slip_yayasan_list extends m_slip_yayasan
 					$item = &$option->add("custom_" . $listaction->Action);
 					$caption = $listaction->Caption;
 					$icon = ($listaction->Icon != "") ? "<i class=\"" . HtmlEncode($listaction->Icon) . "\" data-caption=\"" . HtmlEncode($caption) . "\"></i> " . $caption : $caption;
-					$item->Body = "<a class=\"ew-action ew-list-action\" title=\"" . HtmlEncode($caption) . "\" data-caption=\"" . HtmlEncode($caption) . "\" href=\"#\" onclick=\"return ew.submitAction(event,jQuery.extend({f:document.fm_slip_yayasanlist}," . $listaction->toJson(TRUE) . "));\">" . $icon . "</a>";
+					$item->Body = "<a class=\"ew-action ew-list-action\" title=\"" . HtmlEncode($caption) . "\" data-caption=\"" . HtmlEncode($caption) . "\" href=\"#\" onclick=\"return ew.submitAction(event,jQuery.extend({f:document.fsolved_all_unitlist}," . $listaction->toJson(TRUE) . "));\">" . $icon . "</a>";
 					$item->Visible = $listaction->Allow;
 				}
 			}
@@ -1379,6 +1820,15 @@ class m_slip_yayasan_list extends m_slip_yayasan
 		global $Security, $Language;
 	}
 
+	// Load basic search values
+	protected function loadBasicSearchValues()
+	{
+		$this->BasicSearch->setKeyword(Get(Config("TABLE_BASIC_SEARCH"), ""), FALSE);
+		if ($this->BasicSearch->Keyword != "" && $this->Command == "")
+			$this->Command = "search";
+		$this->BasicSearch->setType(Get(Config("TABLE_BASIC_SEARCH_TYPE"), ""), FALSE);
+	}
+
 	// Load recordset
 	public function loadRecordset($offset = -1, $rowcnt = -1)
 	{
@@ -1442,11 +1892,18 @@ class m_slip_yayasan_list extends m_slip_yayasan
 		if (!$rs || $rs->EOF)
 			return;
 		$this->id->setDbValue($row['id']);
+		$this->nip->setDbValue($row['nip']);
+		$this->total_gaji->setDbValue($row['total_gaji']);
+		$this->j_pensiun->setDbValue($row['j_pensiun']);
+		$this->hari_tua->setDbValue($row['hari_tua']);
+		$this->pph21->setDbValue($row['pph21']);
+		$this->golongan_bpjs->setDbValue($row['golongan_bpjs']);
+		$this->iuran_bpjs->setDbValue($row['iuran_bpjs']);
 		$this->bulan->setDbValue($row['bulan']);
 		$this->tahun->setDbValue($row['tahun']);
-		$this->pegawai->setDbValue($row['pegawai']);
-		$this->total->setDbValue($row['total']);
-		$this->id1->setDbValue($row['id1']);
+		$this->type_peg->setDbValue($row['type_peg']);
+		$this->unit->setDbValue($row['unit']);
+		$this->tanggal->setDbValue($row['tanggal']);
 	}
 
 	// Return a row with default values
@@ -1454,11 +1911,18 @@ class m_slip_yayasan_list extends m_slip_yayasan
 	{
 		$row = [];
 		$row['id'] = NULL;
+		$row['nip'] = NULL;
+		$row['total_gaji'] = NULL;
+		$row['j_pensiun'] = NULL;
+		$row['hari_tua'] = NULL;
+		$row['pph21'] = NULL;
+		$row['golongan_bpjs'] = NULL;
+		$row['iuran_bpjs'] = NULL;
 		$row['bulan'] = NULL;
 		$row['tahun'] = NULL;
-		$row['pegawai'] = NULL;
-		$row['total'] = NULL;
-		$row['id1'] = NULL;
+		$row['type_peg'] = NULL;
+		$row['unit'] = NULL;
+		$row['tanggal'] = NULL;
 		return $row;
 	}
 
@@ -1470,10 +1934,6 @@ class m_slip_yayasan_list extends m_slip_yayasan
 		$validKey = TRUE;
 		if (strval($this->getKey("id")) != "")
 			$this->id->OldValue = $this->getKey("id"); // id
-		else
-			$validKey = FALSE;
-		if (strval($this->getKey("id1")) != "")
-			$this->id1->OldValue = $this->getKey("id1"); // id1
 		else
 			$validKey = FALSE;
 
@@ -1507,11 +1967,18 @@ class m_slip_yayasan_list extends m_slip_yayasan
 
 		// Common render codes for all row types
 		// id
+		// nip
+		// total_gaji
+		// j_pensiun
+		// hari_tua
+		// pph21
+		// golongan_bpjs
+		// iuran_bpjs
 		// bulan
 		// tahun
-		// pegawai
-		// total
-		// id1
+		// type_peg
+		// unit
+		// tanggal
 
 		if ($this->RowType == ROWTYPE_VIEW) { // View row
 
@@ -1519,63 +1986,104 @@ class m_slip_yayasan_list extends m_slip_yayasan
 			$this->id->ViewValue = $this->id->CurrentValue;
 			$this->id->ViewCustomAttributes = "";
 
+			// nip
+			$this->nip->ViewValue = $this->nip->CurrentValue;
+			$this->nip->ViewCustomAttributes = "";
+
+			// total_gaji
+			$this->total_gaji->ViewValue = $this->total_gaji->CurrentValue;
+			$this->total_gaji->ViewValue = FormatNumber($this->total_gaji->ViewValue, 0, -2, -2, -2);
+			$this->total_gaji->ViewCustomAttributes = "";
+
+			// j_pensiun
+			$this->j_pensiun->ViewValue = $this->j_pensiun->CurrentValue;
+			$this->j_pensiun->ViewValue = FormatNumber($this->j_pensiun->ViewValue, 0, -2, -2, -2);
+			$this->j_pensiun->ViewCustomAttributes = "";
+
+			// hari_tua
+			$this->hari_tua->ViewValue = $this->hari_tua->CurrentValue;
+			$this->hari_tua->ViewValue = FormatNumber($this->hari_tua->ViewValue, 0, -2, -2, -2);
+			$this->hari_tua->ViewCustomAttributes = "";
+
+			// pph21
+			$this->pph21->ViewValue = $this->pph21->CurrentValue;
+			$this->pph21->ViewValue = FormatNumber($this->pph21->ViewValue, 0, -2, -2, -2);
+			$this->pph21->ViewCustomAttributes = "";
+
+			// golongan_bpjs
+			$this->golongan_bpjs->ViewValue = $this->golongan_bpjs->CurrentValue;
+			$this->golongan_bpjs->ViewValue = FormatNumber($this->golongan_bpjs->ViewValue, 0, -2, -2, -2);
+			$this->golongan_bpjs->ViewCustomAttributes = "";
+
+			// iuran_bpjs
+			$this->iuran_bpjs->ViewValue = $this->iuran_bpjs->CurrentValue;
+			$this->iuran_bpjs->ViewValue = FormatNumber($this->iuran_bpjs->ViewValue, 0, -2, -2, -2);
+			$this->iuran_bpjs->ViewCustomAttributes = "";
+
 			// bulan
-			$curVal = strval($this->bulan->CurrentValue);
-			if ($curVal != "") {
-				$this->bulan->ViewValue = $this->bulan->lookupCacheOption($curVal);
-				if ($this->bulan->ViewValue === NULL) { // Lookup from database
-					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
-					$sqlWrk = $this->bulan->Lookup->getSql(FALSE, $filterWrk, '', $this);
-					$rswrk = Conn()->execute($sqlWrk);
-					if ($rswrk && !$rswrk->EOF) { // Lookup values found
-						$arwrk = [];
-						$arwrk[1] = $rswrk->fields('df');
-						$this->bulan->ViewValue = $this->bulan->displayValue($arwrk);
-						$rswrk->Close();
-					} else {
-						$this->bulan->ViewValue = $this->bulan->CurrentValue;
-					}
-				}
-			} else {
-				$this->bulan->ViewValue = NULL;
-			}
+			$this->bulan->ViewValue = $this->bulan->CurrentValue;
+			$this->bulan->ViewValue = FormatNumber($this->bulan->ViewValue, 0, -2, -2, -2);
 			$this->bulan->ViewCustomAttributes = "";
 
 			// tahun
 			$this->tahun->ViewValue = $this->tahun->CurrentValue;
+			$this->tahun->ViewValue = FormatNumber($this->tahun->ViewValue, 0, -2, -2, -2);
 			$this->tahun->ViewCustomAttributes = "";
 
-			// pegawai
-			$this->pegawai->ViewValue = $this->pegawai->CurrentValue;
-			$curVal = strval($this->pegawai->CurrentValue);
-			if ($curVal != "") {
-				$this->pegawai->ViewValue = $this->pegawai->lookupCacheOption($curVal);
-				if ($this->pegawai->ViewValue === NULL) { // Lookup from database
-					$filterWrk = "`id`" . SearchString("=", $curVal, DATATYPE_NUMBER, "");
-					$sqlWrk = $this->pegawai->Lookup->getSql(FALSE, $filterWrk, '', $this);
-					$rswrk = Conn()->execute($sqlWrk);
-					if ($rswrk && !$rswrk->EOF) { // Lookup values found
-						$arwrk = [];
-						$arwrk[1] = $rswrk->fields('df');
-						$this->pegawai->ViewValue = $this->pegawai->displayValue($arwrk);
-						$rswrk->Close();
-					} else {
-						$this->pegawai->ViewValue = $this->pegawai->CurrentValue;
-					}
-				}
-			} else {
-				$this->pegawai->ViewValue = NULL;
-			}
-			$this->pegawai->ViewCustomAttributes = "";
+			// type_peg
+			$this->type_peg->ViewValue = $this->type_peg->CurrentValue;
+			$this->type_peg->ViewValue = FormatNumber($this->type_peg->ViewValue, 0, -2, -2, -2);
+			$this->type_peg->ViewCustomAttributes = "";
 
-			// total
-			$this->total->ViewValue = $this->total->CurrentValue;
-			$this->total->ViewValue = FormatNumber($this->total->ViewValue, 0, -2, -2, -2);
-			$this->total->ViewCustomAttributes = "";
+			// unit
+			$this->unit->ViewValue = $this->unit->CurrentValue;
+			$this->unit->ViewValue = FormatNumber($this->unit->ViewValue, 0, -2, -2, -2);
+			$this->unit->ViewCustomAttributes = "";
 
-			// id1
-			$this->id1->ViewValue = $this->id1->CurrentValue;
-			$this->id1->ViewCustomAttributes = "";
+			// tanggal
+			$this->tanggal->ViewValue = $this->tanggal->CurrentValue;
+			$this->tanggal->ViewValue = FormatDateTime($this->tanggal->ViewValue, 0);
+			$this->tanggal->ViewCustomAttributes = "";
+
+			// id
+			$this->id->LinkCustomAttributes = "";
+			$this->id->HrefValue = "";
+			$this->id->TooltipValue = "";
+
+			// nip
+			$this->nip->LinkCustomAttributes = "";
+			$this->nip->HrefValue = "";
+			$this->nip->TooltipValue = "";
+
+			// total_gaji
+			$this->total_gaji->LinkCustomAttributes = "";
+			$this->total_gaji->HrefValue = "";
+			$this->total_gaji->TooltipValue = "";
+
+			// j_pensiun
+			$this->j_pensiun->LinkCustomAttributes = "";
+			$this->j_pensiun->HrefValue = "";
+			$this->j_pensiun->TooltipValue = "";
+
+			// hari_tua
+			$this->hari_tua->LinkCustomAttributes = "";
+			$this->hari_tua->HrefValue = "";
+			$this->hari_tua->TooltipValue = "";
+
+			// pph21
+			$this->pph21->LinkCustomAttributes = "";
+			$this->pph21->HrefValue = "";
+			$this->pph21->TooltipValue = "";
+
+			// golongan_bpjs
+			$this->golongan_bpjs->LinkCustomAttributes = "";
+			$this->golongan_bpjs->HrefValue = "";
+			$this->golongan_bpjs->TooltipValue = "";
+
+			// iuran_bpjs
+			$this->iuran_bpjs->LinkCustomAttributes = "";
+			$this->iuran_bpjs->HrefValue = "";
+			$this->iuran_bpjs->TooltipValue = "";
 
 			// bulan
 			$this->bulan->LinkCustomAttributes = "";
@@ -1587,15 +2095,20 @@ class m_slip_yayasan_list extends m_slip_yayasan
 			$this->tahun->HrefValue = "";
 			$this->tahun->TooltipValue = "";
 
-			// pegawai
-			$this->pegawai->LinkCustomAttributes = "";
-			$this->pegawai->HrefValue = "";
-			$this->pegawai->TooltipValue = "";
+			// type_peg
+			$this->type_peg->LinkCustomAttributes = "";
+			$this->type_peg->HrefValue = "";
+			$this->type_peg->TooltipValue = "";
 
-			// total
-			$this->total->LinkCustomAttributes = "";
-			$this->total->HrefValue = "";
-			$this->total->TooltipValue = "";
+			// unit
+			$this->unit->LinkCustomAttributes = "";
+			$this->unit->HrefValue = "";
+			$this->unit->TooltipValue = "";
+
+			// tanggal
+			$this->tanggal->LinkCustomAttributes = "";
+			$this->tanggal->HrefValue = "";
+			$this->tanggal->TooltipValue = "";
 		}
 
 		// Call Row Rendered event
@@ -1609,17 +2122,17 @@ class m_slip_yayasan_list extends m_slip_yayasan
 		global $Language;
 		if (SameText($type, "excel")) {
 			if ($custom)
-				return "<a href=\"#\" class=\"ew-export-link ew-excel\" title=\"" . HtmlEncode($Language->phrase("ExportToExcelText")) . "\" data-caption=\"" . HtmlEncode($Language->phrase("ExportToExcelText")) . "\" onclick=\"return ew.export(document.fm_slip_yayasanlist, '" . $this->ExportExcelUrl . "', 'excel', true);\">" . $Language->phrase("ExportToExcel") . "</a>";
+				return "<a href=\"#\" class=\"ew-export-link ew-excel\" title=\"" . HtmlEncode($Language->phrase("ExportToExcelText")) . "\" data-caption=\"" . HtmlEncode($Language->phrase("ExportToExcelText")) . "\" onclick=\"return ew.export(document.fsolved_all_unitlist, '" . $this->ExportExcelUrl . "', 'excel', true);\">" . $Language->phrase("ExportToExcel") . "</a>";
 			else
 				return "<a href=\"" . $this->ExportExcelUrl . "\" class=\"ew-export-link ew-excel\" title=\"" . HtmlEncode($Language->phrase("ExportToExcelText")) . "\" data-caption=\"" . HtmlEncode($Language->phrase("ExportToExcelText")) . "\">" . $Language->phrase("ExportToExcel") . "</a>";
 		} elseif (SameText($type, "word")) {
 			if ($custom)
-				return "<a href=\"#\" class=\"ew-export-link ew-word\" title=\"" . HtmlEncode($Language->phrase("ExportToWordText")) . "\" data-caption=\"" . HtmlEncode($Language->phrase("ExportToWordText")) . "\" onclick=\"return ew.export(document.fm_slip_yayasanlist, '" . $this->ExportWordUrl . "', 'word', true);\">" . $Language->phrase("ExportToWord") . "</a>";
+				return "<a href=\"#\" class=\"ew-export-link ew-word\" title=\"" . HtmlEncode($Language->phrase("ExportToWordText")) . "\" data-caption=\"" . HtmlEncode($Language->phrase("ExportToWordText")) . "\" onclick=\"return ew.export(document.fsolved_all_unitlist, '" . $this->ExportWordUrl . "', 'word', true);\">" . $Language->phrase("ExportToWord") . "</a>";
 			else
 				return "<a href=\"" . $this->ExportWordUrl . "\" class=\"ew-export-link ew-word\" title=\"" . HtmlEncode($Language->phrase("ExportToWordText")) . "\" data-caption=\"" . HtmlEncode($Language->phrase("ExportToWordText")) . "\">" . $Language->phrase("ExportToWord") . "</a>";
 		} elseif (SameText($type, "pdf")) {
 			if ($custom)
-				return "<a href=\"#\" class=\"ew-export-link ew-pdf\" title=\"" . HtmlEncode($Language->phrase("ExportToPDFText")) . "\" data-caption=\"" . HtmlEncode($Language->phrase("ExportToPDFText")) . "\" onclick=\"return ew.export(document.fm_slip_yayasanlist, '" . $this->ExportPdfUrl . "', 'pdf', true);\">" . $Language->phrase("ExportToPDF") . "</a>";
+				return "<a href=\"#\" class=\"ew-export-link ew-pdf\" title=\"" . HtmlEncode($Language->phrase("ExportToPDFText")) . "\" data-caption=\"" . HtmlEncode($Language->phrase("ExportToPDFText")) . "\" onclick=\"return ew.export(document.fsolved_all_unitlist, '" . $this->ExportPdfUrl . "', 'pdf', true);\">" . $Language->phrase("ExportToPDF") . "</a>";
 			else
 				return "<a href=\"" . $this->ExportPdfUrl . "\" class=\"ew-export-link ew-pdf\" title=\"" . HtmlEncode($Language->phrase("ExportToPDFText")) . "\" data-caption=\"" . HtmlEncode($Language->phrase("ExportToPDFText")) . "\">" . $Language->phrase("ExportToPDF") . "</a>";
 		} elseif (SameText($type, "html")) {
@@ -1630,7 +2143,7 @@ class m_slip_yayasan_list extends m_slip_yayasan
 			return "<a href=\"" . $this->ExportCsvUrl . "\" class=\"ew-export-link ew-csv\" title=\"" . HtmlEncode($Language->phrase("ExportToCsvText")) . "\" data-caption=\"" . HtmlEncode($Language->phrase("ExportToCsvText")) . "\">" . $Language->phrase("ExportToCsv") . "</a>";
 		} elseif (SameText($type, "email")) {
 			$url = $custom ? ",url:'" . $this->pageUrl() . "export=email&amp;custom=1'" : "";
-			return '<button id="emf_m_slip_yayasan" class="ew-export-link ew-email" title="' . $Language->phrase("ExportToEmailText") . '" data-caption="' . $Language->phrase("ExportToEmailText") . '" onclick="ew.emailDialogShow({lnk:\'emf_m_slip_yayasan\', hdr:ew.language.phrase(\'ExportToEmailText\'), f:document.fm_slip_yayasanlist, sel:false' . $url . '});">' . $Language->phrase("ExportToEmail") . '</button>';
+			return '<button id="emf_solved_all_unit" class="ew-export-link ew-email" title="' . $Language->phrase("ExportToEmailText") . '" data-caption="' . $Language->phrase("ExportToEmailText") . '" onclick="ew.emailDialogShow({lnk:\'emf_solved_all_unit\', hdr:ew.language.phrase(\'ExportToEmailText\'), f:document.fsolved_all_unitlist, sel:false' . $url . '});">' . $Language->phrase("ExportToEmail") . '</button>';
 		} elseif (SameText($type, "print")) {
 			return "<a href=\"" . $this->ExportPrintUrl . "\" class=\"ew-export-link ew-print\" title=\"" . HtmlEncode($Language->phrase("PrinterFriendlyText")) . "\" data-caption=\"" . HtmlEncode($Language->phrase("PrinterFriendlyText")) . "\">" . $Language->phrase("PrinterFriendly") . "</a>";
 		}
@@ -1700,6 +2213,17 @@ class m_slip_yayasan_list extends m_slip_yayasan
 		global $Language;
 		$this->SearchOptions = new ListOptions("div");
 		$this->SearchOptions->TagClassName = "ew-search-option";
+
+		// Search button
+		$item = &$this->SearchOptions->add("searchtoggle");
+		$searchToggleClass = ($this->SearchWhere != "") ? " active" : " active";
+		$item->Body = "<a class=\"btn btn-default ew-search-toggle" . $searchToggleClass . "\" href=\"#\" role=\"button\" title=\"" . $Language->phrase("SearchPanel") . "\" data-caption=\"" . $Language->phrase("SearchPanel") . "\" data-toggle=\"button\" data-form=\"fsolved_all_unitlistsrch\" aria-pressed=\"" . ($searchToggleClass == " active" ? "true" : "false") . "\">" . $Language->phrase("SearchLink") . "</a>";
+		$item->Visible = TRUE;
+
+		// Show all button
+		$item = &$this->SearchOptions->add("showall");
+		$item->Body = "<a class=\"btn btn-default ew-show-all\" title=\"" . $Language->phrase("ShowAll") . "\" data-caption=\"" . $Language->phrase("ShowAll") . "\" href=\"" . $this->pageUrl() . "cmd=reset\">" . $Language->phrase("ShowAllBtn") . "</a>";
+		$item->Visible = ($this->SearchWhere != $this->DefaultSearchWhere && $this->SearchWhere != "0=101");
 
 		// Button group for search
 		$this->SearchOptions->UseDropDownButton = FALSE;
@@ -1848,10 +2372,6 @@ class m_slip_yayasan_list extends m_slip_yayasan
 
 			// Set up lookup SQL and connection
 			switch ($fld->FieldVar) {
-				case "x_bulan":
-					break;
-				case "x_pegawai":
-					break;
 				default:
 					$lookupFilter = "";
 					break;
@@ -1872,10 +2392,6 @@ class m_slip_yayasan_list extends m_slip_yayasan
 
 					// Format the field values
 					switch ($fld->FieldVar) {
-						case "x_bulan":
-							break;
-						case "x_pegawai":
-							break;
 					}
 					$ar[strval($row[0])] = $row;
 					$rs->moveNext();
@@ -2001,9 +2517,6 @@ class m_slip_yayasan_list extends m_slip_yayasan
 		//$opt->OnLeft = TRUE; // Link on left
 		//$opt->MoveTo(0); // Move to first column
 
-						$opt = &$this->ListOptions->Add("ion");
-					$opt->Header = "";
-					$this->ListOptions->Items["ion"]->Header = "Slip Gaji";
 	}
 
 	// ListOptions Rendering event
@@ -2021,8 +2534,6 @@ class m_slip_yayasan_list extends m_slip_yayasan
 		// Example:
 		//$this->ListOptions["new"]->Body = "xxx";
 
-	$id = $this->id1->CurrentValue;
-	$this->ListOptions->Items["ion"]->Body = '<a href="slipgaji.php?id='.$id.'&table=yayasan" class="btn btn-primary">Download</a>';
 	}
 
 	// Row Custom Action event

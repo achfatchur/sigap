@@ -856,6 +856,9 @@
   <project>
     <phrase id="bodytitle" value="SIGAP YWH" />
     <phrase id="footertext" value="&amp;copy;2022 PT PrimaVisi." />
+    <menu id="1646">
+      <phrase id="menutext" value="solved all unit" />
+    </menu>
     <menu id="1644">
       <phrase id="menutext" value="gaji pegawai tk" />
     </menu>
@@ -9128,8 +9131,11 @@
       <field id="tahun">
         <phrase id="fldcaption" value="tahun" />
       </field>
-      <field id="status">
-        <phrase id="fldcaption" value="status" />
+      <field id="status1">
+        <phrase id="fldcaption" value="STATUS1" />
+      </field>
+      <field id="datetime">
+        <phrase id="fldcaption" value="datetime" />
       </field>
     </table>
     <table id="m_slip_yayasan">
@@ -9151,6 +9157,48 @@
       </field>
       <field id="id1">
         <phrase id="fldcaption" value="id" />
+      </field>
+    </table>
+    <table id="solved_all_unit">
+      <phrase id="tblcaption" value="solved all unit" />
+      <field id="id">
+        <phrase id="fldcaption" value="id" />
+      </field>
+      <field id="nip">
+        <phrase id="fldcaption" value="nip" />
+      </field>
+      <field id="total_gaji">
+        <phrase id="fldcaption" value="total gaji" />
+      </field>
+      <field id="j_pensiun">
+        <phrase id="fldcaption" value="j pensiun" />
+      </field>
+      <field id="hari_tua">
+        <phrase id="fldcaption" value="hari tua" />
+      </field>
+      <field id="pph21">
+        <phrase id="fldcaption" value="pph 21" />
+      </field>
+      <field id="golongan_bpjs">
+        <phrase id="fldcaption" value="golongan bpjs" />
+      </field>
+      <field id="iuran_bpjs">
+        <phrase id="fldcaption" value="iuran bpjs" />
+      </field>
+      <field id="bulan">
+        <phrase id="fldcaption" value="bulan" />
+      </field>
+      <field id="tahun">
+        <phrase id="fldcaption" value="tahun" />
+      </field>
+      <field id="type_peg">
+        <phrase id="fldcaption" value="type peg" />
+      </field>
+      <field id="unit">
+        <phrase id="fldcaption" value="unit" />
+      </field>
+      <field id="tanggal">
+        <phrase id="fldcaption" value="tanggal" />
       </field>
     </table>
   </project>

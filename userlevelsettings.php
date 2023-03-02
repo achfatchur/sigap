@@ -443,7 +443,9 @@ $USER_LEVEL_PRIVS = [["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}absen","-2","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}gaji_pegawai_tk","-2","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}gaji_pegawai_tk","0","0"],
 	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}m_slip_yayasan","-2","0"],
-	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}m_slip_yayasan","0","0"]];
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}m_slip_yayasan","0","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}solved_all_unit","-2","0"],
+	["{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}solved_all_unit","0","0"]];
 
 // User level table info
 $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
@@ -662,4 +664,5 @@ $USER_LEVEL_TABLES = [["absen","absen","Absen",true,"{3C64794E-EF73-47B1-9AB0-F3
 	["solved_smp","solved_smp","solved smp",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["solved_tk","solved_tk","solved tk",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
 	["gaji_pegawai_tk","gaji_pegawai_tk","gaji pegawai tk",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
-	["m_slip_yayasan","m_slip_yayasan","Slip Gaji Yayasan",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];
+	["m_slip_yayasan","m_slip_yayasan","Slip Gaji Yayasan",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"],
+	["solved_all_unit","solved_all_unit","solved all unit",true,"{3C64794E-EF73-47B1-9AB0-F3ADB03E5E03}"]];

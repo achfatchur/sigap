@@ -59,9 +59,9 @@ $id_user = CurrentUserInfo("nip");
 	if(CurrentUserLevel() == '1'){
 	if ($menu->Id == "menu") { // Sidebar menu
 		$menu->Clear(); // Clear all menu items
-		if($query['jenjang_id'] == '6'){
+		if($query['jabatan'] == '151'){
 		$menu->addMenuItem(1, "HOME", "HOME", "home.php");
-		$menu->addMenuItem(1, "Slip Gaji Pengurus Yayasan", "Slip Gaji Pengurus Yayasan", "slip_gaji_yayasanlist.php");
+		$menu->addMenuItem(1, "Slip Gaji Pengurus Yayasan", "Slip Gaji Pengurus Yayasan", "m_slip_yayasanlist.php");
 		$menu->addMenuItem(1, "Change Password", "Change Password", "set_passwordlistlist.php");
 		$menu->addMenuItem(1, "Logout", "Logout", "logout.php");	
 	}

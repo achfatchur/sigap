@@ -8,9 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'ZipStream\\' => array($vendorDir . '/maennchen/zipstream-php/src'),
     'YaLinqo\\' => array($vendorDir . '/athari/yalinqo/YaLinqo'),
-    'Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
-    'Symfony\\Component\\Process\\' => array($vendorDir . '/symfony/process'),
     'Svg\\' => array($vendorDir . '/phenx/php-svg-lib/src/Svg'),
     'Slim\\Middleware\\' => array($vendorDir . '/tuupola/slim-jwt-auth/src'),
     'Slim\\HttpCache\\' => array($vendorDir . '/slim/http-cache/src'),
@@ -34,5 +32,4 @@ return array(
     'Delight\\Cookie\\' => array($vendorDir . '/delight-im/cookie/src'),
     'Defuse\\Crypto\\' => array($vendorDir . '/defuse/php-encryption/src'),
     'Complex\\' => array($vendorDir . '/markbaker/complex/classes/src'),
-    'CodexShaper\\Dumper\\' => array($vendorDir . '/codexshaper/database-backup-restore/src'),
 );
