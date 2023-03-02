@@ -157,11 +157,11 @@ if (!isset($GLOBALS["ADODB_OUTP"]))
 $CONFIG = [
 
 	// Debug
-	"DEBUG" => FALSE, // TRUE to debug
+	"DEBUG" => TRUE, // TRUE to debug
 
 	// General
 	"UNFORMAT_YEAR" => 50, // Unformat year
-	"RANDOM_KEY" => 'XrgS5an3VsYE1Om1', // Random key for encryption
+	"RANDOM_KEY" => '2q9c8KX4eMIoy14p', // Random key for encryption
 	"ENCRYPTION_KEY" => '', // Encryption key for data protection
 	"PROJECT_STYLESHEET_FILENAME" => "css/sigap.css", // Project stylesheet file name
 	"PROJECT_CHARSET" => "utf-8", // Project charset

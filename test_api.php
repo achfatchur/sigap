@@ -31,7 +31,7 @@ Page_Rendering();
 ?>
 <?php include_once "header.php"; ?>
 <?php
-	// DEPARTMENT
+// DEPARTMENT
 	// TK
 	$api_department_tk = curl_init(); 
 	// set url 
@@ -45,7 +45,7 @@ Page_Rendering();
 		$sql = ExecuteRow("SELECT * FROM jabatan WHERE nama_jabatan= '".$data->name."'");
 		
 		if (empty($sql)) {
-			$sql_tk = "INSERT INTO jabatan VALUES (NULL, '".$data->name."', '".$data->name."', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+			$sql_tk = "INSERT INTO jabatan VALUES (NULL, '".$data->name."', '".$data->name."', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL)";
 			if (Execute($sql_tk)) {
 			} else {
 				return false;
@@ -68,7 +68,7 @@ Page_Rendering();
 		$sql = ExecuteRow("SELECT * FROM jabatan WHERE nama_jabatan= '".$data->name."'");
 		
 		if (empty($sql)) {
-			$sql_sd = "INSERT INTO jabatan VALUES (NULL, '".$data->name."', '".$data->name."', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+			$sql_sd = "INSERT INTO jabatan VALUES (NULL, '".$data->name."', '".$data->name."', NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL)";
 			if (Execute($sql_sd)) {
 			} else {
 				return false;
@@ -91,7 +91,7 @@ Page_Rendering();
 		$sql = ExecuteRow("SELECT * FROM jabatan WHERE nama_jabatan= '".$data->name."'");
 		
 		if (empty($sql)) {
-			$sql_smp = "INSERT INTO jabatan VALUES (NULL, '".$data->name."', '".$data->name."', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+			$sql_smp = "INSERT INTO jabatan VALUES (NULL, '".$data->name."', '".$data->name."', NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL)";
 			if (Execute($sql_smp)) {
 			} else {
 				return false;
@@ -114,7 +114,7 @@ Page_Rendering();
 		$sql = ExecuteRow("SELECT * FROM jabatan WHERE nama_jabatan= '".$data->name."'");
 		
 		if (empty($sql)) {
-			$sql_sma = "INSERT INTO jabatan VALUES (NULL, '".$data->name."', '".$data->name."', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+			$sql_sma = "INSERT INTO jabatan VALUES (NULL, '".$data->name."', '".$data->name."', NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL)";
 			if (Execute($sql_sma)) {
 			} else {
 				return false;
@@ -137,7 +137,7 @@ Page_Rendering();
 		$sql = ExecuteRow("SELECT * FROM jabatan WHERE nama_jabatan= '".$data->name."'");
 		
 		if (empty($sql)) {
-			$sql_smk = "INSERT INTO jabatan VALUES (NULL, '".$data->name."', '".$data->name."', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+			$sql_smk = "INSERT INTO jabatan VALUES (NULL, '".$data->name."', '".$data->name."', NULL, NULL, NULL, NULL, NULL, 5, NULL, NULL)";
 			if (Execute($sql_smk)) {
 			} else {
 				return false;
@@ -146,8 +146,8 @@ Page_Rendering();
 		}
 	}
 	// SMK END
-	
-	// EMPLOYEE
+// ENDDEPARTMENT
+// EMPLOYEE
 	// TK
 	$api_employee_tk = curl_init(); 
 	// set url 
@@ -174,7 +174,7 @@ Page_Rendering();
 		if(empty($data->jenis_ptk)){
 			$jenis_ptk = 'NULL';
 		}else{
-			$jenis_ptk = ("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
+			$jenis_ptk = ExecuteScalar("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
 		}
 		$jabatan = ExecuteScalar("SELECT id FROM jenis_jabatan WHERE name LIKE '%".$data->jabatan."%'");
 		if(empty($jabatan)){
@@ -184,13 +184,13 @@ Page_Rendering();
 		$tgl_lahir = date('Y-m-d', strtotime($data->birthday));
 
 		if (empty($sql)) {
-			$sql_tk = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, ".$jenis_ptk.", '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 1, ".$jabatan.", ".$sertifikasi.", NULL, NULL, NULL, ".$status_peg.", NULL, NULL)";
+			$sql_tk = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, '".$jenis_ptk."', '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 1, ".$jabatan.", ".$sertifikasi.", NULL, NULL, NULL, ".$status_peg.", NULL, NULL, NULL, NULL, NULL)";
 			if (Execute($sql_tk)) {
 			} else {
 				return false;
 			}
 		}else{
-			$sql_tk = "UPDATE pegawai SET nama = '".$data->nama."', alamat = '".$data->address."', email = '".$data->email."', wa = '".$data->phone."', hp = '".$data->phone."', tgllahir = '".$tgl_lahir."', rekbank = '".$data->no_rek."', jenkel = '".$data->gender."', status_peg = ".$status_peg.", mulai_bekerja = ".$data->mulai_kerja.", jabatan = ".$jenis_ptk.", type = ".$jabatan.", level = '1' WHERE jenjang_id = '1' AND nip= '".$data->nip."'";
+			$sql_tk = "UPDATE pegawai SET nama = '".$data->nama."', alamat = '".$data->address."', email = '".$data->email."', wa = '".$data->phone."', hp = '".$data->phone."', tgllahir = '".$tgl_lahir."', rekbank = '".$data->no_rek."', jenkel = '".$data->gender."', status_peg = ".$status_peg.", mulai_bekerja = ".$data->mulai_kerja.", jabatan = ".$jenis_ptk.", type = ".$jabatan.", sertif = ".$sertifikasi.", level = '1' WHERE jenjang_id = '1' OR nip= '".$data->nip."'";
 			if (Execute($sql_tk)) {
 			} else {
 				return false;
@@ -225,7 +225,7 @@ Page_Rendering();
 		if(empty($data->jenis_ptk)){
 			$jenis_ptk = 'NULL';
 		}else{
-			$jenis_ptk = ("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
+			$jenis_ptk = ExecuteScalar("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
 		}
 		$jabatan = ExecuteScalar("SELECT id FROM jenis_jabatan WHERE name LIKE '%".$data->jabatan."%'");
 		if(empty($jabatan)){
@@ -235,13 +235,13 @@ Page_Rendering();
 		$tgl_lahir = date('Y-m-d', strtotime($data->birthday));
 
 		if (empty($sql)) {
-			$sql_sd = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, ".$jenis_ptk.", '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 2, ".$jabatan.", ".$sertifikasi.", NULL, NULL, NULL, ".$status_peg.", NULL, NULL)";
+			$sql_sd = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, '".$jenis_ptk."', '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 2, ".$jabatan.", ".$sertifikasi.", NULL, NULL, NULL, ".$status_peg.", NULL, NULL, NULL, NULL, NULL)";
 			if (Execute($sql_sd)) {
 			} else {
 				return false;
 			}
 		}else{
-			$sql_sd = "UPDATE pegawai SET nama = '".$data->nama."', alamat = '".$data->address."', email = '".$data->email."', wa = '".$data->phone."', hp = '".$data->phone."', tgllahir = '".$tgl_lahir."', rekbank = '".$data->no_rek."', jenkel = '".$data->gender."', status_peg = ".$status_peg.", mulai_bekerja = ".$data->mulai_kerja.", jabatan = ".$jenis_ptk.", type = ".$jabatan.", level = '1' WHERE jenjang_id = '1' AND nip= '".$data->nip."'";
+			$sql_sd = "UPDATE pegawai SET nama = '".$data->nama."', alamat = '".$data->address."', email = '".$data->email."', wa = '".$data->phone."', hp = '".$data->phone."', tgllahir = '".$tgl_lahir."', rekbank = '".$data->no_rek."', jenkel = '".$data->gender."', status_peg = ".$status_peg.", mulai_bekerja = ".$data->mulai_kerja.", jabatan = ".$jenis_ptk.", type = ".$jabatan.", sertif = ".$sertifikasi.", level = '1' WHERE jenjang_id = '1' OR nip= '".$data->nip."'";
 			if (Execute($sql_sd)) {
 			} else {
 				return false;
@@ -276,7 +276,7 @@ Page_Rendering();
 		if(empty($data->jenis_ptk)){
 			$jenis_ptk = 'NULL';
 		}else{
-			$jenis_ptk = ("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
+			$jenis_ptk = ExecuteScalar("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
 		}
 		$jabatan = ExecuteScalar("SELECT id FROM jenis_jabatan WHERE name LIKE '%".$data->jabatan."%'");
 		if(empty($jabatan)){
@@ -286,13 +286,13 @@ Page_Rendering();
 		$tgl_lahir = date('Y-m-d', strtotime($data->birthday));
 
 		if (empty($sql)) {
-			$sql_smp = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, ".$jenis_ptk.", '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 3, ".$jabatan.", ".$sertifikasi.", NULL, NULL, NULL, ".$status_peg.", NULL, NULL)";
+			$sql_smp = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, '".$jenis_ptk."', '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 3, ".$jabatan.", ".$sertifikasi.", NULL, NULL, NULL, ".$status_peg.", NULL, NULL, NULL, NULL, NULL)";
 			if (Execute($sql_smp)) {
 			} else {
 				return false;
 			}
 		}else{
-			$sql_smp = "UPDATE pegawai SET nama = '".$data->nama."', alamat = '".$data->address."', email = '".$data->email."', wa = '".$data->phone."', hp = '".$data->phone."', tgllahir = '".$tgl_lahir."', rekbank = '".$data->no_rek."', jenkel = '".$data->gender."', status_peg = ".$status_peg.", mulai_bekerja = ".$data->mulai_kerja.", jabatan = ".$jenis_ptk.", type = ".$jabatan.", level = '1' WHERE jenjang_id = '1' AND nip= '".$data->nip."'";
+			$sql_smp = "UPDATE pegawai SET nama = '".$data->nama."', alamat = '".$data->address."', email = '".$data->email."', wa = '".$data->phone."', hp = '".$data->phone."', tgllahir = '".$tgl_lahir."', rekbank = '".$data->no_rek."', jenkel = '".$data->gender."', status_peg = ".$status_peg.", mulai_bekerja = ".$data->mulai_kerja.", jabatan = ".$jenis_ptk.", type = ".$jabatan.", sertif = ".$sertifikasi.", level = '1' WHERE jenjang_id = '1' OR nip= '".$data->nip."'";
 			if (Execute($sql_smp)) {
 			} else {
 				return false;
@@ -327,7 +327,7 @@ Page_Rendering();
 		if(empty($data->jenis_ptk)){
 			$jenis_ptk = 'NULL';
 		}else{
-			$jenis_ptk = ("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
+			$jenis_ptk = ExecuteScalar("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
 		}
 		$jabatan = ExecuteScalar("SELECT id FROM jenis_jabatan WHERE name LIKE '%".$data->jabatan."%'");
 		if(empty($jabatan)){
@@ -337,13 +337,13 @@ Page_Rendering();
 		$tgl_lahir = date('Y-m-d', strtotime($data->birthday));
 
 		if (empty($sql)) {
-			$sql_sma = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, ".$jenis_ptk.", '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 4, ".$jabatan.", ".$sertifikasi.", NULL, NULL, NULL, ".$status_peg.", NULL, NULL)";
+			$sql_sma = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, '".$jenis_ptk."', '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 4, ".$jabatan.", ".$sertifikasi.", NULL, NULL, NULL, ".$status_peg.", NULL, NULL, NULL, NULL, NULL)";
 			if (Execute($sql_sma)) {
 			} else {
 				return false;
 			}
 		}else{
-			$sql_sma = "UPDATE pegawai SET nama = '".$data->nama."', alamat = '".$data->address."', email = '".$data->email."', wa = '".$data->phone."', hp = '".$data->phone."', tgllahir = '".$tgl_lahir."', rekbank = '".$data->no_rek."', jenkel = '".$data->gender."', status_peg = ".$status_peg.", mulai_bekerja = ".$data->mulai_kerja.", jabatan = ".$jenis_ptk.", type = ".$jabatan.", level = '1' WHERE jenjang_id = '1' AND nip= '".$data->nip."'";
+			$sql_sma = "UPDATE pegawai SET nama = '".$data->nama."', alamat = '".$data->address."', email = '".$data->email."', wa = '".$data->phone."', hp = '".$data->phone."', tgllahir = '".$tgl_lahir."', rekbank = '".$data->no_rek."', jenkel = '".$data->gender."', status_peg = ".$status_peg.", mulai_bekerja = ".$data->mulai_kerja.", jabatan = ".$jenis_ptk.", type = ".$jabatan.", sertif = ".$sertifikasi.", level = '1' WHERE jenjang_id = '1' OR nip= '".$data->nip."'";
 			if (Execute($sql_sma)) {
 			} else {
 				return false;
@@ -378,7 +378,7 @@ Page_Rendering();
 		if(empty($data->jenis_ptk)){
 			$jenis_ptk = 'NULL';
 		}else{
-			$jenis_ptk = ("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
+			$jenis_ptk = ExecuteScalar("SELECT id FROM jabatan WHERE nama_jabatan LIKE '%".$data->jenis_ptk."%'");
 		}
 		$jabatan = ExecuteScalar("SELECT id FROM jenis_jabatan WHERE name LIKE '%".$data->jabatan."%'");
 		if(empty($jabatan)){
@@ -388,13 +388,13 @@ Page_Rendering();
 		$tgl_lahir = date('Y-m-d', strtotime($data->birthday));
 
 		if (empty($sql)) {
-			$sql_smk = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, ".$jenis_ptk.", '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 5, ".$jabatan.", ".$sertifikasi.", NULL, NULL, NULL, ".$status_peg.", NULL, NULL)";
+			$sql_smk = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, '".$jenis_ptk."', '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 5, ".$jabatan.", ".$sertifikasi.", NULL, NULL, NULL, ".$status_peg.", NULL, NULL, NULL, NULL, NULL)";
 			if (Execute($sql_smk)) {
 			} else {
 				return false;
 			}
 		}else{
-			$sql_smk = "UPDATE pegawai SET nama = '".$data->nama."', alamat = '".$data->address."', email = '".$data->email."', wa = '".$data->phone."', hp = '".$data->phone."', tgllahir = '".$tgl_lahir."', rekbank = '".$data->no_rek."', jenkel = '".$data->gender."', status_peg = ".$status_peg.", mulai_bekerja = ".$data->mulai_kerja.", jabatan = ".$jenis_ptk.", type = ".$jabatan.", level = '1' WHERE jenjang_id = '1' AND nip= '".$data->nip."'";
+			$sql_smk = "UPDATE pegawai SET nama = '".$data->nama."', alamat = '".$data->address."', email = '".$data->email."', wa = '".$data->phone."', hp = '".$data->phone."', tgllahir = '".$tgl_lahir."', rekbank = '".$data->no_rek."', jenkel = '".$data->gender."', status_peg = ".$status_peg.", mulai_bekerja = ".$data->mulai_kerja.", jabatan = ".$jenis_ptk.", type = ".$jabatan.", sertif = ".$sertifikasi.", level = '1' WHERE jenjang_id = '1' OR nip= '".$data->nip."'";
 			if (Execute($sql_smk)) {
 			} else {
 				return false;
@@ -402,6 +402,7 @@ Page_Rendering();
 		}
 	}
 	// SMK END
+// ENDEMPLLOYEE
 ?>
 
 <?php if (Config("DEBUG")) echo GetDebugMessage(); ?>
