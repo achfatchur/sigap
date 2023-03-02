@@ -573,7 +573,6 @@ class login extends pegawai
 			} else {
 				WriteCookie("AutoLogin", ""); // Clear auto login cookie
 			}
-			$this->writeAuditTrailOnLogin($this->Username);
 
 			// Call loggedin event
 			$this->User_LoggedIn($this->Username);
@@ -613,13 +612,6 @@ class login extends pegawai
 			AddMessage($FormError, $formCustomError);
 		}
 		return $validateForm;
-	}
-
-	// Write audit trail on login
-	protected function writeAuditTrailOnLogin($usr)
-	{
-		global $Language;
-		WriteAuditTrail("log", DbCurrentDateTime(), ScriptName(), $usr, $Language->phrase("AuditTrailLogin"), CurrentUserIP(), "", "", "", "");
 	}
 
 	// Page Load event

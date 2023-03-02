@@ -157,11 +157,11 @@ if (!isset($GLOBALS["ADODB_OUTP"]))
 $CONFIG = [
 
 	// Debug
-	"DEBUG" => TRUE, // TRUE to debug
+	"DEBUG" => FALSE, // TRUE to debug
 
 	// General
 	"UNFORMAT_YEAR" => 50, // Unformat year
-	"RANDOM_KEY" => '2q9c8KX4eMIoy14p', // Random key for encryption
+	"RANDOM_KEY" => '7wDbF39IJ1DenruV', // Random key for encryption
 	"ENCRYPTION_KEY" => '', // Encryption key for data protection
 	"PROJECT_STYLESHEET_FILENAME" => "css/sigap.css", // Project stylesheet file name
 	"PROJECT_CHARSET" => "utf-8", // Project charset
@@ -302,7 +302,7 @@ $CONFIG = [
 	"TABLE_GRID_ADD_ROW_COUNT" => "gridaddcnt", // Grid add row count
 
 	// Audit Trail
-	"AUDIT_TRAIL_TO_DATABASE" => TRUE, // Write audit trail to DB
+	"AUDIT_TRAIL_TO_DATABASE" => FALSE, // Write audit trail to DB
 	"AUDIT_TRAIL_DBID" => "DB", // Audit trail DBID
 	"AUDIT_TRAIL_TABLE_NAME" => "audittrail", // Audit trail table name
 	"AUDIT_TRAIL_TABLE_VAR" => "audittrail", // Audit trail table var
