@@ -91,7 +91,7 @@ class m_slip_yayasan extends DbTable
 		// pegawai
 		$this->pegawai = new DbField('m_slip_yayasan', 'm_slip_yayasan', 'x_pegawai', 'pegawai', '`pegawai`', '`pegawai`', 3, 10, -1, FALSE, '`pegawai`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->pegawai->Sortable = TRUE; // Allow sort
-		$this->pegawai->Lookup = new Lookup('pegawai', 'pegawai', FALSE, 'id', ["nip","","",""], [], [], [], [], [], [], '', '');
+		$this->pegawai->Lookup = new Lookup('pegawai', 'pegawai', FALSE, 'id', ["nama","","",""], [], [], [], [], [], [], '', '');
 		$this->pegawai->DefaultErrorMessage = $Language->phrase("IncorrectInteger");
 		$this->fields['pegawai'] = &$this->pegawai;
 
@@ -1017,12 +1017,12 @@ class m_slip_yayasan extends DbTable
 	function Recordset_Selecting(&$filter) {
 
 		// Enter your code here
-		if(CurrentUserLevel() != '-1'){
+			if(CurrentUserLevel() != '-1'){
 			$nip = CurrentUserInfo("id");
 			if($nip != '' OR $nip != FALSE) {
 				AddFilter($filter, "pegawai = $nip");
 			}
-			}
+			}	
 	}
 
 	// Recordset Selected event

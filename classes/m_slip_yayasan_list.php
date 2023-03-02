@@ -2000,9 +2000,6 @@ class m_slip_yayasan_list extends m_slip_yayasan
 		//$opt->Header = "xxx";
 		//$opt->OnLeft = TRUE; // Link on left
 		//$opt->MoveTo(0); // Move to first column
-		$opt = &$this->ListOptions->Add("ion");
-		$opt->Header = "";
-		$this->ListOptions->Items["ion"]->Header = "Slip Gaji";
 
 	}
 
@@ -2020,11 +2017,6 @@ class m_slip_yayasan_list extends m_slip_yayasan
 
 		// Example:
 		//$this->ListOptions["new"]->Body = "xxx";
-		$id = $this->id1->CurrentValue;
-	//if($status == '1'){
-		$this->ListOptions->Items["ion"]->Body = '<a href="slipgaji.php?id='.$id.'&table=yayasan" class="btn btn-primary">Download</a>';
-	//}else{
-	//}
 
 	}
 

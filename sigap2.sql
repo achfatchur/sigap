@@ -8624,6 +8624,16 @@ CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `m_jp_pegawai` AS select `p
 
 -- Dumping structure for view sigap2.m_slip_yayasan
 -- Removing temporary table and create final VIEW structure
+-- Dumping structure for view sigap2.m_slip_yayasan
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `m_slip_yayasan` (
+	`id` INT(10) NOT NULL,
+	`bulan` INT(10) NULL,
+	`tahun` INT(10) NULL,
+	`pegawai` INT(10) NULL,
+	`total` BIGINT(19) NULL,
+	`id1` INT(10) NOT NULL
+) ENGINE=MyISAM;
 DROP TABLE IF EXISTS `m_slip_yayasan`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `m_slip_yayasan` AS select `m_yayasan`.`id` AS `id`,`m_yayasan`.`bulan` AS `bulan`,`m_yayasan`.`tahun` AS `tahun`,`yayasan`.`pegawai` AS `pegawai`,`yayasan`.`total` AS `total`,`yayasan`.`id` AS `id1` from (`yayasan` join `m_yayasan` on((`m_yayasan`.`id` = `yayasan`.`m_id`)));
 

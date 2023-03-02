@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ew-language date="2023/3/1" version="16.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
+<ew-language date="2023/3/2" version="16.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
   <!--
 	*** Important Notes:
 	1. Language ID should follow: https://developers.google.com/recaptcha/docs/language,
@@ -4212,7 +4212,7 @@
         <phrase id="fldcaption" value="datetime" />
       </field>
       <field id="import_file">
-        <phrase id="fldcaption" value="Import File" />
+        <phrase id="fldcaption" value="Total Potongan" />
       </field>
     </table>
     <table id="m_piket">

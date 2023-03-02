@@ -164,6 +164,13 @@ Page_Rendering();
 			$status_peg = 'NULL';
 		}else{
 		}
+		if($data->sertifikasi == 'Sertifikasi'){
+			$sertifikasi = 1;
+		}elseif($data->sertifikasi == 'Non_sertifikasi'){
+			$sertifikasi = 2;
+		}else{
+			$sertifikasi = 'NULL';
+		}
 		if(empty($data->jenis_ptk)){
 			$jenis_ptk = 'NULL';
 		}else{
@@ -177,7 +184,7 @@ Page_Rendering();
 		$tgl_lahir = date('Y-m-d', strtotime($data->birthday));
 
 		if (empty($sql)) {
-			$sql_tk = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, ".$jenis_ptk.", '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 1, ".$jabatan.", NULL, NULL, NULL, NULL, ".$status_peg.", NULL, NULL)";
+			$sql_tk = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, ".$jenis_ptk.", '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 1, ".$jabatan.", ".$sertifikasi.", NULL, NULL, NULL, ".$status_peg.", NULL, NULL)";
 			if (Execute($sql_tk)) {
 			} else {
 				return false;
@@ -208,6 +215,13 @@ Page_Rendering();
 			$status_peg = 'NULL';
 		}else{
 		}
+		if($data->sertifikasi == 'Sertifikasi'){
+			$sertifikasi = 1;
+		}elseif($data->sertifikasi == 'Non_sertifikasi'){
+			$sertifikasi = 2;
+		}else{
+			$sertifikasi = 'NULL';
+		}
 		if(empty($data->jenis_ptk)){
 			$jenis_ptk = 'NULL';
 		}else{
@@ -221,7 +235,7 @@ Page_Rendering();
 		$tgl_lahir = date('Y-m-d', strtotime($data->birthday));
 
 		if (empty($sql)) {
-			$sql_sd = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, ".$jenis_ptk.", '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 2, ".$jabatan.", NULL, NULL, NULL, NULL, ".$status_peg.", NULL, NULL)";
+			$sql_sd = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, ".$jenis_ptk.", '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 2, ".$jabatan.", ".$sertifikasi.", NULL, NULL, NULL, ".$status_peg.", NULL, NULL)";
 			if (Execute($sql_sd)) {
 			} else {
 				return false;
@@ -252,6 +266,13 @@ Page_Rendering();
 			$status_peg = 'NULL';
 		}else{
 		}
+		if($data->sertifikasi == 'Sertifikasi'){
+			$sertifikasi = 1;
+		}elseif($data->sertifikasi == 'Non_sertifikasi'){
+			$sertifikasi = 2;
+		}else{
+			$sertifikasi = 'NULL';
+		}
 		if(empty($data->jenis_ptk)){
 			$jenis_ptk = 'NULL';
 		}else{
@@ -265,7 +286,7 @@ Page_Rendering();
 		$tgl_lahir = date('Y-m-d', strtotime($data->birthday));
 
 		if (empty($sql)) {
-			$sql_smp = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, ".$jenis_ptk.", '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 3, ".$jabatan.", NULL, NULL, NULL, NULL, ".$status_peg.", NULL, NULL)";
+			$sql_smp = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, ".$jenis_ptk.", '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 3, ".$jabatan.", ".$sertifikasi.", NULL, NULL, NULL, ".$status_peg.", NULL, NULL)";
 			if (Execute($sql_smp)) {
 			} else {
 				return false;
@@ -296,6 +317,13 @@ Page_Rendering();
 			$status_peg = 'NULL';
 		}else{
 		}
+		if($data->sertifikasi == 'Sertifikasi'){
+			$sertifikasi = 1;
+		}elseif($data->sertifikasi == 'Non_sertifikasi'){
+			$sertifikasi = 2;
+		}else{
+			$sertifikasi = 'NULL';
+		}
 		if(empty($data->jenis_ptk)){
 			$jenis_ptk = 'NULL';
 		}else{
@@ -309,7 +337,7 @@ Page_Rendering();
 		$tgl_lahir = date('Y-m-d', strtotime($data->birthday));
 
 		if (empty($sql)) {
-			$sql_sma = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, ".$jenis_ptk.", '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 4, ".$jabatan.", NULL, NULL, NULL, NULL, ".$status_peg.", NULL, NULL)";
+			$sql_sma = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, ".$jenis_ptk.", '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 4, ".$jabatan.", ".$sertifikasi.", NULL, NULL, NULL, ".$status_peg.", NULL, NULL)";
 			if (Execute($sql_sma)) {
 			} else {
 				return false;
@@ -340,6 +368,13 @@ Page_Rendering();
 			$status_peg = 'NULL';
 		}else{
 		}
+		if($data->sertifikasi == 'Sertifikasi'){
+			$sertifikasi = 1;
+		}elseif($data->sertifikasi == 'Non_sertifikasi'){
+			$sertifikasi = 2;
+		}else{
+			$sertifikasi = 'NULL';
+		}
 		if(empty($data->jenis_ptk)){
 			$jenis_ptk = 'NULL';
 		}else{
@@ -353,7 +388,7 @@ Page_Rendering();
 		$tgl_lahir = date('Y-m-d', strtotime($data->birthday));
 
 		if (empty($sql)) {
-			$sql_smk = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, ".$jenis_ptk.", '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 5, ".$jabatan.", NULL, NULL, NULL, NULL, ".$status_peg.", NULL, NULL)";
+			$sql_smk = "INSERT INTO pegawai VALUES (NULL, NULL, '".$data->nama."', '".$data->address."', '".$data->email."', '".$data->phone."', '".$data->phone."', '".$tgl_lahir."', '".$data->nip."', '".$data->no_rek."', NULL, NULL, '".$data->religion."', '".$data->gender."', '".$data->status_pegawai."', NULL, NULL, ".$jenis_ptk.", '".$data->mulai_kerja."', NULL, '".$data->email."', 123456, 1, 1, 5, ".$jabatan.", ".$sertifikasi.", NULL, NULL, NULL, ".$status_peg.", NULL, NULL)";
 			if (Execute($sql_smk)) {
 			} else {
 				return false;

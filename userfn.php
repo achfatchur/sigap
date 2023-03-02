@@ -54,11 +54,7 @@ function MenuItem_Adding($item) {
 function Menu_Rendering($menu) {
 
 	// Change menu items here
-	//$id_user = CurrentUserInfo("jabatan");
-
- $id_user = CurrentUserInfo("nip");
-
-	//$query = ExecuteRow("SELECT * FROM transaction_event WHERE user_id= '".$id_user."'");
+$id_user = CurrentUserInfo("nip");
 	$query = ExecuteRow("SELECT * FROM pegawai where nip='".$id_user."'");
 	if(CurrentUserLevel() == '1'){
 	if ($menu->Id == "menu") { // Sidebar menu
