@@ -1174,8 +1174,8 @@ class generate_pertahun_sd extends DbTable
 
 							//print_r($solved);
 							//die;
-							
-					$myquery = "INSERT INTO gaji VALUES (NULL,'".$query["nip"]."','".date('Y-m-d H:i:s')."','".date('Y-m-d')."','".$c_lembur."','".$v_lembur."','".$query["jabatan"]."','".$gaji_pokok["value"]."','".$total."','".$reward."','".$inval2."','".$piket_new."','".$v_piket."','".$solved."','".$tj_jbtn."','".$v_jjm."','".$sub_total."','".$penyesuaian."','".$query["jenjang_id"]."','".$tambahan."','".$pid."','".$v_jjm."','".$query["type"]."','".$sertif."','".$tgs_tmbhn."','".$v_kehadiran."','".$solve_periode."','".$solve_value_per."','".$komponen_gapok."','".$lm_kerja."', NULL, '".$tahun."','".$bulan."', NULL,'".$v_voucher."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solved_npwp."','".$solve_bpjs."')";
+							$solve_jabatan = 1 * $query["jabatan"];
+					$myquery = "INSERT INTO gaji VALUES (NULL,'".$query["nip"]."','".date('Y-m-d H:i:s')."','".date('Y-m-d')."','".$c_lembur."','".$v_lembur."','".$solve_jabatan."','".$gaji_pokok["value"]."','".$total."','".$reward."','".$inval2."','".$piket_new."','".$v_piket."','".$solved."','".$tj_jbtn."','".$v_jjm."','".$sub_total."','".$penyesuaian."','".$query["jenjang_id"]."','".$tambahan."','".$pid."','".$v_jjm."','".$query["type"]."','".$sertif."','".$tgs_tmbhn."','".$v_kehadiran."','".$solve_periode."','".$solve_value_per."','".$komponen_gapok."','".$lm_kerja."', NULL, '".$tahun."','".$bulan."', NULL,'".$v_voucher."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solved_npwp."','".$solve_bpjs."')";
 
 					//	print_r($myquery);
 					//	die;
@@ -1185,10 +1185,18 @@ class generate_pertahun_sd extends DbTable
 
 						$myResult = Execute($myquery);
 						$solve_gol_bpjs = 1 * $query["bpjs_kesehatan"];	
-						$delete_all ="DELETE FROM solved_sd WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
-						$clone_all = execute($delete_clone);
+						$delete_all ="DELETE FROM solved_sd WHERE tahun ='".$tahun."' AND bulan='".$bulan."' AND nip='".$query["nip"]."'";	
+						$clone_all = execute($delete_all);
 						$all = "INSERT INTO solved_sd VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
-						$Result = Execute($all);	
+						$Result = Execute($all);
+						
+						//insert all unit
+
+						$delete_all_unit ="DELETE FROM solved_all_unit WHERE tahun ='".$tahun."' AND bulan='".$bulan."' AND nip='".$query["nip"]."' ";	
+						$clone_all = execute($delete_all_unit);
+						$all_unit = "INSERT INTO solved_all_unit VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
+						$Result_all = Execute($all_unit);
+					
 					}
 
 				//}elseif($this->profesi->CurrentValue == '2'){
@@ -1280,18 +1288,23 @@ class generate_pertahun_sd extends DbTable
 						//note salah diinval harusnya tidak nampil
 						//print_r($tunjanagan_khusus);
 						//die;	
-
-						$myquery2 = "INSERT INTO gaji_tu_sd VALUES (NULL,NULL,'".$query["nip"]."','".$query["jenjang_id"]."','".$query["jabatan"]."',NULL,'".$komponen_gapok."','".$hadir	."','".$c_lembur."','".$lembur."','".$reward."','".$inval2."','".$c_piket."','".$piket["value"]."','".$solved."','".$tj_jbtn."','".$penyesuaian."','".$sub_total."','".$tambahan_value."','".$total."','".$pid."','".$khusus."','".$tambahan."','2','".$pendidikan."','".$lm_kerja."','".$sertif."','".$kehadiran["value"]."','".$tahun."','".$bulan."','".$v_voucher."',NULL,NULL,'".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_bpjs."','".$solved_npwp."')";
+						$solve_jabatan = 1 * $query["jabatan"];
+						$myquery2 = "INSERT INTO gaji_tu_sd VALUES (NULL,NULL,'".$query["nip"]."','".$query["jenjang_id"]."','".$solve_jabatan."',NULL,'".$komponen_gapok."','".$hadir	."','".$c_lembur."','".$lembur."','".$reward."','".$inval2."','".$c_piket."','".$piket["value"]."','".$solved."','".$tj_jbtn."','".$penyesuaian."','".$sub_total."','".$tambahan_value."','".$total."','".$pid."','".$khusus."','".$tambahan."','2','".$pendidikan."','".$lm_kerja."','".$sertif."','".$kehadiran["value"]."','".$tahun."','".$bulan."','".$v_voucher."',NULL,NULL,'".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_bpjs."','".$solved_npwp."')";
 
 							//print_r($myquery2);
 							//die;
 
 						$Result = Execute($myquery2);
 						$solve_gol_bpjs = 1 * $query["bpjs_kesehatan"];	
-						$delete_all ="DELETE FROM solved_sd WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
-						$clone_all = execute($delete_clone);
+						$delete_all ="DELETE FROM solved_sd WHERE tahun ='".$tahun."' AND bulan='".$bulan."' AND nip='".$query["nip"]."' ";	
+						$clone_all = execute($delete_all);
 						$all = "INSERT INTO solved_sd VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
 						$Result = Execute($all);
+
+						$delete_all_unit ="DELETE FROM solved_all_unit WHERE tahun ='".$tahun."' AND bulan='".$bulan."' AND nip='".$query["nip"]."'";	
+						$clone_all = execute($delete_all_unit);
+						$all_unit = "INSERT INTO solved_all_unit VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
+						$Result_all = Execute($all_unit);
 							}
 
 					//}else{
@@ -1360,18 +1373,23 @@ class generate_pertahun_sd extends DbTable
 
 					//print_r($v_kehadiran);
 					//die;
-
-					$myquery2 = "INSERT INTO gaji_karyawan_sd VALUES (NULL, '".$query["nip"]."','".$query["jabatan"]."','4','".$komponen_gapok."',NULL,'".$inval2."','".$c_jjm."','".$sub_total."','".$penyesuaian."','".$tambahan."','".$total."','".$pid."','".$v_kehadiran."',NULL,'".$tahun."', '".$bulan."','".$v_voucher."',NULL,'".$value_pensiun."','".$value_hari_tua."','".$solve_bpjs."','".$solved_npwp."','".$pph21."')";
+					$solve_jabatan = 1 * $query["jabatan"];
+					$myquery2 = "INSERT INTO gaji_karyawan_sd VALUES (NULL, '".$query["nip"]."','".$solve_jabatan."','4','".$komponen_gapok."',NULL,'".$inval2."','".$c_jjm."','".$sub_total."','".$penyesuaian."','".$tambahan."','".$total."','".$pid."','".$v_kehadiran."',NULL,'".$tahun."', '".$bulan."','".$v_voucher."',NULL,'".$value_pensiun."','".$value_hari_tua."','".$solve_bpjs."','".$solved_npwp."','".$pph21."')";
 
 					//print_r($myquery2);
 					//die;
 				$Result = Execute($myquery2);
 
 				$solve_gol_bpjs = 1 * $query["bpjs_kesehatan"];	
-				$delete_all ="DELETE FROM solved_sd WHERE tahun ='".$tahun."' AND bulan='".$bulan."'";	
-				$clone_all = execute($delete_clone);
+				$delete_all ="DELETE FROM solved_sd WHERE tahun ='".$tahun."' AND bulan='".$bulan."' AND nip='".$query["nip"]."'";	
+				$clone_all = execute($delete_all);
 				$all = "INSERT INTO solved_sd VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
 				$Result = Execute($all);
+
+				$delete_all_unit ="DELETE FROM solved_all_unit WHERE tahun ='".$tahun."' AND bulan='".$bulan."' AND nip='".$query["nip"]."' ";	
+				$clone_all = execute($delete_all_unit);
+				$all_unit = "INSERT INTO solved_all_unit VALUES(NULL,'".$query["nip"]."', '".$total."','".$value_pensiun."','".$value_hari_tua."','".$pph21."','".$solve_gol_bpjs."','".$solve_bpjs."', '".$bulan."', '".$tahun."', '".$query["type"]."','".$query["jenjang_id"]."','".date('Y-m-d')."')";
+				$Result_all = Execute($all_unit);
 						}
 					}
 

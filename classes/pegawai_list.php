@@ -4258,7 +4258,7 @@ class pegawai_list extends pegawai
 	$my_options = &$this->OtherOptions; // pastikan menggunakan area OtherOptions
 	$my_option = $my_options["addedit"]; // dekat tombol addedit
 	$my_item = &$my_option->Add("mynewbutton"); // tambahkan tombol baru
-	$my_item->Body = "<a class=\"ewAddEdit ewAdd\" title=\"Your Title\" data-caption=\"Your Caption\" href=\"test_api.php\" target=\"_self\">synchronize Siakad</a>";
+	$my_item->Body = "<a class=\"ewAddEdit ewAdd\" title=\"Your Title\" data-caption=\"Your Caption\" href=\"test_api.php\">synchronize Siakad</a>";
 
 	//}
 	}

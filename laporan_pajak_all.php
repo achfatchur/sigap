@@ -248,6 +248,7 @@ Page_Rendering();
 				<?php } elseif ($jenjang == '5') { ?>
 					<a href="exp_pajak_smk.php"class="btn btn-danger mb-2" target="_self">Export Data Unit SMK</a>
 				<?php }?>
+				<a href="exp_pajak_all.php"class="btn btn-danger mb-2" target="_self">Export Data All Unit</a>
 				</div>
 			</div>
 			</div>

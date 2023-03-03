@@ -6,14 +6,14 @@ require_once'vendor/tbs_class.php';
 require_once'vendor/tbs_plugin_opentbs.php';
 $TBS = new clsTinyButStrong; 
 $TBS->Plugin(TBS_INSTALL, OPENTBS_PLUGIN);
-$sql = mysqli_query($con, "SELECT solved_all_unit.id, solved_all_unit.nip, pegawai.nama, m_bpjs.golongan, solved_all_unit.hari_tua, solved_all_unit.pph21, solved_all_unit.j_pensiun, solved_all_unit.tahun,
-bulan.bulan, solved_all_unit.iuran_bpjs, tpendidikan.name
+$sql = mysqli_query($con, "SELECT solved_all_unit.id, solved_all_unit.nip, pegawai.nama, solved_all_unit.hari_tua,
+solved_all_unit.pph21, solved_all_unit.j_pensiun, solved_all_unit.tahun, bulan.bulan,
+solved_all_unit.iuran_bpjs, m_bpjs.golongan
 FROM solved_all_unit INNER JOIN
 pegawai ON solved_all_unit.nip = pegawai.nip INNER JOIN
-m_bpjs ON solved_all_unit.golongan_bpjs = m_bpjs.id INNER JOIN
 bulan ON solved_all_unit.bulan = bulan.id INNER JOIN
-tpendidikan ON solved_all_unit.unit = tpendidikan.nourut
-ORDER BY solved_all_unit.id DESC");	
+m_bpjs ON solved_all_unit.golongan_bpjs = m_bpjs.id
+ORDER BY solved_.id DESC");	
 $data = [];
 while($row = mysqli_fetch_array($sql))
 {     
