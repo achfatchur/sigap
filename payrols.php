@@ -76,11 +76,25 @@ Page_Rendering();
 		} elseif ($jenjang == 'SMK') { 
 			$jenjang = '5';
 		}
-		
+		//print_r($nip);
+		//die;
 		$potongan_bendahara = $_POST['potongan_bendahara'];
+		$query_total2 =ExecuteScalar("select total from ".$tabel." where id='$id_edit'");
+		$total_gaji = $query_total2 - $potongan_bendahara;
 
-		$myquery = "UPDATE ".$tabel." SET potongan_bendahara='$potongan_bendahara'  WHERE id='$id_edit'";
+		$query_nip2 =ExecuteScalar("select pegawai from ".$tabel." where id='$id_edit'");
+		$query_bulan2 =ExecuteScalar("select bulan from ".$tabel." where id='$id_edit'");
+		$query_tahun2 =ExecuteScalar("select tahun from ".$tabel." where id='$id_edit'");
+
+		//print_r($query_nip2);
+		//die;
+		$myquery = "UPDATE ".$tabel." SET potongan_bendahara='$potongan_bendahara',total='$total_gaji' WHERE id='$id_edit'";
 		$myResult = Execute($myquery);
+
+		$myquery_all = "UPDATE solved_all_unit SET total_gaji='$total_gaji' WHERE nip='$query_nip2' and bulan='$query_bulan2' and tahun='$query_tahun2'";
+		//print_r($myquery_all);
+		//die;
+		$myResult_all = Execute($myquery_all);
 		header("location:payrols.php?tahun=".$tahun."&bulan=".$bulan."&jenjang=".$jenjang."&submit=Cari");
 	}
 
@@ -236,7 +250,7 @@ Page_Rendering();
 			<input type="hidden" name="jenjang_s" value="<?=$jenjang?>">
 			<div class="form-row align-items-center">
 				<div class="col-auto">
-					<input type="submit" class="btn btn-success mb-2" name="update_status" value="Konfirmasi Payroll">
+					<input type="submit" class="btn btn-success mb-2" name="update_status" value="Konfirmasi Payroll 1">
 				</div>
 			</div>
 		</form>
@@ -250,7 +264,7 @@ Page_Rendering();
 			<input type="hidden" name="jenjang_s" value="<?=$jenjang?>">
 			<div class="form-row align-items-center">
 				<div class="col-auto">
-					<button id="submit" type="submit" name="update_status_belum_selesai"  class="btn btn-danger mb-2">Batalkan Konfirmasi</button>
+					<button id="submit" type="submit" name="update_status_belum_selesai"  class="btn btn-danger mb-2">Batalkan Konfirmasi Payroll</button>
 				</div>
 			</div>
 		</form>
@@ -306,9 +320,9 @@ Page_Rendering();
 				<td><?=$pegawai['nip']?></td>
 				<td><?=$pegawai['nama']?> - <?=$jabatan['name']?></td>
 				<td><?=$pegawai['rekbank']?></td>
-				<td>Rp. <?= number_format($data['total'],0,',','.');?></td>
+				<td>Rp. <?= number_format($data['total']+$data['potongan_bendahara'],0,',','.');?></td>
 				<td>Rp. <?= number_format($data['potongan_bendahara'],0,',','.');?></td>
-				<td>Rp. <?= number_format($data['total']-$data['potongan_bendahara'] ,0,',','.');?></td>
+				<td>Rp. <?= number_format($data['total'],0,',','.');?></td>
 				<td>
 					<?php if($data['status'] == '1'){ ?>
 						<p style="text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;">Dipublikasi<p>
@@ -364,9 +378,9 @@ Page_Rendering();
 				<td><?=$pegawai1['nip']?></td>
 				<td><?=$pegawai1['nama']?> - <?=$jabatan1['name']?></td>
 				<td><?=$pegawai1['rekbank']?></td>
-				<td>Rp. <?= number_format($data1['total'],0,',','.');?></td>
+				<td>Rp. <?= number_format($data1['total']+$data1['potongan_bendahara'],0,',','.');?></td>
 				<td>Rp. <?= number_format($data1['potongan_bendahara'],0,',','.');?></td>
-				<td>Rp. <?= number_format($data1['total']-$data1['potongan_bendahara'] ,0,',','.');?></td>
+				<td>Rp. <?= number_format($data1['total'],0,',','.');?></td>
 				<td>
 					<?php if($data1['status'] == '1'){ ?>
 						<p style="text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;">Dipublikasi<p>
@@ -422,7 +436,7 @@ Page_Rendering();
 				<td><?=$pegawai2['nip']?></td>
 				<td><?=$pegawai2['nama']?> - <?=$jabatan2['name']?></td>
 				<td><?=$pegawai2['rekbank']?></td>
-				<td>Rp. <?= number_format($data2['total'],0,',','.');?></td>
+				<td>Rp. <?= number_format($data2['total']+$data2['potongan_bendahara'],0,',','.');?></td>
 				<td>Rp. <?= number_format($data2['potongan_bendahara'],0,',','.');?></td>
 				<td>Rp. <?= number_format($data2['total']-$data2['potongan_bendahara'] ,0,',','.');?></td>
 				<td>

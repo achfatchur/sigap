@@ -1208,10 +1208,10 @@ if ($rsnew["import_file"]){
 	//die;
 	$lembur = ExecuteScalar("SELECT value_perjam FROM m_lembur WHERE jenjang_id='".$jenjang."'");
 	if($data_pegawai["type"] == '1'){
-		$potongan = ($absen_guru * $row[2]) + ($absen_guru * $row[4]) + ($sakit_jam_guru * $row[6]) + ($absen_guru * $row[3]) + ($izin_guru * $row[5]) + ($sakit_jam_guru * $row[7]) + ($absen_guru * $row[8]) + ($absen_guru * $row[9]);
+		$potongan_guru = ($absen_guru * $row[2]) + ($absen_guru * $row[4]) + ($sakit_jam_guru * $row[6]) + ($absen_guru * $row[3]) + ($izin_guru * $row[5]) + ($sakit_jam_guru * $row[7]) + ($absen_guru * $row[8]) + ($absen_guru * $row[9]);
 		//print_r($test_absen);
 		//die;
-		$penyesuaian = ($piket_guru * $row[10]) + ($inval * $row[11]) + ($lembur * $row[12]);
+		$penyesuaian_guru = ($piket_guru * $row[10]) + ($inval * $row[11]) + ($lembur * $row[12]);
 	}else{
 		$potongan = ($absen * $row[2]) + ($izin * $row[4]) + ($sakit * $row[6]) + ($absen_jam * $row[3]) + ($izin_jam * $row[5]) + ($sakit_jam * $row[7]) + ($telambat * $row[8]) + ($pulang_cepat * $row[9]);
 		$penyesuaian = ($piket * $row[10]) + ($inval * $row[11]) + ($lembur * $row[12]);
@@ -1224,80 +1224,98 @@ if ($rsnew["import_file"]){
 
 	//PENGECEKKAN DATA GAJI
 	$gaji_sma = ExecuteRow("SELECT * FROM gaji_sma WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+	print_r($gaji_sma);
+	die;
 	$total_gaji_sma = $gaji_sma["total"]-$potongan_guru+$penyesuaian_guru;
-
 			if(!empty($gaji_sma)){
 				Execute("UPDATE gaji_sma SET total = '".$total_gaji_sma."',potongan = '".$potongan_guru."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian_guru."' WHERE id ='".$gaji_sma['id']."'");
+				//Execute("UPDATE solved_all_unit SET total_gaji = '".$total_gaji_sma."' WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."' ");
+				//print_r($total_gaji_sma);
+				//die;
 			}
-			$gaji_tu_sma = ExecuteRow("SELECT * FROM gaji_tu_sma WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-			$total_gaji_tu_sma=$gaji_tu_sma["total"]-$potongan+$penyesuaian; 
+	$gaji_tu_sma = ExecuteRow("SELECT * FROM gaji_tu_sma WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+	$total_gaji_tu_sma=$gaji_tu_sma["total"]-$potongan+$penyesuaian; 
 			if(!empty($gaji_tu_sma)){
 				Execute("UPDATE gaji_tu_sma SET total = '".$total_gaji_tu_sma."', potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_sma['id']."'");
+				//Execute("UPDATE solved_all_unit SET total_gaji = '".$total_gaji_tu_sma."' WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."' ");
 			}
-			$gaji_karyawan_sma = ExecuteRow("SELECT * FROM gaji_karyawan_sma WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-			$total_gaji_karyawan_sma=$gaji_karyawan_sma["total"]-$potongan+$penyesuaian;
+	$gaji_karyawan_sma = ExecuteRow("SELECT * FROM gaji_karyawan_sma WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+	$total_gaji_karyawan_sma=$gaji_karyawan_sma["total"]-$potongan+$penyesuaian;
 			if(!empty($gaji_karyawan_sma)){
 				Execute("UPDATE gaji_karyawan_sma SET total='".$total_gaji_karyawan_sma."', potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_sma['id']."'");
+				//Execute("UPDATE solved_all_unit SET total_gaji = '".$total_gaji_karyawan_sma."' WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."' ");
 			}
-			$gaji_smk = ExecuteRow("SELECT * FROM gaji_smk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-			$total_gaji_smk = $gaji_smk["total"]-$potongan+$penyesuaian_guru;
+	$gaji_smk = ExecuteRow("SELECT * FROM gaji_smk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+	$total_gaji_smk = $gaji_smk["total"]-$potongan+$penyesuaian_guru;
 			if(!empty($gaji_smk)){
 				Execute("UPDATE gaji_smk SET total='".$total_gaji_smk."', potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian_guru."' WHERE id ='".$gaji_smk['id']."'");
+				//Execute("UPDATE solved_all_unit SET total_gaji = '".$total_gaji_smk."' WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."' ");
 			}
-			$gaji_tu_smk = ExecuteRow("SELECT * FROM gaji_tu_smk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-			$total_gaji_tu_smk = $gaji_tu_smk["total"]-$potongan+$penyesuaian;
+	$gaji_tu_smk = ExecuteRow("SELECT * FROM gaji_tu_smk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+	$total_gaji_tu_smk = $gaji_tu_smk["total"]-$potongan+$penyesuaian;
 			if(!empty($gaji_tu_smk)){
 				Execute("UPDATE gaji_tu_smk SET total ='".$total_gaji_tu_smk."', potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_smk['id']."'");
+				//Execute("UPDATE solved_all_unit SET total_gaji = '".$total_gaji_tu_smk."' WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."' ");
 			}
-			$gaji_karyawan_smk = ExecuteRow("SELECT * FROM gaji_karyawan_smk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-			$total_gaji_karyawan_smk=$gaji_karyawan_smk["total"]-$potongan+$penyesuaian;
+	$gaji_karyawan_smk = ExecuteRow("SELECT * FROM gaji_karyawan_smk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+	$total_gaji_karyawan_smk=$gaji_karyawan_smk["total"]-$potongan+$penyesuaian;
 			if(!empty($gaji_karyawan_smk)){
 				Execute("UPDATE gaji_karyawan_smk SET total='".$total_gaji_karyawan_smk."',potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_smk['id']."'");
+				//Execute("UPDATE solved_all_unit SET total_gaji = '".$total_gaji_karyawan_smk."' WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."' ");
 			}
-			$gaji_smp = ExecuteRow("SELECT * FROM gaji_smp WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-			$total_gaji_smp = $gaji_smp["total"]-$potongan_guru+$penyesuaian_guru;
+	$gaji_smp = ExecuteRow("SELECT * FROM gaji_smp WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+	$total_gaji_smp = $gaji_smp["total"]-$potongan_guru+$penyesuaian_guru;
 			if(!empty($gaji_smp)){
 				Execute("UPDATE gaji_smp SET total='".$total_gaji_smp."',potongan = '".$potongan_guru."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian_guru."' WHERE id ='".$gaji_smp['id']."'");
+				//Execute("UPDATE solved_all_unit SET total_gaji = '".$total_gaji_smp."' WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."' ");
 			}
-			$gaji_tu_smp = ExecuteRow("SELECT * FROM gaji_tu_smp WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-			$total_gaji_tu_smp = $gaji_tu_smp["total"]-$potongan+$penyesuaian;
+	$gaji_tu_smp = ExecuteRow("SELECT * FROM gaji_tu_smp WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+	$total_gaji_tu_smp = $gaji_tu_smp["total"]-$potongan+$penyesuaian;
 			if(!empty($gaji_tu_smp)){
 				Execute("UPDATE gaji_tu_smp SET total='".$total_gaji_tu_smp."',potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_smp['id']."'");
+				//Execute("UPDATE solved_all_unit SET total_gaji = '".$total_gaji_tu_smp."' WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."' ");
 			}
-			$gaji_karyawan_smp = ExecuteRow("SELECT * FROM gaji_karyawan_smp WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-			$total_gaji_karyawan_smp=$gaji_karyawan_smp["total"]-$potongan+$penyesuaian;
+	$gaji_karyawan_smp = ExecuteRow("SELECT * FROM gaji_karyawan_smp WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+	$total_gaji_karyawan_smp=$gaji_karyawan_smp["total"]-$potongan+$penyesuaian;
 			if(!empty($gaji_karyawan_smp)){
 				Execute("UPDATE gaji_karyawan_smp SET total='".$total_gaji_karyawan_smp."', potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_smp['id']."'");
+				//Execute("UPDATE solved_all_unit SET total_gaji = '".$total_gaji_karyawan_smp."' WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."' ");
 			}
-			$gaji = ExecuteRow("SELECT * FROM gaji WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-			$total_gaji_sd=$gaji["total"]-$potongan_guru+$penyesuaian_guru;
+	$gaji = ExecuteRow("SELECT * FROM gaji WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+	$total_gaji_sd=$gaji["total"]-$potongan_guru+$penyesuaian_guru;
 			if(!empty($gaji)){
 				Execute("UPDATE gaji SET total='".$total_gaji_sd."',potongan = '".$potongan_guru."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian_guru."' WHERE id ='".$gaji['id']."'");
+				//Execute("UPDATE solved_all_unit SET total_gaji = '".$total_gaji_sd."' WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."' ");
 			}
-			$gaji_tu_sd = ExecuteRow("SELECT * FROM gaji_tu_sd WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-			$total_gaji_tu_sd=$gaji_tu_sd["total"]-$potongan_guru+$penyesuaian;
+	$gaji_tu_sd = ExecuteRow("SELECT * FROM gaji_tu_sd WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+	$total_gaji_tu_sd=$gaji_tu_sd["total"]-$potongan_guru+$penyesuaian;
 			if(!empty($gaji_tu_sd)){
 				Execute("UPDATE gaji_tu_sd SET total='".$total_gaji_tu_sd."' , potongan = '".$potongan_guru."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_sd['id']."'");
+				//Execute("UPDATE solved_all_unit SET total_gaji = '".$total_gaji_tu_sd."' WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."' ");
 			}
-			$gaji_karyawan_sd = ExecuteRow("SELECT * FROM gaji_karyawan_sd WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-			$total_gaji_karyawan_sd=$gaji_karyawan_sd["total"]-$potongan+$penyesuaian;
+	$gaji_karyawan_sd = ExecuteRow("SELECT * FROM gaji_karyawan_sd WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+	$total_gaji_karyawan_sd=$gaji_karyawan_sd["total"]-$potongan+$penyesuaian;
 			if(!empty($gaji_karyawan_sd)){
 				Execute("UPDATE gaji_karyawan_sd SET total='".$total_gaji_karyawan_sd."',potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_sd['id']."'");
+				//Execute("UPDATE solved_all_unit SET total_gaji = '".$total_gaji_karyawan_sd."' WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."' ");	
 			}
-			$gaji_tk = ExecuteRow("SELECT * FROM gaji_tk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-			$total_gaji_tk=$gaji_tk["total"]-$potongan_guru+$penyesuaian_guru;
+	$gaji_tk = ExecuteRow("SELECT * FROM gaji_tk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+	$total_gaji_tk=$gaji_tk["total"]-$potongan_guru+$penyesuaian_guru;
 			if(!empty($gaji_tk)){
 				Execute("UPDATE gaji_tk SET total='".$total_gaji_tk."' ,potongan = '".$potongan_guru."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian_guru."' WHERE id ='".$gaji_tk['id']."'");
+				//Execute("UPDATE solved_all_unit SET total_gaji = '".$total_gaji_tk."' WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."' ");
 			}
-			$gaji_tu_tk = ExecuteRow("SELECT * FROM gaji_tu_tk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-			$total_gaji_tu_tk=$gaji_tu_tk["total"]-$potongan+$penyesuaian;
+	$gaji_tu_tk = ExecuteRow("SELECT * FROM gaji_tu_tk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+	$total_gaji_tu_tk=$gaji_tu_tk["total"]-$potongan+$penyesuaian;
 			if(!empty($gaji_tu_tk)){
 				Execute("UPDATE gaji_tu_tk SET total='".$total_gaji_tu_tk."' ,potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_tu_tk['id']."'");
+				//Execute("UPDATE solved_all_unit SET total_gaji = '".$total_gaji_tu_tk."' WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."' ");
 			}
-			$gaji_karyawan_tk = ExecuteRow("SELECT * FROM gaji_karyawan_tk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
-			$total_gaji_karyawan_tk=$gaji_karyawan_tk["total"]-$potongan+$penyesuaian;
+	$gaji_karyawan_tk = ExecuteRow("SELECT * FROM gaji_karyawan_tk WHERE pegawai ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."'");
+	$total_gaji_karyawan_tk=$gaji_karyawan_tk["total"]-$potongan+$penyesuaian;
 			if(!empty($gaji_karyawan_tk)){
 				Execute("UPDATE gaji_karyawan_tk SET total='".$total_gaji_karyawan_tk."',potongan = '".$potongan."', voucher = '".$row[13]."', penyesuaian = '".$penyesuaian."' WHERE id ='".$gaji_karyawan_tk['id']."'");
+				//Execute("UPDATE solved_all_unit SET total_gaji = '".$total_gaji_karyawan_tk."' WHERE nip ='".$pegawai['nip']."' AND bulan ='".$bulan."' AND tahun ='".$tahun."' ");
 			}
 			$XLSXdata .= "("
 			.("NULL").","

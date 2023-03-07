@@ -6,7 +6,17 @@ require_once'vendor/tbs_class.php';
 require_once'vendor/tbs_plugin_opentbs.php';
 $TBS = new clsTinyButStrong; 
 $TBS->Plugin(TBS_INSTALL, OPENTBS_PLUGIN);
-$sql = mysqli_query($con, "SELECT solved_smp.id,solved_smp.nip, pegawai.nama, m_bpjs.golongan, solved_smp.hari_tua,solved_smp.pph21, solved_smp.j_pensiun, solved_smp.tahun, bulan.bulan,solved_smp.iuran_bpjs FROM solved_smp INNER JOIN pegawai ON solved_smp.nip = pegawai.nip INNER JOIN m_bpjs ON solved_smp.golongan_bpjs = m_bpjs.id INNER JOIN bulan ON solved_smp.bulan = bulan.id order by solved_smp.id desc");	
+$sql = mysqli_query($con, "SELECT solved_all_unit.unit,solved_all_unit.id, solved_all_unit.nip, pegawai.nama,
+solved_all_unit.hari_tua, solved_all_unit.pph21, solved_all_unit.j_pensiun,
+solved_all_unit.tahun, bulan.bulan, solved_all_unit.iuran_bpjs,
+m_bpjs.golongan, tpendidikan.name
+FROM solved_all_unit INNER JOIN
+pegawai ON solved_all_unit.nip = pegawai.nip INNER JOIN
+bulan ON solved_all_unit.bulan = bulan.id INNER JOIN
+m_bpjs ON solved_all_unit.golongan_bpjs = m_bpjs.id INNER JOIN
+tpendidikan ON solved_all_unit.unit = tpendidikan.nourut
+where solved_all_unit.unit ='3'
+ORDER BY solved_all_unit.id DESC");	
 $data = [];
 while($row = mysqli_fetch_array($sql))
 {     
@@ -23,6 +33,6 @@ $template = 'template_export_bpjs.xlsx';
 $TBS->LoadTemplate($template, OPENTBS_ALREADY_UTF8);
 $TBS->MergeBlock('data', $data);
 $dateyear = date("F Y");
-$TBS->Show(OPENTBS_DOWNLOAD, $dateyear.' Laporan Pajak & BPJS SMP.xlsx');
+$TBS->Show(OPENTBS_DOWNLOAD, $dateyear.' Laporan BPJS SMP.xlsx');
 exit();
 ?>
