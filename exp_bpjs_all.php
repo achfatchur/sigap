@@ -16,8 +16,8 @@ bulan ON solved_all_unit.bulan = bulan.id INNER JOIN
 m_bpjs ON solved_all_unit.golongan_bpjs = m_bpjs.id INNER JOIN
 tpendidikan ON solved_all_unit.unit = tpendidikan.nourut
 ORDER BY solved_all_unit.id DESC");	
-//print_r($sql);
-//die;
+print_r($sql);
+die;
 $data = [];
 while($row = mysqli_fetch_array($sql))
 {     

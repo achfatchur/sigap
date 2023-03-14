@@ -2109,7 +2109,7 @@ class m_penyesuaian_list extends m_penyesuaian
 
 	function Page_Load() {
 	$item = &$this->ExportOptions->add("MyName");
-		$item->Body = "<a href='Template Penyesuaian.xlsx'>Download Template</a>";
+		
 	}
 
 	// Page Unload event
@@ -2148,6 +2148,23 @@ class m_penyesuaian_list extends m_penyesuaian
 	function Page_Render() {
 
 		//echo "Page Render";
+	$this->OtherOptions["addedit"]->UseDropDownButton = FALSE; // jangan gunakan style DropDownButton
+	$my_options = &$this->OtherOptions; // pastikan menggunakan area OtherOptions
+	$my_option = $my_options["addedit"]; // dekat tombol addedit
+	$my_item = &$my_option->Add("mynewbutton"); // tambahkan tombol baru
+	if (CurrentUserLevel() == '8'){
+		$my_item->Body = "<a class=\"ewAddEdit ewAdd\" title=\"Your Title\" data-caption=\"Your Caption\" href=\"template_tk.php\">Download Template</a>";
+		}else if(CurrentUserLevel() == '9'){
+			$my_item->Body = "<a class=\"ewAddEdit ewAdd\" title=\"Your Title\" data-caption=\"Your Caption\" href=\"template_sd.php\">Download Template</a>";
+		}else if (CurrentUserLevel() == '10'){
+			$my_item->Body = "<a class=\"ewAddEdit ewAdd\" title=\"Your Title\" data-caption=\"Your Caption\" href=\"template_smp.php\">Download Template</a>";
+		}else if (CurrentUserLevel() == '11'){
+			$my_item->Body = "<a class=\"ewAddEdit ewAdd\" title=\"Your Title\" data-caption=\"Your Caption\" href=\"template_sma.php\">Download Template</a>";
+		}else if (CurrentUserLevel() == '12'){
+			$my_item->Body = "<a class=\"ewAddEdit ewAdd\" title=\"Your Title\" data-caption=\"Your Caption\" href=\"template_smk.php\">Download Template</a>";
+		}
+	
+
 	}
 
 	// Page Data Rendering event

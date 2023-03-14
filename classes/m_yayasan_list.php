@@ -2100,8 +2100,8 @@ class m_yayasan_list extends m_yayasan
 
 	// Page Load event
 	function Page_Load() {
-	$item = &$this->ExportOptions->add("MyName");
-	$item->Body = "<a href='Template Pengurus Yayasan.xlsx'>Download Template</a>";
+	//$item = &$this->ExportOptions->add("MyName");
+	//$item->Body = "<a href='Template Pengurus Yayasan.xlsx'>Download Template</a>";
 	}
 
 	// Page Unload event
@@ -2140,8 +2140,13 @@ class m_yayasan_list extends m_yayasan
 	function Page_Render() {
 
 		//echo "Page Render";
-	}
+		$this->OtherOptions["addedit"]->UseDropDownButton = FALSE; // jangan gunakan style DropDownButton
+	$my_options = &$this->OtherOptions; // pastikan menggunakan area OtherOptions
+	$my_option = $my_options["addedit"]; // dekat tombol addedit
+	$my_item = &$my_option->Add("mynewbutton"); // tambahkan tombol baru
+	$my_item->Body = "<a class=\"ewAddEdit ewAdd\" title=\"Your Title\" data-caption=\"Your Caption\" href=\"template_yayasan.php\">Download Template</a>";
 
+	}
 	// Page Data Rendering event
 	function Page_DataRendering(&$header) {
 
